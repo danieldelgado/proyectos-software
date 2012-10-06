@@ -14,12 +14,15 @@ import com.vst.dominio.Usuario;
 public class pruebaController {
 
 	
-	
+	@Autowired
+	UsuarioDAO usuarioDAO;
 	
 	@Transactional
 	public String prueba ( String pruebaTXT ){
-		
-		
+		Usuario usuario = new Usuario();
+		usuario.setNombre("Daniel");
+		usuario.setApellidos(pruebaTXT);
+		usuarioDAO.guardar(usuario);		
 		return "prueba concreta";
 	}
 	

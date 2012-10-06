@@ -161,7 +161,7 @@
 	
 		<dependency>
 			<groupId>com.vst</groupId>
-			<artifactId>controller</artifactId>
+			<artifactId>dao-hsd</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 	

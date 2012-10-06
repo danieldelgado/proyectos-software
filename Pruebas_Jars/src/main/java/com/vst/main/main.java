@@ -24,7 +24,10 @@ public class main {
 			}
 			
 			pruebaController p = (pruebaController) context.getBean("pruebaController");
-			System.out.println(p.prueba("algooo para ingresa2r"));
+			System.out.println(p.prueba("adasdasd"));
+			System.out.println(p.prueba("aasdasdsdasdasesa2r"));
+			System.out.println(p.prueba("algasda2rasdasd"));
+			System.out.println(p.prueba("asdasdgresa2r"));
 
 		} catch (Exception e) {
 			System.out.println(e);
