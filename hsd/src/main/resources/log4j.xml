@@ -10,16 +10,23 @@
 		</layout>
 	</appender>
 	
-	<appender name="file" class="org.apache.log4j.FileAppender">
+	<appender name="fileLinux" class="org.apache.log4j.FileAppender">
 	<param name="File" value="/home/daniel/logs/hsd/hsd.log"/>
 	<layout class="org.apache.log4j.PatternLayout">
 	   <param name="ConversionPattern" value="%d [%5p] [%c{1}] [clase:%F] [linea:%L] - msj:%m%n"/>
 	</layout>
 	</appender>
 	
+	<appender name="fileWindows" class="org.apache.log4j.FileAppender">
+	<param name="File" value="C://logs//hsd.log"/>
+	<layout class="org.apache.log4j.PatternLayout">
+	   <param name="ConversionPattern" value="%d [%5p] [%c{1}] [clase:%F] [linea:%L] - msj:%m%n"/>
+	</layout>
+	</appender>
+	
 	<!-- Application Loggers -->
-	<logger name="com.vst.controller">
-		<level value="info" />
+	<logger name="com.vst">
+		<level value="info,error,debug,warn" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
@@ -39,7 +46,11 @@
 		<level value="info" />
 	</logger>
 	
-	<logger name="org.hibernate">
+	<logger name="org.hibernate.sql">
+	    <level value="TRACE" />
+	</logger>
+	
+	<logger name="org.hibernate.type">
 	    <level value="TRACE" />
 	</logger>
 
@@ -47,7 +58,8 @@
 	<root>
 		<priority value="info,debug" />
 		<appender-ref ref="console"/>
-		<appender-ref ref="file"/>
+		<appender-ref ref="fileLinux"/>
+		<appender-ref ref="fileWindows"/>
 	</root>
 	
 </log4j:configuration>
