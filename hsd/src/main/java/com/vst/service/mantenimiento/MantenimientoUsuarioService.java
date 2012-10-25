@@ -1,4 +1,4 @@
-package com.vst.service;
+package com.vst.service.mantenimiento;
 
 import com.vst.dominio.Usuario;
 

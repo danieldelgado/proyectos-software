@@ -1,4 +1,4 @@
-package com.vst.service.impl;
+package com.vst.service.mantenimiento.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.vst.dao.UsuarioDAO;
 import com.vst.dominio.Usuario;
-import com.vst.service.MantenimientoUsuarioService;
+import com.vst.service.mantenimiento.MantenimientoUsuarioService;
 
 @Service("MantenimientoUsuarioService")
 public class MantenimientoUsuarioServiceImpl implements MantenimientoUsuarioService {
