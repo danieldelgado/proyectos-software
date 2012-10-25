@@ -1,6 +1,6 @@
 package com.vst.service;
 
-public interface LoginSevice {
+public interface LoginService {
 
 	public int loginUsuario();
 	
