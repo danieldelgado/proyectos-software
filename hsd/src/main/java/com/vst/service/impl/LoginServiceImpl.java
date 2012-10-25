@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vst.controller.LoginController;
 import com.vst.dao.PerfilDAO;
 import com.vst.dao.UsuarioDAO;
 import com.vst.dominio.Perfil;
@@ -31,10 +30,12 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private RegistrarHistorialService historialService;
 	
+	
 	public int buscarUsuario(String usuario, String clave, Integer perfil, HttpSession session, HttpServletRequest request) {
-		log.info("LoginSevice buscarUsuario "+ usuario + " ip:"+request.getRemoteAddr());
-		historialService.guardarHistorial(this,"buscarUsuario",request);
+		log.info("LoginSevice buscarUsuario "+ usuario + " ip:"+request.getRemoteAddr());		
+		historialService.guardarHistorial(this,"buscarUsuario",request);		
 		try {
+						
 			Usuario u = usuarioDAO.buscarUsuario(usuario, perfil);
 			Perfil p = null;
 			historialService.guardarObjetoHIstorial(" resultado buscarUsuario " , u );
@@ -55,6 +56,8 @@ public class LoginServiceImpl implements LoginService {
 				log.info(" Usuario ingreso incorrectamente Usuario "+ usuario+" perfil:"+p.getNombre());
 				session.removeAttribute(Constantes.SESION_USUARIO);
 			}
+			
+			
 		} catch (Exception e) {
 			
 		}
