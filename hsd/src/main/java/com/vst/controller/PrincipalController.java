@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class PrincipalController {
 	
 	private static final Logger log = LoggerFactory.getLogger(PrincipalController.class);
-		
-	
 	
 	@RequestMapping(method = RequestMethod.GET)	
 	public String get(HttpServletRequest request,Model model) {

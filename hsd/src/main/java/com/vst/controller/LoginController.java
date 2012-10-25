@@ -16,7 +16,7 @@ public class LoginController {
 private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 		
 	@RequestMapping(method = RequestMethod.GET)	
-	public String get(HttpServletRequest request,Model model) {
+	public String get() {
 		log.info("Ingreso a LoginController - get");
 		return "login/login";
 	}

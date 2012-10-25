@@ -32,18 +32,19 @@ public class FiltroSeguridad implements Filter{
 	/*@Autowired
 	private LoginService loginService;
 	*/
+	
 	@Autowired
 	private RegistrarHistorialService historialService;
 	
 	public void init(FilterConfig fConfig) throws ServletException {
 		this.filterConfig=fConfig;
-		log.info("Ingreso FiltroSeguridad init");
 	}
 	
 	public void doFilter(ServletRequest request,ServletResponse response,FilterChain chain) throws IOException,ServletException{
+		
 		if(request instanceof HttpServletRequest){
 			HttpServletRequest objRequest=(HttpServletRequest) request;		
-			log.info("Ingreso FiltroSeguridad");
+			log.info("-");
 			historialService.guardarHistorial(this,"doFilter",objRequest);
 		}
 		chain.doFilter(request,response);	
