@@ -25,27 +25,20 @@ public class Historial implements Entidad , Serializable {
 					valueColumnName = "sequence_value")
 	@Column(name="id_historial")
 	private Integer id;
-
-
-	@Temporal( TemporalType.TIMESTAMP)
-	@Column(name="fecha_registro")
-	private Date fechaRegistro;
 	
 	@Column(name="valor",length=200)
 	private String valor;
 	
-	
+	@Temporal( TemporalType.TIMESTAMP)
+	@Column(name="fecha_registro")
+	private Date fechaRegistro;
 	
     public Historial() {
     }
-
-
-
+    
 	public Integer getId() {
 		return id;
 	}
-
-
 
 	public void setId(Integer id) {
 		this.id = id;
