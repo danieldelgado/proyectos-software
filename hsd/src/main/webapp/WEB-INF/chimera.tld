@@ -9,7 +9,7 @@
 	
 	<tag>
 		<name>html</name>
-		<tag-class>com.btg.std.util.tag.HTMLTag</tag-class>
+		<tag-class>com.vst.util.tag.HTMLTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
 			<name>titulo</name>			
@@ -31,7 +31,7 @@
 	
 	<tag>
 		<name>botones</name>
-		<tag-class>com.btg.std.util.tag.BotonesTag</tag-class>
+		<tag-class>com.vst.util.tag.BotonesTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<name>botones</name>
@@ -49,7 +49,7 @@
 	
 	<tag>
 		<name>asignable</name>
-		<tag-class>com.btg.std.util.tag.AsignableTag</tag-class>
+		<tag-class>com.vst.util.tag.AsignableTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<name>identificador</name>

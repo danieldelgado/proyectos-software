@@ -18,12 +18,12 @@ import com.vst.util.Entidad;
 public class Persona implements Entidad , Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	@Id	
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
 	@TableGenerator(name = "id_Generator",
-					table = "sequence", 
-					pkColumnName = "sequence_recurso_name", 
-					valueColumnName = "sequence_recurso_value")
+					table = "sequence_table", 
+					pkColumnName = "sequence_name", 
+					valueColumnName = "sequence_value")
 	@Column(name="id_persona")
 	private Integer id;
 

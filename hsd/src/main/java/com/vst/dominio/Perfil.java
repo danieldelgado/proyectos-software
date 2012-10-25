@@ -33,9 +33,9 @@ public class Perfil implements Entidad , Serializable {
 	@Id	
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
 	@TableGenerator(name = "id_Generator",
-					table = "sequence", 
-					pkColumnName = "sequence_recurso_name", 
-					valueColumnName = "sequence_recurso_value")
+					table = "sequence_table", 
+					pkColumnName = "sequence_name", 
+					valueColumnName = "sequence_value")
 	@Column(name="id_perfil")
 	private Integer id;
 	
