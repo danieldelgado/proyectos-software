@@ -20,10 +20,10 @@ public class Boton extends Recurso implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
-	@Column(name="bloqueable")
+	@Column(name="bloqueable",nullable=false)
 	private Boolean bloqueable;
 
-	@Column(name="codigo",length=20)
+	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
 
 	@Column(name="icono",length=50)
@@ -35,14 +35,14 @@ public class Boton extends Recurso implements Serializable {
 	@Column(name="on_submit",length=80)
 	private String onSubmit;
 
-	@Column(name="orden",length=2)
+	@Column(name="orden",length=2,nullable=false)
 	private Integer orden;
 
     @Lob()
 	@Column(name="parametros_json")
 	private String parametrosJson;
 
-    @Column(name="tipo",length=50)
+    @Column(name="tipo",length=50,nullable=false)
 	private String tipo;
 
 	@Column(name="url",length=250)

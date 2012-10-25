@@ -20,16 +20,16 @@ import javax.persistence.Table;
 public class Lista  extends Recurso implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="codigo",length=10)
+	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
 
-	@Column(name="descripcion",length=250)
+	@Column(name="descripcion",length=250,nullable=false)
 	private String descripcion;
 
-	@Column(name="id_menu",length=4)
+	@Column(name="id_menu",length=4,nullable=false)
 	private Integer idMenu;
 
-	@Column(name="tabla",length=40)
+	@Column(name="tabla",length=40,nullable=false)
 	private String tabla;
 
     @ManyToMany

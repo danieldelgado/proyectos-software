@@ -22,22 +22,22 @@ import javax.persistence.Table;
 public class Menu extends Recurso implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="codigo",length=10)
+	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
 
 	@Column(name="function",length=100)
 	private String function;
 
-	@Column(name="nombre",length=100)
+	@Column(name="nombre",length=100,nullable=false)
 	private String nombre;
 
-	@Column(name="orden",length=2)
+	@Column(name="orden",length=2,nullable=false)
 	private Integer orden;
 
-	@Column(name="tipo",length=50)
+	@Column(name="tipo",length=50,nullable=false)
 	private String tipo;
 
-	@Column(name="todos")
+	@Column(name="todos",nullable=false)
 	private Boolean todos;
 
 	@Column(name="url",length=500)

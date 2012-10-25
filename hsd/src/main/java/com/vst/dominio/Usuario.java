@@ -21,25 +21,25 @@ import javax.persistence.Table;
 public class Usuario extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="codigo",length=10)
+	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
 
-	@Column(name="login",length=50)
+	@Column(name="login",length=50,nullable=false)
 	private String login;
 
-	@Column(name="clave",length=50)
+	@Column(name="clave",length=50,nullable=false)
 	private String clave;
 	
-	@Column(name="estado_civil",length=1)
+	@Column(name="estado_civil",length=1,nullable=false)
 	private Integer estadoCivil;
 
 	@Column(name="ruc",length=11)
 	private String ruc;
 
-	@Column(name="tipo_documento",length=1)
+	@Column(name="tipo_documento",length=1,nullable=false)
 	private Integer tipo_documento;
 	
-	@Column(name="numero_documento",length=12)
+	@Column(name="numero_documento",length=12,nullable=false)
 	private String numero_documento;
 	
 	@ManyToMany(mappedBy="usuarios")

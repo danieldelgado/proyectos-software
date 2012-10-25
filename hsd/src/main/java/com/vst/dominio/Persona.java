@@ -31,7 +31,7 @@ public class Persona implements Entidad , Serializable {
 	@Column(name="fechaActualizacion")
 	private Date fechaActualizacion;
 
-	@Temporal( TemporalType.DATE)
+	@Temporal( TemporalType.TIMESTAMP)
 	@Column(name="fecha_creacion")
 	private Date fechaCreacion;
 
@@ -39,17 +39,17 @@ public class Persona implements Entidad , Serializable {
 	@Column(name="fecha_nacimiento")
 	private Date fechaNacimiento;
 
-	@Column(name="nombre",length=100)
+	@Column(name="nombre",length=100,nullable=false)
 	private String nombre;
 
-	@Column(name="apellidos",length=100)
+	@Column(name="apellidos",length=100,nullable=false)
 	private String apellidos;
 
 	
-	@Column(name="estado",length=1)
+	@Column(name="estado",length=1,nullable=false)
 	private Character estado;
 
-	@Column(name="activo")
+	@Column(name="activo",nullable=false)
 	private Boolean activo;
 	
 	

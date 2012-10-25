@@ -19,19 +19,19 @@ import javax.persistence.Table;
 public class Cliente extends Persona implements  Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="codigo",length=20)
+	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
 	
-	@Column(name="estado_civil",length=1)
+	@Column(name="estado_civil",length=1,nullable=false)
 	private Integer estadoCivil;
 
-	@Column(name="ruc",length=11)
+	@Column(name="ruc",length=11,nullable=false)
 	private String ruc;
 
-	@Column(name="tipo_documento",length=1)
+	@Column(name="tipo_documento",length=1,nullable=false)
 	private Integer tipo_documento;
 	
-	@Column(name="numero_documento",length=12)
+	@Column(name="numero_documento",length=12,nullable=false)
 	private String numero_documento;
 
     public Cliente() {

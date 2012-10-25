@@ -26,13 +26,13 @@ public class FechaDiaEvento implements Entidad , Serializable {
 	@Column(name="id_fecha_evento")
 	private Integer id;
 
-	@Column(name="activo")
+	@Column(name="activo",nullable=false)
 	private Boolean activo;
 
-	@Column(name="agrega")
+	@Column(name="agrega",nullable=false)
 	private Boolean agrega;
 
-	@Column(name="descripcion",length=250)
+	@Column(name="descripcion",length=250,nullable=false)
 	private String descripcion;
 
     @Temporal( TemporalType.DATE)
@@ -40,14 +40,14 @@ public class FechaDiaEvento implements Entidad , Serializable {
 	private Date fechaActualizacion;
 
     @Temporal( TemporalType.DATE)
-	@Column(name="fecha_evento")
+	@Column(name="fecha_evento",nullable=false)
 	private Date fechaEvento;
 
-    @Temporal( TemporalType.DATE)
-	@Column(name="fecha_registro")
+    @Temporal( TemporalType.TIMESTAMP)
+	@Column(name="fecha_registro",nullable=false)
 	private Date fechaRegistro;
 
-    @Column(name="nombre",length=100)
+    @Column(name="nombre",length=100,nullable=false)
 	private String nombre;
 
     public FechaDiaEvento() {

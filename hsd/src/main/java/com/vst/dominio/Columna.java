@@ -37,42 +37,42 @@ public class Columna implements Entidad , Serializable {
 	private Integer id;
 
 	
-	@Column(name="addColumn")
+	@Column(name="addColumn",nullable=false)
 	private Boolean addColumn;
 
-	@Column(name="ancho",length=4)
+	@Column(name="ancho",length=4,nullable=false)
 	private Integer ancho;
 
-	@Column(name="atributo",length=20)
+	@Column(name="atributo",length=50,nullable=false)
 	private String atributo;
 
-	@Column(name="cabecera",length=20)
+	@Column(name="cabecera",length=50,nullable=false)
 	private String cabecera;
 
-	@Column(name="codigo",length=20)
+	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
 
-	@Column(name="mapping")
+	@Column(name="mapping",nullable=false)
 	private Boolean mapping;
 
-	@Column(name="visible")
+	@Column(name="visible",nullable=false)
 	private Boolean visible;
 
 	@ManyToMany(mappedBy="columnas")
 	private List<Lista> listas;
 	 
 	@Temporal( TemporalType.DATE)	 
-	@Column(name="fecha_actualizacion")
+	@Column(name="fecha_actualizacion",nullable=false)
 	private Date fechaActualizacion;
 
-	@Temporal( TemporalType.DATE)
-	@Column(name="fecha_registro")
+	@Temporal( TemporalType.TIMESTAMP)
+	@Column(name="fecha_registro",nullable=false)
 	private Date fechaRegistro;
 	
-	@Column(name="estado",length=1)
+	@Column(name="estado",length=1,nullable=false)
 	private Character estado;
 
-	@Column(name="activo")
+	@Column(name="activo",nullable=false)
 	private Boolean activo;
 	
     public Columna() {

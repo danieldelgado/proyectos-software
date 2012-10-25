@@ -39,28 +39,28 @@ public class Perfil implements Entidad , Serializable {
 	@Column(name="id_perfil")
 	private Integer id;
 	
-	@Column(name="codigo",length=10)
+	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
 
-	@Column(name="descripcion",length=250)
+	@Column(name="descripcion",length=250,nullable=false)
 	private String descripcion;
 
 	@Temporal( TemporalType.DATE)	 
 	@Column(name="fecha_actualizacion")
 	private Date fechaActualizacion;
 
-	@Column(name="estado",length=1)
+	@Column(name="estado",length=1,nullable=false)
 	private Character estado;
 
-	@Column(name="activo")
+	@Column(name="activo",nullable=false)
 	private Boolean activo;
 	
 
-    @Temporal( TemporalType.DATE)
+    @Temporal( TemporalType.TIMESTAMP)
 	@Column(name="fecha_creacion")
 	private Date fechaCreacion;
 
-    @Column(name="nombre",length=100)
+    @Column(name="nombre",length=100,nullable=false)
 	private String nombre;
 
 	@ManyToMany(fetch = FetchType.LAZY)

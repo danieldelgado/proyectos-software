@@ -26,16 +26,16 @@ public class Parametro implements Entidad , Serializable {
 	@Column(name="id_parametro")
 	private Integer id;
 
-	@Column(name="codigo",length=10)
+	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
 
-	@Column(name="descripcion",length=250)
+	@Column(name="descripcion",length=250,nullable=false)
 	private String descripcion;
 
-	@Column(name="nombre",length=100)
+	@Column(name="nombre",length=100,nullable=false)
 	private String nombre;
 
-	@Column(name="valor",length=200)
+	@Column(name="valor",length=200,nullable=false)
 	private String valor;
 
 	
@@ -43,7 +43,7 @@ public class Parametro implements Entidad , Serializable {
 	@Column(name="fecha_actualizacion")
 	private Date fechaActualizacion;
 
-	@Temporal( TemporalType.DATE)
+	@Temporal( TemporalType.TIMESTAMP)
 	@Column(name="fecha_registro")
 	private Date fechaRegistro;
 	

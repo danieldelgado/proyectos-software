@@ -40,13 +40,13 @@ public class Recurso implements Entidad , Serializable {
 	@Column(name="id_recurso")	
 	private Integer id;
 
-	@Column(name="activo")
+	@Column(name="activo",nullable=false)
 	private Boolean activo;
 
-	@Column(name="descripcion",length=250)
+	@Column(name="descripcion",length=250,nullable=false)
 	private String descripcion;
 
-	@Column(name="estado",length=1)
+	@Column(name="estado",length=1,nullable=false)
 	private Character estado;
 
 
@@ -54,7 +54,7 @@ public class Recurso implements Entidad , Serializable {
 	@Column(name="fecha_actualizacion")
 	private Date fechaActualizacion;
 
-    @Temporal( TemporalType.DATE)
+    @Temporal( TemporalType.TIMESTAMP)
 	@Column(name="fecha_creacion")
 	private Date fechaCreacion;
 

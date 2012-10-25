@@ -17,7 +17,7 @@ public class CodigoUsuario extends Usuario implements  Serializable {
 	private static final long serialVersionUID = 1L;
 
 
-	@Column(name="codigo",length=10)
+	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
 
 	

@@ -25,8 +25,15 @@ public class Historial implements Entidad , Serializable {
 					valueColumnName = "sequence_value")
 	@Column(name="id_historial")
 	private Integer id;
+
+	@Column(name="clase",length=200)
+	private String clase;
+
+	@Column(name="metodo",length=200)
+	private String metodo;
 	
-	@Column(name="valor",length=200)
+	@Lob()
+	@Column(name="valor")
 	private String valor;
 	
 	@Temporal( TemporalType.TIMESTAMP)
@@ -63,6 +70,22 @@ public class Historial implements Entidad , Serializable {
 	}
 
 
+
+	public String getClase() {
+		return clase;
+	}
+
+	public void setClase(String clase) {
+		this.clase = clase;
+	}
+
+	public String getMetodo() {
+		return metodo;
+	}
+
+	public void setMetodo(String metodo) {
+		this.metodo = metodo;
+	}
 
 	public void setValor(String valor) {
 		this.valor = valor;
