@@ -19,7 +19,9 @@ public class Constantes {
 	public static final Character INACTIVO = 'I';
 	public static final String SESION_MENU = "menu_sesion";
 	public static final String MENU_PADRE = "MENU_PADRE";
-	public static final String MENU_HIJO = "MENU_HIJO";	
+	public static final String MENU_HIJO = "MENU_HIJO";
+	public static final int USUARIO_LOGEADO = 1;
+	public static final int ERROR_AL_LOGUEARSE = -1;	
 
 	public static String LOGIN_SUPER_USUARIO_ADMINISTRADOR=Config.getPropiedad("LOGIN_SUPER_USUARIO_ADMINISTRADOR");
 	public static String PASS_SUPER_USUARIO_ADMINISTRADOR=Config.getPropiedad("PASS_SUPER_USUARIO_ADMINISTRADOR");

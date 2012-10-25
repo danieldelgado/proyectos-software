@@ -60,6 +60,34 @@ public class Persona implements Entidad , Serializable {
     
 
 
+	public Persona(Integer id, String nombre, String apellidos, Character estado, Boolean activo) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.estado = estado;
+		this.activo = activo;
+	}
+
+
+
+
+
+	public Persona(Date fechaActualizacion, Date fechaCreacion, Date fechaNacimiento, String nombre, String apellidos, Character estado,
+			Boolean activo) {
+		this.fechaActualizacion = fechaActualizacion;
+		this.fechaCreacion = fechaCreacion;
+		this.fechaNacimiento = fechaNacimiento;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.estado = estado;
+		this.activo = activo;
+	}
+
+
+
+
+
 	public Boolean getActivo() {
 		return activo;
 	}

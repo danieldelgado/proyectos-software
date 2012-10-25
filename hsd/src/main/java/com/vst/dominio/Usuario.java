@@ -1,6 +1,7 @@
 package com.vst.dominio;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -45,10 +46,25 @@ public class Usuario extends Persona implements Serializable {
 	@ManyToMany(mappedBy="usuarios")
 	private List<Perfil> perfils;
 
-
+	private transient Perfil perfilLogueado;
+	
     public Usuario() {
-    }
+    }   
 
+	public Usuario(Integer id, String nombre, String apellidos, Character estado, Boolean activo, String codigo, String login, String clave) {
+		super(id, nombre, apellidos, estado, activo);
+		this.codigo = codigo;
+		this.login = login;
+		this.clave = clave;
+	}
+
+	public Usuario(Integer id, String nombre, String apellidos, Character estado, Boolean activo, String codigo, String login, String clave,List<Perfil> perfils) {
+		super(id, nombre, apellidos, estado, activo);
+		this.codigo = codigo;
+		this.login = login;
+		this.clave = clave;
+		this.perfils = perfils;
+	}
 
 	public String getCodigo() {
 		return codigo;
@@ -127,6 +143,14 @@ public class Usuario extends Persona implements Serializable {
 
 	public void setPerfils(List<Perfil> perfils) {
 		this.perfils = perfils;
+	}
+
+	public Perfil getPerfilLogueado() {
+		return perfilLogueado;
+	}
+
+	public void setPerfilLogueado(Perfil perfilLogueado) {
+		this.perfilLogueado = perfilLogueado;
 	}
 
 	

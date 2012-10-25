@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.vst.dao.HistorialDAO;
 import com.vst.dominio.Historial;
+import com.vst.dominio.Usuario;
 import com.vst.filtro.FiltroSeguridad;
 import com.vst.service.RegistrarHistorialService;
 import com.vst.util.Util;
@@ -67,6 +68,25 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 			log.error("Erro con guardarHistorial "+e.getMessage());
 			e.printStackTrace();
 		}		
+	}
+
+	public void guardarObjetoHIstorial(String string, Usuario u) {
+		log.info("RegistrarHistorialServiceImpl Metodo guardarObjetoHIstorial");
+		try {							
+			String json = Util.getJsonObject(u);
+			Historial h = new Historial();
+			h.setCodigo(Util.getCodigo(h));
+			h.setClase(u.getClass().getSimpleName());
+			h.setMetodo(string);
+			h.setFechaRegistro(new Date());
+			h.setValor(json);					
+			historialDAO.guardar(h);
+			log.info("registrado  Historial :"+Util.getJsonObject(h));			
+		} catch (Exception e) {
+			log.error("Erro con guardarHistorial "+e.getMessage());
+			e.printStackTrace();
+		}		
+		
 	}
 
 	
