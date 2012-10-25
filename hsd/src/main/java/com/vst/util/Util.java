@@ -1,5 +1,26 @@
 package com.vst.util;
 
-public class Util {
+import java.util.ArrayList;
+import java.util.List;
+import com.google.gson.Gson;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
+public class Util {
+	
+	public static String getJsonObject(Entidad entidad){
+		Gson gson = new Gson();
+		String gsonString = gson.toJson(entidad);
+		return "{"+entidad.getClass().getSimpleName()+":["+gsonString+"]}";
+	}
+	
+	public static String getJson(Object... ob){
+		List l = new ArrayList();
+		for (int i = 0; i < ob.length; i++) {
+			Object o = ob[i];
+			l.add(o);			
+		}
+		Gson gson = new Gson();
+		return gson.toJson(l);
+	}	
+	
 }
