@@ -26,6 +26,9 @@ public class Historial implements Entidad , Serializable {
 	@Column(name="id_historial")
 	private Integer id;
 
+	@Column(name="codigo",length=50)
+	private String codigo;
+	
 	@Column(name="clase",length=200)
 	private String clase;
 
@@ -58,6 +61,14 @@ public class Historial implements Entidad , Serializable {
 	}
 
 
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;

@@ -19,8 +19,8 @@ public class PrincipalController {
 	
 	
 	@RequestMapping(method = RequestMethod.GET)	
-	public String principal(HttpServletRequest request,Model model) {
-		log.info("Ingreso a PrincipalController - principal");
+	public String get(HttpServletRequest request,Model model) {
+		log.info("Ingreso a PrincipalController - get");
 		return "principal";
 	}
 	

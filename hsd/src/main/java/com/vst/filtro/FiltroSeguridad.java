@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.vst.dominio.Usuario;
 import com.vst.service.LoginService;
 import com.vst.service.RegistrarHistorialService;
-import com.vst.util.Auditable;
 import com.vst.util.Config;
 import com.vst.util.Constantes;
 import com.vst.util.UtilEncrip;
@@ -30,19 +29,25 @@ public class FiltroSeguridad implements Filter{
 
 	private FilterConfig filterConfig=null;
 
-	@Autowired
+	/*@Autowired
 	private LoginService loginService;
-	
+	*/
 	@Autowired
 	private RegistrarHistorialService historialService;
 	
 	public void init(FilterConfig fConfig) throws ServletException {
 		this.filterConfig=fConfig;
+		log.info("Ingreso FiltroSeguridad init");
 	}
 	
-	@Auditable(requere="true")
 	public void doFilter(ServletRequest request,ServletResponse response,FilterChain chain) throws IOException,ServletException{
 		if(request instanceof HttpServletRequest){
+			HttpServletRequest objRequest=(HttpServletRequest) request;		
+			log.info("Ingreso FiltroSeguridad");
+			historialService.guardarHistorial(this,"doFilter",objRequest);
+		}
+		chain.doFilter(request,response);	
+		/*if(request instanceof HttpServletRequest){
 			HttpServletRequest objRequest=(HttpServletRequest) request;		
 			log.info("Ingreso FiltroSeguridad");
 			historialService.guardarHistorial(this,"doFilter",objRequest);
@@ -53,10 +58,11 @@ public class FiltroSeguridad implements Filter{
 			if(sesion.getAttribute(Constantes.SESION_TITULO)==null){
 				sesion.setAttribute(Constantes.SESION_TITULO,Config.getPropiedad("std.titulo"));
 			}
-			Usuario usuario=(Usuario) sesion.getAttribute(Constantes.SESION_USUARIO);		
-			if(response instanceof HttpServletResponse){
+			Usuario usuario=(Usuario) sesion.getAttribute(Constantes.SESION_USUARIO);
+			log.debug("Uri solicitada=" + uri);*/
+			//request.getRequestDispatcher(uri).forward(objRequest,miResponse);
+			/*if(response instanceof HttpServletResponse){
 				miResponse=(HttpServletResponse) response;
-				log.debug("Uri solicitada=" + uri);
 				if(Config.getPropiedadBoolean("login.seguridad")){
 					if(!uri.contains("service") && !uri.contains("axis2-web") && !uri.contains("/remote/") && !uri.contains("uploadExternalFile")){
 						String error=filterConfig.getInitParameter("error");
@@ -95,14 +101,14 @@ public class FiltroSeguridad implements Filter{
 								
 								if(rol != null && usuario.getPerfilSesion() != null && !usuario.getPerfilSesion().getNombre().equals(rol)){
 									loginService.asignarRol(usuario,rol,objRequest);
-								}*/
+								}
 								
 							}
 							else{
 								if(usu != null){
 									/*if(loginService.loginSeguridad(usu,rol,objRequest)){
 										correcto=true;
-									}*/
+									}
 								}
 							}
 						}
@@ -110,10 +116,10 @@ public class FiltroSeguridad implements Filter{
 							chain.doFilter(objRequest,miResponse);
 						}
 						else{
-							if(logout){
+							/*if(logout){
 								error="/error/finSesion.html";
 							}
-							request.getRequestDispatcher(error).forward(objRequest,miResponse);
+							//request.getRequestDispatcher(error).forward(objRequest,miResponse);
 						}
 					}
 					else{
@@ -126,7 +132,8 @@ public class FiltroSeguridad implements Filter{
 							chain.doFilter(objRequest,miResponse);
 						}
 						else{
-							request.getRequestDispatcher("/app/login").forward(objRequest,miResponse);
+							//request.getRequestDispatcher("/app/login").forward(objRequest,miResponse);
+							request.getRequestDispatcher("/").forward(objRequest,miResponse);	
 						}
 					}
 					else if((uri.contains("login") && !uri.contains("out")) && usuario!=null){
@@ -136,8 +143,9 @@ public class FiltroSeguridad implements Filter{
 						chain.doFilter(objRequest,miResponse);
 					}
 				}
-			}
-		}
+			}*/
+			
+		//}
 	}
 
 

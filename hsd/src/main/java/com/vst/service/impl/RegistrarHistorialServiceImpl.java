@@ -45,16 +45,18 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 			objRequest.getRequestedSessionId();
 			objRequest.getRemoteAddr();*/						
 			String json = Util.getJson(
-					objRequest.getContextPath(),
-					objRequest.getLocalAddr(),
-					objRequest.getScheme(),
-					objRequest.getServerName(),
-					objRequest.getRequestURI(),
-					objRequest.getRequestURL().toString(),
-					objRequest.getRequestedSessionId(),
-					objRequest.getRemoteAddr()				
+					"contextPath:"+objRequest.getContextPath(),
+					"localAddr:"+objRequest.getLocalAddr(),
+					"scheme:"+objRequest.getScheme(),
+					"serverName:"+objRequest.getServerName(),
+					"requestURI:"+objRequest.getRequestURI(),
+					"requestURL:"+objRequest.getRequestURL().toString(),
+					"queryString:"+objRequest.getQueryString(),
+					"requestedSessionId:"+objRequest.getRequestedSessionId(),
+					"remoteAddr:"+objRequest.getRemoteAddr()				
 					);
 			Historial h = new Historial();
+			h.setCodigo(Util.getCodigo(h));
 			h.setClase(objeto.getClass().getSimpleName());
 			h.setMetodo(metodo);
 			h.setFechaRegistro(new Date());
