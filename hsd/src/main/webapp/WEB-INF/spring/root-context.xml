@@ -59,5 +59,7 @@
 	</bean>
 
 
+	<!-- Filtros -->
+	<bean id="FiltroSeguridad" class="com.vst.filtro.FiltroSeguridad" />
 
 </beans>
