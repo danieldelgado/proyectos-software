@@ -20,7 +20,7 @@ import com.vst.util.Util;
 @Service("RegistrarHistorialService")
 public class RegistrarHistorialServiceImpl implements RegistrarHistorialService {
 
-	private static Logger log=LoggerFactory.getLogger(FiltroSeguridad.class);
+	private static Logger log=LoggerFactory.getLogger(RegistrarHistorialServiceImpl.class);
 	
 	@Autowired
 	private HistorialDAO historialDAO;
