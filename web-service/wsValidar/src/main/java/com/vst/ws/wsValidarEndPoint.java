@@ -5,7 +5,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import org.springframework.stereotype.Service;
-
+//http://localhost:9998/ServicioValidar?wsdl
 @Service("wsValidarEndPoint")
 @WebService(serviceName="ServicioValidar")
 public class wsValidarEndPoint {
