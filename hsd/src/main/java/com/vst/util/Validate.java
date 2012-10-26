@@ -15,7 +15,6 @@ public class Validate {
 	public Validate(Map objValidate) {
 		this.objValidate = objValidate;
 		lstErrores = new ArrayList<Integer>();
-		validar();
 	}
 		
 	public void validar(){
