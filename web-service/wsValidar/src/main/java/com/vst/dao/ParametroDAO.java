@@ -30,4 +30,8 @@ public interface ParametroDAO extends IDAO<Parametro> {
 
 	public String[] getCadenasRestringidas();
 
+	public String[] getCadenasRestringidasSelector();
+
+	public Integer getValorSelectorMin();
+
 }

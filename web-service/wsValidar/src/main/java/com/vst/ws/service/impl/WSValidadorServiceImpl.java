@@ -1,19 +1,20 @@
 package com.vst.ws.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.vst.dao.HistorialDAO;
 import com.vst.dao.ParametroDAO;
-import com.vst.dominio.Historial;
 import com.vst.util.Constantes;
 import com.vst.util.Util;
 import com.vst.validar.CamposValidar;
 import com.vst.validar.Validador;
+import com.vst.ws.service.RegistrarHistorialService;
 import com.vst.ws.service.WSValidadorService;
 
 @Service("WSValidadorService")
@@ -25,39 +26,60 @@ public class WSValidadorServiceImpl implements WSValidadorService {
 	private ParametroDAO parametroDAO;
 	
 	@Autowired
-	private HistorialDAO historialDAO;
+	private RegistrarHistorialService historRegistrarHistorialService;
 
+	@Transactional
 	public Validador validarObjetos(List<CamposValidar> lstCamposValidar) {
 		log.info("WSValidadorServiceImpl validarObjetos:"+Util.getJson(lstCamposValidar));
 		Validador v = new Validador();
-		historialDAO.registrarInicio("WSValidadorServiceImpl validarObjetos",lstCamposValidar);
+		historRegistrarHistorialService.registrarInicio(this,"WSValidadorServiceImpl validarObjetos lstCamposValidar:",lstCamposValidar);
 		if(lstCamposValidar.size()>0){
 			for (int i = 0; i < lstCamposValidar.size(); i++) {
 				CamposValidar cv = lstCamposValidar.get(i);
 				log.info("CamposValidar:"+Util.getJson(cv));
-				if(cv.getTipo()==Constantes.CAMPO_ENTERO){
-					cv.setValid(Util.validarEntero(cv.getEntero(),parametroDAO.getRangoEnteroMin(),parametroDAO.getRangoEnteroMax(),parametroDAO.getValorEnteroMin(),parametroDAO.getValorEnteroMax()));
-					log.info("CamposValidar:"+cv.getValid());
-				}
-				else
-				if(cv.getTipo()==Constantes.CAMPO_DECIMAL){	
-					cv.setValid(Util.validarDecimal(cv.getDecimal(),parametroDAO.getRangoDecimalMin(),parametroDAO.getRangoDecimalMax(),parametroDAO.getValorDecimalMin(),parametroDAO.getValorDecimalMax(),parametroDAO.getCantidadDecimales()));
-					log.info("CamposValidar:"+cv.getValid());
-				}
-				else
-				if(cv.getTipo()==Constantes.CAMPO_CADENA){	
-					cv.setValid(Util.validarCadena(cv.getCadena(), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
-					log.info("CamposValidar:"+cv.getValid());
-				}
-				else
-				if(cv.getTipo()==Constantes.CAMPO_FORMATO){						
-					cv.setValid(Util.validarFormato(cv.getFormat(),cv.getValorFormat(), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
-					log.info("CamposValidar:"+cv.getValid());
-				}
+				validarGeneric(cv,v);				
 			}
 		}	
-		historialDAO.registrarFin("WSValidadorServiceImpl validarObjetos",v);		
+		historRegistrarHistorialService.registrarFin(this,"WSValidadorServiceImpl validarObjetos Validador:",v);		
 		return v;
+	}
+
+	private void validarGeneric(CamposValidar cv, Validador v) {
+		if(v.getCodigosErrors()==null){
+			v.setCodigosErrors(new ArrayList<Integer>());			
+		}
+		
+		if(cv.getNombreCampo().equals(Constantes.CAMPO_LOGIN_USUARIO)){
+			cv.setValid(Util.validarCadena(cv.getCadena(), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
+			log.info("CamposValidar "+cv.getNombreCampo()+":"+cv.getValid());
+			if(!(cv.getValid())){
+				v.getCodigosErrors().add(Constantes.CAMPO_LOGIN_USUARIO_ERROR);
+			}
+		}
+		else
+		if(cv.getNombreCampo().equals(Constantes.CAMPO_CLAVE)){
+			cv.setValid(Util.validarFormato(cv.getFormat(),cv.getValorFormat(), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
+			log.info("CamposValidar "+cv.getNombreCampo()+":"+cv.getValid());
+			if(!(cv.getValid())){
+				v.getCodigosErrors().add(Constantes.CAMPO_LOGIN_USUARIO_CLAVE);
+			}
+		}
+		else
+		if(cv.getNombreCampo().equals(Constantes.CAMPO_SELECTOR)){
+			cv.setValid(Util.validarSelector(cv.getEntero(), parametroDAO.getValorSelectorMin(), parametroDAO.getCadenasRestringidasSelector()));
+			log.info("CamposValidar "+cv.getNombreCampo()+":"+cv.getValid());
+			if(!(cv.getValid())){
+				v.getCodigosErrors().add(Constantes.CAMPO_LOGIN_USUARIO_SELECTOR);
+			}
+		}
+		
+		
+		if(v.getCodigosErrors()==null || v.getCodigosErrors().size()==0){
+			v.setRespuesta(Constantes.VALIDACION_CORRECTA);
+		}else{
+			v.setRespuesta(Constantes.VALIDACION_INCORRECTA);
+		}
+				
 	}
 	
 

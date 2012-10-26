@@ -9,6 +9,7 @@ import javax.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vst.util.Util;
 import com.vst.validar.CamposValidar;
 import com.vst.validar.Validador;
 import com.vst.ws.service.WSValidadorService;
@@ -22,7 +23,8 @@ public class wsValidarEndPoint {
 	
 	@WebMethod
 	public Validador validarParametros( @WebParam(name="lstCamposValidar") List<CamposValidar> lstCamposValidar){
-		return wsValidadorService.validarObjetos(lstCamposValidar);				
+		System.out.println(Util.getJson(lstCamposValidar));
+		return null;//wsValidadorService.validarObjetos(lstCamposValidar);				
 	}
 	
 	@WebMethod

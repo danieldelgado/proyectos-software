@@ -1,7 +1,5 @@
 package com.vst.dao.impl;
 
-import java.util.List;
-
 import org.springframework.stereotype.Repository;
 
 import com.vst.dao.FechaDiaEventoDAO;

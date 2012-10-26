@@ -3,12 +3,10 @@ package com.vst.validar;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import com.vst.util.Util;
-
+@SuppressWarnings("serial")
 @XmlRootElement 
 @XmlType(name = "CamposValidar", propOrder = {"nombreCampo","entero","decimal","cadena","fecha","valorFormat","format","tipo","valid"})   
 public class CamposValidar  implements Serializable{

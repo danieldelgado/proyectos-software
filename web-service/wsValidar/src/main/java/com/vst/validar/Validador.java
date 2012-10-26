@@ -3,11 +3,10 @@ package com.vst.validar;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+@SuppressWarnings("serial")
 @XmlRootElement()
 @XmlType(name = "Validador", propOrder = {"respuesta", "codigosErrors" })
 public class Validador implements Serializable{

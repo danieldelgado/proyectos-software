@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import com.google.gson.Gson;
 
-@SuppressWarnings({ "rawtypes", "unchecked","unused" })
+@SuppressWarnings({ "rawtypes", "unchecked"})
 public class Util {
 
 	public static String getCodigo(Entidad entidad) {

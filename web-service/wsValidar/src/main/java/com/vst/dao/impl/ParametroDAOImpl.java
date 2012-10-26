@@ -1,7 +1,5 @@
 package com.vst.dao.impl;
 
-import java.util.List;
-
 import org.springframework.stereotype.Repository;
 
 import com.vst.dao.ParametroDAO;
@@ -67,6 +65,16 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 	}
 
 	public String[] getCadenasRestringidas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String[] getCadenasRestringidasSelector() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Integer getValorSelectorMin() {
 		// TODO Auto-generated method stub
 		return null;
 	}

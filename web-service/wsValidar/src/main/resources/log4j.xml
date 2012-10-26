@@ -25,11 +25,19 @@
 	</appender>
 	
 	<!-- Application Loggers -->
+
+	<!-- 3rdparty Loggers -->
+	
+	
+	
+	<!-- 
+	
 	<logger name="com.vst">
 		<level value="ALL" />
 	</logger>
 	
-	<!-- 3rdparty Loggers -->
+	
+	
 	<logger name="org.springframework.core">
 		<level value="info" />
 	</logger>
@@ -45,18 +53,20 @@
 	<logger name="org.springframework.web">
 		<level value="info" />
 	</logger>
-	<!-- 
+	
+	
 	<logger name="org.hibernate.sql">
 	    <level value="TRACE" />
 	</logger>
 	<logger name="org.hibernate.type">
 	    <level value="TRACE" />
 	</logger>
-	-->
-		 
 	<logger name="org.hibernate.type.descriptor.sql">
 	    <level value="TRACE" />
 	</logger>
+	-->
+		 
+	
 	
 	<!-- Root Logger -->
 	<root>
