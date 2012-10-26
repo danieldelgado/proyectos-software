@@ -1,9 +1,9 @@
 package com.vst.ws;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +21,13 @@ public class wsValidarEndPoint {
 	private WSValidadorService wsValidadorService;
 	
 	@WebMethod
-	public Validador validarParametros(List<CamposValidar> lstCamposValidar){
-		return wsValidadorService.validarObjetos(lstCamposValidar);		
-		
+	public Validador validarParametros( @WebParam(name="lstCamposValidar") List<CamposValidar> lstCamposValidar){
+		return wsValidadorService.validarObjetos(lstCamposValidar);				
 	}
 	
 	@WebMethod
-	public String msj(){
-		return "";
+	public String msj(@WebParam(name="msjPrueba") String msjPrueba){
+		return "msjPrueba:"+msjPrueba;
 	}
 	
 }

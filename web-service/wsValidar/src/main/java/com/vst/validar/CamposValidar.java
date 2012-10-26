@@ -10,14 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 import com.vst.util.Util;
 
 @XmlRootElement 
-@XmlType(name = "CamposValidar", propOrder = {"nombreCampo","entero","decimal","cadena","fecha","valorFormat","format"})   
+@XmlType(name = "CamposValidar", propOrder = {"nombreCampo","entero","decimal","cadena","fecha","valorFormat","format","tipo","valid"})   
 public class CamposValidar  implements Serializable{
 	
 	String nombreCampo;
 
+	Integer tipo;
+	
 	Integer entero;
 	
-	double decimal;
+	Double decimal;
 	
 	String cadena;
 	
@@ -26,6 +28,8 @@ public class CamposValidar  implements Serializable{
 	String valorFormat;
 	
 	String format;
+	
+	Boolean valid;
 	
 	public String getNombreCampo() {
 		return nombreCampo;
@@ -39,10 +43,10 @@ public class CamposValidar  implements Serializable{
 	public void setEntero(Integer entero) {
 		this.entero = entero;
 	}
-	public double getDecimal() {
+	public Double getDecimal() {
 		return decimal;
 	}
-	public void setDecimal(double decimal) {
+	public void setDecimal(Double decimal) {
 		this.decimal = decimal;
 	}
 	public String getCadena() {
@@ -68,6 +72,18 @@ public class CamposValidar  implements Serializable{
 	}
 	public void setFormat(String format) {
 		this.format = format;
+	}
+	public Integer getTipo() {
+		return tipo;
+	}
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
+	}
+	public Boolean getValid() {
+		return valid;
+	}
+	public void setValid(Boolean valid) {
+		this.valid = valid;
 	}
 	
 	
