@@ -11,7 +11,7 @@ public class main {
 
 			String[] paths = { "classpath:/WEB-INF/spring/root-context.xml","classpath:/WEB-INF/spring/appServlet/servlet-context.xml" };
 			ApplicationContext context = new ClassPathXmlApplicationContext(paths);
-				
+			System.out.println(" inicio web services");	
 			for (int i = 0; i < context.getBeanDefinitionNames().length; i++) {
 				String name = context.getBeanDefinitionNames()[i];
 				System.out.println(name);				
