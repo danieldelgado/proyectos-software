@@ -64,7 +64,7 @@ public class Parametro implements Entidad , Serializable {
 	@Column(name="tipo_parametro",length=200,nullable=false)
 	private String tipo_parametro;	
 
-	@Column(name="valorString",length=200,nullable=false)
+	@Column(name="valorString",length=200)
 	private String valorString;	
 
 	@ManyToOne(fetch = FetchType.LAZY)

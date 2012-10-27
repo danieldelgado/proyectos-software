@@ -230,8 +230,8 @@
 			<artifactId>axis</artifactId>
 			<version>1.4</version>
 		</dependency>
-            
-		<dependency>
+			
+		<dependency>			
 			<groupId>commons-discovery</groupId>
 			<artifactId>commons-discovery</artifactId>
 			<version>0.2</version>
@@ -249,6 +249,28 @@
 			<version>1.6.2</version>
 		</dependency>
                 
+		     <!-- Apache CXF for webservices -->
+
+  <dependency>
+   <groupId>org.apache.cxf</groupId>
+   <artifactId>cxf-api</artifactId>
+   <version>2.6.0</version>
+   <scope>compile</scope>
+  </dependency>
+
+  <dependency>
+   <groupId>org.apache.cxf</groupId>
+   <artifactId>cxf-rt-frontend-jaxws</artifactId>
+   <version>2.6.0</version>
+   <scope>compile</scope>
+  </dependency>
+
+  <dependency>
+   <groupId>org.apache.cxf</groupId>
+   <artifactId>cxf-rt-transports-http</artifactId>
+   <version>2.6.0</version>
+   <scope>compile</scope>
+  </dependency>
 		     
 		             
 	</dependencies>
