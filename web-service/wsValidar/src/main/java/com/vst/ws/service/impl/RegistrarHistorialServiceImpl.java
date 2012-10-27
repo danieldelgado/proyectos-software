@@ -1,5 +1,6 @@
 package com.vst.ws.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -27,6 +28,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 		h.setClase(ob.getClass().getSimpleName());
 		h.setCodigo(Util.getCodigo(h));
 		h.setMetodo(string);
+		h.setFechaRegistro(new Date());
 		h.setValor(Util.getJson(lstCamposValidar));
 		historialDAO.guardar(h);
 		log.info("RegistrarHistorialServiceImpl registrarInicio registrando Historial "+Util.getJson(lstCamposValidar) );
@@ -37,7 +39,8 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 		h.setClase(ob.getClass().getSimpleName());
 		h.setCodigo(Util.getCodigo(h));
 		h.setMetodo(string);
-		h.setValor(Util.getJsonObject(h));
+		h.setFechaRegistro(new Date());
+		h.setValor(Util.getJson(v));
 		historialDAO.guardar(h);
 		log.info("RegistrarHistorialServiceImpl registrarFin registrando Historial "+Util.getJson(v) );
 	}

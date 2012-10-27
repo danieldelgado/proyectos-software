@@ -83,7 +83,7 @@ public final class Config{
 				// elArchivo = new File(rutaArchivo);
 			}
 			else{
-				is=Config.class.getResourceAsStream("/hsd.properties");
+				is=Config.class.getResourceAsStream("/wsvalidar.properties");
 			}
 			cargarConfiguracion(is);
 		}

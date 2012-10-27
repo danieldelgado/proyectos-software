@@ -32,7 +32,7 @@ public class WSValidadorServiceImpl implements WSValidadorService {
 	public Validador validarObjetos(List<CamposValidar> lstCamposValidar) {
 		log.info("WSValidadorServiceImpl validarObjetos:"+Util.getJson(lstCamposValidar));
 		Validador v = new Validador();
-		historRegistrarHistorialService.registrarInicio(this,"WSValidadorServiceImpl validarObjetos lstCamposValidar:",lstCamposValidar);
+		historRegistrarHistorialService.registrarInicio(this," registrarInicio validarObjetos lstCamposValidar:",lstCamposValidar);
 		if(lstCamposValidar.size()>0){
 			for (int i = 0; i < lstCamposValidar.size(); i++) {
 				CamposValidar cv = lstCamposValidar.get(i);
@@ -40,7 +40,7 @@ public class WSValidadorServiceImpl implements WSValidadorService {
 				validarGeneric(cv,v);				
 			}
 		}	
-		historRegistrarHistorialService.registrarFin(this,"WSValidadorServiceImpl validarObjetos Validador:",v);		
+		historRegistrarHistorialService.registrarFin(this," registrarFin validarObjetos Validador:",v);		
 		return v;
 	}
 

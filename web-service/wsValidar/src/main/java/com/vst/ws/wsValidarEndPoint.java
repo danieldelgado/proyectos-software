@@ -27,8 +27,8 @@ public class wsValidarEndPoint {
 	
 	@WebMethod
 	public Validador validarParametros( @WebParam(name="lstCamposValidar") List<CamposValidar> lstCamposValidar){
-		System.out.println(Util.getJson(lstCamposValidar));
-		return null;//wsValidadorService.validarObjetos(lstCamposValidar);				
+		Validador v = wsValidadorService.validarObjetos(lstCamposValidar);	
+		return v;			
 	}
 	
 	@WebMethod
@@ -41,7 +41,7 @@ public class wsValidarEndPoint {
 		if(registrar){
 			mantenimientoParametroService.registrarParametrosIniciales();
 		}
-		return null;		
+		return "registrar:"+registrar;		
 	}
 	
 	

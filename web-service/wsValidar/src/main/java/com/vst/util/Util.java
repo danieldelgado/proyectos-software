@@ -34,14 +34,17 @@ public class Util {
 	
 	public  static boolean validarCadena(Object object, int rangMin, int rangoMAx,String... str) {
 		String u = String.valueOf(object);
+		u = u.toLowerCase().trim();
 		if(u!=null){			
 				if(u!="" || !(u.equals(""))){					
-					if( ( u.length() >= rangMin ) && ( u.length() <= rangMin ) ){						
-						for (int i = 0; i < str.length; i++) {							
-							if(!(str[i].equals(u))){
-								return true;
+					if( ( u.length() >= rangMin ) && ( u.length() <= rangoMAx ) ){						
+						for (int i = 0; i < str.length; i++) {		
+							String sE = str[i].toLowerCase().trim();
+							if(( sE.toLowerCase().trim().equals(u))){
+								return false;
 							}							
-						}						
+						}	
+						return true;					
 					}					
 				}			
 		}		
@@ -52,15 +55,19 @@ public class Util {
 		Integer s = Integer.parseInt( String.valueOf(object) );
 		if(s!=null){			
 				if(s>rangMin){										
-						for (int i = 0; i < str.length; i++) {							
-							if(!(str[i].equals(s))){
-								return true;
-							}							
-						}			
+					for (int i = 0; i < str.length; i++) {		
+						String sE = str[i].toLowerCase().trim();
+						if(( sE.toLowerCase().trim().equals(String.valueOf(s)))){
+							return false;
+						}							
+					}	
+					return true;	
 				}			
 		}		
 		return false;
 	}
+	
+	
 
 	public  static boolean validarClave(Object object, int rangMin, int rangoMAx,String... str) {
 		String c = String.valueOf(object);
