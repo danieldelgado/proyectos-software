@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.vst.util.Util;
 import com.vst.validar.CamposValidar;
 import com.vst.validar.Validador;
+import com.vst.ws.service.MantenimientoParametroService;
 import com.vst.ws.service.WSValidadorService;
 //http://localhost:9998/ServicioValidar?wsdl
 @Service("wsValidarEndPoint")
@@ -20,6 +21,9 @@ public class wsValidarEndPoint {
 
 	@Autowired
 	private WSValidadorService wsValidadorService;
+		
+	@Autowired
+	private MantenimientoParametroService mantenimientoParametroService;
 	
 	@WebMethod
 	public Validador validarParametros( @WebParam(name="lstCamposValidar") List<CamposValidar> lstCamposValidar){
@@ -31,5 +35,14 @@ public class wsValidarEndPoint {
 	public String msj(@WebParam(name="msjPrueba") String msjPrueba){
 		return "msjPrueba:"+msjPrueba;
 	}
+	
+	@WebMethod
+	public String parametros(@WebParam(name="registrar") Boolean registrar){
+		if(registrar){
+			mantenimientoParametroService.registrarParametrosIniciales();
+		}
+		return null;		
+	}
+	
 	
 }

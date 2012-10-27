@@ -2,12 +2,16 @@ package com.vst.dominio;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -43,10 +47,6 @@ public class Parametro implements Entidad , Serializable {
 	@Column(name="nombre",length=100,nullable=false)
 	private String nombre;
 
-	@Column(name="valor",length=200,nullable=false)
-	private String valor;
-
-	
 	@Temporal( TemporalType.DATE)	 
 	@Column(name="fecha_actualizacion")
 	private Date fechaActualizacion;
@@ -59,8 +59,19 @@ public class Parametro implements Entidad , Serializable {
 	private Character estado;
 
 	@Column(name="activo")
-	private Boolean activo;
-	
+	private Boolean activo;	
+
+	@Column(name="tipo_parametro",length=200,nullable=false)
+	private String tipo_parametro;	
+
+	@Column(name="valorString",length=200,nullable=false)
+	private String valorString;	
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Parametro parametro;
+
+	@OneToMany(mappedBy = "parametro")
+	private List<Parametro> parametros;
 	
     public Parametro() {
     }
@@ -129,12 +140,24 @@ public class Parametro implements Entidad , Serializable {
 		this.nombre = nombre;
 	}
 
-	public String getValor() {
-		return valor;
+	
+
+	public String getValorString() {
+		return valorString;
 	}
 
-	public void setValor(String valor) {
-		this.valor = valor;
+	public void setValorString(String valorString) {
+		this.valorString = valorString;
+	}
+
+	
+
+	public String getTipo_parametro() {
+		return tipo_parametro;
+	}
+
+	public void setTipo_parametro(String tipo_parametro) {
+		this.tipo_parametro = tipo_parametro;
 	}
 
 	public String getLabel() {
@@ -143,6 +166,22 @@ public class Parametro implements Entidad , Serializable {
 
 	public String getNombreCompleto() {
 		return null;
+	}
+
+	public Parametro getParametro() {
+		return parametro;
+	}
+
+	public void setParametro(Parametro parametro) {
+		this.parametro = parametro;
+	}
+
+	public List<Parametro> getParametros() {
+		return parametros;
+	}
+
+	public void setParametros(List<Parametro> parametros) {
+		this.parametros = parametros;
 	}
 
     
