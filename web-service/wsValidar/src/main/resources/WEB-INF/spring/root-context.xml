@@ -22,23 +22,22 @@
 	<context:component-scan base-package="com.vst" />
 
 	<mvc:annotation-driven />
-
+ 
 	<tx:annotation-driven  transaction-manager="transactionManager" />
 	
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
-		<property name="baseAddress" value="http://0.0.0.0:9998/" />
-	</bean>
+
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close" p:driverClass="${app.jdbc.driverClassName}"
 		p:jdbcUrl="${app.jdbc.url}" p:user="${app.jdbc.username}" p:password="${app.jdbc.password}"
-		p:acquireIncrement="1" p:idleConnectionTestPeriod="10" p:maxPoolSize="2"
-		p:maxStatements="1" p:autoCommitOnClose="true" p:minPoolSize="1" 		
+		p:acquireIncrement="5" p:idleConnectionTestPeriod="60" p:maxPoolSize="100"
+		p:maxStatements="50" p:autoCommitOnClose="true" p:minPoolSize="10" 		
 		p:unreturnedConnectionTimeout="2000"/>
+
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -56,6 +55,6 @@
 	</bean>
 
 	<bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
-		<property name="baseAddress" value="http://0.0.0.0:9998/" />
+		<property name="baseAddress" value="http://0.0.0.0:9997/" />
 	</bean>
 </beans>
