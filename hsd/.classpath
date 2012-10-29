@@ -10,5 +10,11 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/axis.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-discovery-0.2.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jaxrpc.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/saaj.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/wsdl4j.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
