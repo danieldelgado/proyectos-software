@@ -9,6 +9,6 @@
 	Hello world!  
 </h1>
 
-<P>  The time on the server is <a href="login">login</a> </P>
+<P>  The time on the server ${val} is <a href="login">login</a> </P>
 </body>
 </html>
