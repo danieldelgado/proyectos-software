@@ -28,22 +28,20 @@ public class PrincipalController {
 	@Autowired
 	private RegistrarHistorialService registrarHistorialService;
 	@RequestMapping(method = RequestMethod.GET)	
-	public String get(HttpServletRequest request,Model model) {
+	public String get( String query, HttpServletRequest request,Model model) {
 		log.info("Ingreso a PrincipalController - get");
-
-		String val = "";
-		
+		String val  = query;
 		WsValidarEndPointProxy ws = new WsValidarEndPointProxy();
 		CamposValidar[] lstCamposValidar = new CamposValidar[1];
 		try {
 			lstCamposValidar[0] = new CamposValidar();
 			lstCamposValidar[0].setNombreCampo(Constantes.CAMPO_LOGIN_USUARIO);
-			lstCamposValidar[0].setCadena("daniesdvsdvl");
-					
-			Validador v = ws.validarParametros(lstCamposValidar);
-			System.out.println(Util.getJson(v));
-			val = Util.getJson(v);
-			registrarHistorialService.guardarHistorial(v, "PrincipalController get", request);
+			lstCamposValidar[0].setCadena(val);						
+
+			Validador va = ws.validarParametros(lstCamposValidar);
+			System.out.println(Util.getJson(va));
+			val = Util.getJson(va);
+			registrarHistorialService.guardarHistorial(va, "PrincipalController get", request);
 			
 			
 		} catch (Exception e) {
