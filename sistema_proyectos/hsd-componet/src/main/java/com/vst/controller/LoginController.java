@@ -24,13 +24,13 @@ private static final Logger log = LoggerFactory.getLogger(LoginController.class)
 	
 	@RequestMapping(method = RequestMethod.GET)	
 	public String get() {
-		log.info("[ url:login - calse:LoginController - metodo:get ]");
+		log.info("[ metodo : get - ingreso a login ]");		
 		return "login/login";
 	}
 	
 	@RequestMapping( value="iniciarSession", method = RequestMethod.POST)	
 	public String iniciarSession(String usuario,String clave,Integer perfil,HttpServletRequest request ,HttpSession session) {
-		log.info("[ url:login - calse:LoginController - metodo:iniciarSession - usuario:"+usuario+" clave:"+clave+" perfil:"+perfil+" ]");
+		log.info("[  metodo:iniciarSession - usuario:"+usuario+" clave:"+clave+" perfil:"+perfil+" - validar usuario ingresado ]");
 		int l = loginService.iniciarSession(usuario, clave, perfil, session, request);
 		if(l==Constantes.USUARIO_LOGEADO){
 			return "redirect:/principal";		

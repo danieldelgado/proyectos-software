@@ -33,7 +33,7 @@ public class FiltroSeguridad implements Filter{
 	public void doFilter(ServletRequest request,ServletResponse response,FilterChain chain) throws IOException,ServletException{
 		if(request instanceof HttpServletRequest){
 			HttpServletRequest objRequest=(HttpServletRequest) request;	
-			log.debug("[ url:filtro - calse:FiltroSeguridad - metodo:doFilter ]");
+			log.debug("[ metodo:doFilter - filtro de seguridad ]");
 			historialService.registrarHistorial("FiltroSeguridad", "doFilter", "", objRequest);
 		}
 		chain.doFilter(request,response);	

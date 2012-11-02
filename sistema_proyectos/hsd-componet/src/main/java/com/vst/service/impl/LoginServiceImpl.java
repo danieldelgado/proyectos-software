@@ -32,7 +32,7 @@ public class LoginServiceImpl implements LoginService {
 	
 	
 	public int iniciarSession(String usuario, String clave, Integer perfil, HttpSession session, HttpServletRequest request) {
-		log.info("[ calse:LoginServiceImpl - metodo:buscarUsuario - usuario:"+usuario+" clave:"+clave+" perfil:"+perfil+" ip:"+request.getRemoteAddr()+" ]");
+		log.info("[ metodo:iniciarSession - usuario:"+usuario+" clave:"+clave+" perfil:"+perfil+" ip:"+request.getRemoteAddr()+" ]");
 		historialService.registrarHistorial("LoginServiceImpl", "buscarUsuario",  "usuario:"+usuario+" clave:"+clave+" perfil:"+perfil, request);
 		try {
 						

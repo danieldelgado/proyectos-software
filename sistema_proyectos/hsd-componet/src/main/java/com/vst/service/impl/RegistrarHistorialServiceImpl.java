@@ -26,7 +26,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, Object valor, HttpServletRequest objRequest) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - objeto:"+Util.getJson(valor)+" ]");
+		log.debug("[ metodo:guardarHistorial - objeto:"+Util.getJson(valor)+" ]");
 		try {
 			String jsonRequest = "";
 			if (objRequest != null) {
@@ -62,7 +62,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, Entidad valor) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - objeto:"+Util.getJson(valor)+" ]");
+		log.debug("[ metodo:guardarHistorial - objeto:"+Util.getJson(valor)+" ]");
 		try {
 			
 			Historial h = new Historial();
@@ -82,7 +82,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, String mensaje) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - mensaje:"+mensaje+" ]");
+		log.debug("[ - metodo:guardarHistorial - mensaje:"+mensaje+" ]");
 		try {
 			
 			Historial h = new Historial();
@@ -102,7 +102,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, String mensaje, HttpServletRequest objRequest) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - mensaje:"+mensaje+" ]");
+		log.debug("[ - metodo:guardarHistorial - mensaje:"+mensaje+" ]");
 		try {
 			String jsonRequest = "";
 			if (objRequest != null) {
@@ -136,7 +136,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, Entidad entidad, HttpServletRequest objRequest) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - entidad:"+Util.getJsonObject(entidad)+" ]");
+		log.debug("[ - metodo:guardarHistorial - entidad:"+Util.getJsonObject(entidad)+" ]");
 		try {
 			String jsonRequest = "";
 			if (objRequest != null) {
@@ -172,7 +172,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String mensaje, Entidad... entidad) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - mensaje:"+mensaje+" , entidad(s):"+Util.getJson(entidad)+" ]");
+		log.debug("[ - metodo:guardarHistorial - mensaje:"+mensaje+" , entidad(s):"+Util.getJson(entidad)+" ]");
 		try {
 			
 			Historial h = new Historial();
@@ -190,7 +190,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, String mensaje, Object valor) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - mensaje:"+mensaje+" , valor:"+Util.getJson(valor)+" ]");
+		log.debug("[ - metodo:guardarHistorial - mensaje:"+mensaje+" , valor:"+Util.getJson(valor)+" ]");
 		try {
 			
 			Historial h = new Historial();
@@ -209,7 +209,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, HttpServletRequest objRequest, Object... objecto) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - entidad:"+Util.getJson(objecto)+" ]");
+		log.debug("[ - metodo:guardarHistorial - entidad:"+Util.getJson(objecto)+" ]");
 		try {
 			String jsonRequest = "";
 			if (objRequest != null) {
@@ -245,7 +245,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, Object valor) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - entidad:"+Util.getJson(valor)+" ]");
+		log.debug("[ - metodo:guardarHistorial - entidad:"+Util.getJson(valor)+" ]");
 		try {
 			
 			Historial h = new Historial();
@@ -267,7 +267,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, Object... valor) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - entidad:"+Util.getJson(valor)+" ]");
+		log.debug("[ - metodo:guardarHistorial - entidad:"+Util.getJson(valor)+" ]");
 		try {
 			String jsonRequest = "";
 			
@@ -293,7 +293,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, String mensaje, Object... valor) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - entidad:"+Util.getJson(valor)+" ]");
+		log.debug("[ - metodo:guardarHistorial - entidad:"+Util.getJson(valor)+" ]");
 		try {			
 			Historial h = new Historial();
 			h.setClase(clase);
@@ -315,7 +315,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, HttpServletRequest objRequest, Entidad... entidad) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - entidad:"+Util.getJson(entidad)+" ]");
+		log.debug("[ - metodo:guardarHistorial - entidad:"+Util.getJson(entidad)+" ]");
 		try {		
 			
 			String jsonRequest = "";
@@ -353,7 +353,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, String mensaje, Entidad entidad, HttpServletRequest objRequest) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - entidad:"+Util.getJson(entidad)+" ]");
+		log.debug("[ - metodo:guardarHistorial - entidad:"+Util.getJson(entidad)+" ]");
 		try {		
 			
 			String jsonRequest = "";
@@ -392,7 +392,7 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 
 	@Transactional
 	public void registrarHistorial(String clase, String metodo, String mensaje, HttpServletRequest objRequest, Entidad... entidad) {
-		log.debug("[ calse:RegistrarHistorialService - metodo:guardarHistorial - entidad:"+Util.getJson(entidad)+" ]");
+		log.debug("[ - metodo:guardarHistorial - entidad:"+Util.getJson(entidad)+" ]");
 		try {		
 			
 			String jsonRequest = "";
