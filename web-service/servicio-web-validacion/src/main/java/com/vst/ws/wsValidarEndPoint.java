@@ -40,7 +40,8 @@ public class wsValidarEndPoint {
 	
 	@WebMethod
 	public String msj(@WebParam(name="msjPrueba") String msjPrueba){
-		return "msjPrueba:"+msjPrueba;
+		System.out.println(" mensaje de prueba es correcta ");
+		return "msjPrueba correcto!  : "+msjPrueba;
 	}
 	
 	@WebMethod
