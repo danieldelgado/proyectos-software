@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/axis.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-discovery-0.2.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jaxrpc.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/saaj.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/wsdl4j.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
