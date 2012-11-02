@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.vst.dao.PerfilDAO;
 import com.vst.dao.UsuarioDAO;
@@ -49,18 +50,20 @@ public class LoginServiceImpl implements LoginService {
 			try {			
 				
 				CamposValidar cmp1 = new CamposValidar();
-				cmp1.setNombreCampo(Constantes.CAMPO_LOGIN_USUARIO);
-				cmp1.setCadena(usuario);
+				cmp1.setTipo(Constantes.CAMPO_LOGIN_USUARIO);
+				cmp1.setValor(usuario);
 				lstCampos.add(cmp1);
 				
 				CamposValidar cmp2 = new CamposValidar();
-				cmp2.setNombreCampo(Constantes.CAMPO_CLAVE);
-				cmp2.setCadena(clave);
+				cmp2.setEntidad("usuario");
+				cmp2.setCampo("clave");
+				cmp2.setTipo(Constantes.CAMPO_CLAVE);
+				cmp2.setValor(clave);
 				lstCampos.add(cmp2);
 				
 				CamposValidar cmp3 = new CamposValidar();
-				cmp3.setNombreCampo(Constantes.CAMPO_SELECTOR);
-				cmp3.setEntero(perfil);
+				cmp3.setTipo(Constantes.CAMPO_SELECTOR);
+				cmp3.setValor(String.valueOf(perfil));
 				lstCampos.add(cmp3);
 							
 				Validador v = validarProxy.validarParametros(lstCampos.toArray(new CamposValidar[lstCampos.size()]));
