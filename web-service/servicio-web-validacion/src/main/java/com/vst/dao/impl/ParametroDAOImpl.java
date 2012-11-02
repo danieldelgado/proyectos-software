@@ -170,5 +170,18 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		return Integer.parseInt(p.getValorString());
 	}
 
+	public String getFormatoCampo(String entidad, String clave, String campoClave){
+		sqlQuery = "select p from Parametro p where p.nombre = :nombre and p.tabla = :entidad and p.campo = :clave";
+		q=em.createQuery(sqlQuery);
+		q.setParameter("entidad", entidad);
+		q.setParameter("campo", clave);
+		q.setParameter("nombre", Constantes.CAMPO_CLAVE);
+		q.setMaxResults(1);
+		log.debug(" [getFormatoCampo sqlQuery : " + sqlQuery + " ]");
+		Parametro p = (Parametro) q.getSingleResult();		
+		return p.getValorString();
+	}
+
+
 	
 }

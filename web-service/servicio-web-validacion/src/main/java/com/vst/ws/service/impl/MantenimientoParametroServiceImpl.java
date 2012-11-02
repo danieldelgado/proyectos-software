@@ -266,6 +266,20 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		
 		parametroDAO.guardar(cadenasRestringidasSelector02);
 		
+		Parametro formatoCampoClave = new Parametro();
+		formatoCampoClave.setActivo(true);
+		formatoCampoClave.setCodigo(Util.getCodigo(formatoCampoClave));
+		formatoCampoClave.setDescripcion("formatoCampoClave");
+		formatoCampoClave.setEstado(Constantes.ACTIVO);
+		formatoCampoClave.setFechaActualizacion(new Date());
+		formatoCampoClave.setFechaRegistro(new Date());
+		formatoCampoClave.setNombre(Constantes.FORMATO_CAMPO_CLAVE);
+		formatoCampoClave.setTipo_parametro("clave");
+		formatoCampoClave.setValorString("(\\d)\\w{1,10}");
+		parametroDAO.guardar(formatoCampoClave);
+		
+		
+		
 		
 		return null;
 	}

@@ -34,4 +34,7 @@ public interface ParametroDAO extends IDAO<Parametro> {
 
 	public Integer getValorSelectorMin();
 
+	public String getFormatoCampo(String entidad, String clave, String campoClave);
+
+
 }

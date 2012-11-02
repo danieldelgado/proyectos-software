@@ -8,7 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 @SuppressWarnings("serial")
 @XmlRootElement 
-@XmlType(name = "CamposValidar", propOrder = {"nombreCampo","entero","decimal","cadena","fecha","valorFormat","format","tipo","valid"})   
+@XmlType(name = "CamposValidar", propOrder = {
+		"nombreCampo","entero","decimal","cadena","fecha","valorFormat","format","tipo","valid","entidad","campo"
+})   
 public class CamposValidar  implements Serializable{
 	
 	String nombreCampo;
@@ -28,6 +30,10 @@ public class CamposValidar  implements Serializable{
 	String format;
 	
 	Boolean valid;
+	
+	String entidad;
+	
+	String campo;
 	
 	public String getNombreCampo() {
 		return nombreCampo;
@@ -82,6 +88,18 @@ public class CamposValidar  implements Serializable{
 	}
 	public void setValid(Boolean valid) {
 		this.valid = valid;
+	}
+	public String getEntidad() {
+		return entidad;
+	}
+	public void setEntidad(String entidad) {
+		this.entidad = entidad;
+	}
+	public String getCampo() {
+		return campo;
+	}
+	public void setCampo(String campo) {
+		this.campo = campo;
 	}
 	
 	

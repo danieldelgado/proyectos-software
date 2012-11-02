@@ -58,7 +58,7 @@ public class WSValidadorServiceImpl implements WSValidadorService {
 		}
 		else
 		if(cv.getNombreCampo().equals(Constantes.CAMPO_CLAVE)){
-			cv.setValid(Util.validarFormato(cv.getFormat(),cv.getValorFormat(), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
+			cv.setValid(Util.validarFormato(cv.getFormat(),parametroDAO.getFormatoCampo(cv.getEntidad(),cv.getCampo(),Constantes.CAMPO_CLAVE), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
 			log.info("[CamposValidar "+cv.getNombreCampo()+":"+cv.getValid()+"]");
 			if(!(cv.getValid())){
 				v.getCodigosErrors().add(Constantes.CAMPO_LOGIN_USUARIO_CLAVE);
