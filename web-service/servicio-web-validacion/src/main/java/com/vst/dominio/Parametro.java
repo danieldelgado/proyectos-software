@@ -40,20 +40,6 @@ public class Parametro implements Entidad , Serializable {
 
 	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
-
-	@Column(name="descripcion",length=250,nullable=false)
-	private String descripcion;
-
-	@Column(name="nombre",length=100,nullable=false)
-	private String nombre;
-
-	@Temporal( TemporalType.DATE)	 
-	@Column(name="fecha_actualizacion")
-	private Date fechaActualizacion;
-
-	@Temporal( TemporalType.TIMESTAMP)
-	@Column(name="fecha_registro")
-	private Date fechaRegistro;
 	
 	@Column(name="estado",length=1)
 	private Character estado;
@@ -61,18 +47,29 @@ public class Parametro implements Entidad , Serializable {
 	@Column(name="activo")
 	private Boolean activo;	
 
-	@Column(name="tipo_parametro",length=200,nullable=false)
-	private String tipo_parametro;
-
-	@Column(name="entidad",length=200,nullable=false)
+	@Column(name="entidad",length=200)
 	private String entidad;	
 	
-	@Column(name="campo",length=200,nullable=false)
+	@Column(name="campo",length=200)
 	private String campo;	
-
+	
+	@Column(name="tipo_parametro",length=200)
+	private String tipo;
+	
 	@Column(name="valorString",length=200)
-	private String valorString;	
+	private String valor;	
 
+	@Column(name="descripcion",length=250)
+	private String descripcion;
+	
+	@Temporal( TemporalType.DATE)	 
+	@Column(name="fecha_actualizacion")
+	private Date fechaActualizacion;
+
+	@Temporal( TemporalType.TIMESTAMP)
+	@Column(name="fecha_registro")
+	private Date fechaRegistro;
+		
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Parametro parametro;
 
@@ -138,34 +135,6 @@ public class Parametro implements Entidad , Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	
-
-	public String getValorString() {
-		return valorString;
-	}
-
-	public void setValorString(String valorString) {
-		this.valorString = valorString;
-	}
-
-	
-
-	public String getTipo_parametro() {
-		return tipo_parametro;
-	}
-
-	public void setTipo_parametro(String tipo_parametro) {
-		this.tipo_parametro = tipo_parametro;
-	}
-
 	public String getLabel() {
 		return null;
 	}
@@ -204,6 +173,22 @@ public class Parametro implements Entidad , Serializable {
 
 	public void setCampo(String campo) {
 		this.campo = campo;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getValor() {
+		return valor;
+	}
+
+	public void setValor(String valor) {
+		this.valor = valor;
 	}
 
     

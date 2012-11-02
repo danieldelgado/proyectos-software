@@ -49,25 +49,25 @@ public class WSValidadorServiceImpl implements WSValidadorService {
 			v.setCodigosErrors(new ArrayList<Integer>());			
 		}
 		
-		if(cv.getNombreCampo().equals(Constantes.CAMPO_LOGIN_USUARIO)){
-			cv.setValid(Util.validarCadena(cv.getCadena(), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
-			log.info("[CamposValidar "+cv.getNombreCampo()+":"+cv.getValid()+"]");
+		if(cv.getTipo().equals(Constantes.CAMPO_LOGIN_USUARIO)){
+			cv.setValid(Util.validarCadena(cv.getValor(), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
+			log.info("[CamposValidar "+cv.getTipo()+":"+cv.getValid()+"]");
 			if(!(cv.getValid())){
 				v.getCodigosErrors().add(Constantes.CAMPO_LOGIN_USUARIO_ERROR);
 			}
 		}
 		else
-		if(cv.getNombreCampo().equals(Constantes.CAMPO_CLAVE)){
-			cv.setValid(Util.validarFormato(cv.getFormat(),parametroDAO.getFormatoCampo(cv.getEntidad(),cv.getCampo(),Constantes.CAMPO_CLAVE), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
-			log.info("[CamposValidar "+cv.getNombreCampo()+":"+cv.getValid()+"]");
+		if(cv.getTipo().equals(Constantes.CAMPO_CLAVE)){
+			cv.setValid(Util.validarFormato(cv.getValor(),parametroDAO.getFormatoCampo(cv.getEntidad(),cv.getCampo(),Constantes.CAMPO_CLAVE), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
+			log.info("[CamposValidar "+cv.getTipo()+":"+cv.getValid()+"]");
 			if(!(cv.getValid())){
 				v.getCodigosErrors().add(Constantes.CAMPO_LOGIN_USUARIO_CLAVE);
 			}
 		}
 		else
-		if(cv.getNombreCampo().equals(Constantes.CAMPO_SELECTOR)){
-			cv.setValid(Util.validarSelector(cv.getEntero(), parametroDAO.getValorSelectorMin(), parametroDAO.getCadenasRestringidasSelector()));
-			log.info("[CamposValidar "+cv.getNombreCampo()+":"+cv.getValid()+"]");
+		if(cv.getTipo().equals(Constantes.FORMATO_CAMPO)){
+			cv.setValid(Util.validarSelector(cv.getValor(), parametroDAO.getValorSelectorMin(), parametroDAO.getCadenasRestringidasSelector()));
+			log.info("[CamposValidar "+cv.getTipo()+":"+cv.getValid()+"]");
 			if(!(cv.getValid())){
 				v.getCodigosErrors().add(Constantes.CAMPO_LOGIN_USUARIO_SELECTOR);
 			}

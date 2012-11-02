@@ -57,6 +57,8 @@ public class Constantes {
 	public static final Integer CAMPO_LOGIN_USUARIO_ERROR = 1110000001;
 	public static final Integer CAMPO_LOGIN_USUARIO_CLAVE = 1110000002;
 	public static final Integer CAMPO_LOGIN_USUARIO_SELECTOR = 1110000003;
+	public static final String NUMERO = "numero";
+	public static final String FORMATO_CAMPO = "formato";
 	
 	
 	

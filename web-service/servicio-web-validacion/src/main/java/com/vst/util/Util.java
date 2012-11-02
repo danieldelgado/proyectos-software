@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
-import com.vst.ws.service.impl.WSValidadorServiceImpl;
 
 @SuppressWarnings({ "rawtypes", "unchecked"})
 public class Util {
@@ -20,7 +19,7 @@ public class Util {
 	public static String getCodigo(Entidad entidad) {
 		Calendar c = Calendar.getInstance();
 		String codigo = entidad.getClass().getSimpleName()+"-"+c.getTimeInMillis()+"-"+entidad.hashCode();
-		log.debug("[codigo : "+codigo+"]");
+		log.debug("[ getCodigo codigo : "+codigo+"]");
 		return codigo;
 	}
 
@@ -41,7 +40,7 @@ public class Util {
 	}
 	
 	public  static boolean validarCadena(Object object, int rangMin, int rangoMAx,String... str) {
-		log.debug("[object : "+getJson(object)+" rangMin : "+rangMin+" rangoMAx : "+rangoMAx+" str : "+getJson(str)+"]");
+		log.debug("[ validarCadena object : "+getJson(object)+" rangMin : "+rangMin+" rangoMAx : "+rangoMAx+" str : "+getJson(str)+"]");
 		String u = String.valueOf(object);
 		u = u.toLowerCase().trim();
 		if(u!=null){			
@@ -61,7 +60,7 @@ public class Util {
 	}
 	
 	public   static boolean validarSelector(Object object, int rangMin,String... str) {
-		log.debug("[object : "+getJson(object)+" rangMin : "+rangMin+" str : "+getJson(str)+"]");
+		log.debug("[ validarSelector object : "+getJson(object)+" rangMin : "+rangMin+" str : "+getJson(str)+"]");
 		Integer s = Integer.parseInt( String.valueOf(object) );
 		if(s!=null){			
 				if(s>rangMin){										
@@ -78,7 +77,7 @@ public class Util {
 	}
 	
 	
-
+/*
 	public  static boolean validarClave(Object object, int rangMin, int rangoMAx,String... str) {
 		log.debug("[object : "+getJson(object)+" rangMin : "+rangMin+" rangoMAx : "+rangoMAx+"str : "+getJson(str)+"]");
 		String c = String.valueOf(object);
@@ -92,7 +91,7 @@ public class Util {
 				}			
 		}		
 		return false;
-	}
+	}*/
 
 	public static Boolean validarEntero(Integer entero, Integer rangoEnteroMin, Integer rangoEnteroMax, Integer valorEnteroMin, Integer valorEnteroMax) {
 		return false;		
@@ -103,8 +102,18 @@ public class Util {
 		return null;
 	}
 
-	public static Boolean validarFormato(String format, String valorFormat, Integer rangoCadenaMin, Integer rangoCadenaMax, String[] cadenasRestringidas) {
-		
-		return null;
+	public static Boolean validarFormato(String cadena, String valorFormat, Integer rangoCadenaMin, Integer rangoCadenaMax, String[] cadenasRestringidas) {
+		log.debug("[ validarFormato cadena : "+cadena+"  valorFormat : "+valorFormat+" rangoCadenaMin : "+rangoCadenaMin+" rangoCadenaMax : "+rangoCadenaMax+" cadenasRestringidas : "+getJson(cadenasRestringidas)+"]");
+		String c = String.valueOf(cadena);
+		if(c!=null){			
+				if(c!="" || !(c.equals(""))){					
+					if( ( c.length() >= rangoCadenaMin ) && ( c.length() <= rangoCadenaMax ) ){						
+						Pattern r = Pattern.compile(valorFormat);
+						Matcher m = r.matcher(c);
+						return m.matches();
+					}					
+				}			
+		}		
+		return false;
 	}
 }

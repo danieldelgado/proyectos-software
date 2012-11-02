@@ -9,78 +9,33 @@ import javax.xml.bind.annotation.XmlType;
 @SuppressWarnings("serial")
 @XmlRootElement 
 @XmlType(name = "CamposValidar", propOrder = {
-		"nombreCampo","entero","decimal","cadena","fecha","valorFormat","format","tipo","valid","entidad","campo"
+		"tipo","entidad","campo","valor","format","valid"
 })   
 public class CamposValidar  implements Serializable{
 	
-	String nombreCampo;
 
-	Integer tipo;
-	
-	Integer entero;
-	
-	Double decimal;
-	
-	String cadena;
-	
-	Date fecha;
-	
-	String valorFormat;
-	
-	String format;
-	
-	Boolean valid;
+	String tipo;
 	
 	String entidad;
 	
 	String campo;
+		
+	String valor;		
 	
-	public String getNombreCampo() {
-		return nombreCampo;
-	}
-	public void setNombreCampo(String nombreCampo) {
-		this.nombreCampo = nombreCampo;
-	}
-	public Integer getEntero() {
-		return entero;
-	}
-	public void setEntero(Integer entero) {
-		this.entero = entero;
-	}
-	public Double getDecimal() {
-		return decimal;
-	}
-	public void setDecimal(Double decimal) {
-		this.decimal = decimal;
-	}
-	public String getCadena() {
-		return cadena;
-	}
-	public void setCadena(String cadena) {
-		this.cadena = cadena;
-	}
-	public Date getFecha() {
-		return fecha;
-	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-	public String getValorFormat() {
-		return valorFormat;
-	}
-	public void setValorFormat(String valorFormat) {
-		this.valorFormat = valorFormat;
-	}
+	String format;	
+	
+	Boolean valid;
+	
 	public String getFormat() {
 		return format;
 	}
 	public void setFormat(String format) {
 		this.format = format;
 	}
-	public Integer getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(Integer tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	public Boolean getValid() {
@@ -100,6 +55,12 @@ public class CamposValidar  implements Serializable{
 	}
 	public void setCampo(String campo) {
 		this.campo = campo;
+	}
+	public String getValor() {
+		return valor;
+	}
+	public void setValor(String valor) {
+		this.valor = valor;
 	}
 	
 	
