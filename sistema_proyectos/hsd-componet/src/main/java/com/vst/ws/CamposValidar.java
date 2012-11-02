@@ -26,6 +26,10 @@ public class CamposValidar  implements java.io.Serializable {
 
     private java.lang.Boolean valid;
 
+    private java.lang.String entidad;
+
+    private java.lang.String campo;
+
     public CamposValidar() {
     }
 
@@ -38,7 +42,9 @@ public class CamposValidar  implements java.io.Serializable {
            java.lang.String valorFormat,
            java.lang.String format,
            java.lang.Integer tipo,
-           java.lang.Boolean valid) {
+           java.lang.Boolean valid,
+           java.lang.String entidad,
+           java.lang.String campo) {
            this.nombreCampo = nombreCampo;
            this.entero = entero;
            this.decimal = decimal;
@@ -48,6 +54,8 @@ public class CamposValidar  implements java.io.Serializable {
            this.format = format;
            this.tipo = tipo;
            this.valid = valid;
+           this.entidad = entidad;
+           this.campo = campo;
     }
 
 
@@ -230,6 +238,46 @@ public class CamposValidar  implements java.io.Serializable {
         this.valid = valid;
     }
 
+
+    /**
+     * Gets the entidad value for this CamposValidar.
+     * 
+     * @return entidad
+     */
+    public java.lang.String getEntidad() {
+        return entidad;
+    }
+
+
+    /**
+     * Sets the entidad value for this CamposValidar.
+     * 
+     * @param entidad
+     */
+    public void setEntidad(java.lang.String entidad) {
+        this.entidad = entidad;
+    }
+
+
+    /**
+     * Gets the campo value for this CamposValidar.
+     * 
+     * @return campo
+     */
+    public java.lang.String getCampo() {
+        return campo;
+    }
+
+
+    /**
+     * Sets the campo value for this CamposValidar.
+     * 
+     * @param campo
+     */
+    public void setCampo(java.lang.String campo) {
+        this.campo = campo;
+    }
+
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
         if (!(obj instanceof CamposValidar)) return false;
@@ -268,7 +316,13 @@ public class CamposValidar  implements java.io.Serializable {
               this.tipo.equals(other.getTipo()))) &&
             ((this.valid==null && other.getValid()==null) || 
              (this.valid!=null &&
-              this.valid.equals(other.getValid())));
+              this.valid.equals(other.getValid()))) &&
+            ((this.entidad==null && other.getEntidad()==null) || 
+             (this.entidad!=null &&
+              this.entidad.equals(other.getEntidad()))) &&
+            ((this.campo==null && other.getCampo()==null) || 
+             (this.campo!=null &&
+              this.campo.equals(other.getCampo())));
         __equalsCalc = null;
         return _equals;
     }
@@ -307,110 +361,14 @@ public class CamposValidar  implements java.io.Serializable {
         if (getValid() != null) {
             _hashCode += getValid().hashCode();
         }
+        if (getEntidad() != null) {
+            _hashCode += getEntidad().hashCode();
+        }
+        if (getCampo() != null) {
+            _hashCode += getCampo().hashCode();
+        }
         __hashCodeCalc = false;
         return _hashCode;
-    }
-
-    // Type metadata
-    private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(CamposValidar.class, true);
-
-    static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://ws.vst.com/", "CamposValidar"));
-        org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("nombreCampo");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "nombreCampo"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("entero");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "entero"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("decimal");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "decimal"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "double"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("cadena");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "cadena"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("fecha");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "fecha"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("valorFormat");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "valorFormat"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("format");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "format"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("tipo");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "tipo"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("valid");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "valid"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-    }
-
-    /**
-     * Return type metadata object
-     */
-    public static org.apache.axis.description.TypeDesc getTypeDesc() {
-        return typeDesc;
-    }
-
-    /**
-     * Get Custom Serializer
-     */
-    public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanSerializer(
-            _javaType, _xmlType, typeDesc);
-    }
-
-    /**
-     * Get Custom Deserializer
-     */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType, 
-           java.lang.Class _javaType,  
-           javax.xml.namespace.QName _xmlType) {
-        return 
-          new  org.apache.axis.encoding.ser.BeanDeserializer(
-            _javaType, _xmlType, typeDesc);
     }
 
 }

@@ -5,8 +5,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -42,9 +45,22 @@ public class Usuario extends Persona implements Serializable {
 	@Column(name="numero_documento",length=12,nullable=false)
 	private String numero_documento;
 	
-	@ManyToMany(mappedBy="usuarios")
-	private List<Perfil> perfils;
+	/*@ManyToMany(mappedBy="usuarios",fetch = FetchType.EAGER)
+	private List<Perfil> perfils;*/
 
+	/*@JoinTable(
+			name = "usuario_por_perfil", 
+			joinColumns = { @JoinColumn(name = "id_perfil") }, 
+			inverseJoinColumns = { @JoinColumn(name = "id_usuario")
+			})*/
+	
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="usuario_por_perfil",
+	joinColumns={@JoinColumn(name="id_usuario")},
+	inverseJoinColumns={@JoinColumn(name="id_perfil")})
+	private List<Perfil> perfiles;
+	
+	
 	private transient Perfil perfilLogueado;
 	
     public Usuario() {
@@ -56,15 +72,7 @@ public class Usuario extends Persona implements Serializable {
 		this.login = login;
 		this.clave = clave;
 	}
-
-	public Usuario(Integer id, String nombre, String apellidos, Character estado, Boolean activo, String codigo, String login, String clave,List<Perfil> perfils) {
-		super(id, nombre, apellidos, estado, activo);
-		this.codigo = codigo;
-		this.login = login;
-		this.clave = clave;
-		this.perfils = perfils;
-	}
-
+	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -134,14 +142,23 @@ public class Usuario extends Persona implements Serializable {
 		this.numero_documento = numero_documento;
 	}
 
-
-	public List<Perfil> getPerfils() {
+	
+	
+/*	public List<Perfil> getPerfils() {
 		return perfils;
 	}
 
 
 	public void setPerfils(List<Perfil> perfils) {
 		this.perfils = perfils;
+	}*/
+
+	public List<Perfil> getPerfiles() {
+		return perfiles;
+	}
+
+	public void setPerfiles(List<Perfil> perfiles) {
+		this.perfiles = perfiles;
 	}
 
 	public Perfil getPerfilLogueado() {

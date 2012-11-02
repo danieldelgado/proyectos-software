@@ -62,7 +62,13 @@ public class Parametro implements Entidad , Serializable {
 	private Boolean activo;	
 
 	@Column(name="tipo_parametro",length=200,nullable=false)
-	private String tipo_parametro;	
+	private String tipo_parametro;
+
+	@Column(name="entidad",length=200,nullable=false)
+	private String entidad;	
+	
+	@Column(name="campo",length=200,nullable=false)
+	private String campo;	
 
 	@Column(name="valorString",length=200)
 	private String valorString;	
@@ -182,6 +188,22 @@ public class Parametro implements Entidad , Serializable {
 
 	public void setParametros(List<Parametro> parametros) {
 		this.parametros = parametros;
+	}
+
+	public String getEntidad() {
+		return entidad;
+	}
+
+	public void setEntidad(String entidad) {
+		this.entidad = entidad;
+	}
+
+	public String getCampo() {
+		return campo;
+	}
+
+	public void setCampo(String campo) {
+		this.campo = campo;
 	}
 
     

@@ -27,7 +27,7 @@ public class DAO<T extends Entidad> implements IDAO<T> {
 	@SuppressWarnings("unchecked")
 	public DAO() {
 		clazz = (Class<Entidad>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-		log.info(" [ Crea aspecto de la Entidad:" + clazz.getName()+ "]" );
+		log.debug(" [ Crea aspecto de la Entidad:" + clazz.getName()+ "]" );
 	}
 
 	@SuppressWarnings("unchecked")
@@ -48,25 +48,25 @@ public class DAO<T extends Entidad> implements IDAO<T> {
 		else
 			nombre = e.name();
 		String sql = "SELECT e FROM " + nombre + " e";
-		log.info("[ Entro al metodo getTodos de Entidad " + clazz.getName() + "  con query: " + sql + " ]");
+		log.debug("[ Entro al metodo getTodos de Entidad " + clazz.getName() + "  con query: " + sql + " ]");
 		return em.createQuery(sql).getResultList();
 	}
 
 	public void guardar(T objeto) {
 		try {
-			log.info("[ Entro al metodo guardar de Entidad " + clazz.getName() + " ]");
+			log.debug("[ Entro al metodo guardar de Entidad " + clazz.getName() + " ]");
 			if (objeto.getId() != null)
 				em.merge(objeto);
 			else
 				em.persist(objeto);
-			log.info("[ objeto registrado :"+Util.getJsonObject(objeto)+" ]");	
-			log.info("[ Transaction terminada  " + clazz.getName() + " con id :" + objeto.getId()+" ]");
+			log.debug("[ objeto registrado :"+Util.getJsonObject(objeto)+" ]");	
+			log.debug("[ Transaction terminada  " + clazz.getName() + " con id :" + objeto.getId()+" ]");
 		} catch (Exception e) {
 			System.err.println("Error:" + e.getMessage());
 			log.error("[ Transaction rollback  " + clazz.getName() + " error: " + e.getMessage()+" ]");
 			e.printStackTrace();
 		} finally {
-			log.info("[ Transaction cerrada finally " + clazz.getName()+" ]");
+			log.debug("[ Transaction cerrada finally " + clazz.getName()+" ]");
 		}
 
 	}
@@ -80,7 +80,7 @@ public class DAO<T extends Entidad> implements IDAO<T> {
 			log.error(" Transaction rollback  " + clazz.getName() + " error: " + e.getMessage());
 			e.printStackTrace();
 		} finally {
-			log.info(" Transaction cerrada  " + clazz.getName());
+			log.debug(" Transaction cerrada  " + clazz.getName());
 		}
 
 	}
@@ -94,7 +94,7 @@ public class DAO<T extends Entidad> implements IDAO<T> {
 		else
 			nombre = e.name();
 		String sql = "SELECT e FROM " + nombre + " e  where e." + campoCodigo + " = :codigo";
-		log.info("[ Entro al metodo obtenerPorCodigo de Entidad " + clazz.getName() + "  con query: " + sql+" ]");
+		log.debug("[ Entro al metodo obtenerPorCodigo de Entidad " + clazz.getName() + "  con query: " + sql+" ]");
 		return (T) em.createQuery(sql).setParameter("codigo", codigo).getSingleResult();
 	}
 

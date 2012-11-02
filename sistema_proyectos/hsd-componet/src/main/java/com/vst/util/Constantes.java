@@ -28,8 +28,12 @@ public class Constantes {
 	public static final Integer CAMPO_LOGIN_USUARIO_ERROR = 111542400;
 	public static final Integer CAMPO_LOGIN_USUARIO_CLAVE = 111542401;
 	public static final Integer CAMPO_LOGIN_USUARIO_SELECTOR = 111542402;
-	public static final int VALIDACION_CORRECTA = 1;
-	public static final int VALIDACION_INCORRECTA = 2;
+	public static final Integer VALIDACION_CORRECTA = 1;
+	public static final Integer VALIDACION_INCORRECTA = 2;
+	public static final Integer USUARIO_DESLOGUEADO = 10001;
+	public static final Integer ERROR_AL_LOGUEARSE_VALIDAR = 546461;
+	public static final Integer RESPUESTA_CORRECTA = 1;
+	public static final Integer INRESPUESTA_CORRECTA = 0;
 
 	public static String LOGIN_SUPER_USUARIO_ADMINISTRADOR=Config.getPropiedad("LOGIN_SUPER_USUARIO_ADMINISTRADOR");
 	public static String PASS_SUPER_USUARIO_ADMINISTRADOR=Config.getPropiedad("PASS_SUPER_USUARIO_ADMINISTRADOR");

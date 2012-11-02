@@ -2,17 +2,12 @@ package com.vst.dominio;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -63,11 +58,15 @@ public class Perfil implements Entidad , Serializable {
     @Column(name="nombre",length=100,nullable=false)
 	private String nombre;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "usuario_por_perfil", joinColumns = { @JoinColumn(name = "id_perfil") }, inverseJoinColumns = { @JoinColumn(name = "id_usuario") })
-	private List<Usuario> usuarios;
+/*	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "usuario_por_perfil", 
+			joinColumns = { @JoinColumn(name = "id_perfil") }, 
+			inverseJoinColumns = { @JoinColumn(name = "id_usuario")
+			})
+	private List<Usuario> usuarios;*/
 	
-	@ManyToMany
+	/*@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 		name="recurso_por_perfil"
 		, joinColumns={
@@ -77,10 +76,17 @@ public class Perfil implements Entidad , Serializable {
 			@JoinColumn(name="recurso_id_recurso")
 			}
 		)
-	private List<Recurso> recursos;
+	private List<Recurso> recursos;*/
 	
     public Perfil() {
     }
+
+	public Perfil(Integer id, String codigo, String nombre) {
+		super();
+		this.id = id;
+		this.codigo = codigo;
+		this.nombre = nombre;
+	}
 
 	public Date getFechaActualizacion() {
 		return fechaActualizacion;
@@ -146,21 +152,21 @@ public class Perfil implements Entidad , Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<Usuario> getUsuarios() {
+	/*public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
 
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
-
-	public List<Recurso> getRecursos() {
+*/
+	/*public List<Recurso> getRecursos() {
 		return recursos;
 	}
 
 	public void setRecursos(List<Recurso> recursos) {
 		this.recursos = recursos;
-	}
+	}*/
 
 	public String getLabel() {
 		return null;

@@ -5,9 +5,10 @@
              version="2.0">
  <persistence-unit name="hsd_dominio" transaction-type="RESOURCE_LOCAL">
 		<properties>  		 	 	
-			<property name="hibernate.hbm2ddl.auto" value="validate" />			
+			<property name="hibernate.hbm2ddl.auto" value="validate" />		
   			<!--
   			<property name="hibernate.flush_before_completion" value="true"/>
+			<property name="hibernate.hbm2ddl.auto" value="validate" />	
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 				-->				
 		</properties>		

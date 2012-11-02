@@ -7,6 +7,8 @@
 
 package com.vst.ws;
 
+import com.vst.util.Config;
+
 public class WsValidarEndPointServiceLocator extends org.apache.axis.client.Service implements com.vst.ws.WsValidarEndPointService {
 
     public WsValidarEndPointServiceLocator() {
@@ -22,7 +24,7 @@ public class WsValidarEndPointServiceLocator extends org.apache.axis.client.Serv
     }
 
     // Use to get a proxy class for wsValidarEndPointPort
-    private java.lang.String wsValidarEndPointPort_address = "http://localhost:8080/servicio-web-validacion/service/operation/servicio_validacion";
+    private java.lang.String wsValidarEndPointPort_address = Config.getPropiedad("webservice");
 
     public java.lang.String getwsValidarEndPointPortAddress() {
         return wsValidarEndPointPort_address;

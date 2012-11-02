@@ -2,7 +2,6 @@ package com.vst.dominio;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -58,16 +56,16 @@ public class Recurso implements Entidad , Serializable {
 	@Column(name="fecha_creacion")
 	private Date fechaCreacion;
 
-	@ManyToMany(mappedBy="recursos")
+	/*@ManyToMany(mappedBy="recursos")
 	private List<Perfil> perfils;
-
+*/
 
 
     public Recurso() {
     }
 
 
-
+/*
 	public List<Perfil> getPerfils() {
 		return perfils;
 	}
@@ -77,7 +75,7 @@ public class Recurso implements Entidad , Serializable {
 	public void setPerfils(List<Perfil> perfils) {
 		this.perfils = perfils;
 	}
-
+*/
 
 
 	public Integer getId() {
