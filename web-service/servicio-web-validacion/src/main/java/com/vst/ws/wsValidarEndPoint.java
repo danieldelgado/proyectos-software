@@ -32,9 +32,9 @@ public class wsValidarEndPoint {
 	
 	@WebMethod
 	public Validador validarParametros( @WebParam(name="lstCamposValidar") List<CamposValidar> lstCamposValidar){
-		log.debug("[ clase:wsValidarEndPoint - metodo: validarParametros - lstCamposValidar: " + Util.getJson(lstCamposValidar) + "  ]");
+		log.debug("[ metodo: validarParametros - lstCamposValidar: " + Util.getJson(lstCamposValidar) + "  ]");
 		Validador v = wsValidadorService.validarObjetos(lstCamposValidar);	
-		log.debug("[ clase:wsValidarEndPoint - metodo: validarParametros - respuesta Validador: " + Util.getJson(v) + "  ]");
+		log.debug("[ metodo: validarParametros - respuesta Validador: " + Util.getJson(v) + "  ]");
 		return v;			
 	}
 	

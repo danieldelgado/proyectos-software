@@ -30,7 +30,7 @@ public class WSValidadorServiceImpl implements WSValidadorService {
 
 	@Transactional
 	public Validador validarObjetos(List<CamposValidar> lstCamposValidar) {
-		log.info("[WSValidadorServiceImpl validarObjetos:"+Util.getJson(lstCamposValidar)+"]");
+		log.info("[ metodo: validarObjetos -  objetos : "+Util.getJson(lstCamposValidar)+"]");
 		Validador v = new Validador();
 		historRegistrarHistorialService.registrarHistorial("WSValidadorServiceImpl", "validarObjetos", " registrarInicio validarObjetos lstCamposValidar:", lstCamposValidar);
 		if(lstCamposValidar.size()>0){

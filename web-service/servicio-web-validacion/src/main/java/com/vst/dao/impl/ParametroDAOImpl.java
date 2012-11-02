@@ -22,7 +22,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("nombre", Constantes.RANGO_ENTERO_MININO);
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
-		log.info(" [getRangoEnteroMin sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getRangoEnteroMin sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
 		return Integer.parseInt(p.getValorString());
 	}
@@ -33,7 +33,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("nombre", Constantes.RANGO_ENTERO_MAXIMO);
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
-		log.info(" [getRangoEnteroMax sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getRangoEnteroMax sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
 		return Integer.parseInt(p.getValorString());
 	}
@@ -48,7 +48,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("nombre", Constantes.VALOR_ENTERO_MAXIMO);
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
-		log.info(" [getValorEnteroMax sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getValorEnteroMax sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
 		return Integer.parseInt(p.getValorString());
 	}
@@ -59,7 +59,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("nombre", Constantes.VALOR_ENTERO_MINIMO);
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
-		log.info(" [getValorEnteroMin sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getValorEnteroMin sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
 		return Integer.parseInt(p.getValorString());
 	}
@@ -70,7 +70,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("nombre", Constantes.CANTIDAD_DECIMALES);
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
-		log.info(" [getCantidadDecimales sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getCantidadDecimales sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
 		return Integer.parseInt(p.getValorString());
 	}
@@ -81,7 +81,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("nombre", Constantes.RANGO_DECIMAL_MINIMO);
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
-		log.info(" [getRangoDecimalMin sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getRangoDecimalMin sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
 		return Double.parseDouble(p.getValorString());
 	}
@@ -92,7 +92,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("nombre", Constantes.RANGO_DECIMAL_MAXIMO);
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
-		log.info(" [getRangoDecimalMax sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getRangoDecimalMax sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
 		return Double.parseDouble(p.getValorString());
 	}
@@ -103,7 +103,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("nombre", Constantes.VALOR_DECIMAL_MINIMO);
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
-		log.info(" [getValorDecimalMin sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getValorDecimalMin sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
 		return Double.parseDouble(p.getValorString());
 	}
@@ -114,7 +114,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("nombre", Constantes.VALOR_DECIMAL_MINIMO);
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
-		log.info(" [getValorDecimalMax sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getValorDecimalMax sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
 		return Integer.parseInt(p.getValorString());
 	}
@@ -125,7 +125,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("nombre", Constantes.RANGO_CADENA_MINIMO);
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
-		log.info(" [getRangoCadenaMin sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getRangoCadenaMin sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
 		return Integer.parseInt(p.getValorString());
 	}
@@ -136,7 +136,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("nombre", Constantes.RANGO_CADENA_MAXIMO);
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
-		log.info(" [getRangoCadenaMax sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getRangoCadenaMax sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
 		return Integer.parseInt(p.getValorString());
 	}
@@ -145,7 +145,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		sqlQuery = "select p.valorString from Parametro p where p.parametro.id = ( select p2.id from Parametro p2 where p2.nombre = :nombre ) ";
 		q=em.createQuery(sqlQuery);
 		q.setParameter("nombre", Constantes.CADENAS_RESTRINGIDAS);
-		log.info(" [getCadenasRestringidas sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getCadenasRestringidas sqlQuery : " + sqlQuery + " ]");
 		List<String> str = q.getResultList();
 		return str.toArray( new String[str.size()] );
 	}
@@ -154,7 +154,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		sqlQuery = "select p.valorString from Parametro p where p.parametro.id = ( select p2.id from Parametro p2 where p2.nombre = :nombre ) ";
 		q=em.createQuery(sqlQuery);
 		q.setParameter("nombre", Constantes.CADENAS_RESTRINGIDAS_SELECTOR);
-		log.info(" [getCadenasRestringidasSelector sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getCadenasRestringidasSelector sqlQuery : " + sqlQuery + " ]");
 		List<String> str = q.getResultList();
 		return str.toArray( new String[str.size()] );
 	}
@@ -165,7 +165,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("nombre", Constantes.VALOR_SELECT_MINIMO);
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
-		log.info(" [getValorSelectorMin sqlQuery : " + sqlQuery + " ]");
+		log.debug(" [getValorSelectorMin sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
 		return Integer.parseInt(p.getValorString());
 	}
