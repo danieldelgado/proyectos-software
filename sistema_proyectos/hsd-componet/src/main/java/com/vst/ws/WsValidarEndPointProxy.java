@@ -24,7 +24,13 @@ public class WsValidarEndPointProxy implements com.vst.ws.WsValidarEndPoint {
       }
       
     }
-    catch (javax.xml.rpc.ServiceException serviceException) {}
+    catch (javax.xml.rpc.ServiceException serviceException) {
+
+    	System.err.println(" ----------------- error de conexion  ");
+    	
+    	
+    	
+    }
   }
   
   public String getEndpoint() {

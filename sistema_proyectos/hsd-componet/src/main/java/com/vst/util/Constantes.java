@@ -21,7 +21,7 @@ public class Constantes {
 	public static final String MENU_HIJO = "MENU_HIJO";
 	public static final Integer USUARIO_LOGEADO = 1;
 	public static final Integer ERROR_AL_LOGUEARSE = -1;
-	public static final String CAMPO_LOGIN_USUARIO = "LOGIN";
+	public static final String CAMPO_LOGIN_USUARIO = "usuario";
 	public static final String CAMPO_CLAVE = "CLAVE";
 	public static final String CAMPO_SELECTOR = "SELECTOR";
 	public static final Integer CAMPO_LOGIN_USUARIO_ERROR = 111542400;
@@ -58,5 +58,11 @@ public class Constantes {
 
 	public static final String NUMERO = "numero";
 	public static final String FORMATO_CAMPO = "formato";
+	
+	public static final Integer CAMPO_CLAVE_USUARIO_ERROR = 1110000002;
+	public static final Integer CAMPO_SELECTOR_USUARIO_ERROR= 1110000003;
+	
 
+	public static final Integer ERROR_CAMPOS_VARIABLES = 1684161651;
+	public static final int ERROR_SERVICIO_WEB = 4000;
 }

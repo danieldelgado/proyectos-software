@@ -47,6 +47,7 @@ public class WsValidarEndPointServiceLocator extends org.apache.axis.client.Serv
             endpoint = new java.net.URL(wsValidarEndPointPort_address);
         }
         catch (java.net.MalformedURLException e) {
+        	System.err.println(" ----------------- error de conexion  ");
             throw new javax.xml.rpc.ServiceException(e);
         }
         return getwsValidarEndPointPort(endpoint);
