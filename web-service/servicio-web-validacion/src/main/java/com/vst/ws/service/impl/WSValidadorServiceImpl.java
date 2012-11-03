@@ -65,7 +65,7 @@ public class WSValidadorServiceImpl implements WSValidadorService {
 			}
 		}
 		else
-		if(cv.getTipo().equals(Constantes.FORMATO_CAMPO)){
+		if(cv.getTipo().equals(Constantes.CAMPO_SELECTOR)){
 			cv.setValid(Util.validarSelector(cv.getValor(), parametroDAO.getValorSelectorMin(), parametroDAO.getCadenasRestringidasSelector()));
 			log.info("[CamposValidar "+cv.getTipo()+":"+cv.getValid()+"]");
 			if(!(cv.getValid())){

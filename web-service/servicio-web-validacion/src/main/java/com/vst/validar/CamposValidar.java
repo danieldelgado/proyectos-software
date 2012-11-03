@@ -33,7 +33,7 @@ public class CamposValidar  implements Serializable{
 		this.format = format;
 	}
 	public String getTipo() {
-		return tipo;
+		return tipo.toUpperCase();
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
