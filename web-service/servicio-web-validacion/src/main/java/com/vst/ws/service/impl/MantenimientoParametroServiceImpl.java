@@ -184,7 +184,7 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		cadenaRestringida01.setFechaActualizacion(new Date());
 		cadenaRestringida01.setFechaRegistro(new Date());
 		cadenaRestringida01.setValor("Usuario");
-		cadenaRestringida01.setTipo(cadenaRestringida01.getValor());
+		cadenaRestringida01.setTipo("CadenasRestringidas01");
 		cadenaRestringida01.setParametro(cadenasRestringidas);
 		parametroDAO.guardar(cadenaRestringida01);
 		parametros.add(cadenaRestringida01);
@@ -197,7 +197,7 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		cadenaRestringida02.setFechaActualizacion(new Date());
 		cadenaRestringida02.setFechaRegistro(new Date());
 		cadenaRestringida02.setValor("Administrador");
-		cadenaRestringida02.setTipo(cadenaRestringida02.getValor());
+		cadenaRestringida02.setTipo("CadenasRestringidas02");
 		cadenaRestringida02.setParametro(cadenasRestringidas);
 		parametroDAO.guardar(cadenaRestringida02);
 		parametros.add(cadenaRestringida02);
@@ -227,7 +227,7 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		cadenasRestringidasSelector01.setFechaActualizacion(new Date());
 		cadenasRestringidasSelector01.setFechaRegistro(new Date());
 		cadenasRestringidasSelector01.setValor("Seleccione");
-		cadenasRestringidasSelector01.setTipo(cadenasRestringidasSelector01.getValor());
+		cadenasRestringidasSelector01.setTipo("cadenasRestringidasSelector01");
 		cadenasRestringidasSelector01.setParametro(cadenasRestringidasSelector);
 		parametroDAO.guardar(cadenasRestringidasSelector01);
 		parametros2.add(cadenasRestringidasSelector01);
@@ -240,7 +240,7 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		cadenasRestringidasSelector02.setFechaActualizacion(new Date());
 		cadenasRestringidasSelector02.setFechaRegistro(new Date());
 		cadenasRestringidasSelector02.setValor("Seleccion");
-		cadenasRestringidasSelector02.setTipo(cadenasRestringidasSelector02.getValor());
+		cadenasRestringidasSelector02.setTipo("cadenasRestringidasSelector02");
 		cadenasRestringidasSelector02.setParametro(cadenasRestringidasSelector);
 		parametroDAO.guardar(cadenasRestringidasSelector02);
 		parametros2.add(cadenasRestringidasSelector02);
@@ -254,7 +254,7 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		formatoCampoClave.setEstado(Constantes.ACTIVO);
 		formatoCampoClave.setFechaActualizacion(new Date());
 		formatoCampoClave.setFechaRegistro(new Date());
-		formatoCampoClave.setTipo(Constantes.FORMATO_CAMPO);
+		formatoCampoClave.setTipo(Constantes.CAMPO_CLAVE);
 		formatoCampoClave.setEntidad("usuario");
 		formatoCampoClave.setCampo("clave");
 		formatoCampoClave.setValor("(\\d)\\w{1,10}");

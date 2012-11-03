@@ -59,6 +59,7 @@ public class Constantes {
 	public static final Integer CAMPO_LOGIN_USUARIO_ERROR = 1110000001;
 	public static final Integer CAMPO_CLAVE_USUARIO_ERROR = 1110000002;
 	public static final Integer CAMPO_SELECTOR_USUARIO_ERROR= 1110000003;
+	public static final Integer ERROR_CAMPOS_VARIABLES = 1684161651;
 	
 	
 	

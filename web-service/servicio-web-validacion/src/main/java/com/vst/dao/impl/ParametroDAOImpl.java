@@ -10,6 +10,7 @@ import com.vst.dao.ParametroDAO;
 import com.vst.dominio.Parametro;
 import com.vst.util.Constantes;
 import com.vst.util.DAO;
+import com.vst.util.Util;
 import com.vst.ws.service.impl.RegistrarHistorialServiceImpl;
 
 @Repository("ParametroDAO")
@@ -115,7 +116,8 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
 		log.debug(" [getValorDecimalMax sqlQuery : " + sqlQuery + " ]");
-		Parametro p = (Parametro) q.getSingleResult();		
+		Parametro p = (Parametro) q.getSingleResult();	
+		log.debug(" [getValorDecimalMax p : " + Util.getJson(p) + " ]");		
 		return Integer.parseInt(p.getValor());
 	}
 
@@ -126,7 +128,8 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setMaxResults(1);
 		//q.setFirstResult(1);
 		log.debug(" [getRangoCadenaMin sqlQuery : " + sqlQuery + " ]");
-		Parametro p = (Parametro) q.getSingleResult();		
+		Parametro p = (Parametro) q.getSingleResult();	
+		log.debug(" [getRangoCadenaMin p : " + Util.getJson(p) + " ]");		
 		return Integer.parseInt(p.getValor());
 	}
 
@@ -138,6 +141,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		//q.setFirstResult(1);
 		log.debug(" [getRangoCadenaMax sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
+		log.debug(" [getRangoCadenaMax p : " + Util.getJson(p) + " ]");		
 		return Integer.parseInt(p.getValor());
 	}
 
@@ -147,6 +151,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("tipo", Constantes.CADENAS_RESTRINGIDAS);
 		log.debug(" [getCadenasRestringidas sqlQuery : " + sqlQuery + " ]");
 		List<String> str = q.getResultList();
+		log.debug(" [getCadenasRestringidas str : " + Util.getJson(str) + " ]");	
 		return str.toArray( new String[str.size()] );
 	}
 
@@ -156,6 +161,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		q.setParameter("tipo", Constantes.CADENAS_RESTRINGIDAS_SELECTOR);
 		log.debug(" [getCadenasRestringidasSelector sqlQuery : " + sqlQuery + " ]");
 		List<String> str = q.getResultList();
+		log.debug(" [getCadenasRestringidasSelector str : " + Util.getJson(str) + " ]");		
 		return str.toArray( new String[str.size()] );
 	}
 
@@ -167,10 +173,14 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		//q.setFirstResult(1);
 		log.debug(" [getValorSelectorMin sqlQuery : " + sqlQuery + " ]");
 		Parametro p = (Parametro) q.getSingleResult();		
+		log.debug(" [getValorSelectorMin Parametro : " + Util.getJson(p) + " ]");		
 		return Integer.parseInt(p.getValor());
 	}
 
 	public String getFormatoCampo(String entidad, String campo, String tipo){
+		System.out.println(entidad);
+		System.out.println(campo);
+		System.out.println(tipo);
 		
 		sqlQuery = "select p from Parametro p where p.tipo = :tipo and p.entidad = :entidad and p.campo = :campo";
 		q=em.createQuery(sqlQuery);
@@ -183,8 +193,10 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		List<Parametro> lstParam = q.getResultList();
 		if(lstParam.size()>0){
 			p = lstParam.get(0);
+			log.debug(" [getFormatoCampo Parametro : " + Util.getJson(p) + " ]");			
+			return p.getValor();
 		}		
-		return p.getValor();
+		return null;
 	}
 
 
