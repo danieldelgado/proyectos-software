@@ -57,7 +57,7 @@ public class LoginServiceImpl implements LoginService {
 				CamposValidar cmp2 = new CamposValidar();
 				cmp2.setEntidad("usuario");
 				cmp2.setCampo("clave");
-				cmp2.setTipo(Constantes.CAMPO_CLAVE);
+				cmp2.setTipo(Constantes.FORMATO_CAMPO);
 				cmp2.setValor(clave);
 				lstCampos.add(cmp2);
 				
