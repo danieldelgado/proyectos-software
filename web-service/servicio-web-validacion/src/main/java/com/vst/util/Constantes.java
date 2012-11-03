@@ -29,7 +29,7 @@ public class Constantes {
 	public static final String MENU_HIJO = "MENU_HIJO";
 	public static final Integer USUARIO_LOGEADO = 1;
 	public static final Integer ERROR_AL_LOGUEARSE = -1;
-	public static final String CAMPO_LOGIN_USUARIO = "LOGIN";
+	public static final String CAMPO_LOGIN_USUARIO = "USUARIO";
 	public static final String CAMPO_CLAVE ="CLAVE";
 	public static final String CAMPO_SELECTOR = "SELECTOR";
 	
@@ -52,13 +52,13 @@ public class Constantes {
 	public static final String FORMATO_CAMPO_CLAVE = "FormatoCampoClave";
 	public static final String CADENAS_RESTRINGIDAS_SELECTOR = "CadenasRestringidasSelector";
 	
-	
-	
-	public static final Integer CAMPO_LOGIN_USUARIO_ERROR = 1110000001;
-	public static final Integer CAMPO_LOGIN_USUARIO_CLAVE = 1110000002;
-	public static final Integer CAMPO_LOGIN_USUARIO_SELECTOR = 1110000003;
+
 	public static final String NUMERO = "numero";
 	public static final String FORMATO_CAMPO = "formato";
+	
+	public static final Integer CAMPO_LOGIN_USUARIO_ERROR = 1110000001;
+	public static final Integer CAMPO_CLAVE_USUARIO_ERROR = 1110000002;
+	public static final Integer CAMPO_SELECTOR_USUARIO_ERROR= 1110000003;
 	
 	
 	

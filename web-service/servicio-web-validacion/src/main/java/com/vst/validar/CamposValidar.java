@@ -51,16 +51,16 @@ public class CamposValidar  implements Serializable{
 		this.entidad = entidad;
 	}
 	public String getCampo() {
-		return campo;
+		return campo.toUpperCase();
 	}
 	public void setCampo(String campo) {
-		this.campo = campo;
+		this.campo = campo.toUpperCase();
 	}
 	public String getValor() {
-		return valor;
+		return valor.toUpperCase();
 	}
 	public void setValor(String valor) {
-		this.valor = valor;
+		this.valor = valor.toUpperCase();
 	}
 	
 	

@@ -184,7 +184,7 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		cadenaRestringida01.setFechaActualizacion(new Date());
 		cadenaRestringida01.setFechaRegistro(new Date());
 		cadenaRestringida01.setValor("Usuario");
-		cadenaRestringida01.setTipo(Constantes.CADENAS_RESTRINGIDAS);
+		cadenaRestringida01.setTipo(cadenaRestringida01.getValor());
 		cadenaRestringida01.setParametro(cadenasRestringidas);
 		parametroDAO.guardar(cadenaRestringida01);
 		parametros.add(cadenaRestringida01);
@@ -197,7 +197,7 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		cadenaRestringida02.setFechaActualizacion(new Date());
 		cadenaRestringida02.setFechaRegistro(new Date());
 		cadenaRestringida02.setValor("Administrador");
-		cadenaRestringida02.setTipo(cadenaRestringida01.getValor());
+		cadenaRestringida02.setTipo(cadenaRestringida02.getValor());
 		cadenaRestringida02.setParametro(cadenasRestringidas);
 		parametroDAO.guardar(cadenaRestringida02);
 		parametros.add(cadenaRestringida02);

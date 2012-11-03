@@ -49,27 +49,27 @@ public class WSValidadorServiceImpl implements WSValidadorService {
 			v.setCodigosErrors(new ArrayList<Integer>());			
 		}
 		
-		if(cv.getTipo().equals(Constantes.CAMPO_LOGIN_USUARIO)){
+		if(cv.getCampo().equals(Constantes.CAMPO_LOGIN_USUARIO)){
 			cv.setValid(Util.validarCadena(cv.getValor(), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
-			log.info("[CamposValidar "+cv.getTipo()+":"+cv.getValid()+"]");
+			log.info("[CamposValidar "+cv.getCampo()+":"+cv.getValid()+"]");
 			if(!(cv.getValid())){
 				v.getCodigosErrors().add(Constantes.CAMPO_LOGIN_USUARIO_ERROR);
 			}
 		}
 		else
-		if(cv.getTipo().equals(Constantes.CAMPO_CLAVE)){
-			cv.setValid(Util.validarFormato(cv.getValor(),parametroDAO.getFormatoCampo(cv.getEntidad(),cv.getCampo(),Constantes.CAMPO_CLAVE), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
-			log.info("[CamposValidar "+cv.getTipo()+":"+cv.getValid()+"]");
+		if(cv.getCampo().equals(Constantes.CAMPO_CLAVE)){
+			cv.setValid(Util.validarFormato(cv.getValor(),parametroDAO.getFormatoCampo(cv.getEntidad(),cv.getCampo(),Constantes.FORMATO_CAMPO), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
+			log.info("[CamposValidar "+cv.getCampo()+":"+cv.getValid()+"]");
 			if(!(cv.getValid())){
-				v.getCodigosErrors().add(Constantes.CAMPO_LOGIN_USUARIO_CLAVE);
+				v.getCodigosErrors().add(Constantes.CAMPO_CLAVE_USUARIO_ERROR);
 			}
 		}
 		else
-		if(cv.getTipo().equals(Constantes.CAMPO_SELECTOR)){
+		if(cv.getCampo().equals(Constantes.CAMPO_SELECTOR)){
 			cv.setValid(Util.validarSelector(cv.getValor(), parametroDAO.getValorSelectorMin(), parametroDAO.getCadenasRestringidasSelector()));
-			log.info("[CamposValidar "+cv.getTipo()+":"+cv.getValid()+"]");
+			log.info("[CamposValidar "+cv.getCampo()+":"+cv.getValid()+"]");
 			if(!(cv.getValid())){
-				v.getCodigosErrors().add(Constantes.CAMPO_LOGIN_USUARIO_SELECTOR);
+				v.getCodigosErrors().add(Constantes.CAMPO_SELECTOR_USUARIO_ERROR);
 			}
 		}
 		
