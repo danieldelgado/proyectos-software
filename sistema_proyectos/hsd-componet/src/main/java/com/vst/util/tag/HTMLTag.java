@@ -41,9 +41,9 @@ public class HTMLTag extends TagSupport{
 				String token=st.nextToken().trim();
 				if(!token.startsWith("http://")){
 					if(token.indexOf(".css") > 0)
-						token="/resources/styles/" + token;
+						token="/resources/css/" + token;
 					else
-						token="/resources/styles/" + token + ".css";
+						token="/resources/css/" + token + ".css";
 				}
 				css.add(token);
 			}
@@ -61,9 +61,9 @@ public class HTMLTag extends TagSupport{
 				String token=st.nextToken().trim();
 				if(!token.startsWith("http://")){
 					if(token.indexOf(".js") > 0)
-						token="/resources/scripts/" + token;
+						token="/resources/js/" + token;
 					else
-						token="/resources/scripts/" + token + ".js";
+						token="/resources/js/" + token + ".js";
 				}
 				js.add(token);
 			}
@@ -91,7 +91,7 @@ public class HTMLTag extends TagSupport{
 	}
 
 	public int doEndTag() throws JspException{
-		String pie="/WEB-INF/views/estructura/piepagina.jsp";
+		String pie="/WEB-INF/views/estructura/pie.jsp";
 		try{
 			// Ensure body is included before footer
 			pageContext.getOut().flush();

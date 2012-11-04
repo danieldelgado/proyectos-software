@@ -1,14 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-<h1>
-	Hello world!  
-</h1>
+<%@ taglib uri="http://www.chimera.org/chimera.tld" prefix="p" %>
+<p:html titulo="Principal">
 
-<P>  The time on the server is <a href="login">login</a> </P>
-</body>
-</html>
+
+Princpal de la pagina funcionaaaa
+
+</p:html>
