@@ -1,5 +1,7 @@
 package com.vst.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,10 +10,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.vst.dominio.Lista;
+import com.vst.dominio.Usuario;
 import com.vst.service.LoginService;
+import com.vst.service.PrincipalService;
 import com.vst.util.Constantes;
 
 
@@ -24,6 +32,8 @@ public class PrincipalController {
 	@Autowired
 	private LoginService loginService;
 	
+	@Autowired
+	private PrincipalService principalService;
 	
 	@RequestMapping(method = RequestMethod.GET)	
 	public String get(HttpServletRequest request, HttpSession session  ,Model model) {
@@ -34,6 +44,47 @@ public class PrincipalController {
 			return "redirect:/login";			
 		}else		
 			return "principal";
+	}	
+
+	@RequestMapping( value="obtenerLista/{entidad}" , method = RequestMethod.GET)	
+	public @ResponseBody Lista obtenerData(@PathVariable String entidad,HttpSession sesion){
+		log.info("[ metodo : obtenerParametros - obtener lista de parametros ]");	
+		Lista lstData = principalService.obtenerListaEntidad(entidad,sesion);	
+		System.out.println(lstData);
+		System.out.println(lstData.getColumnas());
+		//log.info("[ metodo : lstData : "+ Util.getJson(lstData)+" ]");	
+		return lstData;
 	}
+	
+	@RequestMapping(value="/obtenerDataLista/{entidad}")
+	public @ResponseBody
+	Map<String,Object> obtenerDataGrid(@PathVariable String entidad,Model model,HttpSession sesion,@RequestParam(required=false) String sidx,@RequestParam(required=false) String sord,@RequestParam(required=false) int page,@RequestParam(required=false) int rows,@RequestParam(required=false) boolean _search,@RequestParam(required=false) String searchField,@RequestParam(required=false) String searchOper,@RequestParam(required=false) String searchString){
+		log.info(" metodo : obtenerDataGrid -  obtener los datos del grid :"+entidad);
+		Usuario usuario=(Usuario) sesion.getAttribute(Constantes.SESION_USUARIO);
+		if(usuario != null){
+			Map<String,Object> tmp=principalService.obtenerData(usuario,entidad,sidx,sord,page,rows,_search,searchField,searchOper,searchString);
+			model.addAttribute("size",tmp.size());
+			System.out.println("return tmp");
+			System.out.println(tmp);
+			return tmp;
+		}
+		System.out.println("return null");
+		return null;
+	}
+
+	/*@RequestMapping(value="/obtenerCuentaDataGrid/{entidad}")
+	public @ResponseBody
+	Integer obtenerCuentaDataGrid(@PathVariable String entidad,HttpSession sesion){
+		Usuario usuario=(Usuario) sesion.getAttribute(Constantes.SESION_USUARIO);
+		if(usuario != null){
+			Integer cuenta=principalService.obtenerCuentaData(usuario,entidad);
+			return cuenta;
+		}
+		return 0;
+	}
+	//cargar pagina externa
+	
+	*/
+	
 	
 }

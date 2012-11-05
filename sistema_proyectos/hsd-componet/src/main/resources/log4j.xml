@@ -10,6 +10,7 @@
 		</layout>
 	</appender>
 	
+	<!-- 
 	<appender name="fileLinux" class="org.apache.log4j.FileAppender">
 	<param name="File" value="/home/daniel/logs/hsd/hsd.log"/>
 		<layout class="org.apache.log4j.PatternLayout">
@@ -17,7 +18,6 @@
 		</layout>
 	</appender>
 	
-	<!-- 
 	<appender name="fileWindows" class="org.apache.log4j.FileAppender">
 	<param name="File" value="C:\\logs\\hsd.log"/>
 		<layout class="org.apache.log4j.PatternLayout">
@@ -51,8 +51,8 @@
 	<root>
 		<priority value="info" />
 		<appender-ref ref="console" />
-		<appender-ref ref="fileLinux" />
-		<!-- <appender-ref ref="fileWindows" />-->
+		<!-- <appender-ref ref="fileLinux" />
+		<appender-ref ref="fileWindows" />-->
 	</root>
 	
 </log4j:configuration>

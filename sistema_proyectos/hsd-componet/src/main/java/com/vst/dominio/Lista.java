@@ -23,8 +23,8 @@ public class Lista  extends Recurso implements Serializable {
 	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
 
-	@Column(name="descripcion",length=250,nullable=false)
-	private String descripcion;
+	@Column(name="nombre",length=250,nullable=false)
+	private String nombre;
 
 	@Column(name="id_menu",length=4,nullable=false)
 	private Integer idMenu;
@@ -67,12 +67,14 @@ public class Lista  extends Recurso implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	
+
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public Integer getIdMenu() {

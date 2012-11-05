@@ -8,27 +8,36 @@
 	
 	<link href="<c:url value="/resources/css/ui-lightness/jquery-ui-1.9.1.custom.css"></c:url>" rel="stylesheet">
 	<link href="<c:url value="/resources/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"></c:url>" rel="stylesheet">
-	
+	<link href="<c:url value="/resources/css/ui-lightness/ui.jqgrid.css"></c:url>" rel="stylesheet">
+	<c:forEach var="css" items="${estilo}">
+		<link rel="stylesheet" href="<c:url value="${css}" />" type="text/css" />
+	</c:forEach>
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.8.2.js" ></c:url>" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/hsd-componet.js" ></c:url>" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.9.1.custom.js" ></c:url>" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.9.1.custom.min.js" ></c:url>" ></script> 
-	
+	<script type="text/javascript" src="<c:url value="/resources/js/layout/jquery.layout.js" ></c:url>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/layout/jquery.layout.min.js" ></c:url>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/ajaxupload.js" ></c:url>" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery-jqGrid.js" ></c:url>" ></script>
+	<c:forEach var="js" items="${javascript}">
+		<script type="text/javascript" src="<c:url value="${js}" />"></script>
+	</c:forEach>	
+		
 	<script type="text/javascript">
-
 	$(document).ready(function () {
 		$('body').layout({ applyDefaultStyles: true });
 	});
-
-	</script>
-		
+	</script>	
 	
 </head>
 <body>
 
+<INPUT type="hidden"  id="context"   value="<c:url value="/"></c:url>"/>
 
 <DIV  class="ui-layout-north" >Cabecera</DIV>
 <DIV class="ui-layout-west">
-<jsp:include page="menu.jsp" /></jsp:include>
+<jsp:include page="menu.jsp" />
 </DIV>
-<DIV class="ui-layout-center">conetido
+<DIV class="ui-layout-center">
 	

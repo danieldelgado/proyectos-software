@@ -29,5 +29,9 @@ public class Util {
 		Gson gson = new Gson();
 		return gson.toJson(l);
 	}
+
+	public static boolean vacio(String cadena){
+		return cadena == null || cadena.equals("");
+	}
 	
 }

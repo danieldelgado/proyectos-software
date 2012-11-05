@@ -52,11 +52,24 @@ public class Columna implements Entidad , Serializable {
 	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
 
+	@Column(name="tabla",length=50,nullable=false)
+	private String tabla;
+	
+	@Column(name="alineacion",length=50,nullable=false)
+	private String alineacion;
+
+	@Column(name="formato_tipo",length=50,nullable=false)
+	private String formato_tipo;
+
+	
 	@Column(name="mapping",nullable=false)
 	private Boolean mapping;
 
 	@Column(name="visible",nullable=false)
 	private Boolean visible;
+	
+	@Column(name="orden",nullable=false)
+	private Integer orden;
 
 	@ManyToMany(mappedBy="columnas")
 	private List<Lista> listas;
@@ -104,6 +117,22 @@ public class Columna implements Entidad , Serializable {
 
 	public String getAtributo() {
 		return atributo;
+	}
+
+	public String getAlineacion() {
+		return alineacion;
+	}
+
+	public void setAlineacion(String alineacion) {
+		this.alineacion = alineacion;
+	}
+
+	public String getFormato_tipo() {
+		return formato_tipo;
+	}
+
+	public void setFormato_tipo(String formato_tipo) {
+		this.formato_tipo = formato_tipo;
 	}
 
 	public void setAtributo(String atributo) {
@@ -189,6 +218,22 @@ public class Columna implements Entidad , Serializable {
 
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
+	}
+
+	public String getTabla() {
+		return tabla;
+	}
+
+	public void setTabla(String tabla) {
+		this.tabla = tabla;
+	}
+
+	public Integer getOrden() {
+		return orden;
+	}
+
+	public void setOrden(Integer orden) {
+		this.orden = orden;
 	}
 
 	
