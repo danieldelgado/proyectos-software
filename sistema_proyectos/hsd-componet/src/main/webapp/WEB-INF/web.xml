@@ -36,4 +36,15 @@
     <servlet-name>appServlet</servlet-name>
     <url-pattern>/app/*</url-pattern>
   </servlet-mapping>
+  
+  <context-param>
+    <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+    <param-value>com.vst.languaje.appLanguaje</param-value>
+  </context-param>
+  
 </web-app>
+
+
+
+
+

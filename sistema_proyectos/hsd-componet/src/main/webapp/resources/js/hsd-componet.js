@@ -68,10 +68,10 @@ function cargarLista(pm){
 						 "<div id=\"pager\"></div>");
 		tabsLista.append("<input type=\"hidden\" id=\"sizelista\" value=\"${size}\" />");
 		
-		//var urlData = context + "principal/obtenerDataLista/" + pm;
+		var urlData = context + "principal/obtenerDataLista/" + pm;
 		
 
-		var mydata = [
+		/*var mydata = [
 				{id:"1",invdate:"2010-05-24",name:"test",note:"note",tax:"10.00",total:"2111.00"} ,
 				{id:"2",invdate:"2010-05-25",name:"test2",note:"note2",tax:"20.00",total:"320.00"},
 				{id:"3",invdate:"2007-09-01",name:"test3",note:"note3",tax:"30.00",total:"430.00"},
@@ -121,17 +121,17 @@ function cargarLista(pm){
 		   	viewrecords: true,
 		   	caption: "Manipulating Array Data"
 		});
+		*/
 		
 		
-		
-	/*	$("#lista").jqGrid({
+		$("#lista").jqGrid({
 			url: urlData,
 			datatype: "json",
 			hidegrid: false,
 			width: tabsLista.width(),
 			height: tabsLista.height() ,
-			//colNames: nombres,
-			//colModel: modelo,
+			colNames: nombres,
+			colModel: modelo,
 			rowNum: function(){
 				return $("#sizeLista").val();
 			},
@@ -148,7 +148,7 @@ function cargarLista(pm){
 			rowList: [5,10,20,30],
 			loadComplete: function(json){
 				mensaje_consola(json);
-				$(json.data).each(function(){
+				/*$(json.data).each(function(){
 					if(this.leido != null){
 						if(!this.leido){
 							// alert("leido");
@@ -164,9 +164,9 @@ function cargarLista(pm){
 							});
 						}
 					}
-				});
+				});*/
 			}
-		});*/
+		});
 
 	/*	$("#lista").jqGrid('navlista','#pager',{
 			edit: false,
