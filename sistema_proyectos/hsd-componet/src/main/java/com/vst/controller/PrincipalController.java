@@ -21,6 +21,7 @@ import com.vst.dominio.Usuario;
 import com.vst.service.LoginService;
 import com.vst.service.PrincipalService;
 import com.vst.util.Constantes;
+import com.vst.util.Util;
 
 
 @Controller
@@ -49,10 +50,8 @@ public class PrincipalController {
 	@RequestMapping( value="obtenerLista/{entidad}" , method = RequestMethod.GET)	
 	public @ResponseBody Lista obtenerData(@PathVariable String entidad,HttpSession sesion){
 		log.info("[ metodo : obtenerParametros - obtener lista de parametros ]");	
-		Lista lstData = principalService.obtenerListaEntidad(entidad,sesion);	
-		System.out.println(lstData);
-		System.out.println(lstData.getColumnas());
-		//log.info("[ metodo : lstData : "+ Util.getJson(lstData)+" ]");	
+		Lista lstData = principalService.obtenerListaEntidad(entidad,sesion);			
+		log.info("[ metodo : lstData : "+ Util.getJson(lstData)+" ]");	
 		return lstData;
 	}
 	
@@ -63,12 +62,9 @@ public class PrincipalController {
 		Usuario usuario=(Usuario) sesion.getAttribute(Constantes.SESION_USUARIO);
 		if(usuario != null){
 			Map<String,Object> tmp=principalService.obtenerData(usuario,entidad,sidx,sord,page,rows,_search,searchField,searchOper,searchString);
-			model.addAttribute("size",tmp.size());
-			System.out.println("return tmp");
-			System.out.println(tmp);
+			model.addAttribute("size",tmp.size());			
 			return tmp;
 		}
-		System.out.println("return null");
 		return null;
 	}
 

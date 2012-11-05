@@ -1,6 +1,6 @@
 
-</DIV>
-<DIV class="ui-layout-south" >pie</DIV>
+</aside>
+<footer class="ui-layout-south" >pie</footer>
 	
 
 

@@ -88,11 +88,8 @@ public class DataListComponetImpl implements DataListComponet {
 
 		boolean conUsuario=false;
 		boolean conEstado=false;	
-		
-		
+				
 		log.info("Query :" + sql);
-		System.out.println("sql:");
-		System.out.println(sql);
 		Query q =em.createQuery(sql);
 		if(conUsuario){
 			q.setParameter("usuario",usuario);
@@ -121,9 +118,7 @@ public class DataListComponetImpl implements DataListComponet {
 		flags.setCopiado(false);
 
 		String sql=createQuery(flags,_search,false,usuario,codigo,columnas,estado,columnaOrden,direccionOrden,searchField,searchOper);
-		log.debug("query dinamica bandeja:" + sql);
-		System.out.println("sql:");
-		System.out.println(sql);
+		log.debug("query dinamica bandeja:" + sql);		
 		Query q=em.createQuery(sql);
 		if(flags.getConUsuario()){
 			q.setParameter("usuario",usuario);
@@ -157,12 +152,8 @@ public class DataListComponetImpl implements DataListComponet {
 						data.put(columnas.get(i).getAtributo(),columnas.get(i).getOrden());
 					}
 				}*/
-				System.out.println("data:");
-				System.out.println(data);
 				salida.add(data);
 			}
-			System.out.println("salida:");
-			System.out.println(salida);
 			return salida;
 		}
 		return null;
@@ -179,9 +170,6 @@ public class DataListComponetImpl implements DataListComponet {
 
 		String sql=createQuery(flags,false,true,usuario,codigo,null,estado,null,null,null,null);
 
-		System.out.println("sql:");
-		System.out.println(sql);
-		
 		Query q=em.createQuery(sql);
 
 		if(flags.getConUsuario()){

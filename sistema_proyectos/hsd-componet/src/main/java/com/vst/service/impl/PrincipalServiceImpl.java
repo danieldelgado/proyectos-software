@@ -46,7 +46,8 @@ public class PrincipalServiceImpl implements PrincipalService {
 		lista.setCodigo("parametro");
 		lista.setIdMenu(1);
 		lista.setTabla("parametro");
-				
+		lista.setNombre("Lsita de Parametro");	
+		
 		List<Columna> columnas = new ArrayList<Columna>();
 		Columna c1 = new Columna();
 		c1.setActivo(true);
@@ -114,7 +115,6 @@ public class PrincipalServiceImpl implements PrincipalService {
 		if(lista != null){
 			List<Columna> columnas=columnaDAO.buscarPorLista(lista.getId());
 			if(columnas != null && columnas.size() > 0){
-
 				Map<String,Object> objeto=new HashMap<String,Object>();
 				int count=dataListComponet.getCantidadDataRows(usuario,entidad,estado);
 				int total=0;
@@ -134,7 +134,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 					records=data.size();
 				}
 				objeto.put("records",records);
-				objeto.put("data",data);
+				objeto.put("data",data);				
 				return objeto;
 			}
 		}

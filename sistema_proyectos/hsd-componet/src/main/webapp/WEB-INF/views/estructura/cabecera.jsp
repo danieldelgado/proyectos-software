@@ -25,21 +25,20 @@
 	<c:forEach var="js" items="${javascript}">
 		<script type="text/javascript" src="<c:url value="${js}" />"></script>
 	</c:forEach>	
-		
-	<script type="text/javascript">
-	$(document).ready(function () {
-		$('body').layout({ applyDefaultStyles: true });
-	});
-	</script>	
-	
+
 </head>
 <body>
 <fmt:setLocale value="es_ES"/>	
 
-<INPUT type="hidden"  id="context"   value="<c:url value="/"></c:url>"/>
-<DIV  class="ui-layout-north" >Cabecera : <fmt:message key="componet.cabecera.titulo" ></fmt:message>  </DIV>
-<DIV class="ui-layout-west">
+<input type="hidden"  id="context"   value="<c:url value="/"></c:url>"/>
+
+<header class="ui-layout-north">
+Cabecera : <fmt:message key="componet.cabecera.titulo" ></fmt:message>
+</header>
+<menu class="ui-layout-west">
+<nav>
 <jsp:include page="menu.jsp" />
-</DIV>
-<DIV class="ui-layout-center">
+</nav>
+</menu>
+<aside class="ui-layout-center">
 	
