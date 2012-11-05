@@ -63,7 +63,7 @@ public class Util {
 		log.debug("[ validarSelector object : "+getJson(object)+" rangMin : "+rangMin+" str : "+getJson(str)+"]");
 		Integer s = Integer.parseInt( String.valueOf(object) );
 		if(s!=null){			
-				if(s>rangMin){										
+				if(s>=rangMin){										
 					for (int i = 0; i < str.length; i++) {		
 						String sE = str[i].toLowerCase().trim();
 						if(( sE.toLowerCase().trim().equals(String.valueOf(s)))){
