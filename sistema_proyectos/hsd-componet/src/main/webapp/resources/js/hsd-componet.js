@@ -21,6 +21,7 @@ function init(){
 	context = $("#context").val();
 	layoutConeinerCenter = $(".ui-layout-center");
 	tabGeneral = $("#tabs");
+	tabGeneral.resizable();
 	tabGeneral.tabs();
 	tabprincipal =  $("#tabprincipal");	
 	cargarLista("Parametro");
@@ -102,7 +103,7 @@ function cargarLista(pm){
 		tabprincipal.append("<input type=\"hidden\" id=\"sizelista\" value=\"${size}\" />");
 		
 		var urlData = context + "principal/obtenerDataLista/" + pm;
-						
+
 		$("#lista").jqGrid({
 			url: urlData,
 			datatype: "json",
@@ -120,7 +121,7 @@ function cargarLista(pm){
 		   	],
 		   	pager: "#pager",
 		   	viewrecords: true,
-		   	caption: lista.nombre,
+		   	//caption: lista.nombre,
 		   	page: 1,
 			rowNum: "20",
 			rowList: [5,10,20,30],
@@ -132,7 +133,7 @@ function cargarLista(pm){
 			}
 			
 			
-		});
+		}).resizable();
 		$("#lista").jqGrid('navGrid','#pager',{
 			edit: false,
 			add: false,

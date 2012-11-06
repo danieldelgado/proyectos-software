@@ -4,9 +4,9 @@
 <%@ taglib uri="http://www.chimera.org/chimera.tld" prefix="p" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <p:html titulo="Principal">
- <div class="ui-widget-header ui-corner-all">
+<!--   <div class="ui-widget-header ui-corner-all">
 Lista de Mantenimiento
- </div>
+ </div>-->
 <div class="tabsComponet" >
 <div id="toolbar" class="ui-widget-header ui-corner-all">
 <div>
