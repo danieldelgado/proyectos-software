@@ -25,6 +25,7 @@ function init(){
 	tabGeneral.tabs();
 	tabprincipal =  $("#tabprincipal");	
 	cargarLista("Parametro");
+	
 }
 
 function cargarMenus(){
@@ -53,22 +54,22 @@ function cargarMenus(){
 	
 	$(".clNuevo").button().click( function() {
 		var d = $(this).parent();
-		var codigo = d.find(".codigo");
-		var codigo = d.find(".codigo");	
-		var icono = d.find(".icono");	
-		var onComplete = d.find(".onComplete");	
-		var onSubmit = d.find(".onSubmit");	
-		var parametrosJson = d.find(".parametrosJson");	
-		var tipo = d.find(".tipo");	
-		var url = d.find(".url");			
-		var descripcion = d.find(".descripcion");			
+		var codigo = d.find(".codigo").val();
+		var icono = d.find(".icono").val();	
+		var onComplete = d.find(".onComplete").val();	
+		var onSubmit = d.find(".onSubmit").val();	
+		var parametrosJson = d.find(".parametrosJson").val();	
+		var tipo = d.find(".tipo").val();	
+		var url = d.find(".url").val();			
+		var descripcion = d.find(".descripcion").val();			
 		irPagina(url);		
 	});
 	
 }
 
 function irPagina(url){
-	location.href=$(url).val();
+	url = context + url;
+	$(location).attr('href',url);
 }
 
 function cargarLista(pm){	

@@ -5,4 +5,6 @@
 <p:html titulo="Mantenimiento de Parametros" javascript="mantenimiento/parametro/mantenimientoParametro.js">
 
 
+mantnimiento parametro
+
 </p:html>

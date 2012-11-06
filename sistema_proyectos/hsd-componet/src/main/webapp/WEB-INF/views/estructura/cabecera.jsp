@@ -34,6 +34,8 @@
 
 <header class="ui-layout-north">
 Cabecera : <fmt:message key="componet.cabecera.titulo" ></fmt:message>
+
+ <a href="<c:url value="/principal" ></c:url>" class="oplink" > Inicip </a> 
 </header>
 <menu class="ui-layout-west">
 <nav>

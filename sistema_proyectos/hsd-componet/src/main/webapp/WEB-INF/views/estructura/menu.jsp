@@ -13,7 +13,8 @@ Menu Principal
             	 <a href="javascript:void(0);" class="oplink" > mantenimieto parametro </a> 
             	 <input type="hidden" class="codigo" value="1526" >
             	 <input type="hidden" class="tipo" value="interno" >
-            	 <input type="hidden" class="url" value="Parametro" >
+            	  <input type="hidden" class="url" value="Parametro" > 
+            	<!-- <input type="hidden" class="url" value="mantenimiento/parametro" >-->
             	</div>
         </div>
         
