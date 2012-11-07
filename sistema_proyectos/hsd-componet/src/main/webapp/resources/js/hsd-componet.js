@@ -3,8 +3,8 @@ var menu = null;
 var lista=null;
 var tabGeneral=null;
 var tabprincipal = null;
-var layoutConeinerCenter=null;
 var ent = null;
+var count = 1;
 $(function() {   
 	init();
 	cargarMenus();
@@ -23,27 +23,43 @@ function init(){
 	});
 
 	context = $("#context").val();
-	layoutConeinerCenter = $(".ui-layout-center");	
 	tabGeneral = $("#tabs");
-	if(tabGeneral!=null){		
-		crearTab();
-		tabprincipal =  $("#tabprincipal");			
+	tabGeneral.tabs();
+	mensaje_consola(tabGeneral);
+	/*if(tabGeneral==null){		
+		crearTab();	
 		ent =  $("#ent").val();
 		if(ent!=null){
-			cargarLista(ent);			
+			//cargarLista(ent);			
 		}	
-	}
+	}*/
 		
 }
+/*
+   
+
+        $('#addspan').click(function() {
+            $('#wrap').append('<span id="page' + count + '">testing</span>');
+            $('#wrap').find('ul').append('<li><a href="#page' + count + '">' + count + '</a></li>');
+            count++;
+            var selIndex = $( "#wrap" ).tabs( "option", "selected" );
+            $('#wrap').tabs("destroy").tabs({selected: selIndex});
+        }); 
+ * */
+
 
 function crearTab(){
 	
-	tabGeneral.resizable();
-	tabGeneral.tabs({
-			cache: true,
+	//tabGeneral.resizable();
+//	tabGeneral.tabs({
+			/*cache: true,
 			tabTemplate: "<li><a href=\"#{href}\">#{label}</a><span class=\"ui-icon ui-icon-close\">Cerrar</span></li>",
-			add: function(event,ui){
-				
+			add: function(event,ui){/*
+				mensaje_consola(event);
+				mensaje_consola(ui);
+				mensaje_consola(ui.panel);
+				mensaje_consola(ui.tab);
+				mensaje_consola(ui.panel.id);
 				var pad=$(ui.panel).css("padding-top");				
 				pad=pad.substring(0,pad.indexOf("px"));				
 				$(ui.panel).height(tabGeneral.height() - $(".ui-tabs-nav",tabGeneral).height() - 2 * pad - 4);				
@@ -53,9 +69,9 @@ function crearTab(){
 				
 				tabGeneral.tabs("select","#" + ui.panel.id);
 				
-				}		
-			}
-	);
+				}	*/	
+	//		}
+	//);
 	
 	/*var pad=tabGeneral.css("padding-top");
 	pad=pad.substring(0,pad.indexOf("px"));
@@ -66,13 +82,13 @@ function crearTab(){
 	
 	tabGeneral.height($("#centro").height() - 2 * pad - pie);
 */
-	tabGeneral.find("span.ui-icon-close").live("click",function(){
+	/*tabGeneral.find("span.ui-icon-close").live("click",function(){
 		var index=$("li",tabGeneral).index($(this).parent());
 		if(index >= 0){
 			var tab=$(this).parent().find("a").attr("href");			
 			tabGeneral.tabs("remove",index);
 		}
-	});
+	});*/
 	
 	
 }
@@ -93,16 +109,14 @@ function cargarMenus(){
             $( "#menu" ).accordion( "refresh" );
         }
     });
-		
-}
-
-function cargarEnlaces(){
-	
 	$(".oplink").click( function() {
 		var d = $(this).parent();
 		var url = d.find(".url").val();	
 		irPagina(url);	
 	});
+}
+
+function cargarEnlaces(){
 	
 	$(".clNuevo").button().click( function() {
 		var d = $(this).parent();
@@ -114,26 +128,34 @@ function cargarEnlaces(){
 		var tipo = d.find(".tipo").val();	
 		var url = d.find(".url").val();			
 		var descripcion = d.find(".descripcion").val();	
-		manejoTabs(url , tipo , "codigo"  );
-		
-		
+		//manejoTabs(url , tipo , "codigo"  );
+			pruebatab();	
 	});
 	
 }
-
+/*
 function manejoTabs(url , tipo ,  codigo ){
-	codigo = "#"+codigo;
-	if($(codigo).length <= 0){
-		tabGeneral.tabs("add",codigo,"titulo");		
+	mensaje_consola(codigo);
+	mensaje_consola(url);
+	if($("#"+codigo).length <= 0){
+		addTab(tabGeneral, url, "titulo", codigo);  //tabGeneral.tabs("add",url,codigo,1);		
 	}else{
 		tabGeneral.tabs("select",codigo);
 	}	
+}*/
+
+
+function pruebatab( ){
+		tabGeneral.append('<div id="page' + count + '">' + count+'</div>');
+         //$('#wrap').find('ul').append('<li><a href="#page' + count + '">' + count + '</a></li>');
+		tabGeneral.tabs("add","#page" + count, count);
+         count++;    
 }
 
 detalleLista = function(id,cap){
 	mensaje_consola(id);
 	mensaje_consola(cap);
-}
+};
 
 function irPagina(url){
 	url = context + url;
@@ -142,13 +164,14 @@ function irPagina(url){
 
 function cargarLista(pm){	
 	if(diferenteNull(pm)){
-		
-		tabprincipal.html("");
+
 		$.get(context + "principal/obtenerLista/" + pm ,function(lista){		
 							
-			tabGeneral.tabs("remove",0);
-			tabGeneral.tabs("add","#tabPrincipal",pm,0);
-			
+			//tabGeneral.tabs("remove",0);
+			//tabGeneral.tabs("add","#tabPrincipal",pm,0);
+			//addTab(tabGeneral, "", "titulo", "tabPrincipal");
+			tabprincipal =  $("#tabPrincipal");			
+			//tabprincipal.html("");
 			
 			var nombres=new Array();
 			var modelo=new Array();
