@@ -28,10 +28,15 @@ public class HTMLTag extends TagSupport{
 
 	private String javascript;
 
+	private String ent;
+
+	
+	
 	public int doStartTag() throws JspException{
 		String cabecera="/WEB-INF/views/estructura/cabecera.jsp";
 		ServletRequest request=pageContext.getRequest();
 		request.setAttribute("titulo",titulo);
+		request.setAttribute("ent",ent);		
 		String[] estilos;
 		String[] scripts;
 		if(estilo != null){
@@ -122,6 +127,26 @@ public class HTMLTag extends TagSupport{
 
 	public void setTitulo(String titulo){
 		this.titulo=titulo;
+	}
+
+	public String getEnt() {
+		return ent;
+	}
+
+	public void setEnt(String ent) {
+		this.ent = ent;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public String getEstilo() {
+		return estilo;
+	}
+
+	public String getJavascript() {
+		return javascript;
 	}
 
 }

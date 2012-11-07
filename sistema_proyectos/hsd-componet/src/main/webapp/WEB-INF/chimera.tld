@@ -23,6 +23,11 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<name>ent</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<name>javascript</name>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>

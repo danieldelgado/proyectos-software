@@ -27,6 +27,13 @@ public class MantenimientoParametroController {
 		return "mantenimiento/parametros/mantenimientoParametro";
 	}
 	
+
+	@RequestMapping( value="mantenimiento/parametro/nuevo" , method = RequestMethod.GET)	
+	public String irPaginaNuevo(){
+		log.info("[ metodo : get - ingreso a irPaginaNuevo ]");		
+		return "mantenimiento/parametros/parametro";
+	}
+	
 	
 	
 }

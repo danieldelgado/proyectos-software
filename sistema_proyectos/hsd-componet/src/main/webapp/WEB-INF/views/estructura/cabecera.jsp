@@ -37,10 +37,12 @@ Cabecera : <fmt:message key="componet.cabecera.titulo" ></fmt:message>
 
  <a href="<c:url value="/principal" ></c:url>" class="oplink" > Inicip </a> 
 </header>
-<menu class="ui-layout-west">
-<nav>
+<menu class="ui-layout-west" >
+<nav >
 <jsp:include page="menu.jsp" />
 </nav>
 </menu>
 <aside class="ui-layout-center">
+<input type="hidden" id="ent" name="ent" value="${ent}"/>
+
 	
