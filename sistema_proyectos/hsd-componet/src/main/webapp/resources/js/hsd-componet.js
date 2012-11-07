@@ -4,63 +4,46 @@ var lista=null;
 var tabGeneral=null;
 var tabprincipal = null;
 var ent = null;
+var layoutConeinerCenter = $(".ui-layout-center");
 var count = 1;
 $(function() {   
 	init();
 	cargarMenus();
 	cargarEnlaces();
+	tabGeneral = $("#tabs");
+	if(tabGeneral!=null){
+		crearTab();
+	}
 });
 
-function init(){
-	
+function init(){	
 	$('body').layout({ 
 		applyDefaultStyles: true,
 		west__size: 300
-	});
-	
+	});	
+	ent =  $("#ent").val();	
 	$.ajaxSetup({
 		cache: false
 	});
-
-	context = $("#context").val();
-	tabGeneral = $("#tabs");
-	tabGeneral.tabs();
-	mensaje_consola(tabGeneral);
-	/*if(tabGeneral==null){		
-		crearTab();	
-		ent =  $("#ent").val();
-		if(ent!=null){
-			//cargarLista(ent);			
-		}	
-	}*/
-		
+	context = $("#context").val();	
 }
-/*
-   
-
-        $('#addspan').click(function() {
-            $('#wrap').append('<span id="page' + count + '">testing</span>');
-            $('#wrap').find('ul').append('<li><a href="#page' + count + '">' + count + '</a></li>');
-            count++;
-            var selIndex = $( "#wrap" ).tabs( "option", "selected" );
-            $('#wrap').tabs("destroy").tabs({selected: selIndex});
-        }); 
- * */
-
 
 function crearTab(){
-	
+	tabGeneral.tabs();
+	if(ent!=null){
+		cargarLista(ent);			
+	}	
 	//tabGeneral.resizable();
-//	tabGeneral.tabs({
-			/*cache: true,
+	tabGeneral.tabs({
+			cache: true,
 			tabTemplate: "<li><a href=\"#{href}\">#{label}</a><span class=\"ui-icon ui-icon-close\">Cerrar</span></li>",
-			add: function(event,ui){/*
+			add: function(event,ui){
 				mensaje_consola(event);
 				mensaje_consola(ui);
 				mensaje_consola(ui.panel);
 				mensaje_consola(ui.tab);
 				mensaje_consola(ui.panel.id);
-				var pad=$(ui.panel).css("padding-top");				
+				/*var pad=$(ui.panel).css("padding-top");				
 				pad=pad.substring(0,pad.indexOf("px"));				
 				$(ui.panel).height(tabGeneral.height() - $(".ui-tabs-nav",tabGeneral).height() - 2 * pad - 4);				
 				if(ui.panel.id == "tabprincipal"){					
@@ -68,10 +51,10 @@ function crearTab(){
 				}
 				
 				tabGeneral.tabs("select","#" + ui.panel.id);
-				
-				}	*/	
-	//		}
-	//);
+				*/
+				}		
+			}
+	);
 	
 	/*var pad=tabGeneral.css("padding-top");
 	pad=pad.substring(0,pad.indexOf("px"));
@@ -79,16 +62,16 @@ function crearTab(){
 	if($("#pie")){
 		pie+=$("#pie").height();
 	}
-	
-	tabGeneral.height($("#centro").height() - 2 * pad - pie);
-*/
-	/*tabGeneral.find("span.ui-icon-close").live("click",function(){
+	*/
+	//tabGeneral.height(layoutConeinerCenter.height() - 60);
+
+	tabGeneral.find("span.ui-icon-close").live("click",function(){
 		var index=$("li",tabGeneral).index($(this).parent());
 		if(index >= 0){
 			var tab=$(this).parent().find("a").attr("href");			
 			tabGeneral.tabs("remove",index);
 		}
-	});*/
+	});
 	
 	
 }
@@ -129,7 +112,7 @@ function cargarEnlaces(){
 		var url = d.find(".url").val();			
 		var descripcion = d.find(".descripcion").val();	
 		//manejoTabs(url , tipo , "codigo"  );
-			pruebatab();	
+		addtab("titulo"+count,"param"+count,"algo "+count);	
 	});
 	
 }
@@ -145,11 +128,14 @@ function manejoTabs(url , tipo ,  codigo ){
 }*/
 
 
-function pruebatab( ){
-		tabGeneral.append('<div id="page' + count + '">' + count+'</div>');
-         //$('#wrap').find('ul').append('<li><a href="#page' + count + '">' + count + '</a></li>');
-		tabGeneral.tabs("add","#page" + count, count);
-         count++;    
+function addtab( titulo,identificador,html){	
+	tabGeneral.append('<div style="height:100%;" id="'+ identificador + '">' + html+'</div>');
+	identificador = "#"+identificador;
+	tabGeneral.tabs("add", identificador , count);
+	tabGeneral.tabs("select",identificador);
+	count++;   
+	
+
 }
 
 detalleLista = function(id,cap){
@@ -169,9 +155,9 @@ function cargarLista(pm){
 							
 			//tabGeneral.tabs("remove",0);
 			//tabGeneral.tabs("add","#tabPrincipal",pm,0);
-			//addTab(tabGeneral, "", "titulo", "tabPrincipal");
+			addtab("Principal", "tabPrincipal", "");
 			tabprincipal =  $("#tabPrincipal");			
-			//tabprincipal.html("");
+			tabprincipal.html("");
 			
 			var nombres=new Array();
 			var modelo=new Array();
@@ -224,7 +210,7 @@ function cargarLista(pm){
 				rowNum: "20",
 				rowList: [5,10,20,30],
 				width: tabprincipal.width() ,
-				height: layoutConeinerCenter.height() - (layoutConeinerCenter.height()/5),
+				//height: layoutConeinerCenter.height() - (layoutConeinerCenter.height()/5),
 				hidegrid: false,
 				loadComplete: function(json){
 					//mensaje_consola("json:");
