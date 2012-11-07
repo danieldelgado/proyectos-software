@@ -1,3 +1,5 @@
+
+
 var context = null;
 var menu = null;
 var lista=null;
@@ -36,40 +38,24 @@ function crearTab(){
 	//tabGeneral.resizable();
 	tabGeneral.tabs({
 			cache: true,
-			tabTemplate: "<li><a href=\"#{href}\">#{label}</a><span class=\"ui-icon ui-icon-close\">Cerrar</span></li>",
+			tabTemplate: "<li><a href=\"#{href}\">  #{label}  </a> <span class=\"ui-icon ui-icon-close\">Cerrar</span></li>",
 			add: function(event,ui){
-				mensaje_consola(event);
-				mensaje_consola(ui);
-				mensaje_consola(ui.panel);
 				mensaje_consola(ui.tab);
-				mensaje_consola(ui.panel.id);
-				/*var pad=$(ui.panel).css("padding-top");				
-				pad=pad.substring(0,pad.indexOf("px"));				
-				$(ui.panel).height(tabGeneral.height() - $(".ui-tabs-nav",tabGeneral).height() - 2 * pad - 4);				
-				if(ui.panel.id == "tabprincipal"){					
-					$(ui.tab).siblings("span").remove();					
-				}
-				
-				tabGeneral.tabs("select","#" + ui.panel.id);
-				*/
+				mensaje_consola("panel id:");
+				mensaje_consola(ui.panel.id);				
 				}		
 			}
 	);
 	
-	/*var pad=tabGeneral.css("padding-top");
-	pad=pad.substring(0,pad.indexOf("px"));
-	var pie=4;
-	if($("#pie")){
-		pie+=$("#pie").height();
-	}
-	*/
-	//tabGeneral.height(layoutConeinerCenter.height() - 60);
-
 	tabGeneral.find("span.ui-icon-close").live("click",function(){
 		var index=$("li",tabGeneral).index($(this).parent());
+		mensaje_consola("index:"+index);
 		if(index >= 0){
-			var tab=$(this).parent().find("a").attr("href");			
-			tabGeneral.tabs("remove",index);
+			var tab=$(this).parent().find("a").attr("href");	
+			mensaje_consola("tab:"+tab);				
+			if(tab!="#tabPrincipal"){
+				tabGeneral.tabs("remove",index);				
+			}
 		}
 	});
 	
@@ -111,31 +97,38 @@ function cargarEnlaces(){
 		var tipo = d.find(".tipo").val();	
 		var url = d.find(".url").val();			
 		var descripcion = d.find(".descripcion").val();	
-		//manejoTabs(url , tipo , "codigo"  );
-		addtab("titulo"+count,"param"+count,"algo "+count);	
+		addtab("Nuevo Parametro","nuevo_paramo","",url);	
 	});
 	
 }
-/*
-function manejoTabs(url , tipo ,  codigo ){
-	mensaje_consola(codigo);
-	mensaje_consola(url);
-	if($("#"+codigo).length <= 0){
-		addTab(tabGeneral, url, "titulo", codigo);  //tabGeneral.tabs("add",url,codigo,1);		
-	}else{
-		tabGeneral.tabs("select",codigo);
-	}	
-}*/
 
 
-function addtab( titulo,identificador,html){	
-	tabGeneral.append('<div style="height:100%;" id="'+ identificador + '">' + html+'</div>');
-	identificador = "#"+identificador;
-	tabGeneral.tabs("add", identificador , count);
-	tabGeneral.tabs("select",identificador);
-	count++;   
-	
+function addtab( titulo,identificador,html,url){	
+	if(!diferenteNull(html)&&diferenteNull(url)){
+		$.ajax({
+				async: false,
+		        url: url,
+		        type: "get",
+		        success: function(response, textStatus, jqXHR){
+		        	html = response;
+		        },
+		        error: function(jqXHR, textStatus, errorThrown){
+		        	 mensaje_consola("error:");		        	
+		        },
+		        complete: function(){
+		        	mensaje_consola("complete");
+		        }
+			    });
+	}
 
+    mensaje_consola(html);
+    
+	if($("#"+identificador).length<=0){		
+		tabGeneral.append('<div id="' + identificador + '"> ' + html + '</span>');
+		tabGeneral.tabs("add","#" + identificador, titulo);
+	    count++;
+	}
+	tabGeneral.tabs("select",identificador);	
 }
 
 detalleLista = function(id,cap){
@@ -153,8 +146,6 @@ function cargarLista(pm){
 
 		$.get(context + "principal/obtenerLista/" + pm ,function(lista){		
 							
-			//tabGeneral.tabs("remove",0);
-			//tabGeneral.tabs("add","#tabPrincipal",pm,0);
 			addtab("Principal", "tabPrincipal", "");
 			tabprincipal =  $("#tabPrincipal");			
 			tabprincipal.html("");
@@ -292,3 +283,9 @@ var formateadores={
 		return "<img src=\"" + valor + "\"/>";
 	}
 };
+
+
+
+
+
+

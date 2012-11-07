@@ -9,6 +9,7 @@
 	<link href="<c:url value="/resources/css/ui-lightness/jquery-ui-1.9.1.custom.css"></c:url>" rel="stylesheet">
 	<link href="<c:url value="/resources/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"></c:url>" rel="stylesheet">
 	<link href="<c:url value="/resources/css/ui-lightness/ui.jqgrid.css"></c:url>" rel="stylesheet">
+	<link href="<c:url value="/resources/css/style.css"></c:url>" rel="stylesheet">
 	<c:forEach var="css" items="${estilo}">
 		<link rel="stylesheet" href="<c:url value="${css}" />" type="text/css" />
 	</c:forEach>
