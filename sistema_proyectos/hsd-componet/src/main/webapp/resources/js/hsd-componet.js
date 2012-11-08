@@ -43,7 +43,13 @@ function crearTab(){
 				mensaje_consola(ui.tab);
 				mensaje_consola("panel id:");
 				mensaje_consola(ui.panel.id);				
-				}		
+			},
+			select: function(event, ui) { 
+				mensaje_consola(ui.tab);
+				mensaje_consola("panel id:");
+				mensaje_consola(ui.panel.id);		
+			}
+			
 			}
 	);
 	

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,9 @@ public class MantenimientoParametroController {
 
 	private static final Logger log = LoggerFactory.getLogger(MantenimientoParametroController.class);
 	
+	@Autowired
+	private MantenimientoParametroService mantenimientoParametroService;
+	
 	
 	@RequestMapping( value="mantenimiento/parametro" , method = RequestMethod.GET)	
 	public String get(){
@@ -29,8 +33,10 @@ public class MantenimientoParametroController {
 	
 
 	@RequestMapping( value="mantenimiento/parametro/nuevo" , method = RequestMethod.GET)	
-	public String irPaginaNuevo(){
-		log.info("[ metodo : get - ingreso a irPaginaNuevo ]");		
+	public String irPaginaNuevo(Model model){
+		log.info("[ metodo : get - ingreso a irPaginaNuevo ]");	
+		
+		
 		return "mantenimiento/parametros/parametro";
 	}
 	
