@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.chimera.org/chimera.tld" prefix="p" %>
-<p:html titulo="Mantenimiento de Parametros" ent="Parametro" javascript="mantenimiento/parametro/mantenimientoParametro.js">
+<p:html titulo="Mantenimiento de Parametros" ent="Parametro" >
 
 <div class="tabsComponet" >
 <div id="toolbar" class="ui-widget-header ui-corner-all">

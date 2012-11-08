@@ -1,8 +1,9 @@
 package com.vst.js.dwr;
 
-import org.apache.log4j.Logger;
 import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,11 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ArithmeticService {
 
-	protected static Logger logger = Logger.getLogger("service");
+	private static Logger log=LoggerFactory.getLogger(ArithmeticService.class);
 
 	@RemoteMethod
 	public Integer add(Integer operand1, Integer operand2) {
-		logger.debug("Adding two numbers");
+		log.debug("Adding two numbers");
 
 		return operand1 + operand2;
 	}
