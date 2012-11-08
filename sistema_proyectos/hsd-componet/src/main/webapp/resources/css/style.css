@@ -1,4 +1,4 @@
-	/*
+/*
 	.tabsComponet{
 		width: 100%;
 		height: 100%;
@@ -59,21 +59,41 @@
 	}
 	*/
 	
-.formulario div p label{	
+.droptrue {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	float: left;
+	margin-right: 10px;
+	background: #eee;
+	padding: 5px;
+	width: 250px;
+	min-width:200;
+	min-height: 30px;
+}
+
+.droptrue li {
+	margin: 5px;
+	padding: 5px;
+	font-size: 1.2em;
+	min-width: 200px;
+}
+
+.formulario div p label {
 	display: inline-block;
 	width: 130px;
 	font-weight: bold;
 	vertical-align: top;
 }
-.formulario div p{	
-	margin:0;
-	height:30px;
+
+.formulario div p {
+	margin: 0;
+	height: 30px;
 }
-	
-.encabezadoTool{	
+
+.encabezadoTool {
 	font-size: 15;
 	padding: 5px;
 	margin: 0.5px;
 	display: block;
 }
-	

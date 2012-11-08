@@ -79,6 +79,34 @@ public class Parametro implements Entidad , Serializable {
     public Parametro() {
     }
 
+    
+    
+    
+	public Parametro(Integer id, String codigo, String valor) {
+		super();
+		this.id = id;
+		this.codigo = codigo;
+		this.valor = valor;
+	}
+
+
+
+
+	public Parametro(Integer id, String codigo, Character estado, Boolean activo, String entidad, String campo, String tipo, String valor, List<Parametro> parametros) {
+		this.id = id;
+		this.codigo = codigo;
+		this.estado = estado;
+		this.activo = activo;
+		this.entidad = entidad;
+		this.campo = campo;
+		this.tipo = tipo;
+		this.valor = valor;
+		this.parametros = parametros;
+	}
+
+
+
+
 	public Date getFechaActualizacion() {
 		return fechaActualizacion;
 	}

@@ -66,4 +66,5 @@ public class Constantes {
 	public static final Integer ERROR_CAMPOS_VARIABLES = 1684161651;
 	public static final int ERROR_SERVICIO_WEB = 4000;
 	public static final String COLUMNA_TIPO_IMAGE = "image";
+	public static final String TIPO_ESTADO = "estado";
 }

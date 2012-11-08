@@ -4,24 +4,58 @@
 
 <div id="txtDiv">
 <script type='text/javascript' src="<c:url value="/resources/js/engine.js" ></c:url>"></script>
-
-<script type="text/javascript">
-//dwr.engine._pathToDwrServlet = "/hsd-componet/dwr";
-</script>
-
 <script type="text/javascript" src="<c:url value="/dwr/interface/dwrService.js" ></c:url>"></script>
 <script type='text/javascript' src="<c:url value="/dwr/util.js" ></c:url>"></script>
 
 <script type="text/javascript">
 <!--
-//dwr.engine._pathToDwrServlet = "/hsd-componet/dwr";
+/*
 dwrService._path = '/hsd-componet/dwr';
 dwrService.add(3, 4, parseResult);
-
-//callback function that parses whatever result comes back
 function parseResult(data) {
 	console.log("data:"+data);
 }
+*/
+
+$(function() {
+    $( "ul.droptrue" ).sortable({
+        connectWith: "ul",
+        update: function(event, ui) {
+			console.log("update");
+			console.log(ui);
+			console.log(event);
+				
+			},
+    	activate: function( event, ui ){
+			console.log("activate");
+    		console.log(ui);
+			console.log(event);
+    	},
+    	receive: function( event, ui ){
+			console.log("receive");
+    		console.log(ui);
+			console.log(event);
+    	},
+    	over: function( event, ui ){
+			console.log("over");
+    		console.log(ui);
+			console.log(event);
+    	},
+    	out: function( event, ui ){
+			console.log("out");
+    		console.log(ui);
+			console.log(event);
+    	},
+    	beforeStop: function( event, ui ){
+			console.log("beforeStop");
+    		console.log(ui);
+			console.log(event);
+    	},
+      //  dropOnEmpty: false
+    });
+
+    $( ".droptrue" ).disableSelection();
+});
 
 
 //-->
@@ -37,7 +71,14 @@ function parseResult(data) {
 <br>
 <form id="" action="" method="post" class="formulario">
 <div>
-<p> <label> Estado : </label> <select id="" name="estado" > <option value="0" > Seleccione </option>  </select> </p>
+
+<p> <label> Estado : </label> 
+<select id="" name="estado" > 
+	<c:forEach items="${lstEstados}" var="e" >
+		<option value="${e.id}" > ${e.valor} </option>  
+	</c:forEach>
+</select> 
+</p>
 <p> <label> Activo : </label> <input type="checkbox" name="activo" /></p>
 <p> <label> Entidad : </label> <input type="text" name="entidad" /></p>
 <p> <label> Campo : </label> <input type="text" name="campo" /></p>
@@ -49,9 +90,29 @@ function parseResult(data) {
 <fieldset>
 <legend>Lista de Pametros Assignar</legend>
 
+<!-- se listara aquelos q no pertenecen a ninguno -->
 
-
-
+<ul id="sortable1" class="droptrue">
+	<c:forEach items="${lstParametrosPadre}" var="e" >	
+	    <li class="ui-state-default">
+			<span>	${e.valor} ${e.tipo} </span>	
+	    	<INPUT  type="hidden"  class="id" value="${e.id}"  />
+	    	<INPUT  type="hidden"  class="codigo" value="${e.codigo}"  />
+	    	<INPUT  type="hidden"  class="estado" value="${e.estado}"  />
+	    	<INPUT  type="hidden"  class="activo" value="${e.activo}"  />
+	    	<INPUT  type="hidden"  class="entidad" value="${e.entidad}"  />
+	    	<INPUT  type="hidden"  class="campo" value="${e.campo}"  />
+	    	<INPUT  type="hidden"  class="tipo" value="${e.tipo}"  />
+	    	<INPUT  type="hidden"  class="valor" value="${e.valor}"  />
+	    	<INPUT  type="hidden"  class="descripcion" value="${e.descripcion}"  />    
+	    </li>
+	</c:forEach>   
+</ul>
+ 
+<ul id="sortable3" class="droptrue">
+</ul>
+ 
+<br style="clear: both;" />
 </fieldset>
 </div>
 
@@ -59,22 +120,7 @@ function parseResult(data) {
 
 </form>
 </fieldset>
-<!--
-
-	
-	@Temporal( TemporalType.DATE)	 
-	@Column(name="fecha_actualizacion")
-	private Date fechaActualizacion;
-
-	@Temporal( TemporalType.TIMESTAMP)
-	@Column(name="fecha_registro")
-	private Date fechaRegistro;
-		
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Parametro parametro;
-
-	@OneToMany(mappedBy = "parametro")
-	private List<Parametro> parametros;
+<!--de este parametro a quien pertenece;	
 	
 	@Column(name="id_parametro")
 	private Integer id;

@@ -35,8 +35,10 @@ public class MantenimientoParametroController {
 	@RequestMapping( value="mantenimiento/parametro/nuevo" , method = RequestMethod.GET)	
 	public String irPaginaNuevo(Model model){
 		log.info("[ metodo : get - ingreso a irPaginaNuevo ]");	
-		
-		
+		List<Parametro> lstEstados = mantenimientoParametroService.obtenerEstados();
+		List<Parametro> lstParametrosPadre = mantenimientoParametroService.obtenerParametrosPadre();
+		model.addAttribute("lstEstados", lstEstados);
+		model.addAttribute("lstParametrosPadre", lstParametrosPadre);		
 		return "mantenimiento/parametros/parametro";
 	}
 	
