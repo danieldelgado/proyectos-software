@@ -6,12 +6,13 @@ var lista=null;
 var tabGeneral=null;
 var tabprincipal = null;
 var ent = null;
-var layoutConeinerCenter = $(".ui-layout-center");
+var layoutConeinerCenter =null;
 var count = 1;
+var mostrarMsj=true;
 $(function() {   
 	init();
 	cargarMenus();
-	cargarEnlaces();
+	cargarEnlaces();	
 	tabGeneral = $("#tabs");
 	if(tabGeneral!=null){
 		crearTab();
@@ -19,24 +20,57 @@ $(function() {
 });
 
 function init(){	
+	/*var innerLayout = null;
+	innerLayout = $('body > .ui-layout-center').layout({
+		minSize:			60,	
+	closable:			false
+	});*/
+	
+	
+	
 	$('body').layout({ 
 		applyDefaultStyles: true,
-		west__size: 300
-	});	
+		west__size: 300,
+		center: {
+			onresize:		function () {
+			/*	mensaje_consola("resize");
+				var h = $(".ui-layout-center").height() ;
+				var w = $(".ui-layout-center").width();
+				mensaje_consola(h);
+				mensaje_consola(h-(h/5));
+				mensaje_consola(w);
+				mensaje_consola( w-(w/4));
+				*/
+				//$("#lista").jqGrid('setGridWidth',  w-(w/4));			
+				//$("#lista").jqGrid('setGridHeight',  h-(h/5));			
+			}
+		}
+	});
+	
+	
 	ent =  $("#ent").val();	
 	$.ajaxSetup({
 		cache: false
 	});
 	context = $("#context").val();	
+	layoutConeinerCenter = $(".ui-layout-center");
+	var h = layoutConeinerCenter.height() ;	
+	var contentPostion = $(".contentPostion");
+	contentPostion.css("height",h-30);
+	
+	
 }
 
 function crearTab(){
 	tabGeneral.tabs();
+	var h = layoutConeinerCenter.height() ;	
+	tabGeneral.height(h-(h/18));
 	if(ent!=null){
 		cargarLista(ent);			
 	}	
 	//tabGeneral.resizable();
 	tabGeneral.tabs({
+			fxAutoHeight: true,
 			cache: true,
 			tabTemplate: "<li><a href=\"#{href}\">  #{label}  </a> <span class=\"ui-icon ui-icon-close\">Cerrar</span></li>",
 			add: function(event,ui){
@@ -81,6 +115,7 @@ function cargarMenus(){
         minHeight: 300,
         minWidth: 170,
         resize: function() {
+        	mensaje_consola("resize");
             $( "#menu" ).accordion( "refresh" );
         }
     });
@@ -183,7 +218,9 @@ function cargarLista(pm){
 			tabprincipal.append("<input type=\"hidden\" id=\"sizelista\" value=\"${size}\" />");
 			
 			var urlData = context + "principal/obtenerDataLista/" + pm;
-
+			/*$("#lista").resizable({
+	            containment: ".tabsComponet"
+	        });*/
 			$("#lista").jqGrid({
 				url: urlData,
 				datatype: "json",
@@ -206,16 +243,19 @@ function cargarLista(pm){
 			   	page: 1,
 				rowNum: "20",
 				rowList: [5,10,20,30],
-				width: tabprincipal.width() ,
-				//height: layoutConeinerCenter.height() - (layoutConeinerCenter.height()/5),
+				width: tabprincipal.width()-20 ,// - (layoutConeinerCenter.width()/5),
+				//height: layoutConeinerCenter.height() - (60),
 				hidegrid: false,
 				loadComplete: function(json){
 					//mensaje_consola("json:");
 				}
 				
 				
-			});
-			
+			});	
+			var h = layoutConeinerCenter.height() ;	
+			$("#lista").jqGrid('setGridWidth',  "60%");			
+			$("#lista").jqGrid('setGridHeight',  h-(h/5));
+						
 			$("#lista").jqGrid('navGrid','#pager',{
 				edit: false,
 				add: false,
@@ -232,10 +272,12 @@ function cargarLista(pm){
 
 function mensaje_consola(objeto) {		
 	//if (!window.console) {
+	if(mostrarMsj){
 	if($.browser.msie && $.browser.version < 9){
 		alert(objeto);		
 	}else{
 		console.log(objeto);
+	}
 	}
 }
 

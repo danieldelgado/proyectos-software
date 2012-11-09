@@ -12,13 +12,13 @@
 					<label class="encabezadoTool">Nuevo parametro</label>
 				</div>
 				<br>
+					<div class="">
 				<form id="" action="" method="post" class="formulario">
-					<div>
-
+						<div>
 						<p>
-							<label> Estado : </label> <select id="" name="estado"   >
+							<label> Estado : </label> <select id="" name="estado">
 								<c:forEach items="${lstEstados}" var="e">
-									<option  value="${e.id}">${e.valor}</option>
+									<option value="${e.id}">${e.valor}</option>
 								</c:forEach>
 							</select>
 						</p>
@@ -42,49 +42,57 @@
 						</p>
 						<p>
 							<textarea name="descripcion"></textarea>
+							<br>
 						</p>
+						<input type="hidden" name="parametroPadre" value="" id="" >
+						</div>
+						</form>
+						<br>
+						<br>
+						<br>
+						<br>
 						<div>
-							<fieldset>
+							<fieldset >
 								<legend>Lista de Pametros Assignar</legend>
-
-								<!-- se listara aquelos q no pertenecen a ninguno -->
-
-								<ul id="sortable1" class="droptrue">
+								<div>
+								<div class="disponibles" style="float: left; width: 50%">
+								<fieldset>
+								<legend>Parametros Disponibles</legend>
+								<ul class="droptrue" >
 									<c:forEach items="${lstParametrosPadre}" var="e">
-										<li class="ui-state-default"><span> ${e.valor}
-												${e.tipo} </span> <INPUT type="hidden" class="id" value="${e.id}" />
-											<INPUT type="hidden" class="codigo" value="${e.codigo}" />
-											<INPUT type="hidden" class="estado" value="${e.estado}" />
-											<INPUT type="hidden" class="activo" value="${e.activo}" />
-											<INPUT type="hidden" class="entidad" value="${e.entidad}" />
-											<INPUT type="hidden" class="campo" value="${e.campo}" /> <INPUT
-											type="hidden" class="tipo" value="${e.tipo}" /> <INPUT
-											type="hidden" class="valor" value="${e.valor}" /> <INPUT
-											type="hidden" class="descripcion" value="${e.descripcion}" />
+										<li class="ui-state-default"  >
+										<span> ${e.valor} ${e.tipo} </span> 
+										<input type="hidden" class="id" value="${e.id}" /> 
+										<input type="hidden" class="codigo" value="${e.codigo}" /> 
+										<input type="hidden" class="estado" value="${e.estado}" /> 
+										<input type="hidden" class="activo" value="${e.activo}" /> 
+										<input type="hidden" class="entidad" value="${e.entidad}" /> 
+										<input type="hidden" class="campo" value="${e.campo}" /> 
+										<input type="hidden" class="tipo" value="${e.tipo}" /> 
+										<input type="hidden" class="valor" value="${e.valor}" /> 
+										<input type="hidden" class="descripcion" value="${e.descripcion}" />
 										</li>
 									</c:forEach>
 								</ul>
-
-								<ul id="sortable3" class="droptrue">
+								</fieldset>
+								</div>
+								<div class="asignados" style="float: left; width: 50%">
+								<fieldset>
+								<legend>Parametros Asignados</legend>
+								<ul class="droptrue" >
 								</ul>
+								</fieldset>
+								</div>
 
 								<br style="clear: both;" />
+								</div>
 							</fieldset>
 						</div>
 
 					</div>
 
-				</form>
 			</fieldset>
-			<!--de este parametro a quien pertenece;	
-	
-	@Column(name="id_parametro")
-	private Integer id;
-
-	@Column(name="codigo",length=50,nullable=false)
-	private String codigo;
-	
-  -->
+			
 		</div>
 	</p:conentTag>
 

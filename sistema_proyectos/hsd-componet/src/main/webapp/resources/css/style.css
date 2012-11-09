@@ -1,8 +1,5 @@
 /*
-	.tabsComponet{
-		width: 100%;
-		height: 100%;
-	}
+	
 	
 	#menu-resizer {
 	        padding: 10px;
@@ -58,7 +55,15 @@
 #tabs div  p label{
 	}
 	*/
-	
+.tabsComponet{
+	/*	width: 90%;
+		height: 90%;*/
+	min-height: 300px;
+	min-width: 400px;
+}
+
+
+
 .droptrue {
 	list-style-type: none;
 	margin: 0;
@@ -97,3 +102,15 @@
 	margin: 0.5px;
 	display: block;
 }
+
+
+.multicolumna{
+ 	-moz-column-width: 50%;
+	-moz-column-gap: 20px;
+	-moz-column-count: 2;
+ 	-webkit-column-width:  50%;
+	-webkit-column-gap: 20px;
+	-webkit-column-count: 2;
+	
+}
+

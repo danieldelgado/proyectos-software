@@ -43,7 +43,8 @@ Cabecera : <fmt:message key="componet.cabecera.titulo" ></fmt:message>
 <jsp:include page="menu.jsp" />
 </nav>
 </menu>
-<aside class="ui-layout-center">
+<aside class="ui-layout-center" >
+<div class="contentPostion"  style="position: relative; margin: 5px;">
 <input type="hidden" id="ent" name="ent" value="${ent}"/>
 
 	
