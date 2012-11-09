@@ -233,7 +233,7 @@ function cargarLista(pm){
 function mensaje_consola(objeto) {		
 	//if (!window.console) {
 	if($.browser.msie && $.browser.version < 9){
-		alert(msj);		
+		alert(objeto);		
 	}else{
 		console.log(objeto);
 	}

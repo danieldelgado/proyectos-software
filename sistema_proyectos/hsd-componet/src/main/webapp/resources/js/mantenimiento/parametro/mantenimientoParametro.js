@@ -38,8 +38,7 @@ function cargarParametrosPadre(){
 			console.log("beforeStop");
     		console.log(ui);
 			console.log(event);
-    	},
-      //  dropOnEmpty: false
+    	}
     });
 
     $( ".droptrue" ).disableSelection();

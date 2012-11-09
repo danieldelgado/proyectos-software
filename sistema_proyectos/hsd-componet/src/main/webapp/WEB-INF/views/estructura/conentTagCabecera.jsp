@@ -17,10 +17,13 @@
 		<c:forEach items="${methodDWR}" var="d">
 			<script type="text/javascript" src="<c:url value="${d}" ></c:url>"></script>
 		</c:forEach>
-		<script type="text/javascript">
-			/*
-			dwrService._path = '/hsd-componet/dwr';
-			dwrService.add(3, 4, parseResult);
+		
+		
+		
+		<script type="text/javascript">	
+		
+			dwrService._path = '<c:url value="/dwr" ></c:url>';//'/hsd-componet/dwr';
+			/*	dwrService.add(3, 4, parseResult);
 			function parseResult(data) {
 				console.log("data:"+data);
 			}
