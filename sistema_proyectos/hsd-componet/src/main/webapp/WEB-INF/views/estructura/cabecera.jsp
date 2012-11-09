@@ -32,11 +32,11 @@
 <fmt:setLocale value="es_ES"/>	
 
 <input type="hidden"  id="context"   value="<c:url value="/"></c:url>"/>
+<input type="hidden"  id="consolemessage"   value="${consolemessage}"/>
 
 <header class="ui-layout-north">
 Cabecera : <fmt:message key="componet.cabecera.titulo" ></fmt:message>
-
- <a href="<c:url value="/principal" ></c:url>" class="oplink" > Inicip </a> 
+<a href="<c:url value="/principal" ></c:url>" class="oplink" > Inicip </a> 
 </header>
 <menu class="ui-layout-west" >
 <nav >

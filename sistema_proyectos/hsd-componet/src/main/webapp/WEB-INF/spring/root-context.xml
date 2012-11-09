@@ -63,5 +63,9 @@
 		See http://forum.springsource.org/showthread.php?t=48372&highlight=UrlFilenameViewController -->
 	<bean
 		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
-	<!-- <import resource="dwr-context.xml" /> -->
+	<!-- <import resource="dwr-context.xml" /> 
+	-->
+	
+	<bean id="eventListenerBean" class="com.vst.listener.ApplicationListenerBean" />
+	
 </beans>
