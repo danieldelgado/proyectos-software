@@ -10,4 +10,8 @@ public interface MantenimientoParametroService {
 
 	List<Parametro> obtenerParametrosPadre();
 
+	int guardarParametro(Parametro parametro);
+
+	Parametro obtenerParametro(int param);
+
 }

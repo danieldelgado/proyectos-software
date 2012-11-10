@@ -7,8 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vst.dominio.Lista;
@@ -29,11 +32,10 @@ public class MantenimientoParametroController {
 	public String get(){
 		log.info("[ metodo : get - ingreso a mantenimientoParametro ]");		
 		return "mantenimiento/parametros/mantenimientoParametro";
-	}
-	
+	}	
 
 	@RequestMapping( value="mantenimiento/parametro/nuevo" , method = RequestMethod.GET)	
-	public String irPaginaNuevo(Model model){
+	public String irParametroNuevo(Model model){
 		log.info("[ metodo : get - ingreso a irPaginaNuevo ]");	
 		List<Parametro> lstEstados = mantenimientoParametroService.obtenerEstados();
 		List<Parametro> lstParametrosPadre = mantenimientoParametroService.obtenerParametrosPadre();
@@ -42,6 +44,16 @@ public class MantenimientoParametroController {
 		return "mantenimiento/parametros/parametro";
 	}
 	
-	
+	@RequestMapping( value="mantenimiento/parametro/editar/{param}" , method = RequestMethod.GET)	
+	public String irParametroEditar(Model model,@PathVariable("param") int param){
+		Parametro parametro  = mantenimientoParametroService.obtenerParametro(param);
+		return "mantenimiento/parametros/parametro";
+	}
+
+	@RequestMapping( value="mantenimiento/parametro/guardar" , method = RequestMethod.POST)	
+	public int irPaginaNuevo(Model model,Parametro parametro){
+		int r = mantenimientoParametroService.guardarParametro(parametro);		
+		return r;
+	}
 	
 }

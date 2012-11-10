@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.vst.dao.ParametroDAO;
 import com.vst.dominio.Parametro;
@@ -81,5 +82,17 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		List<Parametro> l =  parametroDAO.obtenerParametrosPadre();	
 		return l;
 	}
+	
 
+
+	public Parametro obtenerParametro(int param) {
+		
+		return null;
+	}
+	
+	@Transactional
+	public int guardarParametro(Parametro parametro) {
+		System.out.println("guardar");
+		return 1;
+	}
 }
