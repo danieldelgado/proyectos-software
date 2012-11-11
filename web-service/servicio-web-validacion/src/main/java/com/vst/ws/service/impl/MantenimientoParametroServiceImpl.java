@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.vst.dao.ParametroDAO;
+import com.vst.dao.ParametroPorParametroDAO;
 import com.vst.dominio.Parametro;
+import com.vst.dominio.ParametroPorParametro;
 import com.vst.util.Constantes;
 import com.vst.util.Util;
 import com.vst.ws.service.MantenimientoParametroService;
@@ -19,6 +21,9 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 
 	@Autowired
 	private ParametroDAO parametroDAO;
+	
+	@Autowired
+	private ParametroPorParametroDAO parametroPorParametroDAO;
 	
 	@Transactional
 	public String registrarParametrosIniciales() {
@@ -260,9 +265,92 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		formatoCampoClave.setValor("(\\d)\\w{1,10}");
 		parametroDAO.guardar(formatoCampoClave);
 		
+		/*   JS RULES  */
+		
+		
+
+		Parametro pr1=new Parametro();
+		pr1.setActivo(true);
+		pr1.setCampo("this.table");
+		pr1.setFechaActualizacion(new Date());
+		pr1.setFechaRegistro(new Date());
+		pr1.setCodigo(Util.getCodigo(pr1));
+		pr1.setDescripcion("Parametro");
+		pr1.setEntidad("Parametro");
+		pr1.setEstado('1');
+		pr1.setTipo(Constantes.JS_RULES);
+		pr1.setValor("");
+		parametroDAO.guardar(pr1);
+
+		
+		Parametro prRE=new Parametro();
+		prRE.setActivo(true);
+		prRE.setFechaActualizacion(new Date());
+		prRE.setFechaRegistro(new Date());
+		prRE.setCampo("");
+		prRE.setCodigo(Util.getCodigo(prRE));
+		prRE.setDescripcion("");
+		prRE.setAtritubo("requerid");
+		prRE.setValor("true");
+		prRE.setEstado('1');
+		prRE.setTipo(Constantes.JS_RULES);
+		parametroDAO.guardar(prRE);
+		
+		
+		Parametro pr2=new Parametro();
+		pr2.setActivo(true);
+		pr2.setFechaActualizacion(new Date());
+		pr2.setFechaRegistro(new Date());
+		pr2.setCampo("entidad");
+		pr2.setCodigo(Util.getCodigo(pr2));
+		pr2.setDescripcion("entidad Parametro ruls");
+		pr2.setEntidad("Parametro");
+		pr2.setEstado('1');
+		pr2.setTipo(Constantes.JS_RULES);
+		pr2.setParametro(pr1);
+		parametroDAO.guardar(pr2);
 		
 		
 		
+
+		Parametro pr3=new Parametro();
+		pr3.setActivo(true);
+		pr3.setFechaActualizacion(new Date());
+		pr3.setFechaRegistro(new Date());
+		pr3.setCampo("valor");
+		pr3.setCodigo(Util.getCodigo(pr3));
+		pr3.setDescripcion("valor Parametro ruls");
+		pr3.setEntidad("Parametro");
+		pr3.setEstado('1');
+		pr3.setTipo(Constantes.JS_RULES);
+		pr3.setParametro(pr1);
+		parametroDAO.guardar(pr3);
+		
+
+		ParametroPorParametro pporp1=new ParametroPorParametro(pr2.getId(),rangoCadenaMin.getId());
+		pporp1.setAtributo("minlength");
+		parametroPorParametroDAO.guardar(pporp1);
+
+
+		ParametroPorParametro pporp2=new ParametroPorParametro(pr2.getId(),prRE.getId());
+		parametroPorParametroDAO.guardar(pporp2);
+		
+		/*
+
+		
+				ParametroPorParametro pporp=new ParametroPorParametro(pr3.getId(),pr2.getId());
+		pporp.setParametroPadre(pr2);		
+		pporp.setParametroHijo(pr2);
+		pporp.setAtributo("requerid");
+		parametroPorParametroDAO.guardar(pporp);
+		
+		
+		ParametroPorParametro pporp2=new ParametroPorParametro(pr3.getId(),rangoCadenaMax.getId());
+		pporp2.setParametroPadre(pr3);		
+		pporp2.setParametroHijo(rangoCadenaMax);
+		pporp.setAtributo("maxlength");
+		parametroPorParametroDAO.guardar(pporp2);
+		*/
 		return null;
 	}
 
