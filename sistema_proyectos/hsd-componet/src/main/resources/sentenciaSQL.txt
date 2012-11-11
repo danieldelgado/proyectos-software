@@ -1,0 +1,18 @@
+
+CREATE  TABLE IF NOT EXISTS `hsd`.`parametro_por_parametro` (
+  `parametro_id_parametro` INT(11) NOT NULL ,
+  `parametro_id_parametro1` INT(11) NOT NULL ,
+  `actividad` VARCHAR(45) NULL ,
+  PRIMARY KEY (`parametro_id_parametro`, `parametro_id_parametro1`) ,
+  CONSTRAINT `fk_parametro_has_parametro_parametro1`
+    FOREIGN KEY (`parametro_id_parametro` )
+    REFERENCES `hsd`.`parametro` (`id_parametro` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_parametro_has_parametro_parametro2`
+    FOREIGN KEY (`parametro_id_parametro1` )
+    REFERENCES `hsd`.`parametro` (`id_parametro` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;

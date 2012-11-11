@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.vst.dao.ParametroDAO;
 import com.vst.dominio.Parametro;
+import com.vst.dominio.ParametroPorParametro;
 import com.vst.service.impl.LoginServiceImpl;
 import com.vst.service.mantenimiento.MantenimientoParametroService;
 import com.vst.util.Constantes;
@@ -95,4 +96,31 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		System.out.println("guardar");
 		return 1;
 	}
+
+	public List<Parametro> obtenerParametrosRulesEntidad(String entidad) {		
+		
+		
+		
+	/*	Parametro prp=new Parametro();
+		prp.setId(34);
+		prp.setActivo(true);
+		prp.setCampo("");
+		prp.setCodigo("");
+		prp.setDescripcion("Parametro ruls");
+		prp.setEntidad("Parametro");
+		prp.setEstado('1');
+		prp.setTipo(Constantes.JS_RULES);
+		prp.setValor("");
+		*/
+		
+		
+		
+		
+		
+		
+		
+		return null;
+	}
+	
 }
+

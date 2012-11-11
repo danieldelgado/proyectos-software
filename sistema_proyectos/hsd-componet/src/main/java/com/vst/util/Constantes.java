@@ -67,4 +67,6 @@ public class Constantes {
 	public static final int ERROR_SERVICIO_WEB = 4000;
 	public static final String COLUMNA_TIPO_IMAGE = "image";
 	public static final String TIPO_ESTADO = "estado";
+	public static final String JS_RULES = "rules";
+	public static final String JS_RULES_ATRIBUTO = "rules_atributo";
 }

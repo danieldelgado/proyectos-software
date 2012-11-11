@@ -51,7 +51,7 @@ public class MantenimientoParametroController {
 	}
 
 	@RequestMapping( value="mantenimiento/parametro/guardar" , method = RequestMethod.POST)	
-	public int irPaginaNuevo(Model model,Parametro parametro){
+	public @ResponseBody int guardarParametro(Model model,Parametro parametro){
 		int r = mantenimientoParametroService.guardarParametro(parametro);		
 		return r;
 	}

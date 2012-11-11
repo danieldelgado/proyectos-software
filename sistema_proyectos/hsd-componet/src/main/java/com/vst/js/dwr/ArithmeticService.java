@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("springService")
 @RemoteProxy(name = "dwrService")
-@Transactional
 public class ArithmeticService {
 
 	private static Logger log=LoggerFactory.getLogger(ArithmeticService.class);

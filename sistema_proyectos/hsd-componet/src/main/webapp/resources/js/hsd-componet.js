@@ -133,7 +133,8 @@ function cargarEnlaces() {
 		var descripcion = d.find(".descripcion").val();
 		addtab("Nuevo Parametro", "nuevo_paramo", "", url);
 	});
-
+	
+	
 }
 
 function addtab(titulo, identificador, html, url) {

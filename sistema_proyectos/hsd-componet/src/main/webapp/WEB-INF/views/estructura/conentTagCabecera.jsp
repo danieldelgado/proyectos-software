@@ -30,3 +30,5 @@
 			 */
 		</script>
 	</c:if>
+	
+	<input type="hidden" id="idcontent" class="idcontent"  value="" />

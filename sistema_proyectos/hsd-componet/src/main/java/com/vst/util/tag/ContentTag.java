@@ -34,6 +34,8 @@ public class ContentTag extends TagSupport{
 	
 	private String methodDWR;	
 	
+	
+	
 	public int doStartTag() throws JspException{
 		
 		String cabecera="/WEB-INF/views/estructura/conentTagCabecera.jsp";

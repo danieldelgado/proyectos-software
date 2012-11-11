@@ -22,7 +22,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/ajaxupload.js" ></c:url>" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/i18n/grid.locale-es.js" ></c:url>"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery.jqGrid.min.js" ></c:url>" ></script>
-	<script type="text/javascript" src="<c:url value="/resources/js/jquery.jqGrid.src.js" ></c:url>" ></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery-validate.js" ></c:url>" ></script>
 	<c:forEach var="js" items="${javascript}">
 		<script type="text/javascript" src="<c:url value="${js}" />"></script>
 	</c:forEach>	
