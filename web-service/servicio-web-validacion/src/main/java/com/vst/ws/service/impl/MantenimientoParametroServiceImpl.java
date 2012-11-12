@@ -290,7 +290,7 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		prRE.setCampo("");
 		prRE.setCodigo(Util.getCodigo(prRE));
 		prRE.setDescripcion("");
-		prRE.setAtritubo("requerid");
+		prRE.setAtributo("requerid");
 		prRE.setValor("true");
 		prRE.setEstado('1');
 		prRE.setTipo(Constantes.JS_RULES);

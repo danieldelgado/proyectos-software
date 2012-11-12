@@ -57,8 +57,8 @@ public class Parametro implements Entidad , Serializable {
 	private String tipo;
 	
 	
-	@Column(name="atritubo",length=200)
-	private String atritubo;	
+	@Column(name="atributo",length=200)
+	private String atributo;	
 	
 	
 	@Column(name="valor",length=200)
@@ -235,15 +235,18 @@ public class Parametro implements Entidad , Serializable {
 
 
 
-	public String getAtritubo() {
-		return atritubo;
+	
+
+
+	public String getAtributo() {
+		return atributo;
 	}
 
 
 
 
-	public void setAtritubo(String atritubo) {
-		this.atritubo = atritubo;
+	public void setAtributo(String atributo) {
+		this.atributo = atributo;
 	}
 
 

@@ -15,7 +15,7 @@ import com.vst.ws.service.impl.RegistrarHistorialServiceImpl;
 @Repository("ParametroPorParametroDAO")
 public class ParametroPorParametroDAOImpl implements ParametroPorParametroDAO {
 
-	private static Logger log = LoggerFactory.getLogger(RegistrarHistorialServiceImpl.class);
+	private static Logger log = LoggerFactory.getLogger(ParametroPorParametroDAOImpl.class);
 	
 	@PersistenceContext
 	protected EntityManager em;
