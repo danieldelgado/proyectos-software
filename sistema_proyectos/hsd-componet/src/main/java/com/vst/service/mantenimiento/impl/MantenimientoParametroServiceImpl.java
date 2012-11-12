@@ -105,6 +105,7 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		Parametro entidadParametrorules=parametroDAO.parametroPorParametroDAO(entidad);	
 		entidadParametrorules.setParametroPorParametrosPadre(null);
 		entidadParametrorules.setParametro(null);
+		entidadParametrorules.setParametros(null);
 		entidadParametrorules.setParametros(parametroDAO.obtenerParametrosHijos(entidadParametrorules.getId()));		
 		List<ParametroPorParametro> parametroPorParametrosHijo = parametroPorParametroDAO.obtenerParametrosPorParametrosPorParametro(entidadParametrorules);
 		for (int i = 0; i < parametroPorParametrosHijo.size(); i++) {
@@ -116,6 +117,9 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		}
 		entidadParametrorules.setParametroPorParametrosHijo(parametroPorParametrosHijo);
 				
+		
+		
+		
 		//System.out.println("Util  obtenerParametrosRulesEntidad :  "+Util.getJsonObject(entidadParametrorules));
 		return entidadParametrorules;
 	}

@@ -4,7 +4,7 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/spring/root-context.xml,/WEB-INF/dwr-servlet.xml</param-value>
   </context-param>
-  <!--  
+  <!--    -->
   <filter>
     <filter-name>FiltroSeguridad</filter-name>
     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -21,7 +21,7 @@
     <filter-name>UrlRewriteFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  -->
+
   <listener>
       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>

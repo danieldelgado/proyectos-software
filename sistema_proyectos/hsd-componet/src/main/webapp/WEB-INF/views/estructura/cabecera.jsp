@@ -25,10 +25,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery-validate.js" ></c:url>" ></script>
 	<c:forEach var="js" items="${javascript}">
 		<script type="text/javascript" src="<c:url value="${js}" />"></script>
-	</c:forEach>		
-	<script type='text/javascript'	src="<c:url value="/resources/js/engine.js" ></c:url>"></script>
-	<script type='text/javascript'	src="<c:url value="/dwr/util.js" ></c:url>"></script>
-	<script type="text/javascript" src="<c:url value="/dwr/interface/validateServiceDWR.js" ></c:url>" > </script>
+	</c:forEach>			
 </head>
 <body>
 <fmt:setLocale value="es_ES"/>	

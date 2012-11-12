@@ -47,6 +47,7 @@ public class MantenimientoParametroController {
 	@RequestMapping( value="mantenimiento/parametro/editar/{param}" , method = RequestMethod.GET)	
 	public String irParametroEditar(Model model,@PathVariable("param") int param){
 		Parametro parametro  = mantenimientoParametroService.obtenerParametro(param);
+		System.out.println(parametro);
 		return "mantenimiento/parametros/parametro";
 	}
 
@@ -54,6 +55,12 @@ public class MantenimientoParametroController {
 	public @ResponseBody int guardarParametro(Model model,Parametro parametro){
 		int r = mantenimientoParametroService.guardarParametro(parametro);		
 		return r;
+	}
+
+	@RequestMapping( value="valacion/parametros/{param}" , method = RequestMethod.GET)		
+	public @ResponseBody Parametro obtenerParametrosRulesEntidad(@PathVariable("param") String param){
+		Parametro p = mantenimientoParametroService.obtenerParametrosRulesEntidad(param);
+		return p;
 	}
 	
 }

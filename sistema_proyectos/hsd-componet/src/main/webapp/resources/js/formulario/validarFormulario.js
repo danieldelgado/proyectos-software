@@ -4,10 +4,23 @@ var idcontent = "";
 
 $(function() {
 	formulario = $(".formulario "+idcontent);
+	
+	 $.ajax({
+	        type : "get",
+	        url: context+"valacion/parametros/Parametro",
+	        async:  false,
+	        dataType :"json",
+	        success:  function (msg) {
+	           mensaje_consola(msg);
+	        }
+	    });
+	
 	cargarValidateForm();
+	
 	$(".clGuardar").button().click(function() {
 		formulario.submit();
 	});
+	
 });
 
 function cargarValidateForm() {

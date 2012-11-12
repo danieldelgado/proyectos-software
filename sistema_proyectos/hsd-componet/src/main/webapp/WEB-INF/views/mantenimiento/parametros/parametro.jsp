@@ -17,17 +17,7 @@
 </div>
 </div>
 <div id="txtDiv">
-
-<script type="text/javascript">
-	validateServiceDWR._path = <c:out value="/dwr"/>;
-
-	validateServiceDWR.obtenerParametrosRulesEntidad("Parametro",function(resp) {
-	mensaje_consola(resp);		
-	});
-	
-</script>
-
-	<p:conentTag tituloConent="yujuu!" ent="Parametro" dwr="true" methodDWR="validateServiceDWR" javascriptConent="mantenimiento/parametro/mantenimientoParametro.js,formulario/validarFormulario.js">
+	<p:conentTag tituloConent="yujuu!" ent="Parametro" dwr="false" javascriptConent="mantenimiento/parametro/mantenimientoParametro.js,formulario/validarFormulario.js">
 
 		<div>
 			<fieldset>
@@ -41,7 +31,7 @@
 						<div>
 						<p>
 							<label for="estado"> Estado : </label> <select id="estado" name="estado">
-								<c:forEach items="${lstEstados}" var="5 mine">
+								<c:forEach items="${lstEstados}" var="e">
 									<option value="${e.id}">${e.valor}</option>
 								</c:forEach>
 							</select>
