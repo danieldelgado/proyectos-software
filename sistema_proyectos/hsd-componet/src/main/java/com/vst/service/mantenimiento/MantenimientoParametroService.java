@@ -14,6 +14,6 @@ public interface MantenimientoParametroService {
 
 	Parametro obtenerParametro(int param);
 
-	List<Parametro> obtenerParametrosRulesEntidad(String entidad);
+	Parametro obtenerParametrosRulesEntidad(String entidad);
 
 }

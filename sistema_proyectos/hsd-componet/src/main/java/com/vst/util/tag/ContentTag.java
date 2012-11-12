@@ -56,9 +56,9 @@ public class ContentTag extends TagSupport{
 				String token=st.nextToken().trim();
 				if(!token.startsWith("http://")){					
 					if(token.indexOf(".css") > 0)						
-						token="/dwr/interface/" + token;
+						token="dwr/interface/" + token;
 					else
-						token="/dwr/interface/" + token + ".css";
+						token="dwr/interface/" + token + ".js";
 				}
 				css.add(token);
 			}
@@ -67,9 +67,8 @@ public class ContentTag extends TagSupport{
 		}
 		else{
 			methodDWRs=new String[0];
-		}
-		
-		request.setAttribute("methodDWRs",methodDWRs);	
+		}		
+		request.setAttribute("methodDWR",methodDWRs);	
 			
 		if(estiloConent != null){
 			StringTokenizer st=new StringTokenizer(estiloConent,",");

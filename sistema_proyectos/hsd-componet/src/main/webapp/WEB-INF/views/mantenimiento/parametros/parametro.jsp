@@ -18,7 +18,16 @@
 </div>
 <div id="txtDiv">
 
-	<p:conentTag tituloConent="yujuu!" ent="Parametro" dwr="false" javascriptConent="mantenimiento/parametro/mantenimientoParametro.js,formulario/validarFormulario.js">
+<script type="text/javascript">
+	validateServiceDWR._path = <c:out value="/dwr"/>;
+
+	validateServiceDWR.obtenerParametrosRulesEntidad("Parametro",function(resp) {
+	mensaje_consola(resp);		
+	});
+	
+</script>
+
+	<p:conentTag tituloConent="yujuu!" ent="Parametro" dwr="true" methodDWR="validateServiceDWR" javascriptConent="mantenimiento/parametro/mantenimientoParametro.js,formulario/validarFormulario.js">
 
 		<div>
 			<fieldset>

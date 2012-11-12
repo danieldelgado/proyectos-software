@@ -11,7 +11,9 @@
 	<dwr:annotation-scan base-package="com.vst.js.dwr" />
 
 	<dwr:configuration>
-		<dwr:convert type="bean" class="com.vst.dominio.Parametro" />
+		<dwr:convert type="bean" class="com.vst.dominio.*" />
+		<dwr:convert class="java.util.ArrayList" type="bean"></dwr:convert>
+  		<dwr:convert class="java.util.List" type="bean"></dwr:convert>
 	</dwr:configuration>
 
 <!-- 	

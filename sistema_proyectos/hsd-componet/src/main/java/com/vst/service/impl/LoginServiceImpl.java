@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.vst.dao.PerfilDAO;
 import com.vst.dao.UsuarioDAO;
@@ -67,12 +68,12 @@ public class LoginServiceImpl implements LoginService {
 		return Constantes.ERROR_AL_LOGUEARSE;
 	}
 
-	// @Transactional
+	//@Transactional
 	public int buscarUsuarioLogueado(HttpSession session) {
 		log.info("[ metodo:buscarUsuarioLogueado - buscar el usuario en session ]");
 		Usuario u = (Usuario) session.getAttribute(Constantes.SESION_USUARIO);
 		// System.out.println("insert usuario y perfil");
-		// temp();
+		//temp();
 		if (u != null) {
 			return Constantes.USUARIO_LOGEADO;
 		} else

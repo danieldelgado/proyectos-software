@@ -1,7 +1,5 @@
 package com.vst.js.dwr;
 
-import java.util.List;
-
 import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
 import org.slf4j.Logger;
@@ -17,14 +15,12 @@ import com.vst.service.mantenimiento.MantenimientoParametroService;
 public class ValidateServiceDWR {
 
 	private static Logger log=LoggerFactory.getLogger(ValidateServiceDWR.class);
-
 	
 	@Autowired
 	private MantenimientoParametroService mantenimientoParametroService;
 	
-	
 	@RemoteMethod
-	public List<Parametro> obtenerParametrosRulesEntidad(String entidad){
+	public Parametro obtenerParametrosRulesEntidad(String entidad){
 		return mantenimientoParametroService.obtenerParametrosRulesEntidad(entidad);
 	}
 	

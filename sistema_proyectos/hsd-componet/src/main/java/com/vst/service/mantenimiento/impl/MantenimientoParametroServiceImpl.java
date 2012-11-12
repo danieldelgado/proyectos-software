@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.vst.dao.ParametroDAO;
+import com.vst.dao.ParametroPorParametroDAO;
 import com.vst.dominio.Parametro;
 import com.vst.dominio.ParametroPorParametro;
-import com.vst.service.impl.LoginServiceImpl;
 import com.vst.service.mantenimiento.MantenimientoParametroService;
 import com.vst.util.Constantes;
+import com.vst.util.Util;
 
 @Service("MantenimientoParametroService")
 public class MantenimientoParametroServiceImpl implements MantenimientoParametroService {
@@ -22,6 +23,9 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 	
 	@Autowired
 	private ParametroDAO parametroDAO;
+	
+	@Autowired
+	private ParametroPorParametroDAO parametroPorParametroDAO;
 	
 	public List<Parametro> obtenerEstados() {
 		List<Parametro> l =  parametroDAO.obtenerPorTipo(Constantes.TIPO_ESTADO);
@@ -91,36 +95,32 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		return null;
 	}
 	
-	@Transactional
+	//@Transactional
 	public int guardarParametro(Parametro parametro) {
 		System.out.println("guardar");
 		return 1;
 	}
 
-	public List<Parametro> obtenerParametrosRulesEntidad(String entidad) {		
-		
-		
-		
-	/*	Parametro prp=new Parametro();
-		prp.setId(34);
-		prp.setActivo(true);
-		prp.setCampo("");
-		prp.setCodigo("");
-		prp.setDescripcion("Parametro ruls");
-		prp.setEntidad("Parametro");
-		prp.setEstado('1');
-		prp.setTipo(Constantes.JS_RULES);
-		prp.setValor("");
-		*/
-		
-		
-		
-		
-		
-		
-		
-		return null;
+	public Parametro obtenerParametrosRulesEntidad(String entidad) {
+		Parametro entidadParametrorules=parametroDAO.parametroPorParametroDAO(entidad);	
+		entidadParametrorules.setParametroPorParametrosPadre(null);
+		entidadParametrorules.setParametro(null);
+		entidadParametrorules.setParametros(parametroDAO.obtenerParametrosHijos(entidadParametrorules.getId()));		
+		List<ParametroPorParametro> parametroPorParametrosHijo = parametroPorParametroDAO.obtenerParametrosPorParametrosPorParametro(entidadParametrorules);
+		for (int i = 0; i < parametroPorParametrosHijo.size(); i++) {
+			ParametroPorParametro ppH=parametroPorParametrosHijo.get(i);
+			Integer pp1=ppH.getId().getParametroIdParametroPadre();
+			Integer pp2=ppH.getId().getParametroIdParametroHijo();
+			ppH.setParametroPadre(parametroDAO.get(pp1));
+			ppH.setParametroHijo(parametroDAO.get(pp2));
+		}
+		entidadParametrorules.setParametroPorParametrosHijo(parametroPorParametrosHijo);
+				
+		//System.out.println("Util  obtenerParametrosRulesEntidad :  "+Util.getJsonObject(entidadParametrorules));
+		return entidadParametrorules;
 	}
+
+	
 	
 }
 
