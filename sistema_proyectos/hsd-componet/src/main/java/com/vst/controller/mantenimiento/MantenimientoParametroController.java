@@ -1,6 +1,8 @@
 package com.vst.controller.mantenimiento;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.vst.dominio.Lista;
 import com.vst.dominio.Parametro;
 import com.vst.service.mantenimiento.MantenimientoParametroService;
+import com.vst.util.Util;
 
 
 @Controller
@@ -58,9 +61,16 @@ public class MantenimientoParametroController {
 	}
 
 	@RequestMapping( value="valacion/parametros/{param}" , method = RequestMethod.GET)		
-	public @ResponseBody Parametro obtenerParametrosRulesEntidad(@PathVariable("param") String param){
-		Parametro p = mantenimientoParametroService.obtenerParametrosRulesEntidad(param);
-		return p;
+	public @ResponseBody Map<String, Object> obtenerParametrosRulesEntidad(@PathVariable("param") String param){
+		//Parametro p = mantenimientoParametroService.obtenerParametrosRulesEntidad(param);
+		
+		Map<String, Object> valFomulario = new HashMap<String, Object>();
+			
+		valFomulario.put("rules",  mantenimientoParametroService.obtenerParametrosRulesEntidad(param) );
+		
+		valFomulario.put("messages", null);
+		
+		return valFomulario;
 	}
 	
 }

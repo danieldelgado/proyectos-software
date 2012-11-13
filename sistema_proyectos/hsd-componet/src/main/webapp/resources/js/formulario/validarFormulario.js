@@ -1,20 +1,10 @@
 var formulario;
 var form = null;
 var idcontent = "";
-
+var entidad = "Parametro";
 $(function() {
 	formulario = $(".formulario "+idcontent);
-	
-	 $.ajax({
-	        type : "get",
-	        url: context+"valacion/parametros/Parametro",
-	        async:  false,
-	        dataType :"json",
-	        success:  function (msg) {
-	           mensaje_consola(msg);
-	        }
-	    });
-	
+		
 	cargarValidateForm();
 	
 	$(".clGuardar").button().click(function() {
@@ -25,11 +15,34 @@ $(function() {
 
 function cargarValidateForm() {
 	if (formulario != null) {
+		
+		var validateParam = null;//new Array();
+		 $.ajax({
+		        type : "get",
+		        url: context+"valacion/parametros/"+entidad,
+		        async:  false,
+		        dataType :"json",
+		        success:  function (resp) {
+		        	validateParam=resp;
+		        }
+		    });
+		 
+         mensaje_consola("rules");
+         mensaje_consola(validateParam);
+         		
 		formulario.validate({
 					debug : true,
-					rules : {
+					rules :	
+					{   },
+						
+						/*validateParam.rules.result,
+								
+						*/
+						/* {
 						'entidad' : 'required',
-					},
+						
+					},*/
+						
 					messages : {
 						'entidad' : 'Debe ingresar el nombre',
 					},

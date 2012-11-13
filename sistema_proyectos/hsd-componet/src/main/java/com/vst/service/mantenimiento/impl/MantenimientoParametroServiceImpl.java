@@ -1,6 +1,8 @@
 package com.vst.service.mantenimiento.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,30 +103,52 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		return 1;
 	}
 
-	public Parametro obtenerParametrosRulesEntidad(String entidad) {
-		Parametro entidadParametrorules=parametroDAO.parametroPorParametroDAO(entidad);	
-		entidadParametrorules.setParametroPorParametrosPadre(null);
-		entidadParametrorules.setParametro(null);
-		entidadParametrorules.setParametros(null);
-		entidadParametrorules.setParametros(parametroDAO.obtenerParametrosHijos(entidadParametrorules.getId()));		
-		List<ParametroPorParametro> parametroPorParametrosHijo = parametroPorParametroDAO.obtenerParametrosPorParametrosPorParametro(entidadParametrorules);
-		for (int i = 0; i < parametroPorParametrosHijo.size(); i++) {
-			ParametroPorParametro ppH=parametroPorParametrosHijo.get(i);
-			Integer pp1=ppH.getId().getParametroIdParametroPadre();
-			Integer pp2=ppH.getId().getParametroIdParametroHijo();
-			ppH.setParametroPadre(parametroDAO.get(pp1));
-			ppH.setParametroHijo(parametroDAO.get(pp2));
-		}
-		entidadParametrorules.setParametroPorParametrosHijo(parametroPorParametrosHijo);
-				
-		
-		
-		
-		//System.out.println("Util  obtenerParametrosRulesEntidad :  "+Util.getJsonObject(entidadParametrorules));
-		return entidadParametrorules;
-	}
+	public Map<String, Object> obtenerParametrosRulesEntidad(String entidad) {
+		Parametro entidadParametrorules=parametroDAO.parametroPorParametroDAO(entidad);			
+		List<Parametro> parametroshijo = parametroDAO.obtenerParametrosHijos(entidadParametrorules.getId());	
 
-	
+		String camp = " ";
+		
+		for (int i = 0; i < parametroshijo.size(); i++) {
+			Parametro pH = parametroshijo.get(i);
+			List<ParametroPorParametro> parametroPorParametrosHijo = parametroPorParametroDAO.obtenerParametroPorParametroPorParametroHijo(pH);
+			
+			String ruls="";
+			for (int j = 0; j < parametroPorParametrosHijo.size(); j++) {
+				ParametroPorParametro pppRules =  parametroPorParametrosHijo.get(j);
+				Parametro ppH=parametroDAO.get(pppRules.getId().getParametroIdParametroHijo());
+				String obj = "";
+				if((pppRules.getAtributo()!=null)){
+					if((!pppRules.getAtributo().equals(""))){
+						obj = pppRules.getAtributo();						
+					}else{
+						obj = ppH.getAtributo();
+					}				
+				}else{
+					obj = ppH.getAtributo();
+				}
+				
+				ruls += obj + ":"+ ppH.getValor();
+				
+				if(parametroPorParametrosHijo.size()-1!=j){					
+					ruls += ",";
+				}
+				
+			}			
+			
+			
+			camp += " '"+ pH.getCampo() + "' :{"+ ruls + "}";
+			if(parametroshijo.size()-1!=i){					
+				camp += " , ";
+			}
+			
+		}	
+		System.out.println("camp:"+camp);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result",  camp  );	
+		System.out.println("result:"+result);	
+		return result;
+	}
 	
 }
 

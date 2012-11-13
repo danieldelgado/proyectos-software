@@ -19,10 +19,10 @@ public class ValidateServiceDWR {
 	@Autowired
 	private MantenimientoParametroService mantenimientoParametroService;
 	
-	@RemoteMethod
+	/*@RemoteMethod
 	public Parametro obtenerParametrosRulesEntidad(String entidad){
 		return mantenimientoParametroService.obtenerParametrosRulesEntidad(entidad);
 	}
-	
+	*/
 	
 }

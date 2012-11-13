@@ -18,6 +18,8 @@ public class ParametroPorParametro implements Serializable {
 
 	private String atributo;
 
+	private Integer orden;
+
 	//bi-directional many-to-one association to Parametro
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="parametro_id_parametro_padre",insertable=false,updatable=false)
@@ -71,6 +73,14 @@ public class ParametroPorParametro implements Serializable {
 
 	public void setParametroHijo(Parametro parametroHijo) {
 		this.parametroHijo = parametroHijo;
+	}
+
+	public Integer getOrden() {
+		return orden;
+	}
+
+	public void setOrden(Integer orden) {
+		this.orden = orden;
 	}
 
 	

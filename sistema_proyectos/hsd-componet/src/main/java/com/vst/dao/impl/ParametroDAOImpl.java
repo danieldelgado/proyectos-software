@@ -31,7 +31,7 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 	}
 
 	public Parametro parametroPorParametroDAO(String entidad) {
-		sqlQuery = "select new  Parametro(p.id, p.codigo, p.valor)  " +// new Parametro(p.id, p.codigo, p.estado, p.activo, p.entidad, p.campo, p.tipo, p.atributo, p.valor, p.descripcion) " +
+		sqlQuery = "select p  " +// new Parametro(p.id, p.codigo, p.estado, p.activo, p.entidad, p.campo, p.tipo, p.atributo, p.valor, p.descripcion) " +
 				" from Parametro p "+ //left join fetch p.parametros ps " +
 				" where " +
 				" p.entidad = :entidad and p.tipo = :tipo  and p.atributo = null and p.parametro = null and p.activo = true  ";		

@@ -50,7 +50,11 @@ public class Parametro implements Entidad , Serializable {
 	
 	@Column(name="campo",length=200)
 	private String campo;	
+
+	@Column(name="tipo_variable",length=200)
+	private String tipovariable;
 	
+
 	@Column(name="tipo_parametro",length=200)
 	private String tipo;
 	
@@ -318,6 +322,20 @@ public class Parametro implements Entidad , Serializable {
 
 	public void setParametroPorParametrosHijo(List<ParametroPorParametro> parametroPorParametrosHijo) {
 		this.parametroPorParametrosHijo = parametroPorParametrosHijo;
+	}
+
+
+
+
+	public String getTipovariable() {
+		return tipovariable;
+	}
+
+
+
+
+	public void setTipovariable(String tipovariable) {
+		this.tipovariable = tipovariable;
 	}
 
 

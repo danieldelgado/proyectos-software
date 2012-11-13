@@ -1,6 +1,7 @@
 package com.vst.service.mantenimiento;
 
 import java.util.List;
+import java.util.Map;
 
 import com.vst.dominio.Parametro;
 
@@ -14,6 +15,6 @@ public interface MantenimientoParametroService {
 
 	Parametro obtenerParametro(int param);
 
-	Parametro obtenerParametrosRulesEntidad(String entidad);
+	Map<String, Object>  obtenerParametrosRulesEntidad(String entidad);
 
 }
