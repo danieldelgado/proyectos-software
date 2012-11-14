@@ -61,7 +61,7 @@ public class MantenimientoParametroController {
 	}
 
 	@RequestMapping( value="valacion/parametros/{param}" , method = RequestMethod.GET)		
-	public @ResponseBody Map<String, Object> obtenerParametrosRulesEntidad(@PathVariable("param") String param){
+	public @ResponseBody /*String*/  Map<String, Object> obtenerParametrosRulesEntidad(@PathVariable("param") String param){
 		//Parametro p = mantenimientoParametroService.obtenerParametrosRulesEntidad(param);
 		
 		Map<String, Object> valFomulario = new HashMap<String, Object>();
@@ -69,8 +69,17 @@ public class MantenimientoParametroController {
 		valFomulario.put("rules",  mantenimientoParametroService.obtenerParametrosRulesEntidad(param) );
 		
 		valFomulario.put("messages", null);
+
+		System.out.println(valFomulario);
+
+		/*System.out.println(Util.getJson(valFomulario));
+		
+		String ret = Util.getJson(valFomulario).replaceAll("\"", "");
+		*/
+		//System.out.println(ret);
 		
 		return valFomulario;
+		
 	}
 	
 }

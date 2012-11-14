@@ -179,10 +179,7 @@ function irPagina(url) {
 function cargarLista(pm) {
 	if (diferenteNull(pm)) {
 
-		$
-				.get(
-						context + "principal/obtenerLista/" + pm,
-						function(lista) {
+		$.get(context + "principal/obtenerLista/" + pm,function(lista) {
 
 							addtab("Principal", "tabPrincipal", "");
 							tabprincipal = $("#tabPrincipal");

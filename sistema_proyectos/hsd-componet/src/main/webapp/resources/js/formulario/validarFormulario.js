@@ -29,13 +29,21 @@ function cargarValidateForm() {
 		 
          mensaje_consola("rules");
          mensaje_consola(validateParam);
-         		
 		formulario.validate({
 					debug : true,
 					rules :	
-					{   },
+					{
+						'entidad':{minlength:4, required:true},
+						'valor':{}
+					
+					} 
+
+						,
 						
-						/*validateParam.rules.result,
+						/*
+						 * {"entidad":{minlength:4,required:true}}
+						 * 
+						 * validateParam.rules.result,
 								
 						*/
 						/* {
