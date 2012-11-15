@@ -72,8 +72,9 @@ public class LoginServiceImpl implements LoginService {
 	public int buscarUsuarioLogueado(HttpSession session) {
 		log.info("[ metodo:buscarUsuarioLogueado - buscar el usuario en session ]");
 		Usuario u = (Usuario) session.getAttribute(Constantes.SESION_USUARIO);
-		// System.out.println("insert usuario y perfil");
-		//temp();
+		//System.out.println("insert usuario y perfil");
+		 //temp();
+
 		if (u != null) {
 			return Constantes.USUARIO_LOGEADO;
 		} else
