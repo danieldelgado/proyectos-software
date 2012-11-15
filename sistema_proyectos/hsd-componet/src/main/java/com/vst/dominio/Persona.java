@@ -17,7 +17,7 @@ import com.vst.util.Entidad;
 @Table(name="persona")
 public class Persona implements Entidad , Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id	
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
 	@TableGenerator(name = "id_Generator",
