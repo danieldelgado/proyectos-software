@@ -2,26 +2,35 @@ package com.vst.util;
 
 import java.io.Serializable;
 
-public class BeanData implements Serializable{
+import org.json.simple.JSONAware;
+import org.json.simple.JSONObject;
+
+public class BeanData implements Serializable, JSONAware{
 
 	private static final long serialVersionUID = 1L;
 	
-	Integer id;
-	String value;
+	String key;
+	Object val;
 	
-	public Integer getId() {
-		return id;
+
+	public BeanData(String key, Object val) {
+		super();
+		this.key = key;
+		this.val = val;
 	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getValue() {
-		return value;
-	}
-	public void setValue(String value) {
-		this.value = value;
+
+	public String toJSONString() {
+		  StringBuffer sb = new StringBuffer();          
+          sb.append(JSONObject.escape(key));
+          sb.append(":");
+          sb.append(val);
+          return sb.toString();
 	}
 	
+	/*public static void main(String[] args) {
+		System.out.println(new BeanData("2asda", "1asd").toJSONString());
+	}
+	*/
 	
 	
 }

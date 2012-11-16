@@ -1,5 +1,6 @@
 package com.vst.controller.mantenimiento;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,24 +62,20 @@ public class MantenimientoParametroController {
 	}
 
 	@RequestMapping( value="valacion/parametros/{param}" , method = RequestMethod.GET)		
-	public @ResponseBody /*String*/  Map<String, Object> obtenerParametrosRulesEntidad(@PathVariable("param") String param){
+	public @ResponseBody /*String*/  List obtenerParametrosRulesEntidad(@PathVariable("param") String param){
 		//Parametro p = mantenimientoParametroService.obtenerParametrosRulesEntidad(param);
-		
-		Map<String, Object> valFomulario = new HashMap<String, Object>();
-			
-		valFomulario.put("rules",  mantenimientoParametroService.obtenerParametrosRulesEntidad(param) );
-		
+		List<Map<String, Object>> l = new ArrayList<Map<String, Object>>();
+		Map<String, Object> valFomulario = new HashMap<String, Object>();			
+		valFomulario.put("rules",   mantenimientoParametroService.obtenerParametrosRulesEntidad(param) );		
 		valFomulario.put("messages", null);
-
 		System.out.println(valFomulario);
-
+		l.add(valFomulario);
 		/*System.out.println(Util.getJson(valFomulario));
 		
 		String ret = Util.getJson(valFomulario).replaceAll("\"", "");
 		*/
-		//System.out.println(ret);
-		
-		return valFomulario;
+		//System.out.println(ret);		
+		return l;
 		
 	}
 	

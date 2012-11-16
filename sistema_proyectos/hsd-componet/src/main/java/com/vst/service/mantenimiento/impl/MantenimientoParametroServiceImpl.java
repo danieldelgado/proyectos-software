@@ -107,20 +107,16 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 	public List  obtenerParametrosRulesEntidad(String entidad) {
 		Parametro entidadParametrorules=parametroDAO.parametroPorParametroDAO(entidad);			
 		List<Parametro> parametroshijo = parametroDAO.obtenerParametrosHijos(entidadParametrorules.getId());
-		String campos="";
-		for (int i = 0; i < parametroshijo.size(); i++) {
-			
+		Map<String, Object> camposReglas = new HashMap<String, Object>();
+		for (int i = 0; i < parametroshijo.size(); i++) {			
 			Parametro pH = parametroshijo.get(i);	
 			String campo= pH.getCampo();
 			List<ParametroPorParametro> parametroPorParametrosHijos = parametroPorParametroDAO.obtenerParametroPorParametroPorParametroHijo(pH);
-			
-			String r="";
+			Map<String, Object> reglas = new HashMap<String, Object>();
 			for (int j = 0; j < parametroPorParametrosHijos.size(); j++) {
 				ParametroPorParametro pppRules =  parametroPorParametrosHijos.get(j);
-				Parametro ppH=parametroDAO.get(pppRules.getId().getParametroIdParametroHijo());
-				
-				String obj = "";		
-				
+				Parametro ppH=parametroDAO.get(pppRules.getId().getParametroIdParametroHijo());				
+				String obj = "";				
 				if((pppRules.getAtributo()!=null)){
 					if((!pppRules.getAtributo().equals(""))){
 						obj = pppRules.getAtributo();						
@@ -130,55 +126,35 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 				}else{
 					obj = ppH.getAtributo();
 				}
-				
-				r+=obj +":" + ppH.getValor();
-				if(parametroPorParametrosHijos.size()-1 != j){
-					r += ",";
+				if(ppH.getTipovariable().toLowerCase().equals("string")){
+					reglas.put(obj, ppH.getValor());
 				}
-			}		
-			campos +="'"+campo+"':{" + r+"}";
-			if(parametroshijo.size()-1 != i){
-				campos += ",";
-			}
-
-			
-		}
-		System.out.println("campos");
-		System.out.println(campos);		
+				if(ppH.getTipovariable().toLowerCase().equals("integer")){
+					reglas.put(obj,Integer.parseInt(ppH.getValor()));					
+				}
+				if(ppH.getTipovariable().toLowerCase().equals("boolean")){
+					reglas.put(obj,Boolean.parseBoolean(ppH.getValor()));					
+				}
+				if(ppH.getTipovariable().toLowerCase().equals("double")){
+					reglas.put(obj,Double.parseDouble(ppH.getValor()));					
+				}
+				
+			}	
+			camposReglas.put(campo,reglas);			
+		}		
 		List l = new ArrayList();
-		l.add(campos);
+		l.add(camposReglas);
 		return l;
 	}
 	
 }
-/*
-Map<String,Object> c=new HashMap<String,Object>();
-Parametro pH = parametroshijo.get(i);	
-String campo= pH.getCampo();
-List<ParametroPorParametro> parametroPorParametrosHijo = parametroPorParametroDAO.obtenerParametroPorParametroPorParametroHijo(pH);
-Map<String,Object> reglas=new HashMap<String,Object>();
-//String v="";
-for (int j = 0; j < parametroPorParametrosHijo.size(); j++) {
-	ParametroPorParametro pppRules =  parametroPorParametrosHijo.get(j);
-	Parametro ppH=parametroDAO.get(pppRules.getId().getParametroIdParametroHijo());				
-	String obj = "";				
-	if((pppRules.getAtributo()!=null)){
-		if((!pppRules.getAtributo().equals(""))){
-			obj = pppRules.getAtributo();						
-		}else{
-			obj = ppH.getAtributo();
-		}				
-	}else{
-		obj = ppH.getAtributo();
-	}
-	reglas.put(obj,ppH.getValor());	
-	/*v += obj + ":" + ppH.getValor();
-	if(parametroPorParametrosHijo.size()-1 != j){
-		v += ",";
-	}
-}	
-c.put("'"+campo+"'", reglas);
-//c.put("'"+campo+"'", "{"+v+"}");			
-campos.add(c);
 
-*/
+
+
+
+
+
+
+
+
+
