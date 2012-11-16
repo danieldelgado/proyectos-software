@@ -47,6 +47,9 @@
 						</p>
 						<p>
 							<label for="tipo"> Tipo : </label> <input id="tipo" type="text" name="tipo" />
+						</p>						
+						<p>
+							<label for="tipovariable"> Tipo de Variable : </label> <input id="tipovariable" type="text" name="tipovariable" />
 						</p>
 						<p>
 							<label for="valor"> Valor : </label> <input  id="valor" type="text" name="valor" />
@@ -102,7 +105,45 @@
 								</div>
 							</fieldset>
 						</div>
+						<div>
+							<fieldset >
+								<legend>Lista de Pametros Por Parametros Assignar</legend>
+								<div>
+								<div class="" style="float: left; width: 50%">
+								<fieldset>
+								<legend>Parametros Por Parametros  Disponibles</legend>
+								<ul class="hijosdroptrue" >									
+										<li class="ui-state-default"  >
+										<span> 1 1 </span> 										
+										</li>
+										<li class="ui-state-default"  >
+										<span> 1 1 </span> 										
+										</li>
+										<li class="ui-state-default"  >
+										<span> 1 1 </span> 										
+										</li>
+										<li class="ui-state-default"  >
+										<span> 1 1 </span> 										
+										</li>
+										
+								</ul>
+								</fieldset>
+								</div>
+								<div class="" style="float: left; width: 50%">
+								<fieldset>
+								<legend>Parametros Por Parametros  Asignados</legend>
+								<ul class="hijosdroptrue" >
+									<li class="ui-state-default"  >
+										<span> 1 1 </span> 										
+									</li>
+								</ul>
+								</fieldset>
+								</div>
 
+								<br style="clear: both;" />
+								</div>
+							</fieldset>
+						</div>
 					</div>
 
 			</fieldset>

@@ -14,11 +14,10 @@ $(function() {
 });
 
 function cargarValidateForm() {
-	if (formulario != null) {
-		
-		var validateParam = {};
-		
+	if (formulario != null) {		
+		var validateParam = {};		
 		var data = null;
+		
 		 $.ajax({
 		        type : "get",
 		        url: context+"valacion/parametros/"+entidad,

@@ -8,8 +8,6 @@ $(function() {
 
 function cargarParametrosPadre(){		
 	
-	
-	
     $( "ul.droptrue" ).sortable({
         connectWith: "ul",
         change: function(event, ui) {			
@@ -31,4 +29,10 @@ function cargarParametrosPadre(){
         	}	  
     	}    	
     }).disableSelection();	
+    
+    
+    $( "ul.hijosdroptrue" ).sortable({
+        connectWith: "ul"       
+    }).disableSelection();	
+    
 }

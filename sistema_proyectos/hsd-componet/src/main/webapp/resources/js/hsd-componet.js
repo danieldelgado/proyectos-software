@@ -340,3 +340,68 @@ var formateadores = {
 		return "<img src=\"" + valor + "\"/>";
 	}
 };
+function ajaxAsyncGet(url,data,callback) {
+	 $.ajax({
+	        type : "get",
+	        url: url,
+	        data:data,
+	        async:  false,
+	        dataType :"json",
+	        success:  callback
+	 });	
+}
+function ajaxAsyncPost(url,data,callback) {
+	 $.ajax({
+	        type : "post",
+	        url: url,
+	        data:data,
+	        async:  false,
+	        dataType :"json",
+	        success:  callback
+	 });	
+}
+
+function ajaxAsync(url,data,method,callback) {
+	 $.ajax({
+	        type : method,
+	        url: url,
+	        data:data,
+	        async:  false,
+	        dataType :"json",
+	        success:  callback
+	 });	
+}
+
+function ajaxAsync(url,data,method,dataType,callback) {
+	 $.ajax({
+	        type : method,
+	        url: url,
+	        data:data,
+	        async:  false,
+	        dataType :dataType,
+	        success:  callback
+	 });	
+}
+
+function ajaxSync(url,data,method,callback) {
+	 $.ajax({
+	        type : method,
+	        url: url,
+	        data:data,
+	        async:  false,
+	        dataType :"json",
+	        success:  callback
+	 }); 
+}
+
+
+function ajaxSyncMap(map) {
+	 $.ajax({
+	        type : map['method'],
+	        url: map['url'],
+	        data:map['data'],
+	        async:  map['async'],
+	        dataType :map['"dataType"'],
+	        success:  map['callback']
+	 }); 
+}
