@@ -1,0 +1,16 @@
+[{
+"nombres" : "Los Nombres no deben ser vacíos o nulos.",
+"apellidos" : "Los Apellidos no deben ser vacíos o nulos.",
+"hiddendocumento" : "El tipo de Documento no debe ser vacío o nulo.",	
+"nrodocumento" : "El DNI debe contener 8 caracteres númericos y el CARNET EXT. debe contener entre 9 a 12 caracteres alfanúmericos.",	
+"hiddenecivil" : "El Estado Civil no debe ser vacío o nulo.",	
+"hiddendepartamento" : "Departamento no debe ser vacío o nulo.",	
+"hiddenprovincia" : "Provincia no debe ser vacía o nula.",		
+"hiddensituaLab" : "La Actividad laboral no debe ser vacía o nula.",	
+"ruc" : "El RUC no debe ser vacío o nulo y debe contener 11 carácteres numéricos.",
+"renta" : "La Renta Bruta no debe ser vacía o nula y debe ser mayor a 0.",
+"email" : "El correo electrónico no debe ser vacío o nulo y debe contener un email válido.",
+"fchNacimiento" : "La fecha de nacimiento no debe ser vacía o nula y debe contener una fecha válida.",
+"telefono" : "El número de teléfono no debe ser vacío o nulo y debe contener un dato válido.",
+"captcha" : "Ingrese los caracteres correctos."
+}]

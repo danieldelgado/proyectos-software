@@ -1,0 +1,97 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.google.com/schemas/sitemap/0.84"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.google.com/schemas/sitemap/0.84
+      http://www.google.com/schemas/sitemap/0.84/sitemap.xsd">  
+  
+  <url>
+  <loc>index.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>credito-hipotecario.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>credito-vehicular-mensaje.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>cuenta-sueldo.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>empresas.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>home-personas-interna.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  
+  <url>
+  <loc>pequena-empresa.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  
+  <url>
+  <loc>prestamo-personal.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>prestamo-vehicular.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>soat.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>tarjetas.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>tarjetas-mensaje-confirmacion.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>tarjetas-mensaje-contacto.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>tarjetas-mensaje-error-registro.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>tarjetas-mensaje-error-sistema.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>tarjetas-mensaje-felicitacion.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  <url>
+  <loc>tarjetas-mensaje-sin-ofertas.html</loc>
+  <priority>1</priority>
+  </url>
+  
+  
+  
+</urlset>  

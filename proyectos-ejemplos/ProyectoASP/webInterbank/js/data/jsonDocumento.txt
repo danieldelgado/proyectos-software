@@ -1,0 +1,4 @@
+[
+{"id" : "2", "descripcion": "DNI"},
+{"id" : "4", "descripcion": "CARNE EXT."}
+]

@@ -1,0 +1,8 @@
+[
+				{"id" : "1", "descripcion": "SOLTERO"},
+				{"id" : "4", "descripcion": "DIVORCIADO"},
+				{"id" : "5", "descripcion": "CONVIVIENTE"},
+				{"id" : "6", "descripcion": "VIUDO"},
+				{"id" : "7", "descripcion": "CASADO"},
+				{"id" : "8", "descripcion": "CASADO CON BIENES SEPARADOS"}
+			  ]

@@ -1,0 +1,89 @@
+﻿producto.mesaje.tarjeta.mensaje.confirmacion = Nos estaremos contactando <br />contigo en un plazo <br />m&aacute;ximo de {0} horas <br class='both' /><br class='both' /><span class='bluebig'>Muchas gracias.</span>
+producto.mesaje.tarjeta.mensaje.confirmacion.hora.24 = 24
+producto.mesaje.tarjeta.mensaje.confirmacion.hora.72 = 72
+producto.mesaje.tarjeta.mensaje.contacto = Hemos recibido correctamente tus <br />datos. Nos estaremos contactando <br />contigo a la brevedad posible<br class='both' /><br class='both' /><span class='bluebig'>¡Muchas gracias!</span>
+producto.mesaje.tarjeta.mensaje.error.registro = Queremos atender tu solicitud, pero <br />al parecer los datos ingresados no <br />son los correctos, por favor verifica<br />tu informaci&oacute;n.
+producto.mesaje.tarjeta.mensaje.error.sistema = Queremos atender tu solicitud, pero <br />en estos momentos el proceso se vi&oacute;<br />interrumpido, por favor vuelve a <br />intentarlo en unos minutos.
+producto.mesaje.tarjeta.mensaje.error.felicitaciones = , tenemos una <br />tarjeta de cr&eacute;dito <br /><span class='bluebig'>Pre-aprobada</span> para ti.
+producto.mesaje.tarjeta.mensaje.sin.oferta = Gracias por contactarnos. En estos <br />momentos no tenemos una oferta <br />disponible para ti.
+
+producto.mesaje.soat.mensaje.confirmacion = Hemos recibido correctamente tus datos.<br /> Nos estaremos contactando contigo a la brevedad. <span class='bluebig'> ¡Muchas Gracias!</span> 
+producto.mesaje.soat.mensaje.confirmacion.hora.24 = 24
+producto.mesaje.soat.mensaje.confirmacion.hora.72 = 72
+producto.mesaje.soat.mensaje.contacto = Hemos recibido correctamente tus <br />datos. Nos estaremos contactando <br />contigo a la brevedad posible<br class='both' /><br class='both' /><span class='bluebig'>¡Muchas gracias!</span>
+producto.mesaje.soat.mensaje.error.registro = Queremos atender tu solicitud, pero <br />al parecer los datos ingresados no <br />son los correctos, por favor verifica<br />tu informaci&oacute;n.
+producto.mesaje.soat.mensaje.error.sistema = Queremos atender tu solicitud, pero <br />en estos momentos el proceso se vi&oacute;<br />interrumpido, por favor vuelve a <br />intentarlo en unos minutos.
+producto.mesaje.soat.mensaje.felicitaciones = , tenemos un soat <br />para ti.
+producto.mesaje.soat.mensaje.sin.oferta = Gracias por contactarnos. En estos <br />momentos no tenemos una oferta <br />disponible para ti.
+
+producto.mesaje.prestamo.vehicular.mensaje.confirmacion = Nos estaremos contactando <br />contigo en un plazo <br />m&aacute;ximo de {0} horas <br class='both' /><br class='both' /><span class='bluebig'>Muchas gracias.</span>
+producto.mesaje.prestamo.vehicular.mensaje.confirmacion.hora.24 = 24
+producto.mesaje.prestamo.vehicular.mensaje.confirmacion.hora.72 = 72
+producto.mesaje.prestamo.vehicular.mensaje.contacto = Hemos recibido correctamente tus <br />datos. Nos estaremos contactando <br />contigo a la brevedad posible<br class='both' /><br class='both' /><span class='bluebig'>¡Muchas gracias!</span>
+producto.mesaje.prestamo.vehicular.mensaje.error.registro = Queremos atender tu solicitud, pero <br />al parecer los datos ingresados no <br />son los correctos, por favor verifica<br />tu informaci&oacute;n.
+producto.mesaje.prestamo.vehicular.mensaje.error.sistema = Queremos atender tu solicitud, pero <br />en estos momentos el proceso se vi&oacute;<br />interrumpido, por favor vuelve a <br />intentarlo en unos minutos.
+producto.mesaje.prestamo.vehicular.mensaje.error.felicitaciones = , tenemos<br />  un prestamo vehicular <br /><span class='bluebig'> Pre-aprobado </span> para ti.
+producto.mesaje.prestamo.vehicular.mensaje.sin.oferta = Gracias por contactarnos. En estos <br />momentos no tenemos una oferta <br />disponible para ti.
+
+producto.mesaje.prestamo.personal.mensaje.confirmacion = Nos estaremos contactando <br />contigo en un plazo <br />m&aacute;ximo de {0} horas <br class='both' /><br class='both' /><span class='bluebig'>Muchas gracias.</span>
+producto.mesaje.prestamo.personal.mensaje.confirmacion.hora.24 = 24
+producto.mesaje.prestamo.personal.mensaje.confirmacion.hora.72 = 72
+producto.mesaje.prestamo.personal.mensaje.contacto = Hemos recibido correctamente tus <br />datos. Nos estaremos contactando <br />contigo a la brevedad posible<br class='both' /><br class='both' /><span class='bluebig'>¡Muchas gracias!</span>
+producto.mesaje.prestamo.personal.mensaje.error.registro = Queremos atender tu solicitud, pero <br />al parecer los datos ingresados no <br />son los correctos, por favor verifica<br />tu informaci&oacute;n.
+producto.mesaje.prestamo.personal.mensaje.error.sistema = Queremos atender tu solicitud, pero <br />en estos momentos el proceso se vi&oacute;<br />interrumpido, por favor vuelve a <br />intentarlo en unos minutos.
+producto.mesaje.prestamo.personal.mensaje.error.felicitaciones = , tenemos<br /> un prestamo personal <br /><span class='bluebig'> Pre-aprobado </span> para ti.
+producto.mesaje.prestamo.personal.mensaje.sin.oferta = Gracias por contactarnos. En estos <br />momentos no tenemos una oferta <br />disponible para ti.
+
+
+
+
+producto.mesaje.cuenta.sueldo.mensaje.confirmacion = Nos estaremos contactando <br />contigo en un plazo <br />m&aacute;ximo de {0} horas <br class='both' /><br class='both' /><span class='bluebig'>Muchas gracias.</span>
+producto.mesaje.cuenta.sueldo.mensaje.confirmacion.hora.24 = 24
+producto.mesaje.cuenta.sueldo.mensaje.confirmacion.hora.72 = 72
+producto.mesaje.cuenta.sueldo.mensaje.contacto = Hemos recibido correctamente tus <br />datos. Nos estaremos contactando <br />contigo a la brevedad posible<br class='both' /><br class='both' /><span class='bluebig'>¡Muchas gracias!</span>
+producto.mesaje.cuenta.sueldo.mensaje.error.registro = Queremos atender tu solicitud, pero <br />al parecer los datos ingresados no <br />son los correctos, por favor verifica<br />tu informaci&oacute;n.
+producto.mesaje.cuenta.sueldo.mensaje.error.sistema = Queremos atender tu solicitud, pero <br />en estos momentos el proceso se vi&oacute;<br />interrumpido, por favor vuelve a <br />intentarlo en unos minutos.
+producto.mesaje.cuenta.sueldo.mensaje.felicitaciones = , tenemos<br /> una cuenta sueldo <br /> para ti.
+producto.mesaje.cuenta.sueldo.mensaje.sin.oferta = Gracias por contactarnos. En estos <br />momentos no tenemos una oferta <br />disponible para ti.
+
+
+
+
+
+producto.mesaje.credito.hipotecario.mensaje.confirmacion = Nos estaremos contactando <br />contigo en un plazo <br />m&aacute;ximo de {0} horas <br class='both' /><br class='both' /><span class='bluebig'>Muchas gracias.</span>
+producto.mesaje.credito.hipotecario.mensaje.confirmacion.hora.24 = 24
+producto.mesaje.credito.hipotecario.mensaje.confirmacion.hora.72 = 72
+producto.mesaje.credito.hipotecario.mensaje.contacto = Hemos recibido correctamente tus <br />datos. Nos estaremos contactando <br />contigo a la brevedad posible<br class='both' /><br class='both' /><span class='bluebig'>¡Muchas gracias!</span>
+producto.mesaje.credito.hipotecario.mensaje.error.registro = Queremos atender tu solicitud, pero <br />al parecer los datos ingresados no <br />son los correctos, por favor verifica<br />tu informaci&oacute;n.
+producto.mesaje.credito.hipotecario.mensaje.error.sistema = Queremos atender tu solicitud, pero <br />en estos momentos el proceso se vi&oacute;<br />interrumpido, por favor vuelve a <br />intentarlo en unos minutos.
+producto.mesaje.credito.hipotecario.mensaje.error.felicitaciones = , tenemos<br />  un credito hipotecario <br /><span class='bluebig'> Pre-aprobado </span> para ti.
+producto.mesaje.credito.hipotecario.mensaje.sin.oferta = Gracias por contactarnos. En estos <br />momentos no tenemos una oferta <br />disponible para ti.
+
+servidor.peregrino.ws.precalificacion =http://halcon-007:9080/wsPreCalificacion/services/precalificacion.wsdl
+servidor.peregrino.ws.lead =http://halcon-007:9080/wsPreCalificacion/services/registraLead.wsdl
+
+pathLogError =C:\WebPublica\IBPeregrino\Log
+
+soapenv.Envelope.schemas.xml.header =<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:{0}='http://precalificacion.com/ws/schemas'>   <soapenv:Header/>   <soapenv:Body> <{0}:{1}>
+soapenv.Envelope.schemas.xml.lead.header =<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:{0}='http://registroLead.com/ws/schemas'>   <soapenv:Header/>   <soapenv:Body> <{0}:{1}>
+tag.xml.schema.prefijo.inicio =sch
+soapenv.Envelope.schemas.xml.footer =</{0}:{1}> </soapenv:Body> </soapenv:Envelope>
+soapenv.Envelope.schemas.xml.lead.footer =</{0}:{1}> </soapenv:Body> </soapenv:Envelope>
+
+pre.calificacion.credito.hipotecario.request.accion =PreCalificarCreditoHipotecarioRequest
+lead.credito.hipotecario.request.accion =RegistrarLeadCreditoHipotecarioRequest
+lead.cuenta.sueldo.request.accion =RegistrarLeadCuentaSueldoRequest
+pre.calificacion.prestamo.personal.request.accion =PreCalificarPrestamoPersonalRequest
+lead.prestamo.personal.request.accion =RegistrarLeadPrestamoPersonalRequest
+pre.calificacion.credito.vehicular.request.accion =PreCalificarCreditoVehicularRequest
+lead.credito.vehicular.request.accion =RegistrarLeadCreditoVehicularRequest
+lead.seguro.soat.request.accion =RegistrarLeadSeguroSoatRequest
+pre.calificacion.tarjeta.credito.request.accion =PreCalificarTarjetaCreditoRequest
+lead.tarjeta.credito.request.accion =RegistrarLeadTarjetaCreditoRequest
+
+
+
+resolveTimeout =10000
+connectTimeout =10000
+sendTimeout =10000
+receiveTimeout =10000

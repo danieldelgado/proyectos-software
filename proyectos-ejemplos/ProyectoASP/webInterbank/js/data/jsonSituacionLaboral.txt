@@ -1,0 +1,11 @@
+[
+				{"id" : "1", "descripcion": "DEPENDIENTE"},
+				{"id" : "3", "descripcion": "ACCIONISTA EMPRESA"},
+				{"id" : "4", "descripcion": "PROFESIONAL INDEPENDIENTE"},
+				{"id" : "5", "descripcion": "RENTISTA 1 CATEGORÍA"},
+				{"id" : "6", "descripcion": "RENTISTA 2 CATEGORÍA"},
+				{"id" : "7", "descripcion": "MICROEMPRESARIO FORMAL"},
+			   	{"id" : "9", "descripcion": "JUBILADO"},
+			  	{"id" : "10", "descripcion": "INFORMAL"},
+			  	{"id" : "11", "descripcion": "NO LABORA"}
+			  ]

@@ -1,0 +1,73 @@
+'''----------------------------parametros 1
+
+servidor.peregrino.ws.precalificacion =http://192.168.1.122:9080/wsPreCalificacion/services/precalificacion.wsdl
+servidor.peregrino.ws.lead =http://192.168.1.122:9080/wsPreCalificacion/services/registraLead.wsdl
+
+pathLogError =C:\WebPublica\IBPeregrino\Log
+
+soapenv.Envelope.schemas.xml.header =<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:{0}='http://precalificacion.com/ws/schemas' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'> <soapenv:Body> <{0}:{1}>
+tag.xml.schema.prefijo.inicio =q0
+soapenv.Envelope.schemas.xml.footer =</{0}:{1}> </soapenv:Body> </soapenv:Envelope>
+
+pre.calificacion.credito.hipotecario.request.accion =PreCalificarCreditoHipotecarioRequest
+lead.credito.hipotecario.request.accion =RegistrarLeadCreditoHipotecarioRequest
+lead.cuenta.sueldo.request.accion =RegistrarLeadCuentaSueldoRequest
+pre.calificacion.prestamo.personal.request.accion =PreCalificarPrestamoPersonalRequest
+lead.prestamo.personal.request.accion =RegistrarLeadPrestamoPersonalRequest
+pre.calificacion.credito.vehicular.request.accion =PreCalificarCreditoVehicularRequest
+lead.credito.vehicular.request.accion =RegistrarLeadCreditoVehicularRequest
+lead.seguro.soat.request.accion =RegistrarLeadSeguroSoatRequest
+pre.calificacion.tarjeta.credito.request.accion =PreCalificarTarjetaCreditoRequest
+lead.tarjeta.credito.request.accion =RegistrarLeadTarjetaCreditoRequest
+
+
+'''----------------------------parametros 2
+
+servidor.peregrino.ws.precalificacion =http://192.168.1.122:9080/wsPreCalificacion/services/precalificacion.wsdl
+servidor.peregrino.ws.lead =http://192.168.1.122:9080/wsPreCalificacion/services/registraLead.wsdl
+
+pathLogError =C:\WebPublica\IBPeregrino\Log
+
+soapenv.Envelope.schemas.xml.header =<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:{0}="http://precalificacion.com/ws/schemas">   <soapenv:Header/>   <soapenv:Body> <{0}:{1}>
+tag.xml.schema.prefijo.inicio =sch
+soapenv.Envelope.schemas.xml.footer =</{0}:{1}> </soapenv:Body> </soapenv:Envelope>
+
+pre.calificacion.credito.hipotecario.request.accion =PreCalificarCreditoHipotecarioRequest
+lead.credito.hipotecario.request.accion =RegistrarLeadCreditoHipotecarioRequest
+lead.cuenta.sueldo.request.accion =RegistrarLeadCuentaSueldoRequest
+pre.calificacion.prestamo.personal.request.accion =PreCalificarPrestamoPersonalRequest
+lead.prestamo.personal.request.accion =RegistrarLeadPrestamoPersonalRequest
+pre.calificacion.credito.vehicular.request.accion =PreCalificarCreditoVehicularRequest
+lead.credito.vehicular.request.accion =RegistrarLeadCreditoVehicularRequest
+lead.seguro.soat.request.accion =RegistrarLeadSeguroSoatRequest
+pre.calificacion.tarjeta.credito.request.accion =PreCalificarTarjetaCreditoRequest
+lead.tarjeta.credito.request.accion =RegistrarLeadTarjetaCreditoRequest
+
+
+
+'''' XML
+
+'TarjetaCredito
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://precalificacion.com/ws/schemas">   <soapenv:Header/>   <soapenv:Body> <sch:PreCalificarTarjetaCreditoRequest>  <sch:nombres>ewfewfwefef</sch:nombres>  <sch:apellidos>wefewf</sch:apellidos><sch:tipoDocumento>2</sch:tipoDocumento> <sch:numeroDocumento>12321313</sch:numeroDocumento>  <sch:estadoCivil>4</sch:estadoCivil>   <sch:situacionLaboral>1</sch:situacionLaboral> <sch:ruc>12312312312</sch:ruc>   <sch:renta>123</sch:renta>  <sch:email>danieldelgado20g@gmail.com</sch:email> <sch:fechaNacimiento>1991-03-02</sch:fechaNacimiento> <sch:telefono>1231232</sch:telefono> <sch:ip> ::1 </sch:ip> <sch:queryString >  algo </sch:queryString> </sch:PreCalificarTarjetaCreditoRequest> </soapenv:Body> </soapenv:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://precalificacion.com/ws/schemas">   <soapenv:Header/>   <soapenv:Body> <sch:RegistrarLeadTarjetaCreditoRequest> <sch:nombres>ewfewfwefef</sch:nombres>   <sch:apellidos>wefewf</sch:apellidos>   <sch:tipoDdocumento>2</sch:tipoDdocumento>   <sch:numeroDocumento>12321313</sch:numeroDocumento>   <sch:estadoCivil>4</sch:estadoCivil>   <sch:situacionLaboral>1</sch:situacionLaboral>   <sch:ruc>12312312312</sch:ruc>   <sch:renta>123</sch:renta>   <sch:email>danieldelgado20g@gmail.com</sch:email>   <sch:fechaNacimiento>1991-03-02</sch:fechaNacimiento>   <sch:telefono>1231232</sch:telefono>   <sch:ip> ::1 </sch:ip> <sch:codigoLead></sch:codigoLead>   <sch:queryString>algo</sch:queryString> </sch:RegistrarLeadTarjetaCreditoRequest> </soapenv:Body> </soapenv:Envelope>
+
+'CreditoHipotecario
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://precalificacion.com/ws/schemas">   <soapenv:Header/>   <soapenv:Body> <sch:PreCalificarCreditoHipotecarioRequest> <sch:nombres>wefwefewf</sch:nombres>  <sch:apellidos>wefewfwe</sch:apellidos><sch:tipoDocumento>2</sch:tipoDocumento> <sch:numeroDocumento>12312321</sch:numeroDocumento>  <sch:estadoCivil>4</sch:estadoCivil>   <sch:situacionLaboral>4</sch:situacionLaboral> <sch:departamento>3</sch:departamento>   <sch:provincia>2</sch:provincia> <sch:ruc>12312312312</sch:ruc>   <sch:renta>123</sch:renta>  <sch:email>daniel1234_14@hotmail.com</sch:email> <sch:fechaNacimiento>1991-02-02</sch:fechaNacimiento> <sch:telefono>1231232</sch:telefono> <sch:ip> ::1 </sch:ip> <sch:queryString >  algo </sch:queryString>  </sch:PreCalificarCreditoHipotecarioRequest> </soapenv:Body> </soapenv:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://precalificacion.com/ws/schemas">   <soapenv:Header/>   <soapenv:Body> <sch:RegistrarLeadCreditoHipotecarioRequest> <sch:nombres>wefwefewf</sch:nombres>   <sch:apellidos>wefewfwe</sch:apellidos>   <sch:tipoDocumento>2</sch:tipoDocumento>   <sch:numeroDocumento>12312321</sch:numeroDocumento>   <sch:estadoCivil>4</sch:estadoCivil>   <sch:situacionLaboral>4</sch:situacionLaboral>  <sch:departamento>3</sch:departamento>   <sch:provincia>2</sch:provincia>   <sch:ruc>12312312312</sch:ruc>   <sch:renta>123</sch:renta>   <sch:email>daniel1234_14@hotmail.com</sch:email>   <sch:fechaNacimiento>1991-02-02</sch:fechaNacimiento>   <sch:telefono>1231232</sch:telefono>   <sch:ip> ::1 </sch:ip> <sch:codigoLead></sch:codigoLead>   <sch:queryString>algo</sch:queryString></sch:RegistrarLeadCreditoHipotecarioRequest> </soapenv:Body> </soapenv:Envelope>
+
+CreditoVehicular
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://precalificacion.com/ws/schemas">   <soapenv:Header/>   <soapenv:Body> <sch:PreCalificarCreditoVehicularRequest> <sch:nombres>fweffewfwf</sch:nombres>  <sch:apellidos>wefewewf</sch:apellidos><sch:tipoDocumento>2</sch:tipoDocumento> <sch:numeroDocumento>12321321</sch:numeroDocumento>  <sch:estadoCivil>1</sch:estadoCivil>   <sch:situacionLaboral>4</sch:situacionLaboral>  <sch:departamento>3</sch:departamento>   <sch:provincia>4</sch:provincia> <sch:ruc>12312312312</sch:ruc>   <sch:renta>123213</sch:renta>  <sch:email>danieldelgado20g@gmail.com</sch:email> <sch:fechaNacimiento>1977-02-16</sch:fechaNacimiento> <sch:telefono>1231232</sch:telefono> <sch:ip> ::1 </sch:ip> <sch:queryString >  algo </sch:queryString> </sch:PreCalificarCreditoVehicularRequest> </soapenv:Body> </soapenv:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://precalificacion.com/ws/schemas">   <soapenv:Header/>   <soapenv:Body> <sch:RegistrarLeadCreditoVehicularRequest> <sch:nombres>fweffewfwf</sch:nombres>  <sch:apellidos>wefewewf</sch:apellidos> <sch:tipoDocumento>2</sch:tipoDocumento>   <sch:numeroDocumento>12321321</sch:numeroDocumento>   <sch:estadoCivil>1</sch:estadoCivil>    <sch:situacionLaboral>4</sch:situacionLaboral>  <sch:departamento>3</sch:departamento>   <sch:provincia>4</sch:provincia>     <sch:ruc>12312312312</sch:ruc>   <sch:renta>123213</sch:renta>  <sch:email>danieldelgado20g@gmail.com</sch:email>   <sch:fechaNacimiento>1977-02-16</sch:fechaNacimiento><sch:telefono>1231232</sch:telefono>    <sch:ip> ::1 </sch:ip>  <sch:codigoLead>1231232</sch:codigoLead>  <sch:queryString >  algo </sch:queryString>  </sch:RegistrarLeadCreditoVehicularRequest> </soapenv:Body> </soapenv:Envelope>
+
+'lead cuenta sueldo'
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://precalificacion.com/ws/schemas">   <soapenv:Header/>   <soapenv:Body> <sch:RegistrarLeadCuentaSueldoRequest><sch:nombres>wefewfewfewf</sch:nombres>   <sch:apellidos>wefewfewfwfw</sch:apellidos>  <sch:tipoDocumento>2</sch:tipoDocumento>   <sch:numeroDocumento>23432432</sch:numeroDocumento	>   <sch:estadoCivil>1</sch:estadoCivil>   <sch:situacionLaboral>4</sch:situacionLaboral>   <sch:ruc>23423423423</sch:ruc>   <sch:renta>234</sch:renta>   <sch:email>dadasd@asdad.com</sch:email>   <sch:fechaNacimiento>1992-01-02</sch:fechaNacimiento>  <sch:telefono>1231232</sch:telefono>    <sch:ip> ::1 </sch:ip>  <sch:codigoLead></sch:codigoLead>   <sch:queryString>algo</sch:queryString> </sch:RegistrarLeadCuentaSueldoRequest> </soapenv:Body> </soapenv:Envelope>
+
+'soat'
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://precalificacion.com/ws/schemas">   <soapenv:Header/>   <soapenv:Body> <sch:RegistrarLeadSeguroSoatRequest> <sch:nombres>sadsadsad</sch:nombres>   <sch:apellidos>asdasd</sch:apellidos>   <sch:tipoDocumento>2</sch:tipoDocumento>   <sch:numeroDocumento>12323212</sch:numeroDocumento> <sch:telefono>1231232</sch:telefono>   <sch:ip> ::1 </sch:ip> <sch:codigoLead></sch:codigoLead>   <sch:queryString>algo</sch:queryString> </sch:RegistrarLeadSeguroSoatRequest> </soapenv:Body> </soapenv:Envelope>
+
+'Prestamo Personal'
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://precalificacion.com/ws/schemas">   <soapenv:Header/>   <soapenv:Body> <sch:PreCalificarPrestamoPersonalRequest> <sch:nombres>fsdfdssdfds</sch:nombres>  <sch:apellidos>sdfsdf</sch:apellidos><sch:tipoDocumento>2</sch:tipoDocumento> <sch:numeroDocumento>12321321</sch:numeroDocumento>  <sch:estadoCivil>4</sch:estadoCivil>   <sch:situacionLaboral>3</sch:situacionLaboral> <sch:ruc>12312323123</sch:ruc>   <sch:renta>213</sch:renta>  <sch:email>dadasd@asdad.com</sch:email> <sch:fechaNacimiento>1992-02-01</sch:fechaNacimiento> <sch:telefono>1231232</sch:telefono> <sch:ip> ::1 </sch:ip> <sch:queryString >  algo </sch:queryString> </sch:PreCalificarPrestamoPersonalRequest> </soapenv:Body> </soapenv:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://precalificacion.com/ws/schemas">   <soapenv:Header/>   <soapenv:Body> <sch:RegistrarLeadPrestamoPersonalRequest> <sch:nombres>fsdfdssdfds</sch:nombres>   <sch:apellidos>sdfsdf</sch:apellidos>  <sch:tipoDocumento>2</sch:tipoDocumento>   <sch:numeroDocumento>12321321</sch:numeroDocumento>   <sch: estadoCivil>4</sch:estadoCivil>   <sch:situacionLaboral>3</sch:situacionLaboral>   <sch:ruc>12312323123</sch:ruc>   <sch:renta>213</sch:renta>   <sch:email>dadasd@asdad.com</sch:email>   <sch:fechaNacimiento>1992-02-01</sch:fechaNacimiento>  <sch:telefono>1231232</sch:telefono>     <sch:ip> ::1 </sch:ip> <sch:codigoLead></sch:codigoLead>   <sch:queryString>algo</sch:queryString> </sch:RegistrarLeadPrestamoPersonalRequest> </soapenv:Body> </soapenv:Envelope>
+
+
+
