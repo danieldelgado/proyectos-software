@@ -18,7 +18,7 @@ function cargarValidateForm() {
 		var validateParam = {};		
 		var data = null;
 		
-		 $.ajax({
+		ajaxSyncMap({
 		        type : "get",
 		        url: context+"valacion/parametros/"+entidad,
 		        async:  false,
@@ -45,9 +45,11 @@ function cargarValidateForm() {
 							});				
 						}				
 					});	
+		    		mensaje_consola("validateParam.rules");
+		    		mensaje_consola(validateParam.rules);
 		        }
 		    });
-
+		mensaje_consola(validateParam.rules);
 		formulario.validate({
 					debug : true,
 					rules :	

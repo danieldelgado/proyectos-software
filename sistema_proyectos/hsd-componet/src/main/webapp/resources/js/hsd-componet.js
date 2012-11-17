@@ -396,12 +396,5 @@ function ajaxSync(url,data,method,callback) {
 
 
 function ajaxSyncMap(map) {
-	 $.ajax({
-	        type : map['method'],
-	        url: map['url'],
-	        data:map['data'],
-	        async:  map['async'],
-	        dataType :map['"dataType"'],
-	        success:  map['callback']
-	 }); 
+	 $.ajax(map); 
 }
