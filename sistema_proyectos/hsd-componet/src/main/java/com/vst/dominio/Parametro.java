@@ -38,6 +38,10 @@ public class Parametro implements Entidad , Serializable {
 
 	@Column(name="codigo",length=50,nullable=false)
 	private String codigo;
+
+
+	@Column(name="nombre",length=50,nullable=false)
+	private String nombre;
 	
 	@Column(name="estado",length=1)
 	private Character estado;
@@ -104,6 +108,15 @@ public class Parametro implements Entidad , Serializable {
     
     
     
+	public Parametro(Integer id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
+
+
+
 	public Parametro(Integer id, String codigo, Character estado, Boolean activo, String entidad, String campo, String tipo, String atributo, String valor, String descripcion) {
 		super();
 		this.id = id;
@@ -336,6 +349,20 @@ public class Parametro implements Entidad , Serializable {
 
 	public void setTipovariable(String tipovariable) {
 		this.tipovariable = tipovariable;
+	}
+
+
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 

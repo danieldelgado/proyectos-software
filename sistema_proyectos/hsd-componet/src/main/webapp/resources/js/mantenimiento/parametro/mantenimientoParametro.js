@@ -8,7 +8,7 @@ $(function() {
 
 function cargarParametrosPadre(){		
 	
-    $( "ul.droptrue" ).sortable({
+    $( "ul.padresAsignacion" ).sortable({
         connectWith: "ul",
         change: function(event, ui) {			
         	var li = ui.item;
@@ -29,10 +29,40 @@ function cargarParametrosPadre(){
         	}	  
     	}    	
     }).disableSelection();	
+   
+
+    $("#btnGuardarParametro").button().click(  function() {
+    	var d = $(this).parent();
+		var codigo = d.find(".codigo").val();
+		var icono = d.find(".icono").val();
+		var onComplete = d.find(".onComplete").val();
+		var onSubmit = d.find(".onSubmit").val();
+		var parametrosJson = d.find(".parametrosJson").val();
+		var tipo = d.find(".tipo").val();
+		var url = d.find(".url").val();
+		var descripcion = d.find(".descripcion").val();
+		
+		
+		
+	});
     
     
-    $( "ul.hijosdroptrue" ).sortable({
-        connectWith: "ul"       
-    }).disableSelection();	
+    $("#btnAbrirDialogoParametrosAsignar").button().click(  function() {
+    	var d = $(this).parent();
+		var codigo = d.find(".codigo").val();
+		var icono = d.find(".icono").val();
+		var onComplete = d.find(".onComplete").val();
+		var onSubmit = d.find(".onSubmit").val();
+		var parametrosJson = d.find(".parametrosJson").val();
+		var tipo = d.find(".tipo").val();
+		var url = d.find(".url").val()+"?idparametro=0";
+		var descripcion = d.find(".descripcion").val();
+		
+		openDialog(url,null);
+    	
+    	
+	} );
     
 }
+
+

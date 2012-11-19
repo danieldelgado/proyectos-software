@@ -13,6 +13,7 @@ $(function() {
 	init();
 	cargarMenus();
 	cargarEnlaces();
+	crearDialogos();
 	tabGeneral = $("#tabs");
 	if (tabGeneral != null) {
 		crearTab();
@@ -69,24 +70,24 @@ function crearTab() {
 				cache : true,
 				tabTemplate : "<li><a href=\"#{href}\">  #{label}  </a> <span class=\"ui-icon ui-icon-close\">Cerrar</span></li>",
 				add : function(event, ui) {
-					mensaje_consola(ui.tab);
-					mensaje_consola("panel id:");
-					mensaje_consola(ui.panel.id);
+					//mensaje_consola(ui.tab);
+					//mensaje_consola("panel id:");
+					//mensaje_consola(ui.panel.id);
 				},
 				select : function(event, ui) {
-					mensaje_consola(ui.tab);
-					mensaje_consola("panel id:");
-					mensaje_consola(ui.panel.id);
+					//mensaje_consola(ui.tab);
+					//mensaje_consola("panel id:");
+					//mensaje_consola(ui.panel.id);
 				}
 
 			});
 
 	tabGeneral.find("span.ui-icon-close").live("click", function() {
 		var index = $("li", tabGeneral).index($(this).parent());
-		mensaje_consola("index:" + index);
+		//mensaje_consola("index:" + index);
 		if (index >= 0) {
 			var tab = $(this).parent().find("a").attr("href");
-			mensaje_consola("tab:" + tab);
+			//mensaje_consola("tab:" + tab);
 			if (tab != "#tabPrincipal") {
 				tabGeneral.tabs("remove", index);
 			}
@@ -108,7 +109,7 @@ function cargarMenus() {
 		minHeight : 300,
 		minWidth : 170,
 		resize : function() {
-			mensaje_consola("resize");
+			//mensaje_consola("resize");
 			$("#menu").accordion("refresh");
 		}
 	});
@@ -121,7 +122,7 @@ function cargarMenus() {
 
 function cargarEnlaces() {
 
-	$(".clNuevo").button().click(function() {
+	$("#btnNuevo").button().click(function() {
 		var d = $(this).parent();
 		var codigo = d.find(".codigo").val();
 		var icono = d.find(".icono").val();
@@ -155,7 +156,7 @@ function addtab(titulo, identificador, html, url) {
 		});
 	}
 
-	mensaje_consola(html);
+	//mensaje_consola(html);
 
 	if ($("#" + identificador).length <= 0) {
 		tabGeneral.append('<div id="' + identificador + '"> ' + html
@@ -167,8 +168,7 @@ function addtab(titulo, identificador, html, url) {
 }
 
 detalleLista = function(id, cap) {
-	mensaje_consola(id);
-	mensaje_consola(cap);
+	mensaje_consola("detalleLista:"+id+" "+cap);
 };
 
 function irPagina(url) {
@@ -396,5 +396,81 @@ function ajaxSync(url,data,method,callback) {
 
 
 function ajaxSyncMap(map) {
+	//mensaje_consola(map);
 	 $.ajax(map); 
 }
+
+
+
+
+function openDialog(url,data) {	
+	ajaxSyncMap({
+        type : "get",
+        url: context+url,
+        async:  false,
+        data: data,
+        dataType :"html",
+        success:  function(html){
+    		$( "#dialogo" ).html("");
+    		$( "#dialogo" ).html(html);
+    		$("#dialogo").dialog("open");		
+    	}
+	});		
+}
+
+
+function crearDialogos(){
+	$("#dialogo").dialog({
+		autoOpen: false,
+		resizable: true,
+		draggable: true,
+		width: 'auto',
+		modal: true
+	});
+
+	$("#error").dialog({
+		autoOpen: false,
+		resizable: false,
+		draggable: false,
+		width: 300,
+		minHeight: 30,
+		modal: true,
+		buttons: {
+			OK: function(){
+				$(this).dialog("close");
+			}
+		}
+	}).siblings(".ui-widget-header").addClass("ui-state-error");
+
+	$("#mensaje").dialog({
+		autoOpen: false,
+		resizable: false,
+		draggable: false,
+		width: 300,
+		minHeight: 30,
+		modal: true,
+		buttons: {
+			OK: function(){
+				$(this).dialog("close");
+			}
+		}
+	});
+}
+
+
+function error(texto){
+	$("#error").text(texto);
+	$("#error").dialog("open");
+}
+
+function mensaje(texto){
+	$("#mensaje").text(texto);
+	$("#mensaje").dialog("open");
+}
+
+function mensajeConfirmacion(texto){
+	$("#mensaje").text(texto);
+	$("#mensaje").dialog("open");
+	return true;
+}
+

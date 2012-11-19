@@ -13,9 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vst.dominio.Parametro;
+import com.vst.dominio.ParametroPorParametro;
 import com.vst.service.mantenimiento.MantenimientoParametroService;
 
 
@@ -69,4 +71,35 @@ public class MantenimientoParametroController {
 		
 	}
 	
+	@RequestMapping( value="mantenimiento/parametro/parametrosHijos" , method = RequestMethod.GET)	
+	public String dialogParametrosAsignar(@RequestParam(required=false) Integer idparametro){
+		
+		System.out.println(idparametro);
+		
+		return "mantenimiento/parametros/parametroPorParametro";
+	}
+
+	@RequestMapping( value="mantenimiento/parametro/obtenerListaParametros" , method = RequestMethod.GET)		
+	public @ResponseBody List<Map<String,Object>> obtenerListaParametros(){
+		 List<Map<String,Object>> lstParametros = mantenimientoParametroService.obtenerParametros();
+		return lstParametros;
+	}
+	
+	
+	@RequestMapping( value="mantenimiento/parametro/ParametroPorParametro/guardar" , method = RequestMethod.GET)		
+	public @ResponseBody int guardarParametroPorParametro(ParametroPorParametro parametroPorParametro){
+		System.out.println("parametroPorParametro");
+		System.out.println(parametroPorParametro);
+	//	int r = mantenimientoParametroService.guardarParametroPorParametro(parametroPorParametro);
+		return 0;
+	}
+	
+	
+	
 }
+
+
+
+
+
+

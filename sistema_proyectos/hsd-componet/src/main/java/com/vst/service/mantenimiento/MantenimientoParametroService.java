@@ -17,4 +17,6 @@ public interface MantenimientoParametroService {
 
 	List   obtenerParametrosRulesEntidad(String entidad);
 
+	 List<Map<String,Object>> obtenerParametros();
+
 }

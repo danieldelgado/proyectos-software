@@ -1,18 +1,211 @@
 
-CREATE  TABLE IF NOT EXISTS `hsd`.`parametro_por_parametro` (
-  `parametro_id_parametro` INT(11) NOT NULL ,
-  `parametro_id_parametro1` INT(11) NOT NULL ,
-  `actividad` VARCHAR(45) NULL ,
-  PRIMARY KEY (`parametro_id_parametro`, `parametro_id_parametro1`) ,
-  CONSTRAINT `fk_parametro_has_parametro_parametro1`
-    FOREIGN KEY (`parametro_id_parametro` )
-    REFERENCES `hsd`.`parametro` (`id_parametro` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_parametro_has_parametro_parametro2`
-    FOREIGN KEY (`parametro_id_parametro1` )
-    REFERENCES `hsd`.`parametro` (`id_parametro` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////            Inicial               //////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+CREATE DATABASE  IF NOT EXISTS `hsd` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `hsd`;
+-- MySQL dump 10.13  Distrib 5.5.24, for debian-linux-gnu (i686)
+--
+-- Host: localhost    Database: hsd
+-- ------------------------------------------------------
+-- Server version	5.5.24-0ubuntu0.12.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `usuario_por_perfil`
+--
+
+DROP TABLE IF EXISTS `usuario_por_perfil`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuario_por_perfil` (
+  `id_usuario` int(11) NOT NULL,
+  `id_perfil` int(11) NOT NULL,
+  KEY `FK8963AE9EDC96221` (`id_perfil`),
+  KEY `FK8963AE9C7928F3` (`id_usuario`),
+  CONSTRAINT `FK8963AE9C7928F3` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_persona`),
+  CONSTRAINT `FK8963AE9EDC96221` FOREIGN KEY (`id_perfil`) REFERENCES `perfil` (`id_perfil`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario_por_perfil`
+--
+
+INSERT INTO `usuario_por_perfil` VALUES (1,1);
+
+--
+-- Table structure for table `parametro`
+--
+
+DROP TABLE IF EXISTS `parametro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `parametro` (
+  `id_parametro` int(11) NOT NULL,
+  `activo` bit(1) DEFAULT NULL,
+  `atributo` varchar(200) DEFAULT NULL,
+  `campo` varchar(200) DEFAULT NULL,
+  `codigo` varchar(50) NOT NULL,
+  `descripcion` varchar(250) DEFAULT NULL,
+  `entidad` varchar(200) DEFAULT NULL,
+  `estado` char(1) DEFAULT NULL,
+  `fecha_actualizacion` date DEFAULT NULL,
+  `fecha_registro` datetime DEFAULT NULL,
+  `tipo_parametro` varchar(200) DEFAULT NULL,
+  `tipo_variable` varchar(200) DEFAULT NULL,
+  `valor` varchar(200) DEFAULT NULL,
+  `parametro_id_parametro` int(11) DEFAULT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_parametro`),
+  KEY `FK747EB53913571C8F` (`parametro_id_parametro`),
+  CONSTRAINT `FK747EB53913571C8F` FOREIGN KEY (`parametro_id_parametro`) REFERENCES `parametro` (`id_parametro`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `parametro`
+--
+
+INSERT INTO `parametro` VALUES (1,'',NULL,NULL,'Parametro-1353127135026-31173649','cantidadDecimales',NULL,'A','2012-11-16','2012-11-16 23:38:55','CantidadDecimales','integer','2',NULL,NULL);
+INSERT INTO `parametro` VALUES (2,'',NULL,NULL,'Parametro-1353127135342-6551274','rangoEnteroMin',NULL,'A','2012-11-16','2012-11-16 23:38:55','RangoEnteroMin','integer','1',NULL,NULL);
+INSERT INTO `parametro` VALUES (3,'',NULL,NULL,'Parametro-1353127135347-15179443','rangoEnteroMax',NULL,'A','2012-11-16','2012-11-16 23:38:55','RangoEnteroMax','integer','9',NULL,NULL);
+INSERT INTO `parametro` VALUES (4,'',NULL,NULL,'Parametro-1353127135351-6558426','valorEnteroMax',NULL,'A','2012-11-16','2012-11-16 23:38:55','ValorEnteroMax','double','2147483647',NULL,NULL);
+INSERT INTO `parametro` VALUES (5,'',NULL,NULL,'Parametro-1353127135355-1163803','valorEnteroMin',NULL,'A','2012-11-16','2012-11-16 23:38:55','ValorEnteroMin','double','-2147483648',NULL,NULL);
+INSERT INTO `parametro` VALUES (6,'',NULL,NULL,'Parametro-1353127135359-31370736','rangoDecimalMin',NULL,'A','2012-11-16','2012-11-16 23:38:55','RangoDecimalMin','double','-2147483648',NULL,NULL);
+INSERT INTO `parametro` VALUES (7,'',NULL,NULL,'Parametro-1353127135361-7179635','rangoDecimalMax',NULL,'A','2012-11-16','2012-11-16 23:38:55','RangoDecimalMax','integer','2',NULL,NULL);
+INSERT INTO `parametro` VALUES (8,'',NULL,NULL,'Parametro-1353127135363-6395644','valorDecimalMin',NULL,'A','2012-11-16','2012-11-16 23:38:55','ValorDecimalMin','integer','1',NULL,NULL);
+INSERT INTO `parametro` VALUES (9,'',NULL,NULL,'Parametro-1353127135365-16757505','valorDecimalMax',NULL,'A','2012-11-16','2012-11-16 23:38:55','ValorDecimalMax','integer','99',NULL,NULL);
+INSERT INTO `parametro` VALUES (10,'',NULL,NULL,'Parametro-1353127135367-28696941','rangoCadenaMin',NULL,'A','2012-11-16','2012-11-16 23:38:55','RangoCadenaMin','integer','4',NULL,NULL);
+INSERT INTO `parametro` VALUES (11,'',NULL,NULL,'Parametro-1353127135369-28696941','rangoCadenaMax',NULL,'A','2012-11-16','2012-11-16 23:38:55','RangoCadenaMax','integer','100',NULL,NULL);
+INSERT INTO `parametro` VALUES (12,'',NULL,NULL,'Parametro-1353127135372-25659337','valorSelectorMin',NULL,'A','2012-11-16','2012-11-16 23:38:55','ValorSelectorMin','integer','1',NULL,NULL);
+INSERT INTO `parametro` VALUES (13,'',NULL,NULL,'Parametro-1353127135374-14929701','cadenasRestringidas',NULL,'A','2012-11-16','2012-11-16 23:38:55','CadenasRestringidas',NULL,NULL,NULL,'Cadenas Restringidas');
+INSERT INTO `parametro` VALUES (14,'',NULL,NULL,'Parametro-1353127135376-3443378','cadenaRestringida01',NULL,'A','2012-11-16','2012-11-16 23:38:55','CadenasRestringidas01','string','Usuario',13,NULL);
+INSERT INTO `parametro` VALUES (15,'',NULL,NULL,'Parametro-1353127135378-7475052','cadenaRestringida02',NULL,'A','2012-11-16','2012-11-16 23:38:55','CadenasRestringidas02','string','Administrador',13,NULL);
+INSERT INTO `parametro` VALUES (16,'',NULL,NULL,'Parametro-1353127135390-7457573','cadenasRestringidasSelector',NULL,'A','2012-11-16','2012-11-16 23:38:55','CadenasRestringidasSelector',NULL,NULL,NULL,'Cadenas Restringidas Selector');
+INSERT INTO `parametro` VALUES (17,'',NULL,NULL,'Parametro-1353127135393-30915844','cadenaRestringida01',NULL,'A','2012-11-16','2012-11-16 23:38:55','cadenasRestringidasSelector01','string','Seleccione',16,NULL);
+INSERT INTO `parametro` VALUES (18,'',NULL,NULL,'Parametro-1353127135395-12225273','cadenaRestringida02',NULL,'A','2012-11-16','2012-11-16 23:38:55','cadenasRestringidasSelector02','string','Seleccion',16,NULL);
+INSERT INTO `parametro` VALUES (19,'',NULL,'clave','Parametro-1353127135399-20722591','formatoCampoClave','usuario','A','2012-11-16','2012-11-16 23:38:55','CLAVE','string','(\\d)\\w{1,10}',NULL,NULL);
+INSERT INTO `parametro` VALUES (20,'',NULL,'this.table','Parametro-1353127135402-23143936','Parametro','Parametro','1','2012-11-16','2012-11-16 23:38:55','rules',NULL,NULL,NULL,'Validador Entidad Parametro');
+INSERT INTO `parametro` VALUES (21,'','required','','Parametro-1353127135404-17163616','',NULL,'1','2012-11-16','2012-11-16 23:38:55','rules','boolean','true',NULL,NULL);
+INSERT INTO `parametro` VALUES (22,'',NULL,'entidad','Parametro-1353127135406-1458624','entidad Parametro ruls','Parametro','1','2012-11-16','2012-11-16 23:38:55','rules',NULL,NULL,20,NULL);
+INSERT INTO `parametro` VALUES (23,'',NULL,'valor','Parametro-1353127135409-20360057','valor Parametro ruls','Parametro','1','2012-11-16','2012-11-16 23:38:55','rules',NULL,NULL,20,NULL);
+
+--
+-- Table structure for table `parametro_por_parametro`
+--
+
+DROP TABLE IF EXISTS `parametro_por_parametro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `parametro_por_parametro` (
+  `parametro_id_parametro_hijo` int(11) NOT NULL,
+  `parametro_id_parametro_padre` int(11) NOT NULL,
+  `atributo` varchar(255) DEFAULT NULL,
+  `orden` int(11) DEFAULT NULL,
+  PRIMARY KEY (`parametro_id_parametro_hijo`,`parametro_id_parametro_padre`),
+  KEY `FKCE3745C74F167556` (`parametro_id_parametro_padre`),
+  KEY `FKCE3745C7FFEF939E` (`parametro_id_parametro_hijo`),
+  CONSTRAINT `FKCE3745C74F167556` FOREIGN KEY (`parametro_id_parametro_padre`) REFERENCES `parametro` (`id_parametro`),
+  CONSTRAINT `FKCE3745C7FFEF939E` FOREIGN KEY (`parametro_id_parametro_hijo`) REFERENCES `parametro` (`id_parametro`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `parametro_por_parametro`
+--
+
+INSERT INTO `parametro_por_parametro` VALUES (10,22,'minlength',2);
+INSERT INTO `parametro_por_parametro` VALUES (21,22,'',1);
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuario` (
+  `clave` varchar(50) NOT NULL,
+  `codigo` varchar(50) NOT NULL,
+  `estado_civil` int(11) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `numero_documento` varchar(12) NOT NULL,
+  `ruc` varchar(11) DEFAULT NULL,
+  `tipo_documento` int(11) NOT NULL,
+  `id_persona` int(11) NOT NULL,
+  PRIMARY KEY (`id_persona`),
+  KEY `FKF814F32ECB6EE1EF` (`id_persona`),
+  CONSTRAINT `FKF814F32ECB6EE1EF` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+INSERT INTO `usuario` VALUES ('123456','Usuario-1352599089705-48316',1,'admin1','123456789',NULL,1,1);
+
+--
+-- Table structure for table `perfil`
+--
+
+DROP TABLE IF EXISTS `perfil`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `perfil` (
+  `id_perfil` int(11) NOT NULL,
+  `activo` bit(1) NOT NULL,
+  `codigo` varchar(50) NOT NULL,
+  `descripcion` varchar(250) NOT NULL,
+  `estado` char(1) NOT NULL,
+  `fecha_actualizacion` date DEFAULT NULL,
+  `fecha_creacion` datetime DEFAULT NULL,
+  `nombre` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_perfil`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `perfil`
+--
+
+INSERT INTO `perfil` VALUES (1,'','Perfil-1352599089692-6606155','perfil del administrador','A','2012-11-10','2012-11-10 20:58:09','ADMINISTRADOR');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+

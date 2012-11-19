@@ -146,6 +146,19 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		l.add(camposReglas);
 		return l;
 	}
+
+	public  List<Map<String,Object>> obtenerParametros() {
+		List<Parametro> l =  parametroDAO.obtenerParametros();	
+		 List<Map<String,Object>> lstObj = new ArrayList<Map<String,Object>>();
+		 for (int i = 0; i < l.size() ; i++) {
+			 Map<String, Object> obj = new HashMap<String, Object>();
+			 Parametro p = l.get(i);
+			 obj.put("id", p.getId());
+			 obj.put("nombre", p.getNombre());
+			 lstObj.add(obj);
+		}
+		return lstObj;
+	}
 	
 }
 

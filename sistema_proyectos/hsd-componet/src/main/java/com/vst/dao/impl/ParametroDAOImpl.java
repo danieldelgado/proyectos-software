@@ -58,4 +58,18 @@ public class ParametroDAOImpl extends DAO<Parametro> implements ParametroDAO {
 		return p;
 	}
 	
+	public List<Parametro> obtenerParametros() {
+		sqlQuery = "select new Parametro(p.id, p.nombre)  from Parametro p " +
+				" where " +
+				" p.activo = true and " +
+				" p.tipovariable is not null and " +
+				" p.tipo is not null and " +
+				" p.valor is not null  and  " +
+				" p.parametro.id is null ";		
+		
+		q=em.createQuery(sqlQuery);	
+		List<Parametro> p = q.getResultList();	
+		return p;
+	}
+	
 }

@@ -16,4 +16,6 @@ public interface ParametroDAO extends IDAO<Parametro> {
 
 	List<Parametro> obtenerParametrosHijos(Integer id);
 
+	List<Parametro> obtenerParametros();
+
 }

@@ -8,7 +8,7 @@
 <div id="toolbar" class="ui-widget-header ui-corner-all">
 <div>
 <span>
-<button class="clNuevo"> Nuevo </button>
+<button id="btnNuevo" class="clNuevo"> Nuevo </button>
 <input type="hidden" class="codigo" value="1526" >
 <input type="hidden" class="icono" value="" >
 <input type="hidden" class="onComplete" value="" >

@@ -3,13 +3,21 @@ var form = null;
 var idcontent = "";
 var entidad = "Parametro";
 $(function() {
-	formulario = $(".formulario "+idcontent);
+	
+	entidad = $("#entidad").val();	
+
+	mensaje_consola(entidad);
+	
+	mensaje_consola(idcontent);
+	
+	formulario = $(".formulario "+idcontent);	
 		
 	cargarValidateForm();
 	
-	$(".clGuardar").button().click(function() {
+/*	$(".clGuardar").button().click(function() {
 		formulario.submit();
 	});
+*/
 	
 });
 
@@ -23,7 +31,7 @@ function cargarValidateForm() {
 		        url: context+"valacion/parametros/"+entidad,
 		        async:  false,
 		        dataType :"json",
-		        success:  function (resp) {
+		        success:  function (resp) {		        	
 		        	data = resp;
 		        	$.each(data, function(index, value) { 
 						if(value!=null){										
@@ -45,22 +53,24 @@ function cargarValidateForm() {
 							});				
 						}				
 					});	
-		    		mensaje_consola("validateParam.rules");
-		    		mensaje_consola(validateParam.rules);
 		        }
 		    });
-		mensaje_consola(validateParam.rules);
-		formulario.validate({
+
+		mensaje_consola("formulario validate id");
+		mensaje_consola(formulario.attr("id"));
+		mensaje_consola("formulario validate class");
+		mensaje_consola(formulario.attr("class"));
+		
+		var vlt = formulario.validate({
 					debug : true,
 					rules :	
-						validateParam.rules,						
+						validateParam.rules,
 					messages :
 						validateParam.messages,
 					submitHandler : function(form) {
 						mensaje_consola('El formulario ha sido validado correctamente!');
 					}
-				});
-
+				});		
 	}
 
 }
