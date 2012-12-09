@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.vst.dominio.Menu;
 import com.vst.dominio.Usuario;
 import com.vst.service.LoginService;
-import com.vst.util.Constantes;
 import com.vst.util.Util;
 
 @Controller
@@ -30,25 +29,22 @@ private static final Logger log = LoggerFactory.getLogger(LoginController.class)
 	
 	@RequestMapping(method = RequestMethod.GET)	
 	public String get(HttpServletRequest request,Model model) {
+		model.addAttribute("perfiles", loginService.obtenerPerfiles());		
 		return "login/login";
 	}
 	
 	@RequestMapping( value="iniciarSession", method = RequestMethod.POST)	
-	public String iniciarSession(String usuario,String clave,Integer perfil,HttpServletRequest request ,HttpSession session) {
+	public String iniciarSession(String usuario,String clave,Integer perfil,HttpServletRequest request ,HttpSession session,Model model) {
 		Usuario u = loginService.iniciarSession(usuario, clave, perfil, session, request);
 		if(Util.isNotNull(u)){
-			
-			List<Menu> lstMenus = loginService.obtenerMenusPorPerfil(u);
-			
-			
 			return "redirect:/principal";		
 		}
 		return "redirect:/login";		
 	}
 	
-	@RequestMapping(value="principal",method = RequestMethod.GET)	
-	public String principal(HttpServletRequest request,Model model) {	
-		return "principal";
-	}
+//	@RequestMapping(value="principal",method = RequestMethod.GET)	
+//	public String principal(HttpServletRequest request,Model model) {	
+//		return "principal";
+//	}
 	
 }

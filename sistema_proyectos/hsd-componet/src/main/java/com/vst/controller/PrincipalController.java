@@ -1,5 +1,6 @@
 package com.vst.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vst.dominio.Lista;
+import com.vst.dominio.Menu;
 import com.vst.dominio.Usuario;
 import com.vst.service.LoginService;
 import com.vst.service.PrincipalService;
@@ -41,10 +43,12 @@ public class PrincipalController {
 		log.info("[ metodo : get - ingreso a principal - buscar usuario en session]");	
 		int i = loginService.buscarUsuarioLogueado(session);
 		if(i == Constantes.USUARIO_DESLOGUEADO){
-			log.info("[ metodo : get - Usuario no esta en session redirec a login]");	
 			return "redirect:/login";			
-		}else		
+		}else{			
+			List<Menu> lstMenus = loginService.obtenerMenusPorPerfil((Usuario)session.getAttribute(Constantes.SESION_USUARIO));
+			model.addAttribute("lstMenus", lstMenus);		
 			return "principal";
+		}			
 	}	
 
 	@RequestMapping( value="obtenerLista/{entidad}" , method = RequestMethod.GET)	
