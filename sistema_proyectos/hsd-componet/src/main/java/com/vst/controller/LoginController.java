@@ -40,5 +40,9 @@ private static final Logger log = LoggerFactory.getLogger(LoginController.class)
 		return "redirect:/login";		
 	}
 	
+	@RequestMapping(value="principal",method = RequestMethod.GET)	
+	public String principal(HttpServletRequest request,Model model) {	
+		return "principal";
+	}
 	
 }

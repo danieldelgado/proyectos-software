@@ -15,9 +15,8 @@ public class ParametroPorParametro implements Serializable {
 
 	@EmbeddedId
 	private ParametroPorParametroPK id;
-
-	private String atributo;
-
+	
+	@Column(name="orden" , nullable=false )
 	private Integer orden;
 
 	//bi-directional many-to-one association to Parametro
@@ -29,10 +28,6 @@ public class ParametroPorParametro implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="parametro_id_parametro_hijo",insertable=false,updatable=false)
 	private Parametro parametroHijo;
-
-	
-	
-	
 	
     public ParametroPorParametro(Integer idpadre,Integer idhijo) {
 		id = new ParametroPorParametroPK(idpadre,idhijo);
@@ -49,16 +44,6 @@ public class ParametroPorParametro implements Serializable {
 		this.id = id;
 	}
 	
-	
-	
-	public String getAtributo() {
-		return atributo;
-	}
-
-	public void setAtributo(String atributo) {
-		this.atributo = atributo;
-	}
-
 	public Parametro getParametroPadre() {
 		return parametroPadre;
 	}

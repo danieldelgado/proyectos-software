@@ -68,19 +68,4 @@ public class PrincipalController {
 		return null;
 	}
 
-	/*@RequestMapping(value="/obtenerCuentaDataGrid/{entidad}")
-	public @ResponseBody
-	Integer obtenerCuentaDataGrid(@PathVariable String entidad,HttpSession sesion){
-		Usuario usuario=(Usuario) sesion.getAttribute(Constantes.SESION_USUARIO);
-		if(usuario != null){
-			Integer cuenta=principalService.obtenerCuentaData(usuario,entidad);
-			return cuenta;
-		}
-		return 0;
-	}
-	//cargar pagina externa
-	
-	*/
-	
-	
 }

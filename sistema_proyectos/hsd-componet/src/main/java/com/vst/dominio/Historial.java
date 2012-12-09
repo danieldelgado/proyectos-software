@@ -51,6 +51,10 @@ public class Historial implements Entidad , Serializable {
 	@Column(name="fecha_registro")
 	private Date fechaRegistro;
 	
+	@Column(name="persona_id")
+	private Integer persona_id;
+
+	
     public Historial() {
     }
     
@@ -127,6 +131,14 @@ public class Historial implements Entidad , Serializable {
 	}
 
 
+
+	public Integer getPersona_id() {
+		return persona_id;
+	}
+
+	public void setPersona_id(Integer persona_id) {
+		this.persona_id = persona_id;
+	}
 
 	public String getLabel() {
 		// TODO Auto-generated method stub

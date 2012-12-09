@@ -1,23 +1,12 @@
 package com.vst.controller.mantenimiento;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.vst.dominio.Parametro;
-import com.vst.dominio.ParametroPorParametro;
 import com.vst.service.mantenimiento.MantenimientoParametroService;
 
 
@@ -36,65 +25,6 @@ public class MantenimientoParametroController {
 		return "mantenimiento/parametros/mantenimientoParametro";
 	}	
 
-	@RequestMapping( value="mantenimiento/parametro/nuevo" , method = RequestMethod.GET)	
-	public String irParametroNuevo(Model model){
-		log.info("[ metodo : get - ingreso a irPaginaNuevo ]");	
-		List<Parametro> lstEstados = mantenimientoParametroService.obtenerEstados();
-		List<Parametro> lstParametrosPadre = mantenimientoParametroService.obtenerParametrosPadre();
-		model.addAttribute("lstEstados", lstEstados);
-		model.addAttribute("lstParametrosPadre", lstParametrosPadre);		
-		return "mantenimiento/parametros/parametro";
-	}
-	
-	@RequestMapping( value="mantenimiento/parametro/editar/{param}" , method = RequestMethod.GET)	
-	public String irParametroEditar(Model model,@PathVariable("param") int param){
-		Parametro parametro  = mantenimientoParametroService.obtenerParametro(param);
-		System.out.println(parametro);
-		return "mantenimiento/parametros/parametro";
-	}
-
-	@RequestMapping( value="mantenimiento/parametro/guardar" , method = RequestMethod.POST)	
-	public @ResponseBody int guardarParametro(Model model,Parametro parametro){
-		int r = mantenimientoParametroService.guardarParametro(parametro);		
-		return r;
-	}
-
-	@RequestMapping( value="valacion/parametros/{param}" , method = RequestMethod.GET)		
-	public @ResponseBody List obtenerParametrosRulesEntidad(@PathVariable("param") String param){
-		List<Map<String, Object>> l = new ArrayList<Map<String, Object>>();
-		Map<String, Object> valFomulario = new HashMap<String, Object>();			
-		valFomulario.put("rules",   mantenimientoParametroService.obtenerParametrosRulesEntidad(param) );		
-		valFomulario.put("messages", null);
-		System.out.println(valFomulario);
-		l.add(valFomulario);	
-		return l;
-		
-	}
-	
-	@RequestMapping( value="mantenimiento/parametro/parametrosHijos" , method = RequestMethod.GET)	
-	public String dialogParametrosAsignar(@RequestParam(required=false) Integer idparametro){
-		
-		System.out.println(idparametro);
-		
-		return "mantenimiento/parametros/parametroPorParametro";
-	}
-
-	@RequestMapping( value="mantenimiento/parametro/obtenerListaParametros" , method = RequestMethod.GET)		
-	public @ResponseBody List<Map<String,Object>> obtenerListaParametros(){
-		 List<Map<String,Object>> lstParametros = mantenimientoParametroService.obtenerParametros();
-		return lstParametros;
-	}
-	
-	
-	@RequestMapping( value="mantenimiento/parametro/ParametroPorParametro/guardar" , method = RequestMethod.GET)		
-	public @ResponseBody int guardarParametroPorParametro(ParametroPorParametro parametroPorParametro){
-		System.out.println("parametroPorParametro");
-		System.out.println(parametroPorParametro);
-	//	int r = mantenimientoParametroService.guardarParametroPorParametro(parametroPorParametro);
-		return 0;
-	}
-	
-	
 	
 }
 
