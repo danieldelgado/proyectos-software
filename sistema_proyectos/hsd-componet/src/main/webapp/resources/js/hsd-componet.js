@@ -68,7 +68,7 @@ function init() {
 		.sortable({ axis: 'x', zIndex: 2 });
 	
 
-	setTimeout(myLayout.resizeall, 1000);
+	setTimeout("myLayout.resizeall", 1000);
 	
 
 }

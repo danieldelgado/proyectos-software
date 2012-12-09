@@ -25,28 +25,28 @@ public class ServicioWebValidacion {
 	public static Validador obtenerValidadorServiceLogin( String usuario , String clave , Integer perfil ){	
 		Validador v=null;		
 		if(isValidar){			
-			List<CamposValidar> lstCampos = new ArrayList<CamposValidar>();
-			CamposValidar cmp1 = new CamposValidar();
-			cmp1.setCampo(Constantes.CAMPO_LOGIN_USUARIO);
-			cmp1.setValor(usuario);
-			lstCampos.add(cmp1);
-			CamposValidar cmp2 = new CamposValidar();
-			cmp2.setEntidad("usuario");
-			cmp2.setCampo(Constantes.CAMPO_CLAVE);
-			cmp2.setTipo(Constantes.CAMPO_CLAVE);
-			cmp2.setValor(clave);
-			lstCampos.add(cmp2);
-			CamposValidar cmp3 = new CamposValidar();
-			cmp3.setCampo(Constantes.CAMPO_SELECTOR);
-			cmp3.setValor(String.valueOf(perfil));
-			lstCampos.add(cmp3);	
-			try {				
-				v = validarProxy.validarParametros(lstCampos.toArray(new CamposValidar[lstCampos.size()]));
+//			List<CamposValidar> lstCampos = new ArrayList<CamposValidar>();
+//			CamposValidar cmp1 = new CamposValidar();
+//			cmp1.setCampo(Constantes.CAMPO_LOGIN_USUARIO);
+//			cmp1.setValor(usuario);
+//			lstCampos.add(cmp1);
+//			CamposValidar cmp2 = new CamposValidar();
+//			cmp2.setEntidad("usuario");
+//			cmp2.setCampo(Constantes.CAMPO_CLAVE);
+//			cmp2.setTipo(Constantes.CAMPO_CLAVE);
+//			cmp2.setValor(clave);
+//			lstCampos.add(cmp2);
+//			CamposValidar cmp3 = new CamposValidar();
+//			cmp3.setCampo(Constantes.CAMPO_SELECTOR);
+//			cmp3.setValor(String.valueOf(perfil));
+//			lstCampos.add(cmp3);	
+//			try {				
+//				v = validarProxy.validarParametros(lstCampos.toArray(new CamposValidar[lstCampos.size()]));
 				log.info("[ metodo:obtenerValidadorServiceLogin - respuesta de servicio web validar : " + Util.getJson(v) + " ]");
-				return v;
-			} catch (RemoteException e) {		
-				e.printStackTrace();
-			}				
+//				return v;
+//			} catch (RemoteException e) {		
+//				e.printStackTrace();
+//			}				
 		}else{			
 			v = new Validador();
 			v.setRespuesta(1);

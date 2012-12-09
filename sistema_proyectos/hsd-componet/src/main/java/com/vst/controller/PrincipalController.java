@@ -49,22 +49,19 @@ public class PrincipalController {
 
 	@RequestMapping( value="obtenerLista/{entidad}" , method = RequestMethod.GET)	
 	public @ResponseBody Lista obtenerData(@PathVariable String entidad,HttpSession sesion){
-		log.info("[ metodo : obtenerParametros - obtener lista de parametros ]");	
-		Lista lstData = principalService.obtenerListaEntidad(entidad,sesion);			
-		log.info("[ metodo : lstData : "+ Util.getJson(lstData)+" ]");	
-		return lstData;
+		
+		return null;
 	}
 	
 	@RequestMapping(value="/obtenerDataLista/{entidad}")
-	public @ResponseBody
-	Map<String,Object> obtenerDataGrid(@PathVariable String entidad,Model model,HttpSession sesion,@RequestParam(required=false) String sidx,@RequestParam(required=false) String sord,@RequestParam(required=false) int page,@RequestParam(required=false) int rows,@RequestParam(required=false) boolean _search,@RequestParam(required=false) String searchField,@RequestParam(required=false) String searchOper,@RequestParam(required=false) String searchString){
-		log.info(" metodo : obtenerDataGrid -  obtener los datos del grid :"+entidad);
-		Usuario usuario=(Usuario) sesion.getAttribute(Constantes.SESION_USUARIO);
-		if(usuario != null){
-			Map<String,Object> tmp=principalService.obtenerData(usuario,entidad,sidx,sord,page,rows,_search,searchField,searchOper,searchString);
-			model.addAttribute("size",tmp.size());			
-			return tmp;
-		}
+	public @ResponseBody Map<String,Object> obtenerDataGrid(@PathVariable String entidad,Model model,HttpSession sesion,@RequestParam(required=false) String sidx,@RequestParam(required=false) String sord,@RequestParam(required=false) int page,@RequestParam(required=false) int rows,@RequestParam(required=false) boolean _search,@RequestParam(required=false) String searchField,@RequestParam(required=false) String searchOper,@RequestParam(required=false) String searchString){
+//		log.info(" metodo : obtenerDataGrid -  obtener los datos del grid :"+entidad);
+//		Usuario usuario=(Usuario) sesion.getAttribute(Constantes.SESION_USUARIO);
+//		if(usuario != null){
+//			Map<String,Object> tmp=principalService.obtenerData(usuario,entidad,sidx,sord,page,rows,_search,searchField,searchOper,searchString);
+//			model.addAttribute("size",tmp.size());			
+//			return tmp;
+//		}
 		return null;
 	}
 

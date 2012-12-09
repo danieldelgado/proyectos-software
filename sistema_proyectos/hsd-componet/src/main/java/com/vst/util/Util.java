@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.vst.dominio.Parametro;
+import com.vst.dominio.Usuario;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class Util {
@@ -86,6 +87,13 @@ public class Util {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	public static boolean isNotNull(Usuario u) {
+		if(u!=null){
+			return true;
+		}
+		return false;
 	}
 	
 	/*

@@ -60,18 +60,18 @@ public class ParametroPorParametroDAOImpl implements ParametroPorParametroDAO {
 
 */
 
-	public List<ParametroPorParametro> obtenerParametrosPorParametrosPorParametro(List<Parametro> obtenerParametrosHijos) {
-		sqlQuery=" select pp from ParametroPorParametro pp where pp.id.parametroIdParametroPadre in ( :idparametro )";
-		q=em.createQuery(sqlQuery);		
-		q.setParameter("idparametro", Util.generateCollection("id", obtenerParametrosHijos));	
-		return q.getResultList();
-	}
-
-	public List<ParametroPorParametro> obtenerParametroPorParametroPorParametroHijo(Parametro pH) {		
-		sqlQuery=" select pp from ParametroPorParametro pp where pp.id.parametroIdParametroPadre = :idparametro order by pp.orden";
-		q=em.createQuery(sqlQuery);		
-		q.setParameter("idparametro", pH.getId());	
-		return q.getResultList();
-	}
+//	public List<ParametroPorParametro> obtenerParametrosPorParametrosPorParametro(List<Parametro> obtenerParametrosHijos) {
+//		sqlQuery=" select pp from ParametroPorParametro pp where pp.id.parametroIdParametroPadre in ( :idparametro )";
+//		q=em.createQuery(sqlQuery);		
+//		q.setParameter("idparametro", Util.generateCollection("id", obtenerParametrosHijos));	
+//		return q.getResultList();
+//	}
+//
+//	public List<ParametroPorParametro> obtenerParametroPorParametroPorParametroHijo(Parametro pH) {		
+//		sqlQuery=" select pp from ParametroPorParametro pp where pp.id.parametroIdParametroPadre = :idparametro order by pp.orden";
+//		q=em.createQuery(sqlQuery);		
+//		q.setParameter("idparametro", pH.getId());	
+//		return q.getResultList();
+//	}
 	
 }

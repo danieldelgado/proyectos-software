@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.vst.dao.PerfilDAO;
 import com.vst.dao.UsuarioDAO;
+import com.vst.dominio.Menu;
 import com.vst.dominio.Perfil;
 import com.vst.dominio.Usuario;
 import com.vst.service.LoginService;
@@ -38,9 +39,7 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private RegistrarHistorialService historialService;
 
-	public int iniciarSession(String usuario, String clave, Integer perfil, HttpSession session, HttpServletRequest request) {
-		log.info("[ metodo:iniciarSession - usuario:" + usuario + " clave:" + clave + " perfil:" + perfil + " ip:" + request.getRemoteAddr() + " ]");
-		historialService.registrarHistorial("LoginServiceImpl", "buscarUsuario", "usuario:" + usuario + " clave:" + clave + " perfil:" + perfil, request);
+	public Usuario iniciarSession(String usuario, String clave, Integer perfil, HttpSession session, HttpServletRequest request) {
 		Validador v=ServicioWebValidacion.obtenerValidadorServiceLogin(usuario, clave, perfil);
 		if(v!=null){
 			if (v.getRespuesta() == Constantes.RESPUESTA_CORRECTA) {
@@ -51,21 +50,18 @@ public class LoginServiceImpl implements LoginService {
 					if (u.getClave().equals(clave)) {
 						p = perfilDAO.get(perfil);
 						u.setPerfilLogueado(p);
-						historialService.registrarHistorial("Usuario y perfil logueado ", u, p);
 						session.setAttribute(Constantes.SESION_USUARIO, u);
-						return Constantes.USUARIO_LOGEADO;
+						return u;
 					} else {
-						historialService.registrarHistorial("Usuario y perfil incorrectos ", u, p);
 						session.removeAttribute(Constantes.SESION_USUARIO);
 					}
-				} else {
-					historialService.registrarHistorial("Usuario y perfil no encontrados ", u, p);
+				} else {					
 					session.removeAttribute(Constantes.SESION_USUARIO);
 				}
 			}
-			return Constantes.ERROR_SERVICIO_WEB;
+			return null;
 		}		
-		return Constantes.ERROR_AL_LOGUEARSE;
+		return null;
 	}
 
 	//@Transactional
@@ -117,6 +113,33 @@ public class LoginServiceImpl implements LoginService {
 
 	public List<Perfil> obtenerPerfiles() {
 		return perfilDAO.obtenerTodosActivos();
+	}
+
+	public List<Menu> obtenerMenusPorPerfil(Usuario u) {
+		List<Menu> ms=new ArrayList<Menu>();
+		Menu m = new Menu();
+		m.setId(1);
+		m.setNombre("Mantenimiento");
+		m.setUrl(null);
+		m.setTipo("interno");
+		m.setOrden(0);
+		m.setFunction(null);
+		ms.add(m);
+		
+		Menu mm = new Menu();
+		mm.setId(1);
+		mm.setNombre("Parametros");
+		mm.setUrl("parametros");
+		mm.setTipo("interno");
+		mm.setOrden(0);
+		mm.setFunction(null);
+		mm.setMenu(m);
+		
+		
+		
+		
+		
+		return null;
 	}
 
 }

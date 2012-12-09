@@ -29,8 +29,8 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 	}
 
 	public List<Parametro> obtenerParametrosPadre() {
-		List<Parametro> l =  parametroDAO.obtenerParametrosPadre();	
-		return l;
+		
+		return null;
 	}
 	
 

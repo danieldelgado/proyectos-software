@@ -1,5 +1,7 @@
 package com.vst.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.vst.dominio.Menu;
+import com.vst.dominio.Usuario;
 import com.vst.service.LoginService;
 import com.vst.util.Constantes;
+import com.vst.util.Util;
 
 @Controller
 @RequestMapping("login")
@@ -25,16 +30,17 @@ private static final Logger log = LoggerFactory.getLogger(LoginController.class)
 	
 	@RequestMapping(method = RequestMethod.GET)	
 	public String get(HttpServletRequest request,Model model) {
-		log.info("[ metodo : get - ingreso a login ]");			
-		model.addAttribute("perfiles", loginService.obtenerPerfiles());	
 		return "login/login";
 	}
 	
 	@RequestMapping( value="iniciarSession", method = RequestMethod.POST)	
 	public String iniciarSession(String usuario,String clave,Integer perfil,HttpServletRequest request ,HttpSession session) {
-		log.info("[  metodo:iniciarSession - usuario:"+usuario+" clave:"+clave+" perfil:"+perfil+" - validar usuario ingresado ]");
-		int l = loginService.iniciarSession(usuario, clave, perfil, session, request);
-		if(l==Constantes.USUARIO_LOGEADO){
+		Usuario u = loginService.iniciarSession(usuario, clave, perfil, session, request);
+		if(Util.isNotNull(u)){
+			
+			List<Menu> lstMenus = loginService.obtenerMenusPorPerfil(u);
+			
+			
 			return "redirect:/principal";		
 		}
 		return "redirect:/login";		

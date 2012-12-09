@@ -11,8 +11,8 @@ public interface ParametroPorParametroDAO {
 
 	/*List<ParametroPorParametro> obtenerParametrosPorParametrosPorParametro(Parametro entidadParametrorules);*/
 
-	List<ParametroPorParametro> obtenerParametrosPorParametrosPorParametro(List<Parametro> obtenerParametrosHijos);
-
-	List<ParametroPorParametro> obtenerParametroPorParametroPorParametroHijo(Parametro pH);
+//	List<ParametroPorParametro> obtenerParametrosPorParametrosPorParametro(List<Parametro> obtenerParametrosHijos);
+//
+//	List<ParametroPorParametro> obtenerParametroPorParametroPorParametroHijo(Parametro pH);
 
 }
