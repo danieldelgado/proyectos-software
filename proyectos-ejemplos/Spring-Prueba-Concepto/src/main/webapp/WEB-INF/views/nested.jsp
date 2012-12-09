@@ -1,150 +1,314 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head> 
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
+<html>
+<head lang="es">
 
-	<title>Nested Layouts</title> 
+<title>Simple Layout Demo</title>
 
-	<script type="text/javascript" src="jquery.js"></script> 
-	<script type="text/javascript" src="jquery.layout.js"></script> 
-	<script type="text/javascript" src="jquery.ui.all.js"></script> 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.8.2.js" ></c:url>"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-ui-1.9.1.custom.js" ></c:url>"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-ui-1.9.1.custom.min.js" ></c:url>"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery.layout.js" ></c:url>"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery.layout.min.js" ></c:url>"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery.layout.resize.js" ></c:url>"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery.layout.resizetab.js" ></c:url>"></script>
 
-	<script> 
+<script type="text/javascript">
+	var myLayout;
+	var uilayoutwest;
+	$(document).ready(function() {
+		uilayoutwest = $(".ui-layout-west");
+		pnlMenu = $("#pnlMenu");
 
-	var outerLayout, middleLayout, innerLayout; 
+		myLayout = $('body').layout({
+			north__size : 40,
+			west__size : 200,
+			south__size : 40,
+			west__onresize : $.layout.callbacks.resizePaneaccordions,
+			north__fxName : "drop",
+			north__fxSettings_open : {
+				duration : 1500
+			},
+			west__fxName : "drop",
+			west__fxSettings_open : {
+				duration : 1500
+			},
+			south__fxName : "drop",
+			south__fxSettings_open : {
+				duration : 1500
+			},
+			center : {
+				onresize : function() {
+				}
+			}
+		});
 
-	$(document).ready(function () { 
+		myLayout.options.north.minSize = 40;
+		myLayout.options.north.maxSize = 80;
+		myLayout.options.west.minSize = 200;
+		myLayout.options.west.maxSize = 250;
+		myLayout.options.south.minSize = 40;
+		myLayout.options.south.maxSize = 80;
 
-		outerLayout = $('body').layout({ 
-			center__paneSelector:	".outer-center" 
-		,	west__paneSelector:		".outer-west" 
-		,	east__paneSelector:		".outer-east" 
-		,	west__size:				125 
-		,	east__size:				125 
-		,	spacing_open:			8 // ALL panes
-		,	spacing_closed:			12 // ALL panes
-		,	north__spacing_open:	0
-		,	south__spacing_open:	0
-		,	center__onresize:		"middleLayout.resizeAll" 
-		}); 
+		var icons = {
+			header : "ui-icon-circle-arrow-e",
+			activeHeader : "ui-icon-circle-arrow-s"
+		};
 
-		middleLayout = $('div.outer-center').layout({ 
-			center__paneSelector:	".middle-center" 
-		,	west__paneSelector:		".middle-west" 
-		,	east__paneSelector:		".middle-east" 
-		,	west__size:				100 
-		,	east__size:				100 
-		,	spacing_open:			8  // ALL panes
-		,	spacing_closed:			12 // ALL panes
-		,	center__onresize:		"innerLayout.resizeAll" 
-		}); 
+		$("#accordion-west").accordion({
+			icons : icons,
+			heightStyle : "fill",
+			fillSpace : true
+		});
 
-		innerLayout = $('div.middle-center').layout({ 
-			center__paneSelector:	".inner-center" 
-		,	west__paneSelector:		".inner-west" 
-		,	east__paneSelector:		".inner-east" 
-		,	west__size:				75 
-		,	east__size:				75 
-		,	spacing_open:			8  // ALL panes
-		,	spacing_closed:			8  // ALL panes
-		,	west__spacing_closed:	12
-		,	east__spacing_closed:	12
-		}); 
+		$(".ui-layout-center").tabs({
+			collapsible: true
+		})
+			.find(".ui-tabs-nav")
+			.sortable({ axis: 'x', zIndex: 2 });
+		
+ 
+		setTimeout(myLayout.resizeall, 1000);
 
-	}); 
+	});
+</script>
 
 
-	</script> 
+<style type="text/css">
+.ui-layout-pane {
+	background: #FFF;
+	border: 1px solid #BBB;
+}
 
-	<style type="text/css"> 
+.ui-layout-center {
+	overflow: auto;
+}
 
-	.ui-layout-pane { /* all 'panes' */ 
-		padding: 10px; 
-		background: #FFF; 
-		border-top: 1px solid #BBB;
-		border-bottom: 1px solid #BBB;
-		}
-		.ui-layout-pane-north ,
-		.ui-layout-pane-south {
-			border: 1px solid #BBB;
-		} 
-		.ui-layout-pane-west {
-			border-left: 1px solid #BBB;
-		} 
-		.ui-layout-pane-east {
-			border-right: 1px solid #BBB;
-		} 
-		.ui-layout-pane-center {
-			border-left: 0;
-			border-right: 0;
-			} 
-			.inner-center {
-				border: 1px solid #BBB;
-			} 
+.ui-layout-resizer {
+	background: #DDD;
+}
 
-		.outer-west ,
-		.outer-east {
-			background-color: #EEE;
-		}
-		.middle-west ,
-		.middle-east {
-			background-color: #F8F8F8;
-		}
+.ui-layout-toggler {
+	background: #aaa;
+}
 
-	.ui-layout-resizer { /* all 'resizer-bars' */ 
-		background: #DDD; 
-		}
-		.ui-layout-resizer:hover { /* all 'resizer-bars' */ 
-			background: #FED; 
-		}
-		.ui-layout-resizer-west {
-			border-left: 1px solid #BBB;
-		}
-		.ui-layout-resizer-east {
-			border-right: 1px solid #BBB;
-		}
+</style>
 
-	.ui-layout-toggler { /* all 'toggler-buttons' */ 
-		background: #AAA; 
-		} 
-		.ui-layout-toggler:hover { /* all 'toggler-buttons' */ 
-			background: #FC3; 
-		} 
+</head>
+<body>
 
-	.outer-center ,
-	.middle-center {
-		/* center pane that are 'containers' for a nested layout */ 
-		padding: 0; 
-		border: 0; 
-	} 
+	<div class="ui-layout-north"></div>
 
-	</style> 
+	<div class="ui-layout-west" style="font-size: 10px;">
 
-</head> 
-<body> 
+		<div id="accordion-west">
 
-<div class="outer-center">
+			<h3>
+				<a href="#">Section 1</a>
+			</h3>
+			<div>
+				<b>accordion inside a layout-pane</b>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum neque a
+					velit laoreet dapibus. Etiam eleifend tempus pharetra.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+				<p>.</p>
+			</div>
 
-	<div class="middle-center">
+			<h3>
+				<a href="#">Section 2</a>
+			</h3>
+			<div>
+				<p style="font-weight: bold;">Sed Non Urna</p>
+				<p>Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor
+					at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo.</p>
+				<p>Vivamus non quam. In suscipit faucibus urna.</p>
+			</div>
 
-		<div class="inner-center">Inner Center</div> 
-		<div class="inner-west">Inner West</div> 
-		<div class="inner-east">Inner East</div>
-		<div class="ui-layout-north">Inner North</div> 
-		<div class="ui-layout-south">Inner South</div> 
+			<h3>
+				<a href="#">Section 3</a>
+			</h3>
+			<div>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus
+				pellentesque purus in massa. aenean in pede.</div>
 
-	</div> 
-	<div class="middle-west">Middle West</div> 
-	<div class="middle-east">Middle East</div> 
+			<h3>
+				<a href="#">Section 4</a>
+			</h3>
+			<div>
+				<p>Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+					ac turpis egestas.</p>
+				<p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+					aenean lacinia mauris vel est.</p>
+				<p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent
+					taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+			</div>
 
-</div> 
+		</div>
 
-<div class="outer-west">Outer West</div> 
-<div class="outer-east">Outer East</div> 
+	</div>
 
-<div class="ui-layout-north">Outer North</div> 
-<div class="ui-layout-south">Outer South</div> 
 
-</body> 
-</html> 
+	<div class="ui-layout-south"></div>
 
+	<div class="ui-layout-center" style="font-size: 10px;">
+			<ul>
+				<li><a href="#tabs-center-1">Nunc tincidunt</a></li>
+				<li><a href="#tabs-center-2">Proin dolor</a></li>
+				<li><a href="#tabs-center-3">Proin dolor</a></li>
+				<li><a href="#tabs-center-4">Proin dolor</a></li>
+				<li><a href="#tabs-center-5">Proin dolor</a></li>
+				<li><a href="#tabs-center-6">Proin dolor</a></li>
+				<li><a href="#tabs-center-7">Proin dolor</a></li>
+				<li><a href="#tabs-center-8">Proin dolor</a></li>
+				<li><a href="#tabs-center-9">Proin dolor</a></li>
+				<li><a href="#tabs-center-10">Proin dolor</a></li>
+			</ul>
+			<!-- add wrapper that Layout will auto-size to 'fill space' -->
+			
+				<div id="tabs-center-1">
+					<P>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. aliquam vulputate,
+						pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum
+						non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+						himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus
+						hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a,
+						lacus.</P>
+					<P>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac
+						lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit.
+						Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id
+						euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut
+						sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. aenean vehicula
+						velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus.
+						Vivamus a libero vitae lectus hendrerit hendrerit.</P>
+				</div>
+				<div id="tabs-center-2">
+					<P>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra
+						massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus
+						malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. aenean aliquet fringilla
+						sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi
+						adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. aenean vel metus. Ut
+						posuere viverra nulla. aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus
+						pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris
+						consectetur tortor et purus.</P>
+				</div>
+				<div id="tabs-center-3">
+					<P>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra
+						massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus
+						malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. aenean aliquet fringilla
+						sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi
+						adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. aenean vel metus. Ut
+						posuere viverra nulla. aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus
+						pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris
+						consectetur tortor et purus.</P>
+				</div>
+			
+				<div id="tabs-center-4">
+					<P>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra
+						massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus
+						malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. aenean aliquet fringilla
+						sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi
+						adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. aenean vel metus. Ut
+						posuere viverra nulla. aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus
+						pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris
+						consectetur tortor et purus.</P>
+				</div>
+				<div id="tabs-center-5">
+					<P>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra
+						massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus
+						malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. aenean aliquet fringilla
+						sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi
+						adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. aenean vel metus. Ut
+						posuere viverra nulla. aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus
+						pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris
+						consectetur tortor et purus.</P>
+				</div>
+				<div id="tabs-center-6">
+					<P>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra
+						massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus
+						malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. aenean aliquet fringilla
+						sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi
+						adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. aenean vel metus. Ut
+						posuere viverra nulla. aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus
+						pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris
+						consectetur tortor et purus.</P>
+				</div>
+				<div id="tabs-center-7">
+					<P>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra
+						massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus
+						malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. aenean aliquet fringilla
+						sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi
+						adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. aenean vel metus. Ut
+						posuere viverra nulla. aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus
+						pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris
+						consectetur tortor et purus.</P>
+				</div>
+				<div id="tabs-center-8">
+					<P>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra
+						massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus
+						malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. aenean aliquet fringilla
+						sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi
+						adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. aenean vel metus. Ut
+						posuere viverra nulla. aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus
+						pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris
+						consectetur tortor et purus.</P>
+				</div>
+				<div id="tabs-center-9">
+					<P>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra
+						massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus
+						malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. aenean aliquet fringilla
+						sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi
+						adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. aenean vel metus. Ut
+						posuere viverra nulla. aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus
+						pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris
+						consectetur tortor et purus.</P>
+				</div>
+				<div id="tabs-center-10">
+					<P>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra
+						massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus
+						malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. aenean aliquet fringilla
+						sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi
+						adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. aenean vel metus. Ut
+						posuere viverra nulla. aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus
+						pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris
+						consectetur tortor et purus.</P>
+				</div>
+
+		<br>
+		<br>
+		<br>
+		
+	
+</div>
+
+</body>
+</html>
