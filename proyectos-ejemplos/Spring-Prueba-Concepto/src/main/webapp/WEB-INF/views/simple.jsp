@@ -5,10 +5,11 @@
 
 <title>Simple Layout Demo</title>
 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.8.2.js" ></c:url>"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.9.1.custom.js" ></c:url>"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.9.1.custom.min.js" ></c:url>"></script>
+<link rel="stylesheet" href="<c:url value="/resources/css/jquery-ui-1.9.1.custom.css" ></c:url>" />
+<link rel="stylesheet" href="<c:url value="/resources/css/jquery-ui-1.9.1.custom.min.css" ></c:url>" />
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.8.3.js" ></c:url>"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.9.2.custom.js" ></c:url>"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.9.2.custom.min.js" ></c:url>"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.layout.js" ></c:url>"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.layout.min.js" ></c:url>"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.layout.resize.js" ></c:url>"></script>
