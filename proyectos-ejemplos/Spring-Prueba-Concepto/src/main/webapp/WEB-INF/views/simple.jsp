@@ -19,7 +19,6 @@
 	var uilayoutwest;
 	$(document).ready(function() {
 		uilayoutwest = $(".ui-layout-west");
-		pnlMenu = $("#pnlMenu");
 
 		myLayout = $('body').layout({
 			north__size : 40,
