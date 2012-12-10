@@ -45,44 +45,7 @@ public class WSValidadorServiceImpl implements WSValidadorService {
 	}
 
 	private void validarGeneric(CamposValidar cv, Validador v) {
-		if(v.getCodigosErrors()==null){
-			v.setCodigosErrors(new ArrayList<Integer>());			
-		}
-		try {
-				
-			if(cv.getCampo().equals(Constantes.CAMPO_LOGIN_USUARIO)){
-				cv.setValid(Util.validarCadena(cv.getValor(), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
-				log.info("[CamposValidar "+cv.getCampo()+":"+cv.getValid()+"]");
-				if(!(cv.getValid())){
-					v.getCodigosErrors().add(Constantes.CAMPO_LOGIN_USUARIO_ERROR);
-				}
-			}
-			else
-			if(cv.getCampo().equals(Constantes.CAMPO_CLAVE)){
-				cv.setValid(Util.validarFormato(cv.getValor(),parametroDAO.getFormatoCampo(cv.getEntidad(),cv.getCampo(),cv.getTipo()), parametroDAO.getRangoCadenaMin(), parametroDAO.getRangoCadenaMax(), parametroDAO.getCadenasRestringidas()));
-				log.info("[CamposValidar "+cv.getCampo()+":"+cv.getValid()+"]");
-				if(!(cv.getValid())){
-					v.getCodigosErrors().add(Constantes.CAMPO_CLAVE_USUARIO_ERROR);
-				}
-			}
-			else
-			if(cv.getCampo().equals(Constantes.CAMPO_SELECTOR)){
-				cv.setValid(Util.validarSelector(cv.getValor(), parametroDAO.getValorSelectorMin(), parametroDAO.getCadenasRestringidasSelector()));
-				log.info("[CamposValidar "+cv.getCampo()+":"+cv.getValid()+"]");
-				if(!(cv.getValid())){
-					v.getCodigosErrors().add(Constantes.CAMPO_SELECTOR_USUARIO_ERROR);
-				}
-			}
-			
-		} catch (Exception e) {
-			v.getCodigosErrors().add(Constantes.ERROR_CAMPOS_VARIABLES);
-		}
 		
-		if(v.getCodigosErrors()==null || v.getCodigosErrors().size()==0){
-			v.setRespuesta(Constantes.VALIDACION_CORRECTA);
-		}else{
-			v.setRespuesta(Constantes.VALIDACION_INCORRECTA);
-		}
 				
 	}
 	
