@@ -6,18 +6,6 @@
 <p:html titulo="Principal">
 
 <ul>
-	<li><a href="#tabs-center-1">Nunc tincidunt</a></li>
-	<li><a href="#tabs-center-2">Proin dolor</a></li>
+
 </ul>
-<div id="tabs-center-1" style="font-size: 10px;">
-
-	<table id="list47"></table>
-	<div id="plist47"></div>
-	
-	
-
-</div>
-<div id="tabs-center-2">
-	<P>Morbi tincidunt, dui sit s.</P>
-</div>
 </p:html>

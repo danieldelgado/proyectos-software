@@ -42,6 +42,4 @@
 	<div class="ui-layout-west">
 			<jsp:include page="menu.jsp" />		
 	</div>
-	<div class="ui-layout-center">
-		<div class="contentPostion" style="position: relative; margin: 5px;">
-			<input type="hidden" id="ent" name="ent" value="${ent}" />
+	<div id="tabs" class="ui-layout-center">
