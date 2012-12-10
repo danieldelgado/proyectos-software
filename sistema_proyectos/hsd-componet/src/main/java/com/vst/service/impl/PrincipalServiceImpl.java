@@ -103,10 +103,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 
 	public Map<String, Object> obtenerData(Usuario usuario, String entidad, String sidx, String sord, int page, int filas, boolean _search, String searchField, String searchOper, String searchString) {
 		
-		Character estado='A';
-		
-		log.debug("Codigo Grid: [" + entidad + "] Estado Grid: [" + estado + "]");
-		
+		Character estado='A';		
 		Lista lista  = new Lista();
 		lista.setCodigo("parametro");
 		lista.setIdMenu(1);

@@ -60,8 +60,8 @@ public class ColumnaDAOImpl extends DAO<Columna> implements ColumnaDAO {
 		c2.setActivo(true);
 		c2.setAddColumn(true);
 		c2.setAncho(100);
-		c2.setAtributo("campo");
-		c2.setCabecera("campo");
+		c2.setAtributo("nombre");
+		c2.setCabecera("Nombre");
 		c2.setEstado(Constantes.ACTIVO);
 		c2.setFechaActualizacion(new Date());
 		c2.setFechaRegistro(new Date());
@@ -77,7 +77,7 @@ public class ColumnaDAOImpl extends DAO<Columna> implements ColumnaDAO {
 		c3.setAddColumn(true);
 		c3.setAncho(100);
 		c3.setAtributo("valor");
-		c3.setCabecera("valor");
+		c3.setCabecera("Valor");
 		c3.setEstado(Constantes.ACTIVO);
 		c3.setFechaActualizacion(new Date());
 		c3.setFechaRegistro(new Date());
