@@ -9,11 +9,12 @@
 	<li><a href="#tabs-center-1">Nunc tincidunt</a></li>
 	<li><a href="#tabs-center-2">Proin dolor</a></li>
 </ul>
-<div id="tabs-center-1">
-	<P>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu
-		congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce
-		sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec,
-		feugiat nec, luctus a, lacus.</P>
+<div id="tabs-center-1" style="font-size: 10px;">
+
+	<table id="list47"></table>
+	<div id="plist47"></div>
+	
+	
 
 </div>
 <div id="tabs-center-2">
