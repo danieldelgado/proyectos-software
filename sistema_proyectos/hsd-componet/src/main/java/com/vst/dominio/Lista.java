@@ -1,10 +1,12 @@
 package com.vst.dominio;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -18,6 +20,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="lista")
 public class Lista  extends Recurso implements Serializable {
+	
+
 	private static final long serialVersionUID = 1L;
 
 	@Column(name="codigo",length=50,nullable=false)
@@ -32,7 +36,7 @@ public class Lista  extends Recurso implements Serializable {
 	@Column(name="tabla",length=40,nullable=false)
 	private String tabla;
 
-    @ManyToMany
+	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
 		name="columna_por_lista"
 		, joinColumns={
@@ -44,7 +48,7 @@ public class Lista  extends Recurso implements Serializable {
 		)
 	private List<Columna> columnas;
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
 		name="lista_por_menu"
 		, joinColumns={
@@ -58,10 +62,20 @@ public class Lista  extends Recurso implements Serializable {
     
     public Lista() {
     }
+    
+   
+    public Lista(Integer id,String codigo, String nombre, String tabla) {
+		super(id);
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.tabla = tabla;
+	}
 
 	public String getCodigo() {
 		return codigo;
 	}
+
+	
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;

@@ -19,5 +19,7 @@ public interface LoginService {
 
 	public List<Menu> obtenerMenusPorPerfil(Usuario u);
 
+	public int terminarSession(HttpSession session);
+
 	
 }

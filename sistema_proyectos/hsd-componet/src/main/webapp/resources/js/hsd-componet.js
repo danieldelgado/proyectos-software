@@ -84,16 +84,7 @@ function cargarMenus() {
 		var url = li.find(".url").val();
 		var tipo = li.find(".tipo").val();
 		if (tipo == "interno") {
-			$.ajax({
-				type : "get",
-				url : context + "principal/obtenerLista/" + url,
-				async : false,
-				dataType : "json",
-				success : function(resp) {
-
-				}
-			});
-
+			cargarLista(url);
 		}
 	});
 
@@ -170,8 +161,8 @@ function irPagina(url) {
 function cargarLista(pm) {
 	if (diferenteNull(pm)) {
 
-		$.get(context + "principal/obtenerLista/" + pm,
-						function(lista) {
+		$.get(context + "principal/obtenerLista/" + pm,	function(lista) {
+			
 							var nombres = new Array();
 							var modelo = new Array();
 							var columnas = lista.columnas;
@@ -181,8 +172,8 @@ function cargarLista(pm) {
 									name : columnas[i].atributo,
 									index : columnas[i].atributo,
 									width : columnas[i].ancho,
-									// align: columnas[i].alineacion,
-									// hidden: !columnas[i].visible,
+									align: columnas[i].alineacion,
+									hidden: !columnas[i].visible,
 									// formatter:
 									// formateadores[columnas[i].tipo],
 									searchoptions : {
@@ -204,23 +195,11 @@ function cargarLista(pm) {
 									id : "id"
 								},
 								rowList : [ 10, 20, 30 ],
-								colNames : [ 'id', 'campo', 'valor' ],
-								colModel : [ {
-									name : 'id',
-									index : 'id',
-									width : 60
-								}, {
-									name : 'nombre',
-									index : 'nombre',
-									width : 90
-								}, {
-									name : 'valor',
-									index : 'valor',
-									width : 100
-								} ],
+								colNames : nombres,
+								colModel : modelo,
 								pager : "#pager",
 								viewrecords : true,
-								// caption: lista.nombre,
+								caption: lista.nombre,
 								onSelectRow : detalleLista,
 								page : 1,
 								rowNum : "20",

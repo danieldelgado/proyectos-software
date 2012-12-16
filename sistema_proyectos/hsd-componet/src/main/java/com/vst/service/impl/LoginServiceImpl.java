@@ -43,23 +43,24 @@ public class LoginServiceImpl implements LoginService {
 		Validador v=ServicioWebValidacion.obtenerValidadorServiceLogin(usuario, clave, perfil);
 		if(v!=null){
 			if (v.getRespuesta() == Constantes.RESPUESTA_CORRECTA) {
-				Usuario u = usuarioDAO.buscarUsuario(usuario, perfil);				
+				Usuario u = usuarioDAO.buscarUsuario(usuario, perfil);		
+				System.out.println(u);
 				Perfil p = null;
 				
-				u=new Usuario();
-				u.setId(1);
-				u.setNombre("admin");
-				u.setLogin("admin");
-				u.setClave("123456");
+//				u=new Usuario();
+//				u.setId(1);
+//				u.setNombre("admin");
+//				u.setLogin("admin");
+//				u.setClave("123456");
 								
 				if (u != null) {
 					if (u.getClave().equals(clave)) {
 						p = perfilDAO.get(perfil);
 						
-						p=new Perfil();
-						p.setId(1);
-						p.setNombre("Administrador");
-						p.setEstado(Constantes.ACTIVO);
+//						p=new Perfil();
+//						p.setId(1);
+//						p.setNombre("Administrador");
+//						p.setEstado(Constantes.ACTIVO);
 						
 						
 						u.setPerfilLogueado(p);
@@ -81,7 +82,7 @@ public class LoginServiceImpl implements LoginService {
 		Usuario u = (Usuario) session.getAttribute(Constantes.SESION_USUARIO);
 		//System.out.println("insert usuario y perfil");
 		 //temp();
-
+		System.out.println(u);
 		if (u != null) {
 			return Constantes.USUARIO_LOGEADO;
 		} else
@@ -122,17 +123,8 @@ public class LoginServiceImpl implements LoginService {
 
 	}
 
-	public List<Perfil> obtenerPerfiles() {
-		
-		List<Perfil> pl = new ArrayList<Perfil>();
-		Perfil p = new Perfil();
-		p.setId(1);
-		p.setNombre("Administrador");
-		p.setEstado(Constantes.ACTIVO);
-		pl.add(p);
-		
-		return pl;
-				
+	public List<Perfil> obtenerPerfiles() {		
+		return perfilDAO.obtenerTodosActivos();				
 	}
 
 	public List<Menu> obtenerMenusPorPerfil(Usuario u) {
@@ -150,7 +142,7 @@ public class LoginServiceImpl implements LoginService {
 		Menu mm = new Menu();
 		mm.setId(1);
 		mm.setNombre("Parametro");
-		mm.setUrl("parametro");
+		mm.setUrl("Parametro");
 		mm.setTipo("interno");
 		mm.setOrden(0);
 		mm.setFunction(null);
@@ -159,15 +151,43 @@ public class LoginServiceImpl implements LoginService {
 		Menu mm2 = new Menu();
 		mm2.setId(1);
 		mm2.setNombre("Perfil");
-		mm2.setUrl("perfil");
+		mm2.setUrl("Perfil");
 		mm2.setTipo("interno");
 		mm2.setOrden(0);
 		mm2.setFunction(null);
 		mss.add(mm2);
 		
+		
+		Menu mm3 = new Menu();
+		mm3.setId(1);
+		mm3.setNombre("Lista");
+		mm3.setUrl("Lista");
+		mm3.setTipo("interno");
+		mm3.setOrden(0);
+		mm3.setFunction(null);
+		mss.add(mm3);
+		
+		Menu mm4 = new Menu();
+		mm4.setId(1);
+		mm4.setNombre("Columna");
+		mm4.setUrl("Columna");
+		mm4.setTipo("interno");
+		mm4.setOrden(0);
+		mm4.setFunction(null);
+		mss.add(mm4);
+		
 		m.setMenus(mss);
 		
 		return ms;
+	}
+
+	public int terminarSession(HttpSession session) {
+		try {
+			session.setAttribute(Constantes.SESION_USUARIO, null);
+		} catch (Exception e) {
+			return 0;
+		}
+		return 1;
 	}
 
 }

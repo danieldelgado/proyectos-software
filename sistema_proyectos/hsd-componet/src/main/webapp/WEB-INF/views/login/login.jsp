@@ -18,7 +18,7 @@
 <body>
 
 <form action="login/iniciarSession" method="post">
-<p> <label>Usuario : </label> <input type="text" id="usuario" name="usuario" value="admin1" />  </p>
+<p> <label>Usuario : </label> <input type="text" id="usuario" name="usuario" value="admin" />  </p>
 <p> <label>Perfil : </label> 
 <select name="perfil" id="perfil" > 
 	<option selected="selected" value="-1" > Seleccione  </option> 

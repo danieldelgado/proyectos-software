@@ -14,8 +14,19 @@ import com.vst.util.DAO;
 public class ListaDAOImpl extends DAO<Lista> implements ListaDAO {
 
 	public Lista obtenerListaPorUsuario(String entidad, Usuario u) {
-		// TODO Auto-generated method stub
-		return null;
+		//Lista(Integer id,String codigo, String nombre, String tabla)
+		sqlQuery = " SELECT new Lista( ls.id, ls.codigo, ls.nombre, ls.tabla) FROM Lista ls where ls.tabla = :entidad" +
+				   " and " +
+				   " ls.id = ( select rpp.id.recurso.id from RecursoPorPerfil rpp where rpp.id.perfil.id = :perfil )   ";
+		q=em.createQuery(sqlQuery);
+		q.setParameter("entidad", entidad);
+		q.setParameter("perfil", u.getPerfilLogueado().getId());	
+		try {
+			Lista l = (Lista)q.getResultList();
+			return l;
+		} catch (Exception e) {
+			return null;
+		}	
 	}
 
   

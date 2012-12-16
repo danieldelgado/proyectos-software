@@ -1,7 +1,5 @@
 package com.vst.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.vst.dominio.Menu;
 import com.vst.dominio.Usuario;
 import com.vst.service.LoginService;
 import com.vst.util.Util;
@@ -41,6 +38,14 @@ private static final Logger log = LoggerFactory.getLogger(LoginController.class)
 		}
 		return "redirect:/login";		
 	}
+	
+	@RequestMapping( value="terminarSession", method = RequestMethod.GET)	
+	public String terminarSession(HttpSession session,Model model) {
+		int i = loginService.terminarSession(session);	
+		return "redirect:/login";		
+	}
+	
+	
 	
 //	@RequestMapping(value="principal",method = RequestMethod.GET)	
 //	public String principal(HttpServletRequest request,Model model) {	

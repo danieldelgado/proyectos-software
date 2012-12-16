@@ -64,6 +64,8 @@ public class Recurso implements Entidad , Serializable {
     public Recurso() {
     }
 
+    
+    
 
 /*
 	public List<Perfil> getPerfils() {
@@ -76,6 +78,38 @@ public class Recurso implements Entidad , Serializable {
 		this.perfils = perfils;
 	}
 */
+
+
+	public Recurso(Integer id, Boolean activo, String descripcion,
+			Character estado, Date fechaActualizacion, Date fechaCreacion) {
+		super();
+		this.id = id;
+		this.activo = activo;
+		this.descripcion = descripcion;
+		this.estado = estado;
+		this.fechaActualizacion = fechaActualizacion;
+		this.fechaCreacion = fechaCreacion;
+	}
+
+
+
+
+	public Recurso(Integer id) {
+		super();
+		this.id = id;
+	}
+
+
+
+
+	public Recurso(Integer id, Boolean activo, Character estado) {
+		super();
+		this.id = id;
+		this.activo = activo;
+		this.estado = estado;
+	}
+
+
 
 
 	public Integer getId() {
