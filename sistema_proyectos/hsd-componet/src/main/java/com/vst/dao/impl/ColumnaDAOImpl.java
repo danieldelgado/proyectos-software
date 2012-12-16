@@ -9,35 +9,12 @@ import org.springframework.stereotype.Repository;
 
 import com.vst.dao.ColumnaDAO;
 import com.vst.dominio.Columna;
+import com.vst.dominio.Lista;
 import com.vst.util.Constantes;
 import com.vst.util.DAO;
 
 @Repository("ColumnaDAO")
 public class ColumnaDAOImpl extends DAO<Columna> implements ColumnaDAO {
-
-	/*@SuppressWarnings("unchecked")
-	public List<Columna> buscarPorGrid(Integer idGrid){
-		sqlQuery="SELECT new Columna(c.id,c.grid.id,c.nombre,c.codigo,c.ancho,c.visible,c.tipo,c.orden,c.titulo,c.procesar,c.alineacion) FROM Columna c WHERE c.grid.id=:idGrid AND c.estado=:estado ORDER BY c.orden";
-		q=em.createQuery(sqlQuery);
-		q.setParameter("idGrid",idGrid);
-		q.setParameter("estado",Constantes.ACTIVO);
-		return q.getResultList();
-	}*/
-
-	public boolean eliminarColuma(int idColumna){
-		sqlQuery="DELETE FROM Columna c WHERE c.id=:idColumna";
-		q=em.createQuery(sqlQuery);
-		q.setParameter("idColumna",idColumna);
-		return q.executeUpdate()==1;
-	}
-
-	/*@SuppressWarnings("unchecked")
-	public List<Columna> buscarTodasPorGrid(int idGrid){
-		sqlQuery="SELECT new Columna(c.id,c.grid.id,c.nombre,c.codigo,c.ancho,c.visible,c.tipo,c.orden,c.titulo,c.procesar) FROM Columna c WHERE c.grid.id=:idGrid ORDER BY c.nombre";
-		q=em.createQuery(sqlQuery);
-		q.setParameter("idGrid",idGrid);
-		return q.getResultList();
-	}*/
 
 	public List<Columna> buscarPorLista(Integer id) {
 		List<Columna> columnas = new ArrayList<Columna>();
@@ -89,5 +66,5 @@ public class ColumnaDAOImpl extends DAO<Columna> implements ColumnaDAO {
 					
 		return columnas;
 	}
-
+	
 }

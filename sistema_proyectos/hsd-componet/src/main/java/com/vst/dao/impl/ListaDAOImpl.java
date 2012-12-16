@@ -22,9 +22,10 @@ public class ListaDAOImpl extends DAO<Lista> implements ListaDAO {
 		q.setParameter("entidad", entidad);
 		q.setParameter("perfil", u.getPerfilLogueado().getId());	
 		try {
-			Lista l = (Lista)q.getResultList();
+			Lista l = (Lista)q.getSingleResult();
 			return l;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}	
 	}
