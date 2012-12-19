@@ -304,7 +304,7 @@ CREATE TABLE `lista` (
 
 LOCK TABLES `lista` WRITE;
 /*!40000 ALTER TABLE `lista` DISABLE KEYS */;
-INSERT INTO `lista` VALUES ('rthr5464',0,'Lista de Parametros','Paramatro',1);
+INSERT INTO `lista` VALUES ('rthr5464',0,'Lista de Parametros','Parametro',1);
 /*!40000 ALTER TABLE `lista` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -564,7 +564,7 @@ CREATE TABLE `sequence_table` (
 
 LOCK TABLES `sequence_table` WRITE;
 /*!40000 ALTER TABLE `sequence_table` DISABLE KEYS */;
-INSERT INTO `sequence_table` VALUES ('historial',39);
+INSERT INTO `sequence_table` VALUES ('historial',44);
 /*!40000 ALTER TABLE `sequence_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -636,4 +636,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-12-16 16:23:25
+-- Dump completed on 2012-12-19  8:44:30
