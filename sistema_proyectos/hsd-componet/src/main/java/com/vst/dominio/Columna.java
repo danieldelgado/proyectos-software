@@ -90,6 +90,32 @@ public class Columna implements Entidad , Serializable {
 	
     public Columna() {
     }
+    
+    
+    
+
+	public Columna(Integer id, Boolean addColumn, Integer ancho,
+			String atributo, String cabecera, String codigo, String tabla,
+			String alineacion, String formato_tipo, Boolean mapping,
+			Boolean visible, Integer orden, Character estado, Boolean activo) {
+		this.id = id;
+		this.addColumn = addColumn;
+		this.ancho = ancho;
+		this.atributo = atributo;
+		this.cabecera = cabecera;
+		this.codigo = codigo;
+		this.tabla = tabla;
+		this.alineacion = alineacion;
+		this.formato_tipo = formato_tipo;
+		this.mapping = mapping;
+		this.visible = visible;
+		this.orden = orden;
+		this.estado = estado;
+		this.activo = activo;
+	}
+
+
+
 
 	public Integer getId() {
 		return id;
