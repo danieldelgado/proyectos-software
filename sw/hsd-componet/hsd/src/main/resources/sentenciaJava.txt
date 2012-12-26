@@ -1,0 +1,81 @@
+
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////
+  
+  C:url
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////
+  
+
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+
+
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////
+  
+  tab general js add new tab
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////
+  
+
+tabGeneral.append('<div id="page' + count + '">testing ' + count + '</span>');
+	tabGeneral.tabs("add","#page" + count, count);
+    count++;
+
+    
+  //////////////////////////////////////////////////////////////////////////////////////////////
+  
+  Text de DWR
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////
+  
+  
+  
+Methods For: dwrService (BeanCreator for com.vst.js.dwr.ArithmeticService)
+
+To use this class in your javascript you will need the following script includes:
+
+  <script type='text/javascript' src='/hsd-componet/app/dwr/engine.js'></script>
+  <script type='text/javascript' src='/hsd-componet/app/dwr/interface/dwrService.js'></script>
+
+In addition there is an optional utility script:
+
+  <script type='text/javascript' src='/hsd-componet/app/dwr/util.js'></script>
+
+Replies from DWR are shown with a yellow background if they are simple or in an alert box otherwise.
+The inputs are evaluated as Javascript so strings must be quoted before execution.
+add( , ); 5
+Other Links
+
+    Back to module index.
+
+Fixing Issues
+Warning: No Converter for XXX.
+
+dwr.xml does not have an allow entry that enables conversion of this type to Javascript. The most common cause of this problem is that XXX is a java bean and bean marshalling has not been enabled. Bean marshalling is disabled by default for security reasons.
+
+To enable marshalling for a given bean add the following line to the allow section of your dwr.xml file:
+
+<convert converter="bean" match="XXX"/>
+
+It is also possible to enable marshalling for an entire package or hierachy of packages using the following:
+
+<convert converter="bean" match="package.name.*"/>
+
+Warning: overloaded methods are not recommended
+
+Javascript does not support overloaded methods, so the javascript file generated from this class will contain two methods the second of which will replace the first. This is probably not what you wanted.
+
+It is best to avoid overloaded methods when using DWR.
+Warning: methodName() is excluded:
+
+The methods may be excluded explicitly with an <exclude> element in dwr.xml or excluded implicitly by not being mentioned in an <include> element. Or the method may be defined in java.lang.Object - methods defined here may not be exported.
+
+If methods are excluded using <include> or <exclude> then no JavaScript proxy will be generated. To allow testing of methods that should not be accessible, add an init-param to WEB-INF/web.xml with the name/value allowImpossibleTests=true.
+    
+    
+    
+    
