@@ -15,7 +15,7 @@ public class ListaDAOImpl extends DAO<Lista> implements ListaDAO {
 
 	public Lista obtenerListaPorUsuario(String entidad, Usuario u) {
 		//Lista(Integer id,String codigo, String nombre, String tabla)
-		sqlQuery = " SELECT new Lista( ls.id, ls.codigo, ls.nombre, ls.tabla) FROM Lista ls where ls.tabla = :entidad" +
+		sqlQuery = " SELECT new Lista( ls.id, ls.codigo, ls.nombre, ls.tabla) FROM Lista ls where ls.tabla = :entidad " +
 				   " and " +
 				   " ls.id = ( select rpp.id.recurso.id from RecursoPorPerfil rpp where rpp.id.perfil.id = :perfil )   ";
 		q=em.createQuery(sqlQuery);

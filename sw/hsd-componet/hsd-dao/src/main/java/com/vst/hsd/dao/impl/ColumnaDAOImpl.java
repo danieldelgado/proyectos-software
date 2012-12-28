@@ -12,9 +12,9 @@ import com.vst.util.DAO;
 public class ColumnaDAOImpl extends DAO<Columna> implements ColumnaDAO {
 
 	public List<Columna> buscarPorLista(Integer id) {
-		sqlQuery = "select new Columna(c.id, c.addColumn, c.ancho,				c.atributo, c.cabecera, c.codigo, c.tabla,		" +
-				"		c.alineacion, String formato_tipo, c.mapping,				c.visible, c.orden, c.estado, c.activo)  " +
-				" from Columna c left join fetch c.listas l where l.id=:lista";
+		sqlQuery = "select new Columna(c.id, c.addColumn, c.ancho, c.atributo, c.cabecera, c.codigo, c.tabla, " +
+				" c.alineacion, c.formato_tipo, c.mapping,c.visible, c.orden, c.estado, c.activo)  " +
+				" from Columna c  fetch join  c.listas l where l.id=:lista";
 		q=em.createQuery(sqlQuery);
 		q.setParameter("lista", id);	
 		try {
