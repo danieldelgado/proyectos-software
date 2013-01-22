@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `hsd` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `hsd`;
--- MySQL dump 10.13  Distrib 5.5.28, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.28, for debian-linux-gnu (x86_64) -- este es la ultima version
 --
 -- Host: localhost    Database: hsd
 -- ------------------------------------------------------
