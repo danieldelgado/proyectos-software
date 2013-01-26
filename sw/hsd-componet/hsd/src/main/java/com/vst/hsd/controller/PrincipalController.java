@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.vst.hsd.dominio.Boton;
 import com.vst.hsd.dominio.Lista;
 import com.vst.hsd.dominio.Menu;
 import com.vst.hsd.dominio.Usuario;
@@ -51,8 +52,11 @@ public class PrincipalController {
 //			historialService.registrarHistorial("Redireccion a login ip:" + request.getRemoteAddr());
 			return "redirect:/login";
 		} else {
-			List<Menu> lstMenus = loginService.obtenerMenusPorPerfil((Usuario) session.getAttribute(Constantes.SESION_USUARIO));
+			List<Menu> lstMenus = principalService.obtenerMenusPorPerfil((Usuario) session.getAttribute(Constantes.SESION_USUARIO));
 			model.addAttribute("lstMenus", lstMenus);
+			List<Boton> lstBotones = principalService.obtenerBotonesPorMenuDefault(lstMenus);
+			model.addAttribute("lstBotones", lstBotones);
+			System.out.println(lstBotones);
 			log.info("Redireccion a principal ip:" + request.getRemoteAddr());
 //			historialService.registrarHistorial("PrincipalController", "Usuario se dirige a principal  ip: " + request.getRemoteAddr(), u);
 //			historialService.registrarHistorial("PrincipalController", "Usuario se dirige a principal  con la lista de menus", lstMenus);

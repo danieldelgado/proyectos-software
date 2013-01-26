@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<div id="accordion-west">
+<%@ taglib uri="http://www.chimera.org/chimera.tld" prefix="p"%>
+<div id="accordion-west">	
 	<c:forEach items="${lstMenus}" var="menu">
 		<h3>
 			<a href="#"><b> ${menu.nombre}</b> </a>

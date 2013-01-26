@@ -92,8 +92,8 @@ function cargarMenus() {
 
 function crearTab() {
 	tabs = $(".ui-layout-center");
-	tabs.html("");
-	tabs.html("<ul></ul>");
+//	tabs.html("");
+//	tabs.html("<ul></ul>");
 
 	// <ul>
 	// <li><a href="#tabs-center-1">Nunc tincidunt</a></li>
@@ -132,15 +132,19 @@ function crearTab() {
 //				tabs.tabs("remove", index);
 //			}
 //		}
-//	});	
-	addtab("Principal", "tabPrincipal", '<table id="lista"></table><div id="pager"></div>');
+//	});	 
+
+//
+	
+
+	addtab("Principal", "tabPrincipal", " <table id='lista'></table><div id='pager'></div>");
 	tabprincipal = $("#tabPrincipal");
 //	tabs.tabs("select","#tabPrincipal");
 }
 
 function addtab(titulo, identificador, content,select) {
 	if ($("#" + identificador).length <= 0) {
-		tabs.append('<div id="' + identificador + '"> ' + content + '</span>');
+		tabs.append('<div id="' + identificador + '"> ' + content + '</div>');
 		tabs.tabs("add", "#" + identificador, titulo);
 	}
 	if(select){

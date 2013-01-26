@@ -44,6 +44,6 @@
 		
 	</div>
 	<div class="ui-layout-west">
-			<jsp:include page="menu.jsp" />		
+			<jsp:include page="menu.jsp" />	
 	</div>
 	<div id="tabs" class="ui-layout-center">

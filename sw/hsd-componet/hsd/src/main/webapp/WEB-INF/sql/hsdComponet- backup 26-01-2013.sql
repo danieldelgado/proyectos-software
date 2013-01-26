@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `hsd` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `hsd`;
--- MySQL dump 10.13  Distrib 5.5.28, for debian-linux-gnu (x86_64) -- este es la ultima version
+-- MySQL dump 10.13  Distrib 5.5.29, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: hsd
 -- ------------------------------------------------------
--- Server version	5.5.28-0ubuntu0.12.04.3
+-- Server version	5.5.29-0ubuntu0.12.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -189,7 +189,7 @@ CREATE TABLE `columna` (
 
 LOCK TABLES `columna` WRITE;
 /*!40000 ALTER TABLE `columna` DISABLE KEYS */;
-INSERT INTO `columna` VALUES (1,'','','rigth',100,'id','id','idqdqwd','A','1990-10-10','1990-10-10 00:00:00','','',0,'','\0'),(2,'','','rigth',100,'campo','campo','campoqdqwd','A','1990-10-10','1990-10-10 00:00:00','','',0,'','\0'),(3,'','','rigth',100,'valor','valor','valorqdqwd','A','1990-10-10','1990-10-10 00:00:00','','',0,'','\0');
+INSERT INTO `columna` VALUES (1,'','','rigth',100,'id','id','idqdqwd','A','1990-10-10','1990-10-10 00:00:00','','',0,'',''),(2,'','','rigth',100,'nombre','nombre','nombreqdqwd','A','1990-10-10','1990-10-10 00:00:00','','',0,'',''),(3,'','','rigth',100,'valor','valor','valorqdqwd','A','1990-10-10','1990-10-10 00:00:00','','',0,'','');
 /*!40000 ALTER TABLE `columna` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -351,6 +351,7 @@ CREATE TABLE `menu` (
   `url` longtext,
   `id_recurso` int(11) NOT NULL,
   `menu_id_recurso` int(11) DEFAULT NULL,
+  `defaultMenu` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id_recurso`),
   KEY `FK33155F9D62F729` (`id_recurso`),
   KEY `FK33155F7F58CF89` (`menu_id_recurso`),
@@ -564,7 +565,7 @@ CREATE TABLE `sequence_table` (
 
 LOCK TABLES `sequence_table` WRITE;
 /*!40000 ALTER TABLE `sequence_table` DISABLE KEYS */;
-INSERT INTO `sequence_table` VALUES ('historial',44);
+INSERT INTO `sequence_table` VALUES ('historial',59);
 /*!40000 ALTER TABLE `sequence_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -636,4 +637,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-12-19  8:44:30
+-- Dump completed on 2013-01-26 14:16:10
