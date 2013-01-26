@@ -58,8 +58,12 @@ public class LoginController {
 
 	@RequestMapping(value = "terminarSession", method = RequestMethod.GET)
 	public String terminarSession(HttpSession session, Model model) {
-		log.info(" metodo terminarSession  - termina la session ");
-		int i = loginService.terminarSession(session);
+		try {
+			session.setAttribute(Constantes.SESION_USUARIO, null);
+		} catch (Exception e) {
+			log.info(" ocurrio un error al terminar la sesion del usuario ");
+		}
+		log.info(" terminar la session del usuario ");		
 //		historialService.registrarHistorial(" terminarSession -termina session del usuario ");
 		return "redirect:/login";
 	}
