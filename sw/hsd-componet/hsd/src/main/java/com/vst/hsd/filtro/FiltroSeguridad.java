@@ -30,7 +30,8 @@ public class FiltroSeguridad implements Filter{
 	public void doFilter(ServletRequest request,ServletResponse response,FilterChain chain) throws IOException,ServletException{
 		if(request instanceof HttpServletRequest){
 			HttpServletRequest objRequest=(HttpServletRequest) request;	
-			log.debug(" metodo:doFilter - filtro de seguridad ip: "+objRequest.getRemoteAddr());
+			
+			log.debug(" metodo:doFilter - filtro de seguridad ip solicitante : "+objRequest.getRemoteAddr() + " - uri:"+objRequest.getRequestURI());
 //			historialService.registrarHistorial("FiltroSeguridad", "doFilter", "", objRequest);
 		}
 		chain.doFilter(request,response);	

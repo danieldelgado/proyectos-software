@@ -181,11 +181,11 @@ function cargarLista(pm) {
 									}
 								};
 							}
-
+							
 							tabprincipal.append("<input type=\"hidden\" id=\"sizelista\" value=\"${size}\" />");
 
 							var urlData = context+ "principal/obtenerDataLista/" + pm;
-							
+
 							$("#lista").jqGrid({
 								url : urlData,
 								datatype : "json",

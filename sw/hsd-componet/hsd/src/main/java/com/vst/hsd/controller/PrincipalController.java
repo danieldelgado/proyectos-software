@@ -75,9 +75,8 @@ public class PrincipalController {
 		Usuario usuario = (Usuario) sesion.getAttribute(Constantes.SESION_USUARIO);
 		if (usuario != null) {
 			Map<String, Object> tmp = principalService.obtenerData(usuario, entidad, sidx, sord, page, rows, _search, searchField, searchOper, searchString);
-			System.out.println("tmp");
-			System.out.println(tmp);
 			model.addAttribute("size", tmp.size());
+			log.info(" obtenerDataGrid -  tmp datos "+ tmp);
 			log.info(" obtenerDataGrid -  tmp.size() : "+ tmp.size());
 			return tmp;
 		}
