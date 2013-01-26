@@ -1,10 +1,8 @@
 package com.vst.hsd.service.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -18,9 +16,7 @@ import com.vst.hsd.dominio.Menu;
 import com.vst.hsd.dominio.Perfil;
 import com.vst.hsd.dominio.Usuario;
 import com.vst.hsd.service.LoginService;
-import com.vst.hsd.service.RegistrarHistorialService;
 import com.vst.util.Constantes;
-import com.vst.util.Util;
 
 @Service("LoginSevice")
 public class LoginServiceImpl implements LoginService {
@@ -33,99 +29,32 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private PerfilDAO perfilDAO;
 
-	@Autowired
-	private RegistrarHistorialService historialService;
-
-	public Usuario iniciarSession(String usuario, String clave, Integer perfil, HttpSession session, HttpServletRequest request) {
-	//	Validador v=ServicioWebValidacion.obtenerValidadorServiceLogin(usuario, clave, perfil);
-//		if(v!=null){
-//			if (v.getRespuesta() == Constantes.RESPUESTA_CORRECTA) {
-				Usuario u = usuarioDAO.buscarUsuario(usuario, perfil);		
-				System.out.println(u);
-				Perfil p = null;
-				
-//				u=new Usuario();
-//				u.setId(1);
-//				u.setNombre("admin");
-//				u.setLogin("admin");
-//				u.setClave("123456");
-								
-				if (u != null) {
-					if (u.getClave().equals(clave)) {
-						p = perfilDAO.get(perfil);
-						
-//						p=new Perfil();
-//						p.setId(1);
-//						p.setNombre("Administrador");
-//						p.setEstado(Constantes.ACTIVO);
-						
-						
-						u.setPerfilLogueado(p);
-						session.setAttribute(Constantes.SESION_USUARIO, u);
-						return u;
-					} else {
-						session.removeAttribute(Constantes.SESION_USUARIO);
-					}
-				}
-//			}
-//			return null;
-//		}		
+	public Usuario iniciarSession(String usuario, String clave, Integer perfil) {
+		Usuario u = usuarioDAO.buscarUsuario(usuario, perfil);
+		Perfil p = null;
+		if (u != null) {
+			if (u.getClave().equals(clave)) {
+				p = perfilDAO.get(perfil);
+				u.setPerfilLogueado(p);
+				log.info("usuario logeado es :" + usuario + "  perfil : " + perfil);
+				return u;
+			} else {
+				log.info("usuario clave incorrecta es :" + usuario + "  perfil : " + perfil);
+				return null;
+			}
+		}
+		log.info("usuario no encontrado es :" + usuario + "  perfil : " + perfil);
 		return null;
 	}
 
-	//@Transactional
-	public int buscarUsuarioLogueado(HttpSession session) {
-		log.info("[ metodo:buscarUsuarioLogueado - buscar el usuario en session ]");
-		Usuario u = (Usuario) session.getAttribute(Constantes.SESION_USUARIO);
-		//System.out.println("insert usuario y perfil");
-		 //temp();
-		System.out.println(u);
-		if (u != null) {
-			return Constantes.USUARIO_LOGEADO;
-		} else
-			return Constantes.USUARIO_DESLOGUEADO;
-	}
-
-	@SuppressWarnings("unused")
-	private void temp() {
-		Perfil p = new Perfil();
-		p.setCodigo(Util.getCodigo(p));
-		p.setDescripcion("perfil del administrador");
-		p.setEstado(Constantes.ACTIVO);
-		p.setNombre("ADMINISTRADOR");
-		p.setActivo(true);
-		p.setFechaActualizacion(new Date());
-		p.setFechaCreacion(new Date());
-		perfilDAO.guardar(p);
-
-		List<Perfil> lstP = new ArrayList<Perfil>();
-		lstP.add(p);
-
-		Usuario u = new Usuario();
-		u.setActivo(true);
-		u.setApellidos("admin");
-		u.setClave("123456");
-		u.setCodigo(Util.getCodigo(u));
-		u.setEstado(Constantes.ACTIVO);
-		u.setEstadoCivil(1);
-		u.setFechaActualizacion(new Date());
-		u.setFechaCreacion(new Date());
-		u.setFechaNacimiento(new Date());
-		u.setLogin("admin1");
-		u.setNombre("admin1");
-		u.setNumero_documento("123456789");
-		u.setPerfiles(lstP);
-		u.setTipo_documento(1);
-		usuarioDAO.guardar(u);
-
-	}
-
-	public List<Perfil> obtenerPerfiles() {		
-		return perfilDAO.obtenerTodosActivos();				
+	public List<Perfil> obtenerPerfiles() {
+		List<Perfil> lst = perfilDAO.obtenerTodosActivos();
+		log.info(" perfiles activos count :" + lst.size());
+		return lst;
 	}
 
 	public List<Menu> obtenerMenusPorPerfil(Usuario u) {
-		List<Menu> ms=new ArrayList<Menu>();
+		List<Menu> ms = new ArrayList<Menu>();
 		Menu m = new Menu();
 		m.setId(1);
 		m.setNombre("Mantenimiento");
@@ -134,8 +63,8 @@ public class LoginServiceImpl implements LoginService {
 		m.setOrden(0);
 		m.setFunction(null);
 		ms.add(m);
-		
-		List<Menu> mss=new ArrayList<Menu>();
+
+		List<Menu> mss = new ArrayList<Menu>();
 		Menu mm = new Menu();
 		mm.setId(1);
 		mm.setNombre("Parametro");
@@ -144,7 +73,7 @@ public class LoginServiceImpl implements LoginService {
 		mm.setOrden(0);
 		mm.setFunction(null);
 		mss.add(mm);
-		
+
 		Menu mm2 = new Menu();
 		mm2.setId(1);
 		mm2.setNombre("Perfil");
@@ -153,8 +82,7 @@ public class LoginServiceImpl implements LoginService {
 		mm2.setOrden(0);
 		mm2.setFunction(null);
 		mss.add(mm2);
-		
-		
+
 		Menu mm3 = new Menu();
 		mm3.setId(1);
 		mm3.setNombre("Lista");
@@ -163,7 +91,7 @@ public class LoginServiceImpl implements LoginService {
 		mm3.setOrden(0);
 		mm3.setFunction(null);
 		mss.add(mm3);
-		
+
 		Menu mm4 = new Menu();
 		mm4.setId(1);
 		mm4.setNombre("Columna");
@@ -172,9 +100,9 @@ public class LoginServiceImpl implements LoginService {
 		mm4.setOrden(0);
 		mm4.setFunction(null);
 		mss.add(mm4);
-		
+
 		m.setMenus(mss);
-		
+
 		return ms;
 	}
 
@@ -182,8 +110,10 @@ public class LoginServiceImpl implements LoginService {
 		try {
 			session.setAttribute(Constantes.SESION_USUARIO, null);
 		} catch (Exception e) {
+			log.info(" ocurrio un error al terminar la sesion del usuario ");
 			return 0;
 		}
+		log.info(" terminar la session del usuario ");
 		return 1;
 	}
 
