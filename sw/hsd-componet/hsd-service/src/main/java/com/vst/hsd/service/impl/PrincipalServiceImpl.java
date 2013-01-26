@@ -1,5 +1,6 @@
 package com.vst.hsd.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,11 +12,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vst.hsd.dao.BotonDAO;
 import com.vst.hsd.dao.ColumnaDAO;
 import com.vst.hsd.dao.DataListComponet;
 import com.vst.hsd.dao.ListaDAO;
+import com.vst.hsd.dominio.Boton;
 import com.vst.hsd.dominio.Columna;
 import com.vst.hsd.dominio.Lista;
+import com.vst.hsd.dominio.Menu;
 import com.vst.hsd.dominio.Usuario;
 import com.vst.hsd.service.PrincipalService;
 import com.vst.util.Constantes;
@@ -34,6 +38,9 @@ public class PrincipalServiceImpl implements PrincipalService {
 	
 	@Autowired
 	private DataListComponet dataListComponet;
+	
+	@Autowired
+	private BotonDAO botonDAO;
 	
 	public Lista obtenerListaEntidad(String entidad, HttpSession session) {		
 		log.info("metodo:buscarUsuarioLogueado - buscar el usuario en session");
@@ -91,6 +98,80 @@ public class PrincipalServiceImpl implements PrincipalService {
 			}
 		}
 		return null;
+	}
+
+
+	public List<Menu> obtenerMenusPorPerfil(Usuario u) {
+		List<Menu> ms = new ArrayList<Menu>();
+		Menu m = new Menu();
+		m.setId(1);
+		m.setNombre("Mantenimiento");
+		m.setUrl(null);
+		m.setTipo("interno");
+		m.setOrden(0);
+		m.setFunction(null);
+		ms.add(m);
+
+		List<Menu> mss = new ArrayList<Menu>();
+		Menu mm = new Menu();
+		mm.setId(1);
+		mm.setNombre("Parametro");
+		mm.setUrl("Parametro");
+		mm.setDefaultMenu(true);
+		mm.setTipo("interno");
+		mm.setOrden(0);
+		mm.setFunction(null);
+		mss.add(mm);
+
+		Menu mm2 = new Menu();
+		mm2.setId(1);
+		mm2.setNombre("Perfil");
+		mm2.setUrl("Perfil");
+		mm2.setTipo("interno");
+		mm2.setOrden(0);
+		mm2.setFunction(null);
+		mss.add(mm2);
+
+		Menu mm3 = new Menu();
+		mm3.setId(1);
+		mm3.setNombre("Lista");
+		mm3.setUrl("Lista");
+		mm3.setTipo("interno");
+		mm3.setOrden(0);
+		mm3.setFunction(null);
+		mss.add(mm3);
+
+		Menu mm4 = new Menu();
+		mm4.setId(1);
+		mm4.setNombre("Columna");
+		mm4.setUrl("Columna");
+		mm4.setTipo("interno");
+		mm4.setOrden(0);
+		mm4.setFunction(null);
+		mss.add(mm4);
+
+		m.setMenus(mss);
+
+		return ms;
+	}
+
+
+	public List<Boton> obtenerBotonesPorMenuDefault(List<Menu> lstMenus) {
+	
+		List<Boton> bs = new ArrayList<Boton>();
+		Boton b = new Boton();
+		b.setId(1);
+		b.setActivo(true);
+		b.setDescripcion(" boton prueba  ");
+		bs.add(b);
+		
+		Boton b2 = new Boton();
+		b2.setId(1);
+		b2.setActivo(true);
+		b2.setDescripcion(" Guardar  ");
+		bs.add(b2);
+		
+		return bs;
 	}
 
 

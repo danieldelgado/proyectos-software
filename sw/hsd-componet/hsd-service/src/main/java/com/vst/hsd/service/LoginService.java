@@ -13,8 +13,5 @@ public interface LoginService {
 	public Usuario iniciarSession(String usuario, String clave, Integer perfil  );
 
 	public List<Perfil> obtenerPerfiles();
-
-	public List<Menu> obtenerMenusPorPerfil(Usuario u);
-
 	
 }
