@@ -36,6 +36,9 @@ public class Menu extends Recurso implements Serializable {
 
 	@Column(name="tipo",length=50,nullable=false)
 	private String tipo;
+	
+	@Column(name="defaultMenu",nullable=false)
+	private Boolean defaultMenu;
 
 	@Column(name="todos",nullable=false)
 	private Boolean todos;
@@ -57,6 +60,7 @@ public class Menu extends Recurso implements Serializable {
 	private List<Menu> menus;
 
 	public Menu() {
+		defaultMenu=false;
 	}
 
 	public String getCodigo() {
@@ -147,5 +151,16 @@ public class Menu extends Recurso implements Serializable {
 		this.menus = menus;
 	}
 
+	
+
+	public Boolean getDefaultMenu() {
+		return defaultMenu;
+	}
+
+	public void setDefaultMenu(Boolean defaultMenu) {
+		this.defaultMenu = defaultMenu;
+	}
+
+	
 	
 }
