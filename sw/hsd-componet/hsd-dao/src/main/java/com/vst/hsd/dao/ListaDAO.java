@@ -12,6 +12,8 @@ public interface ListaDAO extends IDAO<Lista> {
 
 	Lista obtenerListaPorUsuario(String entidad, Usuario u);
 
+	Lista obtenerListaPorEntidad(String entidad);
+
  
 
 }
