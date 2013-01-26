@@ -106,15 +106,5 @@ public class LoginServiceImpl implements LoginService {
 		return ms;
 	}
 
-	public int terminarSession(HttpSession session) {
-		try {
-			session.setAttribute(Constantes.SESION_USUARIO, null);
-		} catch (Exception e) {
-			log.info(" ocurrio un error al terminar la sesion del usuario ");
-			return 0;
-		}
-		log.info(" terminar la session del usuario ");
-		return 1;
-	}
-
+	
 }

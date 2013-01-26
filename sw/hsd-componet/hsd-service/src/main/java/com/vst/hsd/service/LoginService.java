@@ -2,7 +2,6 @@ package com.vst.hsd.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.vst.hsd.dominio.Menu;
@@ -16,8 +15,6 @@ public interface LoginService {
 	public List<Perfil> obtenerPerfiles();
 
 	public List<Menu> obtenerMenusPorPerfil(Usuario u);
-
-	public int terminarSession(HttpSession session);
 
 	
 }

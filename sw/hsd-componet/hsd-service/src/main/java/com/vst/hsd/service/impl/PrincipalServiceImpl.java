@@ -40,12 +40,14 @@ public class PrincipalServiceImpl implements PrincipalService {
 		Usuario u = (Usuario) session.getAttribute(Constantes.SESION_USUARIO);	
 		if(u!=null){
 			Lista l = listaDAO.obtenerListaPorUsuario(entidad, u);
-			log.info(" Lista obtenida :"+l.getCodigo());
-			List<Columna> lstColumnas = columnaDAO.buscarPorLista(l.getId());
-			log.info(" lista de columnas  :"+lstColumnas.size());
-			l.setColumnas(lstColumnas);
-			l.setMenus(null);
-			return l;			
+			if(l!=null){
+				log.info(" Lista obtenida :"+l.getCodigo());
+				List<Columna> lstColumnas = columnaDAO.buscarPorLista(l.getId());
+				log.info(" lista de columnas  :"+lstColumnas.size());
+				l.setColumnas(lstColumnas);
+				l.setMenus(null);
+				return l;		
+			}				
 		}
 		return null;		
 	}
@@ -73,14 +75,18 @@ public class PrincipalServiceImpl implements PrincipalService {
 					}
 				}
 				List<Map<String,Object>> data=dataListComponet.getData(usuario,entidad,columnas,lista.getEstado(),sidx,sord,page,filas,_search,searchField,searchOper,searchString);
+							
 				log.info("  data generica count:"+data.size());
 				objeto.put("page",page);
 				objeto.put("total",total);
+				
 				if(data != null){
 					records=data.size();
 				}
+				
 				objeto.put("records",records);
-				objeto.put("data",data);		
+				objeto.put("data",data);	
+				
 				return objeto;				
 			}
 		}
