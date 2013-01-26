@@ -36,11 +36,14 @@ public class PrincipalServiceImpl implements PrincipalService {
 	private DataListComponet dataListComponet;
 	
 	public Lista obtenerListaEntidad(String entidad, HttpSession session) {		
-		log.info("[ metodo:buscarUsuarioLogueado - buscar el usuario en session ]");
+		log.info("metodo:buscarUsuarioLogueado - buscar el usuario en session");
 		Usuario u = (Usuario) session.getAttribute(Constantes.SESION_USUARIO);	
 		if(u!=null){
 			Lista l = listaDAO.obtenerListaPorUsuario(entidad, u);
-			l.setColumnas(columnaDAO.buscarPorLista(l.getId()));
+			log.info(" Lista obtenida :"+l.getCodigo());
+			List<Columna> lstColumnas = columnaDAO.buscarPorLista(l.getId());
+			log.info(" lista de columnas  :"+lstColumnas.size());
+			l.setColumnas(lstColumnas);
 			l.setMenus(null);
 			return l;			
 		}
@@ -51,16 +54,14 @@ public class PrincipalServiceImpl implements PrincipalService {
 	public Map<String, Object> obtenerData(Usuario usuario, String entidad, String sidx, String sord, int page, int filas, boolean _search, String searchField, String searchOper, String searchString) {
 		
 		Character estado='A';		
-		Lista lista  = new Lista();
-		lista.setCodigo("parametro");
-		lista.setIdMenu(1);
-		lista.setTabla("parametro");
-		log.debug("Grid: " + lista);
+		Lista lista  = listaDAO.obtenerListaPorEntidad(entidad);
+		log.info(" Lista obtenida :"+lista.getCodigo());
 		if(lista != null){
 			List<Columna> columnas=columnaDAO.buscarPorLista(lista.getId());
 			if(columnas != null && columnas.size() > 0){
 				Map<String,Object> objeto=new HashMap<String,Object>();
-				int count=dataListComponet.getCantidadDataRows(usuario,entidad,estado);
+				int count=dataListComponet.getCantidadDataRows(usuario,entidad,estado);			
+				log.info("  lista generica count:"+count);
 				int total=0;
 				int records=0;
 				if(count > 0){
@@ -72,14 +73,15 @@ public class PrincipalServiceImpl implements PrincipalService {
 					}
 				}
 				List<Map<String,Object>> data=dataListComponet.getData(usuario,entidad,columnas,lista.getEstado(),sidx,sord,page,filas,_search,searchField,searchOper,searchString);
+				log.info("  data generica count:"+data.size());
 				objeto.put("page",page);
 				objeto.put("total",total);
 				if(data != null){
 					records=data.size();
 				}
 				objeto.put("records",records);
-				objeto.put("data",data);				
-				return objeto;
+				objeto.put("data",data);		
+				return objeto;				
 			}
 		}
 		return null;

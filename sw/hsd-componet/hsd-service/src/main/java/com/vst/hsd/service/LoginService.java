@@ -11,9 +11,7 @@ import com.vst.hsd.dominio.Usuario;
 
 public interface LoginService {
 
-	public Usuario iniciarSession(String usuario, String clave, Integer perfil, HttpSession session, HttpServletRequest request);
-
-	public int buscarUsuarioLogueado(HttpSession session);
+	public Usuario iniciarSession(String usuario, String clave, Integer perfil  );
 
 	public List<Perfil> obtenerPerfiles();
 

@@ -32,8 +32,13 @@ public interface RegistrarHistorialService {
 	public void registrarHistorial(String clase,String metodo,Entidad entidad);
 
 	public void registrarHistorial(String clase,String metodo,String mensaje);
-	
+
 	public void registrarHistorial(String mensaje,Entidad... entidad);
+
+	public void registrarHistorial(String mensaje,Object obj);
+	
+	public void registrarHistorial(String mensaje,Object... obj);
+	
 	
 
 }

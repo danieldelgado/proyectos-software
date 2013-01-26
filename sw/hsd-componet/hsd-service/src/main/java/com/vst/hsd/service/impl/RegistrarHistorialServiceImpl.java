@@ -70,7 +70,9 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 			h.setMetodo(metodo);
 			h.setCodigo(Util.getCodigo(h));
 			h.setFechaRegistro(new Date());
-			h.setValor(Util.getJsonObject(valor));
+			if(valor!=null){
+				h.setValor(Util.getJsonObject(valor));
+			}
 			historialDAO.guardar(h);
 			
 		} catch (Exception e) {
@@ -427,6 +429,44 @@ public class RegistrarHistorialServiceImpl implements RegistrarHistorialService 
 		}
 		
 		
+	}
+
+	public void registrarHistorial(String mensaje, Object obj) {
+		log.debug("[ - metodo: registrarHistorial  - entidad:"+Util.getJson(obj)+" ]");
+		try {		
+		
+			Historial h = new Historial();
+			h.setCodigo(Util.getCodigo(h));
+			h.setFechaRegistro(new Date());
+			h.setDescripcion(mensaje);
+			if(obj!=null){
+				h.setValor(Util.getJson(obj));				
+			}			
+			historialDAO.guardar(h);
+			
+		} catch (Exception e) {
+			log.error("Error con registrarHistorial " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	public void registrarHistorial(String mensaje, Object... obj) {
+		log.debug("[ - metodo: registrarHistorial  - entidad:"+Util.getJson(obj)+" ]");
+		try {		
+		
+			Historial h = new Historial();
+			h.setCodigo(Util.getCodigo(h));
+			h.setFechaRegistro(new Date());
+			h.setDescripcion(mensaje);
+			if(obj!=null){
+				h.setValor(Util.getJson(obj));				
+			}		
+			historialDAO.guardar(h);
+			
+		} catch (Exception e) {
+			log.error("Error con registrarHistorial " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 
