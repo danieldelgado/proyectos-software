@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.vst.hsd.service.RegistrarHistorialService;
 
 public class FiltroSeguridad implements Filter{
 
@@ -23,8 +20,8 @@ public class FiltroSeguridad implements Filter{
 	@SuppressWarnings("unused")
 	private FilterConfig filterConfig=null;
 	
-	@Autowired
-	private RegistrarHistorialService historialService;
+//	@Autowired
+//	private RegistrarHistorialService historialService;
 	
 	public void init(FilterConfig fConfig) throws ServletException {
 		this.filterConfig=fConfig;
@@ -33,8 +30,8 @@ public class FiltroSeguridad implements Filter{
 	public void doFilter(ServletRequest request,ServletResponse response,FilterChain chain) throws IOException,ServletException{
 		if(request instanceof HttpServletRequest){
 			HttpServletRequest objRequest=(HttpServletRequest) request;	
-			log.debug("[ metodo:doFilter - filtro de seguridad ]");
-			historialService.registrarHistorial("FiltroSeguridad", "doFilter", "", objRequest);
+			log.debug(" metodo:doFilter - filtro de seguridad ip: "+objRequest.getRemoteAddr());
+//			historialService.registrarHistorial("FiltroSeguridad", "doFilter", "", objRequest);
 		}
 		chain.doFilter(request,response);	
 	}
