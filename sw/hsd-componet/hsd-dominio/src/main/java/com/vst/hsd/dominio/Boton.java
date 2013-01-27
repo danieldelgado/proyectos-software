@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -31,6 +32,9 @@ public class Boton extends Recurso implements Serializable {
 
 	@Column(name="on_complete",length=80)
 	private String onComplete;
+	
+	@Column(name="on_click",length=80)
+	private String on_click;
 
 	@Column(name="on_submit",length=80)
 	private String onSubmit;
@@ -49,10 +53,11 @@ public class Boton extends Recurso implements Serializable {
 	private String url;
 
 	//bi-directional many-to-many association to Menu
-	@ManyToMany(mappedBy="botons")
+	@ManyToMany(mappedBy="botons",fetch=FetchType.LAZY)
 	private List<Menu> menus;
 		
     public Boton() {
+    	orden=0;
     }
 
 	
@@ -140,5 +145,25 @@ public class Boton extends Recurso implements Serializable {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+
+
+	public String getOn_click() {
+		return on_click;
+	}
+
+
+
+	public void setOn_click(String on_click) {
+		this.on_click = on_click;
+	}
+
+
+
+	public void setOrden(Integer orden) {
+		this.orden = orden;
+	}
+	
+	
 	
 }

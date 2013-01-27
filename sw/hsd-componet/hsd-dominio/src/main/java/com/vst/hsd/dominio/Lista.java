@@ -64,11 +64,12 @@ public class Lista  extends Recurso implements Serializable {
     }
     
    
-    public Lista(Integer id,String codigo, String nombre, String tabla) {
+    public Lista(Integer id,String codigo, String nombre, String tabla, Integer idMenu) {
 		super(id);
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.tabla = tabla;
+		this.idMenu = idMenu;
 	}
 
 	public String getCodigo() {
