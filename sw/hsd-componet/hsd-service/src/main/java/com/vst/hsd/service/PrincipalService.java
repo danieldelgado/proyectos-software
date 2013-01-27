@@ -20,4 +20,6 @@ public interface PrincipalService {
 
 	public List<Boton> obtenerBotonesPorMenuDefault(List<Menu> lstMenus);
 
+	public List<Boton> obtenerBotonesPorMenu(Integer idmenu);
+
 }
