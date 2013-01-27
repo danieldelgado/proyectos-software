@@ -54,9 +54,9 @@ public class PrincipalController {
 		} else {
 			List<Menu> lstMenus = principalService.obtenerMenusPorPerfil((Usuario) session.getAttribute(Constantes.SESION_USUARIO));
 			model.addAttribute("lstMenus", lstMenus);
-			List<Boton> lstBotones = principalService.obtenerBotonesPorMenuDefault(lstMenus);
-			model.addAttribute("lstBotones", lstBotones);
-			System.out.println(lstBotones);
+//			List<Boton> lstBotones = principalService.obtenerBotonesPorMenuDefault(lstMenus);
+//			model.addAttribute("lstBotones", lstBotones);
+//			System.out.println(lstBotones);
 			log.info("Redireccion a principal ip:" + request.getRemoteAddr());
 //			historialService.registrarHistorial("PrincipalController", "Usuario se dirige a principal  ip: " + request.getRemoteAddr(), u);
 //			historialService.registrarHistorial("PrincipalController", "Usuario se dirige a principal  con la lista de menus", lstMenus);
@@ -64,6 +64,13 @@ public class PrincipalController {
 		}
 	}
 
+	@RequestMapping(value = "obtenerBotonesPorMenu/{idmenu}", method = RequestMethod.GET)
+	public @ResponseBody List<Boton>  obtenerBotonesPorMenu(@PathVariable Integer idmenu, HttpSession sesion) {
+		List<Boton> lstBotones = principalService.obtenerBotonesPorMenu(idmenu);
+		System.out.println(lstBotones);
+		return lstBotones;
+	}
+	
 	@RequestMapping(value = "obtenerLista/{entidad}", method = RequestMethod.GET)
 	public @ResponseBody 	Lista obtenerData(@PathVariable String entidad, HttpSession sesion) {
 		log.info("obtenerData obtener @PathVariable  entidad : "+entidad);

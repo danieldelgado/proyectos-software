@@ -19,10 +19,11 @@ public class MantenimientoParametroController {
 	private MantenimientoParametroService mantenimientoParametroService;
 	
 	
-	@RequestMapping( value="mantenimiento/parametro" , method = RequestMethod.GET)	
+	@RequestMapping( value="mantenimiento/registrarParametro" , method = RequestMethod.GET)	
 	public String get(){
-		log.info("[ metodo : get - ingreso a mantenimientoParametro ]");		
-		return "mantenimiento/parametros/mantenimientoParametro";
+		log.info("[ metodo : get - ingreso a mantenimientoParametro ]");
+		System.out.println("#get html");
+		return "mantenimiento/parametros/parametro";
 	}	
 
 	
