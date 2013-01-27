@@ -35,6 +35,7 @@ CREATE TABLE `boton` (
   `tipo` varchar(50) NOT NULL,
   `url` varchar(250) DEFAULT NULL,
   `id_recurso` int(11) NOT NULL,
+  `on_click` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id_recurso`),
   KEY `FK59935E69D62F729` (`id_recurso`),
   CONSTRAINT `FK59935E69D62F729` FOREIGN KEY (`id_recurso`) REFERENCES `recurso` (`id_recurso`)
@@ -276,6 +277,7 @@ CREATE TABLE `historial` (
 
 LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
+INSERT INTO `historial` VALUES (2800,'PrincipalController','Historial-1359177102401-2048177213',NULL,'2013-01-26 00:11:42','Usuario se dirige a principal  ip: 127.0.0.1',NULL,NULL,NULL),(2801,'PrincipalController','Historial-1359177102715-485579652',NULL,'2013-01-26 00:11:42','Usuario se dirige a principal  con la lista de menus',NULL,NULL,'[[{\"nombre\":\"Mantenimiento\",\"orden\":0,\"tipo\":\"interno\",\"menus\":[{\"nombre\":\"Parametro\",\"orden\":0,\"tipo\":\"interno\",\"url\":\"Parametro\",\"id\":1},{\"nombre\":\"Perfil\",\"orden\":0,\"tipo\":\"interno\",\"url\":\"Perfil\",\"id\":1},{\"nombre\":\"Lista\",\"orden\":0,\"tipo\":\"interno\",\"url\":\"Lista\",\"id\":1},{\"nombre\":\"Columna\",\"orden\":0,\"tipo\":\"interno\",\"url\":\"Columna\",\"id\":1}],\"id\":1}]]'),(2850,'PrincipalController','Historial-1359177218432-2097725879',NULL,'2013-01-26 00:13:38','Usuario se dirige a principal  ip: 127.0.0.1',NULL,NULL,NULL),(2851,'PrincipalController','Historial-1359177218595-900718971',NULL,'2013-01-26 00:13:38','Usuario se dirige a principal  con la lista de menus',NULL,NULL,'[[{\"nombre\":\"Mantenimiento\",\"orden\":0,\"tipo\":\"interno\",\"menus\":[{\"nombre\":\"Parametro\",\"orden\":0,\"tipo\":\"interno\",\"url\":\"Parametro\",\"id\":1},{\"nombre\":\"Perfil\",\"orden\":0,\"tipo\":\"interno\",\"url\":\"Perfil\",\"id\":1},{\"nombre\":\"Lista\",\"orden\":0,\"tipo\":\"interno\",\"url\":\"Lista\",\"id\":1},{\"nombre\":\"Columna\",\"orden\":0,\"tipo\":\"interno\",\"url\":\"Columna\",\"id\":1}],\"id\":1}]]'),(2852,'PrincipalController','Historial-1359177318517-352753634',NULL,'2013-01-26 00:15:18','Usuario se dirige a principal  ip: 127.0.0.1',NULL,NULL,NULL),(2853,'PrincipalController','Historial-1359177318623-1731015846',NULL,'2013-01-26 00:15:18','Usuario se dirige a principal  con la lista de menus',NULL,NULL,'[[{\"nombre\":\"Mantenimiento\",\"orden\":0,\"tipo\":\"interno\",\"menus\":[{\"nombre\":\"Parametro\",\"orden\":0,\"tipo\":\"interno\",\"url\":\"Parametro\",\"id\":1},{\"nombre\":\"Perfil\",\"orden\":0,\"tipo\":\"interno\",\"url\":\"Perfil\",\"id\":1},{\"nombre\":\"Lista\",\"orden\":0,\"tipo\":\"interno\",\"url\":\"Lista\",\"id\":1},{\"nombre\":\"Columna\",\"orden\":0,\"tipo\":\"interno\",\"url\":\"Columna\",\"id\":1}],\"id\":1}]]'),(2854,NULL,'Historial-1359177321125-2011970268',NULL,'2013-01-26 00:15:21',NULL,NULL,NULL,'[]'),(2857,NULL,'Historial-1359177322925-1745952667',NULL,'2013-01-26 00:15:22',NULL,NULL,NULL,'[]'),(2860,NULL,'Historial-1359177325556-537068416',NULL,'2013-01-26 00:15:25',NULL,NULL,NULL,'[]'),(2863,NULL,'Historial-1359177326510-210282510',NULL,'2013-01-26 00:15:26',NULL,NULL,NULL,'[]'),(2866,NULL,'Historial-1359177333734-2009445086',NULL,'2013-01-26 00:15:33',NULL,NULL,NULL,'[]'),(2869,NULL,'Historial-1359177522891-637429635',NULL,'2013-01-26 00:18:42',NULL,NULL,NULL,'[]'),(2901,NULL,'Historial-1359177559607-568055061',NULL,'2013-01-26 00:19:19',NULL,NULL,NULL,'[]');
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,7 +306,7 @@ CREATE TABLE `lista` (
 
 LOCK TABLES `lista` WRITE;
 /*!40000 ALTER TABLE `lista` DISABLE KEYS */;
-INSERT INTO `lista` VALUES ('rthr5464',0,'Lista de Parametros','Parametro',1);
+INSERT INTO `lista` VALUES ('rthr5464',1,'Lista de Parametros','Parametro',1);
 /*!40000 ALTER TABLE `lista` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -637,4 +639,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-01-26 14:16:10
+-- Dump completed on 2013-01-26 20:41:12
