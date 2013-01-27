@@ -16,7 +16,7 @@ public class ListaDAOImpl extends DAO<Lista> implements ListaDAO {
 
 	public Lista obtenerListaPorUsuario(String entidad, Usuario u) {
 		log.debug(" obtenerListaPorUsuario entidad : " + entidad);
-		sqlQuery = " SELECT new Lista( ls.id, ls.codigo, ls.nombre, ls.tabla) FROM Lista ls where ls.tabla = :entidad " + " and "
+		sqlQuery = " SELECT new Lista( ls.id, ls.codigo, ls.nombre, ls.tabla, ls.idMenu) FROM Lista ls where ls.tabla = :entidad " + " and "
 				+ " ls.id = ( select rpp.id.recurso.id from RecursoPorPerfil rpp where rpp.id.perfil.id = :perfil )   ";
 		log.debug(" sqlQuery  : " + sqlQuery);
 		q = em.createQuery(sqlQuery);
@@ -35,7 +35,7 @@ public class ListaDAOImpl extends DAO<Lista> implements ListaDAO {
 
 	public Lista obtenerListaPorEntidad(String entidad) {
 		log.debug(" obtenerListaPorEntidad entidad : " + entidad);
-		sqlQuery = " SELECT new Lista( ls.id, ls.codigo, ls.nombre, ls.tabla) FROM Lista ls where ls.tabla = :entidad";
+		sqlQuery = " SELECT new Lista( ls.id, ls.codigo, ls.nombre, ls.tabla,ls.idMenu) FROM Lista ls where ls.tabla = :entidad";
 		q = em.createQuery(sqlQuery);
 		try {
 			q.setMaxResults(1);
