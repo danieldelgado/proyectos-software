@@ -70,9 +70,6 @@ public class Columna implements Entidad , Serializable {
 	
 	@Column(name="orden",nullable=false)
 	private Integer orden;
-
-	@ManyToMany(mappedBy="columnas")
-	private List<Lista> listas;
 	 
 	@Temporal( TemporalType.DATE)	 
 	@Column(name="fecha_actualizacion",nullable=false)
@@ -195,14 +192,6 @@ public class Columna implements Entidad , Serializable {
 
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
-	}
-
-	public List<Lista> getListas() {
-		return listas;
-	}
-
-	public void setListas(List<Lista> listas) {
-		this.listas = listas;
 	}
 
 	public String getLabel() {

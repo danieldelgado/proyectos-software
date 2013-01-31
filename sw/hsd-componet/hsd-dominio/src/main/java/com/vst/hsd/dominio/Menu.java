@@ -6,9 +6,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -46,19 +43,15 @@ public class Menu extends Recurso implements Serializable {
 	@Column(name="url",length=500)
 	private String url;
 
-	@ManyToMany(mappedBy = "menus")
-	private List<Lista> listas;
-
-	@ManyToMany
-	@JoinTable(name = "boton_por_menu", joinColumns = { @JoinColumn(name = "id_menu") }, inverseJoinColumns = { @JoinColumn(name = "id_boton") })
-	private List<Boton> botons;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Menu menu;
 
 	@OneToMany(mappedBy = "menu")
 	private List<Menu> menus;
-
+	
+	@OneToMany(mappedBy="menu")
+	private List<Pagina> paginas;
+	
 	public Menu() {
 		defaultMenu=false;
 	}
@@ -69,6 +62,14 @@ public class Menu extends Recurso implements Serializable {
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+
+	public List<Pagina> getPaginas() {
+		return paginas;
+	}
+
+	public void setPaginas(List<Pagina> paginas) {
+		this.paginas = paginas;
 	}
 
 	public String getFunction() {
@@ -119,22 +120,6 @@ public class Menu extends Recurso implements Serializable {
 		this.url = url;
 	}
 
-	public List<Lista> getListas() {
-		return listas;
-	}
-
-	public void setListas(List<Lista> listas) {
-		this.listas = listas;
-	}
-
-	public List<Boton> getBotons() {
-		return botons;
-	}
-
-	public void setBotons(List<Boton> botons) {
-		this.botons = botons;
-	}
-
 	public Menu getMenu() {
 		return menu;
 	}
@@ -150,8 +135,6 @@ public class Menu extends Recurso implements Serializable {
 	public void setMenus(List<Menu> menus) {
 		this.menus = menus;
 	}
-
-	
 
 	public Boolean getDefaultMenu() {
 		return defaultMenu;

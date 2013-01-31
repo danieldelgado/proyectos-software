@@ -53,24 +53,24 @@ public class Boton extends Recurso implements Serializable {
 	private String url;
 
 	//bi-directional many-to-many association to Menu
-	@ManyToMany(mappedBy="botons",fetch=FetchType.LAZY)
-	private List<Menu> menus;
+//	@ManyToMany(mappedBy="botons",fetch=FetchType.LAZY)
+//	private List<Menu> menus;
 		
     public Boton() {
     	orden=0;
     }
 
 	
-
-	public List<Menu> getMenus() {
-		return menus;
-	}
-
-
-
-	public void setMenus(List<Menu> menus) {
-		this.menus = menus;
-	}
+//
+//	public List<Menu> getMenus() {
+//		return menus;
+//	}
+//
+//
+//
+//	public void setMenus(List<Menu> menus) {
+//		this.menus = menus;
+//	}
 
 
 

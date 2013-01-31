@@ -36,30 +36,7 @@ public class Lista  extends Recurso implements Serializable {
 	@Column(name="tabla",length=40,nullable=false)
 	private String tabla;
 
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(
-		name="columna_por_lista"
-		, joinColumns={
-			@JoinColumn(name="lista_id_recurso")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="columna_id_columna")
-			}
-		)
-	private List<Columna> columnas;
-
-    @ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(
-		name="lista_por_menu"
-		, joinColumns={
-			@JoinColumn(name="lista_id_recurso")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="id_menu")
-			}
-		)
-	private List<Menu> menus;
-    
+  
     public Lista() {
     }
     
@@ -108,23 +85,6 @@ public class Lista  extends Recurso implements Serializable {
 		this.tabla = tabla;
 	}
 
-	public List<Columna> getColumnas() {
-		return columnas;
-	}
-
-	public void setColumnas(List<Columna> columnas) {
-		this.columnas = columnas;
-	}
-
-	public List<Menu> getMenus() {
-		return menus;
-	}
-
-	public void setMenus(List<Menu> menus) {
-		this.menus = menus;
-	}
-
 	
-
 	
 }
