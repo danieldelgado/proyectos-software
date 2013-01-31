@@ -20,18 +20,31 @@ import com.vst.hsd.service.RegistrarHistorialService;
 import com.vst.util.Constantes;
 import com.vst.util.Util;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoginController.
+ */
 @Controller
 @RequestMapping("login")
 public class LoginController {
 
+	/** The Constant log. */
 	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 
 //	@Autowired
 //	private RegistrarHistorialService historialService;
 
-	@Autowired
+	/** The login service. */
+@Autowired
 	private LoginService loginService;
 
+	/**
+	 * Gets the.
+	 *
+	 * @param request the request
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String get(HttpServletRequest request, Model model) {
 		log.info(" metodo get - ingreso  a login ");
@@ -41,6 +54,17 @@ public class LoginController {
 		return "login/login";
 	}
 
+	/**
+	 * Iniciar session.
+	 *
+	 * @param usuario the usuario
+	 * @param clave the clave
+	 * @param perfil the perfil
+	 * @param request the request
+	 * @param session the session
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "iniciarSession", method = RequestMethod.POST)
 	public String iniciarSession(String usuario, String clave, Integer perfil, HttpServletRequest request, HttpSession session, Model model) {
 		log.info(" metodo iniciarSession -   dato usuario : " + usuario + "  clave : " + clave + " perfil : " + perfil + "  ip :  " + request.getRemoteAddr());
@@ -56,6 +80,13 @@ public class LoginController {
 		return "redirect:/login";
 	}
 
+	/**
+	 * Terminar session.
+	 *
+	 * @param session the session
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "terminarSession", method = RequestMethod.GET)
 	public String terminarSession(HttpSession session, Model model) {
 		try {

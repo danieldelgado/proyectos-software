@@ -5,11 +5,21 @@ import javax.servlet.ServletContextEvent;
 
 import com.vst.util.Config;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ApplicationHSD.
+ */
 public class ApplicationHSD implements ServletContextListener	{
 
+	/** The consolemessage. */
 	public Boolean consolemessage=false;
+	
+	/** The application initialized. */
 	public static long applicationInitialized =	0L;
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
+	 */
 	public void	contextInitialized(ServletContextEvent ce) {
 		applicationInitialized = System.currentTimeMillis();
 		consolemessage=Boolean.valueOf(Config.getPropiedad("applicacion.context,console.log.js"));
@@ -19,6 +29,9 @@ public class ApplicationHSD implements ServletContextListener	{
 		c.setAttribute("consolemessage", consolemessage);		
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
+	 */
 	public void	contextDestroyed(ServletContextEvent ce) {
 		System.out.println("contextDestroyed");
 		ServletContext c = ce.getServletContext();

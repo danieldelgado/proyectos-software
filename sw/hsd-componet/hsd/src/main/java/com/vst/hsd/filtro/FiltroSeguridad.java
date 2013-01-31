@@ -13,20 +13,32 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FiltroSeguridad.
+ */
 public class FiltroSeguridad implements Filter{
 
+	/** The log. */
 	private static Logger log=LoggerFactory.getLogger(FiltroSeguridad.class);
 
+	/** The filter config. */
 	@SuppressWarnings("unused")
 	private FilterConfig filterConfig=null;
 	
 //	@Autowired
 //	private RegistrarHistorialService historialService;
 	
-	public void init(FilterConfig fConfig) throws ServletException {
+	/* (non-Javadoc)
+ * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
+ */
+public void init(FilterConfig fConfig) throws ServletException {
 		this.filterConfig=fConfig;
 	}
 	
+	/* (non-Javadoc)
+	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
+	 */
 	public void doFilter(ServletRequest request,ServletResponse response,FilterChain chain) throws IOException,ServletException{
 		if(request instanceof HttpServletRequest){
 			HttpServletRequest objRequest=(HttpServletRequest) request;	
@@ -51,9 +63,18 @@ public class FiltroSeguridad implements Filter{
 	}
 
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.Filter#destroy()
+	 */
 	public void destroy(){
 	}
 
+	/**
+	 * Gets the username.
+	 *
+	 * @param cadenaDes the cadena des
+	 * @return the username
+	 */
 	@SuppressWarnings("unused")
 	private String getUsername(String cadenaDes){
 		String username=null;

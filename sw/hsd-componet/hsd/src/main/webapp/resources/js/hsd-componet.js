@@ -93,27 +93,9 @@ function crearTab() {
 	tabsGeneralHSD = $(".ui-layout-center");
 	tabsGeneralHSD.html("");
 	tabsGeneralHSD.html("<ul></ul>");
-	
-//	tabsGeneralHSD.tabs();
-//	 var    tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>",
-//     tabCounter = 2;
-//	 
-//	  var label = "  tab prueba ",
-//      id = "tabs-" + 2;
-//     var  li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
-//      tabContentHtml = " prueba de contenido ";
-//
-//
-//     tabsGeneralHSD.find( ".ui-tabs-nav" ).append( li );
-//     tabsGeneralHSD.append( "<div id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
-//     tabsGeneralHSD.tabs( "refresh" );
-//	
-//     tabsGeneralHSD.tabs("select",id);
-	
-//
+
 	var tabTemplate = "<li><a href=\"#{href}\"> #{label} </a> <span class=\"ui-icon ui-icon-close\">Cerrar</span></li>";
-	
-	
+
 	tabsGeneralHSD.tabs({
 		collapsible : true,
 		fxAutoHeight : true,
@@ -127,70 +109,47 @@ function crearTab() {
 		axis : 'x',
 		zIndex : 2
 	});
-	
-	tabsGeneralHSD.delegate( "span.ui-icon-close", "click", function() {
-			var index = $("li", tabsGeneralHSD).index($(this).parent());
-		      console.log("index : " +index);
-		      var tab = $(this).parent().find("a").attr("href");
-		      console.log("tab : " +tab);
-		      if (tab != "#tabPrincipal") {
-		    	  $( tab ).remove();
-			      var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
-			      console.log("panelId : " +panelId);
-		      }
-		    
-	    });
-	
-	addtab("Principal", "tabPrincipal", "", false);
-//	addtab("Principal222", "tabPrincipal1", " hola3", false);
-//	addtab("Principal333", "tabPrincipal2", " hola2 ", false);
-//	addtab("Principal444", "tabPrincipa3", " hola1 ", false);
+
+	tabsGeneralHSD.delegate("span.ui-icon-close", "click", function() {
+		var index = $("li", tabsGeneralHSD).index($(this).parent());
+		var tab = $(this).parent().find("a").attr("href");
+		if (tab != "#tabPrincipal") {
+			$(tab).remove();
+//			var panelId = 
+			$(this).closest("li").remove().attr("aria-controls");
+		}
+
+	});
+
+	addtab("Principal", "tabPrincipal", "", true);
 	tabprincipal = $("#tabPrincipal");
-	// tabs.tabs("select","#tabPrincipal");
-//	tabsGeneralHSD.tabs( "refresh" );
 }
 
 function addtab(titulo, identificador, content, select) {
-	// var tabIngresado = $("#" + identificador);
-//	if ($("#" + identificador).length <= 0) {
-//		tabsGeneralHSD.append('<div id="' + identificador + '"> ' + content + '</div>');
-//		tabsGeneralHSD.tabs("add", "#" + identificador, titulo);
-//	} else if (select) {
-//		selectTab(identificador);
-//	}
-
-	var tabTemplate = "<li><a href=\"#{href}\"> #{label} </a> <span class=\"ui-icon ui-icon-close\">Cerrar</span></li>";
-  var  li = $( tabTemplate.replace( /#\{href\}/g, "#" + identificador ).replace( /#\{label\}/g, titulo ) );
-
-
-  tabsGeneralHSD.find( ".ui-tabs-nav" ).append( li );
-  tabsGeneralHSD.append( "<div id='" + identificador + "'>" + content + "</div>" );
-  tabsGeneralHSD.tabs( "refresh" );
-	
-  tabsGeneralHSD.tabs("select",identificador);
-	
-	
+	var tabIdentificadorExists = get("#"+identificador);	
+	if (isNull(tabIdentificadorExists)) {
+		var tabTemplate = "<li><a href=\"#{href}\"> #{label} </a> <span class=\"ui-icon ui-icon-close\">Cerrar</span></li>";
+		var li = $(tabTemplate.replace(/#\{href\}/g, "#" + identificador).replace(/#\{label\}/g, titulo));
+		tabsGeneralHSD.find(".ui-tabs-nav").append(li);
+		tabsGeneralHSD.append("<div id='" + identificador + "'>" + content + "</div>");
+		tabsGeneralHSD.tabs("refresh");
+	}
+	selectTab(identificador);
 }
 
 function selectTab(identificador) {
-	// console.log("selectTab:"+identificador);
 	tabsGeneralHSD.tabs("select", identificador);
-	// tabsGeneralHSD.tabs("select","tabPrincipal");
 }
-
 
 function existsTabSelect(identificador) {
-	var tabIngresado = $(identificador);
-	if (tabIngresado == null) {
-		return true;
+	var tabIngresado = get("#"+identificador);
+	if (isNull(tabIngresado)) {
+		return false;
 	}
-	return false;
+	return true;
 }
 
-
-/////////////////////////////////////////////////////////////////////////////
-
-
+// ///////////////////////////////////////////////////////////////////////////
 
 detalleLista = function(id, cap) {
 	// consola("detalleLista:"+id+" "+cap);
@@ -202,7 +161,7 @@ function irPagina(url) {
 }
 
 function cargarLista(pm) {
-	if (diferenteNull(pm)) {
+	if ( isStringNull(pm) )  {
 
 		$.get(context + "principal/obtenerLista/" + pm, function(lista) {
 
@@ -235,17 +194,12 @@ function cargarLista(pm) {
 						id : item.id
 					}).click(function() {
 						if (item.tipo == "addtablink") {
-
 							if (!existsTabSelect(item.codigo)) {
-								console.log("addTab");
 								var html = "";
 								ajaxAsyncGetHtml(context + item.url, null, function(h) {
-									html=h;
+									html = h;
 								});
-								console.log("ajaxAsyncGet");
-								addtab(item.descripcion, item.codigo, html , true);
-								
-								
+								addtab(item.descripcion, item.codigo, html, true);
 							} else {
 								selectTab(item.codigo);
 							}
@@ -304,6 +258,13 @@ function cargarLista(pm) {
 
 }
 
+function get(identificadorObjeto) {
+	var obj = $(identificadorObjeto)[0];
+	
+	return obj;
+
+}
+
 function consola(objeto) {
 	// if (!window.console) {
 	// alert($.browser.msie);
@@ -315,10 +276,16 @@ function consola(objeto) {
 		}
 	}
 }
+function isStringNull(objeto) {
+	objeto = $.trim(objeto);	
+	if (objeto != null || objeto != "" ) {
+		return true;
+	}
+	return false;
+}
 
-function diferenteNull(objeto) {
-	objeto = $.trim(objeto);
-	if (objeto != null && objeto != "") {
+function isNull(objeto) {
+	if  (objeto == null || objeto == undefined ) {
 		return true;
 	}
 	return false;
@@ -366,6 +333,7 @@ var formateadores = {
 		return "<img src=\"" + valor + "\"/>";
 	}
 };
+
 function ajaxAsyncGet(url, data, callback) {
 	$.ajax({
 		type : "get",

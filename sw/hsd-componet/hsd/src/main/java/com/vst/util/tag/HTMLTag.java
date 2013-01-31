@@ -15,23 +15,32 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HTMLTag.
+ */
 public class HTMLTag extends TagSupport{
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID=1656870319155987026L;
 
+	/** The titulo. */
 	private String titulo;
 
+	/** The estilo. */
 	private String estilo;
 
+	/** The javascript. */
 	private String javascript;
 
+	/** The ent. */
 	private String ent;
 
 	
 	
+	/* (non-Javadoc)
+	 * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
+	 */
 	public int doStartTag() throws JspException{
 		String cabecera="/WEB-INF/views/estructura/cabecera.jsp";
 		ServletRequest request=pageContext.getRequest();
@@ -95,6 +104,9 @@ public class HTMLTag extends TagSupport{
 		return EVAL_BODY_INCLUDE;
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.jsp.tagext.TagSupport#doEndTag()
+	 */
 	public int doEndTag() throws JspException{
 		String pie="/WEB-INF/views/estructura/pie.jsp";
 		try{
@@ -117,34 +129,74 @@ public class HTMLTag extends TagSupport{
 		return EVAL_PAGE;
 	}
 
+	/**
+	 * Sets the estilo.
+	 *
+	 * @param estilo the new estilo
+	 */
 	public void setEstilo(String estilo){
 		this.estilo=estilo;
 	}
 
+	/**
+	 * Sets the javascript.
+	 *
+	 * @param javascript the new javascript
+	 */
 	public void setJavascript(String javascript){
 		this.javascript=javascript;
 	}
 
+	/**
+	 * Sets the titulo.
+	 *
+	 * @param titulo the new titulo
+	 */
 	public void setTitulo(String titulo){
 		this.titulo=titulo;
 	}
 
+	/**
+	 * Gets the ent.
+	 *
+	 * @return the ent
+	 */
 	public String getEnt() {
 		return ent;
 	}
 
+	/**
+	 * Sets the ent.
+	 *
+	 * @param ent the new ent
+	 */
 	public void setEnt(String ent) {
 		this.ent = ent;
 	}
 
+	/**
+	 * Gets the titulo.
+	 *
+	 * @return the titulo
+	 */
 	public String getTitulo() {
 		return titulo;
 	}
 
+	/**
+	 * Gets the estilo.
+	 *
+	 * @return the estilo
+	 */
 	public String getEstilo() {
 		return estilo;
 	}
 
+	/**
+	 * Gets the javascript.
+	 *
+	 * @return the javascript
+	 */
 	public String getJavascript() {
 		return javascript;
 	}

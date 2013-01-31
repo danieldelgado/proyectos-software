@@ -12,17 +12,42 @@ import com.vst.hsd.dominio.Usuario;
 import com.vst.util.Constantes;
 import com.vst.util.Util;
  
+// TODO: Auto-generated Javadoc
+/**
+ * The listener interface for receiving sessionCounter events.
+ * The class that is interested in processing a sessionCounter
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addSessionCounterListener<code> method. When
+ * the sessionCounter event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see SessionCounterEvent
+ */
 public class SessionCounterListener implements HttpSessionListener {
  
+     /** The total active sessions. */
      private static int totalActiveSessions;
+     
+     /** The milisegundos inicio. */
      public long milisegundosInicio;
+     
+     /** The milisegundos fin. */
      public long milisegundosFin;
      
      
+     /**
+      * Gets the total active session.
+      *
+      * @return the total active session
+      */
      public static int getTotalActiveSession(){
            return totalActiveSessions;
      }
  
+    /* (non-Javadoc)
+     * @see javax.servlet.http.HttpSessionListener#sessionCreated(javax.servlet.http.HttpSessionEvent)
+     */
     public void sessionCreated(HttpSessionEvent arg0) {
     	System.out.println("----------------------------------------");
            totalActiveSessions++;
@@ -35,6 +60,9 @@ public class SessionCounterListener implements HttpSessionListener {
        	System.out.println("----------------------------------------");
     }
  
+    /* (non-Javadoc)
+     * @see javax.servlet.http.HttpSessionListener#sessionDestroyed(javax.servlet.http.HttpSessionEvent)
+     */
     public void sessionDestroyed(HttpSessionEvent arg0) {
     	System.out.println("----------------------------------------");
            totalActiveSessions--;
@@ -52,6 +80,11 @@ public class SessionCounterListener implements HttpSessionListener {
            
     }	
  
+    /**
+     * Prints the counter.
+     *
+     * @param sessionEvent the session event
+     */
     private void printCounter(HttpSessionEvent sessionEvent){
  
           HttpSession session = sessionEvent.getSession();
