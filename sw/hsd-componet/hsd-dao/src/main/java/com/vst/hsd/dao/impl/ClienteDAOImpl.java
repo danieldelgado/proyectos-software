@@ -6,8 +6,10 @@ import com.vst.hsd.dao.ClienteDAO;
 import com.vst.hsd.dominio.Cliente;
 import com.vst.util.DAO;
 
+/**
+ * The Class ClienteDAOImpl.
+ */
 @Repository("ClienteDAO")
 public class ClienteDAOImpl extends DAO<Cliente> implements ClienteDAO {
-
 
 }

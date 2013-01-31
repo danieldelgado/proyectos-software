@@ -6,9 +6,11 @@ import com.vst.hsd.dao.CodigoClienteDAO;
 import com.vst.hsd.dominio.CodigoCliente;
 import com.vst.util.DAO;
 
+/**
+ * The Class CodigoClienteDAOImpl.
+ */
 @Repository("CodigoClienteDAO")
-public class CodigoClienteDAOImpl extends DAO<CodigoCliente> implements CodigoClienteDAO {
-
-	
+public class CodigoClienteDAOImpl extends DAO<CodigoCliente> implements
+		CodigoClienteDAO {
 
 }

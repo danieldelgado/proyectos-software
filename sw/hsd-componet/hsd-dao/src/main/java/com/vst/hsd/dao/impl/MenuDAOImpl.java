@@ -6,9 +6,10 @@ import com.vst.hsd.dao.MenuDAO;
 import com.vst.hsd.dominio.Menu;
 import com.vst.util.DAO;
 
+/**
+ * The Class MenuDAOImpl.
+ */
 @Repository("MenuDAO")
 public class MenuDAOImpl extends DAO<Menu> implements MenuDAO {
-
-	
 
 }

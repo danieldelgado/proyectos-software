@@ -19,15 +19,40 @@ import com.vst.hsd.dominio.Usuario;
 import com.vst.util.BeanFlags;
 import com.vst.util.Util;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DataListComponetImpl.
+ */
 @Repository("DataListComponet")
 public class DataListComponetImpl implements DataListComponet {
 
-	private static final Logger log = LoggerFactory.getLogger(DataListComponetImpl.class);
+	/** The Constant log. */
+	private static final Logger log = LoggerFactory
+			.getLogger(DataListComponetImpl.class);
 
+	/** The em. */
 	@PersistenceContext
 	protected EntityManager em;
 
-	private String createQuery(BeanFlags f, boolean _search, boolean cuenta, Usuario usuario, String codigo, List<Columna> columnas, Character estado, String columnaOrden, String direccionOrden,
+	/**
+	 * Creates the query.
+	 *
+	 * @param f the f
+	 * @param _search the _search
+	 * @param cuenta the cuenta
+	 * @param usuario the usuario
+	 * @param codigo the codigo
+	 * @param columnas the columnas
+	 * @param estado the estado
+	 * @param columnaOrden the columna orden
+	 * @param direccionOrden the direccion orden
+	 * @param searchField the search field
+	 * @param searchOper the search oper
+	 * @return the string
+	 */
+	private String createQuery(BeanFlags f, boolean _search, boolean cuenta,
+			Usuario usuario, String codigo, List<Columna> columnas,
+			Character estado, String columnaOrden, String direccionOrden,
 			String searchField, String searchOper) {
 		String sql = "SELECT ";
 
@@ -79,7 +104,11 @@ public class DataListComponetImpl implements DataListComponet {
 		return sql;
 	}
 
-	public Integer getCuentaData(Usuario usuario, String codigo, List<Columna> columnas, Character estado) {
+	/* (non-Javadoc)
+	 * @see com.vst.hsd.dao.DataListComponet#getCuentaData(com.vst.hsd.dominio.Usuario, java.lang.String, java.util.List, java.lang.Character)
+	 */
+	public Integer getCuentaData(Usuario usuario, String codigo,
+			List<Columna> columnas, Character estado) {
 
 		String sql = "SELECT COUNT(*) FROM " + codigo + " x";
 
@@ -105,18 +134,30 @@ public class DataListComponetImpl implements DataListComponet {
 		return 0;
 	}
 
-	public List<Map<String, Object>> getData(Usuario usuario, String codigo, List<Columna> columnas, Character estado, String columnaOrden, String direccionOrden, int pagina, int filas,
-			boolean _search, String searchField, String searchOper, String searchString) {
-		log.debug(" getCantidadDataRows usuario: " + usuario.getCodigo() + " codigo: " + codigo + " estado:" + estado + " columnas:" + columnas + " columnaOrden:" + columnaOrden + " direccionOrden:"
-				+ direccionOrden + " pagina:" + pagina + " filas:" + filas + " _search:" + _search + " searchField:" + searchField + " searchOper:" + searchOper + " searchString:" + searchString);
-		
+	/* (non-Javadoc)
+	 * @see com.vst.hsd.dao.DataListComponet#getData(com.vst.hsd.dominio.Usuario, java.lang.String, java.util.List, java.lang.Character, java.lang.String, java.lang.String, int, int, boolean, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	public List<Map<String, Object>> getData(Usuario usuario, String codigo,
+			List<Columna> columnas, Character estado, String columnaOrden,
+			String direccionOrden, int pagina, int filas, boolean _search,
+			String searchField, String searchOper, String searchString) {
+		log.debug(" getCantidadDataRows usuario: " + usuario.getCodigo()
+				+ " codigo: " + codigo + " estado:" + estado + " columnas:"
+				+ columnas + " columnaOrden:" + columnaOrden
+				+ " direccionOrden:" + direccionOrden + " pagina:" + pagina
+				+ " filas:" + filas + " _search:" + _search + " searchField:"
+				+ searchField + " searchOper:" + searchOper + " searchString:"
+				+ searchString);
+
 		BeanFlags flags = new BeanFlags();
 		flags.setConAction(false);
 		flags.setConEstado(false);
 		flags.setConUsuario(false);
 		flags.setConBusqueda(false);
 		flags.setCopiado(false);
-		String sql = createQuery(flags, _search, false, usuario, codigo, columnas, estado, columnaOrden, direccionOrden, searchField, searchOper);
+		String sql = createQuery(flags, _search, false, usuario, codigo,
+				columnas, estado, columnaOrden, direccionOrden, searchField,
+				searchOper);
 		log.debug("query dinamica bandeja:" + sql);
 		Query q = em.createQuery(sql);
 		if (flags.getConUsuario()) {
@@ -136,7 +177,7 @@ public class DataListComponetImpl implements DataListComponet {
 		q.setMaxResults(filas);
 
 		List<Object[]> retorno = q.getResultList();
-		log.debug("  getData retorno  retorno :"+ retorno.size() );
+		log.debug("  getData retorno  retorno :" + retorno.size());
 		if (retorno.size() > 0) {
 			List<Map<String, Object>> salida = new ArrayList<Map<String, Object>>();
 			for (Object[] dato : retorno) {
@@ -159,15 +200,21 @@ public class DataListComponetImpl implements DataListComponet {
 		return null;
 	}
 
-	public int getCantidadDataRows(Usuario usuario, String codigo, Character estado) {
-		log.debug(" getCantidadDataRows usuario: " + usuario.getCodigo() + " codigo: " + codigo + " estado:" + estado);
+	/* (non-Javadoc)
+	 * @see com.vst.hsd.dao.DataListComponet#getCantidadDataRows(com.vst.hsd.dominio.Usuario, java.lang.String, java.lang.Character)
+	 */
+	public int getCantidadDataRows(Usuario usuario, String codigo,
+			Character estado) {
+		log.debug(" getCantidadDataRows usuario: " + usuario.getCodigo()
+				+ " codigo: " + codigo + " estado:" + estado);
 		BeanFlags flags = new BeanFlags();
 		flags.setConAction(false);
 		flags.setConEstado(false);
 		flags.setConUsuario(false);
 		flags.setConBusqueda(false);
 
-		String sql = createQuery(flags, false, true, usuario, codigo, null, estado, null, null, null, null);
+		String sql = createQuery(flags, false, true, usuario, codigo, null,
+				estado, null, null, null, null);
 
 		Query q = em.createQuery(sql);
 

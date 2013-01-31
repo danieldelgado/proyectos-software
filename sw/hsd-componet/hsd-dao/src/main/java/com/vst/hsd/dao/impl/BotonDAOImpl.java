@@ -11,15 +11,23 @@ import com.vst.hsd.dominio.Boton;
 import com.vst.hsd.dominio.Menu;
 import com.vst.util.DAO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BotonDAOImpl.
+ */
 @Repository("BotonDAO")
 public class BotonDAOImpl extends DAO<Boton> implements BotonDAO {
 
-	private static final Logger log = LoggerFactory.getLogger(BotonDAOImpl.class);
-	
+	/** The Constant log. */
+	private static final Logger log = LoggerFactory
+			.getLogger(BotonDAOImpl.class);
+
+	/* (non-Javadoc)
+	 * @see com.vst.hsd.dao.BotonDAO#obtenerBotonesPorMenu(com.vst.hsd.dominio.Menu)
+	 */
 	public List<Boton> obtenerBotonesPorMenu(Menu m) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	
 }

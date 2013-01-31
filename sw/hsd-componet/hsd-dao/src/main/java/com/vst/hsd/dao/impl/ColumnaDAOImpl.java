@@ -10,26 +10,35 @@ import com.vst.hsd.dao.ColumnaDAO;
 import com.vst.hsd.dominio.Columna;
 import com.vst.util.DAO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ColumnaDAOImpl.
+ */
 @Repository("ColumnaDAO")
 public class ColumnaDAOImpl extends DAO<Columna> implements ColumnaDAO {
 
-	private static final Logger log = LoggerFactory.getLogger(ColumnaDAOImpl.class);
+	/** The Constant log. */
+	private static final Logger log = LoggerFactory
+			.getLogger(ColumnaDAOImpl.class);
 
+	/* (non-Javadoc)
+	 * @see com.vst.hsd.dao.ColumnaDAO#buscarPorLista(java.lang.Integer)
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Columna> buscarPorLista(Integer id) {
-		log.debug(" buscarPorLista id:"+id);
-		sqlQuery = "select  new Columna(c.id, c.addColumn, c.ancho, c.atributo, c.cabecera, c.codigo, c.tabla,  c.alineacion, c.formato_tipo, c.mapping,c.visible, c.orden, c.estado, c.activo)  " +
-							" from Lista ls join  ls.columnas c where ls.id = :lista";
-		log.debug(" buscarPorLista  sqlQuery :  " +sqlQuery );
-		q=em.createQuery(sqlQuery);
-		q.setParameter("lista", id);	
+		log.debug(" buscarPorLista id:" + id);
+		sqlQuery = "select  new Columna(c.id, c.addColumn, c.ancho, c.atributo, c.cabecera, c.codigo, c.tabla,  c.alineacion, c.formato_tipo, c.mapping,c.visible, c.orden, c.estado, c.activo)  "
+				+ " from Lista ls join  ls.columnas c where ls.id = :lista";
+		log.debug(" buscarPorLista  sqlQuery :  " + sqlQuery);
+		q = em.createQuery(sqlQuery);
+		q.setParameter("lista", id);
 		try {
-			List<Columna> columnas = q.getResultList();					
+			List<Columna> columnas = q.getResultList();
 			return columnas;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}		
+		}
 	}
-	
+
 }
