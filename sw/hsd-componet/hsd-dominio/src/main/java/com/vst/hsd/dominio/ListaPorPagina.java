@@ -6,6 +6,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+// TODO: Auto-generated Javadoc
 /**
  * The persistent class for the boton_por_pagina database table.
  * 
@@ -13,18 +14,34 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "lista_por_pagina")
 public class ListaPorPagina implements Serializable {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The id. */
 	@EmbeddedId
 	private ListaPorPaginaPK id;
 
+	/**
+	 * Instantiates a new lista por pagina.
+	 */
 	public ListaPorPagina() {
 	}
 
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
 	public ListaPorPaginaPK getId() {
 		return id;
 	}
 
+	/**
+	 * Sets the id.
+	 *
+	 * @param id the new id
+	 */
 	public void setId(ListaPorPaginaPK id) {
 		this.id = id;
 	}

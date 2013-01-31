@@ -6,45 +6,84 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RecursoPorPerfilPK.
+ */
 @Embeddable
 public class RecursoPorPerfilPK implements Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -1133740396497094500L;
 
+	/** The recurso. */
 	@ManyToOne
 	@JoinColumn(name = "id_recurso", nullable = false)
 	private Recurso recurso;
 
+	/** The perfil. */
 	@ManyToOne
 	@JoinColumn(name = "id_perfil", nullable = false)
 	private Perfil perfil;
 
+	/**
+	 * Instantiates a new recurso por perfil pk.
+	 */
 	public RecursoPorPerfilPK() {
 		super();
 	}
 
+	/**
+	 * Instantiates a new recurso por perfil pk.
+	 *
+	 * @param recurso the recurso
+	 * @param perfil the perfil
+	 */
 	public RecursoPorPerfilPK(Recurso recurso, Perfil perfil) {
 		super();
 		this.recurso = recurso;
 		this.perfil = perfil;
 	}
 
+	/**
+	 * Gets the recurso.
+	 *
+	 * @return the recurso
+	 */
 	public Recurso getRecurso() {
 		return recurso;
 	}
 
+	/**
+	 * Sets the recurso.
+	 *
+	 * @param recurso the new recurso
+	 */
 	public void setRecurso(Recurso recurso) {
 		this.recurso = recurso;
 	}
 
+	/**
+	 * Gets the perfil.
+	 *
+	 * @return the perfil
+	 */
 	public Perfil getPerfil() {
 		return perfil;
 	}
 
+	/**
+	 * Sets the perfil.
+	 *
+	 * @param perfil the new perfil
+	 */
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,6 +93,9 @@ public class RecursoPorPerfilPK implements Serializable {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
