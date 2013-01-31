@@ -18,17 +18,28 @@ import com.vst.hsd.dominio.Usuario;
 import com.vst.hsd.service.LoginService;
 import com.vst.util.Constantes;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoginServiceImpl.
+ */
 @Service("LoginSevice")
 public class LoginServiceImpl implements LoginService {
 
-	private static final Logger log = LoggerFactory.getLogger(LoginServiceImpl.class);
+	/** The Constant log. */
+	private static final Logger log = LoggerFactory
+			.getLogger(LoginServiceImpl.class);
 
+	/** The usuario dao. */
 	@Autowired
 	private UsuarioDAO usuarioDAO;
 
+	/** The perfil dao. */
 	@Autowired
 	private PerfilDAO perfilDAO;
 
+	/* (non-Javadoc)
+	 * @see com.vst.hsd.service.LoginService#iniciarSession(java.lang.String, java.lang.String, java.lang.Integer)
+	 */
 	public Usuario iniciarSession(String usuario, String clave, Integer perfil) {
 		Usuario u = usuarioDAO.buscarUsuario(usuario, perfil);
 		Perfil p = null;
@@ -36,22 +47,27 @@ public class LoginServiceImpl implements LoginService {
 			if (u.getClave().equals(clave)) {
 				p = perfilDAO.get(perfil);
 				u.setPerfilLogueado(p);
-				log.info("usuario logeado es :" + usuario + "  perfil : " + perfil);
+				log.info("usuario logeado es :" + usuario + "  perfil : "
+						+ perfil);
 				return u;
 			} else {
-				log.info("usuario clave incorrecta es :" + usuario + "  perfil : " + perfil);
+				log.info("usuario clave incorrecta es :" + usuario
+						+ "  perfil : " + perfil);
 				return null;
 			}
 		}
-		log.info("usuario no encontrado es :" + usuario + "  perfil : " + perfil);
+		log.info("usuario no encontrado es :" + usuario + "  perfil : "
+				+ perfil);
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.vst.hsd.service.LoginService#obtenerPerfiles()
+	 */
 	public List<Perfil> obtenerPerfiles() {
 		List<Perfil> lst = perfilDAO.obtenerTodosActivos();
 		log.info(" perfiles activos count :" + lst.size());
 		return lst;
 	}
 
-	
 }
