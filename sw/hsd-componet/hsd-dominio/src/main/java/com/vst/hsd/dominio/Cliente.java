@@ -8,34 +8,33 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-
 /**
  * The persistent class for the cliente database table.
  * 
  */
 @Entity
-@Table(name="cliente")
-@Inheritance(strategy=InheritanceType.JOINED)
-public class Cliente extends Persona implements  Serializable {
+@Table(name = "cliente")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Cliente extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="codigo",length=50,nullable=false)
+	@Column(name = "codigo", length = 50, nullable = false)
 	private String codigo;
-	
-	@Column(name="estado_civil",length=1,nullable=false)
+
+	@Column(name = "estado_civil", length = 1, nullable = false)
 	private Integer estadoCivil;
 
-	@Column(name="ruc",length=11,nullable=false)
+	@Column(name = "ruc", length = 11, nullable = false)
 	private String ruc;
 
-	@Column(name="tipo_documento",length=1,nullable=false)
+	@Column(name = "tipo_documento", length = 1, nullable = false)
 	private Integer tipo_documento;
-	
-	@Column(name="numero_documento",length=12,nullable=false)
+
+	@Column(name = "numero_documento", length = 12, nullable = false)
 	private String numero_documento;
 
-    public Cliente() {
-    }
+	public Cliente() {
+	}
 
 	public String getCodigo() {
 		return codigo;
@@ -77,6 +76,4 @@ public class Cliente extends Persona implements  Serializable {
 		this.numero_documento = numero_documento;
 	}
 
-	
-    
 }

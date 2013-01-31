@@ -1,78 +1,70 @@
 package com.vst.hsd.dominio;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
 
 /**
  * The persistent class for the boton database table.
  * 
  */
 @Entity
-@Table(name="boton")
+@Table(name = "boton")
 public class Boton extends Recurso implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-
-	@Column(name="bloqueable",nullable=false)
+	@Column(name = "bloqueable", nullable = false)
 	private Boolean bloqueable;
 
-	@Column(name="codigo",length=50,nullable=false)
+	@Column(name = "codigo", length = 50, nullable = false)
 	private String codigo;
 
-	@Column(name="icono",length=50)
+	@Column(name = "icono", length = 50)
 	private String icono;
 
-	@Column(name="on_complete",length=80)
+	@Column(name = "on_complete", length = 80)
 	private String onComplete;
-	
-	@Column(name="on_click",length=80)
+
+	@Column(name = "on_click", length = 80)
 	private String on_click;
 
-	@Column(name="on_submit",length=80)
+	@Column(name = "on_submit", length = 80)
 	private String onSubmit;
 
-	@Column(name="orden",length=2,nullable=false)
+	@Column(name = "orden", length = 2, nullable = false)
 	private Integer orden;
 
-    @Lob()
-	@Column(name="parametros_json")
+	@Lob()
+	@Column(name = "parametros_json")
 	private String parametrosJson;
 
-    @Column(name="tipo",length=50,nullable=false)
+	@Column(name = "tipo", length = 50, nullable = false)
 	private String tipo;
 
-	@Column(name="url",length=250)
+	@Column(name = "url", length = 250)
 	private String url;
 
-	//bi-directional many-to-many association to Menu
-//	@ManyToMany(mappedBy="botons",fetch=FetchType.LAZY)
-//	private List<Menu> menus;
-		
-    public Boton() {
-    	orden=0;
-    }
+	// bi-directional many-to-many association to Menu
+	// @ManyToMany(mappedBy="botons",fetch=FetchType.LAZY)
+	// private List<Menu> menus;
 
-	
-//
-//	public List<Menu> getMenus() {
-//		return menus;
-//	}
-//
-//
-//
-//	public void setMenus(List<Menu> menus) {
-//		this.menus = menus;
-//	}
+	public Boton() {
+		orden = 0;
+	}
 
-
+	//
+	// public List<Menu> getMenus() {
+	// return menus;
+	// }
+	//
+	//
+	//
+	// public void setMenus(List<Menu> menus) {
+	// this.menus = menus;
+	// }
 
 	public Boolean getBloqueable() {
 		return this.bloqueable;
@@ -146,24 +138,16 @@ public class Boton extends Recurso implements Serializable {
 		this.url = url;
 	}
 
-
-
 	public String getOn_click() {
 		return on_click;
 	}
-
-
 
 	public void setOn_click(String on_click) {
 		this.on_click = on_click;
 	}
 
-
-
 	public void setOrden(Integer orden) {
 		this.orden = orden;
 	}
-	
-	
-	
+
 }

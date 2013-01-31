@@ -15,71 +15,65 @@ import javax.persistence.TemporalType;
 
 import com.vst.util.Entidad;
 
-
 /**
  * The persistent class for the perfil database table.
  * 
  */
 @Entity
-@Table(name="perfil")
-public class Perfil implements Entidad , Serializable {
+@Table(name = "perfil")
+public class Perfil implements Entidad, Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id	
+	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
-	@TableGenerator(name = "id_Generator",
-					table = "sequence_table", 
-					pkColumnName = "sequence_name", 
-					valueColumnName = "sequence_value")
-	@Column(name="id_perfil")
+	@TableGenerator(name = "id_Generator", table = "sequence_table", pkColumnName = "sequence_name", valueColumnName = "sequence_value")
+	@Column(name = "id_perfil")
 	private Integer id;
-	
-	@Column(name="codigo",length=50,nullable=false)
+
+	@Column(name = "codigo", length = 50, nullable = false)
 	private String codigo;
 
-	@Column(name="descripcion",length=250,nullable=false)
+	@Column(name = "descripcion", length = 250, nullable = false)
 	private String descripcion;
 
-	@Temporal( TemporalType.DATE)	 
-	@Column(name="fecha_actualizacion")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "fecha_actualizacion")
 	private Date fechaActualizacion;
 
-	@Column(name="estado",length=1,nullable=false)
+	@Column(name = "estado", length = 1, nullable = false)
 	private Character estado;
 
-	@Column(name="activo",nullable=false)
+	@Column(name = "activo", nullable = false)
 	private Boolean activo;
-	
 
-    @Temporal( TemporalType.TIMESTAMP)
-	@Column(name="fecha_creacion")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_creacion")
 	private Date fechaCreacion;
 
-    @Column(name="nombre",length=100,nullable=false)
+	@Column(name = "nombre", length = 100, nullable = false)
 	private String nombre;
 
-/*	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(
-			name = "usuario_por_perfil", 
-			joinColumns = { @JoinColumn(name = "id_perfil") }, 
-			inverseJoinColumns = { @JoinColumn(name = "id_usuario")
-			})
-	private List<Usuario> usuarios;*/
-	
-	/*@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(
-		name="recurso_por_perfil"
-		, joinColumns={
-			@JoinColumn(name="perfil_id_perfil")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="recurso_id_recurso")
-			}
-		)
-	private List<Recurso> recursos;*/
-	
-    public Perfil() {
-    }
+	/*
+	 * @ManyToMany(fetch = FetchType.LAZY)
+	 * 
+	 * @JoinTable( name = "usuario_por_perfil", joinColumns = { @JoinColumn(name
+	 * = "id_perfil") }, inverseJoinColumns = { @JoinColumn(name = "id_usuario")
+	 * }) private List<Usuario> usuarios;
+	 */
+
+	/*
+	 * @ManyToMany(fetch = FetchType.LAZY)
+	 * 
+	 * @JoinTable( name="recurso_por_perfil" , joinColumns={
+	 * 
+	 * @JoinColumn(name="perfil_id_perfil") } , inverseJoinColumns={
+	 * 
+	 * @JoinColumn(name="recurso_id_recurso") } ) private List<Recurso>
+	 * recursos;
+	 */
+
+	public Perfil() {
+	}
 
 	public Perfil(Integer id, String codigo, String nombre) {
 		super();
@@ -152,21 +146,18 @@ public class Perfil implements Entidad , Serializable {
 		this.nombre = nombre;
 	}
 
-	/*public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-*/
-	/*public List<Recurso> getRecursos() {
-		return recursos;
-	}
-
-	public void setRecursos(List<Recurso> recursos) {
-		this.recursos = recursos;
-	}*/
+	/*
+	 * public List<Usuario> getUsuarios() { return usuarios; }
+	 * 
+	 * public void setUsuarios(List<Usuario> usuarios) { this.usuarios =
+	 * usuarios; }
+	 */
+	/*
+	 * public List<Recurso> getRecursos() { return recursos; }
+	 * 
+	 * public void setRecursos(List<Recurso> recursos) { this.recursos =
+	 * recursos; }
+	 */
 
 	public String getLabel() {
 		return null;
@@ -176,7 +167,4 @@ public class Perfil implements Entidad , Serializable {
 		return null;
 	}
 
-	
-
-	
 }

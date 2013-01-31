@@ -9,19 +9,19 @@ import javax.persistence.*;
  */
 @Embeddable
 public class BotonPorPaginaPK implements Serializable {
-	//default serial version id, required for serializable classes.
+	// default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(name="id_pagina", nullable=false)
+	@JoinColumn(name = "id_pagina", nullable = false)
 	private Pagina pagina;
-	
+
 	@ManyToOne
-	@JoinColumn(name="id_recurso", nullable=false)
+	@JoinColumn(name = "id_recurso", nullable = false)
 	private Boton boton;
 
-    public BotonPorPaginaPK() {
-    }
+	public BotonPorPaginaPK() {
+	}
 
 	public Pagina getPagina() {
 		return pagina;
@@ -38,8 +38,5 @@ public class BotonPorPaginaPK implements Serializable {
 	public void setBoton(Boton boton) {
 		this.boton = boton;
 	}
-	
-    
-    
-    
+
 }

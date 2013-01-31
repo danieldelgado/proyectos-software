@@ -9,19 +9,19 @@ import javax.persistence.*;
  */
 @Embeddable
 public class ColumnaPorListaPK implements Serializable {
-	//default serial version id, required for serializable classes.
+	// default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(name="id_columna", nullable=false)
+	@JoinColumn(name = "id_columna", nullable = false)
 	private Columna columna;
-	
+
 	@ManyToOne
-	@JoinColumn(name="id_recurso", nullable=false)
+	@JoinColumn(name = "id_recurso", nullable = false)
 	private Lista lista;
 
-    public ColumnaPorListaPK() {
-    }
+	public ColumnaPorListaPK() {
+	}
 
 	public Columna getColumna() {
 		return columna;
@@ -39,9 +39,4 @@ public class ColumnaPorListaPK implements Serializable {
 		this.lista = lista;
 	}
 
-    
-	
-    
-    
-    
 }

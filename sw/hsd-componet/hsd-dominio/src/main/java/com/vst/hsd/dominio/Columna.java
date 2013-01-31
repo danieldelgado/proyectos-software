@@ -2,14 +2,12 @@ package com.vst.hsd.dominio;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -17,79 +15,70 @@ import javax.persistence.TemporalType;
 
 import com.vst.util.Entidad;
 
-
 /**
  * The persistent class for the columna database table.
  * 
  */
 @Entity
-@Table(name="columna")
-public class Columna implements Entidad , Serializable {
+@Table(name = "columna")
+public class Columna implements Entidad, Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id	
+	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
-	@TableGenerator(name = "id_Generator",
-					table = "sequence_table", 
-					pkColumnName = "sequence_name", 
-					valueColumnName = "sequence_value")
-	@Column(name="id_columna")
+	@TableGenerator(name = "id_Generator", table = "sequence_table", pkColumnName = "sequence_name", valueColumnName = "sequence_value")
+	@Column(name = "id_columna")
 	private Integer id;
 
-	
-	@Column(name="addColumn",nullable=false)
+	@Column(name = "addColumn", nullable = false)
 	private Boolean addColumn;
 
-	@Column(name="ancho",length=4,nullable=false)
+	@Column(name = "ancho", length = 4, nullable = false)
 	private Integer ancho;
 
-	@Column(name="atributo",length=50,nullable=false)
+	@Column(name = "atributo", length = 50, nullable = false)
 	private String atributo;
 
-	@Column(name="cabecera",length=50,nullable=false)
+	@Column(name = "cabecera", length = 50, nullable = false)
 	private String cabecera;
 
-	@Column(name="codigo",length=50,nullable=false)
+	@Column(name = "codigo", length = 50, nullable = false)
 	private String codigo;
 
-	@Column(name="tabla",length=50,nullable=false)
+	@Column(name = "tabla", length = 50, nullable = false)
 	private String tabla;
-	
-	@Column(name="alineacion",length=50,nullable=false)
+
+	@Column(name = "alineacion", length = 50, nullable = false)
 	private String alineacion;
 
-	@Column(name="formato_tipo",length=50,nullable=false)
+	@Column(name = "formato_tipo", length = 50, nullable = false)
 	private String formato_tipo;
 
-	
-	@Column(name="mapping",nullable=false)
+	@Column(name = "mapping", nullable = false)
 	private Boolean mapping;
 
-	@Column(name="visible",nullable=false)
+	@Column(name = "visible", nullable = false)
 	private Boolean visible;
-	
-	@Column(name="orden",nullable=false)
+
+	@Column(name = "orden", nullable = false)
 	private Integer orden;
-	 
-	@Temporal( TemporalType.DATE)	 
-	@Column(name="fecha_actualizacion",nullable=false)
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "fecha_actualizacion", nullable = false)
 	private Date fechaActualizacion;
 
-	@Temporal( TemporalType.TIMESTAMP)
-	@Column(name="fecha_registro",nullable=false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_registro", nullable = false)
 	private Date fechaRegistro;
-	
-	@Column(name="estado",length=1,nullable=false)
+
+	@Column(name = "estado", length = 1, nullable = false)
 	private Character estado;
 
-	@Column(name="activo",nullable=false)
+	@Column(name = "activo", nullable = false)
 	private Boolean activo;
-	
-    public Columna() {
-    }
-    
-    
-    
+
+	public Columna() {
+	}
 
 	public Columna(Integer id, Boolean addColumn, Integer ancho,
 			String atributo, String cabecera, String codigo, String tabla,
@@ -110,9 +99,6 @@ public class Columna implements Entidad , Serializable {
 		this.estado = estado;
 		this.activo = activo;
 	}
-
-
-
 
 	public Integer getId() {
 		return id;
@@ -198,7 +184,6 @@ public class Columna implements Entidad , Serializable {
 		return null;
 	}
 
-	
 	public String getNombreCompleto() {
 		return null;
 	}
@@ -251,7 +236,4 @@ public class Columna implements Entidad , Serializable {
 		this.orden = orden;
 	}
 
-	
-
-	
 }

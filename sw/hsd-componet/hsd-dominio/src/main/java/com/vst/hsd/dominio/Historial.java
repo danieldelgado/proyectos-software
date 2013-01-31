@@ -7,57 +7,52 @@ import javax.persistence.*;
 
 import com.vst.util.Entidad;
 
-
 /**
  * The persistent class for the parametro database table.
  * 
  */
 @Entity
-@Table(name="historial")
-public class Historial implements Entidad , Serializable {
+@Table(name = "historial")
+public class Historial implements Entidad, Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id	
+	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
-	@TableGenerator(name = "id_Generator",
-					table = "sequence_table", 
-					pkColumnName = "sequence_name", 
-					valueColumnName = "sequence_value")
-	@Column(name="id_historial")
+	@TableGenerator(name = "id_Generator", table = "sequence_table", pkColumnName = "sequence_name", valueColumnName = "sequence_value")
+	@Column(name = "id_historial")
 	private Integer id;
 
-	@Column(name="codigo",length=50)
+	@Column(name = "codigo", length = 50)
 	private String codigo;
-	
-	@Column(name="clase",length=200)
+
+	@Column(name = "clase", length = 200)
 	private String clase;
 
-	@Column(name="metodo",length=200)
+	@Column(name = "metodo", length = 200)
 	private String metodo;
 
 	@Lob()
-	@Column(name="descripcion")
+	@Column(name = "descripcion")
 	private String descripcion;
-	
+
 	@Lob()
-	@Column(name="valor")
+	@Column(name = "valor")
 	private String valor;
-	
+
 	@Lob()
-	@Column(name="request")
+	@Column(name = "request")
 	private String request;
-	
-	@Temporal( TemporalType.TIMESTAMP)
-	@Column(name="fecha_registro")
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_registro")
 	private Date fechaRegistro;
-	
-	@Column(name="persona_id")
+
+	@Column(name = "persona_id")
 	private Integer persona_id;
 
-	
-    public Historial() {
-    }
-    
+	public Historial() {
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -65,8 +60,6 @@ public class Historial implements Entidad , Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
 
 	public String getDescripcion() {
 		return descripcion;
@@ -88,8 +81,6 @@ public class Historial implements Entidad , Serializable {
 		return fechaRegistro;
 	}
 
-
-
 	public String getCodigo() {
 		return codigo;
 	}
@@ -102,13 +93,9 @@ public class Historial implements Entidad , Serializable {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-
-
 	public String getValor() {
 		return valor;
 	}
-
-
 
 	public String getClase() {
 		return clase;
@@ -130,8 +117,6 @@ public class Historial implements Entidad , Serializable {
 		this.valor = valor;
 	}
 
-
-
 	public Integer getPersona_id() {
 		return persona_id;
 	}
@@ -145,14 +130,9 @@ public class Historial implements Entidad , Serializable {
 		return null;
 	}
 
-
-
 	public String getNombreCompleto() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
-    
 
 }

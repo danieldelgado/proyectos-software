@@ -15,32 +15,32 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name="menu")
+@Table(name = "menu")
 public class Menu extends Recurso implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="codigo",length=50,nullable=false)
+	@Column(name = "codigo", length = 50, nullable = false)
 	private String codigo;
 
-	@Column(name="function",length=100)
+	@Column(name = "function", length = 100)
 	private String function;
 
-	@Column(name="nombre",length=100,nullable=false)
+	@Column(name = "nombre", length = 100, nullable = false)
 	private String nombre;
 
-	@Column(name="orden",length=2,nullable=false)
+	@Column(name = "orden", length = 2, nullable = false)
 	private Integer orden;
 
-	@Column(name="tipo",length=50,nullable=false)
+	@Column(name = "tipo", length = 50, nullable = false)
 	private String tipo;
-	
-	@Column(name="defaultMenu",nullable=false)
+
+	@Column(name = "defaultMenu", nullable = false)
 	private Boolean defaultMenu;
 
-	@Column(name="todos",nullable=false)
+	@Column(name = "todos", nullable = false)
 	private Boolean todos;
 
-	@Column(name="url",length=500)
+	@Column(name = "url", length = 500)
 	private String url;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -48,12 +48,12 @@ public class Menu extends Recurso implements Serializable {
 
 	@OneToMany(mappedBy = "menu")
 	private List<Menu> menus;
-	
-	@OneToMany(mappedBy="menu")
+
+	@OneToMany(mappedBy = "menu")
 	private List<Pagina> paginas;
-	
+
 	public Menu() {
-		defaultMenu=false;
+		defaultMenu = false;
 	}
 
 	public String getCodigo() {
@@ -144,6 +144,4 @@ public class Menu extends Recurso implements Serializable {
 		this.defaultMenu = defaultMenu;
 	}
 
-	
-	
 }

@@ -9,19 +9,19 @@ import javax.persistence.*;
  */
 @Embeddable
 public class ListaPorPaginaPK implements Serializable {
-	//default serial version id, required for serializable classes.
+	// default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(name="id_pagina", nullable=false)
+	@JoinColumn(name = "id_pagina", nullable = false)
 	private Pagina pagina;
-	
+
 	@ManyToOne
-	@JoinColumn(name="id_lista", nullable=false)
+	@JoinColumn(name = "id_lista", nullable = false)
 	private Lista lista;
-	
-    public ListaPorPaginaPK() {
-    }
+
+	public ListaPorPaginaPK() {
+	}
 
 	public Pagina getPagina() {
 		return pagina;
@@ -39,7 +39,4 @@ public class ListaPorPaginaPK implements Serializable {
 		this.lista = lista;
 	}
 
-    
-    
-    
 }

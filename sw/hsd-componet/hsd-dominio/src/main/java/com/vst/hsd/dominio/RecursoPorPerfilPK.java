@@ -7,16 +7,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class RecursoPorPerfilPK implements Serializable{
+public class RecursoPorPerfilPK implements Serializable {
 
-	private static final long serialVersionUID=-1133740396497094500L;
+	private static final long serialVersionUID = -1133740396497094500L;
 
 	@ManyToOne
-	@JoinColumn(name="id_recurso", nullable=false)
+	@JoinColumn(name = "id_recurso", nullable = false)
 	private Recurso recurso;
-	
+
 	@ManyToOne
-	@JoinColumn(name="id_perfil", nullable=false)
+	@JoinColumn(name = "id_perfil", nullable = false)
 	private Perfil perfil;
 
 	public RecursoPorPerfilPK() {
@@ -75,5 +75,5 @@ public class RecursoPorPerfilPK implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 }

@@ -7,51 +7,47 @@ import com.vst.util.Entidad;
 
 import java.util.Date;
 
-
 /**
  * The persistent class for the fecha_dia_eventos database table.
  * 
  */
 @Entity
-@Table(name="fecha_dia_evento")
-public class FechaDiaEvento implements Entidad , Serializable {
+@Table(name = "fecha_dia_evento")
+public class FechaDiaEvento implements Entidad, Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id	
+	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
-	@TableGenerator(name = "id_Generator",
-					table = "sequence_table", 
-					pkColumnName = "sequence_name", 
-					valueColumnName = "sequence_value")
-	@Column(name="id_fecha_evento")
+	@TableGenerator(name = "id_Generator", table = "sequence_table", pkColumnName = "sequence_name", valueColumnName = "sequence_value")
+	@Column(name = "id_fecha_evento")
 	private Integer id;
 
-	@Column(name="activo",nullable=false)
+	@Column(name = "activo", nullable = false)
 	private Boolean activo;
 
-	@Column(name="agrega",nullable=false)
+	@Column(name = "agrega", nullable = false)
 	private Boolean agrega;
 
-	@Column(name="descripcion",length=250,nullable=false)
+	@Column(name = "descripcion", length = 250, nullable = false)
 	private String descripcion;
 
-    @Temporal( TemporalType.DATE)
-	@Column(name="fecha_actualizacion")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "fecha_actualizacion")
 	private Date fechaActualizacion;
 
-    @Temporal( TemporalType.DATE)
-	@Column(name="fecha_evento",nullable=false)
+	@Temporal(TemporalType.DATE)
+	@Column(name = "fecha_evento", nullable = false)
 	private Date fechaEvento;
 
-    @Temporal( TemporalType.TIMESTAMP)
-	@Column(name="fecha_registro",nullable=false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_registro", nullable = false)
 	private Date fechaRegistro;
 
-    @Column(name="nombre",length=100,nullable=false)
+	@Column(name = "nombre", length = 100, nullable = false)
 	private String nombre;
 
-    public FechaDiaEvento() {
-    }
+	public FechaDiaEvento() {
+	}
 
 	public Integer getId() {
 		return id;
@@ -125,6 +121,4 @@ public class FechaDiaEvento implements Entidad , Serializable {
 		return null;
 	}
 
-    
-    
 }

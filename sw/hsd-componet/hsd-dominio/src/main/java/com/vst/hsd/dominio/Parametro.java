@@ -17,64 +17,58 @@ import javax.persistence.TemporalType;
 
 import com.vst.util.Entidad;
 
-
 /**
  * The persistent class for the parametro database table.
  * 
  */
 @Entity
-@Table(name="parametro")
-public class Parametro implements Entidad , Serializable {
+@Table(name = "parametro")
+public class Parametro implements Entidad, Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id	
+	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
-	@TableGenerator(name = "id_Generator",
-					table = "sequence_table", 
-					pkColumnName = "sequence_name", 
-					valueColumnName = "sequence_value")
-	@Column(name="id_parametro")
+	@TableGenerator(name = "id_Generator", table = "sequence_table", pkColumnName = "sequence_name", valueColumnName = "sequence_value")
+	@Column(name = "id_parametro")
 	private Integer id;
 
-	@Column(name="codigo",length=50,nullable=false)
+	@Column(name = "codigo", length = 50, nullable = false)
 	private String codigo;
 
-
-	@Column(name="nombre",length=50,nullable=false)
+	@Column(name = "nombre", length = 50, nullable = false)
 	private String nombre;
-	
-	@Column(name="estado",length=1)
+
+	@Column(name = "estado", length = 1)
 	private Character estado;
 
-	@Column(name="activo")
-	private Boolean activo;	
+	@Column(name = "activo")
+	private Boolean activo;
 
-	@Column(name="tipo",length=200)
+	@Column(name = "tipo", length = 200)
 	private String tipo;
-	
-	
-	@Column(name="valor",length=200)
-	private String valor;	
 
-	@Column(name="descripcion",length=250)
+	@Column(name = "valor", length = 200)
+	private String valor;
+
+	@Column(name = "descripcion", length = 250)
 	private String descripcion;
-	
-	@Temporal( TemporalType.DATE)	 
-	@Column(name="fecha_actualizacion")
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "fecha_actualizacion")
 	private Date fechaActualizacion;
 
-	@Temporal( TemporalType.TIMESTAMP)
-	@Column(name="fecha_registro")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_registro")
 	private Date fechaRegistro;
 
 	private transient List<Parametro> parametros;
-		
+
 	private transient List<ParametroPorParametro> parametroPorParametrosPadre;
 
 	private transient List<ParametroPorParametro> parametroPorParametrosHijo;
-	
-    public Parametro() {
-    }
+
+	public Parametro() {
+	}
 
 	public Integer getId() {
 		return id;
@@ -191,10 +185,5 @@ public class Parametro implements Entidad , Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-    
-    
-
-
-    
 
 }

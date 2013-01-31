@@ -17,68 +17,53 @@ import javax.persistence.TemporalType;
 
 import com.vst.util.Entidad;
 
-
-
 /**
  * The persistent class for the recurso database table.
  * 
  */
 @Entity
-@Table(name="recurso")
-@Inheritance(strategy=InheritanceType.JOINED)
-public class Recurso implements Entidad , Serializable {
+@Table(name = "recurso")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Recurso implements Entidad, Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id	
+	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
-	@TableGenerator(name = "id_Generator",
-					table = "sequence_table", 
-					pkColumnName = "sequence_name", 
-					valueColumnName = "sequence_value")
-	@Column(name="id_recurso")	
+	@TableGenerator(name = "id_Generator", table = "sequence_table", pkColumnName = "sequence_name", valueColumnName = "sequence_value")
+	@Column(name = "id_recurso")
 	private Integer id;
 
-	@Column(name="activo",nullable=false)
+	@Column(name = "activo", nullable = false)
 	private Boolean activo;
 
-	@Column(name="descripcion",length=250,nullable=false)
+	@Column(name = "descripcion", length = 250, nullable = false)
 	private String descripcion;
 
-	@Column(name="estado",length=1,nullable=false)
+	@Column(name = "estado", length = 1, nullable = false)
 	private Character estado;
 
-
-    @Temporal( TemporalType.DATE)
-	@Column(name="fecha_actualizacion")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "fecha_actualizacion")
 	private Date fechaActualizacion;
 
-    @Temporal( TemporalType.TIMESTAMP)
-	@Column(name="fecha_creacion")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_creacion")
 	private Date fechaCreacion;
 
-	/*@ManyToMany(mappedBy="recursos")
-	private List<Perfil> perfils;
-*/
+	/*
+	 * @ManyToMany(mappedBy="recursos") private List<Perfil> perfils;
+	 */
 
-
-    public Recurso() {
-    }
-
-    
-    
-
-/*
-	public List<Perfil> getPerfils() {
-		return perfils;
+	public Recurso() {
 	}
 
-
-
-	public void setPerfils(List<Perfil> perfils) {
-		this.perfils = perfils;
-	}
-*/
-
+	/*
+	 * public List<Perfil> getPerfils() { return perfils; }
+	 * 
+	 * 
+	 * 
+	 * public void setPerfils(List<Perfil> perfils) { this.perfils = perfils; }
+	 */
 
 	public Recurso(Integer id, Boolean activo, String descripcion,
 			Character estado, Date fechaActualizacion, Date fechaCreacion) {
@@ -91,16 +76,10 @@ public class Recurso implements Entidad , Serializable {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-
-
-
 	public Recurso(Integer id) {
 		super();
 		this.id = id;
 	}
-
-
-
 
 	public Recurso(Integer id, Boolean activo, Character estado) {
 		super();
@@ -109,90 +88,60 @@ public class Recurso implements Entidad , Serializable {
 		this.estado = estado;
 	}
 
-
-
-
 	public Integer getId() {
 		return id;
 	}
-
-
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
-
 	public Boolean getActivo() {
 		return activo;
 	}
-
-
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
 
-
-
 	public String getDescripcion() {
 		return descripcion;
 	}
-
-
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
-
-
 	public Character getEstado() {
 		return estado;
 	}
-
-
 
 	public void setEstado(Character estado) {
 		this.estado = estado;
 	}
 
-
-
 	public Date getFechaActualizacion() {
 		return fechaActualizacion;
 	}
-
-
 
 	public void setFechaActualizacion(Date fechaActualizacion) {
 		this.fechaActualizacion = fechaActualizacion;
 	}
 
-
-
 	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
-
-
 
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-
 	public String getLabel() {
 		return null;
 	}
-
 
 	public String getNombreCompleto() {
 		return null;
 	}
 
-
-	
-	
 }

@@ -7,19 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="recurso_por_perfil")
-public class RecursoPorPerfil implements Serializable{
+@Table(name = "recurso_por_perfil")
+public class RecursoPorPerfil implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID=-7810555155845794831L;
+	private static final long serialVersionUID = -7810555155845794831L;
 
 	@EmbeddedId
 	private RecursoPorPerfilPK id;
-	
-	private Boolean responsable;
 
+	private Boolean responsable;
 
 	public Boolean getResponsable() {
 		return responsable;
@@ -29,23 +28,20 @@ public class RecursoPorPerfil implements Serializable{
 		this.responsable = responsable;
 	}
 
-	public RecursoPorPerfil(){
+	public RecursoPorPerfil() {
 		super();
 	}
 
-	public RecursoPorPerfil(Recurso recurso,Perfil perfil){
-		id=new RecursoPorPerfilPK(recurso,perfil);
+	public RecursoPorPerfil(Recurso recurso, Perfil perfil) {
+		id = new RecursoPorPerfilPK(recurso, perfil);
 	}
 
-	public RecursoPorPerfilPK getId(){
+	public RecursoPorPerfilPK getId() {
 		return id;
 	}
 
-	public void setId(RecursoPorPerfilPK id){
-		this.id=id;
+	public void setId(RecursoPorPerfilPK id) {
+		this.id = id;
 	}
-
-	
-
 
 }
