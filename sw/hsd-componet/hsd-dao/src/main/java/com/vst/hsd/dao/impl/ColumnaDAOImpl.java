@@ -27,8 +27,13 @@ public class ColumnaDAOImpl extends DAO<Columna> implements ColumnaDAO {
 	@SuppressWarnings("unchecked")
 	public List<Columna> buscarPorLista(Integer id) {
 		log.debug(" buscarPorLista id:" + id);
-		sqlQuery = "select  new Columna(c.id, c.addColumn, c.ancho, c.atributo, c.cabecera, c.codigo, c.tabla,  c.alineacion, c.formato_tipo, c.mapping,c.visible, c.orden, c.estado, c.activo)  "
-				+ " from Lista ls join  ls.columnas c where ls.id = :lista";
+		sqlQuery = "select  new Columna(c.id, c.addColumn, c.ancho, c.atributo, c.cabecera, c.codigo, c.tabla,  c.alineacion, c.formato_tipo, c.mapping,c.visible, c.orden, c.estado, c.activo)  "+
+				" from ColumnaPorLista cl , Columna c where cl.id.lista.id = :lista  and cl.id.columna = c ";
+		
+//		sqlQuery = "select  new Columna( cl.id.columna.id, cl.id.columna.addColumn, cl.id.columna.ancho, cl.id.columna.atributo, cl.id.columna.cabecera, cl.id.columna.codigo, cl.id.columna.tabla,  cl.id.columna.alineacion, cl.id.columna.formato_tipo, cl.id.columna..visible, cl.id.columna.orden, cl.id.columna.estado, cl.id.columna.activo) " +
+				
+		
+		
 		log.debug(" buscarPorLista  sqlQuery :  " + sqlQuery);
 		q = em.createQuery(sqlQuery);
 		q.setParameter("lista", id);
