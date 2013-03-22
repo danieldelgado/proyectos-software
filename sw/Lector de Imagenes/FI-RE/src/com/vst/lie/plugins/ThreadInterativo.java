@@ -95,7 +95,6 @@ public class ThreadInterativo {
 						procesoActual = maximo;
 					}
 				} catch (InterruptedException e) {
-					System.out.println("ActualTask interrupted");
 				}
 			}
 		}

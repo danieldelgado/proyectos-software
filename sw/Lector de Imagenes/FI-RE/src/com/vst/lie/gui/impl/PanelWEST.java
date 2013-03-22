@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -38,7 +39,7 @@ public class PanelWEST extends CustomPanel {
 	public JPanel panelVisualizador;
 	public Timer timer;
 	public ThreadInterativo task;
-//	public List<BufferedImage> lstBufferedImages = null;
+	public List<BufferedImage> lstBufferedImages = null;
 
 	public PanelWEST(Principal frame) {
 		mainFrame = frame;
@@ -107,15 +108,15 @@ public class PanelWEST extends CustomPanel {
 
 	private void iniciarProcesoCargar() {
 		prgBarCargar.setValue(task.getCurrent());
-//		String s = task.getMessage();
-		if (task.isStart()) {
-				AnalizarArchivoController.agregarBufferImageList(BufferFile.readFile(AnalizarArchivoController.getFileInteractor()));			
+		if (task.isStart()) {	
+				lstBufferedImages.add(BufferFile.readFile(AnalizarArchivoController.getFileInteractor()));
 		}
 		if (task.isDone()) {
 			timer.stop();
 			btnCarga.setEnabled(true);
 			setCursor(null);
 			AnalizarArchivoController.identificadorReset();
+			AnalizarArchivoController.lstBufferedImages = lstBufferedImages ;
 		}
 	}
 
@@ -131,7 +132,7 @@ public class PanelWEST extends CustomPanel {
 					prgBarCargar.setMaximum(1);
 					task.setLengthOfTask(1);
 				}
-				AnalizarArchivoController.lstBufferedImages = new ArrayList<BufferedImage>();
+				lstBufferedImages = new ArrayList<BufferedImage>();
 				btnCarga.setEnabled(false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				task.go();
