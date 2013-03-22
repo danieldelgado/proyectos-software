@@ -7,6 +7,37 @@ public abstract class SwingWorker {
 
 	private ThreadVar threadVar;
 
+	public SwingWorker() {
+		final Runnable doFinished = new Runnable() {
+			public void run() {
+				finished();
+			}
+		};
+
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				try {
+					setValue(construct());
+				} finally {
+					threadVar.clear();
+				}
+
+				SwingUtilities.invokeLater(doFinished);
+			}
+		});
+
+		threadVar = new ThreadVar(t);
+	}
+
+	public ThreadVar getThreadVar() {
+		return threadVar;
+	}
+
+	public void setThreadVar(ThreadVar threadVar) {
+		this.threadVar = threadVar;
+	}
+
+	
 	protected synchronized Object getValue() {
 		return value;
 	}
@@ -43,27 +74,6 @@ public abstract class SwingWorker {
 		}
 	}
 
-	public SwingWorker() {
-		final Runnable doFinished = new Runnable() {
-			public void run() {
-				finished();
-			}
-		};
-
-		Thread t = new Thread(new Runnable() {
-			public void run() {
-				try {
-					setValue(construct());
-				} finally {
-					threadVar.clear();
-				}
-
-				SwingUtilities.invokeLater(doFinished);
-			}
-		});
-
-		threadVar = new ThreadVar(t);
-	}
 
 	public void start() {
 		Thread t = threadVar.get();

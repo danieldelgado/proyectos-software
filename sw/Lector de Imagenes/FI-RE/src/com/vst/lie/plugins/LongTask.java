@@ -24,6 +24,34 @@ public class LongTask {
 		worker.start();
 	}
 
+	public boolean isCanceled() {
+		return canceled;
+	}
+
+	public void setCanceled(boolean canceled) {
+		this.canceled = canceled;
+	}
+
+	public String getStatMessage() {
+		return statMessage;
+	}
+
+	public void setStatMessage(String statMessage) {
+		this.statMessage = statMessage;
+	}
+
+	public void setLengthOfTask(int lengthOfTask) {
+		this.lengthOfTask = lengthOfTask;
+	}
+
+	public void setCurrent(int current) {
+		this.current = current;
+	}
+
+	public void setDone(boolean done) {
+		this.done = done;
+	}
+
 	public int getLengthOfTask() {
 		return lengthOfTask;
 	}
