@@ -2,12 +2,12 @@ package com.vst.lie.plugins;
 
 import javax.swing.SwingUtilities;
 
-public abstract class SwingWorker {
+public abstract class SwingProceso {
 	private Object value;
 
-	private ThreadVar threadVar;
+	private ThreadProceso threadVar;
 
-	public SwingWorker() {
+	public SwingProceso() {
 		final Runnable doFinished = new Runnable() {
 			public void run() {
 				finished();
@@ -26,14 +26,14 @@ public abstract class SwingWorker {
 			}
 		});
 
-		threadVar = new ThreadVar(t);
+		threadVar = new ThreadProceso(t);
 	}
 
-	public ThreadVar getThreadVar() {
+	public ThreadProceso getThreadVar() {
 		return threadVar;
 	}
 
-	public void setThreadVar(ThreadVar threadVar) {
+	public void setThreadVar(ThreadProceso threadVar) {
 		this.threadVar = threadVar;
 	}
 

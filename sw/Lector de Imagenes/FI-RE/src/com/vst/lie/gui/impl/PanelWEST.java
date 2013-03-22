@@ -3,14 +3,10 @@ package com.vst.lie.gui.impl;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,7 +21,9 @@ import javax.swing.border.LineBorder;
 import com.vst.lie.controller.AnalizarArchivoController;
 import com.vst.lie.gui.custom.CustomButton;
 import com.vst.lie.gui.custom.CustomPanel;
-import com.vst.lie.plugins.LongTask;
+import com.vst.lie.plugins.BufferFile;
+import com.vst.lie.plugins.ThreadInterativo;
+import com.vst.lie.util.Constantes;
 
 @SuppressWarnings("serial")
 public class PanelWEST extends CustomPanel {
@@ -39,9 +37,9 @@ public class PanelWEST extends CustomPanel {
 	public JScrollPane scrollPane1;
 	public JPanel panelVisualizador;
 	public Timer timer;
-	public LongTask task;
-	public List<BufferedImage> lstBufferedImages = null;
-	
+	public ThreadInterativo task;
+//	public List<BufferedImage> lstBufferedImages = null;
+
 	public PanelWEST(Principal frame) {
 		mainFrame = frame;
 		setBorder(new LineBorder(Color.black));
@@ -58,10 +56,10 @@ public class PanelWEST extends CustomPanel {
 		separator1 = new JSeparator();
 		scrollPane1 = new JScrollPane();
 		panelVisualizador = new JPanel();
-		task = new LongTask();
-		
-		timer = new Timer(1000,this);
-		
+		task = new ThreadInterativo();
+
+		timer = new Timer(Constantes.TIEMPO_INTERACION, this);
+
 		prgBarCargar.setStringPainted(true);
 		txtArchivo.setEditable(false);
 		btnCarga.addActionListener(this);
@@ -101,44 +99,45 @@ public class PanelWEST extends CustomPanel {
 		Object btn = e.getSource();
 
 		if (btn == btnCarga) {
-			if (AnalizarArchivoController.files != null) {
-				if (AnalizarArchivoController.files.length > 0) {
-					prgBarCargar.setValue(prgBarCargar.getMinimum());
-					System.out.println("syso:"+AnalizarArchivoController.cantidadArchivosInstanciados());
-					prgBarCargar.setValue(AnalizarArchivoController.cantidadArchivosInstanciados());	
-					lstBufferedImages = new ArrayList<BufferedImage>(); 
-					btnCarga.setEnabled(false);
-					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));				
-					task.go();
-					timer.start();		
-				}
-			}
-		}else
-			if (btn == timer) {
-				prgBarCargar.setValue(task.getCurrent());
-				String s = task.getMessage();
-				System.out.println(" s "+s);
-				if (s != null) {
-					try {
-						BufferedImage img = ImageIO.read(AnalizarArchivoController.getFileInteractor());
-						lstBufferedImages.add(img);	
-						System.out.println("tamaño:"+lstBufferedImages.size());
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}	
-				}
-				if (task.isDone()) {
-//					Toolkit.getDefaultToolkit().beep();
-					timer.stop();
-					btnCarga.setEnabled(true);
-					setCursor(null);
-					AnalizarArchivoController.identificadorReset();
-				}
-			}
-		
-		
-		
-
+			iniciarCargarProgressBar();
+		} else if (btn == timer) {
+			iniciarProcesoCargar();
+		}
 	}
 
+	private void iniciarProcesoCargar() {
+		prgBarCargar.setValue(task.getCurrent());
+//		String s = task.getMessage();
+		if (task.isStart()) {
+				AnalizarArchivoController.agregarBufferImageList(BufferFile.readFile(AnalizarArchivoController.getFileInteractor()));			
+		}
+		if (task.isDone()) {
+			timer.stop();
+			btnCarga.setEnabled(true);
+			setCursor(null);
+			AnalizarArchivoController.identificadorReset();
+		}
+	}
+
+	private void iniciarCargarProgressBar() {
+		if (AnalizarArchivoController.files != null) {
+			if (AnalizarArchivoController.files.length > 0) {
+				if (AnalizarArchivoController.cantidadArchivosInstanciados() > 1) {
+					prgBarCargar.setMinimum(0);
+					prgBarCargar.setMaximum(AnalizarArchivoController.cantidadArchivosInstanciados() - 1);
+					task.setLengthOfTask(AnalizarArchivoController.cantidadArchivosInstanciados());
+				} else if (AnalizarArchivoController.cantidadArchivosInstanciados() == 1) {
+					prgBarCargar.setMinimum(0);
+					prgBarCargar.setMaximum(1);
+					task.setLengthOfTask(1);
+				}
+				AnalizarArchivoController.lstBufferedImages = new ArrayList<BufferedImage>();
+				btnCarga.setEnabled(false);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				task.go();
+				timer.start();
+			}
+		}
+	}
+	
 }

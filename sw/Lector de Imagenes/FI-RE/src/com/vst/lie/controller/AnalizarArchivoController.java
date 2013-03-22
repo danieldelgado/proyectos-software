@@ -1,5 +1,6 @@
 package com.vst.lie.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ public class AnalizarArchivoController {
 	public static File[] files;
 	public static Integer identifiador;
 	public static AnalizarArchivoFunction analizarArchivoFunction ;
+	public static List<BufferedImage> lstBufferedImages;
 	
 	static{
 		analizarArchivoFunction = new AnalizarArchivoFunction();
@@ -54,20 +56,25 @@ public class AnalizarArchivoController {
 
 	public static File getFileInteractor() {
 		if(identifiador==null){
-			identifiador = 0;
+			identifiador = -1;
 		} 
 		identifiador++;		
+		System.out.println("identifiador:"+identifiador+ "  files:"+files.length);
 		return files[identifiador];
 	}
 	
 	public static void identificadorReset(){
-		identifiador = 0;
+		identifiador = -1;
 	}
 	
 	public static int cantidadArchivosInstanciados(){
 		if(files!=null && files.length>0)		
 			return files.length;
 		return 0;
+	}
+
+	public static void agregarBufferImageList(BufferedImage readFile) {
+		
 	}
 	
 }

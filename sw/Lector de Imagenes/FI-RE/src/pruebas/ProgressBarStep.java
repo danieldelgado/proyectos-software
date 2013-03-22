@@ -44,7 +44,7 @@ public class ProgressBarStep {
 
 	public static void main(String args[]) {
 		// Initialize
-		final JProgressBar aJProgressBar = new JProgressBar(0, 50);
+		final JProgressBar aJProgressBar = new JProgressBar(0, 15);
 		aJProgressBar.setStringPainted(true);
 
 		final JButton aJButton = new JButton("Start");
