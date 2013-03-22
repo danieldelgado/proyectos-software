@@ -1,4 +1,4 @@
-package com.vst.lie.gui;
+package com.vst.lie.gui.custom;
 
 import java.util.Vector;
 

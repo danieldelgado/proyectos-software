@@ -22,11 +22,11 @@ import org.pushingpixels.substance.api.skin.SkinInfo;
 
 import com.jgoodies.forms.factories.Borders;
 import com.vst.lie.controller.AnalizarArchivoController;
-import com.vst.lie.gui.CustomButton;
-import com.vst.lie.gui.CustomCombo;
-import com.vst.lie.gui.CustomLabel;
-import com.vst.lie.gui.CustomPanel;
-import com.vst.lie.gui.CustomToggleButton;
+import com.vst.lie.gui.custom.CustomButton;
+import com.vst.lie.gui.custom.CustomCombo;
+import com.vst.lie.gui.custom.CustomLabel;
+import com.vst.lie.gui.custom.CustomPanel;
+import com.vst.lie.gui.custom.CustomToggleButton;
 
 @SuppressWarnings("serial")
 public class PanelNorth extends CustomPanel {

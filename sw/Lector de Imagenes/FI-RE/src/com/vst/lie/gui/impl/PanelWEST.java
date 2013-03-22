@@ -23,8 +23,8 @@ import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 
 import com.vst.lie.controller.AnalizarArchivoController;
-import com.vst.lie.gui.CustomButton;
-import com.vst.lie.gui.CustomPanel;
+import com.vst.lie.gui.custom.CustomButton;
+import com.vst.lie.gui.custom.CustomPanel;
 import com.vst.lie.plugins.LongTask;
 
 @SuppressWarnings("serial")

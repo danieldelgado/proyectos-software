@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
-import com.vst.lie.gui.CustomPanel;
+import com.vst.lie.gui.custom.CustomPanel;
 
 @SuppressWarnings("serial")
 public class PanelCentral extends CustomPanel {

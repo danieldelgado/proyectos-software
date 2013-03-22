@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JSeparator;
 
-import com.vst.lie.gui.CustomPanel;
+import com.vst.lie.gui.custom.CustomPanel;
 
 @SuppressWarnings("serial")
 public class PanelEAST extends CustomPanel {
