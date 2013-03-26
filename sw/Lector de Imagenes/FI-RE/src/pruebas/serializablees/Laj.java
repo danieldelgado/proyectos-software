@@ -24,8 +24,8 @@ public class Laj {
 
 	public static void main(String[] args) {
 		try {
-			runProcess("javac PruebaCompilador.java");
-			runProcess("java PruebaCompilador");
+			runProcess("javac Tail.java");
+			runProcess("java Tail");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
