@@ -189,12 +189,14 @@ public class PanelNorte extends CustomPanel {
 	
 	private void cargarArchivosLista(int min, int max) {
 		_log.info(" cargarArchivosLista min : " + min + " max: "+max );
+		lstArchivos = null;
 		progressBar.setValue(0);
 		progressBar.setMinimum(min);
 		progressBar.setMaximum(max);
 		new Thread(new Runnable() {
 			public synchronized void run() {
 				lstArchivos = new ArrayList<File>();
+				progressBar.setValue(0);
 				for (int i = 0; i < lsFiles.length; i++) {
 					final int currentValue = i;
 					if (lsFiles[i].canRead() && lsFiles[i].isFile() ) {
