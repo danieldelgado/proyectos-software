@@ -22,6 +22,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.SkinInfo;
 
+import pe.com.sf.re.fi.analisis.controller.AnalizarArchivoController;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomButton;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomCombo;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomLabel;
@@ -40,7 +41,7 @@ public class PanelNorte extends CustomPanel {
 	private static Set<String> stApariencias;
 	private File rutaCarga;
 	private List<File> lstArchivos;
-	private File[] lsFiles = null;
+	private File[] lsFiles;
 	/**
 	 * Componentes
 	 */
@@ -170,6 +171,10 @@ public class PanelNorte extends CustomPanel {
 			obtenerArchivos();
 			if (lstArchivos != null && lstArchivos.size() > 0) {
 				_log.info("cantidad de archvios por leer " + lstArchivos.size());
+				AnalizarArchivoController.lstArchivos = lstArchivos;
+				lstArchivos = null;
+				rutaCarga = null;				
+				lsFiles= null;
 			}
 		}
 	}
