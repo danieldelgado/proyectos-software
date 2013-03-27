@@ -16,6 +16,7 @@ public class Principal extends JXFrame implements Serializable {
 	public int ancho_pantalla;
 	public int alto_pantalla;
 
+	public PanelNorte panNorte = null;
 	public PanelCentral panCentral = null;
 		
 	public Principal(String title) {
@@ -35,11 +36,14 @@ public class Principal extends JXFrame implements Serializable {
 	}
 
 	private void componetPanels() {
-				
-//		panCentral = new PanelCentral(this);
-//		panCentral.setVisible(true);		
+		panNorte =  new PanelNorte(this);
+		panNorte.setVisible(true);	
+		
+		panCentral = new PanelCentral(this);
+		panCentral.setVisible(true);		
 
-//		this.add(panCentral, BorderLayout.CENTER);
+		this.add(panNorte, BorderLayout.NORTH);
+		this.add(panCentral, BorderLayout.CENTER);
 
 	}
 

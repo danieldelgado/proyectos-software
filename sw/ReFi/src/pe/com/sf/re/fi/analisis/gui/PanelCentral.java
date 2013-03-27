@@ -1,10 +1,16 @@
 package pe.com.sf.re.fi.analisis.gui;
 
-import java.awt.*;
-import javax.swing.*;
-/*
- * Created by JFormDesigner on Fri Mar 22 05:55:23 CET 2013
- */
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JSpinner;
+import javax.swing.JSplitPane;
+import javax.swing.JToggleButton;
 
 
 
@@ -12,7 +18,7 @@ import javax.swing.*;
  * @author SHOCKIE
  */
 public class PanelCentral extends JPanel {
-	public PanelCentral() {
+	public PanelCentral(Principal principal) {
 		initComponents();
 	}
 

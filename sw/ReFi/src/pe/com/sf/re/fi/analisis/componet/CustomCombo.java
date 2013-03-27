@@ -10,4 +10,7 @@ public class CustomCombo extends JComboBox {
 		super(vector);
 	}
 
+	public CustomCombo() {
+	}
+
 }
