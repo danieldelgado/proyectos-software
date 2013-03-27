@@ -1,7 +1,6 @@
 package pe.com.sf.re.fi.analisis.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 
 import javax.swing.BoxLayout;
 import javax.swing.JProgressBar;
@@ -19,17 +18,17 @@ import pe.com.sf.re.fi.analisis.gui.componet.CustomToggleButton;
 @SuppressWarnings("serial")
 public class PanelCentral extends CustomPanel {
 
-	CustomPanel panel1;
-	CustomPanel panel5;
-	CustomPanel panel6;
-	CustomLabel label1;
-	JSpinner spinner1;
-	CustomPanel panel2;
-	JSplitPane splitPane1;
-	CustomPanel panel3;
-	JProgressBar progressBar1;
-	CustomPanel panel4;
-	JProgressBar progressBar2;
+	CustomPanel pnlContenedorListadoImagenesMiniaruta;
+	CustomPanel pnlListadoImagenesMiniaruta;
+	CustomPanel pnlApuntadorPagina;
+	CustomLabel lblApuntador;
+	JSpinner spnApuntadorPagina;
+	CustomPanel pnlSpliptPreviewImage;
+	JSplitPane splitContenedor;
+	CustomPanel pnlPreviewIzquierda;
+	JProgressBar prgBarIzq;
+	CustomPanel pnlPreviewDerecha;
+	JProgressBar prgBarDer;
 	CustomPanel panel7;
 	CustomPanel panel8;
 	CustomButton button2;
@@ -49,20 +48,26 @@ public class PanelCentral extends CustomPanel {
 	public PanelCentral(Principal principal) {
 		this.principal = principal;
 		initComponents();
+		inicializarComponenetes();
+	}
+
+	private void inicializarComponenetes() {
+		
 	}
 
 	public void initComponents() {
-		panel1 = new CustomPanel();
-		panel5 = new CustomPanel();
-		panel6 = new CustomPanel();
-		label1 = new CustomLabel();
-		spinner1 = new JSpinner();
-		panel2 = new CustomPanel();
-		splitPane1 = new JSplitPane();
-		panel3 = new CustomPanel();
-		progressBar1 = new JProgressBar();
-		panel4 = new CustomPanel();
-		progressBar2 = new JProgressBar();
+		
+		pnlContenedorListadoImagenesMiniaruta = new CustomPanel();
+		pnlListadoImagenesMiniaruta = new CustomPanel();
+		pnlApuntadorPagina = new CustomPanel();
+		lblApuntador = new CustomLabel();
+		spnApuntadorPagina = new JSpinner();
+		pnlSpliptPreviewImage = new CustomPanel();
+		splitContenedor = new JSplitPane();
+		pnlPreviewIzquierda = new CustomPanel();
+		prgBarIzq = new JProgressBar();
+		pnlPreviewDerecha = new CustomPanel();
+		prgBarDer = new JProgressBar();
 		panel7 = new CustomPanel();
 		panel8 = new CustomPanel();
 		button2 = new CustomButton();
@@ -77,95 +82,56 @@ public class PanelCentral extends CustomPanel {
 		toggleButton5 = new CustomToggleButton();
 		button6 = new CustomButton();
 		toggleButton6 = new CustomToggleButton();
-
 		setLayout(new BorderLayout());
-
-		panel1.setLayout(new BorderLayout());
-
-		panel5.setLayout(new BoxLayout(panel5, BoxLayout.X_AXIS));
-		panel1.add(panel5, BorderLayout.NORTH);
-
-		panel6.setLayout(new BoxLayout(panel6, BoxLayout.X_AXIS));
-
-		label1.setText("text");
-		panel6.add(label1);
-		panel6.add(spinner1);
-		panel1.add(panel6, BorderLayout.SOUTH);
-		add(panel1, BorderLayout.WEST);
-
-		panel2.setLayout(new BoxLayout(panel2, BoxLayout.X_AXIS));
-
-		panel3.setLayout(new BorderLayout());
-
-		progressBar1.setValue(50);
-		panel3.add(progressBar1, BorderLayout.SOUTH);
-		splitPane1.setLeftComponent(panel3);
-
-		panel4.setLayout(new BorderLayout());
-
-		progressBar2.setValue(50);
-		panel4.add(progressBar2, BorderLayout.SOUTH);
-		splitPane1.setRightComponent(panel4);
-		panel2.add(splitPane1);
-		add(panel2, BorderLayout.CENTER);
-
+		pnlContenedorListadoImagenesMiniaruta.setLayout(new BorderLayout());
+		pnlListadoImagenesMiniaruta.setLayout(new BoxLayout(pnlListadoImagenesMiniaruta, BoxLayout.X_AXIS));
+		pnlContenedorListadoImagenesMiniaruta.add(pnlListadoImagenesMiniaruta, BorderLayout.NORTH);
+		pnlApuntadorPagina.setLayout(new BoxLayout(pnlApuntadorPagina, BoxLayout.X_AXIS));
+		lblApuntador.setText("text");
+		pnlApuntadorPagina.add(lblApuntador);
+		pnlApuntadorPagina.add(spnApuntadorPagina);
+		pnlContenedorListadoImagenesMiniaruta.add(pnlApuntadorPagina, BorderLayout.SOUTH);
+		add(pnlContenedorListadoImagenesMiniaruta, BorderLayout.WEST);
+		pnlSpliptPreviewImage.setLayout(new BoxLayout(pnlSpliptPreviewImage, BoxLayout.X_AXIS));
+		pnlPreviewIzquierda.setLayout(new BorderLayout());
+		prgBarIzq.setValue(50);
+		pnlPreviewIzquierda.add(prgBarIzq, BorderLayout.SOUTH);
+		splitContenedor.setLeftComponent(pnlPreviewIzquierda);
+		pnlPreviewDerecha.setLayout(new BorderLayout());
+		prgBarDer.setValue(50);
+		pnlPreviewDerecha.add(prgBarDer, BorderLayout.SOUTH);
+		splitContenedor.setRightComponent(pnlPreviewDerecha);
+		pnlSpliptPreviewImage.add(splitContenedor);
+		add(pnlSpliptPreviewImage, BorderLayout.CENTER);
+		
+		/////////////////////////////////////
+				
 		panel7.setLayout(new BoxLayout(panel7, BoxLayout.X_AXIS));
-
 		panel8.setAlignmentY(0.0F);
 		panel8.setLayout(new BoxLayout(panel8, BoxLayout.Y_AXIS));
-
 		button2.setText("text");
 		panel8.add(button2);
-
 		button3.setText("text");
 		panel8.add(button3);
-
 		toggleButton1.setText("text");
-		toggleButton1.setPreferredSize(new Dimension(55, 23));
-		toggleButton1.setMaximumSize(new Dimension(55, 23));
-		toggleButton1.setMinimumSize(new Dimension(55, 23));
 		panel8.add(toggleButton1);
-
 		button1.setText("text");
 		panel8.add(button1);
-
 		toggleButton2.setText("text");
-		toggleButton2.setPreferredSize(new Dimension(55, 23));
-		toggleButton2.setMaximumSize(new Dimension(55, 23));
-		toggleButton2.setMinimumSize(new Dimension(55, 23));
 		panel8.add(toggleButton2);
-
 		toggleButton3.setText("text");
-		toggleButton3.setPreferredSize(new Dimension(55, 23));
-		toggleButton3.setMaximumSize(new Dimension(55, 23));
-		toggleButton3.setMinimumSize(new Dimension(55, 23));
 		panel8.add(toggleButton3);
-
 		toggleButton4.setText("text");
-		toggleButton4.setPreferredSize(new Dimension(55, 23));
-		toggleButton4.setMaximumSize(new Dimension(55, 23));
-		toggleButton4.setMinimumSize(new Dimension(55, 23));
 		panel8.add(toggleButton4);
-
 		button4.setText("text");
 		panel8.add(button4);
-
 		button5.setText("text");
 		panel8.add(button5);
-
 		toggleButton5.setText("text");
-		toggleButton5.setPreferredSize(new Dimension(55, 23));
-		toggleButton5.setMaximumSize(new Dimension(55, 23));
-		toggleButton5.setMinimumSize(new Dimension(55, 23));
 		panel8.add(toggleButton5);
-
 		button6.setText("text");
 		panel8.add(button6);
-
 		toggleButton6.setText("text");
-		toggleButton6.setPreferredSize(new Dimension(55, 23));
-		toggleButton6.setMaximumSize(new Dimension(55, 23));
-		toggleButton6.setMinimumSize(new Dimension(55, 23));
 		panel8.add(toggleButton6);
 		panel7.add(panel8);
 		add(panel7, BorderLayout.EAST);
