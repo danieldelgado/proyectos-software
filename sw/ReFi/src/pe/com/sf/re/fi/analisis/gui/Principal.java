@@ -47,8 +47,8 @@ public class Principal extends JXFrame implements Serializable {
 
 	}
 
-	public static void cambiarTitulo(JXFrame frame, String title) {
-		frame.setTitle(title);
+	public void cambiarTitulo( String title) {
+		setTitle(title);
 	}
 
 }
