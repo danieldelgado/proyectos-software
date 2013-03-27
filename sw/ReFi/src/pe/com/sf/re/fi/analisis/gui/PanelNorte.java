@@ -20,7 +20,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.SkinInfo;
 
-import pe.com.sf.re.fi.analisis.controller.AnalizarArchivoController;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomButton;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomCombo;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomLabel;
@@ -118,8 +117,25 @@ public class PanelNorte extends CustomPanel {
 		panelToolBarApariencia.add(pnlToolBarsOpciones, BorderLayout.WEST);
 		panleContenedor.add(panelToolBarApariencia, BorderLayout.CENTER);
 		add(panleContenedor, BorderLayout.CENTER);
+		_log.info("componentes creados");
 	}
 
+
+	private void inicializarComponentes() {
+		progressBar.setVisible(false);
+		progressBar.setStringPainted(true);
+		lblApariencia.setText(Propes.getProperty("lbl.apariencia"));
+		btnSelecionarArchivo.setText(Propes.getProperty("btn.seleccionar.archivo"));
+		btnSelccionarDirectorio.setText(Propes.getProperty("btn.seleccionar.directorio"));
+		btnCargarArchivos.setEnabled(false);
+		btnCargarArchivos.setText(Propes.getProperty("btn.cargar"));
+		toggleButton4.setText("text");
+		toggleButton3.setText("text");
+		button2.setText("text");
+		desactivarProgressBarCarga();
+		_log.info("componentes inicializados");
+	}
+	
 	public void itemStateChanged(ItemEvent e) {
 		final Object item = e.getItem();
 		SwingUtilities.invokeLater(new Runnable() {
@@ -134,20 +150,6 @@ public class PanelNorte extends CustomPanel {
 				}
 			}
 		});
-	}
-
-	private void inicializarComponentes() {
-		progressBar.setVisible(false);
-		progressBar.setStringPainted(true);
-		lblApariencia.setText(Propes.getProperty("lbl.apariencia"));
-		btnSelecionarArchivo.setText(Propes.getProperty("btn.seleccionar.archivo"));
-		btnSelccionarDirectorio.setText(Propes.getProperty("btn.seleccionar.directorio"));
-		btnCargarArchivos.setEnabled(false);
-		btnCargarArchivos.setText(Propes.getProperty("btn.cargar"));
-		toggleButton4.setText("text");
-		toggleButton3.setText("text");
-		button2.setText("text");
-		desactivarProgressBarCarga();
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -174,6 +176,7 @@ public class PanelNorte extends CustomPanel {
 			try {
 				ruta = chooser.getSelectedFile();
 				if (ruta != null) {
+					_log.info("directorio seleccionado : "+ruta);
 					cambiarTitulo(ruta.getAbsolutePath());
 					activarProgressBarCarga();
 				} else {
@@ -193,7 +196,7 @@ public class PanelNorte extends CustomPanel {
 	private void seleccionarArchivo() {
 		desactivarProgressBarCarga();
 		filter = null;
-		filter = new FileNameExtensionFilter("Solo Imagenes", Constantes.EXTENSIONES_IMAGENES);
+		filter = new FileNameExtensionFilter("Solo "+ Constantes.EXTENSIONES_CAD_IMAGENES, Constantes.EXTENSIONES_IMAGENES);
 		chooser.setFileFilter(filter);
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		Integer returnVal = chooser.showOpenDialog(null);
@@ -201,6 +204,7 @@ public class PanelNorte extends CustomPanel {
 			File ruta = null;
 			try {
 				ruta = chooser.getSelectedFile();
+				_log.info("archivo seleccionado : "+ruta);
 				if (ruta != null) {
 					cambiarTitulo(ruta.getAbsolutePath());
 					activarProgressBarCarga();
@@ -222,6 +226,7 @@ public class PanelNorte extends CustomPanel {
 	}
 
 	private void activarProgressBarCarga() {
+		_log.info("activar Progress Bar Carga");
 		progressBar.setVisible(true);
 		progressBar.setMinimum(0);
 		progressBar.setValue(0);
@@ -229,6 +234,7 @@ public class PanelNorte extends CustomPanel {
 	}
 
 	private void desactivarProgressBarCarga() {
+		_log.info("desactivar Progress Bar Carga");
 		progressBar.setVisible(false);
 		progressBar.setMinimum(0);
 		progressBar.setValue(0);
