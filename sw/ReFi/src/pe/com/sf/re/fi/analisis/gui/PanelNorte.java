@@ -40,13 +40,13 @@ public class PanelNorte extends CustomPanel {
 	private static Set<String> stApariencias;
 	private File rutaCarga;
 	private List<File> lstArchivos;
-	private int countProgress = 0;
+	private File[] lsFiles = null;
 	/**
 	 * Componentes
 	 */
 	private CustomPanel panleContenedor;
 	private CustomPanel panelConnedorBarraProgreso;
-	private JProgressBar progressBar;
+	private final JProgressBar progressBar = new JProgressBar();
 	private CustomPanel panelToolBarApariencia;
 	private CustomPanel panelApariencia;
 	private JToolBar toolbarApariencia;
@@ -78,7 +78,6 @@ public class PanelNorte extends CustomPanel {
 		setLayout(new BorderLayout());
 		panleContenedor = new CustomPanel();
 		panelConnedorBarraProgreso = new CustomPanel();
-		progressBar = new JProgressBar();
 		panelToolBarApariencia = new CustomPanel();
 		panelApariencia = new CustomPanel();
 		toolbarApariencia = new JToolBar();
@@ -168,69 +167,53 @@ public class PanelNorte extends CustomPanel {
 
 	private void iniciarCargarProgressBar() {
 		if (rutaCarga != null) {
-			lstArchivos = obtenerArchivos(rutaCarga);
+			obtenerArchivos();
 			if (lstArchivos != null && lstArchivos.size() > 0) {
-				_log.info("cantidad de archvios por leer " + lstArchivos.size());				
+				_log.info("cantidad de archvios por leer " + lstArchivos.size());
 			}
 		}
 	}
 
-	private List<File> obtenerArchivos(File rt) {
-		if (rt.canRead()) {
-			if (rt.isFile()) {
-				List<File> f = new ArrayList<File>();
-				progressBar.setValue(countProgress);
-				progressBar.setMinimum(countProgress);
-				progressBar.setMaximum(1);
-				cargarProgressBar();
-				countProgress = 0;
-				System.out.println(" countProgress :"+countProgress);
-				f.add(rt);				
-				return f;
-			} else if (rt.isDirectory()) {
-				File[] ls = rt.listFiles();
-				if (ls != null && ls.length > 0) {
-					progressBar.setValue(countProgress);
-					progressBar.setMinimum(countProgress);
-					progressBar.setMaximum(ls.length);
-					List<File> f = new ArrayList<File>();
-					for (int i = 0; i < ls.length; i++) {
-						if (ls[i].canRead() && ls[i].isFile()) {
-							f.add(ls[i]);
-						}
-						cargarProgressBar();
-					}
-					countProgress = 0;
-					System.out.println(" countProgress :"+countProgress);
-					return f;
+	private void obtenerArchivos() {
+		if (rutaCarga.canRead()) {
+			if (rutaCarga.isFile()) {
+				cargarArchivosLista(0,1);
+			} else if (rutaCarga.isDirectory()) {
+				lsFiles = rutaCarga.listFiles();
+				if (lsFiles != null && lsFiles.length > 0) {
+					cargarArchivosLista(0,lsFiles.length-1);
 				}
 			}
 		}
-		return null;
 	}
-
-	private void cargarProgressBar() {
+	
+	private void cargarArchivosLista(int min, int max) {
+		_log.info(" cargarArchivosLista min : " + min + " max: "+max );
+		progressBar.setValue(0);
+		progressBar.setMinimum(min);
+		progressBar.setMaximum(max);
 		new Thread(new Runnable() {
-			public void run() {
-				try {				
-					SwingUtilities.invokeLater(new Runnable() {			
-						public void run() {
-							try {
-								countProgress ++ ;
-								System.out.println(" countProgress :"+countProgress);
-								progressBar.setValue(countProgress);
-								Thread.sleep(100);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
+			public synchronized void run() {
+				lstArchivos = new ArrayList<File>();
+				for (int i = 0; i < lsFiles.length; i++) {
+					final int currentValue = i;
+					if (lsFiles[i].canRead() && lsFiles[i].isFile() ) {
+						lstArchivos.add(lsFiles[i]);
+					}
+					try {
+						SwingUtilities.invokeLater(new Runnable() {
+							public synchronized void run() {
+								progressBar.setValue(currentValue);
 							}
-						}
-					});	
-				} finally {
-					
+						});
+						Thread.sleep(15);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
+				_log.info(" termino la carga de archivos lstArchivos : "+ lstArchivos.size() );
 			}
-		}).start();
-			
+		}).start();		
 	}
 
 	private void seleccionarDirectorio() {

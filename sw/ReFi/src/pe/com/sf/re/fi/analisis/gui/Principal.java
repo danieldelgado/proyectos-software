@@ -50,11 +50,11 @@ public class Principal extends JXFrame implements Serializable {
 	}
 
 	public void cambiarTitulo( String title) {
-		setTitle(title);
+		setTitle(Propes.getProperty("titulo") + " - " + title);
 	}
 
 	public void resertTitulo() {
-		setTitle(Propes.getProperty("titulo") + " - " +Propes.getProperty("titulo"));
+		setTitle(Propes.getProperty("titulo"));
 	}
 
 }
