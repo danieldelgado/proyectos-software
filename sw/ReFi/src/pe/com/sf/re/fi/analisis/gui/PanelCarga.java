@@ -11,6 +11,7 @@ import javax.swing.JProgressBar;
 /**
  * @author SHOCKIE
  */
+@SuppressWarnings("serial")
 public class PanelCarga extends JPanel {
 	public PanelCarga() {
 		initComponents();

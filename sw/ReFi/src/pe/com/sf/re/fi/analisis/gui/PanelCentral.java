@@ -4,52 +4,79 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JSpinner;
 import javax.swing.JSplitPane;
-import javax.swing.JToggleButton;
 
-
+import pe.com.sf.re.fi.analisis.componet.CustomButton;
+import pe.com.sf.re.fi.analisis.componet.CustomLabel;
+import pe.com.sf.re.fi.analisis.componet.CustomPanel;
+import pe.com.sf.re.fi.analisis.componet.CustomToggleButton;
 
 /**
  * @author SHOCKIE
  */
-public class PanelCentral extends JPanel {
+@SuppressWarnings("serial")
+public class PanelCentral extends CustomPanel {
+
+	CustomPanel panel1;
+	CustomPanel panel5;
+	CustomPanel panel6;
+	CustomLabel label1;
+	JSpinner spinner1;
+	CustomPanel panel2;
+	JSplitPane splitPane1;
+	CustomPanel panel3;
+	JProgressBar progressBar1;
+	CustomPanel panel4;
+	JProgressBar progressBar2;
+	CustomPanel panel7;
+	CustomPanel panel8;
+	CustomButton button2;
+	CustomButton button3;
+	CustomToggleButton toggleButton1;
+	CustomButton button1;
+	CustomToggleButton toggleButton2;
+	CustomToggleButton toggleButton3;
+	CustomToggleButton toggleButton4;
+	CustomButton button4;
+	CustomButton button5;
+	CustomToggleButton toggleButton5;
+	CustomButton button6;
+	CustomToggleButton toggleButton6;
+	Principal principal = null;
+
 	public PanelCentral(Principal principal) {
+		this.principal = principal;
 		initComponents();
 	}
 
-	private void initComponents() {
-		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		// Generated using JFormDesigner Open Source Project license - unknown
-		panel1 = new JPanel();
-		panel5 = new JPanel();
-		panel6 = new JPanel();
-		label1 = new JLabel();
+	public void initComponents() {
+		panel1 = new CustomPanel();
+		panel5 = new CustomPanel();
+		panel6 = new CustomPanel();
+		label1 = new CustomLabel();
 		spinner1 = new JSpinner();
-		panel2 = new JPanel();
+		panel2 = new CustomPanel();
 		splitPane1 = new JSplitPane();
-		panel3 = new JPanel();
+		panel3 = new CustomPanel();
 		progressBar1 = new JProgressBar();
-		panel4 = new JPanel();
+		panel4 = new CustomPanel();
 		progressBar2 = new JProgressBar();
-		panel7 = new JPanel();
-		panel8 = new JPanel();
-		button2 = new JButton();
-		button3 = new JButton();
-		toggleButton1 = new JToggleButton();
-		button1 = new JButton();
-		toggleButton2 = new JToggleButton();
-		toggleButton3 = new JToggleButton();
-		toggleButton4 = new JToggleButton();
-		button4 = new JButton();
-		button5 = new JButton();
-		toggleButton5 = new JToggleButton();
-		button6 = new JButton();
-		toggleButton6 = new JToggleButton();
+		panel7 = new CustomPanel();
+		panel8 = new CustomPanel();
+		button2 = new CustomButton();
+		button3 = new CustomButton();
+		toggleButton1 = new CustomToggleButton();
+		button1 = new CustomButton();
+		toggleButton2 = new CustomToggleButton();
+		toggleButton3 = new CustomToggleButton();
+		toggleButton4 = new CustomToggleButton();
+		button4 = new CustomButton();
+		button5 = new CustomButton();
+		toggleButton5 = new CustomToggleButton();
+		button6 = new CustomButton();
+		toggleButton6 = new CustomToggleButton();
 
 		setLayout(new BorderLayout());
 
@@ -67,7 +94,6 @@ public class PanelCentral extends JPanel {
 		add(panel1, BorderLayout.WEST);
 
 		panel2.setLayout(new BoxLayout(panel2, BoxLayout.X_AXIS));
-
 
 		panel3.setLayout(new BorderLayout());
 
@@ -143,35 +169,6 @@ public class PanelCentral extends JPanel {
 		panel8.add(toggleButton6);
 		panel7.add(panel8);
 		add(panel7, BorderLayout.EAST);
-		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-	// Generated using JFormDesigner Open Source Project license - unknown
-	private JPanel panel1;
-	private JPanel panel5;
-	private JPanel panel6;
-	private JLabel label1;
-	private JSpinner spinner1;
-	private JPanel panel2;
-	private JSplitPane splitPane1;
-	private JPanel panel3;
-	private JProgressBar progressBar1;
-	private JPanel panel4;
-	private JProgressBar progressBar2;
-	private JPanel panel7;
-	private JPanel panel8;
-	private JButton button2;
-	private JButton button3;
-	private JToggleButton toggleButton1;
-	private JButton button1;
-	private JToggleButton toggleButton2;
-	private JToggleButton toggleButton3;
-	private JToggleButton toggleButton4;
-	private JButton button4;
-	private JButton button5;
-	private JToggleButton toggleButton5;
-	private JButton button6;
-	private JToggleButton toggleButton6;
-	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }

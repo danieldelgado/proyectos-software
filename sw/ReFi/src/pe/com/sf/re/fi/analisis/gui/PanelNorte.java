@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.BoxLayout;
-import javax.swing.JComboBox;
 import javax.swing.JProgressBar;
 import javax.swing.JToolBar;
 
@@ -14,6 +13,7 @@ import pe.com.sf.re.fi.analisis.componet.CustomLabel;
 import pe.com.sf.re.fi.analisis.componet.CustomPanel;
 import pe.com.sf.re.fi.analisis.componet.CustomToggleButton;
 
+@SuppressWarnings("serial")
 public class PanelNorte extends CustomPanel {
 
 	CustomPanel panel1;
