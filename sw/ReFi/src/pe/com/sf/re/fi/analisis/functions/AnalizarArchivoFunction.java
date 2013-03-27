@@ -1,12 +1,15 @@
 package pe.com.sf.re.fi.analisis.functions;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 public class AnalizarArchivoFunction {
 
+	private final static Logger _log = Logger.getLogger(AnalizarArchivoFunction.class.getName()); 
+	
 	@SuppressWarnings("unused")
 	public  File obtenerArchivo(String path) throws NullPointerException {
-		System.out.println(" obtenerArchivo path : "+path);
+		_log.info(" obtenerArchivo path : "+path);
 		if (path != null && path.equals("")) {
 			throw new NullPointerException(" El archivo no existe. 1");
 		}
@@ -33,7 +36,7 @@ public class AnalizarArchivoFunction {
 	
 	@SuppressWarnings("unused")
 	public  File obtenerDirectorio(String path) throws NullPointerException {
-		System.out.println(" obtenerDirectorio path : "+path);
+		_log.info(" obtenerDirectorio path : "+path);
 		if (path != null && path.equals("")) {
 			throw new NullPointerException(" El archivo no existe. ");
 		}

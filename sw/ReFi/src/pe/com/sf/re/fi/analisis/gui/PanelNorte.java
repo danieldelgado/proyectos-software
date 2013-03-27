@@ -1,15 +1,13 @@
 package pe.com.sf.re.fi.analisis.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 import java.util.Vector;
+import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
@@ -17,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
-import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
@@ -29,37 +26,45 @@ import pe.com.sf.re.fi.analisis.gui.componet.CustomCombo;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomLabel;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomPanel;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomToggleButton;
-import pe.com.sf.re.fi.plugins.BufferFile;
-import pe.com.sf.re.fi.plugins.ThreadInterativo;
 import pe.com.sf.re.fi.util.Constantes;
 import pe.com.sf.re.fi.util.Propes;
 
 @SuppressWarnings("serial")
 public class PanelNorte extends CustomPanel {
 
-	CustomPanel panleContenedor;
-	CustomPanel panelConnedorBarraProgreso;
-	JProgressBar progressBar;
-	CustomPanel panelToolBarApariencia;
-	CustomPanel panelApariencia;
-	JToolBar toolbarApariencia;
-	CustomLabel lblApariencia;
-	CustomCombo cboApariencia;
-	CustomPanel pnlToolBarsOpciones;
-	JToolBar tbOpcionesArchivos;
-	CustomButton btnSelecionarArchivo;
-	CustomButton btnSelccionarDirectorio;
-	CustomButton btnCargarArchivos;
-	JToolBar tbOpciones;
-	CustomButton button2;
-	CustomToggleButton toggleButton3;
-	CustomToggleButton toggleButton4;
-	Principal principal;
-	JFileChooser chooser;
-	FileNameExtensionFilter filter;
-	Timer timer;
-	ThreadInterativo task;
-	List<BufferedImage> lstBufferedImages = null;
+	private Principal principal;
+
+	private JFileChooser chooser;
+	private FileNameExtensionFilter filter;
+
+	private SkinInfo skinInfo = null;
+	private static Set<String> stApariencias = null;
+	/**
+	 * Componentes
+	 */
+	private CustomPanel panleContenedor;
+	private CustomPanel panelConnedorBarraProgreso;
+	private JProgressBar progressBar;
+	private CustomPanel panelToolBarApariencia;
+	private CustomPanel panelApariencia;
+	private JToolBar toolbarApariencia;
+	private CustomLabel lblApariencia;
+	private CustomCombo cboApariencia;
+	private CustomPanel pnlToolBarsOpciones;
+	private JToolBar tbOpcionesArchivos;
+	private CustomButton btnSelecionarArchivo;
+	private CustomButton btnSelccionarDirectorio;
+	private CustomButton btnCargarArchivos;
+	private JToolBar tbOpciones;
+	private CustomButton button2;
+	private CustomToggleButton toggleButton3;
+	private CustomToggleButton toggleButton4;
+
+	static {
+		stApariencias = SubstanceLookAndFeel.getAllSkins().keySet();
+	}
+
+	private final static Logger _log = Logger.getLogger(PanelNorte.class.getName());
 
 	public PanelNorte(Principal principal) {
 		this.principal = principal;
@@ -67,7 +72,6 @@ public class PanelNorte extends CustomPanel {
 		inicializarComponentes();
 	}
 
-	@SuppressWarnings("unchecked")
 	public void initComponents() {
 		setLayout(new BorderLayout());
 		panleContenedor = new CustomPanel();
@@ -77,7 +81,7 @@ public class PanelNorte extends CustomPanel {
 		panelApariencia = new CustomPanel();
 		toolbarApariencia = new JToolBar();
 		lblApariencia = new CustomLabel();
-		cboApariencia = new CustomCombo(new Vector(SubstanceLookAndFeel.getAllSkins().keySet()));
+		cboApariencia = new CustomCombo(new Vector<String>(stApariencias));
 		pnlToolBarsOpciones = new CustomPanel();
 		tbOpcionesArchivos = new JToolBar();
 		btnSelecionarArchivo = new CustomButton();
@@ -88,9 +92,6 @@ public class PanelNorte extends CustomPanel {
 		toggleButton3 = new CustomToggleButton();
 		toggleButton4 = new CustomToggleButton();
 		chooser = new JFileChooser();
-		timer = new Timer(Constantes.TIEMPO_INTERACION, this);
-		task = new ThreadInterativo();
-
 		btnSelecionarArchivo.addActionListener(this);
 		btnSelccionarDirectorio.addActionListener(this);
 		btnCargarArchivos.addActionListener(this);
@@ -119,6 +120,22 @@ public class PanelNorte extends CustomPanel {
 		add(panleContenedor, BorderLayout.CENTER);
 	}
 
+	public void itemStateChanged(ItemEvent e) {
+		final Object item = e.getItem();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					skinInfo = (SkinInfo) SubstanceLookAndFeel.getAllSkins().get(item);
+					_log.info("Apariencia seleccionada es :" + skinInfo.getClassName());
+					SubstanceLookAndFeel.setSkin(skinInfo.getClassName());
+					SwingUtilities.updateComponentTreeUI(principal);
+					skinInfo = null;
+				} catch (Exception exc) {
+				}
+			}
+		});
+	}
+
 	private void inicializarComponentes() {
 		progressBar.setVisible(false);
 		progressBar.setStringPainted(true);
@@ -133,25 +150,6 @@ public class PanelNorte extends CustomPanel {
 		desactivarProgressBarCarga();
 	}
 
-	public void itemStateChanged(ItemEvent e) {
-		Object cbo = e.getSource();
-		if (cbo == cboApariencia) {
-			final Object item = e.getItem();
-			if (e.getStateChange() == 1)
-				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							SkinInfo skinInfo = (SkinInfo) SubstanceLookAndFeel.getAllSkins().get(item);
-							SubstanceLookAndFeel.setSkin(skinInfo.getClassName());
-							SwingUtilities.updateComponentTreeUI(principal);
-						} catch (Exception exc) {
-						}
-					}
-				});
-		}
-
-	}
-
 	public void actionPerformed(ActionEvent e) {
 		Object button = e.getSource();
 		if (button == btnSelecionarArchivo) {
@@ -160,57 +158,21 @@ public class PanelNorte extends CustomPanel {
 			seleccionarDirectorio();
 		} else if (button == btnCargarArchivos) {
 			iniciarCargarProgressBar();
-		} else if (button == timer) {
-			iniciarProcesoCargar();
 		}
-
-	}
-
-	private void iniciarProcesoCargar() {
-		progressBar.setValue(task.getCurrent());
-		if (task.isStart()) {
-			lstBufferedImages.add(BufferFile.readFile(AnalizarArchivoController.getFileInteractor()));
-		}
-		if (task.isDone()) {
-			timer.stop();
-			btnCargarArchivos.setEnabled(true);
-			setCursor(null);
-			AnalizarArchivoController.identificadorReset();
-			AnalizarArchivoController.lstBufferedImages = lstBufferedImages;
-		}
-
+		button = null;
 	}
 
 	private void iniciarCargarProgressBar() {
-		if (AnalizarArchivoController.files != null) {
-			if (AnalizarArchivoController.files.length > 0) {
-				if (AnalizarArchivoController.cantidadArchivosInstanciados() > 1) {
-					progressBar.setMinimum(0);
-					progressBar.setMaximum(AnalizarArchivoController.cantidadArchivosInstanciados() - 1);
-					task.setLengthOfTask(AnalizarArchivoController.cantidadArchivosInstanciados());
-				} else if (AnalizarArchivoController.cantidadArchivosInstanciados() == 1) {
-					progressBar.setMinimum(0);
-					progressBar.setMaximum(1);
-					task.setLengthOfTask(1);
-				}
-				lstBufferedImages = new ArrayList<BufferedImage>();
-				btnCargarArchivos.setEnabled(false);
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				task.go();
-				timer.start();
-			}
-		}
 
 	}
 
 	private void seleccionarDirectorio() {
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		int returnVal = chooser.showOpenDialog(null);
+		Integer returnVal = chooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File ruta = null;
 			try {
 				ruta = chooser.getSelectedFile();
-				ruta = AnalizarArchivoController.obtenerArchivo(ruta.getAbsolutePath(), false);
 				if (ruta != null) {
 					cambiarTitulo(ruta.getAbsolutePath());
 					activarProgressBarCarga();
@@ -234,12 +196,11 @@ public class PanelNorte extends CustomPanel {
 		filter = new FileNameExtensionFilter("Solo Imagenes", Constantes.EXTENSIONES_IMAGENES);
 		chooser.setFileFilter(filter);
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		int returnVal = chooser.showOpenDialog(null);
+		Integer returnVal = chooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File ruta = null;
 			try {
 				ruta = chooser.getSelectedFile();
-				ruta = AnalizarArchivoController.obtenerArchivo(ruta.getAbsolutePath(), true);
 				if (ruta != null) {
 					cambiarTitulo(ruta.getAbsolutePath());
 					activarProgressBarCarga();

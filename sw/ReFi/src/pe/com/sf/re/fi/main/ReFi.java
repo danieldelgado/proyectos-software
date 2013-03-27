@@ -18,11 +18,11 @@ public class ReFi {
 
 	static{
 		try{
-			FileInputStream fis = new FileInputStream(new File("/logging.properties"));			
+			FileInputStream fis = new FileInputStream(new File("logging.properties"));			
 		    LogManager.getLogManager().readConfiguration(fis);
 		}
 		catch (final IOException e){
-		    Logger.getAnonymousLogger().severe("Could not load default logging.properties file");
+		    Logger.getAnonymousLogger().severe("No encunetra el  logging.properties file");
 		    Logger.getAnonymousLogger().severe(e.getMessage());
 		}
 	}
