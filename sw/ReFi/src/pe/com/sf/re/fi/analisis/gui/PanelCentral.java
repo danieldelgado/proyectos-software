@@ -18,32 +18,32 @@ import pe.com.sf.re.fi.analisis.gui.componet.CustomToggleButton;
 @SuppressWarnings("serial")
 public class PanelCentral extends CustomPanel {
 
-	CustomPanel pnlContenedorListadoImagenesMiniaruta;
-	CustomPanel pnlListadoImagenesMiniaruta;
-	CustomPanel pnlApuntadorPagina;
-	CustomLabel lblApuntador;
-	JSpinner spnApuntadorPagina;
-	CustomPanel pnlSpliptPreviewImage;
-	JSplitPane splitContenedor;
-	CustomPanel pnlPreviewIzquierda;
-	JProgressBar prgBarIzq;
-	CustomPanel pnlPreviewDerecha;
-	JProgressBar prgBarDer;
-	CustomPanel panel7;
-	CustomPanel panel8;
-	CustomButton button2;
-	CustomButton button3;
-	CustomToggleButton toggleButton1;
-	CustomButton button1;
-	CustomToggleButton toggleButton2;
-	CustomToggleButton toggleButton3;
-	CustomToggleButton toggleButton4;
-	CustomButton button4;
-	CustomButton button5;
-	CustomToggleButton toggleButton5;
-	CustomButton button6;
-	CustomToggleButton toggleButton6;
-	Principal principal = null;
+	private CustomPanel pnlContenedorListadoImagenesMiniaruta;
+	private CustomPanel pnlListadoImagenesMiniaruta;
+	private CustomPanel pnlApuntadorPagina;
+	private CustomLabel lblApuntador;
+	private JSpinner spnApuntadorPagina;
+	private CustomPanel pnlSpliptPreviewImage;
+	private JSplitPane splitContenedor;
+	private CustomPanel pnlPreviewIzquierda;
+	private JProgressBar prgBarIzq;
+	private CustomPanel pnlPreviewDerecha;
+	private JProgressBar prgBarDer;
+	private CustomPanel panel7;
+	private CustomPanel panel8;
+	private CustomButton button2;
+	private CustomButton button3;
+	private CustomToggleButton toggleButton1;
+	private CustomButton button1;
+	private CustomToggleButton toggleButton2;
+	private CustomToggleButton toggleButton3;
+	private CustomToggleButton toggleButton4;
+	private CustomButton button4;
+	private CustomButton button5;
+	private CustomToggleButton toggleButton5;
+	private CustomButton button6;
+	private CustomToggleButton toggleButton6;
+	private Principal principal = null;
 
 	public PanelCentral(Principal principal) {
 		this.principal = principal;
@@ -82,6 +82,7 @@ public class PanelCentral extends CustomPanel {
 		toggleButton5 = new CustomToggleButton();
 		button6 = new CustomButton();
 		toggleButton6 = new CustomToggleButton();
+		
 		setLayout(new BorderLayout());
 		pnlContenedorListadoImagenesMiniaruta.setLayout(new BorderLayout());
 		pnlListadoImagenesMiniaruta.setLayout(new BoxLayout(pnlListadoImagenesMiniaruta, BoxLayout.X_AXIS));
@@ -135,6 +136,8 @@ public class PanelCentral extends CustomPanel {
 		panel8.add(toggleButton6);
 		panel7.add(panel8);
 		add(panel7, BorderLayout.EAST);
+		
 	}
+	
 
 }
