@@ -43,7 +43,7 @@ public class AnalizarArchivoController {
 				}			
 			}	
 			files  = f.toArray(new File[f.size()]);
-			System.out.println("files:"+files.length);
+			System.out.println("cantidad de archivos : "+files.length);
 		}	
 	}
 
