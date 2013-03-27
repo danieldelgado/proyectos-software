@@ -8,10 +8,10 @@ import javax.swing.JProgressBar;
 import javax.swing.JSpinner;
 import javax.swing.JSplitPane;
 
-import pe.com.sf.re.fi.analisis.componet.CustomButton;
-import pe.com.sf.re.fi.analisis.componet.CustomLabel;
-import pe.com.sf.re.fi.analisis.componet.CustomPanel;
-import pe.com.sf.re.fi.analisis.componet.CustomToggleButton;
+import pe.com.sf.re.fi.analisis.gui.componet.CustomButton;
+import pe.com.sf.re.fi.analisis.gui.componet.CustomLabel;
+import pe.com.sf.re.fi.analisis.gui.componet.CustomPanel;
+import pe.com.sf.re.fi.analisis.gui.componet.CustomToggleButton;
 
 /**
  * @author SHOCKIE

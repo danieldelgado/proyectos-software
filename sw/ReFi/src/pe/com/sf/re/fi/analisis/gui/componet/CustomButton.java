@@ -1,4 +1,4 @@
-package pe.com.sf.re.fi.analisis.componet;
+package pe.com.sf.re.fi.analisis.gui.componet;
 
 import org.jdesktop.swingx.JXButton;
 

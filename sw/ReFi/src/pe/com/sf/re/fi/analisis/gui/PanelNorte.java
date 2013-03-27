@@ -18,11 +18,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.SkinInfo;
 
-import pe.com.sf.re.fi.analisis.componet.CustomButton;
-import pe.com.sf.re.fi.analisis.componet.CustomCombo;
-import pe.com.sf.re.fi.analisis.componet.CustomLabel;
-import pe.com.sf.re.fi.analisis.componet.CustomPanel;
-import pe.com.sf.re.fi.analisis.componet.CustomToggleButton;
+import pe.com.sf.re.fi.analisis.gui.componet.CustomButton;
+import pe.com.sf.re.fi.analisis.gui.componet.CustomCombo;
+import pe.com.sf.re.fi.analisis.gui.componet.CustomLabel;
+import pe.com.sf.re.fi.analisis.gui.componet.CustomPanel;
+import pe.com.sf.re.fi.analisis.gui.componet.CustomToggleButton;
 import pe.com.sf.re.fi.util.Propes;
 
 @SuppressWarnings("serial")
@@ -40,6 +40,7 @@ public class PanelNorte extends CustomPanel {
 	JToolBar tbOpcionesArchivos;
 	CustomButton btnSelecionarArchivo;
 	CustomButton btnSelccionarDirectorio;
+	CustomButton btnCargarArchivos;
 	JToolBar tbOpciones;
 	CustomButton button2;
 	CustomToggleButton toggleButton3;
@@ -51,6 +52,7 @@ public class PanelNorte extends CustomPanel {
 		initComponents();
 	}
 
+	@SuppressWarnings("unchecked")
 	public void initComponents() {
 		panleContenedor = new CustomPanel();
 		panelConnedorBarraProgreso = new CustomPanel();
@@ -64,6 +66,7 @@ public class PanelNorte extends CustomPanel {
 		tbOpcionesArchivos = new JToolBar();
 		btnSelecionarArchivo = new CustomButton();
 		btnSelccionarDirectorio = new CustomButton();
+		btnCargarArchivos = new CustomButton();
 		tbOpciones = new JToolBar();
 		button2 = new CustomButton();
 		toggleButton3 = new CustomToggleButton();
@@ -71,13 +74,15 @@ public class PanelNorte extends CustomPanel {
 
 		btnSelecionarArchivo.addActionListener(this);
 		btnSelccionarDirectorio.addActionListener(this);
+		btnCargarArchivos.addActionListener(this);
 		cboApariencia.addItemListener(this);
 
 		setLayout(new BorderLayout());
 		panleContenedor.setLayout(new BorderLayout());
 
 		panelConnedorBarraProgreso.setLayout(new BoxLayout(panelConnedorBarraProgreso, BoxLayout.X_AXIS));
-
+		
+		progressBar.setVisible(false);
 		progressBar.setValue(50);
 		panelConnedorBarraProgreso.add(progressBar);
 		panleContenedor.add(panelConnedorBarraProgreso, BorderLayout.SOUTH);
@@ -100,6 +105,10 @@ public class PanelNorte extends CustomPanel {
 		btnSelccionarDirectorio.setText(Propes.getProperty("btn.seleccionar.directorio"));
 		tbOpcionesArchivos.add(btnSelccionarDirectorio);
 
+		btnCargarArchivos.setEnabled(false);
+		btnCargarArchivos.setText(Propes.getProperty("btn.cargar"));
+		tbOpcionesArchivos.add(btnCargarArchivos);
+		
 		pnlToolBarsOpciones.add(tbOpcionesArchivos);
 
 		button2.setText("text");
@@ -140,9 +149,8 @@ public class PanelNorte extends CustomPanel {
 		Object button = e.getSource();
 
 		if (button == btnSelecionarArchivo) {
-			// mainFrame.panelWEST.desActivarBotonCargar();
 			JFileChooser chooser = new JFileChooser();
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("Solo Imagenes", "jpg", "gif", "png", "jpeg");
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("Solo Imagenes", "jpg", "png", "jpeg");
 			chooser.setFileFilter(filter);
 			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
@@ -154,8 +162,7 @@ public class PanelNorte extends CustomPanel {
 					cambiarTitulo(ruta.getAbsolutePath());
 					// ruta = analizarArchivoController.obenerArchivo(chooser.getSelectedFile().getAbsolutePath(),true);
 					if (ruta != null) {
-						// mainFrame.panelWEST.txtArchivo.setText(ruta.getAbsolutePath());
-						// mainFrame.panelWEST.activarBotonCargar();
+						
 					}
 				} catch (Exception e1) {
 					// mainFrame.panelWEST.desActivarBotonCargar();

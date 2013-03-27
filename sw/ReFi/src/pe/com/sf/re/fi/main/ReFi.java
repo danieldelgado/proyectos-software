@@ -13,8 +13,8 @@ import pe.com.sf.re.fi.util.Propes;
 public class ReFi {
 
 	public static void main(String[] args) {
-		JXFrame.setDefaultLookAndFeelDecorated(true);
-		JXDialog.setDefaultLookAndFeelDecorated(true);
+//		JXFrame.setDefaultLookAndFeelDecorated(true);
+//		JXDialog.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
 			@SuppressWarnings("deprecation")
 			public void run() {
