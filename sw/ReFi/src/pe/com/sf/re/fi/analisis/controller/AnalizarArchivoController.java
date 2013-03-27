@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import pe.com.sf.re.fi.analisis.functions.AnalizarArchivoFunction;
 
@@ -13,6 +14,8 @@ public class AnalizarArchivoController {
 	public static Integer identifiador;
 	public static AnalizarArchivoFunction analizarArchivoFunction ;
 	public static List<BufferedImage> lstBufferedImages;
+	
+	private final static Logger _log = Logger.getLogger(AnalizarArchivoController.class.getName()); 
 	
 	static{
 		analizarArchivoFunction = new AnalizarArchivoFunction();
@@ -43,7 +46,7 @@ public class AnalizarArchivoController {
 				}			
 			}	
 			files  = f.toArray(new File[f.size()]);
-			System.out.println("cantidad de archivos : "+files.length);
+			_log.info("  cargando solo archivos de lectura :"+ files.length);
 		}	
 	}
 
@@ -52,7 +55,7 @@ public class AnalizarArchivoController {
 	}
 
 	public static void setFiles(File[] files) {
-		AnalizarArchivoController.files = files;
+		files = files;
 	}
 
 	public static File getFileInteractor() {
@@ -60,7 +63,6 @@ public class AnalizarArchivoController {
 			identifiador = -1;
 		} 
 		identifiador++;		
-		System.out.println("identifiador:"+identifiador+ "  files:"+files.length);
 		return files[identifiador];
 	}
 	

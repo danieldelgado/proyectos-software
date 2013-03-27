@@ -2,7 +2,7 @@ package pe.com.sf.re.fi.util;
 
 public class Constantes {
 
-	public static int TIEMPO_INTERACION = 250;
+	public static int TIEMPO_INTERACION = 100;
 	public static String[] EXTENSIONES_IMAGENES = getExtensiones();
 	public static String[] EXTENSIONES_ARCHIVOS_LECTURA = getExtensionesArchivos();
 

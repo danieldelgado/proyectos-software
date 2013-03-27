@@ -121,6 +121,7 @@ public class PanelNorte extends CustomPanel {
 
 	private void inicializarComponentes() {
 		progressBar.setVisible(false);
+		progressBar.setStringPainted(true);
 		lblApariencia.setText(Propes.getProperty("lbl.apariencia"));
 		btnSelecionarArchivo.setText(Propes.getProperty("btn.seleccionar.archivo"));
 		btnSelccionarDirectorio.setText(Propes.getProperty("btn.seleccionar.directorio"));
