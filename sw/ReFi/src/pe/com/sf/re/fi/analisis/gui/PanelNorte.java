@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 import java.util.logging.Logger;
@@ -32,12 +34,13 @@ import pe.com.sf.re.fi.util.Propes;
 public class PanelNorte extends CustomPanel {
 
 	private Principal principal;
-
 	private JFileChooser chooser;
 	private FileNameExtensionFilter filter;
+	private SkinInfo skinInfo;
+	private static Set<String> stApariencias;
+	private File rutaCarga;
+	private List<File> lstArchivos;
 
-	private SkinInfo skinInfo = null;
-	private static Set<String> stApariencias = null;
 	/**
 	 * Componentes
 	 */
@@ -120,7 +123,6 @@ public class PanelNorte extends CustomPanel {
 		_log.info("componentes creados");
 	}
 
-
 	private void inicializarComponentes() {
 		progressBar.setVisible(false);
 		progressBar.setStringPainted(true);
@@ -135,7 +137,7 @@ public class PanelNorte extends CustomPanel {
 		desactivarProgressBarCarga();
 		_log.info("componentes inicializados");
 	}
-	
+
 	public void itemStateChanged(ItemEvent e) {
 		final Object item = e.getItem();
 		SwingUtilities.invokeLater(new Runnable() {
@@ -165,20 +167,54 @@ public class PanelNorte extends CustomPanel {
 	}
 
 	private void iniciarCargarProgressBar() {
+		if (rutaCarga != null) {
+			lstArchivos = obtenerArchivos(rutaCarga);
+			if (lstArchivos != null && lstArchivos.size() > 0) {
+				_log.info("cantidad de archvios por leer " + lstArchivos.size());
+				
+				
+			}
+		}
+	}
 
+	
+
+	private List<File> obtenerArchivos(File rt) {
+		if (rt.canRead()) {
+			if (rt.isFile()) {
+				List<File> f = new ArrayList<File>();
+				f.add(rt);
+				return f;
+			} else if (rt.isDirectory()) {
+				File[] ls = rt.listFiles();
+				if (ls != null && ls.length > 0) {
+					List<File> f = new ArrayList<File>();
+					for (int i = 0; i < ls.length; i++) {
+						if (ls[i].canRead() && ls[i].isFile()) {
+							f.add(ls[i]);
+						}
+					}
+					return f;
+				}
+			}
+		}
+		return null;
 	}
 
 	private void seleccionarDirectorio() {
+		File ruta = null;
+		rutaCarga = null;
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		principal.resertTitulo();
 		Integer returnVal = chooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			File ruta = null;
 			try {
 				ruta = chooser.getSelectedFile();
 				if (ruta != null) {
-					_log.info("directorio seleccionado : "+ruta);
+					_log.info("directorio seleccionado : " + ruta);
 					cambiarTitulo(ruta.getAbsolutePath());
 					activarProgressBarCarga();
+					rutaCarga = ruta;
 				} else {
 					principal.resertTitulo();
 					desactivarProgressBarCarga();
@@ -189,25 +225,31 @@ public class PanelNorte extends CustomPanel {
 				JOptionPane.showMessageDialog(null, e1.getMessage());
 			}
 			ruta = null;
+		} else {
+			// desactivarProgressBarCarga();
+			principal.resertTitulo();
 		}
 		returnVal = 0;
 	}
 
 	private void seleccionarArchivo() {
-		desactivarProgressBarCarga();
+		File ruta = null;
+		rutaCarga = null;
 		filter = null;
-		filter = new FileNameExtensionFilter("Solo "+ Constantes.EXTENSIONES_CAD_IMAGENES, Constantes.EXTENSIONES_IMAGENES);
+		filter = new FileNameExtensionFilter("Solo " + Constantes.EXTENSIONES_CAD_IMAGENES, Constantes.EXTENSIONES_IMAGENES);
+		principal.resertTitulo();
 		chooser.setFileFilter(filter);
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		desactivarProgressBarCarga();
 		Integer returnVal = chooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			File ruta = null;
 			try {
 				ruta = chooser.getSelectedFile();
-				_log.info("archivo seleccionado : "+ruta);
+				_log.info("archivo seleccionado : " + ruta);
 				if (ruta != null) {
 					cambiarTitulo(ruta.getAbsolutePath());
 					activarProgressBarCarga();
+					rutaCarga = ruta;
 				} else {
 					principal.resertTitulo();
 					desactivarProgressBarCarga();
@@ -219,6 +261,9 @@ public class PanelNorte extends CustomPanel {
 				JOptionPane.showMessageDialog(null, e1.getMessage());
 			}
 			ruta = null;
+		} else {
+			// desactivarProgressBarCarga();
+			principal.resertTitulo();
 		}
 		returnVal = 0;
 		filter = null;
