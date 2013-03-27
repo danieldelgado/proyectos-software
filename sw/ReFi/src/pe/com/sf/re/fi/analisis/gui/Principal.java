@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 
 import org.jdesktop.swingx.JXFrame;
 
+import pe.com.sf.re.fi.util.Propes;
+
 public class Principal extends JXFrame implements Serializable {
 
 	private static final long serialVersionUID = -4550679687084521316L;
@@ -49,6 +51,10 @@ public class Principal extends JXFrame implements Serializable {
 
 	public void cambiarTitulo( String title) {
 		setTitle(title);
+	}
+
+	public void resertTitulo() {
+		setTitle(Propes.getProperty("titulo"));
 	}
 
 }

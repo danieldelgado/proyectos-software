@@ -18,11 +18,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.SkinInfo;
 
+import pe.com.sf.re.fi.analisis.controller.AnalizarArchivoController;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomButton;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomCombo;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomLabel;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomPanel;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomToggleButton;
+import pe.com.sf.re.fi.util.Constantes;
 import pe.com.sf.re.fi.util.Propes;
 
 @SuppressWarnings("serial")
@@ -46,14 +48,18 @@ public class PanelNorte extends CustomPanel {
 	CustomToggleButton toggleButton3;
 	CustomToggleButton toggleButton4;
 	Principal principal = null;
-	
+	JFileChooser chooser = new JFileChooser();
+	FileNameExtensionFilter filter = null;
+
 	public PanelNorte(Principal principal) {
 		this.principal = principal;
 		initComponents();
+		inicializarComponentes();
 	}
 
 	@SuppressWarnings("unchecked")
 	public void initComponents() {
+		setLayout(new BorderLayout());
 		panleContenedor = new CustomPanel();
 		panelConnedorBarraProgreso = new CustomPanel();
 		progressBar = new JProgressBar();
@@ -71,58 +77,45 @@ public class PanelNorte extends CustomPanel {
 		button2 = new CustomButton();
 		toggleButton3 = new CustomToggleButton();
 		toggleButton4 = new CustomToggleButton();
-
 		btnSelecionarArchivo.addActionListener(this);
 		btnSelccionarDirectorio.addActionListener(this);
 		btnCargarArchivos.addActionListener(this);
 		cboApariencia.addItemListener(this);
-
-		setLayout(new BorderLayout());
 		panleContenedor.setLayout(new BorderLayout());
-
 		panelConnedorBarraProgreso.setLayout(new BoxLayout(panelConnedorBarraProgreso, BoxLayout.X_AXIS));
-		
-		progressBar.setVisible(false);
-		progressBar.setValue(50);
 		panelConnedorBarraProgreso.add(progressBar);
 		panleContenedor.add(panelConnedorBarraProgreso, BorderLayout.SOUTH);
-
 		panelToolBarApariencia.setLayout(new BorderLayout());
-
 		panelApariencia.setLayout(new FlowLayout(FlowLayout.RIGHT));
-
-		lblApariencia.setText(Propes.getProperty("lbl.apariencia"));
 		toolbarApariencia.add(lblApariencia);
 		toolbarApariencia.add(cboApariencia);
 		panelApariencia.add(toolbarApariencia);
 		panelToolBarApariencia.add(panelApariencia, BorderLayout.CENTER);
-
 		pnlToolBarsOpciones.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-		btnSelecionarArchivo.setText(Propes.getProperty("btn.seleccionar.archivo"));
 		tbOpcionesArchivos.add(btnSelecionarArchivo);
-
-		btnSelccionarDirectorio.setText(Propes.getProperty("btn.seleccionar.directorio"));
 		tbOpcionesArchivos.add(btnSelccionarDirectorio);
-
-		btnCargarArchivos.setEnabled(false);
-		btnCargarArchivos.setText(Propes.getProperty("btn.cargar"));
 		tbOpcionesArchivos.add(btnCargarArchivos);
-		
 		pnlToolBarsOpciones.add(tbOpcionesArchivos);
-
-		button2.setText("text");
 		tbOpciones.add(button2);
-
-		toggleButton3.setText("text");
 		tbOpciones.add(toggleButton3);
-
-		toggleButton4.setText("text");
 		tbOpciones.add(toggleButton4);
 		pnlToolBarsOpciones.add(tbOpciones);
 		panelToolBarApariencia.add(pnlToolBarsOpciones, BorderLayout.WEST);
 		panleContenedor.add(panelToolBarApariencia, BorderLayout.CENTER);
 		add(panleContenedor, BorderLayout.CENTER);
+	}
+
+	private void inicializarComponentes() {
+		progressBar.setVisible(false);
+		lblApariencia.setText(Propes.getProperty("lbl.apariencia"));
+		btnSelecionarArchivo.setText(Propes.getProperty("btn.seleccionar.archivo"));
+		btnSelccionarDirectorio.setText(Propes.getProperty("btn.seleccionar.directorio"));
+		btnCargarArchivos.setEnabled(false);
+		btnCargarArchivos.setText(Propes.getProperty("btn.cargar"));
+		toggleButton4.setText("text");
+		toggleButton3.setText("text");
+		button2.setText("text");
+		desactivarProgressBarCarga();
 	}
 
 	public void itemStateChanged(ItemEvent e) {
@@ -145,56 +138,75 @@ public class PanelNorte extends CustomPanel {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-
 		Object button = e.getSource();
-
 		if (button == btnSelecionarArchivo) {
-			JFileChooser chooser = new JFileChooser();
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("Solo Imagenes", "jpg", "png", "jpeg");
+			desactivarProgressBarCarga();
+			filter = null;
+			filter = new FileNameExtensionFilter("Solo Imagenes", Constantes.EXTENSIONES_IMAGENES);
 			chooser.setFileFilter(filter);
 			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-
 			int returnVal = chooser.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File ruta = null;
 				try {
 					ruta = chooser.getSelectedFile();
-					cambiarTitulo(ruta.getAbsolutePath());
-					// ruta = analizarArchivoController.obenerArchivo(chooser.getSelectedFile().getAbsolutePath(),true);
+					ruta = AnalizarArchivoController.obtenerArchivo(ruta.getAbsolutePath(), true);
 					if (ruta != null) {
-						
+						cambiarTitulo(ruta.getAbsolutePath());
+						activarProgressBarCarga();
+					} else {
+						principal.resertTitulo();
+						desactivarProgressBarCarga();
 					}
+					ruta = null;
 				} catch (Exception e1) {
-					// mainFrame.panelWEST.desActivarBotonCargar();
+					principal.resertTitulo();
+					desactivarProgressBarCarga();
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
+			returnVal = 0;
+			filter = null;
 		} else if (button == btnSelccionarDirectorio) {
-			// mainFrame.panelWEST.desActivarBotonCargar();
-			// JFileChooser chooser = new JFileChooser();
-			// chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			//
-			// int returnVal = chooser.showOpenDialog(null);
-			// if (returnVal == JFileChooser.APPROVE_OPTION) {
-			// File ruta = null;
-			// try {
-			// ruta =
-			// analizarArchivoController.obenerArchivo(chooser.getSelectedFile().getAbsolutePath(),
-			// false);
-			// if(ruta!=null){
-			// mainFrame.panelWEST.txtArchivo.setText(ruta.getAbsolutePath());
-			// mainFrame.panelWEST.activarBotonCargar();
-			// }
-			// } catch (Exception e1) {
-			// mainFrame.panelWEST.desActivarBotonCargar();
-			// JOptionPane.showMessageDialog(null, e1.getMessage());
-			// }
-			// }
+			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			int returnVal = chooser.showOpenDialog(null);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File ruta = null;
+				try {
+					ruta = chooser.getSelectedFile();
+					ruta = AnalizarArchivoController.obtenerArchivo(ruta.getAbsolutePath(), false);
+					if (ruta != null) {
+						cambiarTitulo(ruta.getAbsolutePath());
+						activarProgressBarCarga();
+					}else {
+						principal.resertTitulo();
+						desactivarProgressBarCarga();
+					}
+				} catch (Exception e1) {
+					principal.resertTitulo();
+					desactivarProgressBarCarga();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+			}
 		}
 	}
 
+	private void activarProgressBarCarga() {
+		progressBar.setVisible(true);
+		progressBar.setMinimum(0);
+		progressBar.setValue(0);
+		btnCargarArchivos.setEnabled(true);
+	}
+
+	private void desactivarProgressBarCarga() {
+		progressBar.setVisible(false);
+		progressBar.setMinimum(0);
+		progressBar.setValue(0);
+		btnCargarArchivos.setEnabled(false);
+	}
+
 	private void cambiarTitulo(String title) {
-		principal.cambiarTitulo(title);		
+		principal.cambiarTitulo(title);
 	}
 
 }

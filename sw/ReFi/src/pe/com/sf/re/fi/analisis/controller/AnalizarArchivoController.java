@@ -18,7 +18,7 @@ public class AnalizarArchivoController {
 		analizarArchivoFunction = new AnalizarArchivoFunction();
 	}
 	
-	public static File obenerArchivo(String str, Boolean isFile) throws Exception{		
+	public static File obtenerArchivo(String str, Boolean isFile) throws Exception{		
 		File f = null;
 		files = null;
 		if(isFile){
@@ -29,11 +29,11 @@ public class AnalizarArchivoController {
 			f = analizarArchivoFunction.obtenerDirectorio(str);	
 			files = f.listFiles();	
 		}	 
-		limpiarRutasDeArchivos();	
+		soloArchivosLectura();	
 		return f;
 	}
 
-	private static void limpiarRutasDeArchivos() {
+	private static void soloArchivosLectura() {
 		if(files!=null && files.length>0)	{
 			List<File> f = new ArrayList<File>();
 			for (int i = 0; i < files.length; i++) {
@@ -43,6 +43,7 @@ public class AnalizarArchivoController {
 				}			
 			}	
 			files  = f.toArray(new File[f.size()]);
+			System.out.println("files:"+files.length);
 		}	
 	}
 
