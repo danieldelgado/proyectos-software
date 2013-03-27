@@ -40,7 +40,7 @@ public class PanelNorte extends CustomPanel {
 	private static Set<String> stApariencias;
 	private File rutaCarga;
 	private List<File> lstArchivos;
-
+	private int countProgress = 0;
 	/**
 	 * Componentes
 	 */
@@ -119,8 +119,8 @@ public class PanelNorte extends CustomPanel {
 		pnlToolBarsOpciones.add(tbOpciones);
 		panelToolBarApariencia.add(pnlToolBarsOpciones, BorderLayout.WEST);
 		panleContenedor.add(panelToolBarApariencia, BorderLayout.CENTER);
-		add(panleContenedor, BorderLayout.CENTER);
 		_log.info("componentes creados");
+		add(panleContenedor, BorderLayout.CENTER);
 	}
 
 	private void inicializarComponentes() {
@@ -134,8 +134,8 @@ public class PanelNorte extends CustomPanel {
 		toggleButton4.setText("text");
 		toggleButton3.setText("text");
 		button2.setText("text");
-		desactivarProgressBarCarga();
 		_log.info("componentes inicializados");
+		desactivarProgressBarCarga();
 	}
 
 	public void itemStateChanged(ItemEvent e) {
@@ -170,35 +170,67 @@ public class PanelNorte extends CustomPanel {
 		if (rutaCarga != null) {
 			lstArchivos = obtenerArchivos(rutaCarga);
 			if (lstArchivos != null && lstArchivos.size() > 0) {
-				_log.info("cantidad de archvios por leer " + lstArchivos.size());
-				
-				
+				_log.info("cantidad de archvios por leer " + lstArchivos.size());				
 			}
 		}
 	}
-
-	
 
 	private List<File> obtenerArchivos(File rt) {
 		if (rt.canRead()) {
 			if (rt.isFile()) {
 				List<File> f = new ArrayList<File>();
-				f.add(rt);
+				progressBar.setValue(countProgress);
+				progressBar.setMinimum(countProgress);
+				progressBar.setMaximum(1);
+				cargarProgressBar();
+				countProgress = 0;
+				System.out.println(" countProgress :"+countProgress);
+				f.add(rt);				
 				return f;
 			} else if (rt.isDirectory()) {
 				File[] ls = rt.listFiles();
 				if (ls != null && ls.length > 0) {
+					progressBar.setValue(countProgress);
+					progressBar.setMinimum(countProgress);
+					progressBar.setMaximum(ls.length);
 					List<File> f = new ArrayList<File>();
 					for (int i = 0; i < ls.length; i++) {
 						if (ls[i].canRead() && ls[i].isFile()) {
 							f.add(ls[i]);
 						}
+						cargarProgressBar();
 					}
+					countProgress = 0;
+					System.out.println(" countProgress :"+countProgress);
 					return f;
 				}
 			}
 		}
 		return null;
+	}
+
+	private void cargarProgressBar() {
+		new Thread(new Runnable() {
+			public void run() {
+				try {				
+					SwingUtilities.invokeLater(new Runnable() {			
+						public void run() {
+							try {
+								countProgress ++ ;
+								System.out.println(" countProgress :"+countProgress);
+								progressBar.setValue(countProgress);
+								Thread.sleep(100);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+					});	
+				} finally {
+					
+				}
+			}
+		}).start();
+			
 	}
 
 	private void seleccionarDirectorio() {
@@ -226,7 +258,6 @@ public class PanelNorte extends CustomPanel {
 			}
 			ruta = null;
 		} else {
-			// desactivarProgressBarCarga();
 			principal.resertTitulo();
 		}
 		returnVal = 0;
@@ -262,7 +293,6 @@ public class PanelNorte extends CustomPanel {
 			}
 			ruta = null;
 		} else {
-			// desactivarProgressBarCarga();
 			principal.resertTitulo();
 		}
 		returnVal = 0;
