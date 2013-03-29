@@ -168,16 +168,15 @@ public class PanelNorte extends CustomPanel {
 
 	private void iniciarCargarProgressBar() {
 		if (rutaCarga != null) {
-			obtenerArchivos();
-			if (lstArchivos != null && lstArchivos.size() > 0) {
-				_log.info("cantidad de archvios por leer " + lstArchivos.size());
-				AnalizarArchivoController.lstArchivos = lstArchivos;
-				lstArchivos = null;
-				rutaCarga = null;				
-				lsFiles= null;
-			}
+			obtenerArchivos();			
 		}
 	}
+
+	private void cargarImagenesDescriptivasPanelCentral() {
+		principal.panCentral.cargarImagenesDescriptivas();	
+	}
+
+	
 
 	private void obtenerArchivos() {
 		if (rutaCarga.canRead()) {
@@ -219,6 +218,14 @@ public class PanelNorte extends CustomPanel {
 					}
 				}
 				_log.info(" termino la carga de archivos lstArchivos : "+ lstArchivos.size() );
+				if (lstArchivos != null && lstArchivos.size() > 0) {
+					_log.info("cantidad de archvios por leer " + lstArchivos.size());
+					AnalizarArchivoController.lstArchivos = lstArchivos;
+					lstArchivos = null;
+					rutaCarga = null;				
+					lsFiles= null;
+					cargarImagenesDescriptivasPanelCentral();
+				}
 			}
 		}).start();		
 	}
