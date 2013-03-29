@@ -16,7 +16,7 @@ import pe.com.sf.re.fi.analisis.gui.componet.CustomButton;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomLabel;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomPanel;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomToggleButton;
-import pe.com.sf.re.fi.analisis.gui.componet.ListaImagenesPreview;
+import pe.com.sf.re.fi.analisis.gui.componet.ListaImagenesName;
 
 /**
  * @author SHOCKIE
@@ -30,7 +30,7 @@ public class PanelCentral extends CustomPanel {
 	private Map<Integer, File> lstArchivos;	
 	
 	private CustomPanel pnlContenedorListadoImagenesMiniaruta;
-	private ListaImagenesPreview listaArchivos;
+	private ListaImagenesName listaArchivos;
 	private CustomPanel pnlApuntadorPagina;
 	private CustomLabel lblApuntador;
 	private JSpinner spnApuntadorPagina;
@@ -70,7 +70,7 @@ public class PanelCentral extends CustomPanel {
 	public void initComponents() {
 		
 		pnlContenedorListadoImagenesMiniaruta = new CustomPanel();
-		listaArchivos = new ListaImagenesPreview();
+		listaArchivos = new ListaImagenesName();
 		pnlApuntadorPagina = new CustomPanel();
 		lblApuntador = new CustomLabel();		
 		spnApuntadorPagina = new JSpinner();
@@ -153,8 +153,9 @@ public class PanelCentral extends CustomPanel {
 	public void cargarImagenesDescriptivas() {
 		lstArchivos = AnalizarArchivoController.lstArchivos;
 		_log.info("  lstArchivos :" +lstArchivos);
-		listaArchivos.createHtmlTemp(lstArchivos);
-		listaArchivos.cargarEditorPane();
+		listaArchivos.cargarListaImagenes(lstArchivos);
+		
+		
 	}
 	
 	
