@@ -3,6 +3,7 @@ package pe.com.sf.re.fi.analisis.gui;
 import java.awt.BorderLayout;
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
@@ -26,10 +27,9 @@ public class PanelCentral extends CustomPanel {
 	
 
 	private Principal principal = null;
-	private List<File> lstArchivos;	
+	private Map<Integer, File> lstArchivos;	
 	
 	private CustomPanel pnlContenedorListadoImagenesMiniaruta;
-	private CustomPanel pnlListadoImagenesMiniaruta;
 	private ListaImagenesPreview listaArchivos;
 	private CustomPanel pnlApuntadorPagina;
 	private CustomLabel lblApuntador;
@@ -55,9 +55,6 @@ public class PanelCentral extends CustomPanel {
 	private CustomButton button6;
 	private CustomToggleButton toggleButton6;
 	
-	
-	
-	
 	private final static Logger _log = Logger.getLogger(PanelCentral.class.getName());
 	
 	public PanelCentral(Principal principal) {
@@ -73,7 +70,6 @@ public class PanelCentral extends CustomPanel {
 	public void initComponents() {
 		
 		pnlContenedorListadoImagenesMiniaruta = new CustomPanel();
-		pnlListadoImagenesMiniaruta = new CustomPanel();	
 		listaArchivos = new ListaImagenesPreview();
 		pnlApuntadorPagina = new CustomPanel();
 		lblApuntador = new CustomLabel();		
@@ -101,9 +97,7 @@ public class PanelCentral extends CustomPanel {
 		
 		setLayout(new BorderLayout());
 		pnlContenedorListadoImagenesMiniaruta.setLayout(new BorderLayout());
-		pnlListadoImagenesMiniaruta.setLayout(new BoxLayout(pnlListadoImagenesMiniaruta, BoxLayout.X_AXIS));		
-		pnlListadoImagenesMiniaruta.add(listaArchivos, BorderLayout.CENTER);
-		pnlContenedorListadoImagenesMiniaruta.add(pnlListadoImagenesMiniaruta, BorderLayout.NORTH);
+		pnlContenedorListadoImagenesMiniaruta.add(listaArchivos, BorderLayout.CENTER);
 		pnlApuntadorPagina.setLayout(new BoxLayout(pnlApuntadorPagina, BoxLayout.X_AXIS));
 		lblApuntador.setText("text");
 		pnlApuntadorPagina.add(lblApuntador);
@@ -159,7 +153,7 @@ public class PanelCentral extends CustomPanel {
 	public void cargarImagenesDescriptivas() {
 		lstArchivos = AnalizarArchivoController.lstArchivos;
 		_log.info("  lstArchivos :" +lstArchivos);
-		listaArchivos.createHtmlTemp();
+		listaArchivos.createHtmlTemp(lstArchivos);
 		listaArchivos.cargarEditorPane();
 	}
 	

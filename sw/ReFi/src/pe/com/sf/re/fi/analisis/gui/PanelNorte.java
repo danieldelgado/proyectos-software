@@ -6,7 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 import java.util.logging.Logger;
@@ -40,7 +43,7 @@ public class PanelNorte extends CustomPanel {
 	private SkinInfo skinInfo;
 	private static Set<String> stApariencias;
 	private File rutaCarga;
-	private List<File> lstArchivos;
+	private Map<Integer, File> lstArchivos;
 	private File[] lsFiles;
 	/**
 	 * Componentes
@@ -199,12 +202,12 @@ public class PanelNorte extends CustomPanel {
 		progressBar.setMaximum(max);
 		new Thread(new Runnable() {
 			public synchronized void run() {
-				lstArchivos = new ArrayList<File>();
+				lstArchivos = new HashMap<Integer, File>();
 				progressBar.setValue(0);
 				for (int i = 0; i < lsFiles.length; i++) {
 					final int currentValue = i;
 					if (lsFiles[i].canRead() && lsFiles[i].isFile() ) {
-						lstArchivos.add(lsFiles[i]);
+						lstArchivos.put(i, lsFiles[i]);
 					}
 					try {
 						SwingUtilities.invokeLater(new Runnable() {
