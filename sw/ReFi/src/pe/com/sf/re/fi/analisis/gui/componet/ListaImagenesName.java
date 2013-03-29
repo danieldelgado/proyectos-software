@@ -29,22 +29,27 @@ public class ListaImagenesName extends CustomPanel {
 	private JSeparator separdor;
 
 	private Map<Integer, File> lstArchivos = null;
+	ObjetoFilaImagen o = null;
 
 	private final static Logger _log = Logger.getLogger(PanelCentral.class.getName());
 
+	@SuppressWarnings("unused")
+	private PanelCentral panelCentral;
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ListaImagenesName() {
+	public ListaImagenesName(final PanelCentral panelCentral) {
 		setLayout(new BorderLayout());
+		this.panelCentral = panelCentral;
 		listNombresImagenesComponet = new JList();
 		listNombresImagenesComponet.setCellRenderer(new ObjetoFilaImagenCellRenderer());
 		MouseListener mouseListener = new MouseAdapter() {
 			public void mouseClicked(MouseEvent mouseEvent) {
-				JList theList = (JList) mouseEvent.getSource();
 				if (mouseEvent.getClickCount() == 2) {
-					int index = theList.locationToIndex(mouseEvent.getPoint());
+					int index = listNombresImagenesComponet.locationToIndex(mouseEvent.getPoint());
 					if (index >= 0) {
-						ObjetoFilaImagen o = (ObjetoFilaImagen) theList.getModel().getElementAt(index);
-						System.out.println("Double-clicked on: " + o.getId() + "  - "+ o.getImagePath());
+						o = (ObjetoFilaImagen) listNombresImagenesComponet.getModel().getElementAt(index);
+						_log.info("Imagen Selecionada on: " + o.getId() + "  - " + o.getImagePath());
+						panelCentral.mostrarImagenSeleccionada(o.getId());
 					}
 				}
 			}

@@ -2,7 +2,6 @@ package pe.com.sf.re.fi.analisis.gui;
 
 import java.awt.BorderLayout;
 import java.io.File;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -13,6 +12,7 @@ import javax.swing.JSplitPane;
 
 import pe.com.sf.re.fi.analisis.controller.AnalizarArchivoController;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomButton;
+import pe.com.sf.re.fi.analisis.gui.componet.CustomImagePreview;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomLabel;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomPanel;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomToggleButton;
@@ -28,7 +28,7 @@ public class PanelCentral extends CustomPanel {
 
 	private Principal principal = null;
 	private Map<Integer, File> lstArchivos;	
-	
+	private File ftemp = null;
 	private CustomPanel pnlContenedorListadoImagenesMiniaruta;
 	private ListaImagenesName listaArchivos;
 	private CustomPanel pnlApuntadorPagina;
@@ -37,6 +37,7 @@ public class PanelCentral extends CustomPanel {
 	private CustomPanel pnlSpliptPreviewImage;
 	private JSplitPane splitContenedor;
 	private CustomPanel pnlPreviewIzquierda;
+	private CustomImagePreview customImagePreview;
 	private JProgressBar prgBarIzq;
 	private CustomPanel pnlPreviewDerecha;
 	private JProgressBar prgBarDer;
@@ -60,23 +61,19 @@ public class PanelCentral extends CustomPanel {
 	public PanelCentral(Principal principal) {
 		this.principal = principal;
 		initComponents();
-		inicializarComponenetes();
-	}
-
-	private void inicializarComponenetes() {
-		
 	}
 
 	public void initComponents() {
 		
 		pnlContenedorListadoImagenesMiniaruta = new CustomPanel();
-		listaArchivos = new ListaImagenesName();
+		listaArchivos = new ListaImagenesName(this);
 		pnlApuntadorPagina = new CustomPanel();
 		lblApuntador = new CustomLabel();		
 		spnApuntadorPagina = new JSpinner();
 		pnlSpliptPreviewImage = new CustomPanel();
 		splitContenedor = new JSplitPane();
 		pnlPreviewIzquierda = new CustomPanel();
+		customImagePreview = new CustomImagePreview();
 		prgBarIzq = new JProgressBar();
 		pnlPreviewDerecha = new CustomPanel();
 		prgBarDer = new JProgressBar();
@@ -107,7 +104,8 @@ public class PanelCentral extends CustomPanel {
 		pnlSpliptPreviewImage.setLayout(new BoxLayout(pnlSpliptPreviewImage, BoxLayout.X_AXIS));
 		pnlPreviewIzquierda.setLayout(new BorderLayout());
 		prgBarIzq.setValue(50);
-		pnlPreviewIzquierda.add(prgBarIzq, BorderLayout.SOUTH);
+		pnlPreviewIzquierda.add(customImagePreview, BorderLayout.CENTER);
+		pnlPreviewIzquierda.add(prgBarIzq, BorderLayout.SOUTH);		
 		splitContenedor.setLeftComponent(pnlPreviewIzquierda);
 		pnlPreviewDerecha.setLayout(new BorderLayout());
 		prgBarDer.setValue(50);
@@ -154,8 +152,14 @@ public class PanelCentral extends CustomPanel {
 		lstArchivos = AnalizarArchivoController.lstArchivos;
 		_log.info("  lstArchivos :" +lstArchivos);
 		listaArchivos.cargarListaImagenes(lstArchivos);
-		
-		
+	}
+
+	public void mostrarImagenSeleccionada(Integer id) {
+		System.out.println(" id :" + id);
+		ftemp = lstArchivos.get(id);
+		principal.resertTitulo();
+		principal.cambiarTitulo(ftemp.getName());
+		customImagePreview.propertyChange(ftemp);		
 	}
 	
 	
