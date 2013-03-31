@@ -250,6 +250,8 @@ public class PanelNorte extends CustomPanel {
 					_log.info("directorio seleccionado : " + ruta);
 					cambiarTitulo(ruta.getAbsolutePath());
 					activarProgressBarCarga();
+					principal.panCentral.listaArchivos.limpiarLista();
+					principal.panCentral.customImagePreview.limpiarImagen();
 					rutaCarga = ruta;
 				} else {
 					principal.resertTitulo();
@@ -258,7 +260,7 @@ public class PanelNorte extends CustomPanel {
 			} catch (Exception e1) {
 				principal.resertTitulo();
 				desactivarProgressBarCarga();
-				JOptionPane.showMessageDialog(null, e1.getMessage());
+				e1.printStackTrace();
 			}
 			ruta = null;
 		} else {
@@ -284,6 +286,8 @@ public class PanelNorte extends CustomPanel {
 				if (ruta != null) {
 					cambiarTitulo(ruta.getAbsolutePath());
 					activarProgressBarCarga();
+					principal.panCentral.listaArchivos.limpiarLista();
+					principal.panCentral.customImagePreview.limpiarImagen();
 					rutaCarga = ruta;
 				} else {
 					principal.resertTitulo();
@@ -293,7 +297,7 @@ public class PanelNorte extends CustomPanel {
 			} catch (Exception e1) {
 				principal.resertTitulo();
 				desactivarProgressBarCarga();
-				JOptionPane.showMessageDialog(null, e1.getMessage());
+				e1.printStackTrace();
 			}
 			ruta = null;
 		} else {

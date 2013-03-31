@@ -72,7 +72,6 @@ public class ListaImagenesName extends CustomPanel {
 		if (lsoi != null && lsoi.length > 0) {
 			listNombresImagenesComponet.setListData(lsoi);
 		}
-
 	}
 
 	private ObjetoFilaImagen[] obtenerObjetoImagen() {
@@ -94,6 +93,14 @@ public class ListaImagenesName extends CustomPanel {
 		}
 		return null;
 	}
+
+	@SuppressWarnings("unchecked")
+	public void limpiarLista() {
+		ObjetoFilaImagen[] a = new ObjetoFilaImagen[0] ;
+		listNombresImagenesComponet.setListData(a);
+	}
+
+
 }
 
 @SuppressWarnings({ "serial", "rawtypes" })

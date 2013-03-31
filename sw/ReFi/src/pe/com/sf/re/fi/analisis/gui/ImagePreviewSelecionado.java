@@ -40,9 +40,23 @@ public class ImagePreviewSelecionado extends CustomPanel {
 		}
 		this.file = file;
 		_log.info(" file : " + file ); 
+		limpiarImagen();
 		imagePreview();
 	}
 	
+	public void limpiarImagen() {
+		img = null;
+		origin = null;
+		original_width = 0;
+		original_height = 0;
+		bound_width =  0;
+		bound_height = 0;
+		new_width = 0;
+		new_height= 0;
+		lblImage.setIcon(null);
+		repaint();
+	}
+
 	public void getScaledDimension(int original_width, int original_height, int bound_width, int bound_height) {
 		_log.info("original_width:" + original_width + " original_height:" + original_height + " bound_width ;" + bound_width	+ " bound_height:" + bound_height);
 		new_width = original_width;
@@ -64,7 +78,7 @@ public class ImagePreviewSelecionado extends CustomPanel {
 		double scale = scaleW < scaleH ? scaleW : scaleH;
 		BufferedImage result = new BufferedImage((int) (src.getWidth() * scale), (int) (src.getHeight() * scale), BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = result.createGraphics();
-		g2d.drawImage(src, 0, 0, result.getWidth(), result.getHeight(), null);
+		g2d.drawImage(src, 5, 5, result.getWidth(), result.getHeight(), null);
 		g2d.dispose();
 		return result;
 	}
@@ -83,6 +97,7 @@ public class ImagePreviewSelecionado extends CustomPanel {
 			origin = resize(new_width, new_height, origin);
 			icon.setImage(origin);
 			lblImage.setIcon(icon);
+			repaint();
 		} catch (Exception e) {
 			_log.warning("  e : "+ e);
 			e.printStackTrace();
