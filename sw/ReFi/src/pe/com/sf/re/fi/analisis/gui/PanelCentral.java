@@ -12,11 +12,9 @@ import javax.swing.JSplitPane;
 
 import pe.com.sf.re.fi.analisis.controller.AnalizarArchivoController;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomButton;
-import pe.com.sf.re.fi.analisis.gui.componet.CustomImagePreview;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomLabel;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomPanel;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomToggleButton;
-import pe.com.sf.re.fi.analisis.gui.componet.ListaImagenesName;
 
 /**
  * @author SHOCKIE
@@ -37,7 +35,7 @@ public class PanelCentral extends CustomPanel {
 	private CustomPanel pnlSpliptPreviewImage;
 	private JSplitPane splitContenedor;
 	private CustomPanel pnlPreviewIzquierda;
-	private CustomImagePreview customImagePreview;
+	private ImagePreviewSelecionado customImagePreview;
 	private JProgressBar prgBarIzq;
 	private CustomPanel pnlPreviewDerecha;
 	private JProgressBar prgBarDer;
@@ -73,7 +71,7 @@ public class PanelCentral extends CustomPanel {
 		pnlSpliptPreviewImage = new CustomPanel();
 		splitContenedor = new JSplitPane();
 		pnlPreviewIzquierda = new CustomPanel();
-		customImagePreview = new CustomImagePreview();
+		customImagePreview = new ImagePreviewSelecionado();
 		prgBarIzq = new JProgressBar();
 		pnlPreviewDerecha = new CustomPanel();
 		prgBarDer = new JProgressBar();

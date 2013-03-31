@@ -1,4 +1,4 @@
-package pe.com.sf.re.fi.analisis.gui.componet;
+package pe.com.sf.re.fi.analisis.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -18,7 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.ListCellRenderer;
 
-import pe.com.sf.re.fi.analisis.gui.PanelCentral;
+import pe.com.sf.re.fi.analisis.gui.componet.CustomPanel;
 
 @SuppressWarnings("serial")
 public class ListaImagenesName extends CustomPanel {
