@@ -1,6 +1,7 @@
 package pe.com.sf.re.fi.analisis.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File;
 import java.util.Map;
@@ -10,6 +11,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JProgressBar;
 import javax.swing.JSpinner;
 import javax.swing.JSplitPane;
+import javax.swing.border.LineBorder;
 
 import pe.com.sf.re.fi.analisis.controller.AnalizarArchivoController;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomButton;
@@ -101,6 +103,9 @@ public class PanelCentral extends CustomPanel {
 		pnlSpliptPreviewImage.setLayout(new BoxLayout(pnlSpliptPreviewImage, BoxLayout.X_AXIS));
 		pnlPreviewIzquierda.setLayout(new BorderLayout());
 		prgBarIzq.setValue(50);
+
+		customImagePreview.setBackground(Color.BLACK);
+		customImagePreview.setBorder( new LineBorder(Color.BLACK) ) ;
 		pnlPreviewIzquierda.add(customImagePreview, BorderLayout.CENTER);
 		pnlPreviewIzquierda.add(prgBarIzq, BorderLayout.SOUTH);
 
@@ -111,6 +116,9 @@ public class PanelCentral extends CustomPanel {
 		splitContenedor.setDividerLocation(150);
 		splitContenedor.setDividerSize(10);
 
+
+		pnlPreviewDerecha.setBackground(Color.BLACK);
+		pnlPreviewDerecha.setBorder( new LineBorder(Color.BLACK) ) ;
 		splitContenedor.setPreferredSize(new Dimension(400, 200));
 		splitContenedor.setLeftComponent(pnlPreviewIzquierda);
 		pnlPreviewDerecha.setLayout(new BorderLayout());
@@ -161,7 +169,6 @@ public class PanelCentral extends CustomPanel {
 	}
 
 	public void mostrarImagenSeleccionada(Integer id) {
-		System.out.println(" id :" + id);
 		ftemp = lstArchivos.get(id);
 		principal.resertTitulo();
 		principal.cambiarTitulo(ftemp.getName());

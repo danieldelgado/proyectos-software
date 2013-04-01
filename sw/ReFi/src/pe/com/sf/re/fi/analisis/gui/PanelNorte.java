@@ -182,7 +182,6 @@ public class PanelNorte extends CustomPanel {
 	
 
 	private void obtenerArchivos() {
-		System.out.println(" rutaCarga :"+ rutaCarga);
 		if (rutaCarga.canRead()) {
 			if (rutaCarga.isFile()) {
 				lsFiles = new File[1];
@@ -207,7 +206,6 @@ public class PanelNorte extends CustomPanel {
 			public synchronized void run() {
 				lstArchivos = new HashMap<Integer, File>();
 				progressBar.setValue(0);
-				System.out.println(" lsFiles : " + lsFiles);
 				for (int i = 0; i < lsFiles.length; i++) {
 					final int currentValue = i;
 					if (lsFiles[i].canRead() && lsFiles[i].isFile() ) {

@@ -29,11 +29,11 @@ public class ImagePreviewSelecionado extends CustomPanel {
 	public ImagePreviewSelecionado() {
 		lblImage = new JLabel();
 		icon = new ImageIcon();
-		setLayout(new BorderLayout());
+		setLayout(new BorderLayout());	
 		add(lblImage,BorderLayout.CENTER);
 		addComponentListener(this);
 	}
-
+	
 	public void propertyChange(File file) {
 		if (file == null) {
 			return;
