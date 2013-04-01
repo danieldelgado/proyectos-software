@@ -32,10 +32,10 @@ public class ImagePreviewSelecionado extends CustomPanel implements MouseMotionL
 		lblImage = new JLabel();
 		icon = new ImageIcon();
 		setLayout(new BorderLayout());
-		add(lblImage, BorderLayout.CENTER);
 		addMouseListener(this);
 		addMouseMotionListener(this);
 		addComponentListener(this);
+		add(lblImage, BorderLayout.CENTER);
 	}
 
 	public void propertyChange(File file) {
