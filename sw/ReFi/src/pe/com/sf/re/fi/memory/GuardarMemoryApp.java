@@ -11,7 +11,6 @@ public class GuardarMemoryApp {
 
 	
 	public static void guardarMemoryApp(MemoryApp mapp){
-		System.out.println(mapp);
 		ObjectOutputStream out = null;
 		FileOutputStream fos = null;
 		try {

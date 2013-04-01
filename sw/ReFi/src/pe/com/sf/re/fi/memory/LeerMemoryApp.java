@@ -27,8 +27,6 @@ public class LeerMemoryApp {
 		} catch (ClassNotFoundException ex) {
 			ex.printStackTrace();
 		}
-		System.out.println("leerMemoryApp");
-		System.out.println(mapp);
 		return mapp;
 	}
 	

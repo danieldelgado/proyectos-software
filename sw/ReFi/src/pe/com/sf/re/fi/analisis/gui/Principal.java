@@ -6,7 +6,9 @@ import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 import java.awt.event.WindowListener;
+import java.awt.event.WindowStateListener;
 import java.io.File;
 import java.io.Serializable;
 
@@ -21,7 +23,7 @@ import pe.com.sf.re.fi.memory.LeerMemoryApp;
 import pe.com.sf.re.fi.memory.MemoryApp;
 import pe.com.sf.re.fi.util.Propes;
 
-public class Principal extends JXFrame implements Serializable, WindowListener, ComponentListener {
+public class Principal extends JXFrame implements Serializable, WindowListener, ComponentListener, WindowStateListener, WindowFocusListener {
 
 	private static final long serialVersionUID = -4550679687084521316L;
 
@@ -39,6 +41,8 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addWindowListener(this);
 		this.addComponentListener(this);
+		this.addWindowStateListener(this);
+
 		if (memoryApp != null) {
 			ancho_pantalla = memoryApp.getAnchoPantalla();
 			alto_pantalla = memoryApp.getAltoPantalla();
@@ -144,6 +148,21 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 
 	public void componentHidden(ComponentEvent e) {
 		System.out.println(" componentHidden ");
+	}
+
+	public void windowGainedFocus(WindowEvent e) {
+		System.out.println(" windowGainedFocus ");
+	}
+
+	public void windowLostFocus(WindowEvent e) {
+		System.out.println(" windowLostFocus ");
+	}
+
+	public void windowStateChanged(WindowEvent e) {
+		if(e.getNewState() == JFrame.MAXIMIZED_BOTH){
+			System.out.println(" MAXIMIZED_BOTH ");
+		}
+		System.out.println(" windowStateChanged ");
 	}
 
 }
