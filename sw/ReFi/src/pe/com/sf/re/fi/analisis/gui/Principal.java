@@ -1,8 +1,9 @@
 package pe.com.sf.re.fi.analisis.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -19,7 +20,7 @@ import pe.com.sf.re.fi.memory.LeerMemoryApp;
 import pe.com.sf.re.fi.memory.MemoryApp;
 import pe.com.sf.re.fi.util.Propes;
 
-public class Principal extends JXFrame implements Serializable, WindowListener {
+public class Principal extends JXFrame implements Serializable, WindowListener , ComponentListener {
 
 	private static final long serialVersionUID = -4550679687084521316L;
 
@@ -37,21 +38,28 @@ public class Principal extends JXFrame implements Serializable, WindowListener {
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.addWindowListener(this);
+//		addMouseListener(this);
+//		addMouseMotionListener(this);
+		addComponentListener(this);
 		if(memoryApp!=null){
 			ancho_pantalla = memoryApp.getAnchoPantalla();
 			System.out.println("ancho_pantalla : "+ancho_pantalla);
 			alto_pantalla = memoryApp.getAltoPantalla();
 			System.out.println("alto_pantalla : "+alto_pantalla);
-			this.setMinimumSize(new Dimension(ancho_pantalla / 2, alto_pantalla / 2));
+//			this.setMinimumSize(new Dimension(ancho_pantalla / 2, alto_pantalla / 2));
 			this.setSize(ancho_pantalla, alto_pantalla);
+			System.out.println("memoryApp!=null : "+getSize());
 			// this.setPreferredSize(new Dimension(200, 200));
 			// this.setLocation(ancho_pantalla - (ancho_pantalla/2), alto_pantalla - (alto_pantalla/2));
 		}else{
-			memoryApp = new MemoryApp();
-			ancho_pantalla = Toolkit.getDefaultToolkit().getScreenSize().width - 150;
-			alto_pantalla = Toolkit.getDefaultToolkit().getScreenSize().height - 150;
-			this.setMinimumSize(new Dimension(ancho_pantalla / 2, alto_pantalla / 2));
+			ancho_pantalla = Toolkit.getDefaultToolkit().getScreenSize().width;
+			System.out.println("ancho_pantalla : "+ancho_pantalla);
+			alto_pantalla = Toolkit.getDefaultToolkit().getScreenSize().height;
+			System.out.println("alto_pantalla : "+alto_pantalla);
+//			this.setMinimumSize(new Dimension(ancho_pantalla / 2, alto_pantalla / 2));
 			this.setSize(ancho_pantalla, alto_pantalla);	
+			System.out.println("memoryApp==null : "+getSize());
+			memoryApp = new MemoryApp();
 			// this.setPreferredSize(new Dimension(200, 200));
 			// this.setLocation(ancho_pantalla - (ancho_pantalla/2), alto_pantalla - (alto_pantalla/2));
 		}	
@@ -81,7 +89,6 @@ public class Principal extends JXFrame implements Serializable, WindowListener {
 
 	public void cargarMemoryApp(){
 		if(memoryApp!=null){
-			System.out.println(memoryApp.getRuta());
 			if(memoryApp.getRuta()!=null){
 				panNorte.chooser.setCurrentDirectory(new File(memoryApp.getRuta()));					
 			}
@@ -100,8 +107,8 @@ public class Principal extends JXFrame implements Serializable, WindowListener {
 		System.out.println(" windowOpened ");	
 	}
 	public void windowClosing(WindowEvent e) {	
-		ancho_pantalla = Toolkit.getDefaultToolkit().getScreenSize().width;
-		alto_pantalla = Toolkit.getDefaultToolkit().getScreenSize().height;
+		ancho_pantalla = getWidth();
+		alto_pantalla = getHeight();
 		memoryApp.setAnchoPantalla(ancho_pantalla);
 		memoryApp.setAltoPantalla(alto_pantalla);
 		guardarMemoryApp();
@@ -121,6 +128,18 @@ public class Principal extends JXFrame implements Serializable, WindowListener {
 	}	
 	public void windowDeactivated(WindowEvent e) {
 		System.out.println(" windowDeactivated ");
+	}	
+	public void componentResized(ComponentEvent e) {
+		System.out.println(" componentResized ");		
+	}
+	public void componentMoved(ComponentEvent e) {
+		System.out.println(" componentMoved ");		
+	}
+	public void componentShown(ComponentEvent e) {	
+		System.out.println(" componentShown ");	
+	}	
+	public void componentHidden(ComponentEvent e) {
+		System.out.println(" componentHidden ");		
 	}
 
 }
