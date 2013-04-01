@@ -203,7 +203,7 @@ public class PanelNorte extends CustomPanel {
 				lstArchivos = new HashMap<Integer, File>();
 				progressBar.setValue(0);
 				for (int i = 0; i < lsFiles.length; i++) {
-					final int currentValue = i;
+					final int currentValue = (i+1);
 					if (lsFiles[i].canRead() && lsFiles[i].isFile() ) {
 						lstArchivos.put(i, lsFiles[i]);
 					}
