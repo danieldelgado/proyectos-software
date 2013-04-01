@@ -51,7 +51,7 @@ public class PanelNorte extends CustomPanel {
 	private CustomPanel panelApariencia;
 	private JToolBar toolbarApariencia;
 	private CustomLabel lblApariencia;
-	private CustomCombo cboApariencia;
+	public CustomCombo cboApariencia;
 	private CustomPanel pnlToolBarsOpciones;
 	private JToolBar tbOpcionesArchivos;
 	private CustomButton btnSelecionarArchivo;
@@ -144,6 +144,8 @@ public class PanelNorte extends CustomPanel {
 				try {
 					skinInfo = (SkinInfo) SubstanceLookAndFeel.getAllSkins().get(item);
 					_log.info("Apariencia seleccionada es :" + skinInfo.getClassName());
+					principal.memoryApp.setApariencia(skinInfo.getClassName());
+					principal.guardarMemoryApp();
 					SubstanceLookAndFeel.setSkin(skinInfo.getClassName());
 					SwingUtilities.updateComponentTreeUI(principal);
 					skinInfo = null;
@@ -152,7 +154,7 @@ public class PanelNorte extends CustomPanel {
 			}
 		});
 	}
-
+	
 	public void actionPerformed(ActionEvent e) {
 		Object button = e.getSource();
 		if (button == btnSelecionarArchivo) {
@@ -247,7 +249,6 @@ public class PanelNorte extends CustomPanel {
 					principal.panCentral.listaArchivos.limpiarLista();
 					principal.panCentral.customImagePreview.limpiarImagen();
 					principal.panCentral.desactivarBotonesPanelDerecho();
-					System.out.println("ruta.getAbsolutePath():"+ruta.getAbsolutePath());
 					principal.memoryApp.setRuta(ruta.getAbsolutePath());
 					principal.guardarMemoryApp();
 					rutaCarga = ruta;

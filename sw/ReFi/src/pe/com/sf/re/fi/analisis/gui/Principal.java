@@ -7,8 +7,10 @@ import java.io.File;
 import java.io.Serializable;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import org.jdesktop.swingx.JXFrame;
+import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 
 import pe.com.sf.re.fi.memory.GuardarMemoryApp;
 import pe.com.sf.re.fi.memory.LeerMemoryApp;
@@ -62,7 +64,6 @@ public class Principal extends JXFrame implements Serializable {
 		panCentral.setVisible(true);
 		this.add(panNorte, BorderLayout.NORTH);
 		this.add(panCentral, BorderLayout.CENTER);
-
 	}
 
 	public void cambiarTitulo( String title) {
@@ -78,7 +79,11 @@ public class Principal extends JXFrame implements Serializable {
 			System.out.println(memoryApp.getRuta());
 			if(memoryApp.getRuta()!=null){
 				panNorte.chooser.setCurrentDirectory(new File(memoryApp.getRuta()));					
-			}		
+			}
+			if(memoryApp.getApariencia()!=null){
+				SubstanceLookAndFeel.setSkin(memoryApp.getApariencia());
+				SwingUtilities.updateComponentTreeUI(this);
+			}
 		}		
 	}
 	
