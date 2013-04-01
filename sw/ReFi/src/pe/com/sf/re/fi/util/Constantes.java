@@ -9,5 +9,6 @@ public class Constantes {
 	public static String EXTENSIONES_CAD_ARCHIVOS_LECTURA = Propes.getProperty("archivos.extension.archivos");
 	public static String[] EXTENSIONES_ARCHIVOS_LECTURA = EXTENSIONES_CAD_ARCHIVOS_LECTURA.split(",");
 	public static String HTML_TEMP = Propes.getProperty("editor.pane.ruta.html.temp.name");
+	public static String FILE_MemoryApp = Propes.getProperty("MemoryApp");
 	
 }
