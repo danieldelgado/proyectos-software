@@ -3,6 +3,7 @@ package pe.com.sf.re.fi.analisis.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -40,12 +41,19 @@ public class PanelCentral extends CustomPanel {
 	private JProgressBar prgBarIzq;
 	private CustomPanel pnlPreviewDerecha;
 	private JProgressBar prgBarDer;
-	private CustomPanel panel7;
-	private CustomPanel panel8;
-	private CustomButton button2;
-	private CustomButton button3;
+
+	// ///////////////////////////////////
+
+	private CustomPanel paneleDerechaBotones;
+	private CustomPanel panelContenedorBotonesOociones;
+	private CustomButton btnAumentarVista;
+	private CustomButton btnDisminuirVista;
+	private CustomToggleButton btnActivarBtnsVista;
+	private boolean btnActivarBtn = false;
+
+	// ///////////////////////////////////
+
 	private CustomToggleButton toggleButton1;
-	private CustomButton button1;
 	private CustomToggleButton toggleButton2;
 	private CustomToggleButton toggleButton3;
 	private CustomToggleButton toggleButton4;
@@ -76,12 +84,12 @@ public class PanelCentral extends CustomPanel {
 		prgBarIzq = new JProgressBar();
 		pnlPreviewDerecha = new CustomPanel();
 		prgBarDer = new JProgressBar();
-		panel7 = new CustomPanel();
-		panel8 = new CustomPanel();
-		button2 = new CustomButton();
-		button3 = new CustomButton();
+		paneleDerechaBotones = new CustomPanel();
+		panelContenedorBotonesOociones = new CustomPanel();
+		btnAumentarVista = new CustomButton();
+		btnDisminuirVista = new CustomButton();
+		btnActivarBtnsVista = new CustomToggleButton();
 		toggleButton1 = new CustomToggleButton();
-		button1 = new CustomButton();
 		toggleButton2 = new CustomToggleButton();
 		toggleButton3 = new CustomToggleButton();
 		toggleButton4 = new CustomToggleButton();
@@ -105,7 +113,7 @@ public class PanelCentral extends CustomPanel {
 		prgBarIzq.setValue(50);
 
 		customImagePreview.setBackground(Color.BLACK);
-		customImagePreview.setBorder( new LineBorder(Color.BLACK) ) ;
+		customImagePreview.setBorder(new LineBorder(Color.BLACK));
 		pnlPreviewIzquierda.add(customImagePreview, BorderLayout.CENTER);
 		pnlPreviewIzquierda.add(prgBarIzq, BorderLayout.SOUTH);
 
@@ -116,9 +124,8 @@ public class PanelCentral extends CustomPanel {
 		splitContenedor.setDividerLocation(150);
 		splitContenedor.setDividerSize(10);
 
-
 		pnlPreviewDerecha.setBackground(Color.BLACK);
-		pnlPreviewDerecha.setBorder( new LineBorder(Color.BLACK) ) ;
+		pnlPreviewDerecha.setBorder(new LineBorder(Color.BLACK));
 		splitContenedor.setPreferredSize(new Dimension(400, 200));
 		splitContenedor.setLeftComponent(pnlPreviewIzquierda);
 		pnlPreviewDerecha.setLayout(new BorderLayout());
@@ -130,35 +137,41 @@ public class PanelCentral extends CustomPanel {
 
 		// ///////////////////////////////////
 
-		panel7.setLayout(new BoxLayout(panel7, BoxLayout.X_AXIS));
-		panel8.setAlignmentY(0.0F);
-		panel8.setLayout(new BoxLayout(panel8, BoxLayout.Y_AXIS));
-		button2.setText("text");
-		panel8.add(button2);
-		button3.setText("text");
-		panel8.add(button3);
+		paneleDerechaBotones.setLayout(new BoxLayout(paneleDerechaBotones, BoxLayout.X_AXIS));
+		panelContenedorBotonesOociones.setAlignmentY(0.0F);
+		panelContenedorBotonesOociones.setLayout(new BoxLayout(panelContenedorBotonesOociones, BoxLayout.Y_AXIS));
+		btnActivarBtnsVista.setEnabled(false);
+		btnActivarBtnsVista.setText("+/-");
+		btnActivarBtnsVista.addActionListener(this);
+		panelContenedorBotonesOociones.add(btnActivarBtnsVista);
+		btnAumentarVista.setEnabled(false);
+		btnAumentarVista.setText("+");
+		btnAumentarVista.addActionListener(this);
+		panelContenedorBotonesOociones.add(btnAumentarVista);
+		btnDisminuirVista.setEnabled(false);
+		btnDisminuirVista.setText("-");
+		btnDisminuirVista.addActionListener(this);
+		panelContenedorBotonesOociones.add(btnDisminuirVista);
 		toggleButton1.setText("text");
-		panel8.add(toggleButton1);
-		button1.setText("text");
-		panel8.add(button1);
+		panelContenedorBotonesOociones.add(toggleButton1);
 		toggleButton2.setText("text");
-		panel8.add(toggleButton2);
+		panelContenedorBotonesOociones.add(toggleButton2);
 		toggleButton3.setText("text");
-		panel8.add(toggleButton3);
+		panelContenedorBotonesOociones.add(toggleButton3);
 		toggleButton4.setText("text");
-		panel8.add(toggleButton4);
+		panelContenedorBotonesOociones.add(toggleButton4);
 		button4.setText("text");
-		panel8.add(button4);
+		panelContenedorBotonesOociones.add(button4);
 		button5.setText("text");
-		panel8.add(button5);
+		panelContenedorBotonesOociones.add(button5);
 		toggleButton5.setText("text");
-		panel8.add(toggleButton5);
+		panelContenedorBotonesOociones.add(toggleButton5);
 		button6.setText("text");
-		panel8.add(button6);
+		panelContenedorBotonesOociones.add(button6);
 		toggleButton6.setText("text");
-		panel8.add(toggleButton6);
-		panel7.add(panel8);
-		add(panel7, BorderLayout.EAST);
+		panelContenedorBotonesOociones.add(toggleButton6);
+		paneleDerechaBotones.add(panelContenedorBotonesOociones);
+		add(paneleDerechaBotones, BorderLayout.EAST);
 
 	}
 
@@ -175,4 +188,34 @@ public class PanelCentral extends CustomPanel {
 		customImagePreview.propertyChange(ftemp);
 	}
 
+	public void activarBtnVista(boolean v) {
+		btnActivarBtnsVista.setEnabled(v);
+	}
+
+	public void activarBotonesVistaAumentaDisminuye(boolean v) {
+		btnAumentarVista.setEnabled(v);
+		btnDisminuirVista.setEnabled(v);
+	}
+
+	public void desactivarBotonesPanelDerecho() {
+		btnActivarBtnsVista.setEnabled(false);
+		btnAumentarVista.setEnabled(false);
+		btnDisminuirVista.setEnabled(false);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		Object button = e.getSource();
+		if (button == btnActivarBtnsVista) {
+			btnActivarBtn = btnActivarBtnsVista.getModel().isSelected();
+			if (btnActivarBtn) {
+				activarBotonesVistaAumentaDisminuye(true);
+			} else {
+				activarBotonesVistaAumentaDisminuye(false);
+			}
+		} else if (button == btnAumentarVista) {
+
+		} else if (button == btnDisminuirVista) {
+
+		}
+	}
 }

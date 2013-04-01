@@ -173,6 +173,8 @@ public class PanelNorte extends CustomPanel {
 
 	private void cargarImagenesDescriptivasPanelCentral() {
 		principal.panCentral.cargarImagenesDescriptivas();	
+		principal.panCentral.desactivarBotonesPanelDerecho();
+		principal.panCentral.activarBtnVista(true);
 	}
 
 	private void obtenerArchivos() {
@@ -244,6 +246,7 @@ public class PanelNorte extends CustomPanel {
 					activarProgressBarCarga();
 					principal.panCentral.listaArchivos.limpiarLista();
 					principal.panCentral.customImagePreview.limpiarImagen();
+					principal.panCentral.desactivarBotonesPanelDerecho();
 					rutaCarga = ruta;
 				} else {
 					principal.resertTitulo();
@@ -280,6 +283,7 @@ public class PanelNorte extends CustomPanel {
 					activarProgressBarCarga();
 					principal.panCentral.listaArchivos.limpiarLista();
 					principal.panCentral.customImagePreview.limpiarImagen();
+					principal.panCentral.desactivarBotonesPanelDerecho();
 					rutaCarga = ruta;
 				} else {
 					principal.resertTitulo();
