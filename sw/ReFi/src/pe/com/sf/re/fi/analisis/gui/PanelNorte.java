@@ -5,10 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -16,7 +13,6 @@ import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
@@ -178,8 +174,6 @@ public class PanelNorte extends CustomPanel {
 	private void cargarImagenesDescriptivasPanelCentral() {
 		principal.panCentral.cargarImagenesDescriptivas();	
 	}
-
-	
 
 	private void obtenerArchivos() {
 		if (rutaCarga.canRead()) {

@@ -23,7 +23,6 @@ import pe.com.sf.re.fi.analisis.gui.componet.CustomPanel;
 @SuppressWarnings("serial")
 public class ListaImagenesName extends CustomPanel {
 
-	@SuppressWarnings("rawtypes")
 	private JList listNombresImagenesComponet = new JList();
 	private JScrollPane scroller;
 	private JSeparator separdor;
@@ -36,7 +35,6 @@ public class ListaImagenesName extends CustomPanel {
 	@SuppressWarnings("unused")
 	private PanelCentral panelCentral;
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ListaImagenesName(final PanelCentral panelCentral) {
 		setLayout(new BorderLayout());
 		this.panelCentral = panelCentral;
@@ -65,7 +63,6 @@ public class ListaImagenesName extends CustomPanel {
 		add(separdor, BorderLayout.SOUTH);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void cargarListaImagenes(Map<Integer, File> lst) {
 		this.lstArchivos = lst;
 		ObjetoFilaImagen[] lsoi = obtenerObjetoImagen();
@@ -94,7 +91,6 @@ public class ListaImagenesName extends CustomPanel {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
 	public void limpiarLista() {
 		ObjetoFilaImagen[] a = new ObjetoFilaImagen[0] ;
 		listNombresImagenesComponet.setListData(a);
@@ -103,7 +99,7 @@ public class ListaImagenesName extends CustomPanel {
 
 }
 
-@SuppressWarnings({ "serial", "rawtypes" })
+@SuppressWarnings("serial")
 class ObjetoFilaImagenCellRenderer extends JLabel implements ListCellRenderer {
 
 	public ObjetoFilaImagenCellRenderer() {
