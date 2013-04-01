@@ -2,8 +2,9 @@ package pe.com.sf.re.fi.memory;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class MemoryApp implements Serializable{
+
+	private static final long serialVersionUID = -174420090509376274L;
 
 	private String ruta ;
 	private String apariencia ;
@@ -35,4 +36,9 @@ public class MemoryApp implements Serializable{
 		this.altoPantalla = altoPantalla;
 	}
 
+	@Override
+	public String toString() {
+		return " ruta :  " + ruta + " apariencia : "+ apariencia + " anchoPantalla : "+ anchoPantalla  + "  altoPantalla : "+ altoPantalla;
+	}
+	
 }

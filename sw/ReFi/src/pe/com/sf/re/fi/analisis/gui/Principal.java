@@ -39,7 +39,9 @@ public class Principal extends JXFrame implements Serializable, WindowListener {
 		this.addWindowListener(this);
 		if(memoryApp!=null){
 			ancho_pantalla = memoryApp.getAnchoPantalla();
+			System.out.println("ancho_pantalla : "+ancho_pantalla);
 			alto_pantalla = memoryApp.getAltoPantalla();
+			System.out.println("alto_pantalla : "+alto_pantalla);
 			this.setMinimumSize(new Dimension(ancho_pantalla / 2, alto_pantalla / 2));
 			this.setSize(ancho_pantalla, alto_pantalla);
 			// this.setPreferredSize(new Dimension(200, 200));
