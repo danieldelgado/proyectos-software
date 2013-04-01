@@ -56,7 +56,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 
 	// Implementation of the DropTargetListener interface
 	public void dragEnter(DropTargetDragEvent dtde) {
-		DnDUtils.debugPrintln("dragEnter, drop action = " + DnDUtils.showActions(dtde.getDropAction()));
+		DnDUtils2.debugPrintln("dragEnter, drop action = " + DnDUtils2.showActions(dtde.getDropAction()));
 
 		// Get the type of object being transferred and determine
 		// whether it is appropriate.
@@ -70,14 +70,14 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 	}
 
 	public void dragExit(DropTargetEvent dte) {
-		DnDUtils.debugPrintln("DropTarget dragExit");
+		DnDUtils2.debugPrintln("DropTarget dragExit");
 
 		// Do drag-under feedback
 		dragUnderFeedback(null, false);
 	}
 
 	public void dragOver(DropTargetDragEvent dtde) {
-		DnDUtils.debugPrintln("DropTarget dragOver, drop action = " + DnDUtils.showActions(dtde.getDropAction()));
+		DnDUtils2.debugPrintln("DropTarget dragOver, drop action = " + DnDUtils2.showActions(dtde.getDropAction()));
 
 		// Accept or reject the drag
 		boolean acceptedDrag = acceptOrRejectDrag(dtde);
@@ -87,7 +87,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 	}
 
 	public void dropActionChanged(DropTargetDragEvent dtde) {
-		DnDUtils.debugPrintln("DropTarget dropActionChanged, drop action = " + DnDUtils.showActions(dtde.getDropAction()));
+		DnDUtils2.debugPrintln("DropTarget dropActionChanged, drop action = " + DnDUtils2.showActions(dtde.getDropAction()));
 
 		// Accept or reject the drag
 		boolean acceptedDrag = acceptOrRejectDrag(dtde);
@@ -97,7 +97,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 	}
 
 	public void drop(DropTargetDropEvent dtde) {
-		DnDUtils.debugPrintln("DropTarget drop, drop action = " + DnDUtils.showActions(dtde.getDropAction()));
+		DnDUtils2.debugPrintln("DropTarget drop, drop action = " + DnDUtils2.showActions(dtde.getDropAction()));
 
 		// Check the drop action
 		if ((dtde.getDropAction() & DnDConstants.ACTION_COPY_OR_MOVE) != 0) {
@@ -115,13 +115,13 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 				}
 
 				dtde.dropComplete(result);
-				DnDUtils.debugPrintln("Drop completed, success: " + result);
+				DnDUtils2.debugPrintln("Drop completed, success: " + result);
 			} catch (Exception e) {
-				DnDUtils.debugPrintln("Exception while handling drop " + e);
+				DnDUtils2.debugPrintln("Exception while handling drop " + e);
 				dtde.rejectDrop();
 			}
 		} else {
-			DnDUtils.debugPrintln("Drop target rejected drop");
+			DnDUtils2.debugPrintln("Drop target rejected drop");
 			dtde.dropComplete(false);
 		}
 	}
@@ -145,25 +145,25 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 		int sourceActions = dtde.getSourceActions();
 		boolean acceptedDrag = false;
 
-		DnDUtils.debugPrintln("\tSource actions are " + DnDUtils.showActions(sourceActions) + ", drop action is " + DnDUtils.showActions(dropAction));
+		DnDUtils2.debugPrintln("\tSource actions are " + DnDUtils2.showActions(sourceActions) + ", drop action is " + DnDUtils2.showActions(dropAction));
 
 		// Reject if the object being transferred
 		// or the operations available are not acceptable.
 		if (!acceptableType || (sourceActions & DnDConstants.ACTION_COPY_OR_MOVE) == 0) {
-			DnDUtils.debugPrintln("Drop target rejecting drag");
+			DnDUtils2.debugPrintln("Drop target rejecting drag");
 			dtde.rejectDrag();
 		} else if (!draggingFile && !pane.isEditable()) {
 			// Can't drag text to a read-only JEditorPane
-			DnDUtils.debugPrintln("Drop target rejecting drag");
+			DnDUtils2.debugPrintln("Drop target rejecting drag");
 			dtde.rejectDrag();
 		} else if ((dropAction & DnDConstants.ACTION_COPY_OR_MOVE) == 0) {
 			// Not offering copy or move - suggest a copy
-			DnDUtils.debugPrintln("Drop target offering COPY");
+			DnDUtils2.debugPrintln("Drop target offering COPY");
 			dtde.acceptDrag(DnDConstants.ACTION_COPY);
 			acceptedDrag = true;
 		} else {
 			// Offering an acceptable operation: accept
-			DnDUtils.debugPrintln("Drop target accepting drag");
+			DnDUtils2.debugPrintln("Drop target accepting drag");
 			dtde.acceptDrag(dropAction);
 			acceptedDrag = true;
 		}
@@ -204,8 +204,8 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 		} else if (dtde.isDataFlavorSupported(DataFlavor.plainTextFlavor) || dtde.isDataFlavorSupported(DataFlavor.stringFlavor)) {
 			acceptableType = true;
 		}
-		DnDUtils.debugPrintln("File type acceptable - " + acceptableType);
-		DnDUtils.debugPrintln("Dragging a file - " + draggingFile);
+		DnDUtils2.debugPrintln("File type acceptable - " + acceptableType);
+		DnDUtils2.debugPrintln("Dragging a file - " + draggingFile);
 	}
 
 	// This method handles a drop for a list of files
@@ -213,7 +213,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 		List fileList = (List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
 		File transferFile = (File) fileList.get(0);
 		final URL transferURL = transferFile.toURL();
-		DnDUtils.debugPrintln("File URL is " + transferURL);
+		DnDUtils2.debugPrintln("File URL is " + transferURL);
 
 		pane.setPage(transferURL);
 
@@ -236,7 +236,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 			// Look for either plain text or a String.
 			for (int i = 0; i < flavors.length; i++) {
 				DataFlavor flavor = flavors[i];
-				DnDUtils.debugPrintln("Drop MIME type " + flavor.getMimeType() + " is available");
+				DnDUtils2.debugPrintln("Drop MIME type " + flavor.getMimeType() + " is available");
 				if (flavor.equals(DataFlavor.plainTextFlavor) || flavor.equals(DataFlavor.stringFlavor)) {
 					selectedFlavor = flavor;
 					break;
@@ -248,12 +248,12 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 				return false;
 			}
 
-			DnDUtils.debugPrintln("Selected flavor is " + selectedFlavor.getHumanPresentableName());
+			DnDUtils2.debugPrintln("Selected flavor is " + selectedFlavor.getHumanPresentableName());
 
 			// Get the transferable and then obtain the data
 			Object data = transferable.getTransferData(selectedFlavor);
 
-			DnDUtils.debugPrintln("Transfer data type is " + data.getClass().getName());
+			DnDUtils2.debugPrintln("Transfer data type is " + data.getClass().getName());
 
 			String insertData = null;
 			if (data instanceof InputStream) {
