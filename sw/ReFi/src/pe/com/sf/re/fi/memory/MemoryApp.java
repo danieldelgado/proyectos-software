@@ -7,10 +7,10 @@ public class MemoryApp implements Serializable{
 
 	private String ruta ;
 	private String apariencia ;
-	private int anchoPantalla;
-	private int altoPantalla;
+	private Integer anchoPantalla;
+	private Integer altoPantalla;
 	
-	public String getRuta() {
+	public String getRuta() {		
 		return ruta;
 	}
 	public void setRuta(String ruta) {
@@ -22,19 +22,17 @@ public class MemoryApp implements Serializable{
 	public void setApariencia(String apariencia) {
 		this.apariencia = apariencia;
 	}
-	public int getAnchoPantalla() {
+	public Integer getAnchoPantalla() {
 		return anchoPantalla;
 	}
-	public int getAltoPantalla() {
-		return altoPantalla;
-	}
-	public void setAnchoPantalla(int anchoPantalla) {
+	public void setAnchoPantalla(Integer anchoPantalla) {
 		this.anchoPantalla = anchoPantalla;
 	}
-	public void setAltoPantalla(int altoPantalla) {
+	public Integer getAltoPantalla() {
+		return altoPantalla;
+	}
+	public void setAltoPantalla(Integer altoPantalla) {
 		this.altoPantalla = altoPantalla;
 	}
-	
-	
 
 }
