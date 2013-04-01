@@ -1,5 +1,6 @@
 package pe.com.sf.re.fi.memory;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -13,7 +14,11 @@ public class GuardarMemoryApp {
 		ObjectOutputStream out = null;
 		FileOutputStream fos = null;
 		try {
-			fos = new FileOutputStream(Constantes.FILE_MemoryApp);
+			File f= new File(Constantes.FILE_MemoryApp);
+			if(f.exists()){
+				f.createNewFile();
+			}
+			fos = new FileOutputStream(new File(Constantes.FILE_MemoryApp));
 			out = new ObjectOutputStream(fos);
 			out.writeObject(mapp);
 			out.close();

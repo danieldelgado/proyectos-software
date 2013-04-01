@@ -32,11 +32,9 @@ public class ReFi {
 //		JXFrame.setDefaultLookAndFeelDecorated(true);
 //		JXDialog.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			@SuppressWarnings("deprecation")
 			public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
-				Principal principal = new Principal(Propes.getProperty("titulo"));
-				principal.show();
+				new Principal(Propes.getProperty("titulo"));
 			}
 		});
 	}

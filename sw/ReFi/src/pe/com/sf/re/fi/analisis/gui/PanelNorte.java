@@ -34,7 +34,7 @@ import pe.com.sf.re.fi.util.Propes;
 public class PanelNorte extends CustomPanel {
 
 	private Principal principal;
-	private JFileChooser chooser;
+	public JFileChooser chooser;
 	private FileNameExtensionFilter filter;
 	private SkinInfo skinInfo;
 	private static Set<String> stApariencias;
@@ -247,6 +247,9 @@ public class PanelNorte extends CustomPanel {
 					principal.panCentral.listaArchivos.limpiarLista();
 					principal.panCentral.customImagePreview.limpiarImagen();
 					principal.panCentral.desactivarBotonesPanelDerecho();
+					System.out.println("ruta.getAbsolutePath():"+ruta.getAbsolutePath());
+					principal.memoryApp.setRuta(ruta.getAbsolutePath());
+					principal.guardarMemoryApp();
 					rutaCarga = ruta;
 				} else {
 					principal.resertTitulo();
@@ -284,6 +287,9 @@ public class PanelNorte extends CustomPanel {
 					principal.panCentral.listaArchivos.limpiarLista();
 					principal.panCentral.customImagePreview.limpiarImagen();
 					principal.panCentral.desactivarBotonesPanelDerecho();
+					System.out.println("ruta.getAbsolutePath():"+ruta.getAbsolutePath());
+					principal.memoryApp.setRuta(ruta.getAbsolutePath());
+					principal.guardarMemoryApp();
 					rutaCarga = ruta;
 				} else {
 					principal.resertTitulo();
@@ -323,5 +329,6 @@ public class PanelNorte extends CustomPanel {
 	private void cambiarTitulo(String title) {
 		principal.cambiarTitulo(title);
 	}
-
+	
+	
 }
