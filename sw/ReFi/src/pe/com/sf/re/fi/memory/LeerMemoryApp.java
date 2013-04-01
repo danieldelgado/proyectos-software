@@ -8,10 +8,9 @@ import java.io.ObjectInputStream;
 import pe.com.sf.re.fi.util.Constantes;
 
 public class LeerMemoryApp {
-	
-	static MemoryApp mapp = null;
-	
+		
 	public static MemoryApp leerMemoryApp(){
+		MemoryApp mapp = null;
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
 		try {

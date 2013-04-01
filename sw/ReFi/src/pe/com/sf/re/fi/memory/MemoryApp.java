@@ -28,6 +28,12 @@ public class MemoryApp implements Serializable{
 	public int getAltoPantalla() {
 		return altoPantalla;
 	}
+	public void setAnchoPantalla(int anchoPantalla) {
+		this.anchoPantalla = anchoPantalla;
+	}
+	public void setAltoPantalla(int altoPantalla) {
+		this.altoPantalla = altoPantalla;
+	}
 	
 	
 

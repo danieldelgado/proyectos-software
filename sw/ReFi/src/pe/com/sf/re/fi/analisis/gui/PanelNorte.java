@@ -145,7 +145,6 @@ public class PanelNorte extends CustomPanel {
 					skinInfo = (SkinInfo) SubstanceLookAndFeel.getAllSkins().get(item);
 					_log.info("Apariencia seleccionada es :" + skinInfo.getClassName());
 					principal.memoryApp.setApariencia(skinInfo.getClassName());
-					principal.guardarMemoryApp();
 					SubstanceLookAndFeel.setSkin(skinInfo.getClassName());
 					SwingUtilities.updateComponentTreeUI(principal);
 					skinInfo = null;
@@ -250,7 +249,6 @@ public class PanelNorte extends CustomPanel {
 					principal.panCentral.customImagePreview.limpiarImagen();
 					principal.panCentral.desactivarBotonesPanelDerecho();
 					principal.memoryApp.setRuta(ruta.getAbsolutePath());
-					principal.guardarMemoryApp();
 					rutaCarga = ruta;
 				} else {
 					principal.resertTitulo();
@@ -288,9 +286,7 @@ public class PanelNorte extends CustomPanel {
 					principal.panCentral.listaArchivos.limpiarLista();
 					principal.panCentral.customImagePreview.limpiarImagen();
 					principal.panCentral.desactivarBotonesPanelDerecho();
-					System.out.println("ruta.getAbsolutePath():"+ruta.getAbsolutePath());
 					principal.memoryApp.setRuta(ruta.getAbsolutePath());
-					principal.guardarMemoryApp();
 					rutaCarga = ruta;
 				} else {
 					principal.resertTitulo();
