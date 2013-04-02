@@ -12,6 +12,7 @@ import java.util.Vector;
 import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JProgressBar;
 import javax.swing.JToolBar;
@@ -57,6 +58,7 @@ public class PanelNorte extends CustomPanel {
 	private CustomButton btnSelecionarArchivo;
 	private CustomButton btnSelccionarDirectorio;
 	private CustomButton btnCargarArchivos;
+	private ButtonGroup btnGroup;
 	private JToolBar tbOpciones;
 	private CustomButton button2;
 	private CustomToggleButton toggleButton3;
@@ -85,6 +87,7 @@ public class PanelNorte extends CustomPanel {
 		cboApariencia = new CustomCombo(new Vector<String>(stApariencias));
 		pnlToolBarsOpciones = new CustomPanel();
 		tbOpcionesArchivos = new JToolBar();
+		btnGroup = new ButtonGroup();
 		btnSelecionarArchivo = new CustomButton();
 		btnSelccionarDirectorio = new CustomButton();
 		btnCargarArchivos = new CustomButton();
@@ -96,6 +99,9 @@ public class PanelNorte extends CustomPanel {
 		btnSelecionarArchivo.addActionListener(this);
 		btnSelccionarDirectorio.addActionListener(this);
 		btnCargarArchivos.addActionListener(this);
+		btnGroup.add(btnSelecionarArchivo);
+		btnGroup.add(btnSelccionarDirectorio);
+		btnGroup.add(btnCargarArchivos);
 		cboApariencia.addItemListener(this);
 		panleContenedor.setLayout(new BorderLayout());
 		panelConnedorBarraProgreso.setLayout(new BoxLayout(panelConnedorBarraProgreso, BoxLayout.X_AXIS));

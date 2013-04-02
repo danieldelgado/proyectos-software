@@ -52,8 +52,8 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 			// this.setLocation(ancho_pantalla - (ancho_pantalla/2), alto_pantalla -
 			// (alto_pantalla/2));
 		} else {
-			ancho_pantalla = Toolkit.getDefaultToolkit().getScreenSize().width;
-			alto_pantalla = Toolkit.getDefaultToolkit().getScreenSize().height;
+			ancho_pantalla = Toolkit.getDefaultToolkit().getScreenSize().width-150;
+			alto_pantalla = Toolkit.getDefaultToolkit().getScreenSize().height-150;
 			this.setMinimumSize(new Dimension(ancho_pantalla / 2, alto_pantalla / 2));
 			this.setSize(ancho_pantalla, alto_pantalla);
 			this.setPreferredSize(new Dimension(ancho_pantalla, alto_pantalla));
