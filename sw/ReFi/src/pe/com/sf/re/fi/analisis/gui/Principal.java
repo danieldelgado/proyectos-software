@@ -11,6 +11,7 @@ import java.awt.event.WindowListener;
 import java.awt.event.WindowStateListener;
 import java.io.File;
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -34,23 +35,28 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 	public PanelCentral panCentral = null;
 	public MemoryApp memoryApp = LeerMemoryApp.leerMemoryApp();
 
-	@SuppressWarnings("deprecation")
+	private final static Logger _log = Logger.getLogger(Principal.class.getName());
+
 	public Principal(String title) {
 		super(title);
+		_log.info("inicializando app");
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		initComponet();		
+	}
+
+	@SuppressWarnings("deprecation")
+	private void initComponet() {
 		this.addWindowListener(this);
 		this.addComponentListener(this);
 		this.addWindowStateListener(this);
-
 		if (memoryApp != null) {
 			ancho_pantalla = memoryApp.getAnchoPantalla();
 			alto_pantalla = memoryApp.getAltoPantalla();
 			this.setMinimumSize(new Dimension(ancho_pantalla / 2, alto_pantalla / 2));
 			this.setSize(ancho_pantalla, alto_pantalla);
 			this.setPreferredSize(new Dimension(ancho_pantalla, alto_pantalla));
-			// this.setLocation(ancho_pantalla - (ancho_pantalla/2), alto_pantalla -
-			// (alto_pantalla/2));
+			// this.setLocation(ancho_pantalla - (ancho_pantalla/2), alto_pantalla - (alto_pantalla/2));
 		} else {
 			ancho_pantalla = Toolkit.getDefaultToolkit().getScreenSize().width-150;
 			alto_pantalla = Toolkit.getDefaultToolkit().getScreenSize().height-150;
@@ -58,14 +64,13 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 			this.setSize(ancho_pantalla, alto_pantalla);
 			this.setPreferredSize(new Dimension(ancho_pantalla, alto_pantalla));
 			memoryApp = new MemoryApp();
-			// this.setLocation(ancho_pantalla - (ancho_pantalla/2), alto_pantalla -
-			// (alto_pantalla/2));
+			// this.setLocation(ancho_pantalla - (ancho_pantalla/2), alto_pantalla - (alto_pantalla/2));
 		}
 		componetPanels();
 		cargarMemoryApp();
 		this.pack();
 		this.show();// levanta el jframe
-		// this.setVisible(true);// lo hace visible
+		// this.setVisible(true);// lo hace visible		
 	}
 
 	private void componetPanels() {
