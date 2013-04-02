@@ -29,6 +29,7 @@ public class ImagePreviewSelecionado extends CustomPanel implements MouseMotionL
 	private final static Logger _log = Logger.getLogger(ImagePreviewSelecionado.class.getName());
 
 	public ImagePreviewSelecionado() {
+		_log.info("  cargando Image Preview Selecionado ");
 		lblImage = new JLabel();
 		icon = new ImageIcon();
 		setLayout(new BorderLayout());
@@ -43,12 +44,13 @@ public class ImagePreviewSelecionado extends CustomPanel implements MouseMotionL
 			return;
 		}
 		this.file = file;
-		_log.info(" file : " + file);
+		_log.info(" propertyChange file : " + file);
 		limpiarImagen();
 		imagePreview();
 	}
 
 	public void limpiarImagen() {
+		_log.info(" limpiar Imagen ");
 		img = null;
 		origin = null;
 		original_width = 0;

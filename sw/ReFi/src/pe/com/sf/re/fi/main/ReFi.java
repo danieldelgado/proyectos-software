@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 
 import javax.swing.SwingUtilities;
 
+import org.jdesktop.swingx.JXDialog;
+import org.jdesktop.swingx.JXFrame;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.BusinessBlackSteelSkin;
 
@@ -35,8 +37,8 @@ public class ReFi {
 	public static void main(String[] args) {
 		_log.info("Corriendo Programa "+Propes.getProperty("titulo"));
 //		DefaultLookAndFeelDecoratedif(){
-//		JXFrame.setDefaultLookAndFeelDecorated(true);
-//		JXDialog.setDefaultLookAndFeelDecorated(true);
+		JXFrame.setDefaultLookAndFeelDecorated(true);
+		JXDialog.setDefaultLookAndFeelDecorated(true);
 //		}
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

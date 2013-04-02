@@ -130,6 +130,7 @@ public class PanelNorte extends CustomPanel {
 	}
 
 	private void inicializarComponentes() {
+		_log.info(" PanelNorte inicializarComponentes ");
 		progressBar.setVisible(false);
 		progressBar.setStringPainted(true);
 		lblApariencia.setText(Propes.getProperty("lbl.apariencia"));

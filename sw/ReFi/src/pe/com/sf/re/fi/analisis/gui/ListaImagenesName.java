@@ -36,6 +36,7 @@ public class ListaImagenesName extends CustomPanel {
 	private PanelCentral panelCentral;
 
 	public ListaImagenesName(final PanelCentral panelCentral) {
+		_log.info("  cargando ListaImagenesName ");
 		setLayout(new BorderLayout());
 		this.panelCentral = panelCentral;
 		listNombresImagenesComponet = new JList();
@@ -64,6 +65,7 @@ public class ListaImagenesName extends CustomPanel {
 	}
 
 	public void cargarListaImagenes(Map<Integer, File> lst) {
+		_log.info("  cargar Lista Imagenes ... ");
 		this.lstArchivos = lst;
 		ObjetoFilaImagen[] lsoi = obtenerObjetoImagen();
 		if (lsoi != null && lsoi.length > 0) {
@@ -92,6 +94,7 @@ public class ListaImagenesName extends CustomPanel {
 	}
 
 	public void limpiarLista() {
+		_log.info("  limpiar Lista ...");
 		ObjetoFilaImagen[] a = new ObjetoFilaImagen[0] ;
 		listNombresImagenesComponet.setListData(a);
 	}
