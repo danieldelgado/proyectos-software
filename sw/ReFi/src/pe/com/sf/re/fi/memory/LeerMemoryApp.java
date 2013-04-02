@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.logging.Logger;
 
-import pe.com.sf.re.fi.analisis.gui.Principal;
 import pe.com.sf.re.fi.util.Constantes;
 
 public class LeerMemoryApp {
