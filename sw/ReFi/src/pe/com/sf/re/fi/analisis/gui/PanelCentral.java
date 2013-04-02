@@ -66,6 +66,7 @@ public class PanelCentral extends CustomPanel {
 	private final static Logger _log = Logger.getLogger(PanelCentral.class.getName());
 
 	public PanelCentral(Principal principal) {
+		_log.info("Cargando... PanelCentral");
 		this.principal = principal;
 		initComponents();
 	}

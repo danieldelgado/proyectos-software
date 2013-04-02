@@ -47,19 +47,26 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 
 	@SuppressWarnings("deprecation")
 	private void initComponet() {
+		_log.info("Cargando componentes...");
 		this.addWindowListener(this);
 		this.addComponentListener(this);
 		this.addWindowStateListener(this);
 		if (memoryApp != null) {
+			_log.info("Leyendo temporales...");
 			ancho_pantalla = memoryApp.getAnchoPantalla();
+			_log.info("Ancho pantalla :"+ancho_pantalla+"px");
 			alto_pantalla = memoryApp.getAltoPantalla();
+			_log.info("Alto pantalla :"+alto_pantalla+"px");
 			this.setMinimumSize(new Dimension(ancho_pantalla / 2, alto_pantalla / 2));
 			this.setSize(ancho_pantalla, alto_pantalla);
 			this.setPreferredSize(new Dimension(ancho_pantalla, alto_pantalla));
 			// this.setLocation(ancho_pantalla - (ancho_pantalla/2), alto_pantalla - (alto_pantalla/2));
 		} else {
+			_log.info("No se encontro temporales, cargando valores por default ...");
 			ancho_pantalla = Toolkit.getDefaultToolkit().getScreenSize().width-150;
+			_log.info("Ancho pantalla :"+ancho_pantalla+"px");
 			alto_pantalla = Toolkit.getDefaultToolkit().getScreenSize().height-150;
+			_log.info("Alto pantalla :"+alto_pantalla+"px");
 			this.setMinimumSize(new Dimension(ancho_pantalla / 2, alto_pantalla / 2));
 			this.setSize(ancho_pantalla, alto_pantalla);
 			this.setPreferredSize(new Dimension(ancho_pantalla, alto_pantalla));
@@ -76,8 +83,10 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 	private void componetPanels() {
 		panNorte = new PanelNorte(this);
 		panNorte.setVisible(true);
+		_log.info("Termino cargar panel norte");
 		panCentral = new PanelCentral(this);
 		panCentral.setVisible(true);
+		_log.info("Termino cargar panel central");
 		this.add(panNorte, BorderLayout.NORTH);
 		this.add(panCentral, BorderLayout.CENTER);
 	}

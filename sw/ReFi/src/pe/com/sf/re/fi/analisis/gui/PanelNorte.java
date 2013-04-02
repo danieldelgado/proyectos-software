@@ -72,6 +72,7 @@ public class PanelNorte extends CustomPanel {
 
 	public PanelNorte(Principal principal) {
 		this.principal = principal;
+		_log.info("Cargando... PanelNorte");
 		initComponents();
 		inicializarComponentes();
 	}

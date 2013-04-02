@@ -8,8 +8,6 @@ import java.util.logging.Logger;
 
 import javax.swing.SwingUtilities;
 
-import org.jdesktop.swingx.JXDialog;
-import org.jdesktop.swingx.JXFrame;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.BusinessBlackSteelSkin;
 
