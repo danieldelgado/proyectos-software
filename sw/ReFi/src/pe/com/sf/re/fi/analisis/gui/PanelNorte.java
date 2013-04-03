@@ -211,10 +211,12 @@ public class PanelNorte extends CustomPanel {
 			public synchronized void run() {
 				lstArchivos = new HashMap<Integer, File>();
 				progressBar.setValue(0);
+				int count = 0;
 				for (int i = 0; i < lsFiles.length; i++) {
 					final int currentValue = (i+1);
 					if (lsFiles[i].canRead() && lsFiles[i].isFile()  && AnalizarArchivoController.extensionPermitida(lsFiles[i]) ) {
-						lstArchivos.put(i, lsFiles[i]);
+						lstArchivos.put(count, lsFiles[i]);
+						count++ ;
 					}
 					try {
 						SwingUtilities.invokeLater(new Runnable() {
