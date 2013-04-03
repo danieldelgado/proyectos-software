@@ -64,11 +64,11 @@ public class PanelNorte extends CustomPanel {
 	private CustomToggleButton toggleButton3;
 	private CustomToggleButton toggleButton4;
 
+	private final static Logger _log = Logger.getLogger(PanelNorte.class.getName());
+
 	static {
 		stApariencias = SubstanceLookAndFeel.getAllSkins().keySet();
 	}
-
-	private final static Logger _log = Logger.getLogger(PanelNorte.class.getName());
 
 	public PanelNorte(Principal principal) {
 		this.principal = principal;
@@ -213,7 +213,7 @@ public class PanelNorte extends CustomPanel {
 				progressBar.setValue(0);
 				for (int i = 0; i < lsFiles.length; i++) {
 					final int currentValue = (i+1);
-					if (lsFiles[i].canRead() && lsFiles[i].isFile() ) {
+					if (lsFiles[i].canRead() && lsFiles[i].isFile()  && AnalizarArchivoController.extensionPermitida(lsFiles[i]) ) {
 						lstArchivos.put(i, lsFiles[i]);
 					}
 					try {

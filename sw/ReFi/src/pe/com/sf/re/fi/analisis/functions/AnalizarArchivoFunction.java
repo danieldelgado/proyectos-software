@@ -3,6 +3,8 @@ package pe.com.sf.re.fi.analisis.functions;
 import java.io.File;
 import java.util.logging.Logger;
 
+import pe.com.sf.re.fi.util.Constantes;
+
 public class AnalizarArchivoFunction {
 
 	private final static Logger _log = Logger.getLogger(AnalizarArchivoFunction.class.getName()); 
@@ -57,6 +59,21 @@ public class AnalizarArchivoFunction {
 			return archivo;
 		}
 		return null;
+	}
+
+	public boolean extensionPermitida(File file) {
+		String ext = getExtensionArchivo(file);
+		for (int i = 0; i < Constantes.EXTENSIONES_IMAGENES.length; i++) {
+			if(ext.equals(Constantes.EXTENSIONES_IMAGENES[i])){
+				return true;
+			}
+		}		
+		return false;
+	}
+
+	private String getExtensionArchivo(File file) {
+		String str = file.getName();
+		return str.substring(str.lastIndexOf('.')+1, str.length());
 	}
 
 }
