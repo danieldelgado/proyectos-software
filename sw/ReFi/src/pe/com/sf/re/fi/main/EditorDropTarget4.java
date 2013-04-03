@@ -1,4 +1,4 @@
-package pe.com.sf.re.fi.plugins;
+package pe.com.sf.re.fi.main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -40,6 +40,21 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 public class EditorDropTarget4 implements DropTargetListener, PropertyChangeListener {
+	
+	protected JEditorPane pane;
+
+	protected DropTarget dropTarget;
+
+	protected boolean acceptableType; // Indicates whether data is acceptable
+
+	protected boolean draggingFile; // True if dragging an entire file
+
+	protected Color backgroundColor; // Original background color of JEditorPane
+
+	protected boolean changingBackground;
+
+	protected static final Color feedbackColor = Color.gray;
+	
 	public EditorDropTarget4(JEditorPane pane) {
 		this.pane = pane;
 
@@ -60,6 +75,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 
 		// Get the type of object being transferred and determine
 		// whether it is appropriate.
+		System.out.println(" dtde : :: " + dtde.getSource());
 		checkTransferType(dtde);
 
 		// Accept or reject the drag.
@@ -186,6 +202,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 				// Dragging text - move the insertion cursor
 				Point location = dtde.getLocation();
 				pane.getCaret().setVisible(true);
+				System.out.println("pane.viewToModel(location):"+pane.viewToModel(location));
 				pane.setCaretPosition(pane.viewToModel(location));
 			} else {
 				pane.getCaret().setVisible(false);
@@ -214,7 +231,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 		File transferFile = (File) fileList.get(0);
 		final URL transferURL = transferFile.toURL();
 		DnDUtils2.debugPrintln("File URL is " + transferURL);
-
+		System.out.println(" pane.setPage(transferURL) transferURL:"+transferURL);
 		pane.setPage(transferURL);
 
 		return true;
@@ -252,7 +269,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 
 			// Get the transferable and then obtain the data
 			Object data = transferable.getTransferData(selectedFlavor);
-
+			System.out.println(" data :" + data);
 			DnDUtils2.debugPrintln("Transfer data type is " + data.getClass().getName());
 
 			String insertData = null;
@@ -267,10 +284,12 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 				} catch (UnsupportedEncodingException e) {
 					// Use the platform default encoding
 					insertData = new String(bytes);
+					System.out.println(" insertData data catch :" + insertData);
 				}
 			} else if (data instanceof String) {
 				// String flavor
 				insertData = (String) data;
+				System.out.println(" insertData data :" + insertData);
 			}
 
 			if (insertData != null) {
@@ -330,22 +349,9 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 		f.setVisible(true);
 	}
 
-	protected JEditorPane pane;
-
-	protected DropTarget dropTarget;
-
-	protected boolean acceptableType; // Indicates whether data is acceptable
-
-	protected boolean draggingFile; // True if dragging an entire file
-
-	protected Color backgroundColor; // Original background color of JEditorPane
-
-	protected boolean changingBackground;
-
-	protected static final Color feedbackColor = Color.gray;
 }
 
-class DnDUtils {
+class DnDUtils2 {
 	public static String showActions(int action) {
 		String actions = "";
 		if ((action & (DnDConstants.ACTION_LINK | DnDConstants.ACTION_COPY_OR_MOVE)) == 0) {
@@ -377,7 +383,7 @@ class DnDUtils {
 		}
 	}
 
-	private static boolean debugEnabled = (System.getProperty("DnDExamples.debug") != null);
+	private static boolean debugEnabled = true;//(System.getProperty("DnDExamples.debug") != null);
 }
 
 class AutoScrollingEditorPane extends JEditorPane implements Autoscroll {

@@ -3,10 +3,26 @@ package pe.com.sf.re.fi.analisis.gui;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetEvent;
+import java.awt.dnd.DropTargetListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,9 +39,11 @@ import javax.swing.UIManager;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomPanel;
 
 @SuppressWarnings("serial")
-public class ListaImagenesName extends CustomPanel {
+public class ListaImagenesName extends CustomPanel implements DropTargetListener, PropertyChangeListener  {
 
 	private JList listNombresImagenesComponet ;
+	@SuppressWarnings("unused")
+	private DropTarget dropTarget;
 	private JScrollPane scroller;
 	private JSeparator separdor;
 
@@ -41,6 +59,7 @@ public class ListaImagenesName extends CustomPanel {
 		setLayout(new BorderLayout());
 		_log.info("  cargando ListaImagenesName ");
 		listNombresImagenesComponet = new JList();
+		dropTarget = new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, this, true , null);	
 		scroller = new JScrollPane();
 		separdor = new JSeparator();
 		this.panelCentral = panelCentral;
@@ -59,7 +78,7 @@ public class ListaImagenesName extends CustomPanel {
 				}
 			}
 		};
-		listNombresImagenesComponet.addMouseListener(mouseListener);		
+		listNombresImagenesComponet.addMouseListener(mouseListener);	
 		scroller.setPreferredSize(new Dimension(200, 20));
 		scroller.setMinimumSize(new Dimension(100, 20));
 		scroller.setMaximumSize(new Dimension(600, 2147483647));
@@ -103,6 +122,118 @@ public class ListaImagenesName extends CustomPanel {
 		listNombresImagenesComponet.setListData(a);	
 	}
 
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		System.out.println("propertyChange");
+	}
+
+	@Override
+	public void dragEnter(DropTargetDragEvent dtde) {
+		System.out.println("dragEnter");	
+	}
+
+	@Override
+	public void dragOver(DropTargetDragEvent dtde) {
+		System.out.println("DropTargetDragEvent");	
+	}
+
+	@Override
+	public void dropActionChanged(DropTargetDragEvent dtde) {
+		System.out.println("dropActionChanged");	
+	}
+
+	@Override
+	public void dragExit(DropTargetEvent dte) {
+		System.out.println("dragExit");	
+	}
+
+	@Override
+	public void drop(DropTargetDropEvent dtde) {		
+		// Check the drop action
+		if ((dtde.getDropAction() & DnDConstants.ACTION_COPY_OR_MOVE) != 0) {
+			// Accept the drop and get the transfer data
+			dtde.acceptDrop(dtde.getDropAction());
+			Transferable transferable = dtde.getTransferable();
+
+			try {
+				boolean result = false;
+
+//				if (draggingFile) {
+					result = dropFile(transferable);
+//				} else {
+//					result = dropContent(transferable, dtde);
+//				}
+
+				dtde.dropComplete(result);
+			} catch (Exception e) {
+//				dtde.rejectDrop();
+			}
+		} else {
+			dtde.dropComplete(false);
+		}
+	}
+
+	protected boolean dropContent(Transferable transferable, DropTargetDropEvent dtde) {
+		
+		try {
+			DataFlavor[] flavors = dtde.getCurrentDataFlavors();
+
+			DataFlavor selectedFlavor = null;
+
+			// Look for either plain text or a String.
+			for (int i = 0; i < flavors.length; i++) {
+				DataFlavor flavor = flavors[i];
+				if (flavor.equals(DataFlavor.plainTextFlavor) || flavor.equals(DataFlavor.stringFlavor)) {
+					selectedFlavor = flavor;
+					break;
+				}
+			}
+
+			if (selectedFlavor == null) {
+				// No compatible flavor - should never happen
+				return false;
+			}
+
+			// Get the transferable and then obtain the data
+			Object data = transferable.getTransferData(selectedFlavor);
+			System.out.println(" data :" + data);
+
+			String insertData = null;
+			if (data instanceof InputStream) {
+				// Plain text flavor
+				String charSet = selectedFlavor.getParameter("charset");
+				InputStream is = (InputStream) data;
+				byte[] bytes = new byte[is.available()];
+				is.read(bytes);
+				try {
+					insertData = new String(bytes, charSet);
+				} catch (UnsupportedEncodingException e) {
+					// Use the platform default encoding
+					insertData = new String(bytes);
+					System.out.println(" insertData data catch :" + insertData);
+				}
+			} else if (data instanceof String) {
+				// String flavor
+				insertData = (String) data;
+				System.out.println(" insertData data :" + insertData);
+			}
+
+			if (insertData != null) {
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	protected boolean dropFile(Transferable transferable) throws IOException, UnsupportedFlavorException, MalformedURLException {
+		List fileList = (List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
+		File transferFile = (File) fileList.get(0);
+		final URL transferURL = transferFile.toURL();
+		System.out.println(" pane.setPage(transferURL) transferURL:"+transferURL);
+		return true;
+	}
 
 }
 
@@ -131,8 +262,10 @@ class ObjetoFilaImagenCellRenderer extends JLabel implements ListCellRenderer {
 }
 
 class ObjetoFilaImagen {
+	
 	private final Integer id;
 	private final String imagePath;
+	
 	public ObjetoFilaImagen(Integer id, String imagePath) {
 		this.id = id;
 		this.imagePath = imagePath;

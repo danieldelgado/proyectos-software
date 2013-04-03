@@ -127,8 +127,7 @@ class DnDUtils2 {
     }
   }
 
-  private static boolean debugEnabled = (System
-      .getProperty("DnDExamples.debug") != null);
+  private static boolean debugEnabled = true;//(System .getProperty("DnDExamples.debug") != null);
 }
 
 class JLabelTransferable implements Transferable {
