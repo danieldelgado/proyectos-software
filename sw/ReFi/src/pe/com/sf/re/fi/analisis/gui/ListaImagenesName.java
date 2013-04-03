@@ -1,7 +1,6 @@
 package pe.com.sf.re.fi.analisis.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.io.File;
@@ -39,7 +38,6 @@ public class ListaImagenesName extends CustomPanel {
 		_log.info("  cargando ListaImagenesName ");
 		setLayout(new BorderLayout());
 		this.panelCentral = panelCentral;
-//		listNombresImagenesComponet = new JList(items);
 		listNombresImagenesComponet = new JList();
 		listNombresImagenesComponet.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listNombresImagenesComponet.setCellRenderer(new ObjetoFilaImagenCellRenderer());
