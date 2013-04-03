@@ -3,6 +3,9 @@ package pe.com.sf.re.fi.analisis.gui;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +18,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 
 import pe.com.sf.re.fi.analisis.gui.componet.CustomPanel;
 
 @SuppressWarnings("serial")
 public class ListaImagenesName extends CustomPanel {
 
-	String[] items = { "Java", "C", "C++", "Lisp", "Perl", "Python" };
 	private JList listNombresImagenesComponet ;
 	private JScrollPane scroller;
 	private JSeparator separdor;
@@ -35,27 +38,28 @@ public class ListaImagenesName extends CustomPanel {
 	private PanelCentral panelCentral;
 
 	public ListaImagenesName(final PanelCentral panelCentral) {
-		_log.info("  cargando ListaImagenesName ");
 		setLayout(new BorderLayout());
-		this.panelCentral = panelCentral;
+		_log.info("  cargando ListaImagenesName ");
 		listNombresImagenesComponet = new JList();
-		listNombresImagenesComponet.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listNombresImagenesComponet.setCellRenderer(new ObjetoFilaImagenCellRenderer());
-//		MouseListener mouseListener = new MouseAdapter() {
-//			public void mouseClicked(MouseEvent mouseEvent) {
-//				if (mouseEvent.getClickCount() == 2) {
-//					int index = listNombresImagenesComponet.locationToIndex(mouseEvent.getPoint());
-//					if (index >= 0) {
-//						o = (ObjetoFilaImagen) listNombresImagenesComponet.getModel().getElementAt(index);
-//						_log.info("Imagen Selecionada on: " + o.getId() + "  - " + o.getImagePath());
-//						panelCentral.mostrarImagenSeleccionada(o.getId());
-//					}
-//				}
-//			}
-//		};
-//		listNombresImagenesComponet.addMouseListener(mouseListener);
 		scroller = new JScrollPane();
 		separdor = new JSeparator();
+		this.panelCentral = panelCentral;
+		
+		listNombresImagenesComponet.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listNombresImagenesComponet.setCellRenderer(new ObjetoFilaImagenCellRenderer());
+		MouseListener mouseListener = new MouseAdapter() {
+			public void mouseClicked(MouseEvent mouseEvent) {
+				if (mouseEvent.getClickCount() == 2) {
+					int index = listNombresImagenesComponet.locationToIndex(mouseEvent.getPoint());
+					if (index >= 0) {
+						o = (ObjetoFilaImagen) listNombresImagenesComponet.getModel().getElementAt(index);
+						_log.info("Imagen Selecionada on: " + o.getId() + "  - " + o.getImagePath());
+						panelCentral.mostrarImagenSeleccionada(o.getId());
+					}
+				}
+			}
+		};
+		listNombresImagenesComponet.addMouseListener(mouseListener);		
 		scroller.setPreferredSize(new Dimension(200, 20));
 		scroller.setMinimumSize(new Dimension(100, 20));
 		scroller.setMaximumSize(new Dimension(600, 2147483647));
@@ -96,9 +100,7 @@ public class ListaImagenesName extends CustomPanel {
 	public void limpiarLista() {
 		_log.info("  limpiar Lista ...");
 		ObjetoFilaImagen[] a = new ObjetoFilaImagen[0] ;
-		listNombresImagenesComponet.setListData(a);
-//		listNombresImagenesComponet.setListData(items);
-		
+		listNombresImagenesComponet.setListData(a);	
 	}
 
 
@@ -110,32 +112,35 @@ class ObjetoFilaImagenCellRenderer extends JLabel implements ListCellRenderer {
 	public ObjetoFilaImagenCellRenderer() {
 		setOpaque(true);
 		setIconTextGap(12);
+		setBackground(UIManager.getColor("List.background"));
 	}
 
 	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 		ObjetoFilaImagen entry = (ObjetoFilaImagen) value;
 		setText(entry.getImagePath());
-//		setBackground(Color.red);
+		if (isSelected) {
+			this.setForeground(UIManager.getColor("List.selectionForeground"));
+			this.setBackground(UIManager.getColor("List.selectionBackground"));
+		}
+		else {
+			this.setForeground(UIManager.getColor("List.foreground"));
+			this.setBackground(UIManager.getColor("List.background"));
+		}				
 		return this;
 	}
 }
 
 class ObjetoFilaImagen {
 	private final Integer id;
-
 	private final String imagePath;
-
 	public ObjetoFilaImagen(Integer id, String imagePath) {
 		this.id = id;
 		this.imagePath = imagePath;
 	}
-
 	public Integer getId() {
 		return id;
 	}
-
 	public String getImagePath() {
 		return imagePath;
 	}
-
 }
