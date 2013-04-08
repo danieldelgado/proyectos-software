@@ -139,7 +139,8 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 
 	@Override
 	public void dropActionChanged(DropTargetDragEvent dtde) {
-		System.out.println("dropActionChanged");	
+		System.out.println("dropActionChanged");
+
 	}
 
 	@Override
@@ -159,9 +160,9 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 				boolean result = false;
 
 //				if (draggingFile) {
-					result = dropFile(transferable);
+//					result = dropFile(transferable);
 //				} else {
-//					result = dropContent(transferable, dtde);
+					result = dropContent(transferable, dtde);
 //				}
 
 				dtde.dropComplete(result);
@@ -174,8 +175,13 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 	}
 
 	protected boolean dropContent(Transferable transferable, DropTargetDropEvent dtde) {
-		
+//		if (!pane.isEditable()) {
+			// Can't drop content on a read-only text control
+//			return false;
+//		}
+
 		try {
+			// Check for a match with the current content type
 			DataFlavor[] flavors = dtde.getCurrentDataFlavors();
 
 			DataFlavor selectedFlavor = null;
@@ -183,6 +189,7 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 			// Look for either plain text or a String.
 			for (int i = 0; i < flavors.length; i++) {
 				DataFlavor flavor = flavors[i];
+//				DnDUtils2.debugPrintln("Drop MIME type " + flavor.getMimeType() + " is available");
 				if (flavor.equals(DataFlavor.plainTextFlavor) || flavor.equals(DataFlavor.stringFlavor)) {
 					selectedFlavor = flavor;
 					break;
@@ -194,9 +201,12 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 				return false;
 			}
 
+//			DnDUtils2.debugPrintln("Selected flavor is " + selectedFlavor.getHumanPresentableName());
+
 			// Get the transferable and then obtain the data
 			Object data = transferable.getTransferData(selectedFlavor);
-			System.out.println(" data :" + data);
+			System.out.println(" data 1 :" + data);
+//			DnDUtils2.debugPrintln("Transfer data type is " + data.getClass().getName());
 
 			String insertData = null;
 			if (data instanceof InputStream) {
@@ -209,8 +219,8 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 					insertData = new String(bytes, charSet);
 				} catch (UnsupportedEncodingException e) {
 					// Use the platform default encoding
-					insertData = new String(bytes);
-					System.out.println(" insertData data catch :" + insertData);
+					insertData = new String(bytes); 
+					System.out.println(" insertData 1 data catch :" + insertData);
 				}
 			} else if (data instanceof String) {
 				// String flavor
@@ -219,6 +229,9 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 			}
 
 			if (insertData != null) {
+//				int selectionStart = pane.getCaretPosition();
+//				pane.replaceSelection(insertData);
+//				pane.select(selectionStart, selectionStart + insertData.length());
 				return true;
 			}
 			return false;

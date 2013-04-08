@@ -269,7 +269,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 
 			// Get the transferable and then obtain the data
 			Object data = transferable.getTransferData(selectedFlavor);
-			System.out.println(" data :" + data);
+			System.out.println(" data 1 :" + data);
 			DnDUtils2.debugPrintln("Transfer data type is " + data.getClass().getName());
 
 			String insertData = null;
@@ -283,8 +283,8 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 					insertData = new String(bytes, charSet);
 				} catch (UnsupportedEncodingException e) {
 					// Use the platform default encoding
-					insertData = new String(bytes);
-					System.out.println(" insertData data catch :" + insertData);
+					insertData = new String(bytes); 
+					System.out.println(" insertData 1 data catch :" + insertData);
 				}
 			} else if (data instanceof String) {
 				// String flavor
