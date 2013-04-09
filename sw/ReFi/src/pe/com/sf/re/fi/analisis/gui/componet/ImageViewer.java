@@ -23,7 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
-public class ImageViewer extends JFrame implements ActionListener , ComponentListener{
+public class ImageViewer extends JFrame implements ActionListener, ComponentListener {
 
 	private int original_width, original_height, bound_width, bound_height;
 	private int new_width, new_height;
@@ -44,7 +44,7 @@ public class ImageViewer extends JFrame implements ActionListener , ComponentLis
 		dimImag = new Dimension();
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		panel.addComponentListener(this);	
+		panel.addComponentListener(this);
 		scroll = new JScrollPane();
 		openItem = new JMenuItem("Open");
 		openItem.addActionListener(this);
@@ -55,9 +55,9 @@ public class ImageViewer extends JFrame implements ActionListener , ComponentLis
 		m.add(exitItem);
 		mbar.add(m);
 		setJMenuBar(mbar);
-		panel.add(label,BorderLayout.CENTER);
+		panel.add(label, BorderLayout.CENTER);
 		scroll.setViewportView(panel);
-		add(scroll,BorderLayout.CENTER);
+		add(scroll, BorderLayout.CENTER);
 	}
 
 	public void getScaledDimension(int original_width, int original_height, int bound_width, int bound_height) {
@@ -98,8 +98,8 @@ public class ImageViewer extends JFrame implements ActionListener , ComponentLis
 					this.img = ImageIO.read(file);
 					this.original_width = img.getWidth(null);
 					this.original_height = img.getHeight(null);
-					this.bound_width = panel.getWidth()-5;
-					this.bound_height = panel.getHeight()-5;
+					this.bound_width = panel.getWidth() - 5;
+					this.bound_height = panel.getHeight() - 5;
 					getScaledDimension(original_width, original_height, bound_width, bound_height);
 					BufferedImage origin = (BufferedImage) img;
 					BufferedImage originalImage = resize(dimImag.width, dimImag.height, origin);
@@ -126,18 +126,18 @@ public class ImageViewer extends JFrame implements ActionListener , ComponentLis
 
 	@Override
 	public void componentHidden(ComponentEvent e) {
-		System.out.println(" componentHidden ");		
+		System.out.println(" componentHidden ");
 	}
 
 	@Override
-	public void componentMoved(ComponentEvent e) {		
+	public void componentMoved(ComponentEvent e) {
 		System.out.println(" componentMoved ");
 	}
 
 	@Override
 	public void componentResized(ComponentEvent e) {
 		System.out.println(" componentResized :" + (count++));
-		if(img!=null){
+		if (img != null) {
 			System.out.println(" resize ");
 			this.bound_width = panel.getWidth();
 			this.bound_height = panel.getHeight();
@@ -145,12 +145,12 @@ public class ImageViewer extends JFrame implements ActionListener , ComponentLis
 			BufferedImage origin = (BufferedImage) this.img;
 			BufferedImage originalImage = resize(dimImag.width, dimImag.height, origin);
 			icon.setImage(originalImage);
-			label.setIcon(icon);			
-		}	
+			label.setIcon(icon);
+		}
 	}
 
 	@Override
-	public void componentShown(ComponentEvent e) {	
-		System.out.println(" componentShown ");	
+	public void componentShown(ComponentEvent e) {
+		System.out.println(" componentShown ");
 	}
 }

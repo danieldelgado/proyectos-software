@@ -37,7 +37,6 @@ public abstract class SwingProceso {
 		this.threadVar = threadVar;
 	}
 
-	
 	protected synchronized Object getValue() {
 		return value;
 	}
@@ -73,7 +72,6 @@ public abstract class SwingProceso {
 			}
 		}
 	}
-
 
 	public void start() {
 		Thread t = threadVar.get();

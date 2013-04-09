@@ -161,7 +161,7 @@ public class PanelNorte extends CustomPanel {
 			}
 		});
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		Object button = e.getSource();
 		if (button == btnSelecionarArchivo) {
@@ -176,12 +176,12 @@ public class PanelNorte extends CustomPanel {
 
 	private void iniciarCargarProgressBar() {
 		if (rutaCarga != null) {
-			obtenerArchivos();			
+			obtenerArchivos();
 		}
 	}
 
 	private void cargarImagenesDescriptivasPanelCentral() {
-		principal.panCentral.cargarImagenesDescriptivas();	
+		principal.panCentral.cargarImagenesDescriptivas();
 		principal.panCentral.desactivarBotonesPanelDerecho();
 		principal.panCentral.activarBtnVista(true);
 	}
@@ -191,18 +191,18 @@ public class PanelNorte extends CustomPanel {
 			if (rutaCarga.isFile()) {
 				lsFiles = new File[1];
 				lsFiles[0] = rutaCarga;
-				cargarArchivosLista(0,1);
+				cargarArchivosLista(0, 1);
 			} else if (rutaCarga.isDirectory()) {
 				lsFiles = rutaCarga.listFiles();
 				if (lsFiles != null && lsFiles.length > 0) {
-					cargarArchivosLista(0,lsFiles.length-1);
+					cargarArchivosLista(0, lsFiles.length - 1);
 				}
 			}
 		}
 	}
-	
+
 	private void cargarArchivosLista(int min, int max) {
-		_log.info(" cargarArchivosLista min : " + min + " max: "+max );
+		_log.info(" cargarArchivosLista min : " + min + " max: " + max);
 		lstArchivos = null;
 		progressBar.setValue(0);
 		progressBar.setMinimum(min);
@@ -213,10 +213,10 @@ public class PanelNorte extends CustomPanel {
 				progressBar.setValue(0);
 				int count = 0;
 				for (int i = 0; i < lsFiles.length; i++) {
-					final int currentValue = (i+1);
-					if (lsFiles[i].canRead() && lsFiles[i].isFile()  && AnalizarArchivoController.extensionPermitida(lsFiles[i]) ) {
+					final int currentValue = (i + 1);
+					if (lsFiles[i].canRead() && lsFiles[i].isFile() && AnalizarArchivoController.extensionPermitida(lsFiles[i])) {
 						lstArchivos.put(count, lsFiles[i]);
-						count++ ;
+						count++;
 					}
 					try {
 						SwingUtilities.invokeLater(new Runnable() {
@@ -229,17 +229,17 @@ public class PanelNorte extends CustomPanel {
 						e.printStackTrace();
 					}
 				}
-				_log.info(" termino la carga de archivos lstArchivos : "+ lstArchivos.size() );
+				_log.info(" termino la carga de archivos lstArchivos : " + lstArchivos.size());
 				if (lstArchivos != null && lstArchivos.size() > 0) {
 					_log.info("cantidad de archvios por leer " + lstArchivos.size());
 					AnalizarArchivoController.lstArchivos = lstArchivos;
 					lstArchivos = null;
-					rutaCarga = null;				
-					lsFiles= null;
+					rutaCarga = null;
+					lsFiles = null;
 					cargarImagenesDescriptivasPanelCentral();
 				}
 			}
-		}).start();		
+		}).start();
 	}
 
 	private void seleccionarDirectorio() {
@@ -336,6 +336,5 @@ public class PanelNorte extends CustomPanel {
 	private void cambiarTitulo(String title) {
 		principal.cambiarTitulo(title);
 	}
-	
-	
+
 }

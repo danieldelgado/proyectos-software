@@ -31,9 +31,9 @@ public class Propes {
 	public static String getProperty(String key) {
 		return properties.getProperty(key);
 	}
-	
-//	public static void main(String[] args) {
-//		System.out.println(Propes.getProperty("dataBaseServer"));
-//	}
+
+	// public static void main(String[] args) {
+	// System.out.println(Propes.getProperty("dataBaseServer"));
+	// }
 
 }

@@ -90,8 +90,7 @@ class PersonListCellRenderer extends JLabel implements ListCellRenderer {
 		if (isSelected) {
 			this.setForeground(UIManager.getColor("List.selectionForeground"));
 			this.setBackground(UIManager.getColor("List.selectionBackground"));
-		}
-		else {
+		} else {
 			this.setForeground(person.getSchriftfarbe());
 			this.setBackground(UIManager.getColor("List.background"));
 		}

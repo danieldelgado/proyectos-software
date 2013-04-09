@@ -3,14 +3,14 @@ package pe.com.sf.re.fi.plugins;
 import pe.com.sf.re.fi.util.Constantes;
 
 public class ThreadInterativo {
-	
+
 	public int maximo;
 	public int procesoActual = 0;
 	public boolean hecho = false;
 	public boolean cancelado = false;
 	public String mensaje;
-	public boolean  start = false;
-	
+	public boolean start = false;
+
 	public void go() {
 		final SwingProceso worker = new SwingProceso() {
 			public Object construct() {
@@ -63,7 +63,7 @@ public class ThreadInterativo {
 
 	public void stop() {
 		cancelado = true;
-		start=false;
+		start = false;
 		mensaje = null;
 	}
 

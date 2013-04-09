@@ -6,8 +6,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-
-
 /**
  * @author SHOCKIE
  */
@@ -18,7 +16,8 @@ public class PanelCarga extends JPanel {
 	}
 
 	private void initComponents() {
-		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		// JFormDesigner - Component initialization - DO NOT MODIFY
+		// //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner Open Source Project license - unknown
 		panel1 = new JPanel();
 		label1 = new JLabel();
@@ -34,13 +33,15 @@ public class PanelCarga extends JPanel {
 		progressBar1.setValue(50);
 		panel1.add(progressBar1, BorderLayout.SOUTH);
 		add(panel1, BorderLayout.CENTER);
-		// JFormDesigner - End of component initialization  //GEN-END:initComponents
+		// JFormDesigner - End of component initialization
+		// //GEN-END:initComponents
 	}
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+	// JFormDesigner - Variables declaration - DO NOT MODIFY
+	// //GEN-BEGIN:variables
 	// Generated using JFormDesigner Open Source Project license - unknown
 	private JPanel panel1;
 	private JLabel label1;
 	private JProgressBar progressBar1;
-	// JFormDesigner - End of variables declaration  //GEN-END:variables
+	// JFormDesigner - End of variables declaration //GEN-END:variables
 }

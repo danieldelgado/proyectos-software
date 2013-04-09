@@ -59,11 +59,11 @@ public class SingleLineFormatter extends Formatter {
 		}
 		sb.append(" - "); // lineSeparator
 
-		String message = formatMessage(record);		
+		String message = formatMessage(record);
 		// Level
 		sb.append(record.getLevel().getLocalizedName());
 		sb.append(":");
-				
+
 		// Indent - the more serious, the more indented.
 		// sb.append( String.format("% ""s") );
 		int iOffset = (1000 - record.getLevel().intValue()) / 100;

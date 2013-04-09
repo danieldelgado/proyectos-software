@@ -42,7 +42,7 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 		_log.info("inicializando app");
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		initComponet();		
+		initComponet();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -54,30 +54,32 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 		if (memoryApp != null) {
 			_log.info("Leyendo temporales...");
 			ancho_pantalla = memoryApp.getAnchoPantalla();
-			_log.info("Ancho pantalla :"+ancho_pantalla+"px");
+			_log.info("Ancho pantalla :" + ancho_pantalla + "px");
 			alto_pantalla = memoryApp.getAltoPantalla();
-			_log.info("Alto pantalla :"+alto_pantalla+"px");
+			_log.info("Alto pantalla :" + alto_pantalla + "px");
 			this.setMinimumSize(new Dimension(ancho_pantalla / 2, alto_pantalla / 2));
 			this.setSize(ancho_pantalla, alto_pantalla);
 			this.setPreferredSize(new Dimension(ancho_pantalla, alto_pantalla));
-			// this.setLocation(ancho_pantalla - (ancho_pantalla/2), alto_pantalla - (alto_pantalla/2));
+			// this.setLocation(ancho_pantalla - (ancho_pantalla/2),
+			// alto_pantalla - (alto_pantalla/2));
 		} else {
 			_log.info("No se encontro temporales, cargando valores por default ...");
-			ancho_pantalla = Toolkit.getDefaultToolkit().getScreenSize().width-150;
-			_log.info("Ancho pantalla :"+ancho_pantalla+"px");
-			alto_pantalla = Toolkit.getDefaultToolkit().getScreenSize().height-150;
-			_log.info("Alto pantalla :"+alto_pantalla+"px");
+			ancho_pantalla = Toolkit.getDefaultToolkit().getScreenSize().width - 150;
+			_log.info("Ancho pantalla :" + ancho_pantalla + "px");
+			alto_pantalla = Toolkit.getDefaultToolkit().getScreenSize().height - 150;
+			_log.info("Alto pantalla :" + alto_pantalla + "px");
 			this.setMinimumSize(new Dimension(ancho_pantalla / 2, alto_pantalla / 2));
 			this.setSize(ancho_pantalla, alto_pantalla);
 			this.setPreferredSize(new Dimension(ancho_pantalla, alto_pantalla));
 			memoryApp = new MemoryApp();
-			// this.setLocation(ancho_pantalla - (ancho_pantalla/2), alto_pantalla - (alto_pantalla/2));
+			// this.setLocation(ancho_pantalla - (ancho_pantalla/2),
+			// alto_pantalla - (alto_pantalla/2));
 		}
 		componetPanels();
 		cargarMemoryApp();
 		this.pack();
 		this.show();// levanta el jframe
-		// this.setVisible(true);// lo hace visible		
+		// this.setVisible(true);// lo hace visible
 	}
 
 	private void componetPanels() {
@@ -173,7 +175,7 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 	}
 
 	public void windowStateChanged(WindowEvent e) {
-		if(e.getNewState() == JFrame.MAXIMIZED_BOTH){
+		if (e.getNewState() == JFrame.MAXIMIZED_BOTH) {
 			System.out.println(" MAXIMIZED_BOTH ");
 		}
 		System.out.println(" windowStateChanged ");

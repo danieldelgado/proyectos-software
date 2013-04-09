@@ -19,30 +19,28 @@ import pe.com.sf.re.fi.util.Propes;
 public class ReFi {
 
 	private final static Logger _log = Logger.getLogger(ReFi.class.getName());
-	
-	static{
-		try{
-			File logProperties = new File("logging.properties");
-			FileInputStream fis = new FileInputStream(logProperties);			
-		    LogManager.getLogManager().readConfiguration(fis);
-			_log.info("Cargando Logging propeties");
-		}
-		catch (final IOException e){
-		    Logger.getAnonymousLogger().severe("No encunetra el  logging.properties file");
-		    Logger.getAnonymousLogger().severe(e.getMessage());
-		}
-	}	
 
-	
+	static {
+		try {
+			File logProperties = new File("logging.properties");
+			FileInputStream fis = new FileInputStream(logProperties);
+			LogManager.getLogManager().readConfiguration(fis);
+			_log.info("Cargando Logging propeties");
+		} catch (final IOException e) {
+			Logger.getAnonymousLogger().severe("No encunetra el  logging.properties file");
+			Logger.getAnonymousLogger().severe(e.getMessage());
+		}
+	}
+
 	public static void main(String[] args) {
-		_log.info("Corriendo Programa "+Propes.getProperty("titulo"));
-//		DefaultLookAndFeelDecoratedif(){
-		JXFrame.setDefaultLookAndFeelDecorated(true);
-		JXDialog.setDefaultLookAndFeelDecorated(true);
-//		}
+		_log.info("Corriendo Programa " + Propes.getProperty("titulo"));
+		// DefaultLookAndFeelDecoratedif(){
+//		JXFrame.setDefaultLookAndFeelDecorated(true);
+//		JXDialog.setDefaultLookAndFeelDecorated(true);
+		// }
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				_log.info("SubstanceLookAndFeel Default "+new BusinessBlackSteelSkin());
+				_log.info("SubstanceLookAndFeel Default " + new BusinessBlackSteelSkin());
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new Principal(Propes.getProperty("titulo"));
 			}

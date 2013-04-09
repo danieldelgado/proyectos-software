@@ -7,11 +7,11 @@ import pe.com.sf.re.fi.util.Constantes;
 
 public class AnalizarArchivoFunction {
 
-	private final static Logger _log = Logger.getLogger(AnalizarArchivoFunction.class.getName()); 
-	
+	private final static Logger _log = Logger.getLogger(AnalizarArchivoFunction.class.getName());
+
 	@SuppressWarnings("unused")
-	public  File obtenerArchivo(String path) throws NullPointerException {
-		_log.info(" obtenerArchivo path : "+path);
+	public File obtenerArchivo(String path) throws NullPointerException {
+		_log.info(" obtenerArchivo path : " + path);
 		if (path != null && path.equals("")) {
 			throw new NullPointerException(" El archivo no existe. 1");
 		}
@@ -20,25 +20,25 @@ public class AnalizarArchivoFunction {
 			throw new NullPointerException(" El archivo no existe. 2");
 		} else if (!archivo.exists()) {
 			throw new NullPointerException(" El archivo no existe. 3");
-		}else if (archivo.isDirectory()) {
+		} else if (archivo.isDirectory()) {
 			throw new NullPointerException(" Es un Directorio ");
 		} else if (archivo.isHidden()) {
 			throw new NullPointerException(" Es un archivo oculto");
-		} else if ( !archivo.canRead()) {
+		} else if (!archivo.canRead()) {
 			throw new NullPointerException(" No se puede leer 1");
-		} else if ( !archivo.canRead()) {
+		} else if (!archivo.canRead()) {
 			throw new NullPointerException(" No se puede leer 2 ");
-		}else if ( !archivo.canRead()) {
+		} else if (!archivo.canRead()) {
 			throw new NullPointerException(" No se puede leer 3");
-		}else if ( archivo.isFile()) {
+		} else if (archivo.isFile()) {
 			return archivo;
 		}
 		return null;
 	}
-	
+
 	@SuppressWarnings("unused")
-	public  File obtenerDirectorio(String path) throws NullPointerException {
-		_log.info(" obtenerDirectorio path : "+path);
+	public File obtenerDirectorio(String path) throws NullPointerException {
+		_log.info(" obtenerDirectorio path : " + path);
 		if (path != null && path.equals("")) {
 			throw new NullPointerException(" El archivo no existe. ");
 		}
@@ -49,13 +49,13 @@ public class AnalizarArchivoFunction {
 			throw new NullPointerException(" Es un Directorio ");
 		} else if (archivo.isHidden()) {
 			throw new NullPointerException(" Es un archivo oculto");
-		} else if ( !archivo.canRead()) {
+		} else if (!archivo.canRead()) {
 			throw new NullPointerException(" No se puede leer");
-		} else if ( !archivo.canRead()) {
+		} else if (!archivo.canRead()) {
 			throw new NullPointerException(" No se puede leer");
-		}else if ( !archivo.canRead()) {
+		} else if (!archivo.canRead()) {
 			throw new NullPointerException(" No se puede leer");
-		}else if ( archivo.isDirectory()) {
+		} else if (archivo.isDirectory()) {
 			return archivo;
 		}
 		return null;
@@ -64,16 +64,16 @@ public class AnalizarArchivoFunction {
 	public boolean extensionPermitida(File file) {
 		String ext = getExtensionArchivo(file);
 		for (int i = 0; i < Constantes.EXTENSIONES_IMAGENES.length; i++) {
-			if(ext.equals(Constantes.EXTENSIONES_IMAGENES[i])){
+			if (ext.equals(Constantes.EXTENSIONES_IMAGENES[i])) {
 				return true;
 			}
-		}		
+		}
 		return false;
 	}
 
 	private String getExtensionArchivo(File file) {
 		String str = file.getName();
-		return str.substring(str.lastIndexOf('.')+1, str.length());
+		return str.substring(str.lastIndexOf('.') + 1, str.length());
 	}
 
 }

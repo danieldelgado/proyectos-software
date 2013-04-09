@@ -39,9 +39,9 @@ import javax.swing.UIManager;
 import pe.com.sf.re.fi.analisis.gui.componet.CustomPanel;
 
 @SuppressWarnings("serial")
-public class ListaImagenesName extends CustomPanel implements DropTargetListener, PropertyChangeListener  {
+public class ListaImagenesName extends CustomPanel implements DropTargetListener, PropertyChangeListener {
 
-	private JList listNombresImagenesComponet ;
+	private JList listNombresImagenesComponet;
 	@SuppressWarnings("unused")
 	private DropTarget dropTarget;
 	private JScrollPane scroller;
@@ -59,11 +59,11 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 		setLayout(new BorderLayout());
 		_log.info("  cargando ListaImagenesName ");
 		listNombresImagenesComponet = new JList();
-		dropTarget = new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, this, true , null);	
+		dropTarget = new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, this, true, null);
 		scroller = new JScrollPane();
 		separdor = new JSeparator();
 		this.panelCentral = panelCentral;
-		
+
 		listNombresImagenesComponet.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listNombresImagenesComponet.setCellRenderer(new ObjetoFilaImagenCellRenderer());
 		MouseListener mouseListener = new MouseAdapter() {
@@ -78,7 +78,7 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 				}
 			}
 		};
-		listNombresImagenesComponet.addMouseListener(mouseListener);	
+		listNombresImagenesComponet.addMouseListener(mouseListener);
 		scroller.setPreferredSize(new Dimension(200, 20));
 		scroller.setMinimumSize(new Dimension(100, 20));
 		scroller.setMaximumSize(new Dimension(600, 2147483647));
@@ -118,8 +118,8 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 
 	public void limpiarLista() {
 		_log.info("  limpiar Lista ...");
-		ObjetoFilaImagen[] a = new ObjetoFilaImagen[0] ;
-		listNombresImagenesComponet.setListData(a);	
+		ObjetoFilaImagen[] a = new ObjetoFilaImagen[0];
+		listNombresImagenesComponet.setListData(a);
 	}
 
 	@Override
@@ -129,12 +129,12 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 
 	@Override
 	public void dragEnter(DropTargetDragEvent dtde) {
-		System.out.println("dragEnter");	
+		System.out.println("dragEnter");
 	}
 
 	@Override
 	public void dragOver(DropTargetDragEvent dtde) {
-		System.out.println("DropTargetDragEvent");	
+		System.out.println("DropTargetDragEvent");
 	}
 
 	@Override
@@ -145,11 +145,11 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 
 	@Override
 	public void dragExit(DropTargetEvent dte) {
-		System.out.println("dragExit");	
+		System.out.println("dragExit");
 	}
 
 	@Override
-	public void drop(DropTargetDropEvent dtde) {		
+	public void drop(DropTargetDropEvent dtde) {
 		// Check the drop action
 		if ((dtde.getDropAction() & DnDConstants.ACTION_COPY_OR_MOVE) != 0) {
 			// Accept the drop and get the transfer data
@@ -159,15 +159,15 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 			try {
 				boolean result = false;
 
-//				if (draggingFile) {
-//					result = dropFile(transferable);
-//				} else {
-					result = dropContent(transferable, dtde);
-//				}
+				// if (draggingFile) {
+				// result = dropFile(transferable);
+				// } else {
+				result = dropContent(transferable, dtde);
+				// }
 
 				dtde.dropComplete(result);
 			} catch (Exception e) {
-//				dtde.rejectDrop();
+				// dtde.rejectDrop();
 			}
 		} else {
 			dtde.dropComplete(false);
@@ -175,10 +175,10 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 	}
 
 	protected boolean dropContent(Transferable transferable, DropTargetDropEvent dtde) {
-//		if (!pane.isEditable()) {
-			// Can't drop content on a read-only text control
-//			return false;
-//		}
+		// if (!pane.isEditable()) {
+		// Can't drop content on a read-only text control
+		// return false;
+		// }
 
 		try {
 			// Check for a match with the current content type
@@ -189,7 +189,8 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 			// Look for either plain text or a String.
 			for (int i = 0; i < flavors.length; i++) {
 				DataFlavor flavor = flavors[i];
-//				DnDUtils2.debugPrintln("Drop MIME type " + flavor.getMimeType() + " is available");
+				// DnDUtils2.debugPrintln("Drop MIME type " +
+				// flavor.getMimeType() + " is available");
 				if (flavor.equals(DataFlavor.plainTextFlavor) || flavor.equals(DataFlavor.stringFlavor)) {
 					selectedFlavor = flavor;
 					break;
@@ -201,12 +202,14 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 				return false;
 			}
 
-//			DnDUtils2.debugPrintln("Selected flavor is " + selectedFlavor.getHumanPresentableName());
+			// DnDUtils2.debugPrintln("Selected flavor is " +
+			// selectedFlavor.getHumanPresentableName());
 
 			// Get the transferable and then obtain the data
 			Object data = transferable.getTransferData(selectedFlavor);
 			System.out.println(" data 1 :" + data);
-//			DnDUtils2.debugPrintln("Transfer data type is " + data.getClass().getName());
+			// DnDUtils2.debugPrintln("Transfer data type is " +
+			// data.getClass().getName());
 
 			String insertData = null;
 			if (data instanceof InputStream) {
@@ -219,7 +222,7 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 					insertData = new String(bytes, charSet);
 				} catch (UnsupportedEncodingException e) {
 					// Use the platform default encoding
-					insertData = new String(bytes); 
+					insertData = new String(bytes);
 					System.out.println(" insertData 1 data catch :" + insertData);
 				}
 			} else if (data instanceof String) {
@@ -229,9 +232,10 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 			}
 
 			if (insertData != null) {
-//				int selectionStart = pane.getCaretPosition();
-//				pane.replaceSelection(insertData);
-//				pane.select(selectionStart, selectionStart + insertData.length());
+				// int selectionStart = pane.getCaretPosition();
+				// pane.replaceSelection(insertData);
+				// pane.select(selectionStart, selectionStart +
+				// insertData.length());
 				return true;
 			}
 			return false;
@@ -239,12 +243,12 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 			return false;
 		}
 	}
-	
+
 	protected boolean dropFile(Transferable transferable) throws IOException, UnsupportedFlavorException, MalformedURLException {
 		List fileList = (List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
 		File transferFile = (File) fileList.get(0);
 		final URL transferURL = transferFile.toURL();
-		System.out.println(" pane.setPage(transferURL) transferURL:"+transferURL);
+		System.out.println(" pane.setPage(transferURL) transferURL:" + transferURL);
 		return true;
 	}
 
@@ -265,27 +269,28 @@ class ObjetoFilaImagenCellRenderer extends JLabel implements ListCellRenderer {
 		if (isSelected) {
 			this.setForeground(UIManager.getColor("List.selectionForeground"));
 			this.setBackground(UIManager.getColor("List.selectionBackground"));
-		}
-		else {
+		} else {
 			this.setForeground(UIManager.getColor("List.foreground"));
 			this.setBackground(UIManager.getColor("List.background"));
-		}				
+		}
 		return this;
 	}
 }
 
 class ObjetoFilaImagen {
-	
+
 	private final Integer id;
 	private final String imagePath;
-	
+
 	public ObjetoFilaImagen(Integer id, String imagePath) {
 		this.id = id;
 		this.imagePath = imagePath;
 	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public String getImagePath() {
 		return imagePath;
 	}

@@ -10,20 +10,20 @@ import pe.com.sf.re.fi.util.Constantes;
 
 public class LeerMemoryApp {
 	private final static Logger _log = Logger.getLogger(LeerMemoryApp.class.getName());
-		
-	public static MemoryApp leerMemoryApp(){
+
+	public static MemoryApp leerMemoryApp() {
 		_log.info("cargando temporales...");
 		MemoryApp mapp = null;
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
 		try {
-			File f= new File(Constantes.FILE_MemoryApp);
-			if(f.exists()){
+			File f = new File(Constantes.FILE_MemoryApp);
+			if (f.exists()) {
 				fis = new FileInputStream(f);
 				in = new ObjectInputStream(fis);
-				mapp =  (MemoryApp) in.readObject();
+				mapp = (MemoryApp) in.readObject();
 				in.close();
-			}		
+			}
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} catch (ClassNotFoundException ex) {
@@ -31,6 +31,5 @@ public class LeerMemoryApp {
 		}
 		return mapp;
 	}
-	
 
 }

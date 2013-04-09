@@ -40,7 +40,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 public class EditorDropTarget4 implements DropTargetListener, PropertyChangeListener {
-	
+
 	protected JEditorPane pane;
 
 	protected DropTarget dropTarget;
@@ -54,7 +54,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 	protected boolean changingBackground;
 
 	protected static final Color feedbackColor = Color.gray;
-	
+
 	public EditorDropTarget4(JEditorPane pane) {
 		this.pane = pane;
 
@@ -161,7 +161,8 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 		int sourceActions = dtde.getSourceActions();
 		boolean acceptedDrag = false;
 
-		DnDUtils2.debugPrintln("\tSource actions are " + DnDUtils2.showActions(sourceActions) + ", drop action is " + DnDUtils2.showActions(dropAction));
+		DnDUtils2.debugPrintln("\tSource actions are " + DnDUtils2.showActions(sourceActions) + ", drop action is "
+				+ DnDUtils2.showActions(dropAction));
 
 		// Reject if the object being transferred
 		// or the operations available are not acceptable.
@@ -202,7 +203,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 				// Dragging text - move the insertion cursor
 				Point location = dtde.getLocation();
 				pane.getCaret().setVisible(true);
-				System.out.println("pane.viewToModel(location):"+pane.viewToModel(location));
+				System.out.println("pane.viewToModel(location):" + pane.viewToModel(location));
 				pane.setCaretPosition(pane.viewToModel(location));
 			} else {
 				pane.getCaret().setVisible(false);
@@ -231,7 +232,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 		File transferFile = (File) fileList.get(0);
 		final URL transferURL = transferFile.toURL();
 		DnDUtils2.debugPrintln("File URL is " + transferURL);
-		System.out.println(" pane.setPage(transferURL) transferURL:"+transferURL);
+		System.out.println(" pane.setPage(transferURL) transferURL:" + transferURL);
 		pane.setPage(transferURL);
 
 		return true;
@@ -283,7 +284,7 @@ public class EditorDropTarget4 implements DropTargetListener, PropertyChangeList
 					insertData = new String(bytes, charSet);
 				} catch (UnsupportedEncodingException e) {
 					// Use the platform default encoding
-					insertData = new String(bytes); 
+					insertData = new String(bytes);
 					System.out.println(" insertData 1 data catch :" + insertData);
 				}
 			} else if (data instanceof String) {
@@ -383,7 +384,8 @@ class DnDUtils2 {
 		}
 	}
 
-	private static boolean debugEnabled = true;//(System.getProperty("DnDExamples.debug") != null);
+	private static boolean debugEnabled = true;// (System.getProperty("DnDExamples.debug")
+												// != null);
 }
 
 class AutoScrollingEditorPane extends JEditorPane implements Autoscroll {
@@ -406,7 +408,8 @@ class AutoScrollingEditorPane extends JEditorPane implements Autoscroll {
 	public Insets getAutoscrollInsets() {
 		Rectangle r = getVisibleRect();
 		Dimension size = getSize();
-		Insets i = new Insets(r.y + scrollInsets.top, r.x + scrollInsets.left, size.height - r.y - r.height + scrollInsets.bottom, size.width - r.x - r.width + scrollInsets.right);
+		Insets i = new Insets(r.y + scrollInsets.top, r.x + scrollInsets.left, size.height - r.y - r.height + scrollInsets.bottom, size.width - r.x
+				- r.width + scrollInsets.right);
 		return i;
 	}
 

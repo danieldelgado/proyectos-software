@@ -90,7 +90,8 @@ public class PanelDropTarget implements DropTargetListener {
 		int sourceActions = dtde.getSourceActions();
 		boolean acceptedDrag = false;
 
-		DnDUtils3.debugPrintln("\tSource actions are " + DnDUtils3.showActions(sourceActions) + ", drop action is " + DnDUtils3.showActions(dropAction));
+		DnDUtils3.debugPrintln("\tSource actions are " + DnDUtils3.showActions(sourceActions) + ", drop action is "
+				+ DnDUtils3.showActions(dropAction));
 
 		// Reject if the object being transferred
 		// or the operations available are not acceptable.

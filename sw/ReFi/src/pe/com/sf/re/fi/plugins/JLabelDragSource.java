@@ -21,172 +21,165 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 
-public class JLabelDragSource implements DragGestureListener,
-    DragSourceListener {
-  public JLabelDragSource(JLabel label) {
-    this.label = label;
+public class JLabelDragSource implements DragGestureListener, DragSourceListener {
+	public JLabelDragSource(JLabel label) {
+		this.label = label;
 
-    // Use the default DragSource
-    DragSource dragSource = DragSource.getDefaultDragSource();
+		// Use the default DragSource
+		DragSource dragSource = DragSource.getDefaultDragSource();
 
-    // Create a DragGestureRecognizer and
-    // register as the listener
-    dragSource.createDefaultDragGestureRecognizer(label,
-        DnDConstants.ACTION_COPY_OR_MOVE, this);
-  }
+		// Create a DragGestureRecognizer and
+		// register as the listener
+		dragSource.createDefaultDragGestureRecognizer(label, DnDConstants.ACTION_COPY_OR_MOVE, this);
+	}
 
-  // Implementation of DragGestureListener interface.
-  public void dragGestureRecognized(DragGestureEvent dge) {
-    if (DnDUtils3.isDebugEnabled()) {
-      DnDUtils3.debugPrintln("Initiating event is "
-          + dge.getTriggerEvent());
-      DnDUtils3.debugPrintln("Complete event set is:");
-      Iterator iter = dge.iterator();
-      while (iter.hasNext()) {
-        DnDUtils3.debugPrintln("\t" + iter.next());
-      }
-    }
-    Transferable transferable = new JLabelTransferable(label);
-    dge.startDrag(null, transferable, this);
-  }
+	// Implementation of DragGestureListener interface.
+	public void dragGestureRecognized(DragGestureEvent dge) {
+		if (DnDUtils3.isDebugEnabled()) {
+			DnDUtils3.debugPrintln("Initiating event is " + dge.getTriggerEvent());
+			DnDUtils3.debugPrintln("Complete event set is:");
+			Iterator iter = dge.iterator();
+			while (iter.hasNext()) {
+				DnDUtils3.debugPrintln("\t" + iter.next());
+			}
+		}
+		Transferable transferable = new JLabelTransferable(label);
+		dge.startDrag(null, transferable, this);
+	}
 
-  // Implementation of DragSourceListener interface
-  public void dragEnter(DragSourceDragEvent dsde) {
-    DnDUtils3.debugPrintln("Drag Source: dragEnter, drop action = "
-        + DnDUtils3.showActions(dsde.getDropAction()));
-  }
+	// Implementation of DragSourceListener interface
+	public void dragEnter(DragSourceDragEvent dsde) {
+		DnDUtils3.debugPrintln("Drag Source: dragEnter, drop action = " + DnDUtils3.showActions(dsde.getDropAction()));
+	}
 
-  public void dragOver(DragSourceDragEvent dsde) {
-    DnDUtils3.debugPrintln("Drag Source: dragOver, drop action = "
-        + DnDUtils3.showActions(dsde.getDropAction()));
-  }
+	public void dragOver(DragSourceDragEvent dsde) {
+		DnDUtils3.debugPrintln("Drag Source: dragOver, drop action = " + DnDUtils3.showActions(dsde.getDropAction()));
+	}
 
-  public void dragExit(DragSourceEvent dse) {
-    DnDUtils3.debugPrintln("Drag Source: dragExit");
-  }
+	public void dragExit(DragSourceEvent dse) {
+		DnDUtils3.debugPrintln("Drag Source: dragExit");
+	}
 
-  public void dropActionChanged(DragSourceDragEvent dsde) {
-    DnDUtils3.debugPrintln("Drag Source: dropActionChanged, drop action = "
-        + DnDUtils3.showActions(dsde.getDropAction()));
-  }
+	public void dropActionChanged(DragSourceDragEvent dsde) {
+		DnDUtils3.debugPrintln("Drag Source: dropActionChanged, drop action = " + DnDUtils3.showActions(dsde.getDropAction()));
+	}
 
-  public void dragDropEnd(DragSourceDropEvent dsde) {
-    DnDUtils3.debugPrintln("Drag Source: drop completed, drop action = "
-        + DnDUtils3.showActions(dsde.getDropAction()) + ", success: "
-        + dsde.getDropSuccess());
-  }
+	public void dragDropEnd(DragSourceDropEvent dsde) {
+		DnDUtils3.debugPrintln("Drag Source: drop completed, drop action = " + DnDUtils3.showActions(dsde.getDropAction()) + ", success: "
+				+ dsde.getDropSuccess());
+	}
 
-  public static void main(String[] args) {
-    try {
-        UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-    } catch (Exception evt) {}
-  
-    JFrame f = new JFrame("Draggable JLabel");
-    JLabel label = new JLabel("Drag this text", JLabel.CENTER);
-    label.setFont(new Font("Serif", Font.BOLD, 32));
-    f.getContentPane().add(label);
-    f.pack();
-    f.setVisible(true);
+	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Exception evt) {
+		}
 
-    // Attach the drag source
-    JLabelDragSource dragSource = new JLabelDragSource(label);
-  }
+		JFrame f = new JFrame("Draggable JLabel");
+		JLabel label = new JLabel("Drag this text", JLabel.CENTER);
+		label.setFont(new Font("Serif", Font.BOLD, 32));
+		f.getContentPane().add(label);
+		f.pack();
+		f.setVisible(true);
 
-  protected JLabel label; // The associated JLabel
+		// Attach the drag source
+		JLabelDragSource dragSource = new JLabelDragSource(label);
+	}
+
+	protected JLabel label; // The associated JLabel
 }
 
 class DnDUtils2 {
-  public static String showActions(int action) {
-    String actions = "";
-    if ((action & (DnDConstants.ACTION_LINK | DnDConstants.ACTION_COPY_OR_MOVE)) == 0) {
-      return "None";
-    }
+	public static String showActions(int action) {
+		String actions = "";
+		if ((action & (DnDConstants.ACTION_LINK | DnDConstants.ACTION_COPY_OR_MOVE)) == 0) {
+			return "None";
+		}
 
-    if ((action & DnDConstants.ACTION_COPY) != 0) {
-      actions += "Copy ";
-    }
+		if ((action & DnDConstants.ACTION_COPY) != 0) {
+			actions += "Copy ";
+		}
 
-    if ((action & DnDConstants.ACTION_MOVE) != 0) {
-      actions += "Move ";
-    }
+		if ((action & DnDConstants.ACTION_MOVE) != 0) {
+			actions += "Move ";
+		}
 
-    if ((action & DnDConstants.ACTION_LINK) != 0) {
-      actions += "Link";
-    }
+		if ((action & DnDConstants.ACTION_LINK) != 0) {
+			actions += "Link";
+		}
 
-    return actions;
-  }
+		return actions;
+	}
 
-  public static boolean isDebugEnabled() {
-    return debugEnabled;
-  }
+	public static boolean isDebugEnabled() {
+		return debugEnabled;
+	}
 
-  public static void debugPrintln(String s) {
-    if (debugEnabled) {
-      System.out.println(s);
-    }
-  }
+	public static void debugPrintln(String s) {
+		if (debugEnabled) {
+			System.out.println(s);
+		}
+	}
 
-  private static boolean debugEnabled = true;//(System .getProperty("DnDExamples.debug") != null);
+	private static boolean debugEnabled = true;// (System
+												// .getProperty("DnDExamples.debug")
+												// != null);
 }
 
 class JLabelTransferable implements Transferable {
-  public JLabelTransferable(JLabel label) {
-    this.label = label;
-  }
+	public JLabelTransferable(JLabel label) {
+		this.label = label;
+	}
 
-  // Implementation of the Transferable interface
-  public DataFlavor[] getTransferDataFlavors() {
-    return flavors;
-  }
+	// Implementation of the Transferable interface
+	public DataFlavor[] getTransferDataFlavors() {
+		return flavors;
+	}
 
-  public boolean isDataFlavorSupported(DataFlavor fl) {
-    for (int i = 0; i < flavors.length; i++) {
-      if (fl.equals(flavors[i])) {
-        return true;
-      }
-    }
+	public boolean isDataFlavorSupported(DataFlavor fl) {
+		for (int i = 0; i < flavors.length; i++) {
+			if (fl.equals(flavors[i])) {
+				return true;
+			}
+		}
 
-    return false;
-  }
+		return false;
+	}
 
-  public Object getTransferData(DataFlavor fl) {
-    if (!isDataFlavorSupported(fl)) {
-      return null;
-    }
+	public Object getTransferData(DataFlavor fl) {
+		if (!isDataFlavorSupported(fl)) {
+			return null;
+		}
 
-    if (fl.equals(DataFlavor.stringFlavor)) {
-      // String - return the text as a String
-      return label.getText() + " (DataFlavor.stringFlavor)";
-    } else if (fl.equals(jLabelFlavor)) {
-      // The JLabel itself - just return the label.
-      return label;
-    } else {
-      // Plain text - return an InputStream
-      try {
-        String targetText = label.getText() + " (plain text flavor)";
-        int length = targetText.length();
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        OutputStreamWriter w = new OutputStreamWriter(os);
-        w.write(targetText, 0, length);
-        w.flush();
-        byte[] bytes = os.toByteArray();
-        w.close();
-        return new ByteArrayInputStream(bytes);
-      } catch (IOException e) {
-        return null;
-      }
-    }
-  }
+		if (fl.equals(DataFlavor.stringFlavor)) {
+			// String - return the text as a String
+			return label.getText() + " (DataFlavor.stringFlavor)";
+		} else if (fl.equals(jLabelFlavor)) {
+			// The JLabel itself - just return the label.
+			return label;
+		} else {
+			// Plain text - return an InputStream
+			try {
+				String targetText = label.getText() + " (plain text flavor)";
+				int length = targetText.length();
+				ByteArrayOutputStream os = new ByteArrayOutputStream();
+				OutputStreamWriter w = new OutputStreamWriter(os);
+				w.write(targetText, 0, length);
+				w.flush();
+				byte[] bytes = os.toByteArray();
+				w.close();
+				return new ByteArrayInputStream(bytes);
+			} catch (IOException e) {
+				return null;
+			}
+		}
+	}
 
-  // A flavor that transfers a copy of the JLabel
-  public static final DataFlavor jLabelFlavor = new DataFlavor(JLabel.class,
-      "Swing JLabel");
+	// A flavor that transfers a copy of the JLabel
+	public static final DataFlavor jLabelFlavor = new DataFlavor(JLabel.class, "Swing JLabel");
 
-  private JLabel label; // The label being transferred
+	private JLabel label; // The label being transferred
 
-  private static final DataFlavor[] flavors = new DataFlavor[] {
-      DataFlavor.stringFlavor,
-      new DataFlavor("text/plain; charset=ascii", "ASCII text"),
-      jLabelFlavor };
+	private static final DataFlavor[] flavors = new DataFlavor[] { DataFlavor.stringFlavor,
+			new DataFlavor("text/plain; charset=ascii", "ASCII text"), jLabelFlavor };
 }

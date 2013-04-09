@@ -11,8 +11,8 @@ public class MagCursor {
 	/*
 	 * steps for this new hack
 	 * 
-	 * create bitmap w/ mag glass on it set custom cursor do overlay drawing of dimensions restrict
-	 * drawing based on cursor location (clip rect)
+	 * create bitmap w/ mag glass on it set custom cursor do overlay drawing of
+	 * dimensions restrict drawing based on cursor location (clip rect)
 	 */
 
 	public static void main(String[] args) {

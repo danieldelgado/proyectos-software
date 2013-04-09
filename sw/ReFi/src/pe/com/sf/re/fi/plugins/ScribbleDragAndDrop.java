@@ -48,13 +48,16 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 
 /**
- * This component can operate in two modes. In "draw mode", it allows the user to scribble with the
- * mouse. In "drag mode", it allows the user to drag scribbles with the mouse. Regardless of the
- * mode, it always allows scribbles to be dropped on it from other applications.
+ * This component can operate in two modes. In "draw mode", it allows the user
+ * to scribble with the mouse. In "drag mode", it allows the user to drag
+ * scribbles with the mouse. Regardless of the mode, it always allows scribbles
+ * to be dropped on it from other applications.
  */
 public class ScribbleDragAndDrop extends JComponent implements DragGestureListener, // For
 																					// recognizing
-																					// the start of
+																					// the
+																					// start
+																					// of
 																					// drags
 		DragSourceListener, // For processing drag source events
 		DropTargetListener, // For processing drop target events
@@ -129,8 +132,9 @@ public class ScribbleDragAndDrop extends JComponent implements DragGestureListen
 	}
 
 	/**
-	 * This method, and the following four methods are from the MouseListener interface. If we're in
-	 * drawing mode, this method handles mouse down events and starts a new scribble.
+	 * This method, and the following four methods are from the MouseListener
+	 * interface. If we're in drawing mode, this method handles mouse down
+	 * events and starts a new scribble.
 	 */
 	public void mousePressed(MouseEvent e) {
 		if (dragMode)
@@ -153,8 +157,9 @@ public class ScribbleDragAndDrop extends JComponent implements DragGestureListen
 	}
 
 	/**
-	 * This method and mouseMoved() below are from the MouseMotionListener interface. If we're in
-	 * drawing mode, this method adds a new point to the current scribble and requests a redraw
+	 * This method and mouseMoved() below are from the MouseMotionListener
+	 * interface. If we're in drawing mode, this method adds a new point to the
+	 * current scribble and requests a redraw
 	 */
 	public void mouseDragged(MouseEvent e) {
 		if (dragMode)
@@ -167,10 +172,11 @@ public class ScribbleDragAndDrop extends JComponent implements DragGestureListen
 	}
 
 	/**
-	 * This method implements the DragGestureListener interface. It will be invoked when the
-	 * DragGestureRecognizer thinks that the user has initiated a drag. If we're not in drawing
-	 * mode, then this method will try to figure out which Scribble object is being dragged, and
-	 * will initiate a drag on that object.
+	 * This method implements the DragGestureListener interface. It will be
+	 * invoked when the DragGestureRecognizer thinks that the user has initiated
+	 * a drag. If we're not in drawing mode, then this method will try to figure
+	 * out which Scribble object is being dragged, and will initiate a drag on
+	 * that object.
 	 */
 	public void dragGestureRecognized(DragGestureEvent e) {
 		// Don't drag if we're not in drag mode
@@ -241,10 +247,11 @@ public class ScribbleDragAndDrop extends JComponent implements DragGestureListen
 	}
 
 	/**
-	 * This method, and the four unused methods that follow it implement the DragSourceListener
-	 * interface. dragDropEnd() is invoked when the user drops the scribble she was dragging. If the
-	 * drop was successful, and if the user did a "move" rather than a "copy", then we delete the
-	 * dragged scribble from the list of scribbles to draw.
+	 * This method, and the four unused methods that follow it implement the
+	 * DragSourceListener interface. dragDropEnd() is invoked when the user
+	 * drops the scribble she was dragging. If the drop was successful, and if
+	 * the user did a "move" rather than a "copy", then we delete the dragged
+	 * scribble from the list of scribbles to draw.
 	 */
 	public void dragDropEnd(DragSourceDropEvent e) {
 		if (!e.getDropSuccess())
@@ -276,9 +283,10 @@ public class ScribbleDragAndDrop extends JComponent implements DragGestureListen
 	// The next five methods implement DropTargetListener
 
 	/**
-	 * This method is invoked when the user first drags something over us. If we understand the data
-	 * type being dragged, then call acceptDrag() to tell the system that we're receptive. Also, we
-	 * change our border as a "drag under" effect to signal that we can accept the drop.
+	 * This method is invoked when the user first drags something over us. If we
+	 * understand the data type being dragged, then call acceptDrag() to tell
+	 * the system that we're receptive. Also, we change our border as a
+	 * "drag under" effect to signal that we can accept the drop.
 	 */
 	public void dragEnter(DropTargetDragEvent e) {
 		if (e.isDataFlavorSupported(Scribble.scribbleDataFlavor) || e.isDataFlavorSupported(DataFlavor.stringFlavor)) {
@@ -293,8 +301,8 @@ public class ScribbleDragAndDrop extends JComponent implements DragGestureListen
 	}
 
 	/**
-	 * This is the key method of DropTargetListener. It is invoked when the user drops something on
-	 * us.
+	 * This is the key method of DropTargetListener. It is invoked when the user
+	 * drops something on us.
 	 */
 	public void drop(DropTargetDropEvent e) {
 		this.setBorder(normalBorder); // Restore the default border
@@ -344,8 +352,8 @@ public class ScribbleDragAndDrop extends JComponent implements DragGestureListen
 	}
 
 	/**
-	 * The main method. Creates a simple application using this class. Note the buttons for
-	 * switching between draw mode and drag mode.
+	 * The main method. Creates a simple application using this class. Note the
+	 * buttons for switching between draw mode and drag mode.
 	 */
 	public static void main(String[] args) {
 		// Create a frame and put a scribble pane in it
@@ -398,8 +406,8 @@ class Scribble implements Shape, Transferable, Serializable, Cloneable {
 	double minY = Double.POSITIVE_INFINITY;
 
 	/**
-	 * Begin a new polyline at (x,y). Note the use of Double.NaN in the points array to mark the
-	 * beginning of a new polyline
+	 * Begin a new polyline at (x,y). Note the use of Double.NaN in the points
+	 * array to mark the beginning of a new polyline
 	 */
 	public void moveto(double x, double y) {
 		if (numPoints + 3 > points.length)
@@ -495,8 +503,8 @@ class Scribble implements Shape, Transferable, Serializable, Cloneable {
 	}
 
 	/**
-	 * Create a new Scribble object and initialize it by parsing a string of coordinate data in the
-	 * format produced by toString()
+	 * Create a new Scribble object and initialize it by parsing a string of
+	 * coordinate data in the format produced by toString()
 	 */
 	public static Scribble parse(String s) throws NumberFormatException {
 		StringTokenizer st = new StringTokenizer(s);
@@ -542,8 +550,8 @@ class Scribble implements Shape, Transferable, Serializable, Cloneable {
 	}
 
 	/**
-	 * Determine if the scribble intersects the specified rectangle by testing each line segment
-	 * individually
+	 * Determine if the scribble intersects the specified rectangle by testing
+	 * each line segment individually
 	 */
 	public boolean intersects(Rectangle2D r) {
 		if (numPoints < 4)
@@ -588,9 +596,9 @@ class Scribble implements Shape, Transferable, Serializable, Cloneable {
 	}
 
 	/**
-	 * This inner class implements the PathIterator interface to describe the shape of a scribble.
-	 * Since a Scribble is composed of arbitrary movetos and linetos, we simply return their
-	 * coordinates
+	 * This inner class implements the PathIterator interface to describe the
+	 * shape of a scribble. Since a Scribble is composed of arbitrary movetos
+	 * and linetos, we simply return their coordinates
 	 */
 	public class ScribbleIterator implements PathIterator {
 		protected int i = 0; // Position in array
@@ -680,8 +688,8 @@ class Scribble implements Shape, Transferable, Serializable, Cloneable {
 	}
 
 	/**
-	 * Return the scribble data in the requested format, or throw an exception if we don't support
-	 * the requested format
+	 * Return the scribble data in the requested format, or throw an exception
+	 * if we don't support the requested format
 	 */
 	public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException {
 		if (flavor.equals(scribbleDataFlavor)) {
