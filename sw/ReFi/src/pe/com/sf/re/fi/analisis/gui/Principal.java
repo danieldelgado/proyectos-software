@@ -19,6 +19,7 @@ import javax.swing.SwingUtilities;
 import org.jdesktop.swingx.JXFrame;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 
+import pe.com.sf.re.fi.main.ReFi;
 import pe.com.sf.re.fi.memory.GuardarMemoryApp;
 import pe.com.sf.re.fi.memory.LeerMemoryApp;
 import pe.com.sf.re.fi.memory.MemoryApp;
@@ -91,6 +92,7 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 		_log.info("Termino cargar panel central");
 		this.add(panNorte, BorderLayout.NORTH);
 		this.add(panCentral, BorderLayout.CENTER);
+		ReFi.terminarCargar();
 	}
 
 	public void cambiarTitulo(String title) {

@@ -8,20 +8,24 @@ import java.util.logging.Logger;
 
 import javax.swing.SwingUtilities;
 
-import org.jdesktop.swingx.JXDialog;
-import org.jdesktop.swingx.JXFrame;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.BusinessBlackSteelSkin;
 
+import pe.com.sf.re.fi.analisis.gui.CargaApp;
 import pe.com.sf.re.fi.analisis.gui.Principal;
 import pe.com.sf.re.fi.util.Propes;
 
 public class ReFi {
 
 	private final static Logger _log = Logger.getLogger(ReFi.class.getName());
-
+	private static CargaApp dlg = new CargaApp(null, "Cargando Programa " + Propes.getProperty("titulo"));
 	static {
 		try {
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					dlg.cargar();		
+				}
+			});			
 			File logProperties = new File("logging.properties");
 			FileInputStream fis = new FileInputStream(logProperties);
 			LogManager.getLogManager().readConfiguration(fis);
@@ -30,6 +34,11 @@ public class ReFi {
 			Logger.getAnonymousLogger().severe("No encunetra el  logging.properties file");
 			Logger.getAnonymousLogger().severe(e.getMessage());
 		}
+	}
+	
+	public static void terminarCargar(){
+		dlg.terminarCarga();
+		dlg = null ;
 	}
 
 	public static void main(String[] args) {
