@@ -148,7 +148,7 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 	public void drop(DropTargetDropEvent dtde) {
 
 		System.out.println(" drop : ");
-		System.out.println(" dtde.getDropAction()  : "+dtde.getDropAction() );
+		System.out.println(" dtde.getDropAction()  : " + dtde.getDropAction());
 		// Check the drop action
 		if ((dtde.getDropAction() & DnDConstants.ACTION_COPY_OR_MOVE) != 0) {
 			// Accept the drop and get the transfer data
@@ -160,12 +160,12 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 			try {
 				boolean result = false;
 
-//				if (draggingFile) {
-//					result = dropFile(transferable);
-//				} else {
+				// if (draggingFile) {
+				// result = dropFile(transferable);
+				// } else {
 				System.out.println(" transferable : " + transferable);
-					result = dropContent(transferable, dtde);
-//				}
+				result = dropContent(transferable, dtde);
+				// }
 
 				dtde.dropComplete(result);
 			} catch (Exception e) {
@@ -175,12 +175,12 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 			dtde.dropComplete(false);
 		}
 	}
-	
+
 	protected boolean dropContent(Transferable transferable, DropTargetDropEvent dtde) {
-//		if (!pane.isEditable()) {
-//			// Can't drop content on a read-only text control
-//			return false;
-//		}
+		// if (!pane.isEditable()) {
+		// // Can't drop content on a read-only text control
+		// return false;
+		// }
 		System.out.println(" dropContent  ");
 		try {
 			// Check for a match with the current content type
@@ -191,7 +191,8 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 			// Look for either plain text or a String.
 			for (int i = 0; i < flavors.length; i++) {
 				DataFlavor flavor = flavors[i];
-//				DnDUtils2.debugPrintln("Drop MIME type " + flavor.getMimeType() + " is available");
+				// DnDUtils2.debugPrintln("Drop MIME type " +
+				// flavor.getMimeType() + " is available");
 				if (flavor.equals(DataFlavor.plainTextFlavor) || flavor.equals(DataFlavor.stringFlavor)) {
 					selectedFlavor = flavor;
 					break;
@@ -204,12 +205,14 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 				return false;
 			}
 
-//			DnDUtils2.debugPrintln("Selected flavor is " + selectedFlavor.getHumanPresentableName());
+			// DnDUtils2.debugPrintln("Selected flavor is " +
+			// selectedFlavor.getHumanPresentableName());
 
 			// Get the transferable and then obtain the data
 			Object data = transferable.getTransferData(selectedFlavor);
 			System.out.println(" data 1 :" + data);
-//			DnDUtils2.debugPrintln("Transfer data type is " + data.getClass().getName());
+			// DnDUtils2.debugPrintln("Transfer data type is " +
+			// data.getClass().getName());
 
 			String insertData = null;
 			if (data instanceof InputStream) {
@@ -232,9 +235,10 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 			}
 
 			if (insertData != null) {
-//				int selectionStart = pane.getCaretPosition();
-//				pane.replaceSelection(insertData);
-//				pane.select(selectionStart, selectionStart + insertData.length());
+				// int selectionStart = pane.getCaretPosition();
+				// pane.replaceSelection(insertData);
+				// pane.select(selectionStart, selectionStart +
+				// insertData.length());
 				return true;
 			}
 			return false;
@@ -242,7 +246,6 @@ public class ListaImagenesName extends CustomPanel implements DropTargetListener
 			return false;
 		}
 	}
-	
 
 }
 

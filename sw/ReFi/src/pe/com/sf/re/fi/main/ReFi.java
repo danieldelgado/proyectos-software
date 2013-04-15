@@ -35,8 +35,8 @@ public class ReFi {
 	public static void main(String[] args) {
 		_log.info("Corriendo Programa " + Propes.getProperty("titulo"));
 		// DefaultLookAndFeelDecoratedif(){
-//		JXFrame.setDefaultLookAndFeelDecorated(true);
-//		JXDialog.setDefaultLookAndFeelDecorated(true);
+		// JXFrame.setDefaultLookAndFeelDecorated(true);
+		// JXDialog.setDefaultLookAndFeelDecorated(true);
 		// }
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
