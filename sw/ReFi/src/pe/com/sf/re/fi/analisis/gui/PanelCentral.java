@@ -210,13 +210,26 @@ public class PanelCentral extends CustomPanel {
 			btnActivarBtn = btnActivarBtnsVista.getModel().isSelected();
 			if (btnActivarBtn) {
 				activarBotonesVistaAumentaDisminuye(true);
+				customImagePreview.habilitarDibujoCuadrado();
 			} else {
 				activarBotonesVistaAumentaDisminuye(false);
+				customImagePreview.deshabilitarDibujoCuadrado();
 			}
 		} else if (button == btnAumentarVista) {
-
+				System.out.println("btnAumentarVista");
+				dibujarCuadroConMouseAcercar();
 		} else if (button == btnDisminuirVista) {
-
+			System.out.println("btnDisminuirVista");
+			disminuir();
 		}
+	}
+
+	private void disminuir() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void dibujarCuadroConMouseAcercar() {
+		
 	}
 }

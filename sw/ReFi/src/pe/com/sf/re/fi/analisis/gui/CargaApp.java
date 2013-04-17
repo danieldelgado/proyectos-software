@@ -31,8 +31,8 @@ public class CargaApp extends JDialog {
 
 	public void cargar() {
 //		System.out.println("cargando");
-//		mostrarMensajesCarga();
 		setVisible(true);
+		mostrarMensajesCarga();
 	}
 
 	public void mostrarMensajesCarga() {

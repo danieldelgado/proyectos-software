@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.logging.Logger;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -52,6 +53,7 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 		this.addWindowListener(this);
 		this.addComponentListener(this);
 		this.addWindowStateListener(this);
+		this.setIconImage(new ImageIcon("rss_reader.ico").getImage());
 		if (memoryApp != null) {
 			_log.info("Leyendo temporales...");
 			ancho_pantalla = memoryApp.getAnchoPantalla();
@@ -120,7 +122,7 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 	}
 
 	public void windowOpened(WindowEvent e) {
-		System.out.println(" windowOpened ");
+//		System.out.println(" windowOpened ");
 	}
 
 	public void windowClosing(WindowEvent e) {
@@ -129,47 +131,47 @@ public class Principal extends JXFrame implements Serializable, WindowListener, 
 		memoryApp.setAnchoPantalla(ancho_pantalla);
 		memoryApp.setAltoPantalla(alto_pantalla);
 		guardarMemoryApp();
-		System.out.println(" windowClosing ");
+//		System.out.println(" windowClosing ");
 	}
 
 	public void windowClosed(WindowEvent e) {
-		System.out.println(" windowClosed ");
+//		System.out.println(" windowClosed ");
 	}
 
 	public void windowIconified(WindowEvent e) {
-		System.out.println(" windowIconified ");
+//		System.out.println(" windowIconified ");
 	}
 
 	public void windowDeiconified(WindowEvent e) {
-		System.out.println(" windowDeiconified ");
+//		System.out.println(" windowDeiconified ");
 	}
 
 	public void windowActivated(WindowEvent e) {
-		System.out.println(" windowActivated ");
+//		System.out.println(" windowActivated ");
 	}
 
 	public void windowDeactivated(WindowEvent e) {
-		System.out.println(" windowDeactivated ");
+//		System.out.println(" windowDeactivated ");
 	}
 
 	public void componentResized(ComponentEvent e) {
-		System.out.println(" componentResized ");
+//		System.out.println(" componentResized ");
 	}
 
 	public void componentMoved(ComponentEvent e) {
-		System.out.println(" componentMoved ");
+//		System.out.println(" componentMoved ");
 	}
 
 	public void componentShown(ComponentEvent e) {
-		System.out.println(" componentShown ");
+//		System.out.println(" componentShown ");
 	}
 
 	public void componentHidden(ComponentEvent e) {
-		System.out.println(" componentHidden ");
+//		System.out.println(" componentHidden ");
 	}
 
 	public void windowGainedFocus(WindowEvent e) {
-		System.out.println(" windowGainedFocus ");
+//		System.out.println(" windowGainedFocus ");
 	}
 
 	public void windowLostFocus(WindowEvent e) {
