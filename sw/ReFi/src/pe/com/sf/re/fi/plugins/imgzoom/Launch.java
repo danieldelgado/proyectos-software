@@ -1,4 +1,4 @@
-package pe.com.sf.re.fi.plugins;
+package pe.com.sf.re.fi.plugins.imgzoom;
 import java.awt.Dimension;
  
 import javax.swing.JFrame;
