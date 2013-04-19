@@ -16,10 +16,11 @@
         console.log("URL:"+URL);
         if ('WebSocket' in window) {
             ws = new WebSocket(URL);
-            console.log("ws WebSocket :"+ws);
+            console.log("ws WebSocket :");
+            console.log(ws);
         } else if ('MozWebSocket' in window) {
             ws = new MozWebSocket(URL);
-            console.log("ws MozWebSocket :"+ws);
+            console.log(ws);
         } else {
             alert('Tu navegador no soporta WebSockets');
             return;

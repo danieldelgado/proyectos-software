@@ -39,13 +39,13 @@ public class SimpleWebSocketServlet extends WebSocketServlet {
     	
         @Override
         protected void onOpen(WsOutbound outbound) {
-        	System.out.println("Conexión abierta:"+outbound);
-            log.info("Conexión abierta");
+        	System.out.println("Conexion abierta:"+outbound);
+            log.info("Conexion abierta");
         }
 
         @Override
         protected void onClose(int status) {
-            log.info("Conexión cerrada");
+            log.info("Conexion cerrada");
         	System.out.println("onClose status:"+status);
         }
 

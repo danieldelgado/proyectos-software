@@ -79,7 +79,7 @@ public class WebSocketCharServlet extends WebSocketServlet {
                 final CharBuffer jsonMessage = CharBuffer.wrap(jsonProcessor.toJson(message));
                 destinationConnection.getWsOutbound().writeTextMessage(jsonMessage);
             } else {
-                log.warn("Se está intentando enviar un mensaje a un usuario no conectado");
+                log.warn("Se esta  intentando enviar un mensaje a un usuario no conectado");
             }
         }
 
