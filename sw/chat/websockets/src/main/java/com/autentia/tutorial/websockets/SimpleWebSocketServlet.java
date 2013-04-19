@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("serial")
 public class SimpleWebSocketServlet extends WebSocketServlet {
-
+// funcional hasta la version de chrome de Versión 26.0.1410.43
     private static final Logger log = LoggerFactory.getLogger(SimpleWebSocketServlet.class);
 
     @Override
