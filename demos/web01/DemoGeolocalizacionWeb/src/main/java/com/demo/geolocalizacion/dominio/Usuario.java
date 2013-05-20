@@ -13,6 +13,10 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.demo.geolocalizacion.util.Entidad;
 
@@ -20,6 +24,8 @@ import com.demo.geolocalizacion.util.Entidad;
  * The persistent class for the usuario database table.
  * 
  */
+@XmlRootElement(name = "usuario")  
+@XmlAccessorType(XmlAccessType.FIELD) 
 @Entity
 @Table(name = "usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -29,24 +35,30 @@ public class Usuario implements Entidad, Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_usuario")
+	@XmlElement(name = "id",required=false)
 	private Integer id;
 
 	@Column(name = "nombres_completo", length = 100, nullable = false)
+	@XmlElement(name = "nombresCompleto")
 	private String nombresCompleto;
 
 	@Column(name = "apellidos_completos", length = 100, nullable = false)
+	@XmlElement(name = "apellidosCompletos")
 	private String apellidosCompletos;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "fecha_registro")
+	@XmlElement(name = "fecha_registro",required=false)
 	private Date fechaRegistro;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_actualizacion")
+	@XmlElement(name = "fechaActualizacion",required=false)
 	private Date fechaActualizacion;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_nacimiento")
+	@XmlElement(name = "fecha_nacimiento",required=false)
 	private Date fechaNacimiento;
 
 	public Usuario() {

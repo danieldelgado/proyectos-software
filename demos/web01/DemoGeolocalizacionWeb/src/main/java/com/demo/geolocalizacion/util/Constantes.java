@@ -7,6 +7,7 @@ public class Constantes {
 	public static final int USUARIO_EXISTE = 1;
 	public static final String FORMATO_TELEFONO="^[9|6][0-9]{8}";
 	public static final int NO_CUMPLE_CON_FORMATO = 2;
+	public static final int REGISTRADO = 1;
 	
 	
 //	public static final String SESION_TITULO = "titulo";
