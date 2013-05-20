@@ -9,6 +9,7 @@ import com.demo.geolocalizacion.dominio.Telefono;
 import com.demo.geolocalizacion.service.UsuarioService;
 import com.demo.geolocalizacion.util.Constantes;
 import com.demo.geolocalizacion.util.CustomLog;
+import com.demo.geolocalizacion.util.SimpleValidate;
 
 @Service("UsuarioService")
 public class UsuarioServiceImpl implements UsuarioService {
@@ -22,13 +23,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public int validarUsuarioPorNumeroRegistrado(String numero) {		
 		try {
-			Telefono telefono = telefonoDAO.existeTelefonoRegistrado(numero);
-			if(telefono==null){
-				logger.info(" telefono :"+numero +" no extiste");
-				return Constantes.USUARIO_NO_EXISTE;
+			if(SimpleValidate.validar(Constantes.FORMATO_TELEFONO, numero)){
+				Telefono telefono = telefonoDAO.existeTelefonoRegistrado(numero);
+				if(telefono==null){
+					logger.info(" telefono : "+numero +" no extiste");
+					return Constantes.USUARIO_NO_EXISTE;
+				}else{
+					logger.info(" numero telefono existe");
+					return Constantes.USUARIO_EXISTE;			
+				}
 			}else{
-				logger.info(" numero telefono existe");
-				return Constantes.USUARIO_EXISTE;			
+				logger.info(" numero telefono no cumple el formato : "+numero);
+				return Constantes.NO_CUMPLE_CON_FORMATO;	
 			}
 		} catch (Exception e) {
 			logger.error("error del servidor ["+e.getLocalizedMessage()+"]");
