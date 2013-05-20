@@ -3,6 +3,8 @@ package com.demo.geolocalizacion.dominio;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.demo.geolocalizacion.util.Entidad;
+
 import java.util.Date;
 
 
@@ -12,13 +14,13 @@ import java.util.Date;
  */
 @Entity
 @Table(name="punto_geolocalizacion")
-public class PuntoGeolocalizacion implements Serializable {
+public class PuntoGeolocalizacion implements Entidad, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_punto")
-	private int idPunto;
+	private Integer id;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="fecha_registro")
@@ -36,12 +38,12 @@ public class PuntoGeolocalizacion implements Serializable {
 	public PuntoGeolocalizacion() {
 	}
 
-	public int getIdPunto() {
-		return this.idPunto;
+	public Integer getId() {
+		return id;
 	}
-
-	public void setIdPunto(int idPunto) {
-		this.idPunto = idPunto;
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Date getFechaRegistro() {
@@ -74,6 +76,18 @@ public class PuntoGeolocalizacion implements Serializable {
 
 	public void setGeolocalizacion(Geolocalizacion geolocalizacion) {
 		this.geolocalizacion = geolocalizacion;
+	}
+
+	@Override
+	public String getLabel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getNombreCompleto() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

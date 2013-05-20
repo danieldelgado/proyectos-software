@@ -14,53 +14,51 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.demo.geolocalizacion.util.Entidad;
 
 /**
  * The persistent class for the usuario database table.
  * 
  */
 @Entity
-@Table(name="usuario")
+@Table(name = "usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Usuario implements Serializable {
+public class Usuario implements Entidad, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_usuario")
-	private int idUsuario;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_usuario")
+	private Integer id;
 
-	@Column(name="nombres_completo", length=100,nullable=false)
+	@Column(name = "nombres_completo", length = 100, nullable = false)
 	private String nombresCompleto;
-	
-	@Column(name="apellidos_completos" , length=100,nullable=false)
+
+	@Column(name = "apellidos_completos", length = 100, nullable = false)
 	private String apellidosCompletos;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="fecha_registro")
+	@Column(name = "fecha_registro")
 	private Date fechaRegistro;
-	
+
 	@Temporal(TemporalType.DATE)
-	@Column(name="fecha_actualizacion")
+	@Column(name = "fecha_actualizacion")
 	private Date fechaActualizacion;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="fecha_nacimiento")
+	@Column(name = "fecha_nacimiento")
 	private Date fechaNacimiento;
-
-
 
 	public Usuario() {
 	}
-
-	public int getIdUsuario() {
-		return this.idUsuario;
+	
+	public Integer getId() {
+		return id;
 	}
 
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-
 	public String getApellidosCompletos() {
 		return this.apellidosCompletos;
 	}
@@ -99,6 +97,16 @@ public class Usuario implements Serializable {
 
 	public void setNombresCompleto(String nombresCompleto) {
 		this.nombresCompleto = nombresCompleto;
+	}
+
+	@Override
+	public String getLabel() {
+		return null;
+	}
+
+	@Override
+	public String getNombreCompleto() {
+		return null;
 	}
 
 }
