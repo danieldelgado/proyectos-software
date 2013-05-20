@@ -25,54 +25,14 @@
 	
 	<context:annotation-config />
 	
-	<mvc:annotation-driven />
-	
-	<!-- -->
-<!-- 	Conexion a base de datos -->
-<!-- 	<tx:annotation-driven transaction-manager="transactionManager" /> -->
-
-<!-- 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> -->
-<!-- 		<property name="entityManagerFactory" ref="entityManagerFactory" /> -->
-<!-- 	</bean> -->
-
-
-
-<!-- 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" -->
-<!-- 		destroy-method="close" p:driverClass="${app.jdbc.driverClassName}" -->
-<!-- 		p:jdbcUrl="${app.jdbc.url}" p:user="${app.jdbc.username}" p:password="${app.jdbc.password}" -->
-<!-- 		p:acquireIncrement="5" p:idleConnectionTestPeriod="60" p:maxPoolSize="100" -->
-<!-- 		p:maxStatements="50" p:autoCommitOnClose="true" p:minPoolSize="10" -->
-<!-- 		p:unreturnedConnectionTimeout="2000" /> -->
-
-<!-- 	<bean id="entityManagerFactory" -->
-<!-- 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> -->
-<!-- 		<property name="dataSource" ref="dataSource" /> -->
-<!-- 		<property name="jpaVendorAdapter"> -->
-<!-- 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"> -->
-<!-- 				<property name="showSql" value="true" /> -->
-<!-- 			</bean> -->
-<!-- 		</property> -->
-<!-- 		<property name="loadTimeWeaver"> -->
-<!-- 			<bean -->
-<!-- 				class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="persistenceUnitName" value="hsd_dominio"></property> -->
-<!-- 	</bean> -->
-
-	<!-- Without the following adapter, we'll get a "Does your handler implement 
-		a supported interface like Controller?" This is because mvc:annotation-driven 
-		element doesn't declare a SimpleControllerHandlerAdapter For more info See 
-		http://stackoverflow.com/questions/3896013/no-adapter-for-handler-exception 
-		See http://forum.springsource.org/showthread.php?t=48372&highlight=UrlFilenameViewController -->
-<!-- 	<bean -->
-<!-- 		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" /> -->
-	<!-- <import resource="dwr-context.xml" /> 
-	-->
+	<mvc:annotation-driven />	
 	
 <!-- 	<bean id="eventListenerBean" class="com.vst.hsd.listener.ApplicationListenerBean" /> -->
 	
 	<bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
         <property name="baseAddress" value="http://0.0.0.0:9998/" />
      </bean>
+     
+     <import resource="hibernate-context.xml"/>
      
 </beans>
