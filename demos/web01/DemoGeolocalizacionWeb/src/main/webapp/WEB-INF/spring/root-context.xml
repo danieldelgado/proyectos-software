@@ -35,9 +35,7 @@
 <!-- 		<property name="entityManagerFactory" ref="entityManagerFactory" /> -->
 <!-- 	</bean> -->
 
-<!-- 	<bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter"> -->
-<!-- 		<property name="baseAddress" value="http://0.0.0.0:9998/" /> -->
-<!-- 	</bean> -->
+
 
 <!-- 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" -->
 <!-- 		destroy-method="close" p:driverClass="${app.jdbc.driverClassName}" -->
@@ -66,17 +64,15 @@
 		element doesn't declare a SimpleControllerHandlerAdapter For more info See 
 		http://stackoverflow.com/questions/3896013/no-adapter-for-handler-exception 
 		See http://forum.springsource.org/showthread.php?t=48372&highlight=UrlFilenameViewController -->
-	<bean
-		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+<!-- 	<bean -->
+<!-- 		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" /> -->
 	<!-- <import resource="dwr-context.xml" /> 
 	-->
 	
 <!-- 	<bean id="eventListenerBean" class="com.vst.hsd.listener.ApplicationListenerBean" /> -->
 	
-	<import resource="service-definition-beans.xml"/>
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	<jaxws:endpoint id="webServiceGeolocalizacion" implementor="#webServiceGeolocalizacionService" address="/webServiceGeolocalizacion" />
-	
-	
+	<bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
+        <property name="baseAddress" value="http://0.0.0.0:9998/" />
+     </bean>
+     
 </beans>
