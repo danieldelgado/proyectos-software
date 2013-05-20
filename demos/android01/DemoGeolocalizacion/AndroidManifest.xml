@@ -2,15 +2,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.demo.demogeolocalizacion"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" android:installLocation="auto">
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
+    
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
     <uses-permission android:name="android.permission.READ_LOGS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <permission android:name="com.demo.demogeolocalizacion.permission.MAPS_RECEIVE" android:protectionLevel="signature"></permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.demo.demogeolocalizacion.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    
+    <uses-feature android:glEsVersion="0x00020000"
+              android:required="true"/>
 
     <application
         android:allowBackup="true"
@@ -26,6 +35,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+         <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCK4IOG-Cin9I8IJMeD_gI8V2m0eYA_A3c" />
+         <activity android:name="MapaActivity"></activity>
     </application>
 
 </manifest>
