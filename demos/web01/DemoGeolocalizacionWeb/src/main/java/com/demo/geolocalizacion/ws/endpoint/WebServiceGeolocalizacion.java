@@ -1,4 +1,4 @@
-package com.demo.geolocalizacion.ws;
+package com.demo.geolocalizacion.ws.endpoint;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
