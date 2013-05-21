@@ -37,9 +37,9 @@ public class WebServiceGeolocalizacion {
 		return existeUsuarioPorNumero;
 	}
 
-
+	//	web service fehca nacimiento 1990-12-06T09:47:46.8942117-04:00
 	@WebMethod	
-	public  String registrarUsuariaPorTelefono(@WebParam(name="usuario_telefono") Telefono telefono) {
+	public  String registrarUsuariaPorTelefono(@WebParam(name="usuario_telefono") Telefono telefono ) {
 		logger.info("registrarUsuariaPorTelefono obtelefono: "+Util.getJsonObject(telefono));		
 		Map<String, Object> registrarUsuario = usuarioService.registrarUsuario_Telefono(telefono);	
 		String rspt = Util.getJson(registrarUsuario);

@@ -1,5 +1,6 @@
 package com.demo.geolocalizacion.util;
 
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,5 +18,18 @@ public class SimpleValidate {
 		logger.info(" validar expReg :" + expReg + " valor:" + valor + " r :" + r);
 		return r;
 	}
+	
+	public static boolean validarFecha(String format,String fechax) {
+		boolean r = false;
+        try {
+            final SimpleDateFormat formatoFecha = new SimpleDateFormat(format);
+            formatoFecha.parse(fechax);
+        } catch (Exception e) {
+            r = false;
+        }
+        r = true;
+		logger.info(" validarFecha format :" + format + " fechax:" + fechax + " r :" + r);
+        return r;
+    }
 
 }

@@ -25,7 +25,8 @@ import com.demo.geolocalizacion.util.Entidad;
  * 
  */
 @XmlRootElement(name = "usuario")  
-@XmlAccessorType(XmlAccessType.FIELD) 
+@XmlAccessorType(XmlAccessType.FIELD)  
+//@XmlType(propOrder={"fechaNacimientoTransent"})
 @Entity
 @Table(name = "usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -60,7 +61,9 @@ public class Usuario implements Entidad, Serializable {
 	@Column(name = "fecha_nacimiento")
 	@XmlElement(name = "fecha_nacimiento",required=false)
 	private Date fechaNacimiento;
-
+	
+//	public transient String fechaNacimientoTransent;
+		
 	public Usuario() {
 	}
 	
@@ -110,6 +113,14 @@ public class Usuario implements Entidad, Serializable {
 	public void setNombresCompleto(String nombresCompleto) {
 		this.nombresCompleto = nombresCompleto;
 	}
+	
+//	public String getFechaNacimientoTransent() {
+//		return fechaNacimientoTransent;
+//	}
+//
+//	public void setFechaNacimientoTransent(String fechaNacimientoTransent) {
+//		this.fechaNacimientoTransent = fechaNacimientoTransent;
+//	}
 
 	@Override
 	public String getLabel() {

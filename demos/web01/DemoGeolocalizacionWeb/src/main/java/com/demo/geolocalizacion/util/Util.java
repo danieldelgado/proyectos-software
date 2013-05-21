@@ -1,8 +1,10 @@
 package com.demo.geolocalizacion.util;
 
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,13 +15,15 @@ public class Util {
 
 	public static String getCodigo(Entidad entidad) {
 		Calendar c = Calendar.getInstance();
-		return entidad.getClass().getSimpleName() + "-" + c.getTimeInMillis() + "-" + entidad.hashCode();
+		return entidad.getClass().getSimpleName() + "-" + c.getTimeInMillis()
+				+ "-" + entidad.hashCode();
 	}
 
 	public static String getJsonObject(Entidad entidad) {
 		Gson gson = new Gson();
 		String gsonString = gson.toJson(entidad);
-		return "{" + entidad.getClass().getSimpleName() + ":[" + gsonString + "]}";
+		return "{" + entidad.getClass().getSimpleName() + ":[" + gsonString
+				+ "]}";
 	}
 
 	public static String getJson(Object... ob) {
@@ -35,49 +39,37 @@ public class Util {
 	public static boolean vacio(String cadena) {
 		return cadena == null || cadena.equals("");
 	}
-/*
-	public static  String generateCollection(String campo, List list) {
-		String result ="";// "( ";
+
+	/*
+	 * public static String generateCollection(String campo, List list) { String
+	 * result ="";// "( "; try {
+	 * 
+	 * if (list == null || list.isEmpty()) return "()"; for (Iterator it =
+	 * list.iterator(); it.hasNext();) { Object obentidad = it.next(); Class c =
+	 * obentidad.getClass(); Method myMethod; myMethod = c.getMethod("getId",
+	 * null); result += myMethod.invoke(obentidad, null); if (it.hasNext()) {
+	 * result += " , "; } }
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); } result += "";// " )";
+	 * return result; }
+	 */
+
+	public static List<Integer> generateCollection(String campo, List list) {
+		System.out.println(list);
+		List<Integer> result = new ArrayList<Integer>();
 		try {
-			
-			if (list == null || list.isEmpty())
-				return "()";
+			if (list == null || list.isEmpty()) {
+				result.add(0);
+				return result;
+			}
 			for (Iterator it = list.iterator(); it.hasNext();) {
 				Object obentidad = it.next();
 				Class c = obentidad.getClass();
 				Method myMethod;
 				myMethod = c.getMethod("getId", null);
-				result += myMethod.invoke(obentidad, null);
-				if (it.hasNext()) {
-					result += " , ";
-				}
-			}		
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		result += "";// " )";
-		return result;
-	}
-*/
-	
-
-	public static  List<Integer> generateCollection(String campo, List list) {
-		System.out.println(list);
-		 List<Integer> result =new ArrayList<Integer>();
-		try {			
-				if (list == null || list.isEmpty())		{
-					result.add(0);
-					return result;
-				}		
-				for (Iterator it = list.iterator(); it.hasNext();) {
-					Object obentidad = it.next();
-					Class c = obentidad.getClass();
-					Method myMethod;
-					myMethod = c.getMethod("getId", null);
-					int r = (Integer) myMethod.invoke(obentidad, null);
-					result.add(r);
-				}				
+				int r = (Integer) myMethod.invoke(obentidad, null);
+				result.add(r);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -85,12 +77,12 @@ public class Util {
 	}
 
 	public static boolean isNotNull(Object u) {
-		if(u!=null){
+		if (u != null) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	/*
 	 * public static void main(String[] args) {
 	 * 
@@ -116,5 +108,15 @@ public class Util {
 	 * 
 	 * }
 	 */
+
+	public static Date formatDate(String format, String fechax) {
+		try {
+			final SimpleDateFormat formatoFecha = new SimpleDateFormat(format);
+			Date d = formatoFecha.parse(fechax);
+			return d;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 }

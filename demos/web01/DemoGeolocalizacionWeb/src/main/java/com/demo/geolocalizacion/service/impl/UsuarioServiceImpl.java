@@ -1,6 +1,7 @@
 package com.demo.geolocalizacion.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,14 +70,22 @@ public class UsuarioServiceImpl implements UsuarioService {
 			if ( !(telefono.getTipoTelefono() > 0) ) {
 				lstErrores.add("tipotelefono");
 			}
+						
 			if(lstErrores.size()>0){
 				logger.info(" usuario no se puede guardar ");
 				obRespuyesta.put("registro", Constantes.NO_CUMPLE_CON_FORMATO);
 				obRespuyesta.put("errores", lstErrores);				
 			}else{
-				logger.info(" usuario se guardar con exito");
-				telefonoDAO.guardar(telefono);
-				obRespuyesta.put("registro", Constantes.REGISTRADO);
+				if(validarUsuarioPorNumeroRegistrado(telefono.getNumero())==Constantes.USUARIO_NO_EXISTE){
+					logger.info(" usuario se guardar con exito");
+					telefono.setFechaRegistro(new Date());
+					telefono.setFechaActualizacion(new Date());	
+					telefonoDAO.guardar(telefono);
+					obRespuyesta.put("registro", Constantes.REGISTRADO);
+				}else{
+					logger.info(" El numero que desea registrar, ya se encuentra registrado ");
+					obRespuyesta.put("registro", Constantes.NO_REGISTRADO);					
+				}
 			}
 		}else{
 			logger.info(" el objeto es null ");
