@@ -89,7 +89,7 @@ public class WebServiceGeolocalizacion {
 	 * al ser el flag false se mantiene en el punto anterior
 	 * paramtro registro es el valor si a sido registrado o no  
 	 * 					    1 = Registrado
-	 * 						2 = No cumple el formato (en el caso de los campos con error) y retornara un parametro mas que una lista de campos con error
+	 * 						2 = No cumple el formato (en el caso de las coordenadas)
 	 * 						-1= Es que el objeto es nulo
 	 * 
 	 * @param flagPuntoInicial
