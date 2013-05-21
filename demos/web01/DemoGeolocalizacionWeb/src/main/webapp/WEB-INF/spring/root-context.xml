@@ -32,7 +32,9 @@
 	<bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
         <property name="baseAddress" value="http://0.0.0.0:9998/" />
      </bean>
-     
+     <bean
+                class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+                
      <import resource="hibernate-context.xml"/>
      
 </beans>
