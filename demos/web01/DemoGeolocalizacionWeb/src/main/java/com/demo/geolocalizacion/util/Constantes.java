@@ -5,7 +5,10 @@ public class Constantes {
 	public static final int ERROR_SERVER= 0;
 	public static final int USUARIO_NO_EXISTE = -1;
 	public static final int USUARIO_EXISTE = 1;
+	
 	public static final String FORMATO_TELEFONO="^[9|6][0-9]{8}";
+	public static final String FORMATO_NOMBRE="[a-z'A-ZñÑáéíóúÁÉÍÓÚüÜ\\s-]+";
+	
 	public static final int NO_CUMPLE_CON_FORMATO = 2;
 	public static final int REGISTRADO = 1;
 	

@@ -57,22 +57,22 @@ public class UsuarioServiceImpl implements UsuarioService {
 		Map<String, Object> obRespuyesta = new HashMap<String, Object>();
 		if (telefono != null) {
 			List<String> lstErrores = new ArrayList<String>();
-			if (SimpleValidate.validar("", telefono.getNombresCompleto())) {
+			if ( !(SimpleValidate.validar(Constantes.FORMATO_NOMBRE, telefono.getNombresCompleto())) ) {
 				lstErrores.add("nombresCompleto");
 			}
-			if (SimpleValidate.validar("", telefono.getApellidosCompletos())) {
+			if ( !(SimpleValidate.validar(Constantes.FORMATO_NOMBRE, telefono.getApellidosCompletos())) ) {
 				lstErrores.add("apellidosCompletos");
 			}
-			if (SimpleValidate.validar(Constantes.FORMATO_TELEFONO, telefono.getNumero())) {
+			if ( !(SimpleValidate.validar(Constantes.FORMATO_TELEFONO, telefono.getNumero())) ) {
 				lstErrores.add("numero");
 			}
-			if (telefono.getTipoTelefono() > 0) {
+			if ( !(telefono.getTipoTelefono() > 0) ) {
 				lstErrores.add("tipotelefono");
 			}
 			if(lstErrores.size()>0){
 				logger.info(" usuario no se puede guardar ");
 				obRespuyesta.put("registro", Constantes.NO_CUMPLE_CON_FORMATO);
-				obRespuyesta.put("errores", obRespuyesta);				
+				obRespuyesta.put("errores", lstErrores);				
 			}else{
 				logger.info(" usuario se guardar con exito");
 				telefonoDAO.guardar(telefono);

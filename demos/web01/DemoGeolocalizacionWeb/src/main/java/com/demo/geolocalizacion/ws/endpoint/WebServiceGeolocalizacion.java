@@ -42,8 +42,9 @@ public class WebServiceGeolocalizacion {
 	public  String registrarUsuariaPorTelefono(@WebParam(name="usuario_telefono") Telefono telefono) {
 		logger.info("registrarUsuariaPorTelefono obtelefono: "+Util.getJsonObject(telefono));		
 		Map<String, Object> registrarUsuario = usuarioService.registrarUsuario_Telefono(telefono);	
-		logger.info("registrarUsuario repuesta : "+registrarUsuario);
-		return Util.getJson(registrarUsuario);
+		String rspt = Util.getJson(registrarUsuario);
+		logger.info("registrarUsuario repuesta  rspt: "+rspt);
+		return rspt;
 	}
 	
 	
