@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.demo.geolocalizacion">
-		<level value="info" />
+		<level value="info,debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
