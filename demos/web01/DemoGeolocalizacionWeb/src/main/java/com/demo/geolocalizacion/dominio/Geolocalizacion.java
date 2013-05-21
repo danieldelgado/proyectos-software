@@ -30,7 +30,7 @@ public class Geolocalizacion implements Entidad, Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_usuario")
 	private Telefono telefono;
-		
+			
 	@OneToMany(mappedBy="geolocalizacion")
 	private List<PuntoGeolocalizacion> puntoGeolocalizacions;
 
@@ -38,6 +38,14 @@ public class Geolocalizacion implements Entidad, Serializable {
 	}
 
 	
+
+	public Geolocalizacion(Integer id, Date fechaRegistro) {
+		super();
+		this.id = id;
+		this.fechaRegistro = fechaRegistro;
+	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -74,8 +82,6 @@ public class Geolocalizacion implements Entidad, Serializable {
 	public void setPuntoGeolocalizacions(List<PuntoGeolocalizacion> puntoGeolocalizacions) {
 		this.puntoGeolocalizacions = puntoGeolocalizacions;
 	}
-
-
 
 	@Override
 	public String getLabel() {

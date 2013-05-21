@@ -32,6 +32,9 @@ public class PuntoGeolocalizacion implements Entidad, Serializable {
 	@Column(name="longitud", length=50,nullable=false)
 	private String longitud;
 
+	@Column(name="flagPuntoInicial")
+	private Boolean flagPuntoInicial;
+	
 	@ManyToOne
 	private Geolocalizacion geolocalizacion;
 
@@ -77,16 +80,22 @@ public class PuntoGeolocalizacion implements Entidad, Serializable {
 	public void setGeolocalizacion(Geolocalizacion geolocalizacion) {
 		this.geolocalizacion = geolocalizacion;
 	}
+	
+	public Boolean getFlagPuntoInicial() {
+		return flagPuntoInicial;
+	}
+
+	public void setFlagPuntoInicial(Boolean flagPuntoInicial) {
+		this.flagPuntoInicial = flagPuntoInicial;
+	}
 
 	@Override
 	public String getLabel() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getNombreCompleto() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

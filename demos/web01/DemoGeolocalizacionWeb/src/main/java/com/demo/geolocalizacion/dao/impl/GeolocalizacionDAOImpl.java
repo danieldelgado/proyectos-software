@@ -14,7 +14,7 @@ public class GeolocalizacionDAOImpl extends DAO<Geolocalizacion> implements Geol
 
 	@Override
 	public Geolocalizacion obtenerGeolocalizacionPorTelefono(Telefono telefono) {
-		sqlQuery = "select g from Geolocalizacion g where g.telefono = :telefono";
+		sqlQuery = "select new Geolocalizacion(g.id , g.fechaRegistro) from Geolocalizacion g where g.telefono = :telefono";
 		q = em.createQuery(sqlQuery);
 		q.setParameter("telefono", telefono);
 		@SuppressWarnings("unchecked")

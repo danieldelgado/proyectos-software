@@ -38,9 +38,8 @@ public class GeolocalizacionServiceImpl implements GeolocalizacionService {
 
 	@Override	
 	@Transactional
-	public int registrarPuntoGeolocalizacion(String numero, String latitud,
+	public int registrarPuntoGeolocalizacion(boolean flag , String numero, String latitud,
 			String longitud) {
-//		int existe = usuarioService.validarUsuarioPorNumeroRegistrado(numero);
 		Telefono telefono = telefonoDAO.existeTelefonoRegistrado(numero);
 		if (telefono != null) {
 			try {
@@ -48,20 +47,25 @@ public class GeolocalizacionServiceImpl implements GeolocalizacionService {
 				double log = Double.parseDouble(longitud);				
 				if( lat<0 && log<0 ){
 					logger.info(" El numero  ingresado existe: "+ numero + " latitud : "+latitud + " longitud : "+longitud);
-					Geolocalizacion geolocalizacionExiste = geolocalizacionDAO.obtenerGeolocalizacionPorTelefono(telefono);
-					if(geolocalizacionExiste==null){
+					
+					Geolocalizacion geolocalizacionExiste = null;
+					if(flag){
 						geolocalizacionExiste = new Geolocalizacion();
 						geolocalizacionExiste.setFechaRegistro(new Date());
-						geolocalizacionExiste.setTelefono(telefono);
-						geolocalizacionDAO.guardar(geolocalizacionExiste);
+						geolocalizacionExiste.setTelefono(telefono);						
+						geolocalizacionDAO.guardar(geolocalizacionExiste);			
+					}else{
+						geolocalizacionExiste = geolocalizacionDAO.obtenerGeolocalizacionPorTelefono(telefono);
 					}
-					
+										
 					PuntoGeolocalizacion p = new PuntoGeolocalizacion();
 					p.setFechaRegistro(new Date());
 					p.setGeolocalizacion(geolocalizacionExiste);
 					p.setLatitud(latitud);
+					p.setFlagPuntoInicial(flag);
 					p.setLongitud(longitud);
 					puntoGeolocalizacionDAO.guardar(p);	
+					logger.info(" Punto de geolocalizacion a sido registrado " );
 					return Constantes.REGISTRADO;
 				}			
 			} catch (Exception e) {

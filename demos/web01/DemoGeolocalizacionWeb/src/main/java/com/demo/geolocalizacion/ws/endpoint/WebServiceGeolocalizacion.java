@@ -62,7 +62,7 @@ public class WebServiceGeolocalizacion {
 	 * 
 	 * retorna una cadena en formato json con maximos de 2 parametros
 	 * 
-	 * paramtro registro = es el valor si a sido registrado o no  
+	 * paramtro registro es el valor si a sido registrado o no  
 	 * 					    1 = Registrado
 	 * 						2 = No cumple el formato (en el caso de los campos con error) y retornara un parametro mas que una lista de campos con error
 	 * 						3 = Es cuando el usuario intenta registrarse y el numero de telefono ya existe ne la base de datos, no se registra.
@@ -82,11 +82,27 @@ public class WebServiceGeolocalizacion {
 		return rspt;
 	}
 		
+	/**
+	 * Registra los puntos de geolocalizacion cada vez q se ingresa un nuevo punto de ubicacion inicial
+	 * 
+	 * al ser el flag true es uno nuevo
+	 * al ser el flag false se mantiene en el punto anterior
+	 * paramtro registro es el valor si a sido registrado o no  
+	 * 					    1 = Registrado
+	 * 						2 = No cumple el formato (en el caso de los campos con error) y retornara un parametro mas que una lista de campos con error
+	 * 						-1= Es que el objeto es nulo
+	 * 
+	 * @param flagPuntoInicial
+	 * @param numero
+	 * @param latitud
+	 * @param longitud
+	 * @return
+	 */
 	@WebMethod
-	public Integer registrarPuntoGeolocalizacion(@WebParam(name="numero") String numero,@WebParam(name="latitud")  String latitud,
+	public Integer registrarPuntoGeolocalizacion(@WebParam(name="flagPuntoInicial") boolean flagPuntoInicial,@WebParam(name="numero") String numero,@WebParam(name="latitud")  String latitud,
 			@WebParam(name="longitud") String longitud) {
-		logger.info(" registrarGeolocalizacion numero: "+numero+" latitud: "+latitud+" longitud: "+longitud);		
-		int resptRegistrarPuntoGeolocalizacion = geolocalizacionService.registrarPuntoGeolocalizacion(numero,latitud,longitud);
+		logger.info(" registrarGeolocalizacion numero: "+numero+" latitud: "+latitud+" longitud: "+longitud+"  flagPuntoInicial :"+flagPuntoInicial);		
+		int resptRegistrarPuntoGeolocalizacion = geolocalizacionService.registrarPuntoGeolocalizacion(flagPuntoInicial,numero,latitud,longitud);
 		logger.info("registrarPuntoGeolocalizacion resptRegistrarPuntoGeolocalizacion : "+resptRegistrarPuntoGeolocalizacion);		
 		return resptRegistrarPuntoGeolocalizacion;
 	}
