@@ -21,8 +21,7 @@ import com.demo.geolocalizacion.util.SimpleValidate;
 @Service("UsuarioService")
 public class UsuarioServiceImpl implements UsuarioService {
 
-	private static final Logger logger = CustomLog
-			.getLogger(UsuarioServiceImpl.class);
+	private static final Logger logger = CustomLog.getLogger(UsuarioServiceImpl.class);
 
 	@Autowired
 	private TelefonoDAO telefonoDAO;

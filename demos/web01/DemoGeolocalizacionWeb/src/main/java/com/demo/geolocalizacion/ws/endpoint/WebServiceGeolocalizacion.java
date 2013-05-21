@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.geolocalizacion.dominio.Telefono;
+import com.demo.geolocalizacion.service.GeolocalizacionService;
 import com.demo.geolocalizacion.service.UsuarioService;
 import com.demo.geolocalizacion.util.Util;
 @Service("WebServiceGeolocalizacion")
@@ -23,6 +24,9 @@ public class WebServiceGeolocalizacion {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@Autowired
+	private GeolocalizacionService geolocalizacionService;
+		
 	/**
 	 * Es un metodo para hacer una prueba simple de hola mundo con el simple web serivce de spring
 	 * solo es necesario ingresar un parametro cadena
@@ -79,12 +83,12 @@ public class WebServiceGeolocalizacion {
 	}
 		
 	@WebMethod
-	public Integer registrarGeolocalizacion(@WebParam(name="numero") String numero,@WebParam(name="latitud")  String latitud,
+	public Integer registrarPuntoGeolocalizacion(@WebParam(name="numero") String numero,@WebParam(name="latitud")  String latitud,
 			@WebParam(name="longitud") String longitud) {
-		logger.info(" numero: "+numero);
-		logger.info(" latitud: "+latitud);
-		logger.info(" longitud: "+longitud);				
-		return 0;
+		logger.info(" registrarGeolocalizacion numero: "+numero+" latitud: "+latitud+" longitud: "+longitud);		
+		int resptRegistrarPuntoGeolocalizacion = geolocalizacionService.registrarPuntoGeolocalizacion(numero,latitud,longitud);
+		logger.info("registrarPuntoGeolocalizacion resptRegistrarPuntoGeolocalizacion : "+resptRegistrarPuntoGeolocalizacion);		
+		return resptRegistrarPuntoGeolocalizacion;
 	}
 
 }

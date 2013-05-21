@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -33,9 +34,9 @@ public class Telefono  extends Usuario  implements Serializable {
 	@XmlElement(name = "tipoTelefono")
 	private Integer tipoTelefono;
 	
-	@XmlTransient
-	@OneToMany(mappedBy="telefono")
-	private List<Geolocalizacion> geolocalizaciones;
+//	@XmlTransient
+//	@OneToMany(mappedBy="telefono")
+//	private List<Geolocalizacion> geolocalizaciones;
 
 	public Telefono() {
 	}
@@ -56,12 +57,12 @@ public class Telefono  extends Usuario  implements Serializable {
 		this.tipoTelefono = tipoTelefono;
 	}
 
-	public List<Geolocalizacion> getGeolocalizaciones() {
-		return geolocalizaciones;
-	}
-
-	public void setGeolocalizaciones(List<Geolocalizacion> geolocalizaciones) {
-		this.geolocalizaciones = geolocalizaciones;
-	}
+//	public List<Geolocalizacion> getGeolocalizaciones() {
+//		return geolocalizaciones;
+//	}
+//
+//	public void setGeolocalizaciones(List<Geolocalizacion> geolocalizaciones) {
+//		this.geolocalizaciones = geolocalizaciones;
+//	}
 
 }

@@ -1,0 +1,78 @@
+package com.demo.geolocalizacion.service.impl;
+
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.demo.geolocalizacion.dao.GeolocalizacionDAO;
+import com.demo.geolocalizacion.dao.PuntoGeolocalizacionDAO;
+import com.demo.geolocalizacion.dao.TelefonoDAO;
+import com.demo.geolocalizacion.dominio.Geolocalizacion;
+import com.demo.geolocalizacion.dominio.PuntoGeolocalizacion;
+import com.demo.geolocalizacion.dominio.Telefono;
+import com.demo.geolocalizacion.service.GeolocalizacionService;
+import com.demo.geolocalizacion.service.UsuarioService;
+import com.demo.geolocalizacion.util.Constantes;
+import com.demo.geolocalizacion.util.CustomLog;
+
+@Service("GeolocalizacionService")
+public class GeolocalizacionServiceImpl implements GeolocalizacionService {
+
+	private static final Logger logger = CustomLog
+			.getLogger(GeolocalizacionServiceImpl.class);
+
+	@Autowired
+	private UsuarioService usuarioService;
+
+	@Autowired
+	private TelefonoDAO telefonoDAO;
+
+	@Autowired
+	private GeolocalizacionDAO geolocalizacionDAO;
+	
+	@Autowired
+	private PuntoGeolocalizacionDAO puntoGeolocalizacionDAO;
+
+	@Override	
+	@Transactional
+	public int registrarPuntoGeolocalizacion(String numero, String latitud,
+			String longitud) {
+//		int existe = usuarioService.validarUsuarioPorNumeroRegistrado(numero);
+		Telefono telefono = telefonoDAO.existeTelefonoRegistrado(numero);
+		if (telefono != null) {
+			try {
+				double lat = Double.parseDouble(latitud);
+				double log = Double.parseDouble(longitud);				
+				if( lat<0 && log<0 ){
+					logger.info(" El numero  ingresado existe: "+ numero + " latitud : "+latitud + " longitud : "+longitud);
+					Geolocalizacion geolocalizacionExiste = geolocalizacionDAO.obtenerGeolocalizacionPorTelefono(telefono);
+					if(geolocalizacionExiste==null){
+						geolocalizacionExiste = new Geolocalizacion();
+						geolocalizacionExiste.setFechaRegistro(new Date());
+						geolocalizacionExiste.setTelefono(telefono);
+						geolocalizacionDAO.guardar(geolocalizacionExiste);
+					}
+					
+					PuntoGeolocalizacion p = new PuntoGeolocalizacion();
+					p.setFechaRegistro(new Date());
+					p.setGeolocalizacion(geolocalizacionExiste);
+					p.setLatitud(latitud);
+					p.setLongitud(longitud);
+					puntoGeolocalizacionDAO.guardar(p);	
+					return Constantes.REGISTRADO;
+				}			
+			} catch (Exception e) {
+				logger.info(" El formato de latitud y logitud son incorrectos [" + e.getLocalizedMessage() + "]");
+				e.printStackTrace();	
+				return Constantes.NO_CUMPLE_CON_FORMATO;			
+			}
+		}else{
+			logger.info(" El numero  ingresado  no existe: "+ numero );			
+		}
+		return Constantes.USUARIO_NO_EXISTE;
+	}
+
+}
