@@ -53,12 +53,5 @@ public class Telefono  extends Usuario  implements Serializable {
 		this.tipoTelefono = tipoTelefono;
 	}
 
-//	public List<Geolocalizacion> getGeolocalizaciones() {
-//		return geolocalizaciones;
-//	}
-//
-//	public void setGeolocalizaciones(List<Geolocalizacion> geolocalizaciones) {
-//		this.geolocalizaciones = geolocalizaciones;
-//	}
 
 }

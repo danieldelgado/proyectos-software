@@ -44,11 +44,11 @@ public class UsuarioController {
 		switch (vlNum) {
 			case Constantes.USUARIO_EXISTE: {
 				httpSession.setAttribute("numero", numero);
-				return "geolocalizacion";
+				return "redirect:/geolocalizacion";
 			}
 			case Constantes.USUARIO_NO_EXISTE: {
 				httpSession.setAttribute("numero", numero);
-				return "registrarNumero";
+				return "redirect:/geolocalizacion/registrarNumero";
 			}
 			case Constantes.NO_CUMPLE_CON_FORMATO: {
 				httpSession.setAttribute("mensaje", "El formato no es el correcto");
