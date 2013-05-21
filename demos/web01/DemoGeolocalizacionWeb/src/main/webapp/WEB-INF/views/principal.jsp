@@ -6,14 +6,12 @@
 </head>
 <body>
 	<h1>GeoLocalizacion</h1>	
-	<form action="<c:url value="principal/validarNumero"></c:url>" method="post">
+	<form action="<c:url value="principal/validarNumero"></c:url>" method="POST">
 		<p>Ingrese su numero de Celular:</p>
 		<p>
 			<input type="text" value="" name="numero" id="numero" />
 		</p>
-		<p>
-			<input type="hidden" value="${msjError}" name="msjError" />
-		</p>
+		<p>${mensaje}</p>
 		<p>
 			<input type="submit" value="Enviar" />
 		</p>
