@@ -1,5 +1,8 @@
 package com.demo.geolocalizacion.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,35 +20,43 @@ import com.demo.geolocalizacion.util.Constantes;
 @Controller
 @RequestMapping(value = "principal")
 public class UsuarioController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
-	
+
 	@Autowired
 	private UsuarioService usuarioService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String principal(Model model) {
-		logger.info("UsuarioController Ingreso al principal");				
+	public String principal(Model model,HttpServletRequest httpServletRequest) {
+		logger.info("UsuarioController Ingreso al principal");
+		HttpSession httpSession = httpServletRequest.getSession();
+		System.out.println(httpSession);
+		model.addAttribute("mensaje",httpSession.getAttribute("mensaje"));
 		return "principal";
 	}
-	
-	@RequestMapping( value="validarNumero" , method = RequestMethod.POST)
-	public String validarNumero(Model model,String numero) {
-		logger.info("UsuarioController validarNumero numero : "+numero);	
+
+	@RequestMapping(value = "validarNumero", method = RequestMethod.POST)
+	public String validarNumero(Model model, String numero, HttpServletRequest httpServletRequest) {
+		logger.info("UsuarioController validarNumero numero : " + numero);
+		HttpSession httpSession = httpServletRequest.getSession();
+		httpSession.setAttribute("mensaje", "");
 		int vlNum = usuarioService.validarUsuarioPorNumeroRegistrado(numero);
 		switch (vlNum) {
-		case Constantes.USUARIO_EXISTE:
-			return "geolocalizacion";	
-		case Constantes.USUARIO_NO_EXISTE:
-			return "registrarNumero";				
-		case Constantes.NO_CUMPLE_CON_FORMATO:{
-			model.addAttribute("msjError", "El formato no es el correcto");
-			return "redirect:/";			
+			case Constantes.USUARIO_EXISTE: {
+				httpSession.setAttribute("numero", numero);
+				return "geolocalizacion";
+			}
+			case Constantes.USUARIO_NO_EXISTE: {
+				httpSession.setAttribute("numero", numero);
+				return "registrarNumero";
+			}
+			case Constantes.NO_CUMPLE_CON_FORMATO: {
+				httpSession.setAttribute("mensaje", "El formato no es el correcto");
+				return "redirect:/";
 			}
 		}
-		model.addAttribute("msjError", "Problema con el servidor");
+		httpSession.setAttribute("mensaje", "Problema con el servidor");
 		return "redirect:/";
 	}
-	
-	
+
 }
