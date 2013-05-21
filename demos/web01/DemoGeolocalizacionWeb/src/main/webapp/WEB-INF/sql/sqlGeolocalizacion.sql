@@ -31,7 +31,7 @@ CREATE TABLE `geolocalizacion` (
   PRIMARY KEY (`id_geolocalizacion`),
   KEY `FK7E2A2A1B876B6E10` (`id_usuario`),
   CONSTRAINT `FK7E2A2A1B876B6E10` FOREIGN KEY (`id_usuario`) REFERENCES `telefono` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `geolocalizacion` (
 
 LOCK TABLES `geolocalizacion` WRITE;
 /*!40000 ALTER TABLE `geolocalizacion` DISABLE KEYS */;
+INSERT INTO `geolocalizacion` VALUES (1,'2013-05-21 14:09:52',1),(2,'2013-05-21 14:10:07',1);
 /*!40000 ALTER TABLE `geolocalizacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,13 +54,14 @@ DROP TABLE IF EXISTS `punto_geolocalizacion`;
 CREATE TABLE `punto_geolocalizacion` (
   `id_punto` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_registro` datetime DEFAULT NULL,
+  `flagPuntoInicial` bit(1) DEFAULT NULL,
   `latitud` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `longitud` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `geolocalizacion_id_geolocalizacion` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_punto`),
   KEY `FKFE259B20B06B3A64` (`geolocalizacion_id_geolocalizacion`),
   CONSTRAINT `FKFE259B20B06B3A64` FOREIGN KEY (`geolocalizacion_id_geolocalizacion`) REFERENCES `geolocalizacion` (`id_geolocalizacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +70,7 @@ CREATE TABLE `punto_geolocalizacion` (
 
 LOCK TABLES `punto_geolocalizacion` WRITE;
 /*!40000 ALTER TABLE `punto_geolocalizacion` DISABLE KEYS */;
+INSERT INTO `punto_geolocalizacion` VALUES (1,'2013-05-21 14:09:52','','-12.54684','-70.646848',1),(2,'2013-05-21 14:09:56','\0','-12.54684','-70.646848',1),(3,'2013-05-21 14:10:03','\0','-12.546841','-70.64684865',1),(4,'2013-05-21 14:10:07','','-12.546841','-70.64684865',2);
 /*!40000 ALTER TABLE `punto_geolocalizacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,6 +97,7 @@ CREATE TABLE `telefono` (
 
 LOCK TABLES `telefono` WRITE;
 /*!40000 ALTER TABLE `telefono` DISABLE KEYS */;
+INSERT INTO `telefono` VALUES ('987654321',1,1);
 /*!40000 ALTER TABLE `telefono` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,7 +116,7 @@ CREATE TABLE `usuario` (
   `fecha_registro` datetime DEFAULT NULL,
   `nombres_completo` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,6 +125,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'asdsad asd','2013-05-21',NULL,'2013-05-21 14:08:54','asd asdsad');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -133,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-05-20 15:41:10
+-- Dump completed on 2013-05-21 15:58:41
