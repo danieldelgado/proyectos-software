@@ -10,12 +10,13 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 public class DAO<T extends Entidad> implements IDAO<T> {
 
 	private static final Logger log = LoggerFactory.getLogger(DAO.class);
 
-	@PersistenceContext
+	@PersistenceContext(unitName="geo_localizacion")
 	protected EntityManager em;
 
 	private Class<Entidad> clazz;
@@ -52,6 +53,7 @@ public class DAO<T extends Entidad> implements IDAO<T> {
 		return em.createQuery(sql).getResultList();
 	}
 
+//	@Transactional
 	public void guardar(T objeto) {
 		try {
 			log.debug("[ Entro al metodo guardar de Entidad " + clazz.getName() + " ]");
@@ -59,6 +61,7 @@ public class DAO<T extends Entidad> implements IDAO<T> {
 				em.merge(objeto);
 			else
 				em.persist(objeto);
+			//
 			log.debug("[ objeto registrado :"+Util.getJsonObject(objeto)+" ]");	
 			log.debug("[ Transaction terminada  " + clazz.getName() + " con id :" + objeto.getId()+" ]");
 		} catch (Exception e) {

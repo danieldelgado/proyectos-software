@@ -88,7 +88,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 						logger.info(" usuario se guardar con exito");
 						telefono.setFechaRegistro(new Date());
 						telefono.setFechaActualizacion(new Date());
-						telefonoDAO.guardar(telefono);
+						try {
+							telefonoDAO.guardar(telefono);							
+						} catch (Exception e) {
+							
+							System.out.println(e);
+							e.printStackTrace();
+							
+						}
 						obRespuyesta.put("registro", Constantes.REGISTRADO);
 					} else {
 						logger.info(" El numero que desea registrar, ya se encuentra registrado ");

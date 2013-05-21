@@ -30,7 +30,6 @@ public class UsuarioController {
 	public String principal(Model model,HttpServletRequest httpServletRequest) {
 		logger.info("UsuarioController Ingreso al principal");
 		HttpSession httpSession = httpServletRequest.getSession();
-		System.out.println(httpSession);
 		model.addAttribute("mensaje",httpSession.getAttribute("mensaje"));
 		return "principal";
 	}
@@ -44,7 +43,7 @@ public class UsuarioController {
 		switch (vlNum) {
 			case Constantes.USUARIO_EXISTE: {
 				httpSession.setAttribute("numero", numero);
-				return "redirect:/geolocalizacion";
+				return "redirect:/geolocalizacion/geolocalizacion";
 			}
 			case Constantes.USUARIO_NO_EXISTE: {
 				httpSession.setAttribute("numero", numero);
