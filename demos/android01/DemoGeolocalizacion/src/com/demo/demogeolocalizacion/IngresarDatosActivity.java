@@ -11,6 +11,7 @@ public class IngresarDatosActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.ingresardatos);
 	}
 
 	public void irMapa(View view) {
