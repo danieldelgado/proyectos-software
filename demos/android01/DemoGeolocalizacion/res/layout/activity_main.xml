@@ -1,7 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reative"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="irDatos"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -12,24 +14,27 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hi mongolito" />
+        android:text="Hi mongolito, ingresa tu numero de celular" />
 
-    <TextView
-        android:id="@+id/tv1"
+    <EditText
+        android:id="@+id/et1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="19dp"
-        android:text="TextView" />
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv1"
-        android:layout_marginTop="20dp"
-        android:onClick="irMapa"
-        android:text="Mapa" />
+        android:layout_alignLeft="@+id/et1"
+        android:layout_below="@+id/et1"
+        android:layout_marginTop="15dp"
+        android:onClick="irDatos"
+        android:text="Continuar" />
 
 </RelativeLayout>
