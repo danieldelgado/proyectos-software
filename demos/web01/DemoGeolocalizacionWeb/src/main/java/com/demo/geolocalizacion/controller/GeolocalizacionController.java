@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.demo.geolocalizacion.dominio.Telefono;
 import com.demo.geolocalizacion.service.GeolocalizacionService;
-import com.demo.geolocalizacion.service.UsuarioService;
+import com.demo.geolocalizacion.service.PrincipalService;
 import com.demo.geolocalizacion.util.Constantes;
 
 @Controller
@@ -25,7 +25,7 @@ public class GeolocalizacionController {
 	private static final Logger logger = LoggerFactory.getLogger(GeolocalizacionController.class);
 	
 	@Autowired
-	private UsuarioService usuarioService;
+	private PrincipalService usuarioService;
 
 	@Autowired
 	private GeolocalizacionService geolocalizacionService;

@@ -13,15 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.geolocalizacion.dao.TelefonoDAO;
 import com.demo.geolocalizacion.dominio.Telefono;
-import com.demo.geolocalizacion.service.UsuarioService;
+import com.demo.geolocalizacion.service.PrincipalService;
 import com.demo.geolocalizacion.util.Constantes;
 import com.demo.geolocalizacion.util.CustomLog;
 import com.demo.geolocalizacion.util.SimpleValidate;
 
-@Service("UsuarioService")
-public class UsuarioServiceImpl implements UsuarioService {
+@Service("PrincipalService")
+public class PrincipalServiceImpl implements PrincipalService {
 
-	private static final Logger logger = CustomLog.getLogger(UsuarioServiceImpl.class);
+	private static final Logger logger = CustomLog.getLogger(PrincipalServiceImpl.class);
 
 	@Autowired
 	private TelefonoDAO telefonoDAO;

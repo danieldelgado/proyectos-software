@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.demo.geolocalizacion.dominio.Telefono;
 import com.demo.geolocalizacion.service.GeolocalizacionService;
-import com.demo.geolocalizacion.service.UsuarioService;
+import com.demo.geolocalizacion.service.PrincipalService;
 import com.demo.geolocalizacion.util.Util;
 @Service("WebServiceGeolocalizacion")
 @WebService(serviceName = "WebServiceGeolocalizacion")
@@ -22,7 +22,7 @@ public class WebServiceGeolocalizacion {
 	private static final Logger logger = LoggerFactory.getLogger(WebServiceGeolocalizacion.class);
 	
 	@Autowired
-	private UsuarioService usuarioService;
+	private PrincipalService usuarioService;
 	
 	@Autowired
 	private GeolocalizacionService geolocalizacionService;

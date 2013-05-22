@@ -14,7 +14,7 @@ import com.demo.geolocalizacion.dominio.Geolocalizacion;
 import com.demo.geolocalizacion.dominio.PuntoGeolocalizacion;
 import com.demo.geolocalizacion.dominio.Telefono;
 import com.demo.geolocalizacion.service.GeolocalizacionService;
-import com.demo.geolocalizacion.service.UsuarioService;
+import com.demo.geolocalizacion.service.PrincipalService;
 import com.demo.geolocalizacion.util.Constantes;
 import com.demo.geolocalizacion.util.CustomLog;
 
@@ -25,7 +25,7 @@ public class GeolocalizacionServiceImpl implements GeolocalizacionService {
 			.getLogger(GeolocalizacionServiceImpl.class);
 
 	@Autowired
-	private UsuarioService usuarioService;
+	private PrincipalService usuarioService;
 
 	@Autowired
 	private TelefonoDAO telefonoDAO;

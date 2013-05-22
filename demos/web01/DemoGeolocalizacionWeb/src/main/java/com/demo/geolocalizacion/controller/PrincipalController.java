@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.demo.geolocalizacion.service.UsuarioService;
+import com.demo.geolocalizacion.service.PrincipalService;
 import com.demo.geolocalizacion.util.Constantes;
 
 /**
@@ -19,12 +19,12 @@ import com.demo.geolocalizacion.util.Constantes;
  */
 @Controller
 @RequestMapping(value = "principal")
-public class UsuarioController {
+public class PrincipalController {
 
-	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
+	private static final Logger logger = LoggerFactory.getLogger(PrincipalController.class);
 
 	@Autowired
-	private UsuarioService usuarioService;
+	private PrincipalService usuarioService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String principal(Model model,HttpServletRequest httpServletRequest) {
