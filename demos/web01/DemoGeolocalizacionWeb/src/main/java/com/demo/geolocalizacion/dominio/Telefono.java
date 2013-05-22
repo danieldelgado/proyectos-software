@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Index;
+
 
 /**
  * The persistent class for the telefono database table.
@@ -21,7 +23,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="telefono")
 public class Telefono  extends Usuario  implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@Index(name="numero_telefono")
 	@Column(name="numero", length=12,nullable=false)
 	@XmlElement(name = "numero")
 	private String numero;

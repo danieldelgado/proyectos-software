@@ -30,7 +30,7 @@ import com.demo.geolocalizacion.util.Entidad;
 @XmlAccessorType(XmlAccessType.FIELD)  
 //@XmlType(propOrder={"fechaNacimientoTransent"})
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuario" )
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario implements Entidad, Serializable {
 	private static final long serialVersionUID = 1L;
