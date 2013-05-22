@@ -59,7 +59,7 @@ public class Usuario implements Entidad, Serializable {
 	@XmlElement(name = "fechaActualizacion",required=false)
 	private Date fechaActualizacion;
 
-	// Para registrar telefono por web es con el registro [1990/10/10 00:00:00]
+	// Para registrar telefono por web es con el registro [1990/10/10 00:00:00] no es lo mismo que en el web services
 	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm:ss") 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_nacimiento")
