@@ -4,7 +4,10 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,7 +20,11 @@ public class MainActivity extends Activity {
 	
 	TextView mTextView; // Variable miembro para la vista de texto en el diseño
 
-	
+
+    static final String STATE_SCORE = "playerScore";
+    static final String STATE_LEVEL = "playerLevel";
+    
+    
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	@SuppressLint("NewApi")
 	@Override
@@ -35,8 +42,25 @@ public class MainActivity extends Activity {
             actionBar.setHomeButtonEnabled(false);
         }
         
-    }
+        
+        // Comprobamos si estamos recreando una instancia destruida previamente
+        if (savedInstanceState != null) {
+            // Restauramos el valor de los miembros del estado guardado
+            int mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
+            int mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
 
+            System.out.println(" mCurrentScore : "+mCurrentScore);
+            System.out.println(" mCurrentLevel : "+mCurrentLevel);
+            
+            
+        } else {
+            // Aquí probablemente inicializaríamos los miembros con valores por defecto
+            // para una nueva instancia
+        }
+        
+    }
+    
+   
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,4 +87,60 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
     
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Guardamos el estado actual del juego
+        savedInstanceState.putInt(STATE_SCORE, 1);
+        savedInstanceState.putInt(STATE_LEVEL, 2);
+        
+        // Llamamos siempre a la superclase para que pueda guardar el estado
+        // de la jerarquía de vistas
+        super.onSaveInstanceState(savedInstanceState);
+    }
+    
+    
+    
+	@Override
+	protected void onStop() {
+	    super.onStop();  // Siempre llamamos primero al método de la super clase
+	    System.out.println("  on stop ");
+	    // Guardamos el borrador actual de la nota, porque la actividad se está parando
+	    // y queremos asegurarnos de que el progreso en la nota actual no se pierda.
+//	    ContentValues values = new ContentValues();
+//	    values.put(NotePad.Notes.COLUMN_NAME_NOTE, getCurrentNoteText());
+//	    values.put(NotePad.Notes.COLUMN_NAME_TITLE, getCurrentNoteTitle());
+
+//	    getContentResolver().update(
+//	            mUri,    // La URI de la nota a actualizar.
+//	            values,  // Correspondencia de nombres de columnas y valores a aplicar.
+//	            null,    // No utilizamos ningún criterio SELECT.
+//	            null     // No se utiliza ninguna columna de WHERE.
+//	            );
+	}
+    
+	@Override
+	protected void onStart() {
+	    super.onStart();  // Siempre llamamos primero al método de la super clase
+	    System.out.println(" on start ");
+	    // La actividad está siendo reiniciada o iniciada por primera vez por lo
+	    // que aquí es donde deberíamos asegurarnos de que el GPS está habilitado
+//	    LocationManager locationManager = 
+//	            (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//	    boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+	    
+//	    if (!gpsEnabled) {
+	        // Aquí crearíamos un diálogo pidiendo al usuario activar el GPS y usaríamos una
+	        // intención con la acción android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS
+	        // para llevar al usuario a la pantalla de Configuración para activar el GPS
+//	    }
+	}
+
+	@Override
+	protected void onRestart() {
+	    super.onRestart();  // Siempre llamamos primero al método de la super clase
+	    System.out.println("on restart");
+	    // La actividad está siendo reiniciada desde el estado de parada   
+	}
+	
 }

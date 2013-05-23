@@ -2,6 +2,7 @@ package com.mi.primer.app;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,7 +37,8 @@ public class DisplayMessageActivity extends Activity {
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
-
+	
+	
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
