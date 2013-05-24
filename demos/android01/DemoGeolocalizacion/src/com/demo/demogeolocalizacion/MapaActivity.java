@@ -54,18 +54,16 @@ public class MapaActivity extends android.support.v4.app.FragmentActivity {
 			loc.getLongitude();
 			String coordenadas = "Mis coordenadas son: " + " Latitud = "
 					+ loc.getLatitude() + " Longitud = " + loc.getLongitude();
-//			Toast.makeText(getApplicationContext(), coordenadas,
-//					Toast.LENGTH_LONG).show();
 			System.out.println(coordenadas);
 			crearMarcador(loc.getLatitude(), loc.getLongitude());
 			
 		}
 
 		public void onProviderDisabled(String provider) {
-			Toast.makeText(getApplicationContext(), "Gps Desactivado. Se cerrara la aplicacion",
+			Toast.makeText(getApplicationContext(), "Gps Desactivado",
 					Toast.LENGTH_LONG).show();
 			finish();
-//			messageTextView.setText("Gps Desactivado");
+
 		}
 
 		public void onProviderEnabled(String provider) {
