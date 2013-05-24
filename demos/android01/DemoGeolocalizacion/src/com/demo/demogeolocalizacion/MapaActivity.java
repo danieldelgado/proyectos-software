@@ -6,6 +6,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -61,7 +62,10 @@ public class MapaActivity extends android.support.v4.app.FragmentActivity {
 		}
 
 		public void onProviderDisabled(String provider) {
-			messageTextView.setText("Gps Desactivado");
+			Toast.makeText(getApplicationContext(), "Gps Desactivado. Se cerrara la aplicacion",
+					Toast.LENGTH_LONG).show();
+			finish();
+//			messageTextView.setText("Gps Desactivado");
 		}
 
 		public void onProviderEnabled(String provider) {
