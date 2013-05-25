@@ -22,6 +22,11 @@ public class MainActivity extends Activity {
 		
 		SharedPreferences prefe = getSharedPreferences("datos",Context.MODE_PRIVATE);
 		editText1.setText(prefe.getString("nroCelular",""));
+		if(!prefe.getString("nroCelular","").equals("")){
+			Intent i = new Intent(this, IngresarDatosActivity.class );
+	        startActivity(i);
+	        finish();
+		}
 	}
 
 	@Override
