@@ -40,7 +40,7 @@
         
          <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCK4IOG-Cin9I8IJMeD_gI8V2m0eYA_A3c" />
+            android:value="AIzaSyD_kDehzkTkqNTPeeleRkcb76M_E_O4Uqk" />
          <activity android:name="MapaActivity"></activity>
          <activity android:name="IngresarDatosActivity"></activity>
     </application>
