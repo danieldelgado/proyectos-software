@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
+import com.demo.demogeolocalizacion.ws.client.GeolocalizacionWService;
+
 public class MainActivity extends Activity {
 
 	EditText editText1;
@@ -19,6 +21,9 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		editText1 = (EditText)findViewById(R.id.et1);
+		
+		GeolocalizacionWService geoWs = new GeolocalizacionWService();
+		System.out.println(geoWs.Convert("prueba de WS"));
 		
 		SharedPreferences prefe = getSharedPreferences("datos",Context.MODE_PRIVATE);
 		editText1.setText(prefe.getString("nroCelular",""));
