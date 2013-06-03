@@ -1,5 +1,9 @@
 package com.demo.geolocalizacion.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.demo.geolocalizacion.service.PrincipalService;
 import com.demo.geolocalizacion.util.Constantes;
@@ -43,7 +48,7 @@ public class PrincipalController {
 		switch (vlNum) {
 			case Constantes.USUARIO_EXISTE: {
 				httpSession.setAttribute("numero", numero);
-				return "redirect:/geolocalizacion/geolocalizacion";
+				return "redirect:/geolocalizacion";
 			}
 			case Constantes.USUARIO_NO_EXISTE: {
 				httpSession.setAttribute("numero", numero);
@@ -57,5 +62,16 @@ public class PrincipalController {
 		httpSession.setAttribute("mensaje", "Problema con el servidor");
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "validarNumeroRest", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> existeUsuarioPorNumero(String numero) {
+		logger.info("numero_usuario_existe numero: "+numero);
+		int existeUsuarioPorNumero = usuarioService.validarUsuarioPorNumeroRegistrado(numero);
+		Map<String, Object> r = new HashMap<String, Object>();
+		r.put("respt", existeUsuarioPorNumero);
+		logger.info("existeUsuarioPorNumero repuesta : "+existeUsuarioPorNumero);
+		return r;
+	}
+	
 
 }
