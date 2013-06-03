@@ -5,8 +5,8 @@
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.8.3.js" ></c:url>"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.9.2.custom.js" ></c:url>"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.9.2.custom.min.js" ></c:url>"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery.gomap-1.3.2.min.js" ></c:url>"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" ></c:url>"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/geoMap.js" ></c:url>"></script>
 </head>
 <style> 

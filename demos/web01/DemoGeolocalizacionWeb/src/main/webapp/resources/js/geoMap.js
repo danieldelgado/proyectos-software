@@ -2,14 +2,13 @@
 
 var centerlat  = -12.094518;
 var centerlong = -77.034901;
-var zoom = 6;
+var zoom = 10;
 
 $(function() { 
-    $("#gmap").goMap({
-    		latitude:centerlat,
-			longitude:centerlong,
-			zoom: zoom
-			}); 
+	$("#gmap").gmap3();
+	$("#gmap").gmap3({action:'addMarker', name:'marker', address: "paris", tag : "mytag-paris"});
+
 });
+
 
 
