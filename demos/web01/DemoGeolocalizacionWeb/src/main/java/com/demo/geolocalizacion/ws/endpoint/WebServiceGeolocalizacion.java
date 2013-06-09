@@ -1,5 +1,6 @@
 package com.demo.geolocalizacion.ws.endpoint;
 
+import java.util.Date;
 import java.util.Map;
 
 import javax.jws.WebMethod;
@@ -74,14 +75,46 @@ public class WebServiceGeolocalizacion {
 	 */
 	//	web service fecha nacimiento 1990-12-06T09:47:46.8942117-04:00 -- > esto sirve al hacer las pruebas con el web service en las fechas q son de la clase DATE
 	@WebMethod	
-	public  String registrarUsuariaPorTelefono(@WebParam(name="usuario_telefono") Telefono telefono ) {
+	public  String registrarUsuarioPorTelefono(@WebParam(name="usuario_telefono") Telefono telefono ) {
 		logger.info("registrarUsuariaPorTelefono obtelefono: "+Util.getJsonObject(telefono));		
 		Map<String, Object> registrarUsuario = usuarioService.registrarUsuario_Telefono(telefono);	
 		String rspt = Util.getJson(registrarUsuario);
 		logger.info("registrarUsuario repuesta  rspt: "+rspt);
 		return rspt;
 	}
-		
+	
+	/**
+	 * Se le envia el objeto Telefono(hereda de la entidad usuario asi q tiene todos sus atributos) para guardar
+	 * en la base de datos, pero, tambien valida sus campos y el numero ingresado si ya a sido registrado anteriormente
+	 * 
+	 * retorna una cadena en formato json con maximos de 2 parametros
+	 * 
+	 * paramtro registro es el valor si a sido registrado o no  
+	 * 					    1 = Registrado
+	 * 						2 = No cumple el formato (en el caso de los campos con error) y retornara un parametro mas que una lista de campos con error
+	 * 						3 = Es cuando el usuario intenta registrarse y el numero de telefono ya existe ne la base de datos, no se registra.
+	 * 						-1= Es que el objeto es nulo
+	 * 						0 = Si ocurre algun error en la base de datos
+	 * 
+	 * @param telefono
+	 * @return
+	 */
+	//	web service fecha nacimiento 1990-12-06T09:47:46.8942117-04:00 -- > esto sirve al hacer las pruebas con el web service en las fechas q son de la clase DATE
+	@WebMethod	
+	public  String registrarUsuarioPorTelefono(@WebParam(name="nombre") String nombre,@WebParam(name="apellidos")  String apellidos, @WebParam(name="fechaNacimiento")  Date fechaNacimiento, @WebParam(name="numero")  String numero ) {
+		Telefono t = new Telefono();
+		t.setNombresCompleto(nombre);
+		t.setApellidosCompletos(apellidos);
+		t.setNumero(numero);
+		t.setFechaNacimiento(fechaNacimiento);
+		t.setTipoTelefono(1);		
+		logger.info("registrarUsuariaPorTelefono obtelefono: "+Util.getJsonObject(t));		
+		Map<String, Object> registrarUsuario = usuarioService.registrarUsuario_Telefono(t);	
+		String rspt = Util.getJson(registrarUsuario);
+		logger.info("registrarUsuario repuesta  rspt: "+rspt);
+		return rspt;
+	}
+	
 	/**
 	 * Registra los puntos de geolocalizacion cada vez q se ingresa un nuevo punto de ubicacion inicial
 	 * 
