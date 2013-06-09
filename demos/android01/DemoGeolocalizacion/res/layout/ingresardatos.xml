@@ -36,6 +36,21 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:ems="10" />
+    
+    <TextView
+        android:id="@+id/TextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginLeft="15dp"
+        android:text="Fecha de Nacimiento" />
+
+    <EditText
+        android:id="@+id/et3"
+        android:layout_width="249dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:ems="10" />
 
     <Button
         android:id="@+id/button1"

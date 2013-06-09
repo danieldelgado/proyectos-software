@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.demo.demogeolocalizacion.ws.client.GeolocalizacionWService;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
@@ -24,12 +25,16 @@ public class MapaActivity extends android.support.v4.app.FragmentActivity {
 	Marker marker1 = null;
 	LocationManager milocManager;
 	LocationListener milocListener;
+	String numCelular;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		System.out.println("INICIO DE MAPA");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mapa);
+		Bundle bundle = getIntent().getExtras();
+		numCelular = bundle.getString("numeroTelefono");
 
 		milocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		milocListener = new MiLocationListener();
@@ -42,14 +47,14 @@ public class MapaActivity extends android.support.v4.app.FragmentActivity {
 					0, 0, milocListener);
 			Location loc = milocManager
 					.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-			crearMarcador(loc);
+			crearMarcador(loc, true);
 		} else if (milocManager
 				.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
 			milocManager.requestLocationUpdates(
 					LocationManager.NETWORK_PROVIDER, 0, 0, milocListener);
 			Location loc = milocManager
 					.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-			crearMarcador(loc);
+			crearMarcador(loc, true);
 		} else {
 			Toast.makeText(
 					getApplicationContext(),
@@ -68,6 +73,7 @@ public class MapaActivity extends android.support.v4.app.FragmentActivity {
 						.title(point.toString())
 						.icon(BitmapDescriptorFactory
 								.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+				GeolocalizacionWService.registrarPuntoGeolocalizacion(false, numCelular, String.valueOf(point.latitude), String.valueOf(point.longitude));
 			}
 		});
 
@@ -75,7 +81,7 @@ public class MapaActivity extends android.support.v4.app.FragmentActivity {
 
 	public class MiLocationListener implements LocationListener {
 		public void onLocationChanged(Location loc) {
-			crearMarcador(loc);
+			crearMarcador(loc, null);
 		}
 
 		public void onProviderDisabled(String provider) {
@@ -116,11 +122,14 @@ public class MapaActivity extends android.support.v4.app.FragmentActivity {
 		}
 	}
 
-	public void crearMarcador(Location loc) {
+	public void crearMarcador(Location loc, Boolean ubicacionActual) {
 
+		Double lat = loc.getLatitude();
+		Double lng = loc.getLongitude();
+		
 		if (loc != null) {
-			Double lat = loc.getLatitude();
-			Double lng = loc.getLongitude();
+			lat = loc.getLatitude();
+			lng = loc.getLongitude();
 
 			if (marker1 == null) {
 				marker1 = mMap.addMarker(new MarkerOptions().position(
@@ -133,6 +142,10 @@ public class MapaActivity extends android.support.v4.app.FragmentActivity {
 				marker1.setPosition(new LatLng(lat, lng));
 			}
 		}
+		
+		if(ubicacionActual!=null ){
+			GeolocalizacionWService.registrarPuntoGeolocalizacion(ubicacionActual, numCelular, String.valueOf(lat), String.valueOf(lng));
+		} 
 
 	}
 
