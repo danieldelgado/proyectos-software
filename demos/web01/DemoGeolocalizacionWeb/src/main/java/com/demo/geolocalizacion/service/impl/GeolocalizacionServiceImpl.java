@@ -1,6 +1,7 @@
 package com.demo.geolocalizacion.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import com.demo.geolocalizacion.dominio.Geolocalizacion;
 import com.demo.geolocalizacion.dominio.PuntoGeolocalizacion;
 import com.demo.geolocalizacion.dominio.Telefono;
 import com.demo.geolocalizacion.service.GeolocalizacionService;
-import com.demo.geolocalizacion.service.PrincipalService;
 import com.demo.geolocalizacion.util.Constantes;
 import com.demo.geolocalizacion.util.CustomLog;
 
@@ -24,8 +24,8 @@ public class GeolocalizacionServiceImpl implements GeolocalizacionService {
 	private static final Logger logger = CustomLog
 			.getLogger(GeolocalizacionServiceImpl.class);
 
-	@Autowired
-	private PrincipalService usuarioService;
+//	@Autowired
+//	private PrincipalService usuarioService;
 
 	@Autowired
 	private TelefonoDAO telefonoDAO;
@@ -79,4 +79,22 @@ public class GeolocalizacionServiceImpl implements GeolocalizacionService {
 		return Constantes.USUARIO_NO_EXISTE;
 	}
 
+	@Override
+	public Telefono obtenerTelefono(String numero) {	
+		return telefonoDAO.existeTelefonoRegistrado(numero);
+	}
+
+	@Override
+	public List<Geolocalizacion> obtenerListaGeolocalizacionPorTelefono(
+			Telefono telefono) {	
+		return geolocalizacionDAO.obtenerLstGeolocalizacionPorTelefono(telefono);
+	}
+
+	@Override
+	public List<PuntoGeolocalizacion> obtenerPuntosGeolocalizacion(Integer id) {
+		
+		return puntoGeolocalizacionDAO.obtenerPuntosGeolocalizacion(id);
+	}
+	
+	
 }

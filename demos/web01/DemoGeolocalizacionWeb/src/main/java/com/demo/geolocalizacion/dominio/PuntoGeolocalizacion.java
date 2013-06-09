@@ -40,6 +40,16 @@ public class PuntoGeolocalizacion implements Entidad, Serializable {
 
 	public PuntoGeolocalizacion() {
 	}
+	
+	public PuntoGeolocalizacion(Integer id, Date fechaRegistro, String latitud,
+			String longitud) {
+		this.id = id;
+		this.fechaRegistro = fechaRegistro;
+		this.latitud = latitud;
+		this.longitud = longitud;
+	}
+
+
 
 	public Integer getId() {
 		return id;

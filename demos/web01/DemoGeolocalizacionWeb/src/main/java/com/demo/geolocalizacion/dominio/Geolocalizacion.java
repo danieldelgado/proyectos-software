@@ -31,8 +31,8 @@ public class Geolocalizacion implements Entidad, Serializable {
 	@JoinColumn(name="id_usuario")
 	private Telefono telefono;
 			
-	@OneToMany(mappedBy="geolocalizacion")
-	private List<PuntoGeolocalizacion> puntoGeolocalizacions;
+//	@OneToMany(mappedBy="geolocalizacion")
+//	private List<PuntoGeolocalizacion> puntoGeolocalizacions;
 
 	public Geolocalizacion() {
 	}
@@ -45,6 +45,12 @@ public class Geolocalizacion implements Entidad, Serializable {
 		this.fechaRegistro = fechaRegistro;
 	}
 
+	public Geolocalizacion(Integer id, Date fechaRegistro,Telefono telefono) {
+		super();
+		this.id = id;
+		this.fechaRegistro = fechaRegistro;
+		this.telefono = telefono;
+	}
 
 
 	public Integer getId() {
@@ -75,13 +81,13 @@ public class Geolocalizacion implements Entidad, Serializable {
 		this.telefono = telefono;
 	}
 
-	public List<PuntoGeolocalizacion> getPuntoGeolocalizacions() {
-		return this.puntoGeolocalizacions;
-	}
-
-	public void setPuntoGeolocalizacions(List<PuntoGeolocalizacion> puntoGeolocalizacions) {
-		this.puntoGeolocalizacions = puntoGeolocalizacions;
-	}
+//	public List<PuntoGeolocalizacion> getPuntoGeolocalizacions() {
+//		return this.puntoGeolocalizacions;
+//	}
+//
+//	public void setPuntoGeolocalizacions(List<PuntoGeolocalizacion> puntoGeolocalizacions) {
+//		this.puntoGeolocalizacions = puntoGeolocalizacions;
+//	}
 
 	@Override
 	public String getLabel() {

@@ -15,44 +15,54 @@
 </head>
 <body>
 	<h1>GeoLocalizacion Mapa</h1>
-
+ 	<input type="hidden" id="rurl" value="<c:url value="/" ></c:url>">
 	<div>
 		<div>
-
-
-			<div>
-
+			<div style="float: left; width: 30%; height: 100%;">
 				<fieldset>
 					<legend> Datos Personales </legend>
 					<div>
 						<p>
-							<label>Nombres completo:</label> <label> </label>
+							<label>Nombres completo:</label> ${telefono.nombresCompleto } <label>
+							</label>
 						</p>
 						<p>
-							<label>Apellidos completo:</label> <label> </label>
+							<label>Apellidos completo:</label> ${telefono.apellidosCompletos} <label> </label>
 						</p>
 						<p>
-							<label>Telefono:</label> <label> </label>
+							<label>Telefono:</label> <label> ${telefono.numero } </label>
 						</p>
 					</div>
-
 				</fieldset>
-
+				<fieldset>
+					<legend> Lista de Geolozalizaciones </legend>
+					<div id="lstGeolocalizacion">
+						<c:if test="${not empty lstGeolocalizacions}">
+							<c:forEach items="${lstGeolocalizacions}" var="geo">
+								<p>
+									<label> ${geo.id} - ${geo.fechaRegistro} </label> <input
+										type="hidden" value="${geo.id}">
+								</p>
+							</c:forEach>
+						</c:if>
+					</div>
+				</fieldset>
 			</div>
-			<div>
-				<p>Geolocalización</p>
-
-
+			<div style="float: left; width: 30%; height: 100%;">
+				<fieldset>
+					<legend> Puntos de Geolocalizacion </legend>
+					<div id="lstPuntosGeolocalizacion">
+						
+					</div>
+				</fieldset>
 			</div>
-			<div></div>
-		</div>
-		<div>
-			<div id="map_canvas" style="width: 300px; height: 300px"></div>
+			<div style="float: left; width: 40%;">
+				<div id="map_canvas" style="width: 100%; height: 100%;"></div>
+			</div>
 		</div>
 	</div>
 
 </body>
-
 <script type="text/javascript"
 	src="<c:url value="/resources/js/geoMap.js" ></c:url>"></script>
 

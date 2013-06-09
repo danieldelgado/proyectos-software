@@ -1,5 +1,7 @@
 package com.demo.geolocalizacion.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.demo.geolocalizacion.dominio.Geolocalizacion;
+import com.demo.geolocalizacion.dominio.PuntoGeolocalizacion;
 import com.demo.geolocalizacion.dominio.Telefono;
 import com.demo.geolocalizacion.service.GeolocalizacionService;
 import com.demo.geolocalizacion.service.PrincipalService;
@@ -33,8 +38,19 @@ public class GeolocalizacionController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String geolocalizacion(Model model,HttpServletRequest httpServletRequest) {
-		logger.info("GeolocalizacionController Ingreso al geolocalizacion");		
-		return "geolocalizacion";
+		logger.info("GeolocalizacionController Ingreso al geolocalizacion");	
+		HttpSession httpSession = httpServletRequest.getSession();
+		String numero = (String)(httpSession.getAttribute("numero")) ;
+		logger.info("session numero:"+numero);	
+		if(numero == null){
+			return "redirect:/";
+		}else{
+			Telefono telefono = geolocalizacionService.obtenerTelefono(numero);
+			model.addAttribute("telefono", telefono);
+			List<Geolocalizacion> lstGeolocalizacions = geolocalizacionService.obtenerListaGeolocalizacionPorTelefono(telefono);
+			model.addAttribute("lstGeolocalizacions", lstGeolocalizacions);
+			return "geolocalizacion";
+		}		
 	}
 	
 	@RequestMapping(value = "registrarNumero", method = RequestMethod.GET)
@@ -69,6 +85,10 @@ public class GeolocalizacionController {
 		return "registrarNumero";
 	}
 	
-	
+	@RequestMapping(value = "obtenerPuntosGeolocalizacion", method = RequestMethod.GET)
+	public @ResponseBody List<PuntoGeolocalizacion> existeUsuarioPorNumero(  Integer id ) {
+		List<PuntoGeolocalizacion> list = geolocalizacionService.obtenerPuntosGeolocalizacion(id);		
+		return list;
+	}
 	
 }
