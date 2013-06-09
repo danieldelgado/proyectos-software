@@ -27,15 +27,32 @@ function eventosListadoGeocalizacion(){
 }
 
 function listarPuntosGeolocalizacion(inputId){
+	
+	console.log( " inputId :" + inputId);
+	
 	var lstPuntosGeolocalizacion = $("#lstPuntosGeolocalizacion");	
 	var u = url + "geolocalizacion/obtenerPuntosGeolocalizacion?id="+inputId;
 	var h = "";
 	$.get( u  , function(resp){
 		$(resp).each( function( i , item ){
-			h += "<p> Ubicacion latitud : "+item.latitud+" longitud : "+item.longitud+"  <input type='hidden' value='"+item.id+"'> </p>";
+			h += "<p> latitud : "+item.latitud+" longitud : "+item.longitud+"  <input type='hidden' value='"+item.id+"'> </p>";
 		});
 		lstPuntosGeolocalizacion.html(h);
-	} );
+		eventosListadoGeocalizacion(lstPuntosGeolocalizacion);
+	});
+	
+}
+
+function eventosListadoGeocalizacion(lstPuntosGeolocalizacion){
+	
+	var ps = lstPuntosGeolocalizacion.find("p");
+	if(ps.length > 0){
+		ps.click( function() {
+			var inputId = $(this).find("input[type=hidden]").val();
+			// falta metodo para ubicarme en el mapa
+			console.log(inputId);
+		});
+	}
 	
 }
 

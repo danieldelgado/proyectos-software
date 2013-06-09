@@ -18,6 +18,7 @@ public class GeolocalizacionDAOImpl extends DAO<Geolocalizacion> implements Geol
 		sqlQuery = "select new Geolocalizacion(g.id , g.fechaRegistro) from Geolocalizacion g where g.telefono = :telefono order by g.fechaRegistro desc";
 		q = em.createQuery(sqlQuery);
 		q.setParameter("telefono", telefono);
+		q.setFirstResult(1);
 		List<Geolocalizacion> glst = q.getResultList();
 		if(glst.size()>0){
 			Geolocalizacion g = glst.get(0);

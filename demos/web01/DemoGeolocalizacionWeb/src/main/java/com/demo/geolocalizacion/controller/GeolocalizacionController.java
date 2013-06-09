@@ -1,6 +1,5 @@
 package com.demo.geolocalizacion.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,12 +42,14 @@ public class GeolocalizacionController {
 		String numero = (String)(httpSession.getAttribute("numero")) ;
 		logger.info("session numero:"+numero);	
 		if(numero == null){
+			logger.info(" retorno a princial ");	
 			return "redirect:/";
 		}else{
 			Telefono telefono = geolocalizacionService.obtenerTelefono(numero);
 			model.addAttribute("telefono", telefono);
 			List<Geolocalizacion> lstGeolocalizacions = geolocalizacionService.obtenerListaGeolocalizacionPorTelefono(telefono);
 			model.addAttribute("lstGeolocalizacions", lstGeolocalizacions);
+			logger.info(" numero:"+numero + " lstGeolocalizacions : " + lstGeolocalizacions ) ;
 			return "geolocalizacion";
 		}		
 	}
@@ -86,8 +87,9 @@ public class GeolocalizacionController {
 	}
 	
 	@RequestMapping(value = "obtenerPuntosGeolocalizacion", method = RequestMethod.GET)
-	public @ResponseBody List<PuntoGeolocalizacion> existeUsuarioPorNumero(  Integer id ) {
+	public @ResponseBody List<PuntoGeolocalizacion> obtenerPuntosGeolocalizacion(  Integer id ) {
 		List<PuntoGeolocalizacion> list = geolocalizacionService.obtenerPuntosGeolocalizacion(id);		
+		logger.info("GeolocalizacionController obtenerPuntosGeolocalizacion  :"+list );	
 		return list;
 	}
 	

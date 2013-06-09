@@ -10,7 +10,6 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.transaction.annotation.Transactional;
 
 public class DAO<T extends Entidad> implements IDAO<T> {
 
