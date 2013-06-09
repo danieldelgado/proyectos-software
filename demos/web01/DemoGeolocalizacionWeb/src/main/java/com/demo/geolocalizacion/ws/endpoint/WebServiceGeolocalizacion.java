@@ -75,7 +75,7 @@ public class WebServiceGeolocalizacion {
 	 */
 	//	web service fecha nacimiento 1990-12-06T09:47:46.8942117-04:00 -- > esto sirve al hacer las pruebas con el web service en las fechas q son de la clase DATE
 	@WebMethod	
-	public  String registrarUsuarioPorTelefono(@WebParam(name="usuario_telefono") Telefono telefono ) {
+	public  String registrarUsuarioPorTelefonoObject(@WebParam(name="usuario_telefono") Telefono telefono ) {
 		logger.info("registrarUsuariaPorTelefono obtelefono: "+Util.getJsonObject(telefono));		
 		Map<String, Object> registrarUsuario = usuarioService.registrarUsuario_Telefono(telefono);	
 		String rspt = Util.getJson(registrarUsuario);
