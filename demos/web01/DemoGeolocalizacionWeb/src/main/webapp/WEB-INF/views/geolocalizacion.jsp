@@ -1,35 +1,59 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
 <html>
 <head>
-<title>Geolocalizacion</title>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.8.3.js" ></c:url>"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.9.2.custom.js" ></c:url>"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.9.2.custom.min.js" ></c:url>"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/gmap3.js" ></c:url>"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/geoMap.js" ></c:url>"></script>
+<script type="text/javascript"
+	src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCj0iuD98oHnJcd1XxFmwdluF7Uxv4GZos&sensor=true">
+	
+</script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-1.8.3.js" ></c:url>"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-ui-1.9.2.custom.js" ></c:url>"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/jquery-ui-1.9.2.custom.min.js" ></c:url>"></script>
 </head>
-<style> 
-#gmap { 
-    width:700px; 
-    height:400px; 
-} 
-</style> 
 <body>
 	<h1>GeoLocalizacion Mapa</h1>
+
 	<div>
-		<input type="text" name="numero" id="numero" value="">
-		<div >
-			<div id="gmap" >
-				
+		<div>
+
+
+			<div>
+
+				<fieldset>
+					<legend> Datos Personales </legend>
+					<div>
+						<p>
+							<label>Nombres completo:</label> <label> </label>
+						</p>
+						<p>
+							<label>Apellidos completo:</label> <label> </label>
+						</p>
+						<p>
+							<label>Telefono:</label> <label> </label>
+						</p>
+					</div>
+
+				</fieldset>
+
 			</div>
-			<div id="divListaCoordenadas">
-				
+			<div>
+				<p>Geolocalización</p>
+
+
 			</div>
+			<div></div>
 		</div>
 		<div>
-			<a href="<c:url value="/"></c:url>" >Ir a principal</a>
+			<div id="map_canvas" style="width: 300px; height: 300px"></div>
 		</div>
 	</div>
+
 </body>
+
+<script type="text/javascript"
+	src="<c:url value="/resources/js/geoMap.js" ></c:url>"></script>
+
 </html>

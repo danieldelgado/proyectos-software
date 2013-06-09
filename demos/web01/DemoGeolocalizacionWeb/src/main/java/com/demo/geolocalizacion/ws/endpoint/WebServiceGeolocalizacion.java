@@ -101,9 +101,9 @@ public class WebServiceGeolocalizacion {
 	 */
 	//	web service fecha nacimiento 1990-12-06T09:47:46.8942117-04:00 -- > esto sirve al hacer las pruebas con el web service en las fechas q son de la clase DATE
 	@WebMethod	
-	public  String registrarUsuarioPorTelefono(@WebParam(name="nombre") String nombre,@WebParam(name="apellidos")  String apellidos, @WebParam(name="fechaNacimiento")  Date fechaNacimiento, @WebParam(name="numero")  String numero ) {
+	public  String registrarUsuarioPorTelefono(@WebParam(name="nombres") String nombres,@WebParam(name="apellidos")  String apellidos, @WebParam(name="fechaNacimiento")  Date fechaNacimiento, @WebParam(name="numero")  String numero ) {
 		Telefono t = new Telefono();
-		t.setNombresCompleto(nombre);
+		t.setNombresCompleto(nombres);
 		t.setApellidosCompletos(apellidos);
 		t.setNumero(numero);
 		t.setFechaNacimiento(fechaNacimiento);
