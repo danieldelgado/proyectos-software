@@ -91,10 +91,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 						try {
 							telefonoDAO.guardar(telefono);							
 						} catch (Exception e) {
-							
-							System.out.println(e);
-							e.printStackTrace();
-							
+							e.printStackTrace();							
 						}
 						obRespuyesta.put("registro", Constantes.REGISTRADO);
 					} else {
