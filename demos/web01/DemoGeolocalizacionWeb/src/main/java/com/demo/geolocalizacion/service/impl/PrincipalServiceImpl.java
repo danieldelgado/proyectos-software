@@ -65,11 +65,11 @@ public class PrincipalServiceImpl implements PrincipalService {
 				List<String> lstErrores = new ArrayList<String>();
 				if (!(SimpleValidate.validar(Constantes.FORMATO_NOMBRE,
 						telefono.getNombresCompleto()))) {
-					lstErrores.add("nombresCompleto");
+					lstErrores.add("nombres");
 				}
 				if (!(SimpleValidate.validar(Constantes.FORMATO_NOMBRE,
 						telefono.getApellidosCompletos()))) {
-					lstErrores.add("apellidosCompletos");
+					lstErrores.add("apellidos");
 				}
 				if (!(SimpleValidate.validar(Constantes.FORMATO_TELEFONO,
 						telefono.getNumero()))) {
