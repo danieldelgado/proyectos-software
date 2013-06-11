@@ -6,56 +6,68 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.demo.demogeolocalizacion.util.Constantes;
+import com.demo.demogeolocalizacion.util.SimpleValidate;
 import com.demo.demogeolocalizacion.ws.client.GeolocalizacionWService;
 
 public class MainActivity extends Activity {
 
 	EditText editText1;
-	
+	private static final String VERBOSE = "MyActivity";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		editText1 = (EditText)findViewById(R.id.et1);
-		System.out.println("Prueba 10");
-		
-		
-//		GeolocalizacionWService geoWs = new GeolocalizacionWService();
-//		System.out.println("123 " + GeolocalizacionWService.existeUsuarioPorNumero("987456123"));
-//		System.out.println("123 " + GeolocalizacionWService.registrarUsuarioPorTelefono("Danielle", "mongolo", "1990-12-06T09:47:46.8942117-04:00", "985214741"));
-//		System.out.println("123 " + GeolocalizacionWService.registrarPuntoGeolocalizacion(true, "987456123", "-12.67556", "-77.0345901"));
-//		System.out.println("123 " + GeolocalizacionWService.registrarPuntoGeolocalizacion(false, "987456123", "-12.675561", "-77.03459011"));
-//		System.out.println("123 " + GeolocalizacionWService.registrarPuntoGeolocalizacion(false, "987456123", "-12.675562", "-77.03459012"));
-//		System.out.println("123 " + GeolocalizacionWService.registrarPuntoGeolocalizacion(false, "987456123", "-12.675563", "-77.03459013"));
-//		System.out.println("Prueba 11");
-		
-		SharedPreferences prefe = getSharedPreferences("datos",Context.MODE_PRIVATE);
-		editText1.setText(prefe.getString("nroCelular",""));
+		editText1 = (EditText) findViewById(R.id.et1);
+		Log.v(VERBOSE, "Prueba 10");
 
-		String celular = prefe.getString("nroCelular","");
-		
-		if(!celular.equals("")){
-			Integer res = GeolocalizacionWService.existeUsuarioPorNumero(celular);
-			if(res.equals(Constantes.USUARIO_NO_EXISTE)){
-				Intent i = new Intent(this, IngresarDatosActivity.class );
-		        i.putExtra("numeroTelefono", celular);
-		        startActivity(i);
-		        finish();
+		// Resources resources = this.getResources();
+		// AssetManager assetManager = resources.getAssets();
+		// try {
+		// InputStream inputStream = assetManager.open("config.properties");
+		// Properties properties = new Properties();
+		// properties.load(inputStream);
+		// Log.v(VERBOSE, "Ani " + properties.get("url.web.service"));
+		// System.out.println("The properties are now loaded");
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// System.out.println(e.toString());
+		// }
+
+		SharedPreferences prefe = getSharedPreferences("datos",
+				Context.MODE_PRIVATE);
+		// editText1.setText(prefe.getString("nroCelular",""));
+
+		String celular = prefe.getString("nroCelular", "");
+		//
+		if (!celular.equals("")) {
+			Integer res = GeolocalizacionWService
+					.existeUsuarioPorNumero(celular);
+			if (!validarFormatoNumero(celular)) {
+				return;
+			}
+			if (res.equals(Constantes.USUARIO_NO_EXISTE)) {
+				Intent i = new Intent(this, IngresarDatosActivity.class);
+				i.putExtra("numeroTelefono", celular);
+				startActivity(i);
+				finish();
 			} else {
 				guardarPreference();
-		        Intent i = new Intent(this, MapaActivity.class );
-		        i.putExtra("numeroTelefono", celular);
-		        startActivity(i);
-		        finish();
+				Intent i = new Intent(this, MapaActivity.class);
+				i.putExtra("numeroTelefono", celular);
+				startActivity(i);
+				finish();
 			}
-			
+
 		}
-		
+
 	}
 
 	@Override
@@ -64,46 +76,45 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
 	public void irDatos(View view) {
-		
+
 		System.out.println("IR DATOS");
 		guardarPreference();
 		String valor1 = editText1.getText().toString();
+
+		if (!validarFormatoNumero(valor1)) {
+			Toast.makeText(getApplicationContext(),
+					"El valor ingresado no es válido", Toast.LENGTH_LONG)
+					.show();
+			return;
+		}
+
 		Integer res = GeolocalizacionWService.existeUsuarioPorNumero(valor1);
-		
-		if(res.equals(Constantes.USUARIO_NO_EXISTE)){
-			Intent i = new Intent(this, IngresarDatosActivity.class );
-	        i.putExtra("numeroTelefono", valor1);
-	        startActivity(i);
+
+		if (res.equals(Constantes.USUARIO_NO_EXISTE)) {
+			Intent i = new Intent(this, IngresarDatosActivity.class);
+			i.putExtra("numeroTelefono", valor1);
+			startActivity(i);
 		} else {
 			guardarPreference();
-	        Intent i = new Intent(this, MapaActivity.class );
-	        i.putExtra("numeroTelefono", valor1);
-	        startActivity(i);
+			Intent i = new Intent(this, MapaActivity.class);
+			i.putExtra("numeroTelefono", valor1);
+			startActivity(i);
 		}
-		
-        
-	} 
-	
-//	public void irIngresoDatos(View view) {
-//		guardarPreference();
-//        Intent i = new Intent(this, IngresarDatosActivity.class );
-//        i.putExtra("numeroTelefono", valor1);
-//        startActivity(i);
-//	}
-//	
-//	public void irMapa(View view) {
-//		guardarPreference();
-//        Intent i = new Intent(this, MapaActivity.class );
-//        startActivity(i);
-//	} 
-	
-	public void guardarPreference(){
-		 SharedPreferences preferencias=getSharedPreferences("datos",Context.MODE_PRIVATE);
-	        Editor editor=preferencias.edit();
-	        editor.putString("nroCelular", editText1.getText().toString());
-	        editor.commit();
+
+	}
+
+	public Boolean validarFormatoNumero(String numeroCel) {
+		return SimpleValidate.validar(Constantes.FORMATO_TELEFONO, numeroCel);
+	}
+
+	public void guardarPreference() {
+		SharedPreferences preferencias = getSharedPreferences("datos",
+				Context.MODE_PRIVATE);
+		Editor editor = preferencias.edit();
+		editor.putString("nroCelular", editText1.getText().toString());
+		editor.commit();
 	}
 
 }

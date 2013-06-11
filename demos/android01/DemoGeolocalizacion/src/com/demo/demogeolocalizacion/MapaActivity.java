@@ -73,7 +73,9 @@ public class MapaActivity extends android.support.v4.app.FragmentActivity {
 						.title(point.toString())
 						.icon(BitmapDescriptorFactory
 								.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-				GeolocalizacionWService.registrarPuntoGeolocalizacion(false, numCelular, String.valueOf(point.latitude), String.valueOf(point.longitude));
+				GeolocalizacionWService.registrarPuntoGeolocalizacion(false,
+						numCelular, String.valueOf(point.latitude),
+						String.valueOf(point.longitude));
 			}
 		});
 
@@ -118,7 +120,7 @@ public class MapaActivity extends android.support.v4.app.FragmentActivity {
 		}
 
 		public void onStatusChanged(String provider, int status, Bundle extras) {
-			
+
 		}
 	}
 
@@ -126,7 +128,7 @@ public class MapaActivity extends android.support.v4.app.FragmentActivity {
 
 		Double lat = loc.getLatitude();
 		Double lng = loc.getLongitude();
-		
+
 		if (loc != null) {
 			lat = loc.getLatitude();
 			lng = loc.getLongitude();
@@ -142,10 +144,12 @@ public class MapaActivity extends android.support.v4.app.FragmentActivity {
 				marker1.setPosition(new LatLng(lat, lng));
 			}
 		}
-		
-		if(ubicacionActual!=null ){
-			GeolocalizacionWService.registrarPuntoGeolocalizacion(ubicacionActual, numCelular, String.valueOf(lat), String.valueOf(lng));
-		} 
+
+		if (ubicacionActual != null) {
+			GeolocalizacionWService.registrarPuntoGeolocalizacion(
+					ubicacionActual, numCelular, String.valueOf(lat),
+					String.valueOf(lng));
+		}
 
 	}
 
