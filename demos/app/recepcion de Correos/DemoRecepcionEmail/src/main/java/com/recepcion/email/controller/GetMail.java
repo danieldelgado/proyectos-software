@@ -24,7 +24,14 @@ J2EE, Java, Linux, MySQL
 
  * */
 
-public class GetMail {
+// gmail hotmail yahoo por su host
+// el getStore imaps
+
+// todas las cadenas desded imaps tienen que ser parametros de configuracion 
+// getfolder en que carpeta sera filtrado en este caso es correcto q sea INBOX ya que es lo que se pide
+// y bueno en los parametros el correo que se desea filtrar
+// en el caso de correos empresariales hay q investigar un poco. por ejemplo de infonet.
+ public class GetMail {
 
 	public static void main(String args[]) throws MessagingException {
 
