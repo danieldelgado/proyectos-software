@@ -37,21 +37,23 @@ J2EE, Java, Linux, MySQL
 
 		Properties prop = new Properties();
 
-		prop.setProperty("mail.pop3.starttls.enable", "false");
-		prop.setProperty("mail.pop3.socketFactory.class","javax.net.ssl.SSLSocketFactory");
-		prop.setProperty("mail.pop3.socketFactory.fallback", "false");
-		prop.setProperty("mail.pop3.port", "995");
-		prop.setProperty("mail.pop3.socketFactory.port", "995");
-
+//		prop.setProperty("mail.pop3.starttls.enable", "false");
+//		prop.setProperty("mail.pop3.socketFactory.class","javax.net.ssl.SSLSocketFactory");
+//		prop.setProperty("mail.pop3.socketFactory.fallback", "false");
+//		prop.setProperty("mail.pop3.port", "995");
+//		prop.setProperty("mail.pop3.socketFactory.port", "995");
+//		Store tienda = session.getStore("pop3");
+//		tienda.connect("mail.infonet-consulting.com", "ajimenez@infonet-consulting.com", "ajimenez");
+		
 		Session session = Session.getInstance(prop);		
-		Store tienda = session.getStore("imaps");
-		tienda.connect("pop.gmail.com", "LuxiJavaG@gmail.com", "LuxiJavaG123");
+		Store tienda = session.getStore("pop3");
+		tienda.connect("pop3.live.com", "anisella@outlook.com", "");
 		Folder folder = tienda.getFolder("INBOX");
 		folder.open(Folder.READ_ONLY);
 
 		Message mensaje[] = folder.getMessages();
 		for (int i = mensaje.length - 1; i >= 0; i--) {
-			System.out.println(i + ":" + mensaje[i].getFrom()[0] + " = " + mensaje[i].getSubject());
+//			System.out.println(i + ":" + mensaje[i].getFrom()[0] + " = " + mensaje[i].getSubject());
 			
 			
 			
