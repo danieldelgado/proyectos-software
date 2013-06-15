@@ -43,23 +43,19 @@ J2EE, Java, Linux, MySQL
 //		prop.setProperty("mail.pop3.port", "995");
 //		prop.setProperty("mail.pop3.socketFactory.port", "995");
 		
+		Session session = Session.getInstance(prop);
+		
 		/**** INFONET ****/
-//		Session session = Session.getInstance(prop);	
-//		Store tienda = session.getStore("pop3");
-//		tienda.connect("mail.infonet-consulting.com", "ajimenez@infonet-consulting.com", "ajimenez");
+//		Store tienda = connectInfonet(session, "ajimenez@infonet-consulting.com", "ajimenez");
 		
 		/**** HOTMAIL ****/
-//		prop.put("mail.pop3s.ssl.enable", "true");
-//		Session session = Session.getInstance(prop);		
-//		Store tienda = session.getStore("pop3s");
-//		tienda.connect("pop3.live.com", "anisella@hotmail.com", "");
+//		Store tienda = connectHotmail(session, "anisella@hotmail.com", "K");
 		
 		/**** GMAIL ****/
+//		Store tienda = connectGmail(session, "LuxiJavaG@gmail.com", "LuxiJavaG123");
 		
-		Session session = Session.getInstance(prop);		
-		Store tienda = session.getStore("imaps");
-		tienda.connect("pop.gmail.com", "LuxiJavaG@gmail.com", "LuxiJavaG123");
-		
+		/**** YAHOO ****/
+		Store tienda = connectYahoo(session, "anisella", "V");
 		
 		Folder folder = tienda.getFolder("INBOX");
 		folder.open(Folder.READ_ONLY);
@@ -68,19 +64,58 @@ J2EE, Java, Linux, MySQL
 		for (int i = mensaje.length - 1; i >= 0; i--) {
 			System.out.println(i + ":" + mensaje[i].getFrom()[0] + " = " + mensaje[i].getSubject());
 			
-			
-			
 			if(String.valueOf(mensaje[i].getFrom()[0]).indexOf("danieldelgado20g@gmail.com")>0){
-				
 				System.err.println(" salioo filtrado ");
-				
 			}
-			
-			
 		}
 
 		folder.close(false);
 		tienda.close();
 
+	}
+	
+	static Store connectGmail(Session session, String usuario, String password){
+		Store tienda = null;
+		try {	
+			tienda = session.getStore("imaps");
+			tienda.connect("pop.gmail.com", usuario, password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tienda;
+	}
+	
+	static Store connectHotmail(Session session, String usuario, String password){
+		Store tienda = null;
+		try {
+			tienda = session.getStore("pop3s");
+			tienda.connect("pop3.live.com", usuario, password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tienda;
+	}
+	
+	static Store connectYahoo(Session session, String usuario, String password){
+		Store tienda = null;
+		try {
+			tienda = session.getStore("imap");
+			tienda.connect("imap.m.mail.yahoo.com", usuario, password);
+//			tienda.connect("imap-ssl.mail.yahoo.com", usuario, password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tienda;
+	}
+	
+	static Store connectInfonet(Session session, String usuario, String password){
+		Store tienda = null;
+		try {
+			tienda = session.getStore("pop3");
+			tienda.connect("mail.infonet-consulting.com", usuario, password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return tienda;
 	}
 }
