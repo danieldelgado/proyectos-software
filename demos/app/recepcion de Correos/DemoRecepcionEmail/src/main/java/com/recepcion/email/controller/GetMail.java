@@ -42,18 +42,31 @@ J2EE, Java, Linux, MySQL
 //		prop.setProperty("mail.pop3.socketFactory.fallback", "false");
 //		prop.setProperty("mail.pop3.port", "995");
 //		prop.setProperty("mail.pop3.socketFactory.port", "995");
+		
+		/**** INFONET ****/
+//		Session session = Session.getInstance(prop);	
 //		Store tienda = session.getStore("pop3");
 //		tienda.connect("mail.infonet-consulting.com", "ajimenez@infonet-consulting.com", "ajimenez");
 		
+		/**** HOTMAIL ****/
+//		prop.put("mail.pop3s.ssl.enable", "true");
+//		Session session = Session.getInstance(prop);		
+//		Store tienda = session.getStore("pop3s");
+//		tienda.connect("pop3.live.com", "anisella@hotmail.com", "");
+		
+		/**** GMAIL ****/
+		
 		Session session = Session.getInstance(prop);		
-		Store tienda = session.getStore("pop3");
-		tienda.connect("pop3.live.com", "anisella@outlook.com", "");
+		Store tienda = session.getStore("imaps");
+		tienda.connect("pop.gmail.com", "LuxiJavaG@gmail.com", "LuxiJavaG123");
+		
+		
 		Folder folder = tienda.getFolder("INBOX");
 		folder.open(Folder.READ_ONLY);
 
 		Message mensaje[] = folder.getMessages();
 		for (int i = mensaje.length - 1; i >= 0; i--) {
-//			System.out.println(i + ":" + mensaje[i].getFrom()[0] + " = " + mensaje[i].getSubject());
+			System.out.println(i + ":" + mensaje[i].getFrom()[0] + " = " + mensaje[i].getSubject());
 			
 			
 			
