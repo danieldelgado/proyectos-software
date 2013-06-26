@@ -32,7 +32,6 @@ import com.google.android.gcm.GCMBaseIntentService;
  */
 public class GCMIntentService extends GCMBaseIntentService {
 
-    @SuppressWarnings("hiding")
     private static final String TAG = "GCMIntentService";
 
     public GCMIntentService() {
@@ -56,10 +55,13 @@ public class GCMIntentService extends GCMBaseIntentService {
     @Override
     protected void onMessage(Context context, Intent intent) {
         Log.i(TAG, "Received message");
+        String message1 = intent.getStringExtra("message");
+        System.out.println("  message1 :"+ message1);
         String message = getString(R.string.gcm_message);
-        displayMessage(context, message);
+        System.out.println("  message :"+ message);
+        displayMessage(context, message1);
         // notifies user
-        generateNotification(context, message);
+        generateNotification(context, message1);
     }
 
     @Override

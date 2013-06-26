@@ -27,7 +27,7 @@ public final class CommonUtilities {
     /**
      * Base URL of the Demo Server (such as http://my_host:8080/gcm-demo)
      */
-    static final String SERVER_URL = "http://192.168.1.37:8091/gcm-demo-server/";
+    static final String SERVER_URL = "http://192.168.1.33:8080/gcm-demo-server/";
 
     /**
      * Google API project id registered to use GCM.
