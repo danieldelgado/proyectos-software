@@ -78,9 +78,24 @@ public class SendAllMessagesServlet extends BaseServlet {
       if (devices.size() == 1) {
         // send a single message using plain post
         String registrationId = devices.get(0);
-        Message message = new Message.Builder().build();
+//        Message message = new Message.Builder().build();
+    	Message message = new Message.Builder()
+		
+		// If multiple messages are sent using the same .collapseKey()
+		// the android target device, if it was offline during earlier message
+		// transmissions, will only receive the latest message for that key when
+		// it goes back on-line.
+//		.collapseKey(collapseKey)
+		.timeToLive(30)
+		.delayWhileIdle(true)
+		.addData("message", "mesnaje desde servidor")
+		.build();
+        System.out.println(message);
+        System.out.println(message.getCollapseKey());
+        System.out.println(message.getData());
         Result result = sender.send(message, registrationId, 5);
         status = "Sent message to one device: " + result;
+        System.out.println(status);
       } else {
         // send a multicast message using JSON
         // must split in chunks of 1000 devices (GCM limit)
@@ -100,6 +115,7 @@ public class SendAllMessagesServlet extends BaseServlet {
         }
         status = "Asynchronously sending " + tasks + " multicast messages to " +
             total + " devices";
+        System.out.println(status);
       }
     }
     req.setAttribute(HomeServlet.ATTRIBUTE_STATUS, status.toString());
@@ -112,7 +128,19 @@ public class SendAllMessagesServlet extends BaseServlet {
     threadPool.execute(new Runnable() {
 
       public void run() {
-        Message message = new Message.Builder().build();
+//        Message message = new Message.Builder().build();
+    		Message message = new Message.Builder()
+    		
+    		// If multiple messages are sent using the same .collapseKey()
+    		// the android target device, if it was offline during earlier message
+    		// transmissions, will only receive the latest message for that key when
+    		// it goes back on-line.
+//    		.collapseKey(collapseKey)
+    		.timeToLive(30)
+    		.delayWhileIdle(true)
+    		.addData("message", "mesnaje desde servidor")
+    		.build();
+    		
         MulticastResult multicastResult;
         try {
           multicastResult = sender.send(message, devices, 5);
