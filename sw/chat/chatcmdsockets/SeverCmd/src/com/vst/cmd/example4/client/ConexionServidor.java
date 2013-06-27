@@ -24,14 +24,11 @@ public class ConexionServidor implements Runnable {
 			Scanner in = new Scanner(socket.getInputStream());
 			PrintWriter out = new PrintWriter(socket.getOutputStream());
 			ConexionServidorCMD.mensajesConsola("Conexion establecida a:"+hostClient+":"+puerto);
-			while (true){						
-//				String input = chat.nextLine();	
-//				out.println(input);			
+			while (true){				
 				String input = chat.nextLine();
 				out.println(input);				
 				out.flush();				
 				if(in.hasNext()){										
-					System.out.println("in.nextLine():"+in.nextLine());
 					ConexionServidorCMD.mensajesConsola(in.nextLine());
 				}
 			}

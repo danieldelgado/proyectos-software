@@ -24,10 +24,7 @@ public class ConexionClienteCMD implements Runnable {
 				if (in.hasNext()) {
 					String input = in.nextLine();
 					ServidorCMD.mensajesConsola(hostClient+":"+puerto+" text:"+input);
-//					out.println("cmd:\n"+input);
-//					out.println("Mendaje reenviado: "+input);
-					input = "Mesnaje reenviado:"+input;
-//					byte[] bytes = input.getBytes();					
+					input = "Mesnaje reenviado:"+input;			
 					out.println(input);
 					out.flush();
 				}
