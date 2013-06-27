@@ -28,8 +28,7 @@ public class ConexionServidorCMD extends JFrame {
 	static boolean debug = false;
 	private String usuario = null;
 	public static ConexionServidorCMD main;
-	static ProcesoRecibe procesoRecibe;
-	static ProcesoEnvio procesoEnvio;
+
 	public ConexionServidorCMD(String usuario, boolean d) {
 		super("Cliente CMD consola :" + usuario);
 		mensajesConsola("Creando interfaz ... ");
@@ -52,14 +51,9 @@ public class ConexionServidorCMD extends JFrame {
 		barra.add(menuArchivo);
 		salir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				procesoEnvio.terminarConexion();
 				System.exit(0);
 			}
-		});
-		
-		procesoRecibe = new ProcesoRecibe(cliente, this);
-		procesoEnvio = new ProcesoEnvio(cliente, this);
-		
+		});	
 		setSize(300, 320);
 		setVisible(true);
 	}
@@ -101,18 +95,14 @@ public class ConexionServidorCMD extends JFrame {
 		main.setLocationRelativeTo(null);
 		main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ExecutorService executor = Executors.newCachedThreadPool();
-
 		try {
 			main.mostrarMensaje("Estableciento conexion serverhost " + serverhost + " puerto " + puerto + " usuario :" + usuario);
 			main.mostrarMensaje("Buscando Servidor ...");
 			cliente = new Socket(InetAddress.getByName(serverhost), puerto);
 			main.mostrarMensaje("Conectado a :" + cliente.getInetAddress().getHostName());
-
 			main.habilitarTexto(true);
-
-			executor.execute(procesoRecibe);
-			executor.execute(procesoEnvio);
-
+			executor.execute( new ProcesoRecibe(cliente, main) );
+			executor.execute( new ProcesoEnvio(cliente, main, usuario) );
 		} catch (IOException ex) {
 			Logger.getLogger(ConexionServidorCMD.class.getName()).log(Level.SEVERE, null, ex);
 		} finally {

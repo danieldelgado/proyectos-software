@@ -28,8 +28,6 @@ public class ServidorCMD extends JFrame {
 	private static ServerSocket servidor;
 	private static Socket conexion;
 	static boolean debug = false;
-	static ProcesoRecibe procesoRecibe;
-	static ProcesoEnvio procesoEnvio;
 	
 	public ServidorCMD( boolean d ) {
 		super("Servidor CMD consola");
@@ -52,14 +50,9 @@ public class ServidorCMD extends JFrame {
 		barra.add(menuArchivo);
 		salir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				procesoEnvio.terminarConexion();
 				System.exit(0);
 			}
 		});
-		
-		procesoRecibe = new ProcesoRecibe(conexion, this);
-		procesoEnvio = new ProcesoEnvio(conexion, this);
-		
 		setSize(300, 320);
 		setVisible(true);
 	}
@@ -106,8 +99,8 @@ public class ServidorCMD extends JFrame {
 					conexion = servidor.accept();
 					main.mostrarMensaje("Conectado a : " + conexion.getInetAddress().getHostName());
 					main.habilitarTexto(true);
-					executor.execute(procesoRecibe);
-					executor.execute(procesoEnvio);
+					executor.execute( new ProcesoRecibe(conexion, main) );
+					executor.execute( new ProcesoEnvio(conexion, main) );
 				} catch (IOException ex) {
 					Logger.getLogger(ServidorCMD.class.getName()).log(Level.SEVERE, null, ex);
 				}

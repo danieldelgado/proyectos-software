@@ -10,13 +10,13 @@ import java.net.SocketException;
 public class ProcesoEnvio implements Runnable {
 	private final ConexionServidorCMD main;
 	private ObjectOutputStream salida;
-	private String mensaje;
+	private String mensaje,usuario;
 	private Socket conexion;
 
-	public ProcesoEnvio(Socket conexion, final ConexionServidorCMD main) {
+	public ProcesoEnvio(Socket conexion, final ConexionServidorCMD main, String usuario) {
 		this.conexion = conexion;
 		this.main = main;
-
+		this.usuario = usuario;
 		main.campoTexto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				mensaje = event.getActionCommand();
@@ -28,19 +28,9 @@ public class ProcesoEnvio implements Runnable {
 
 	private void enviarDatos(String mensaje) {
 		try {
-			ConexionServidorCMD.mensajesConsola("enviando mensaje :" + mensaje + " al host "+conexion.getInetAddress().getHostName()+ " por el puerto :"+conexion.getPort());
-			salida.writeObject(" Envia "+conexion.getInetAddress().getHostName()+":"+conexion.getPort()+" - "+ main.getUsuario() +":" +  mensaje);
+			salida.writeObject(mensaje);
 			salida.flush();
-			main.mostrarMensaje(" Para "+conexion.getInetAddress().getHostName()+":"+conexion.getPort()+" - msj:" +  mensaje);
-		}catch (IOException ioException) {
-			main.mostrarMensaje("Error escribiendo Mensaje");
-		}
-	}
-
-	public void terminarConexion() {
-		try {
-			salida.writeObject("Cliente>>> TERMINATE");
-			salida.flush();
+			main.mostrarMensaje(usuario+">>> " +mensaje);
 		}catch (IOException ioException) {
 			main.mostrarMensaje("Error escribiendo Mensaje");
 		}

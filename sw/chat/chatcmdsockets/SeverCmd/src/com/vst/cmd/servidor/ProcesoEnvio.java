@@ -27,24 +27,13 @@ public class ProcesoEnvio implements Runnable {
 
 	private void enviarDatos(String mensaje) {
 		try {
-			ServidorCMD.mensajesConsola("enviando mensaje :" + mensaje + " al host "+conexion.getInetAddress().getHostName()+ " por el puerto :"+conexion.getPort());
-			salida.writeObject(" Para "+conexion.getInetAddress().getHostName()+":"+conexion.getPort()+" - msj:" +  mensaje);
+			salida.writeObject( mensaje );
 			salida.flush();
-			main.mostrarMensaje(" Para "+conexion.getInetAddress().getHostName()+":"+conexion.getPort()+" - msj:" +  mensaje);
+			main.mostrarMensaje("Server>>> "+ mensaje );
 		}catch (IOException ioException) {
 			main.mostrarMensaje("Error escribiendo Mensaje");
 		}
 	}
-	
-	public void terminarConexion() {
-		try {
-			salida.writeObject("SERVIDOR>>> TERMINATE");
-			salida.flush();
-		}catch (IOException ioException) {
-			main.mostrarMensaje("Error escribiendo Mensaje");
-		}
-	}
-	
 	
 	public void mostrarMensaje(String mensaje) {
 		main.areaTexto.append(mensaje);

@@ -25,17 +25,14 @@ public class ProcesoRecibe implements Runnable {
 
 	public void run() {
 		try {
-			System.out.println(" server:");
-			System.out.println(cliente);
 			entrada = new ObjectInputStream(cliente.getInputStream());
 		} catch (IOException ex) {
 			Logger.getLogger(ProcesoRecibe.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		do {
 			try {
-				ServidorCMD.mensajesConsola("mensaje recibido :" + mensaje + " al cliente host "+cliente.getInetAddress().getHostName() + " por el puerto :"+cliente.getPort());
 				mensaje = (String) entrada.readObject();
-				main.mostrarMensaje(" Recibido "+cliente.getInetAddress().getHostName()+":"+cliente.getPort()+" - msj:" +mensaje);
+				main.mostrarMensaje("Recibido "+cliente.getInetAddress().getHostName()+":"+cliente.getPort()+" - msj:" +mensaje);
 			} catch (SocketException ex) {
 			} catch (EOFException eofException) {
 				main.mostrarMensaje("Fin de la conexion");
@@ -46,7 +43,7 @@ public class ProcesoRecibe implements Runnable {
 				main.mostrarMensaje("Objeto desconocido");
 			}
 
-		} while (!mensaje.equals("Servidor>>> TERMINATE"));
+		} while ( !(mensaje.indexOf("TERMINATE")>0) );
 
 		try {
 			entrada.close();
