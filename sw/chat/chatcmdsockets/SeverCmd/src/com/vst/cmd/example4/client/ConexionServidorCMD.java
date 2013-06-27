@@ -35,7 +35,7 @@ public class ConexionServidorCMD {
 			mensajesConsola("Inicializado conexion" );
 			Socket s = new Socket(serverhost, puerto);		
 			mensajesConsola("Conexion establecida" );
-			mensajesConsola("Configurando conexion... " );
+			mensajesConsola("Configurando conexion" );
 			ConexionServidor client = new ConexionServidor(s);
 			Thread t = new Thread(client);
 			mensajesConsola("Configurando terminada" );
