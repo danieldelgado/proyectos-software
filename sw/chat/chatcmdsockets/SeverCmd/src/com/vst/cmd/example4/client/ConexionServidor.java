@@ -1,5 +1,9 @@
 package com.vst.cmd.example4.client;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
@@ -9,7 +13,7 @@ public class ConexionServidor implements Runnable {
 	private Socket socket;
 	private String hostClient;
 	private int puerto;
-	
+
 	public ConexionServidor(Socket s) {
 		socket = s;
 		hostClient = socket.getInetAddress().getHostName();
@@ -17,24 +21,24 @@ public class ConexionServidor implements Runnable {
 	}
 
 	@Override
-	public void run(){
-		try
-		{
+	public void run() {
+		try {
 			Scanner chat = new Scanner(System.in);
 			Scanner in = new Scanner(socket.getInputStream());
 			PrintWriter out = new PrintWriter(socket.getOutputStream());
-			ConexionServidorCMD.mensajesConsola("Conexion establecida a:"+hostClient+":"+puerto);
-			while (true){				
+			ConexionServidorCMD.mensajesConsola("Conexion establecida a:" + hostClient + ":" + puerto);
+			while (true) {
 				String input = chat.nextLine();
-				out.println(input);				
-				out.flush();				
-				if(in.hasNext()){										
+				out.println(input);
+				out.flush();
+				if (in.hasNext()) {
 					ConexionServidorCMD.mensajesConsola(in.nextLine());
 				}
 			}
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
+
 	}
 
 }

@@ -1,5 +1,9 @@
 package com.vst.cmd.example4.server;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
@@ -9,6 +13,7 @@ public class ConexionClienteCMD implements Runnable {
 	private Socket socket;
 	private String hostClient;
 	private int puerto;
+
 	public ConexionClienteCMD(Socket s) {
 		socket = s;
 		hostClient = socket.getInetAddress().getHostName();
@@ -23,29 +28,16 @@ public class ConexionClienteCMD implements Runnable {
 			while (true) {
 				if (in.hasNext()) {
 					String input = in.nextLine();
-					ServidorCMD.mensajesConsola(hostClient+":"+puerto+" text:"+input);
-					input = "Mesnaje reenviado:"+input;			
+					ServidorCMD.mensajesConsola(hostClient + ":" + puerto + " text:" + input);
+					input = "Mensaje reenviado:" + input;
 					out.println(input);
 					out.flush();
 				}
-			}			
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
-	
-	
-//	 public ByteArrayOutputStream saveTo(  OutputStream os,String str ) throws IOException {
-//	        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//	        DataOutputStream dos = new DataOutputStream( baos );
-//	        try{
-//	            dos.writeBytes(str);
-//	        }finally {
-//	            dos.close();
-//	        }
-//	        baos.writeTo( os );
-//	        return baos;
-//	    }
-//	
 
 }
