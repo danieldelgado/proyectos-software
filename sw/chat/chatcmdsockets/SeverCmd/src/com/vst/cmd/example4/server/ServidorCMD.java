@@ -36,7 +36,7 @@ public class ServidorCMD {
 			while (true) {
 				Socket s = server.accept();
 				mensajesConsola("Usuario iniciado host:"+s.getInetAddress().getHostName() + " puerto:"+s.getPort() );
-				mensajesConsola("Configurando conexion... " );
+				mensajesConsola("Configurando conexion" );
 				ConexionClienteCMD chat = new ConexionClienteCMD(s);
 				Thread t = new Thread(chat);
 				mensajesConsola("Configurando terminada" );
