@@ -1,4 +1,4 @@
-package cliente;
+package test.cliente;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -8,12 +8,12 @@ import java.awt.event.ActionListener;
 import java.net.SocketException;
         
 public class ThreadEnvia implements Runnable {
-    private final PrincipalChat main; 
+    private final ConexionServidorCMD main; 
     private ObjectOutputStream salida;
     private String mensaje;
     private Socket conexion; 
    
-    public ThreadEnvia(Socket conexion, final PrincipalChat main){
+    public ThreadEnvia(Socket conexion, final ConexionServidorCMD main){
         this.conexion = conexion;
         this.main = main;
         

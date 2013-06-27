@@ -1,4 +1,4 @@
-package cliente;
+package test.cliente;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,16 +20,16 @@ import javax.swing.*;
  * 
  * @author Rafa
  */
-public class PrincipalChat extends JFrame{
+public class ConexionServidorCMD extends JFrame{
     public JTextField campoTexto; //Para mostrar mensajes de los usuarios
     public JTextArea areaTexto; //Para ingresar mensaje a enviar
     private static ServerSocket servidor; //
     private static Socket cliente; //Socket para conectarse con el cliente
     private static String ip = "127.0.0.1"; //ip a la cual se conecta
     
-    public static PrincipalChat main; 
+    public static ConexionServidorCMD main; 
     
-    public PrincipalChat(){
+    public ConexionServidorCMD(){
         super("Cliente"); //Establece titulo al Frame
  
         campoTexto = new JTextField(); //crea el campo para texto
@@ -77,7 +77,7 @@ public class PrincipalChat extends JFrame{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PrincipalChat main = new PrincipalChat(); //Instanciacion de la clase Principalchat
+        ConexionServidorCMD main = new ConexionServidorCMD(); //Instanciacion de la clase Principalchat
         main.setLocationRelativeTo(null);   //Centrar el JFrame
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //habilita cerrar la ventana
         ExecutorService executor = Executors.newCachedThreadPool(); //Para correr los threads
@@ -94,7 +94,7 @@ public class PrincipalChat extends JFrame{
             executor.execute(new ThreadEnvia(cliente, main)); 
             
         } catch (IOException ex) {
-            Logger.getLogger(PrincipalChat.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexionServidorCMD.class.getName()).log(Level.SEVERE, null, ex);
         } //Fin del catch
         finally {
         }

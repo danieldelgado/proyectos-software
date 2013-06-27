@@ -1,4 +1,4 @@
-package cliente;
+package test.servidor;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -9,14 +9,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ThreadRecibe implements Runnable {
-    private final PrincipalChat main;
+    private final ServidorCMD main;
     private String mensaje; 
     private ObjectInputStream entrada;
     private Socket cliente;
    
     
    //Inicializar chatServer y configurar GUI
-   public ThreadRecibe(Socket cliente, PrincipalChat main){
+   public ThreadRecibe(Socket cliente, ServidorCMD main){
        this.cliente = cliente;
        this.main = main;
    }  
@@ -31,7 +31,7 @@ public class ThreadRecibe implements Runnable {
         } catch (IOException ex) {
             Logger.getLogger(ThreadRecibe.class.getName()).log(Level.SEVERE, null, ex);
         }
-        do { //procesa los mensajes enviados desde el servidor
+        do { //procesa los mensajes enviados dsd el servidor
             try {//leer el mensaje y mostrarlo 
                 mensaje = (String) entrada.readObject(); //leer nuevo mensaje
                 main.mostrarMensaje(mensaje);
@@ -48,11 +48,11 @@ public class ThreadRecibe implements Runnable {
                 main.mostrarMensaje("Objeto desconocido");
             } //fin catch               
 
-        } while (!mensaje.equals("Cliente>>> TERMINATE")); //Ejecuta hasta que el server escriba TERMINATE
+        } while (!mensaje.equals("Servidor>>> TERMINATE")); //Ejecuta hasta que el server escriba TERMINATE
 
         try {
-            entrada.close(); //cierra entrada Stream
-            cliente.close(); //cierra Socket
+            entrada.close(); //cierra input Stream
+            cliente.close(); //cieraa Socket
         } //Fin try
         catch (IOException ioException) {
             ioException.printStackTrace();
@@ -60,9 +60,5 @@ public class ThreadRecibe implements Runnable {
 
         main.mostrarMensaje("Fin de la conexion");
         System.exit(0);
-    }
-        
-    
-    
-      
+    } 
 } 

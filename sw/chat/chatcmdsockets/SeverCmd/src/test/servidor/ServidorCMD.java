@@ -1,35 +1,38 @@
-package servidor;
+package test.servidor;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.*;
 
-/**Clase que se encarga de correr los threads de enviar y recibir texto
- * y de crear la interfaz grafica.
- * 
- * @author Rafa
- */
-public class PrincipalChat extends JFrame{
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+
+@SuppressWarnings("serial")
+public class ServidorCMD extends JFrame{
     public JTextField campoTexto; //Para mostrar mensajes de los usuarios
     public JTextArea areaTexto; //Para ingresar mensaje a enviar
     private static ServerSocket servidor; //
     private static Socket conexion; //Socket para conectarse con el cliente
     private static String ip = "127.0.0.1"; //ip a la cual se conecta
     
-    public static PrincipalChat main; 
+    public static ServidorCMD main; 
     
-    public PrincipalChat(){
-        super("Servidor"); //Establece titulo al Frame
+    public ServidorCMD(){
+        super("Servidor CMD"); //Establece titulo al Frame
         
         campoTexto = new JTextField(); //crea el campo para texto
         campoTexto.setEditable(false); //No permite que sea editable el campo de texto
@@ -76,7 +79,7 @@ public class PrincipalChat extends JFrame{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        PrincipalChat main = new PrincipalChat(); //Instanciacion de la clase Principalchat
+        ServidorCMD main = new ServidorCMD(); //Instanciacion de la clase Principalchat
         main.setLocationRelativeTo(null);   //Centrar el JFrame
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //habilita cerrar la ventana
         ExecutorService executor = Executors.newCachedThreadPool(); //Para correr los threads
@@ -100,11 +103,11 @@ public class PrincipalChat extends JFrame{
                     executor.execute(new ThreadRecibe(conexion, main)); //client
                     executor.execute(new ThreadEnvia(conexion, main));
                 } catch (IOException ex) {
-                    Logger.getLogger(PrincipalChat.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ServidorCMD.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         } catch (IOException ex) {
-            Logger.getLogger(PrincipalChat.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServidorCMD.class.getName()).log(Level.SEVERE, null, ex);
         } //Fin del catch
         finally {
         }
