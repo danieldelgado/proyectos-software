@@ -27,7 +27,7 @@ USE hsd;
 
 DROP TABLE IF EXISTS `boton`;
 CREATE TABLE `boton` (
-  `bloqueable` bit(1) NOT NULL,
+  `bloqueable` tinyint(1) DEFAULT NULL,
   `icono` varchar(50) DEFAULT NULL,
   `on_complete` varchar(80) DEFAULT NULL,
   `on_submit` varchar(80) DEFAULT NULL,
@@ -47,6 +47,9 @@ CREATE TABLE `boton` (
 --
 
 /*!40000 ALTER TABLE `boton` DISABLE KEYS */;
+INSERT INTO `boton` (`bloqueable`,`icono`,`on_complete`,`on_submit`,`on_click`,`orden`,`parametros_json`,`tipo`,`url`,`id_recurso`) VALUES 
+ (1,NULL,NULL,NULL,NULL,1,NULL,'nuevo',NULL,3),
+ (1,NULL,NULL,NULL,NULL,2,NULL,'guardar',NULL,4);
 /*!40000 ALTER TABLE `boton` ENABLE KEYS */;
 
 
@@ -70,6 +73,9 @@ CREATE TABLE `boton_por_menu` (
 --
 
 /*!40000 ALTER TABLE `boton_por_menu` DISABLE KEYS */;
+INSERT INTO `boton_por_menu` (`id_menu`,`id_recurso`) VALUES 
+ (2,3),
+ (2,4);
 /*!40000 ALTER TABLE `boton_por_menu` ENABLE KEYS */;
 
 
@@ -104,21 +110,21 @@ CREATE TABLE `cliente` (
 DROP TABLE IF EXISTS `columna`;
 CREATE TABLE `columna` (
   `id_columna` int(11) NOT NULL,
-  `activo` bit(1) NOT NULL,
-  `addColumn` bit(1) NOT NULL,
-  `alineacion` varchar(50) NOT NULL,
+  `activo` tinyint(1) NOT NULL,
+  `addColumn` tinyint(1) NOT NULL,
+  `alineacion` varchar(50) DEFAULT NULL,
   `ancho` int(11) NOT NULL,
   `atributo` varchar(50) NOT NULL,
-  `cabecera` varchar(50) NOT NULL,
+  `cabecera` varchar(50) DEFAULT NULL,
   `codigo` varchar(50) NOT NULL,
-  `estado` char(1) NOT NULL,
-  `fecha_actualizacion` date NOT NULL,
-  `fecha_registro` datetime NOT NULL,
+  `estado` char(1) DEFAULT NULL,
+  `fecha_actualizacion` date DEFAULT NULL,
+  `fecha_registro` datetime DEFAULT NULL,
   `formato_tipo` varchar(50) NOT NULL,
-  `mapping` bit(1) NOT NULL,
+  `mapping` tinyint(1) NOT NULL,
   `orden` int(11) NOT NULL,
   `tabla` varchar(50) NOT NULL,
-  `visible` bit(1) NOT NULL,
+  `visible` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_columna`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -127,6 +133,12 @@ CREATE TABLE `columna` (
 --
 
 /*!40000 ALTER TABLE `columna` DISABLE KEYS */;
+INSERT INTO `columna` (`id_columna`,`activo`,`addColumn`,`alineacion`,`ancho`,`atributo`,`cabecera`,`codigo`,`estado`,`fecha_actualizacion`,`fecha_registro`,`formato_tipo`,`mapping`,`orden`,`tabla`,`visible`) VALUES 
+ (1,1,1,NULL,0,'id',NULL,'wefewfwf',NULL,NULL,NULL,'wefwe',1,1,'Parametro',0),
+ (2,1,1,NULL,100,'codigo','Codigo','wefewf',NULL,NULL,NULL,'wefwefgeytjty',1,2,'Parametro',1),
+ (3,1,1,NULL,100,'activo','Activo','gghrttr3ewf',NULL,NULL,NULL,'fwefweegweg',1,3,'Parametro',1),
+ (4,1,1,NULL,100,'descripcion','Descripcion','gghrttr3ewf45',NULL,NULL,NULL,'wefew',1,4,'Parametro',1),
+ (5,1,1,NULL,100,'valor','Valor','gghrttr3ewf455634',NULL,NULL,NULL,'fwewefew',1,5,'Parametro',1);
 /*!40000 ALTER TABLE `columna` ENABLE KEYS */;
 
 
@@ -150,6 +162,12 @@ CREATE TABLE `columna_por_lista` (
 --
 
 /*!40000 ALTER TABLE `columna_por_lista` DISABLE KEYS */;
+INSERT INTO `columna_por_lista` (`id_columna`,`id_recurso`) VALUES 
+ (1,1),
+ (2,1),
+ (3,1),
+ (4,1),
+ (5,1);
 /*!40000 ALTER TABLE `columna_por_lista` ENABLE KEYS */;
 
 
@@ -160,8 +178,8 @@ CREATE TABLE `columna_por_lista` (
 DROP TABLE IF EXISTS `fecha_dia_evento`;
 CREATE TABLE `fecha_dia_evento` (
   `id_fecha_evento` int(11) NOT NULL,
-  `activo` bit(1) NOT NULL,
-  `agrega` bit(1) NOT NULL,
+  `activo` tinyint(1) NOT NULL,
+  `agrega` tinyint(1) NOT NULL,
   `descripcion` varchar(250) NOT NULL,
   `fecha_actualizacion` date DEFAULT NULL,
   `fecha_evento` date NOT NULL,
@@ -257,12 +275,12 @@ INSERT INTO `lista_por_menu` (`id_lista`,`id_recurso`) VALUES
 
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
-  `defaultMenu` bit(1) DEFAULT NULL,
+  `defaultMenu` tinyint(1) DEFAULT NULL,
   `function` varchar(100) DEFAULT NULL,
   `nombre` varchar(100) NOT NULL,
   `orden` int(11) NOT NULL,
   `tipo` varchar(50) NOT NULL,
-  `todos` bit(1) NOT NULL,
+  `todos` tinyint(1) NOT NULL,
   `url` longtext,
   `id_recurso` int(11) NOT NULL,
   `menu_id_recurso` int(11) DEFAULT NULL,
@@ -279,7 +297,7 @@ CREATE TABLE `menu` (
 
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
 INSERT INTO `menu` (`defaultMenu`,`function`,`nombre`,`orden`,`tipo`,`todos`,`url`,`id_recurso`,`menu_id_recurso`) VALUES 
- (0x01,NULL,'Paramtro',0,'interno',0x00,'Parametro',2,NULL);
+ (1,NULL,'Paramtro',0,'interno',0,'Parametro',2,NULL);
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 
 
@@ -341,7 +359,7 @@ CREATE TABLE `parametro_por_parametro` (
 DROP TABLE IF EXISTS `perfil`;
 CREATE TABLE `perfil` (
   `id_perfil` int(11) NOT NULL,
-  `activo` bit(1) NOT NULL,
+  `activo` tinyint(1) NOT NULL,
   `codigo` varchar(50) NOT NULL,
   `descripcion` varchar(250) NOT NULL,
   `estado` char(1) NOT NULL,
@@ -357,7 +375,7 @@ CREATE TABLE `perfil` (
 
 /*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
 INSERT INTO `perfil` (`id_perfil`,`activo`,`codigo`,`descripcion`,`estado`,`fecha_actualizacion`,`fecha_creacion`,`nombre`) VALUES 
- (1,0x01,'12312fwewe','qdqwdqwfqw234','A','1990-10-10','1990-10-10 00:00:00','administrador');
+ (1,1,'12312fwewe','qdqwdqwfqw234','A','1990-10-10','1990-10-10 00:00:00','administrador');
 /*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
 
 
@@ -368,7 +386,7 @@ INSERT INTO `perfil` (`id_perfil`,`activo`,`codigo`,`descripcion`,`estado`,`fech
 DROP TABLE IF EXISTS `persona`;
 CREATE TABLE `persona` (
   `id_persona` int(11) NOT NULL,
-  `activo` bit(1) NOT NULL,
+  `activo` tinyint(1) NOT NULL,
   `apellidos` varchar(100) NOT NULL,
   `celular` varchar(11) DEFAULT NULL,
   `codigo` varchar(50) NOT NULL,
@@ -387,7 +405,7 @@ CREATE TABLE `persona` (
 
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
 INSERT INTO `persona` (`id_persona`,`activo`,`apellidos`,`celular`,`codigo`,`estado`,`fechaActualizacion`,`fecha_creacion`,`fecha_nacimiento`,`nombre`,`telefono_fijo`) VALUES 
- (1,0x01,'admin',NULL,'63432','A','1990-10-10','1990-10-10 00:00:00','1990-10-10','admin',NULL);
+ (1,1,'admin',NULL,'63432','A','1990-10-10','1990-10-10 00:00:00','1990-10-10','admin',NULL);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
 
@@ -414,7 +432,9 @@ CREATE TABLE `recurso` (
 /*!40000 ALTER TABLE `recurso` DISABLE KEYS */;
 INSERT INTO `recurso` (`id_recurso`,`activo`,`codigo`,`descripcion`,`estado`,`fecha_actualizacion`,`fecha_creacion`) VALUES 
  (1,0x01,'Parametro','sadasd','A','1990-10-10','1990-10-10 00:00:00'),
- (2,0x01,'Menu','asdsada','A','1990-10-10','1990-10-10 00:00:00');
+ (2,0x01,'Menu','asdsada','A','1990-10-10','1990-10-10 00:00:00'),
+ (3,0x01,'Boton Nuevo','sadasd','A','1990-10-10','1990-10-10 00:00:00'),
+ (4,0x01,'Boton Guardar','asdsada','A','1990-10-10','1990-10-10 00:00:00');
 /*!40000 ALTER TABLE `recurso` ENABLE KEYS */;
 
 
