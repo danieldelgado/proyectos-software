@@ -11,5 +11,9 @@ public interface Entidad{
 	public String getLabel();
 	
 	public String getNombreCompleto();
+
+	public Boolean getActivo();
+	
+	public String getCodigo();
 	
 }
