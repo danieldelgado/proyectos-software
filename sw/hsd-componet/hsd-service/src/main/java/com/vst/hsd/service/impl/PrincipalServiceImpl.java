@@ -212,7 +212,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 		b2.setActivo(true);
 		b2.setUrl("mantenimiento/registrarParametro");
 		b2.setDescripcion(" Nuevo Parametro  ");
-		b2.setTipo(Constantes.ADDTABLINK);
+//		b2.setTipo(Constantes.ADDTABLINK);
 		bs.add(b2);
 
 		Boton b = new Boton();
