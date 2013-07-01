@@ -27,7 +27,7 @@ public class ApplicationHSD implements ServletContextListener {
 	 */
 	public void contextInitialized(ServletContextEvent ce) {
 		applicationInitialized = System.currentTimeMillis();
-		consolemessage = Boolean.valueOf(Config.getPropiedad("applicacion.context,console.log.js"));
+		consolemessage = Boolean.valueOf(Config.getPropiedad("applicacion.context.console.log.js"));
 		System.out.println("contextInitialized");
 		ServletContext c = ce.getServletContext();
 		System.out.println(consolemessage);
