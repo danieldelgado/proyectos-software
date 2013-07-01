@@ -1,32 +1,33 @@
-CREATE DATABASE  IF NOT EXISTS `hsd` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `hsd`;
--- MySQL dump 10.13  Distrib 5.5.29, for debian-linux-gnu (x86_64)
+-- MySQL Administrator dump 1.4
 --
--- Host: localhost    Database: hsd
 -- ------------------------------------------------------
--- Server version	5.5.29-0ubuntu0.12.04.1
+-- Server version	5.1.40-community
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
+
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
 
 --
--- Table structure for table `boton`
+-- Create schema hsd
+--
+
+CREATE DATABASE IF NOT EXISTS hsd;
+USE hsd;
+
+--
+-- Definition of table `boton`
 --
 
 DROP TABLE IF EXISTS `boton`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `boton` (
   `bloqueable` bit(1) NOT NULL,
-  `codigo` varchar(50) NOT NULL,
   `icono` varchar(50) DEFAULT NULL,
   `on_complete` varchar(80) DEFAULT NULL,
   `on_submit` varchar(80) DEFAULT NULL,
@@ -40,53 +41,44 @@ CREATE TABLE `boton` (
   KEY `FK59935E6CFD4B9F4` (`id_recurso`),
   CONSTRAINT `FK59935E6CFD4B9F4` FOREIGN KEY (`id_recurso`) REFERENCES `recurso` (`id_recurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `boton`
 --
 
-LOCK TABLES `boton` WRITE;
 /*!40000 ALTER TABLE `boton` DISABLE KEYS */;
 /*!40000 ALTER TABLE `boton` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `boton_por_pagina`
+-- Definition of table `boton_por_menu`
 --
 
-DROP TABLE IF EXISTS `boton_por_pagina`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `boton_por_pagina` (
+DROP TABLE IF EXISTS `boton_por_menu`;
+CREATE TABLE `boton_por_menu` (
+  `id_menu` int(11) NOT NULL,
   `id_recurso` int(11) NOT NULL,
-  `id_pagina` int(11) NOT NULL,
-  PRIMARY KEY (`id_recurso`,`id_pagina`),
-  KEY `FK74A642EBE4CD7F11` (`id_recurso`),
-  KEY `FK74A642EB4183F56A` (`id_pagina`),
-  CONSTRAINT `FK74A642EB4183F56A` FOREIGN KEY (`id_pagina`) REFERENCES `pagina` (`id_recurso`),
-  CONSTRAINT `FK74A642EBE4CD7F11` FOREIGN KEY (`id_recurso`) REFERENCES `boton` (`id_recurso`)
+  PRIMARY KEY (`id_recurso`,`id_menu`),
+  KEY `FK14A0D604E4CD7F11` (`id_recurso`),
+  KEY `FK14A0D604D5F7F09C` (`id_menu`),
+  CONSTRAINT `FK14A0D604D5F7F09C` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_recurso`),
+  CONSTRAINT `FK14A0D604E4CD7F11` FOREIGN KEY (`id_recurso`) REFERENCES `boton` (`id_recurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `boton_por_pagina`
+-- Dumping data for table `boton_por_menu`
 --
 
-LOCK TABLES `boton_por_pagina` WRITE;
-/*!40000 ALTER TABLE `boton_por_pagina` DISABLE KEYS */;
-/*!40000 ALTER TABLE `boton_por_pagina` ENABLE KEYS */;
-UNLOCK TABLES;
+/*!40000 ALTER TABLE `boton_por_menu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `boton_por_menu` ENABLE KEYS */;
+
 
 --
--- Table structure for table `cliente`
+-- Definition of table `cliente`
 --
 
 DROP TABLE IF EXISTS `cliente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cliente` (
-  `codigo` varchar(50) NOT NULL,
   `estado_civil` int(11) NOT NULL,
   `numero_documento` varchar(12) NOT NULL,
   `ruc` varchar(11) NOT NULL,
@@ -96,74 +88,20 @@ CREATE TABLE `cliente` (
   KEY `FK334B85FAFDE0A4BA` (`id_persona`),
   CONSTRAINT `FK334B85FAFDE0A4BA` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `cliente`
 --
 
-LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `codigo_cliente`
---
-
-DROP TABLE IF EXISTS `codigo_cliente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `codigo_cliente` (
-  `codigo` varchar(50) NOT NULL,
-  `id_persona` int(11) NOT NULL,
-  PRIMARY KEY (`id_persona`),
-  KEY `FK29DA8654599C5B08` (`id_persona`),
-  CONSTRAINT `FK29DA8654599C5B08` FOREIGN KEY (`id_persona`) REFERENCES `cliente` (`id_persona`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `codigo_cliente`
---
-
-LOCK TABLES `codigo_cliente` WRITE;
-/*!40000 ALTER TABLE `codigo_cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `codigo_cliente` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `codigo_usuario`
---
-
-DROP TABLE IF EXISTS `codigo_usuario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `codigo_usuario` (
-  `codigo` varchar(50) NOT NULL,
-  `id_persona` int(11) NOT NULL,
-  PRIMARY KEY (`id_persona`),
-  KEY `FKEEA3F3881E65C83C` (`id_persona`),
-  CONSTRAINT `FKEEA3F3881E65C83C` FOREIGN KEY (`id_persona`) REFERENCES `usuario` (`id_persona`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `codigo_usuario`
---
-
-LOCK TABLES `codigo_usuario` WRITE;
-/*!40000 ALTER TABLE `codigo_usuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `codigo_usuario` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `columna`
+-- Definition of table `columna`
 --
 
 DROP TABLE IF EXISTS `columna`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `columna` (
   `id_columna` int(11) NOT NULL,
   `activo` bit(1) NOT NULL,
@@ -183,25 +121,20 @@ CREATE TABLE `columna` (
   `visible` bit(1) NOT NULL,
   PRIMARY KEY (`id_columna`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `columna`
 --
 
-LOCK TABLES `columna` WRITE;
 /*!40000 ALTER TABLE `columna` DISABLE KEYS */;
-INSERT INTO `columna` VALUES (1,'','','rigth',100,'id','id','idqdqwd','A','1990-10-10','1990-10-10 00:00:00','','',0,'',''),(2,'','','rigth',100,'nombre','nombre','nombreqdqwd','A','1990-10-10','1990-10-10 00:00:00','','',0,'',''),(3,'','','rigth',100,'valor','valor','valorqdqwd','A','1990-10-10','1990-10-10 00:00:00','','',0,'','');
 /*!40000 ALTER TABLE `columna` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `columna_por_lista`
+-- Definition of table `columna_por_lista`
 --
 
 DROP TABLE IF EXISTS `columna_por_lista`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `columna_por_lista` (
   `id_columna` int(11) NOT NULL,
   `id_recurso` int(11) NOT NULL,
@@ -211,25 +144,20 @@ CREATE TABLE `columna_por_lista` (
   CONSTRAINT `FK303EBF23BFF834F8` FOREIGN KEY (`id_columna`) REFERENCES `columna` (`id_columna`),
   CONSTRAINT `FK303EBF23E557ACAE` FOREIGN KEY (`id_recurso`) REFERENCES `lista` (`id_recurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `columna_por_lista`
 --
 
-LOCK TABLES `columna_por_lista` WRITE;
 /*!40000 ALTER TABLE `columna_por_lista` DISABLE KEYS */;
-INSERT INTO `columna_por_lista` VALUES (1,1),(2,1),(3,1);
 /*!40000 ALTER TABLE `columna_por_lista` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `fecha_dia_evento`
+-- Definition of table `fecha_dia_evento`
 --
 
 DROP TABLE IF EXISTS `fecha_dia_evento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fecha_dia_evento` (
   `id_fecha_evento` int(11) NOT NULL,
   `activo` bit(1) NOT NULL,
@@ -241,56 +169,44 @@ CREATE TABLE `fecha_dia_evento` (
   `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`id_fecha_evento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `fecha_dia_evento`
 --
 
-LOCK TABLES `fecha_dia_evento` WRITE;
 /*!40000 ALTER TABLE `fecha_dia_evento` DISABLE KEYS */;
 /*!40000 ALTER TABLE `fecha_dia_evento` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `historial`
+-- Definition of table `historial`
 --
 
 DROP TABLE IF EXISTS `historial`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `historial` (
   `id_historial` int(11) NOT NULL,
-  `clase` varchar(200) DEFAULT NULL,
   `codigo` varchar(50) DEFAULT NULL,
   `descripcion` longtext,
   `fecha_registro` datetime DEFAULT NULL,
-  `metodo` varchar(200) DEFAULT NULL,
-  `persona_id` int(11) DEFAULT NULL,
+  `objeto_json` longtext,
   `request` longtext,
-  `valor` longtext,
   PRIMARY KEY (`id_historial`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `historial`
 --
 
-LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `lista`
+-- Definition of table `lista`
 --
 
 DROP TABLE IF EXISTS `lista`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `lista` (
-  `codigo` varchar(50) NOT NULL,
   `id_menu` int(11) NOT NULL,
   `nombre` varchar(250) NOT NULL,
   `tabla` varchar(40) NOT NULL,
@@ -299,55 +215,49 @@ CREATE TABLE `lista` (
   KEY `FK6236383CFD4B9F4` (`id_recurso`),
   CONSTRAINT `FK6236383CFD4B9F4` FOREIGN KEY (`id_recurso`) REFERENCES `recurso` (`id_recurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `lista`
 --
 
-LOCK TABLES `lista` WRITE;
 /*!40000 ALTER TABLE `lista` DISABLE KEYS */;
-INSERT INTO `lista` VALUES ('rthr5464',1,'Lista de Parametros','Parametro',1);
+INSERT INTO `lista` (`id_menu`,`nombre`,`tabla`,`id_recurso`) VALUES 
+ (2,'Parametro','Parametro',1);
 /*!40000 ALTER TABLE `lista` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `lista_por_pagina`
+-- Definition of table `lista_por_menu`
 --
 
-DROP TABLE IF EXISTS `lista_por_pagina`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `lista_por_pagina` (
+DROP TABLE IF EXISTS `lista_por_menu`;
+CREATE TABLE `lista_por_menu` (
   `id_lista` int(11) NOT NULL,
-  `id_pagina` int(11) NOT NULL,
-  PRIMARY KEY (`id_lista`,`id_pagina`),
-  KEY `FK8BE0612E4183F56A` (`id_pagina`),
-  KEY `FK8BE0612EE8EDBCE8` (`id_lista`),
-  CONSTRAINT `FK8BE0612E4183F56A` FOREIGN KEY (`id_pagina`) REFERENCES `pagina` (`id_recurso`),
-  CONSTRAINT `FK8BE0612EE8EDBCE8` FOREIGN KEY (`id_lista`) REFERENCES `lista` (`id_recurso`)
+  `id_recurso` int(11) NOT NULL,
+  PRIMARY KEY (`id_lista`,`id_recurso`),
+  KEY `FKC943A9075D6B79BE` (`id_recurso`),
+  KEY `FKC943A907E8EDBCE8` (`id_lista`),
+  CONSTRAINT `FKC943A907E8EDBCE8` FOREIGN KEY (`id_lista`) REFERENCES `lista` (`id_recurso`),
+  CONSTRAINT `FKC943A9075D6B79BE` FOREIGN KEY (`id_recurso`) REFERENCES `menu` (`id_recurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `lista_por_pagina`
+-- Dumping data for table `lista_por_menu`
 --
 
-LOCK TABLES `lista_por_pagina` WRITE;
-/*!40000 ALTER TABLE `lista_por_pagina` DISABLE KEYS */;
-/*!40000 ALTER TABLE `lista_por_pagina` ENABLE KEYS */;
-UNLOCK TABLES;
+/*!40000 ALTER TABLE `lista_por_menu` DISABLE KEYS */;
+INSERT INTO `lista_por_menu` (`id_lista`,`id_recurso`) VALUES 
+ (1,2);
+/*!40000 ALTER TABLE `lista_por_menu` ENABLE KEYS */;
+
 
 --
--- Table structure for table `menu`
+-- Definition of table `menu`
 --
 
 DROP TABLE IF EXISTS `menu`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `menu` (
-  `codigo` varchar(50) NOT NULL,
-  `defaultMenu` bit(1) NOT NULL,
+  `defaultMenu` bit(1) DEFAULT NULL,
   `function` varchar(100) DEFAULT NULL,
   `nombre` varchar(100) NOT NULL,
   `orden` int(11) NOT NULL,
@@ -362,55 +272,22 @@ CREATE TABLE `menu` (
   CONSTRAINT `FK33155FCFD4B9F4` FOREIGN KEY (`id_recurso`) REFERENCES `recurso` (`id_recurso`),
   CONSTRAINT `FK33155FFDB3F89E` FOREIGN KEY (`menu_id_recurso`) REFERENCES `menu` (`id_recurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `menu`
 --
 
-LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
+INSERT INTO `menu` (`defaultMenu`,`function`,`nombre`,`orden`,`tipo`,`todos`,`url`,`id_recurso`,`menu_id_recurso`) VALUES 
+ (0x01,NULL,'Paramtro',0,'interno',0x00,'Parametro',2,NULL);
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `pagina`
---
-
-DROP TABLE IF EXISTS `pagina`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pagina` (
-  `nombre` varchar(255) DEFAULT NULL,
-  `queryString` varchar(255) DEFAULT NULL,
-  `titulo` varchar(255) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `id_recurso` int(11) NOT NULL,
-  `id_menu_padre` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_recurso`),
-  KEY `FKC4A61786CFD4B9F4` (`id_recurso`),
-  KEY `FKC4A61786842B6B63` (`id_menu_padre`),
-  CONSTRAINT `FKC4A61786842B6B63` FOREIGN KEY (`id_menu_padre`) REFERENCES `menu` (`id_recurso`),
-  CONSTRAINT `FKC4A61786CFD4B9F4` FOREIGN KEY (`id_recurso`) REFERENCES `recurso` (`id_recurso`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pagina`
---
-
-LOCK TABLES `pagina` WRITE;
-/*!40000 ALTER TABLE `pagina` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pagina` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `parametro`
+-- Definition of table `parametro`
 --
 
 DROP TABLE IF EXISTS `parametro`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `parametro` (
   `id_parametro` int(11) NOT NULL,
   `activo` bit(1) DEFAULT NULL,
@@ -424,25 +301,20 @@ CREATE TABLE `parametro` (
   `valor` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id_parametro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `parametro`
 --
 
-LOCK TABLES `parametro` WRITE;
 /*!40000 ALTER TABLE `parametro` DISABLE KEYS */;
-INSERT INTO `parametro` VALUES (1,'','parasda12312','fweffefwef','A','1990-10-10','1990-10-10 00:00:00','regex nombre','validate','{a-zA-Z}[3-100]'),(2,'','asdasferg','asdasdsa','A','1990-10-10','1990-10-10 00:00:00','tipos de parametros','tipos','validacion'),(3,'','asdasds','wefewfwefwefwe','A','1990-10-10','1990-10-10 00:00:00','regex apellido','validate','{a-zA-Z}[3-100]');
 /*!40000 ALTER TABLE `parametro` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `parametro_por_parametro`
+-- Definition of table `parametro_por_parametro`
 --
 
 DROP TABLE IF EXISTS `parametro_por_parametro`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `parametro_por_parametro` (
   `parametro_id_parametro_hijo` int(11) NOT NULL,
   `parametro_id_parametro_padre` int(11) NOT NULL,
@@ -453,24 +325,20 @@ CREATE TABLE `parametro_por_parametro` (
   CONSTRAINT `FKCE3745C75CFBCFA9` FOREIGN KEY (`parametro_id_parametro_hijo`) REFERENCES `parametro` (`id_parametro`),
   CONSTRAINT `FKCE3745C7AC22B161` FOREIGN KEY (`parametro_id_parametro_padre`) REFERENCES `parametro` (`id_parametro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `parametro_por_parametro`
 --
 
-LOCK TABLES `parametro_por_parametro` WRITE;
 /*!40000 ALTER TABLE `parametro_por_parametro` DISABLE KEYS */;
 /*!40000 ALTER TABLE `parametro_por_parametro` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `perfil`
+-- Definition of table `perfil`
 --
 
 DROP TABLE IF EXISTS `perfil`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `perfil` (
   `id_perfil` int(11) NOT NULL,
   `activo` bit(1) NOT NULL,
@@ -482,83 +350,79 @@ CREATE TABLE `perfil` (
   `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`id_perfil`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `perfil`
 --
 
-LOCK TABLES `perfil` WRITE;
 /*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
-INSERT INTO `perfil` VALUES (1,'','12312fwewe','qdqwdqwfqw234','A','1990-10-10','1990-10-10 00:00:00','administrador');
+INSERT INTO `perfil` (`id_perfil`,`activo`,`codigo`,`descripcion`,`estado`,`fecha_actualizacion`,`fecha_creacion`,`nombre`) VALUES 
+ (1,0x01,'12312fwewe','qdqwdqwfqw234','A','1990-10-10','1990-10-10 00:00:00','administrador');
 /*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `persona`
+-- Definition of table `persona`
 --
 
 DROP TABLE IF EXISTS `persona`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `persona` (
   `id_persona` int(11) NOT NULL,
   `activo` bit(1) NOT NULL,
   `apellidos` varchar(100) NOT NULL,
+  `celular` varchar(11) DEFAULT NULL,
+  `codigo` varchar(50) NOT NULL,
   `estado` char(1) NOT NULL,
   `fechaActualizacion` date DEFAULT NULL,
   `fecha_creacion` datetime DEFAULT NULL,
   `fecha_nacimiento` date DEFAULT NULL,
   `nombre` varchar(100) NOT NULL,
+  `telefono_fijo` varchar(9) DEFAULT NULL,
   PRIMARY KEY (`id_persona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `persona`
 --
 
-LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (1,'','admin','A','1990-10-10','1990-10-10 00:00:00','1990-10-10','admin');
+INSERT INTO `persona` (`id_persona`,`activo`,`apellidos`,`celular`,`codigo`,`estado`,`fechaActualizacion`,`fecha_creacion`,`fecha_nacimiento`,`nombre`,`telefono_fijo`) VALUES 
+ (1,0x01,'admin',NULL,'63432','A','1990-10-10','1990-10-10 00:00:00','1990-10-10','admin',NULL);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `recurso`
+-- Definition of table `recurso`
 --
 
 DROP TABLE IF EXISTS `recurso`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `recurso` (
   `id_recurso` int(11) NOT NULL,
   `activo` bit(1) NOT NULL,
+  `codigo` varchar(50) NOT NULL,
   `descripcion` varchar(250) NOT NULL,
   `estado` char(1) NOT NULL,
   `fecha_actualizacion` date DEFAULT NULL,
   `fecha_creacion` datetime DEFAULT NULL,
   PRIMARY KEY (`id_recurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `recurso`
 --
 
-LOCK TABLES `recurso` WRITE;
 /*!40000 ALTER TABLE `recurso` DISABLE KEYS */;
-INSERT INTO `recurso` VALUES (1,'','qwdqwdq','A','1990-10-10','1990-10-10 00:00:00');
+INSERT INTO `recurso` (`id_recurso`,`activo`,`codigo`,`descripcion`,`estado`,`fecha_actualizacion`,`fecha_creacion`) VALUES 
+ (1,0x01,'Parametro','sadasd','A','1990-10-10','1990-10-10 00:00:00'),
+ (2,0x01,'Menu','asdsada','A','1990-10-10','1990-10-10 00:00:00');
 /*!40000 ALTER TABLE `recurso` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `recurso_por_perfil`
+-- Definition of table `recurso_por_perfil`
 --
 
 DROP TABLE IF EXISTS `recurso_por_perfil`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `recurso_por_perfil` (
   `responsable` bit(1) DEFAULT NULL,
   `id_recurso` int(11) NOT NULL,
@@ -566,53 +430,45 @@ CREATE TABLE `recurso_por_perfil` (
   PRIMARY KEY (`id_perfil`,`id_recurso`),
   KEY `FKCB9764EE41FE99F6` (`id_perfil`),
   KEY `FKCB9764EECFD4B9F4` (`id_recurso`),
-  CONSTRAINT `FKCB9764EE41FE99F6` FOREIGN KEY (`id_perfil`) REFERENCES `perfil` (`id_perfil`),
-  CONSTRAINT `FKCB9764EECFD4B9F4` FOREIGN KEY (`id_recurso`) REFERENCES `recurso` (`id_recurso`)
+  CONSTRAINT `FKCB9764EECFD4B9F4` FOREIGN KEY (`id_recurso`) REFERENCES `recurso` (`id_recurso`),
+  CONSTRAINT `FKCB9764EE41FE99F6` FOREIGN KEY (`id_perfil`) REFERENCES `perfil` (`id_perfil`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `recurso_por_perfil`
 --
 
-LOCK TABLES `recurso_por_perfil` WRITE;
 /*!40000 ALTER TABLE `recurso_por_perfil` DISABLE KEYS */;
-INSERT INTO `recurso_por_perfil` VALUES ('\0',1,1);
+INSERT INTO `recurso_por_perfil` (`responsable`,`id_recurso`,`id_perfil`) VALUES 
+ (NULL,1,1);
 /*!40000 ALTER TABLE `recurso_por_perfil` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `sequence_table`
+-- Definition of table `sequence_table`
 --
 
 DROP TABLE IF EXISTS `sequence_table`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sequence_table` (
   `sequence_name` varchar(255) DEFAULT NULL,
   `sequence_value` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sequence_table`
 --
 
-LOCK TABLES `sequence_table` WRITE;
 /*!40000 ALTER TABLE `sequence_table` DISABLE KEYS */;
 /*!40000 ALTER TABLE `sequence_table` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `usuario`
+-- Definition of table `usuario`
 --
 
 DROP TABLE IF EXISTS `usuario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuario` (
   `clave` varchar(50) NOT NULL,
-  `codigo` varchar(50) NOT NULL,
   `estado_civil` int(11) NOT NULL,
   `login` varchar(50) NOT NULL,
   `numero_documento` varchar(12) NOT NULL,
@@ -623,25 +479,22 @@ CREATE TABLE `usuario` (
   KEY `FKF814F32EFDE0A4BA` (`id_persona`),
   CONSTRAINT `FKF814F32EFDE0A4BA` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `usuario`
 --
 
-LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES ('123456','admin',0,'admin','123123123','1231312312',1,1);
+INSERT INTO `usuario` (`clave`,`estado_civil`,`login`,`numero_documento`,`ruc`,`tipo_documento`,`id_persona`) VALUES 
+ ('123456',1,'admin','123213','32131',1,1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
+
 
 --
--- Table structure for table `usuario_por_perfil`
+-- Definition of table `usuario_por_perfil`
 --
 
 DROP TABLE IF EXISTS `usuario_por_perfil`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuario_por_perfil` (
   `id_usuario` int(11) NOT NULL,
   `id_perfil` int(11) NOT NULL,
@@ -650,18 +503,18 @@ CREATE TABLE `usuario_por_perfil` (
   CONSTRAINT `FK8963AE93EEAEBBE` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_persona`),
   CONSTRAINT `FK8963AE941FE99F6` FOREIGN KEY (`id_perfil`) REFERENCES `perfil` (`id_perfil`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `usuario_por_perfil`
 --
 
-LOCK TABLES `usuario_por_perfil` WRITE;
 /*!40000 ALTER TABLE `usuario_por_perfil` DISABLE KEYS */;
-INSERT INTO `usuario_por_perfil` VALUES (1,1);
+INSERT INTO `usuario_por_perfil` (`id_usuario`,`id_perfil`) VALUES 
+ (1,1);
 /*!40000 ALTER TABLE `usuario_por_perfil` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -669,6 +522,4 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2013-01-30 23:15:56
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
