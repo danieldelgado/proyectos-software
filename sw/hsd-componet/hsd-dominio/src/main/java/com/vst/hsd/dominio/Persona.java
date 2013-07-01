@@ -61,10 +61,10 @@ public class Persona implements Entidad, Serializable {
 	@Column(name = "codigo", length = 50, nullable = false)
 	private String codigo;
 
-	@Column(name = "telefono_fijo", length = 9, nullable = false)
+	@Column(name = "telefono_fijo", length = 9)
 	private String telefono_fijo;
 	
-	@Column(name = "celular", length = 11, nullable = false)
+	@Column(name = "celular", length = 11)
 	private String celular;
 	
 	/**
