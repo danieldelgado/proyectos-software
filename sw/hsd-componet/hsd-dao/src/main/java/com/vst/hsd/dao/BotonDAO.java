@@ -19,6 +19,6 @@ public interface BotonDAO extends IDAO<Boton> {
 	 *            the m
 	 * @return the list
 	 */
-	List<Boton> obtenerBotonesPorMenu(Menu m);
+	List<Boton> obtenerBotonesPorMenu(Integer idmenu);
 
 }
