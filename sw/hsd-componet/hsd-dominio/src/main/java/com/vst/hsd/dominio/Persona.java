@@ -59,7 +59,7 @@ public class Persona implements Entidad, Serializable {
 	private Boolean activo;
 
 	@Column(name = "codigo", length = 50, nullable = false)
-	private String codigo;
+	public String codigo;
 
 	@Column(name = "telefono_fijo", length = 9)
 	private String telefono_fijo;
