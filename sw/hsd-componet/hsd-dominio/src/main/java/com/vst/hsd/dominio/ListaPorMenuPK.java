@@ -9,15 +9,15 @@ import javax.persistence.*;
  * 
  */
 @Embeddable
-public class ListaPorPaginaPK implements Serializable {
+public class ListaPorMenuPK implements Serializable {
 	// default serial version id, required for serializable classes.
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The pagina. */
 	@ManyToOne
-	@JoinColumn(name = "id_pagina", nullable = false)
-	private Pagina pagina;
+	@JoinColumn(name = "id_recurso", nullable = false)
+	private Menu menu;
 
 	/** The lista. */
 	@ManyToOne
@@ -27,25 +27,17 @@ public class ListaPorPaginaPK implements Serializable {
 	/**
 	 * Instantiates a new lista por pagina pk.
 	 */
-	public ListaPorPaginaPK() {
+	public ListaPorMenuPK() {
 	}
 
-	/**
-	 * Gets the pagina.
-	 *
-	 * @return the pagina
-	 */
-	public Pagina getPagina() {
-		return pagina;
+	public Menu getMenu() {
+		return menu;
 	}
 
-	/**
-	 * Sets the pagina.
-	 *
-	 * @param pagina the new pagina
-	 */
-	public void setPagina(Pagina pagina) {
-		this.pagina = pagina;
+
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 
 	/**

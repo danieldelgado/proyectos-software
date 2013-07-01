@@ -62,9 +62,6 @@ public class Menu extends Recurso implements Serializable {
 	@OneToMany(mappedBy = "menu")
 	private List<Menu> menus;
 
-	/** The paginas. */
-	@OneToMany(mappedBy = "menu")
-	private List<Pagina> paginas;
 
 	/**
 	 * Instantiates a new menu.
@@ -91,24 +88,7 @@ public class Menu extends Recurso implements Serializable {
 		this.codigo = codigo;
 	}
 
-	/**
-	 * Gets the paginas.
-	 *
-	 * @return the paginas
-	 */
-	public List<Pagina> getPaginas() {
-		return paginas;
-	}
-
-	/**
-	 * Sets the paginas.
-	 *
-	 * @param paginas the new paginas
-	 */
-	public void setPaginas(List<Pagina> paginas) {
-		this.paginas = paginas;
-	}
-
+	
 	/**
 	 * Gets the function.
 	 *

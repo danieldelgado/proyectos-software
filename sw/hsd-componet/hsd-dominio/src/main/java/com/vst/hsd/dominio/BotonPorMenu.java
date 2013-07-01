@@ -1,10 +1,7 @@
 package com.vst.hsd.dominio;
 
 import java.io.Serializable;
-
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -12,20 +9,20 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name = "lista_por_pagina")
-public class ListaPorPagina implements Serializable {
+@Table(name = "boton_por_menu")
+public class BotonPorMenu implements Serializable {
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The id. */
 	@EmbeddedId
-	private ListaPorPaginaPK id;
+	private BotonPorMenuPK id;
 
 	/**
-	 * Instantiates a new lista por pagina.
+	 * Instantiates a new boton por pagina.
 	 */
-	public ListaPorPagina() {
+	public BotonPorMenu() {
 	}
 
 	/**
@@ -33,8 +30,8 @@ public class ListaPorPagina implements Serializable {
 	 *
 	 * @return the id
 	 */
-	public ListaPorPaginaPK getId() {
-		return id;
+	public BotonPorMenuPK getId() {
+		return this.id;
 	}
 
 	/**
@@ -42,7 +39,7 @@ public class ListaPorPagina implements Serializable {
 	 *
 	 * @param id the new id
 	 */
-	public void setId(ListaPorPaginaPK id) {
+	public void setId(BotonPorMenuPK id) {
 		this.id = id;
 	}
 

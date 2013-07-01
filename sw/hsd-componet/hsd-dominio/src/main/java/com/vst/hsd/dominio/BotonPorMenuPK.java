@@ -9,44 +9,40 @@ import javax.persistence.*;
  * 
  */
 @Embeddable
-public class BotonPorPaginaPK implements Serializable {
+public class BotonPorMenuPK implements Serializable {
 	// default serial version id, required for serializable classes.
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The pagina. */
 	@ManyToOne
-	@JoinColumn(name = "id_pagina", nullable = false)
-	private Pagina pagina;
+	@JoinColumn(name = "id_menu", nullable = false, insertable=false, updatable=false)
+	private Menu menu;
 
 	/** The boton. */
 	@ManyToOne
-	@JoinColumn(name = "id_recurso", nullable = false)
+	@JoinColumn(name = "id_recurso", nullable = false, insertable=false, updatable=false)
 	private Boton boton;
 
 	/**
 	 * Instantiates a new boton por pagina pk.
 	 */
-	public BotonPorPaginaPK() {
+	public BotonPorMenuPK() {
 	}
 
-	/**
-	 * Gets the pagina.
-	 *
-	 * @return the pagina
-	 */
-	public Pagina getPagina() {
-		return pagina;
+	
+
+	public Menu getMenu() {
+		return menu;
 	}
 
-	/**
-	 * Sets the pagina.
-	 *
-	 * @param pagina the new pagina
-	 */
-	public void setPagina(Pagina pagina) {
-		this.pagina = pagina;
+
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
+
+
 
 	/**
 	 * Gets the boton.
