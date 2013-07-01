@@ -1,9 +1,6 @@
 package com.vst.hsd.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.vst.hsd.dao.PerfilDAO;
 import com.vst.hsd.dao.UsuarioDAO;
-import com.vst.hsd.dominio.Menu;
 import com.vst.hsd.dominio.Perfil;
 import com.vst.hsd.dominio.Usuario;
 import com.vst.hsd.service.LoginService;
-import com.vst.util.Constantes;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -26,8 +21,7 @@ import com.vst.util.Constantes;
 public class LoginServiceImpl implements LoginService {
 
 	/** The Constant log. */
-	private static final Logger log = LoggerFactory
-			.getLogger(LoginServiceImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(LoginServiceImpl.class);
 
 	/** The usuario dao. */
 	@Autowired
@@ -37,8 +31,11 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private PerfilDAO perfilDAO;
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.LoginService#iniciarSession(java.lang.String, java.lang.String, java.lang.Integer)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.vst.hsd.service.LoginService#iniciarSession(java.lang.String,
+	 * java.lang.String, java.lang.Integer)
 	 */
 	public Usuario iniciarSession(String usuario, String clave, Integer perfil) {
 		Usuario u = usuarioDAO.buscarUsuario(usuario, perfil);
@@ -47,21 +44,20 @@ public class LoginServiceImpl implements LoginService {
 			if (u.getClave().equals(clave)) {
 				p = perfilDAO.get(perfil);
 				u.setPerfilLogueado(p);
-				log.info("usuario logeado es :" + usuario + "  perfil : "
-						+ perfil);
+				log.info("usuario logeado es :" + usuario + "  perfil : " + perfil);
 				return u;
 			} else {
-				log.info("usuario clave incorrecta es :" + usuario
-						+ "  perfil : " + perfil);
+				log.info("usuario clave incorrecta es :" + usuario + "  perfil : " + perfil);
 				return null;
 			}
 		}
-		log.info("usuario no encontrado es :" + usuario + "  perfil : "
-				+ perfil);
+		log.info("usuario no encontrado es :" + usuario + "  perfil : " + perfil);
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.hsd.service.LoginService#obtenerPerfiles()
 	 */
 	public List<Perfil> obtenerPerfiles() {

@@ -13,15 +13,18 @@ import com.vst.hsd.service.mantenimiento.MantenimientoUsuarioService;
  * The Class MantenimientoUsuarioServiceImpl.
  */
 @Service("MantenimientoUsuarioService")
-public class MantenimientoUsuarioServiceImpl implements
-		MantenimientoUsuarioService {
+public class MantenimientoUsuarioServiceImpl implements MantenimientoUsuarioService {
 
 	/** The usuario dao. */
 	@Autowired
 	UsuarioDAO usuarioDAO;
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoUsuarioService#guardar(com.vst.hsd.dominio.Usuario)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.vst.hsd.service.mantenimiento.MantenimientoUsuarioService#guardar
+	 * (com.vst.hsd.dominio.Usuario)
 	 */
 	@Transactional
 	public void guardar(Usuario u) {

@@ -18,12 +18,10 @@ import com.vst.hsd.service.mantenimiento.MantenimientoParametroService;
  * The Class MantenimientoParametroServiceImpl.
  */
 @Service("MantenimientoParametroService")
-public class MantenimientoParametroServiceImpl implements
-		MantenimientoParametroService {
+public class MantenimientoParametroServiceImpl implements MantenimientoParametroService {
 
 	/** The Constant log. */
-	private static final Logger log = LoggerFactory
-			.getLogger(MantenimientoParametroService.class);
+	private static final Logger log = LoggerFactory.getLogger(MantenimientoParametroService.class);
 
 	/** The parametro dao. */
 	@Autowired
@@ -33,23 +31,33 @@ public class MantenimientoParametroServiceImpl implements
 	@Autowired
 	private ParametroPorParametroDAO parametroPorParametroDAO;
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#obtenerEstados()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#
+	 * obtenerEstados()
 	 */
 	public List<Parametro> obtenerEstados() {
+		log.info("obtenerEstados");
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#obtenerParametrosPadre()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#
+	 * obtenerParametrosPadre()
 	 */
 	public List<Parametro> obtenerParametrosPadre() {
 
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#obtenerParametro(int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#
+	 * obtenerParametro(int)
 	 */
 	public Parametro obtenerParametro(int param) {
 
@@ -57,16 +65,23 @@ public class MantenimientoParametroServiceImpl implements
 	}
 
 	// @Transactional
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#guardarParametro(com.vst.hsd.dominio.Parametro)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#
+	 * guardarParametro(com.vst.hsd.dominio.Parametro)
 	 */
 	public int guardarParametro(Parametro parametro) {
 		return 1;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#obtenerParametrosRulesEntidad(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#
+	 * obtenerParametrosRulesEntidad(java.lang.String)
 	 */
+	@SuppressWarnings("rawtypes")
 	public List obtenerParametrosRulesEntidad(String entidad) {
 		// Parametro
 		// entidadParametrorules=parametroDAO.parametroPorParametroDAO(entidad);
@@ -114,8 +129,11 @@ public class MantenimientoParametroServiceImpl implements
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#obtenerParametros()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#
+	 * obtenerParametros()
 	 */
 	public List<Map<String, Object>> obtenerParametros() {
 		// List<Parametro> l = parametroDAO.obtenerParametros();

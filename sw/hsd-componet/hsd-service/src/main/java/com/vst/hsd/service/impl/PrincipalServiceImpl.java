@@ -16,6 +16,7 @@ import com.vst.hsd.dao.BotonDAO;
 import com.vst.hsd.dao.ColumnaDAO;
 import com.vst.hsd.dao.DataListComponet;
 import com.vst.hsd.dao.ListaDAO;
+import com.vst.hsd.dao.ParametroDAO;
 import com.vst.hsd.dominio.Boton;
 import com.vst.hsd.dominio.Columna;
 import com.vst.hsd.dominio.Lista;
@@ -32,8 +33,7 @@ import com.vst.util.Constantes;
 public class PrincipalServiceImpl implements PrincipalService {
 
 	/** The Constant log. */
-	private static final Logger log = LoggerFactory
-			.getLogger(PrincipalServiceImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(PrincipalServiceImpl.class);
 
 	/** The lista dao. */
 	@Autowired
@@ -51,18 +51,26 @@ public class PrincipalServiceImpl implements PrincipalService {
 	@Autowired
 	private BotonDAO botonDAO;
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.PrincipalService#obtenerListaEntidad(java.lang.String, javax.servlet.http.HttpSession)
+	/** The lista dao. */
+	@Autowired
+	private ParametroDAO parametroDAO;
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.vst.hsd.service.PrincipalService#obtenerListaEntidad(java.lang.String
+	 * , javax.servlet.http.HttpSession)
 	 */
-	public Lista obtenerListaEntidad(String entidad, HttpSession session) {
+	public Lista obtenerListaEntidad(String codigoentidad, HttpSession session) {
 		log.info("metodo:buscarUsuarioLogueado - buscar el usuario en session");
 		Usuario u = (Usuario) session.getAttribute(Constantes.SESION_USUARIO);
 		if (u != null) {
-			Lista l = listaDAO.obtenerListaPorUsuario(entidad, u);
+			System.out.println(" codigoentidad: " + codigoentidad);
+			Lista l = listaDAO.obtenerListaPorUsuario(codigoentidad, u);
 			if (l != null) {
 				log.info(" Lista obtenida :" + l.getCodigo());
-				List<Columna> lstColumnas = columnaDAO
-						.buscarPorLista(l.getId());
+				List<Columna> lstColumnas = columnaDAO.buscarPorLista(l.getId());
 				log.info(" lista de columnas  :" + lstColumnas.size());
 				// l.setColumnas(lstColumnas);
 				// l.setMenus(null);
@@ -72,12 +80,15 @@ public class PrincipalServiceImpl implements PrincipalService {
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.PrincipalService#obtenerData(com.vst.hsd.dominio.Usuario, java.lang.String, java.lang.String, java.lang.String, int, int, boolean, java.lang.String, java.lang.String, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.vst.hsd.service.PrincipalService#obtenerData(com.vst.hsd.dominio.
+	 * Usuario, java.lang.String, java.lang.String, java.lang.String, int, int,
+	 * boolean, java.lang.String, java.lang.String, java.lang.String)
 	 */
-	public Map<String, Object> obtenerData(Usuario usuario, String entidad,
-			String sidx, String sord, int page, int filas, boolean _search,
-			String searchField, String searchOper, String searchString) {
+	public Map<String, Object> obtenerData(Usuario usuario, String entidad, String sidx, String sord, int page, int filas, boolean _search, String searchField, String searchOper, String searchString) {
 
 		Character estado = 'A';
 		Lista lista = listaDAO.obtenerListaPorEntidad(entidad);
@@ -86,8 +97,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 			List<Columna> columnas = columnaDAO.buscarPorLista(lista.getId());
 			if (columnas != null && columnas.size() > 0) {
 				Map<String, Object> objeto = new HashMap<String, Object>();
-				int count = dataListComponet.getCantidadDataRows(usuario,
-						entidad, estado);
+				int count = dataListComponet.getCantidadDataRows(usuario, entidad, estado);
 				log.info("  lista generica count:" + count);
 				int total = 0;
 				int records = 0;
@@ -99,10 +109,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 						total = count / filas + 1;
 					}
 				}
-				List<Map<String, Object>> data = dataListComponet.getData(
-						usuario, entidad, columnas, lista.getEstado(), sidx,
-						sord, page, filas, _search, searchField, searchOper,
-						searchString);
+				List<Map<String, Object>> data = dataListComponet.getData(usuario, entidad, columnas, lista.getEstado(), sidx, sord, page, filas, _search, searchField, searchOper, searchString);
 
 				log.info("  data generica count:" + data.size());
 				objeto.put("page", page);
@@ -121,8 +128,12 @@ public class PrincipalServiceImpl implements PrincipalService {
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.PrincipalService#obtenerMenusPorPerfil(com.vst.hsd.dominio.Usuario)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.vst.hsd.service.PrincipalService#obtenerMenusPorPerfil(com.vst.hsd
+	 * .dominio.Usuario)
 	 */
 	public List<Menu> obtenerMenusPorPerfil(Usuario u) {
 		List<Menu> ms = new ArrayList<Menu>();
@@ -138,6 +149,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 		List<Menu> mss = new ArrayList<Menu>();
 		Menu mm = new Menu();
 		mm.setId(1);
+		mm.setCodigo("Parametro");
 		mm.setNombre("Parametro");
 		mm.setUrl("Parametro");
 		mm.setDefaultMenu(true);
@@ -149,27 +161,30 @@ public class PrincipalServiceImpl implements PrincipalService {
 		Menu mm2 = new Menu();
 		mm2.setId(1);
 		mm2.setNombre("Perfil");
+		mm2.setCodigo("Perfil");
 		mm2.setUrl("Perfil");
 		mm2.setTipo("interno");
-		mm2.setOrden(0);
+		mm2.setOrden(1);
 		mm2.setFunction(null);
 		mss.add(mm2);
 
 		Menu mm3 = new Menu();
 		mm3.setId(1);
 		mm3.setNombre("Lista");
+		mm3.setCodigo("Lista");
 		mm3.setUrl("Lista");
 		mm3.setTipo("interno");
-		mm3.setOrden(0);
+		mm3.setOrden(2);
 		mm3.setFunction(null);
 		mss.add(mm3);
 
 		Menu mm4 = new Menu();
 		mm4.setId(1);
 		mm4.setNombre("Columna");
+		mm4.setCodigo("Columna");
 		mm4.setUrl("Columna");
 		mm4.setTipo("interno");
-		mm4.setOrden(0);
+		mm4.setOrden(3);
 		mm4.setFunction(null);
 		mss.add(mm4);
 
@@ -178,8 +193,12 @@ public class PrincipalServiceImpl implements PrincipalService {
 		return ms;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.PrincipalService#obtenerBotonesPorMenuDefault(java.util.List)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.vst.hsd.service.PrincipalService#obtenerBotonesPorMenuDefault(java
+	 * .util.List)
 	 */
 	public List<Boton> obtenerBotonesPorMenuDefault(List<Menu> lstMenus) {
 
@@ -199,8 +218,12 @@ public class PrincipalServiceImpl implements PrincipalService {
 		return bs;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.service.PrincipalService#obtenerBotonesPorMenu(java.lang.Integer)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.vst.hsd.service.PrincipalService#obtenerBotonesPorMenu(java.lang.
+	 * Integer)
 	 */
 	public List<Boton> obtenerBotonesPorMenu(Integer idmenu) {
 		log.info("  obtenerBotonesPorMenu idmenu: " + idmenu);
@@ -212,7 +235,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 		b2.setActivo(true);
 		b2.setUrl("mantenimiento/registrarParametro");
 		b2.setDescripcion(" Nuevo Parametro  ");
-//		b2.setTipo(Constantes.ADDTABLINK);
+		// b2.setTipo(Constantes.ADDTABLINK);
 		bs.add(b2);
 
 		Boton b = new Boton();
