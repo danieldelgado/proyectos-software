@@ -72,7 +72,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 				log.info(" Lista obtenida :" + l.getCodigo());
 				List<Columna> lstColumnas = columnaDAO.buscarPorLista(l.getId());
 				log.info(" lista de columnas  :" + lstColumnas.size());
-				// l.setColumnas(lstColumnas);
+				l.setColumnas(lstColumnas);
 				// l.setMenus(null);
 				return l;
 			}
@@ -206,13 +206,13 @@ public class PrincipalServiceImpl implements PrincipalService {
 		Boton b = new Boton();
 		b.setId(1);
 		b.setActivo(true);
-		b.setDescripcion(" boton prueba  ");
+		b.setDescripcion("Nuevo");
 		bs.add(b);
 
 		Boton b2 = new Boton();
 		b2.setId(1);
 		b2.setActivo(true);
-		b2.setDescripcion(" Guardar  ");
+		b2.setDescripcion("Guardar");
 		bs.add(b2);
 
 		return bs;
@@ -227,25 +227,7 @@ public class PrincipalServiceImpl implements PrincipalService {
 	 */
 	public List<Boton> obtenerBotonesPorMenu(Integer idmenu) {
 		log.info("  obtenerBotonesPorMenu idmenu: " + idmenu);
-		List<Boton> bs = new ArrayList<Boton>();
-
-		Boton b2 = new Boton();
-		b2.setId(1);
-		b2.setCodigo("codigobotonaddnuevo");
-		b2.setActivo(true);
-		b2.setUrl("mantenimiento/registrarParametro");
-		b2.setDescripcion(" Nuevo Parametro  ");
-		// b2.setTipo(Constantes.ADDTABLINK);
-		bs.add(b2);
-
-		Boton b = new Boton();
-		b.setId(2);
-		b.setActivo(true);
-		b.setCodigo("codigobotonad1232dnuevo");
-		b.setDescripcion(" Nuevo Parametro  2 ");
-		b.setTipo("no es link");
-		bs.add(b);
-
+		List<Boton> bs = botonDAO.obtenerBotonesPorMenu(idmenu);
 		return bs;
 	}
 
