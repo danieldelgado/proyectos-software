@@ -27,7 +27,7 @@ public class DAO<T extends Entidad> implements IDAO<T> {
 	@SuppressWarnings("unchecked")
 	public DAO() {
 		clazz = (Class<Entidad>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-		log.debug(" [ Crea aspecto de la Entidad:" + clazz.getName()+ "]" );
+		log.debug(" [ Crea aspecto de la Entidad:" + clazz.getName() + "]");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -59,14 +59,14 @@ public class DAO<T extends Entidad> implements IDAO<T> {
 				em.merge(objeto);
 			else
 				em.persist(objeto);
-			log.debug("[ objeto registrado :"+Util.getJsonObject(objeto)+" ]");	
-			log.debug("[ Transaction terminada  " + clazz.getName() + " con id :" + objeto.getId()+" ]");
+			log.debug("[ objeto registrado :" + Util.getJsonObject(objeto) + " ]");
+			log.debug("[ Transaction terminada  " + clazz.getName() + " con id :" + objeto.getId() + " ]");
 		} catch (Exception e) {
 			System.err.println("Error:" + e.getMessage());
-			log.error("[ Transaction rollback  " + clazz.getName() + " error: " + e.getMessage()+" ]");
+			log.error("[ Transaction rollback  " + clazz.getName() + " error: " + e.getMessage() + " ]");
 			e.printStackTrace();
 		} finally {
-			log.debug("[ Transaction cerrada finally " + clazz.getName()+" ]");
+			log.debug("[ Transaction cerrada finally " + clazz.getName() + " ]");
 		}
 
 	}
@@ -85,16 +85,32 @@ public class DAO<T extends Entidad> implements IDAO<T> {
 
 	}
 
+	// @SuppressWarnings("unchecked")
+	// public T obtenerPorCodigo(String codigo, String campoCodigo) {
+	// Entity e = (Entity) clazz.getAnnotation(Entity.class);
+	// String nombre = null;
+	// if (e == null || e.name() == null || e.name().length() == 0)
+	// nombre = clazz.getSimpleName();
+	// else
+	// nombre = e.name();
+	// String sql = "SELECT e FROM " + nombre + " e  where e." + campoCodigo +
+	// " = :codigo";
+	// log.debug("[ Entro al metodo obtenerPorCodigo de Entidad " +
+	// clazz.getName() + "  con query: " + sql+" ]");
+	// return (T) em.createQuery(sql).setParameter("codigo",
+	// codigo).getSingleResult();
+	// }
+
 	@SuppressWarnings("unchecked")
-	public T obtenerPorCodigo(String codigo, String campoCodigo) {
+	public T getPorCodigo(String codigo) {
 		Entity e = (Entity) clazz.getAnnotation(Entity.class);
 		String nombre = null;
 		if (e == null || e.name() == null || e.name().length() == 0)
 			nombre = clazz.getSimpleName();
 		else
 			nombre = e.name();
-		String sql = "SELECT e FROM " + nombre + " e  where e." + campoCodigo + " = :codigo";
-		log.debug("[ Entro al metodo obtenerPorCodigo de Entidad " + clazz.getName() + "  con query: " + sql+" ]");
+		String sql = "SELECT e FROM " + nombre + " e  where e.codigo = :codigo";
+		log.debug("[ Entro al metodo getPorCodigo de Entidad " + clazz.getName() + "  con query: " + sql + " ]");
 		return (T) em.createQuery(sql).setParameter("codigo", codigo).getSingleResult();
 	}
 

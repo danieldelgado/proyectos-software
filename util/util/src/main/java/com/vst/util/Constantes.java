@@ -7,7 +7,7 @@ public class Constantes {
 
 	public static final Character ACTIVO = 'A';
 	public static final Character INACTIVO = 'I';
-	
+
 	public static final String TXT = "txt";
 	public static final String PDF = "pdf";
 	public static final String WORD = "word";

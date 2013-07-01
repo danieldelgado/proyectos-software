@@ -1,14 +1,14 @@
 package com.vst.util;
 
-public class BeanFlags{
-	
-	int id;	
+public class BeanFlags {
+
+	int id;
 	Boolean conUsuario;
 	Boolean conEstado;
 	Boolean conAction;
 	Boolean conBusqueda;
 	Boolean copiado;
-	
+
 	public Boolean getCopiado() {
 		return copiado;
 	}
@@ -17,61 +17,57 @@ public class BeanFlags{
 		this.copiado = copiado;
 	}
 
-	public BeanFlags(){
+	public BeanFlags() {
 	}
 
-	public BeanFlags(Boolean conUsuario,Boolean conEstado,Boolean conAction,Boolean conBusqueda,Boolean copiado){
+	public BeanFlags(Boolean conUsuario, Boolean conEstado, Boolean conAction, Boolean conBusqueda, Boolean copiado) {
 		super();
-		this.conUsuario=conUsuario;
-		this.conEstado=conEstado;
-		this.conAction=conAction;
-		this.conBusqueda=conBusqueda;
-		this.copiado=copiado;
+		this.conUsuario = conUsuario;
+		this.conEstado = conEstado;
+		this.conAction = conAction;
+		this.conBusqueda = conBusqueda;
+		this.copiado = copiado;
 
 	}
 
-	public int getId(){
+	public int getId() {
 		return id;
 	}
 
-	public Boolean getConUsuario(){
+	public Boolean getConUsuario() {
 		return conUsuario;
 	}
 
-	public Boolean getConEstado(){
+	public Boolean getConEstado() {
 		return conEstado;
 	}
 
-	public Boolean getConAction(){
+	public Boolean getConAction() {
 		return conAction;
 	}
 
-	public Boolean getConBusqueda(){
+	public Boolean getConBusqueda() {
 		return conBusqueda;
 	}
-	
-	
-	public void setId(int id){
-		this.id=id;
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setConUsuario(Boolean conUsuario){
-		this.conUsuario=conUsuario;
+	public void setConUsuario(Boolean conUsuario) {
+		this.conUsuario = conUsuario;
 	}
 
-	public void setConEstado(Boolean conEstado){
-		this.conEstado=conEstado;
+	public void setConEstado(Boolean conEstado) {
+		this.conEstado = conEstado;
 	}
 
-	public void setConAction(Boolean conAction){
-		this.conAction=conAction;
+	public void setConAction(Boolean conAction) {
+		this.conAction = conAction;
 	}
 
-	public void setConBusqueda(Boolean conBusqueda){
-		this.conBusqueda=conBusqueda;
+	public void setConBusqueda(Boolean conBusqueda) {
+		this.conBusqueda = conBusqueda;
 	}
-	
-
-	
 
 }
