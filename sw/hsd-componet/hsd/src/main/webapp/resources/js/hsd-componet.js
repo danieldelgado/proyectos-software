@@ -6,7 +6,7 @@ var tabprincipal = null;
 var ent = null;
 var layoutConeinerCenter = null;
 var count = 1;
-var mostrarMsj = false;
+var mostrarMsj = true;
 var myLayout;
 var uilayoutwest;
 
@@ -18,7 +18,7 @@ $(function() {
 });
 
 function init() {
-	mostrarMsj = $("#consolemessage").val();
+//	mostrarMsj = $("#consolemessage").val();
 	context = $("#context").val();
 	ent = "Parametro";
 	uilayoutwest = $(".ui-layout-west");
@@ -79,8 +79,6 @@ function cargarMenus() {
 	$(".lkmenu").click(function() {
 		var li = $(this).parent();
 		var codigo = li.find(".codigo").val();
-//		var nombre = li.find(".nombre").val();
-//		var url = li.find(".url").val();
 		var tipo = li.find(".tipo").val();
 		if (tipo == "interno") {
 			cargarLista(codigo);
@@ -161,10 +159,16 @@ function irPagina(url) {
 }
 
 function cargarLista(pm) {
+	consola("cargarLista");
 	if ( isStringNull(pm) )  {
 
 		$.get(context + "principal/obtenerLista/" + pm, function(lista) {
 
+			consola("lista");
+			consola(lista);
+			consola(lista.columnas);
+			consola("lista");
+			
 			var nombres = new Array();
 			var modelo = new Array();
 			var columnas = lista.columnas;
@@ -183,6 +187,9 @@ function cargarLista(pm) {
 					}
 				};
 			}
+			
+			tabprincipal.html("");
+			
 			ajaxAsyncGet(context + "principal/obtenerBotonesPorMenu/" + lista.idMenu, null, function(res) {
 				var toolbarButton = $('<div/>', {
 					'class' : 'ui-widget-header toolbar'
@@ -199,9 +206,9 @@ function cargarLista(pm) {
 								ajaxAsyncGetHtml(context + item.url, null, function(h) {
 									html = h;
 								});
-								addtab(item.descripcion, item.codigo, html, true);
+//								addtab(item.descripcion, item.codigo, html, true);
 							} else {
-								selectTab(item.codigo);
+//								selectTab(item.codigo);
 							}
 
 						}
@@ -268,7 +275,7 @@ function get(identificadorObjeto) {
 function consola(objeto) {
 	// if (!window.console) {
 	// alert($.browser.msie);
-	if (mostrarMsj == "true") {
+	if (mostrarMsj == true) {
 		if ($.browser.msie && $.browser.version < 9) {
 			alert(objeto);
 		} else {
