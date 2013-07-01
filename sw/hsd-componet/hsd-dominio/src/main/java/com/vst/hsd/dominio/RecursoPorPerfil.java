@@ -26,7 +26,7 @@ public class RecursoPorPerfil implements Serializable {
 
 	/**
 	 * Gets the responsable.
-	 *
+	 * 
 	 * @return the responsable
 	 */
 	public Boolean getResponsable() {
@@ -35,8 +35,9 @@ public class RecursoPorPerfil implements Serializable {
 
 	/**
 	 * Sets the responsable.
-	 *
-	 * @param responsable the new responsable
+	 * 
+	 * @param responsable
+	 *            the new responsable
 	 */
 	public void setResponsable(Boolean responsable) {
 		this.responsable = responsable;
@@ -51,9 +52,11 @@ public class RecursoPorPerfil implements Serializable {
 
 	/**
 	 * Instantiates a new recurso por perfil.
-	 *
-	 * @param recurso the recurso
-	 * @param perfil the perfil
+	 * 
+	 * @param recurso
+	 *            the recurso
+	 * @param perfil
+	 *            the perfil
 	 */
 	public RecursoPorPerfil(Recurso recurso, Perfil perfil) {
 		id = new RecursoPorPerfilPK(recurso, perfil);
@@ -61,7 +64,7 @@ public class RecursoPorPerfil implements Serializable {
 
 	/**
 	 * Gets the id.
-	 *
+	 * 
 	 * @return the id
 	 */
 	public RecursoPorPerfilPK getId() {
@@ -70,8 +73,9 @@ public class RecursoPorPerfil implements Serializable {
 
 	/**
 	 * Sets the id.
-	 *
-	 * @param id the new id
+	 * 
+	 * @param id
+	 *            the new id
 	 */
 	public void setId(RecursoPorPerfilPK id) {
 		this.id = id;

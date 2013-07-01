@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "menu")
 public class Menu extends Recurso implements Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -58,17 +58,16 @@ public class Menu extends Recurso implements Serializable {
 	@OneToMany(mappedBy = "menu")
 	private List<Menu> menus;
 
-
 	/**
 	 * Instantiates a new menu.
 	 */
 	public Menu() {
 		defaultMenu = false;
 	}
-	
+
 	/**
 	 * Gets the function.
-	 *
+	 * 
 	 * @return the function
 	 */
 	public String getFunction() {
@@ -77,8 +76,9 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Sets the function.
-	 *
-	 * @param function the new function
+	 * 
+	 * @param function
+	 *            the new function
 	 */
 	public void setFunction(String function) {
 		this.function = function;
@@ -86,7 +86,7 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Gets the nombre.
-	 *
+	 * 
 	 * @return the nombre
 	 */
 	public String getNombre() {
@@ -95,8 +95,9 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Sets the nombre.
-	 *
-	 * @param nombre the new nombre
+	 * 
+	 * @param nombre
+	 *            the new nombre
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -104,7 +105,7 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Gets the orden.
-	 *
+	 * 
 	 * @return the orden
 	 */
 	public Integer getOrden() {
@@ -113,8 +114,9 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Sets the orden.
-	 *
-	 * @param orden the new orden
+	 * 
+	 * @param orden
+	 *            the new orden
 	 */
 	public void setOrden(Integer orden) {
 		this.orden = orden;
@@ -122,7 +124,7 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Gets the tipo.
-	 *
+	 * 
 	 * @return the tipo
 	 */
 	public String getTipo() {
@@ -131,8 +133,9 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Sets the tipo.
-	 *
-	 * @param tipo the new tipo
+	 * 
+	 * @param tipo
+	 *            the new tipo
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
@@ -140,7 +143,7 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Gets the todos.
-	 *
+	 * 
 	 * @return the todos
 	 */
 	public Boolean getTodos() {
@@ -149,8 +152,9 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Sets the todos.
-	 *
-	 * @param todos the new todos
+	 * 
+	 * @param todos
+	 *            the new todos
 	 */
 	public void setTodos(Boolean todos) {
 		this.todos = todos;
@@ -158,7 +162,7 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Gets the url.
-	 *
+	 * 
 	 * @return the url
 	 */
 	public String getUrl() {
@@ -167,8 +171,9 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Sets the url.
-	 *
-	 * @param url the new url
+	 * 
+	 * @param url
+	 *            the new url
 	 */
 	public void setUrl(String url) {
 		this.url = url;
@@ -176,7 +181,7 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Gets the menu.
-	 *
+	 * 
 	 * @return the menu
 	 */
 	public Menu getMenu() {
@@ -185,8 +190,9 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Sets the menu.
-	 *
-	 * @param menu the new menu
+	 * 
+	 * @param menu
+	 *            the new menu
 	 */
 	public void setMenu(Menu menu) {
 		this.menu = menu;
@@ -194,7 +200,7 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Gets the menus.
-	 *
+	 * 
 	 * @return the menus
 	 */
 	public List<Menu> getMenus() {
@@ -203,8 +209,9 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Sets the menus.
-	 *
-	 * @param menus the new menus
+	 * 
+	 * @param menus
+	 *            the new menus
 	 */
 	public void setMenus(List<Menu> menus) {
 		this.menus = menus;
@@ -212,7 +219,7 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Gets the default menu.
-	 *
+	 * 
 	 * @return the default menu
 	 */
 	public Boolean getDefaultMenu() {
@@ -221,8 +228,9 @@ public class Menu extends Recurso implements Serializable {
 
 	/**
 	 * Sets the default menu.
-	 *
-	 * @param defaultMenu the new default menu
+	 * 
+	 * @param defaultMenu
+	 *            the new default menu
 	 */
 	public void setDefaultMenu(Boolean defaultMenu) {
 		this.defaultMenu = defaultMenu;

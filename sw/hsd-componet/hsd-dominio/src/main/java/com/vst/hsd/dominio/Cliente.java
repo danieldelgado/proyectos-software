@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "cliente")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cliente extends Persona implements Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -43,11 +43,9 @@ public class Cliente extends Persona implements Serializable {
 	public Cliente() {
 	}
 
-	
-
 	/**
 	 * Gets the estado civil.
-	 *
+	 * 
 	 * @return the estado civil
 	 */
 	public Integer getEstadoCivil() {
@@ -56,8 +54,9 @@ public class Cliente extends Persona implements Serializable {
 
 	/**
 	 * Sets the estado civil.
-	 *
-	 * @param estadoCivil the new estado civil
+	 * 
+	 * @param estadoCivil
+	 *            the new estado civil
 	 */
 	public void setEstadoCivil(Integer estadoCivil) {
 		this.estadoCivil = estadoCivil;
@@ -65,7 +64,7 @@ public class Cliente extends Persona implements Serializable {
 
 	/**
 	 * Gets the ruc.
-	 *
+	 * 
 	 * @return the ruc
 	 */
 	public String getRuc() {
@@ -74,8 +73,9 @@ public class Cliente extends Persona implements Serializable {
 
 	/**
 	 * Sets the ruc.
-	 *
-	 * @param ruc the new ruc
+	 * 
+	 * @param ruc
+	 *            the new ruc
 	 */
 	public void setRuc(String ruc) {
 		this.ruc = ruc;
@@ -83,7 +83,7 @@ public class Cliente extends Persona implements Serializable {
 
 	/**
 	 * Gets the tipo_documento.
-	 *
+	 * 
 	 * @return the tipo_documento
 	 */
 	public Integer getTipo_documento() {
@@ -92,8 +92,9 @@ public class Cliente extends Persona implements Serializable {
 
 	/**
 	 * Sets the tipo_documento.
-	 *
-	 * @param tipo_documento the new tipo_documento
+	 * 
+	 * @param tipo_documento
+	 *            the new tipo_documento
 	 */
 	public void setTipo_documento(Integer tipo_documento) {
 		this.tipo_documento = tipo_documento;
@@ -101,7 +102,7 @@ public class Cliente extends Persona implements Serializable {
 
 	/**
 	 * Gets the numero_documento.
-	 *
+	 * 
 	 * @return the numero_documento
 	 */
 	public String getNumero_documento() {
@@ -110,8 +111,9 @@ public class Cliente extends Persona implements Serializable {
 
 	/**
 	 * Sets the numero_documento.
-	 *
-	 * @param numero_documento the new numero_documento
+	 * 
+	 * @param numero_documento
+	 *            the new numero_documento
 	 */
 	public void setNumero_documento(String numero_documento) {
 		this.numero_documento = numero_documento;

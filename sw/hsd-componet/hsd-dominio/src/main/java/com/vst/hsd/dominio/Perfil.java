@@ -23,7 +23,7 @@ import com.vst.util.Entidad;
 @Entity
 @Table(name = "perfil")
 public class Perfil implements Entidad, Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -91,10 +91,13 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Instantiates a new perfil.
-	 *
-	 * @param id the id
-	 * @param codigo the codigo
-	 * @param nombre the nombre
+	 * 
+	 * @param id
+	 *            the id
+	 * @param codigo
+	 *            the codigo
+	 * @param nombre
+	 *            the nombre
 	 */
 	public Perfil(Integer id, String codigo, String nombre) {
 		super();
@@ -105,7 +108,7 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha actualizacion.
-	 *
+	 * 
 	 * @return the fecha actualizacion
 	 */
 	public Date getFechaActualizacion() {
@@ -114,8 +117,9 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha actualizacion.
-	 *
-	 * @param fechaActualizacion the new fecha actualizacion
+	 * 
+	 * @param fechaActualizacion
+	 *            the new fecha actualizacion
 	 */
 	public void setFechaActualizacion(Date fechaActualizacion) {
 		this.fechaActualizacion = fechaActualizacion;
@@ -123,7 +127,7 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Gets the activo.
-	 *
+	 * 
 	 * @return the activo
 	 */
 	public Boolean getActivo() {
@@ -132,21 +136,26 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Sets the activo.
-	 *
-	 * @param activo the new activo
+	 * 
+	 * @param activo
+	 *            the new activo
 	 */
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getId()
 	 */
 	public Integer getId() {
 		return id;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#setId(java.lang.Integer)
 	 */
 	public void setId(Integer id) {
@@ -155,7 +164,7 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Gets the codigo.
-	 *
+	 * 
 	 * @return the codigo
 	 */
 	public String getCodigo() {
@@ -164,8 +173,9 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Sets the codigo.
-	 *
-	 * @param codigo the new codigo
+	 * 
+	 * @param codigo
+	 *            the new codigo
 	 */
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
@@ -173,7 +183,7 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Gets the descripcion.
-	 *
+	 * 
 	 * @return the descripcion
 	 */
 	public String getDescripcion() {
@@ -182,8 +192,9 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Sets the descripcion.
-	 *
-	 * @param descripcion the new descripcion
+	 * 
+	 * @param descripcion
+	 *            the new descripcion
 	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
@@ -191,7 +202,7 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Gets the estado.
-	 *
+	 * 
 	 * @return the estado
 	 */
 	public Character getEstado() {
@@ -200,8 +211,9 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Sets the estado.
-	 *
-	 * @param estado the new estado
+	 * 
+	 * @param estado
+	 *            the new estado
 	 */
 	public void setEstado(Character estado) {
 		this.estado = estado;
@@ -209,7 +221,7 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha creacion.
-	 *
+	 * 
 	 * @return the fecha creacion
 	 */
 	public Date getFechaCreacion() {
@@ -218,8 +230,9 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha creacion.
-	 *
-	 * @param fechaCreacion the new fecha creacion
+	 * 
+	 * @param fechaCreacion
+	 *            the new fecha creacion
 	 */
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
@@ -227,7 +240,7 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Gets the nombre.
-	 *
+	 * 
 	 * @return the nombre
 	 */
 	public String getNombre() {
@@ -236,8 +249,9 @@ public class Perfil implements Entidad, Serializable {
 
 	/**
 	 * Sets the nombre.
-	 *
-	 * @param nombre the new nombre
+	 * 
+	 * @param nombre
+	 *            the new nombre
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -256,14 +270,18 @@ public class Perfil implements Entidad, Serializable {
 	 * recursos; }
 	 */
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getLabel()
 	 */
 	public String getLabel() {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getNombreCompleto()
 	 */
 	public String getNombreCompleto() {

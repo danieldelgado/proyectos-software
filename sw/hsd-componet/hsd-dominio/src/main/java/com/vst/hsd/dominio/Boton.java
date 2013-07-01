@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "boton")
 public class Boton extends Recurso implements Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -80,7 +80,7 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Gets the bloqueable.
-	 *
+	 * 
 	 * @return the bloqueable
 	 */
 	public Boolean getBloqueable() {
@@ -89,8 +89,9 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Sets the bloqueable.
-	 *
-	 * @param bloqueable the new bloqueable
+	 * 
+	 * @param bloqueable
+	 *            the new bloqueable
 	 */
 	public void setBloqueable(Boolean bloqueable) {
 		this.bloqueable = bloqueable;
@@ -98,7 +99,7 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Gets the icono.
-	 *
+	 * 
 	 * @return the icono
 	 */
 	public String getIcono() {
@@ -107,8 +108,9 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Sets the icono.
-	 *
-	 * @param icono the new icono
+	 * 
+	 * @param icono
+	 *            the new icono
 	 */
 	public void setIcono(String icono) {
 		this.icono = icono;
@@ -116,7 +118,7 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Gets the on complete.
-	 *
+	 * 
 	 * @return the on complete
 	 */
 	public String getOnComplete() {
@@ -125,8 +127,9 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Sets the on complete.
-	 *
-	 * @param onComplete the new on complete
+	 * 
+	 * @param onComplete
+	 *            the new on complete
 	 */
 	public void setOnComplete(String onComplete) {
 		this.onComplete = onComplete;
@@ -134,7 +137,7 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Gets the on submit.
-	 *
+	 * 
 	 * @return the on submit
 	 */
 	public String getOnSubmit() {
@@ -143,8 +146,9 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Sets the on submit.
-	 *
-	 * @param onSubmit the new on submit
+	 * 
+	 * @param onSubmit
+	 *            the new on submit
 	 */
 	public void setOnSubmit(String onSubmit) {
 		this.onSubmit = onSubmit;
@@ -152,7 +156,7 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Gets the orden.
-	 *
+	 * 
 	 * @return the orden
 	 */
 	public int getOrden() {
@@ -161,8 +165,9 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Sets the orden.
-	 *
-	 * @param orden the new orden
+	 * 
+	 * @param orden
+	 *            the new orden
 	 */
 	public void setOrden(int orden) {
 		this.orden = orden;
@@ -170,7 +175,7 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Gets the parametros json.
-	 *
+	 * 
 	 * @return the parametros json
 	 */
 	public String getParametrosJson() {
@@ -179,8 +184,9 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Sets the parametros json.
-	 *
-	 * @param parametrosJson the new parametros json
+	 * 
+	 * @param parametrosJson
+	 *            the new parametros json
 	 */
 	public void setParametrosJson(String parametrosJson) {
 		this.parametrosJson = parametrosJson;
@@ -188,7 +194,7 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Gets the tipo.
-	 *
+	 * 
 	 * @return the tipo
 	 */
 	public String getTipo() {
@@ -197,8 +203,9 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Sets the tipo.
-	 *
-	 * @param tipo the new tipo
+	 * 
+	 * @param tipo
+	 *            the new tipo
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
@@ -206,7 +213,7 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Gets the url.
-	 *
+	 * 
 	 * @return the url
 	 */
 	public String getUrl() {
@@ -215,8 +222,9 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Sets the url.
-	 *
-	 * @param url the new url
+	 * 
+	 * @param url
+	 *            the new url
 	 */
 	public void setUrl(String url) {
 		this.url = url;
@@ -224,7 +232,7 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Gets the on_click.
-	 *
+	 * 
 	 * @return the on_click
 	 */
 	public String getOn_click() {
@@ -233,8 +241,9 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Sets the on_click.
-	 *
-	 * @param on_click the new on_click
+	 * 
+	 * @param on_click
+	 *            the new on_click
 	 */
 	public void setOn_click(String on_click) {
 		this.on_click = on_click;
@@ -242,8 +251,9 @@ public class Boton extends Recurso implements Serializable {
 
 	/**
 	 * Sets the orden.
-	 *
-	 * @param orden the new orden
+	 * 
+	 * @param orden
+	 *            the new orden
 	 */
 	public void setOrden(Integer orden) {
 		this.orden = orden;

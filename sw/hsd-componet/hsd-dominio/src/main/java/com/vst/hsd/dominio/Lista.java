@@ -18,7 +18,6 @@ public class Lista extends Recurso implements Serializable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-
 	/** The nombre. */
 	@Column(name = "nombre", length = 250, nullable = false)
 	private String nombre;
@@ -39,26 +38,29 @@ public class Lista extends Recurso implements Serializable {
 
 	/**
 	 * Instantiates a new lista.
-	 *
-	 * @param id the id
-	 * @param codigo the codigo
-	 * @param nombre the nombre
-	 * @param tabla the tabla
-	 * @param idMenu the id menu
+	 * 
+	 * @param id
+	 *            the id
+	 * @param codigo
+	 *            the codigo
+	 * @param nombre
+	 *            the nombre
+	 * @param tabla
+	 *            the tabla
+	 * @param idMenu
+	 *            the id menu
 	 */
-	public Lista(Integer id, String codigo, String nombre, String tabla,
-			Integer idMenu) {
+	public Lista(Integer id, String codigo, String nombre, String tabla, Integer idMenu) {
 		super(id);
-		setCodigo(codigo);
+		this.codigo = codigo;
 		this.nombre = nombre;
 		this.tabla = tabla;
 		this.idMenu = idMenu;
 	}
-	
 
 	/**
 	 * Gets the nombre.
-	 *
+	 * 
 	 * @return the nombre
 	 */
 	public String getNombre() {
@@ -67,8 +69,9 @@ public class Lista extends Recurso implements Serializable {
 
 	/**
 	 * Sets the nombre.
-	 *
-	 * @param nombre the new nombre
+	 * 
+	 * @param nombre
+	 *            the new nombre
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -76,7 +79,7 @@ public class Lista extends Recurso implements Serializable {
 
 	/**
 	 * Gets the id menu.
-	 *
+	 * 
 	 * @return the id menu
 	 */
 	public Integer getIdMenu() {
@@ -85,8 +88,9 @@ public class Lista extends Recurso implements Serializable {
 
 	/**
 	 * Sets the id menu.
-	 *
-	 * @param idMenu the new id menu
+	 * 
+	 * @param idMenu
+	 *            the new id menu
 	 */
 	public void setIdMenu(Integer idMenu) {
 		this.idMenu = idMenu;
@@ -94,7 +98,7 @@ public class Lista extends Recurso implements Serializable {
 
 	/**
 	 * Gets the tabla.
-	 *
+	 * 
 	 * @return the tabla
 	 */
 	public String getTabla() {
@@ -103,8 +107,9 @@ public class Lista extends Recurso implements Serializable {
 
 	/**
 	 * Sets the tabla.
-	 *
-	 * @param tabla the new tabla
+	 * 
+	 * @param tabla
+	 *            the new tabla
 	 */
 	public void setTabla(String tabla) {
 		this.tabla = tabla;

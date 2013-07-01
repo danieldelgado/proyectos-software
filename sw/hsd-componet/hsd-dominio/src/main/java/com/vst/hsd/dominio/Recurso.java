@@ -26,7 +26,7 @@ import com.vst.util.Entidad;
 @Table(name = "recurso")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Recurso implements Entidad, Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -62,7 +62,7 @@ public class Recurso implements Entidad, Serializable {
 	/** The codigo. */
 	@Column(name = "codigo", length = 50, nullable = false)
 	public String codigo;
-	
+
 	/*
 	 * @ManyToMany(mappedBy="recursos") private List<Perfil> perfils;
 	 */
@@ -83,16 +83,21 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Instantiates a new recurso.
-	 *
-	 * @param id the id
-	 * @param activo the activo
-	 * @param descripcion the descripcion
-	 * @param estado the estado
-	 * @param fechaActualizacion the fecha actualizacion
-	 * @param fechaCreacion the fecha creacion
+	 * 
+	 * @param id
+	 *            the id
+	 * @param activo
+	 *            the activo
+	 * @param descripcion
+	 *            the descripcion
+	 * @param estado
+	 *            the estado
+	 * @param fechaActualizacion
+	 *            the fecha actualizacion
+	 * @param fechaCreacion
+	 *            the fecha creacion
 	 */
-	public Recurso(Integer id, Boolean activo, String descripcion,
-			Character estado, Date fechaActualizacion, Date fechaCreacion) {
+	public Recurso(Integer id, Boolean activo, String descripcion, Character estado, Date fechaActualizacion, Date fechaCreacion) {
 		super();
 		this.id = id;
 		this.activo = activo;
@@ -104,8 +109,9 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Instantiates a new recurso.
-	 *
-	 * @param id the id
+	 * 
+	 * @param id
+	 *            the id
 	 */
 	public Recurso(Integer id) {
 		super();
@@ -114,10 +120,13 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Instantiates a new recurso.
-	 *
-	 * @param id the id
-	 * @param activo the activo
-	 * @param estado the estado
+	 * 
+	 * @param id
+	 *            the id
+	 * @param activo
+	 *            the activo
+	 * @param estado
+	 *            the estado
 	 */
 	public Recurso(Integer id, Boolean activo, Character estado) {
 		super();
@@ -126,14 +135,18 @@ public class Recurso implements Entidad, Serializable {
 		this.estado = estado;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getId()
 	 */
 	public Integer getId() {
 		return id;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#setId(java.lang.Integer)
 	 */
 	public void setId(Integer id) {
@@ -142,7 +155,7 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Gets the activo.
-	 *
+	 * 
 	 * @return the activo
 	 */
 	public Boolean getActivo() {
@@ -151,8 +164,9 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Sets the activo.
-	 *
-	 * @param activo the new activo
+	 * 
+	 * @param activo
+	 *            the new activo
 	 */
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
@@ -160,7 +174,7 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Gets the descripcion.
-	 *
+	 * 
 	 * @return the descripcion
 	 */
 	public String getDescripcion() {
@@ -169,8 +183,9 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Sets the descripcion.
-	 *
-	 * @param descripcion the new descripcion
+	 * 
+	 * @param descripcion
+	 *            the new descripcion
 	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
@@ -178,7 +193,7 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Gets the estado.
-	 *
+	 * 
 	 * @return the estado
 	 */
 	public Character getEstado() {
@@ -187,8 +202,9 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Sets the estado.
-	 *
-	 * @param estado the new estado
+	 * 
+	 * @param estado
+	 *            the new estado
 	 */
 	public void setEstado(Character estado) {
 		this.estado = estado;
@@ -196,7 +212,7 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha actualizacion.
-	 *
+	 * 
 	 * @return the fecha actualizacion
 	 */
 	public Date getFechaActualizacion() {
@@ -205,8 +221,9 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha actualizacion.
-	 *
-	 * @param fechaActualizacion the new fecha actualizacion
+	 * 
+	 * @param fechaActualizacion
+	 *            the new fecha actualizacion
 	 */
 	public void setFechaActualizacion(Date fechaActualizacion) {
 		this.fechaActualizacion = fechaActualizacion;
@@ -214,7 +231,7 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha creacion.
-	 *
+	 * 
 	 * @return the fecha creacion
 	 */
 	public Date getFechaCreacion() {
@@ -223,15 +240,14 @@ public class Recurso implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha creacion.
-	 *
-	 * @param fechaCreacion the new fecha creacion
+	 * 
+	 * @param fechaCreacion
+	 *            the new fecha creacion
 	 */
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	
-	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -240,14 +256,18 @@ public class Recurso implements Entidad, Serializable {
 		this.codigo = codigo;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getLabel()
 	 */
 	public String getLabel() {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getNombreCompleto()
 	 */
 	public String getNombreCompleto() {

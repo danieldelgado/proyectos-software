@@ -22,11 +22,9 @@ import javax.persistence.Table;
 @Table(name = "usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario extends Persona implements Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-
 
 	/** The login. */
 	@Column(name = "login", length = 50, nullable = false)
@@ -79,31 +77,34 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Instantiates a new usuario.
-	 *
-	 * @param id the id
-	 * @param nombre the nombre
-	 * @param apellidos the apellidos
-	 * @param estado the estado
-	 * @param activo the activo
-	 * @param codigo the codigo
-	 * @param login the login
-	 * @param clave the clave
+	 * 
+	 * @param id
+	 *            the id
+	 * @param nombre
+	 *            the nombre
+	 * @param apellidos
+	 *            the apellidos
+	 * @param estado
+	 *            the estado
+	 * @param activo
+	 *            the activo
+	 * @param codigo
+	 *            the codigo
+	 * @param login
+	 *            the login
+	 * @param clave
+	 *            the clave
 	 */
-	public Usuario(Integer id, String nombre, String apellidos,
-			Character estado, Boolean activo, String codigo, String login,
-			String clave) {
+	public Usuario(Integer id, String nombre, String apellidos, Character estado, Boolean activo, String codigo, String login, String clave) {
 		super(id, nombre, apellidos, estado, activo);
 		setCodigo(codigo);
 		this.login = login;
 		this.clave = clave;
 	}
 
-
-	
-
 	/**
 	 * Gets the login.
-	 *
+	 * 
 	 * @return the login
 	 */
 	public String getLogin() {
@@ -112,8 +113,9 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Sets the login.
-	 *
-	 * @param login the new login
+	 * 
+	 * @param login
+	 *            the new login
 	 */
 	public void setLogin(String login) {
 		this.login = login;
@@ -121,7 +123,7 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Gets the clave.
-	 *
+	 * 
 	 * @return the clave
 	 */
 	public String getClave() {
@@ -130,8 +132,9 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Sets the clave.
-	 *
-	 * @param clave the new clave
+	 * 
+	 * @param clave
+	 *            the new clave
 	 */
 	public void setClave(String clave) {
 		this.clave = clave;
@@ -139,7 +142,7 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Gets the estado civil.
-	 *
+	 * 
 	 * @return the estado civil
 	 */
 	public Integer getEstadoCivil() {
@@ -148,8 +151,9 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Sets the estado civil.
-	 *
-	 * @param estadoCivil the new estado civil
+	 * 
+	 * @param estadoCivil
+	 *            the new estado civil
 	 */
 	public void setEstadoCivil(Integer estadoCivil) {
 		this.estadoCivil = estadoCivil;
@@ -157,7 +161,7 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Gets the ruc.
-	 *
+	 * 
 	 * @return the ruc
 	 */
 	public String getRuc() {
@@ -166,8 +170,9 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Sets the ruc.
-	 *
-	 * @param ruc the new ruc
+	 * 
+	 * @param ruc
+	 *            the new ruc
 	 */
 	public void setRuc(String ruc) {
 		this.ruc = ruc;
@@ -175,7 +180,7 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Gets the tipo_documento.
-	 *
+	 * 
 	 * @return the tipo_documento
 	 */
 	public Integer getTipo_documento() {
@@ -184,8 +189,9 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Sets the tipo_documento.
-	 *
-	 * @param tipo_documento the new tipo_documento
+	 * 
+	 * @param tipo_documento
+	 *            the new tipo_documento
 	 */
 	public void setTipo_documento(Integer tipo_documento) {
 		this.tipo_documento = tipo_documento;
@@ -193,7 +199,7 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Gets the numero_documento.
-	 *
+	 * 
 	 * @return the numero_documento
 	 */
 	public String getNumero_documento() {
@@ -202,8 +208,9 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Sets the numero_documento.
-	 *
-	 * @param numero_documento the new numero_documento
+	 * 
+	 * @param numero_documento
+	 *            the new numero_documento
 	 */
 	public void setNumero_documento(String numero_documento) {
 		this.numero_documento = numero_documento;
@@ -218,7 +225,7 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Gets the perfiles.
-	 *
+	 * 
 	 * @return the perfiles
 	 */
 	public List<Perfil> getPerfiles() {
@@ -227,8 +234,9 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Sets the perfiles.
-	 *
-	 * @param perfiles the new perfiles
+	 * 
+	 * @param perfiles
+	 *            the new perfiles
 	 */
 	public void setPerfiles(List<Perfil> perfiles) {
 		this.perfiles = perfiles;
@@ -236,7 +244,7 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Gets the perfil logueado.
-	 *
+	 * 
 	 * @return the perfil logueado
 	 */
 	public Perfil getPerfilLogueado() {
@@ -245,8 +253,9 @@ public class Usuario extends Persona implements Serializable {
 
 	/**
 	 * Sets the perfil logueado.
-	 *
-	 * @param perfilLogueado the new perfil logueado
+	 * 
+	 * @param perfilLogueado
+	 *            the new perfil logueado
 	 */
 	public void setPerfilLogueado(Perfil perfilLogueado) {
 		this.perfilLogueado = perfilLogueado;

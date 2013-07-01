@@ -16,12 +16,12 @@ public class BotonPorMenuPK implements Serializable {
 
 	/** The pagina. */
 	@ManyToOne
-	@JoinColumn(name = "id_menu", nullable = false, insertable=false, updatable=false)
+	@JoinColumn(name = "id_menu", nullable = false, insertable = false, updatable = false)
 	private Menu menu;
 
 	/** The boton. */
 	@ManyToOne
-	@JoinColumn(name = "id_recurso", nullable = false, insertable=false, updatable=false)
+	@JoinColumn(name = "id_recurso", nullable = false, insertable = false, updatable = false)
 	private Boton boton;
 
 	/**
@@ -30,23 +30,17 @@ public class BotonPorMenuPK implements Serializable {
 	public BotonPorMenuPK() {
 	}
 
-	
-
 	public Menu getMenu() {
 		return menu;
 	}
-
-
 
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
 
-
-
 	/**
 	 * Gets the boton.
-	 *
+	 * 
 	 * @return the boton
 	 */
 	public Boton getBoton() {
@@ -55,8 +49,9 @@ public class BotonPorMenuPK implements Serializable {
 
 	/**
 	 * Sets the boton.
-	 *
-	 * @param boton the new boton
+	 * 
+	 * @param boton
+	 *            the new boton
 	 */
 	public void setBoton(Boton boton) {
 		this.boton = boton;

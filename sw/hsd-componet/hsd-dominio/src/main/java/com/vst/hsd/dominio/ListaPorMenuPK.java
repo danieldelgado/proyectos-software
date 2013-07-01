@@ -34,15 +34,13 @@ public class ListaPorMenuPK implements Serializable {
 		return menu;
 	}
 
-
-
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
 
 	/**
 	 * Gets the lista.
-	 *
+	 * 
 	 * @return the lista
 	 */
 	public Lista getLista() {
@@ -51,8 +49,9 @@ public class ListaPorMenuPK implements Serializable {
 
 	/**
 	 * Sets the lista.
-	 *
-	 * @param lista the new lista
+	 * 
+	 * @param lista
+	 *            the new lista
 	 */
 	public void setLista(Lista lista) {
 		this.lista = lista;

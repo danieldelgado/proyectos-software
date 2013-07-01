@@ -15,7 +15,7 @@ import com.vst.util.Entidad;
 @Entity
 @Table(name = "historial")
 public class Historial implements Entidad, Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public class Historial implements Entidad, Serializable {
 	/** The codigo. */
 	@Column(name = "objeto_json", length = 500)
 	private String objeto_json;
-	
+
 	/** The descripcion. */
 	@Lob()
 	@Column(name = "descripcion")
@@ -55,14 +55,18 @@ public class Historial implements Entidad, Serializable {
 	public Historial() {
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getId()
 	 */
 	public Integer getId() {
 		return id;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#setId(java.lang.Integer)
 	 */
 	public void setId(Integer id) {
@@ -71,7 +75,7 @@ public class Historial implements Entidad, Serializable {
 
 	/**
 	 * Gets the descripcion.
-	 *
+	 * 
 	 * @return the descripcion
 	 */
 	public String getDescripcion() {
@@ -80,8 +84,9 @@ public class Historial implements Entidad, Serializable {
 
 	/**
 	 * Sets the descripcion.
-	 *
-	 * @param descripcion the new descripcion
+	 * 
+	 * @param descripcion
+	 *            the new descripcion
 	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
@@ -89,7 +94,7 @@ public class Historial implements Entidad, Serializable {
 
 	/**
 	 * Gets the request.
-	 *
+	 * 
 	 * @return the request
 	 */
 	public String getRequest() {
@@ -98,8 +103,9 @@ public class Historial implements Entidad, Serializable {
 
 	/**
 	 * Sets the request.
-	 *
-	 * @param request the new request
+	 * 
+	 * @param request
+	 *            the new request
 	 */
 	public void setRequest(String request) {
 		this.request = request;
@@ -107,7 +113,7 @@ public class Historial implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha registro.
-	 *
+	 * 
 	 * @return the fecha registro
 	 */
 	public Date getFechaRegistro() {
@@ -116,7 +122,7 @@ public class Historial implements Entidad, Serializable {
 
 	/**
 	 * Gets the codigo.
-	 *
+	 * 
 	 * @return the codigo
 	 */
 	public String getCodigo() {
@@ -125,8 +131,9 @@ public class Historial implements Entidad, Serializable {
 
 	/**
 	 * Sets the codigo.
-	 *
-	 * @param codigo the new codigo
+	 * 
+	 * @param codigo
+	 *            the new codigo
 	 */
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
@@ -134,14 +141,13 @@ public class Historial implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha registro.
-	 *
-	 * @param fechaRegistro the new fecha registro
+	 * 
+	 * @param fechaRegistro
+	 *            the new fecha registro
 	 */
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
-
-
 
 	public String getObjeto_json() {
 		return objeto_json;
@@ -151,7 +157,9 @@ public class Historial implements Entidad, Serializable {
 		this.objeto_json = objeto_json;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getLabel()
 	 */
 	public String getLabel() {
@@ -159,7 +167,9 @@ public class Historial implements Entidad, Serializable {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getNombreCompleto()
 	 */
 	public String getNombreCompleto() {

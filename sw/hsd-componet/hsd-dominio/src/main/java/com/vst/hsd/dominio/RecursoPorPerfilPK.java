@@ -35,9 +35,11 @@ public class RecursoPorPerfilPK implements Serializable {
 
 	/**
 	 * Instantiates a new recurso por perfil pk.
-	 *
-	 * @param recurso the recurso
-	 * @param perfil the perfil
+	 * 
+	 * @param recurso
+	 *            the recurso
+	 * @param perfil
+	 *            the perfil
 	 */
 	public RecursoPorPerfilPK(Recurso recurso, Perfil perfil) {
 		super();
@@ -47,7 +49,7 @@ public class RecursoPorPerfilPK implements Serializable {
 
 	/**
 	 * Gets the recurso.
-	 *
+	 * 
 	 * @return the recurso
 	 */
 	public Recurso getRecurso() {
@@ -56,8 +58,9 @@ public class RecursoPorPerfilPK implements Serializable {
 
 	/**
 	 * Sets the recurso.
-	 *
-	 * @param recurso the new recurso
+	 * 
+	 * @param recurso
+	 *            the new recurso
 	 */
 	public void setRecurso(Recurso recurso) {
 		this.recurso = recurso;
@@ -65,7 +68,7 @@ public class RecursoPorPerfilPK implements Serializable {
 
 	/**
 	 * Gets the perfil.
-	 *
+	 * 
 	 * @return the perfil
 	 */
 	public Perfil getPerfil() {
@@ -74,14 +77,17 @@ public class RecursoPorPerfilPK implements Serializable {
 
 	/**
 	 * Sets the perfil.
-	 *
-	 * @param perfil the new perfil
+	 * 
+	 * @param perfil
+	 *            the new perfil
 	 */
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -93,7 +99,9 @@ public class RecursoPorPerfilPK implements Serializable {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

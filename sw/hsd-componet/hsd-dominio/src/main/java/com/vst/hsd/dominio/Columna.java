@@ -23,7 +23,7 @@ import com.vst.util.Entidad;
 @Entity
 @Table(name = "columna")
 public class Columna implements Entidad, Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -104,25 +104,37 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Instantiates a new columna.
-	 *
-	 * @param id the id
-	 * @param addColumn the add column
-	 * @param ancho the ancho
-	 * @param atributo the atributo
-	 * @param cabecera the cabecera
-	 * @param codigo the codigo
-	 * @param tabla the tabla
-	 * @param alineacion the alineacion
-	 * @param formato_tipo the formato_tipo
-	 * @param mapping the mapping
-	 * @param visible the visible
-	 * @param orden the orden
-	 * @param estado the estado
-	 * @param activo the activo
+	 * 
+	 * @param id
+	 *            the id
+	 * @param addColumn
+	 *            the add column
+	 * @param ancho
+	 *            the ancho
+	 * @param atributo
+	 *            the atributo
+	 * @param cabecera
+	 *            the cabecera
+	 * @param codigo
+	 *            the codigo
+	 * @param tabla
+	 *            the tabla
+	 * @param alineacion
+	 *            the alineacion
+	 * @param formato_tipo
+	 *            the formato_tipo
+	 * @param mapping
+	 *            the mapping
+	 * @param visible
+	 *            the visible
+	 * @param orden
+	 *            the orden
+	 * @param estado
+	 *            the estado
+	 * @param activo
+	 *            the activo
 	 */
-	public Columna(Integer id, Boolean addColumn, Integer ancho,
-			String atributo, String cabecera, String codigo, String tabla,
-			String alineacion, String formato_tipo, Boolean mapping,
+	public Columna(Integer id, Boolean addColumn, Integer ancho, String atributo, String cabecera, String codigo, String tabla, String alineacion, String formato_tipo, Boolean mapping,
 			Boolean visible, Integer orden, Character estado, Boolean activo) {
 		this.id = id;
 		this.addColumn = addColumn;
@@ -139,11 +151,9 @@ public class Columna implements Entidad, Serializable {
 		this.estado = estado;
 		this.activo = activo;
 	}
-	
-	public Columna(Integer id, Boolean addColumn, Integer ancho,
-			String atributo, String cabecera, String codigo, String tabla,
-			String alineacion, String formato_tipo, 
-			Boolean visible, Integer orden, Character estado, Boolean activo) {
+
+	public Columna(Integer id, Boolean addColumn, Integer ancho, String atributo, String cabecera, String codigo, String tabla, String alineacion, String formato_tipo, Boolean visible, Integer orden,
+			Character estado, Boolean activo) {
 		this.id = id;
 		this.addColumn = addColumn;
 		this.ancho = ancho;
@@ -158,16 +168,19 @@ public class Columna implements Entidad, Serializable {
 		this.estado = estado;
 		this.activo = activo;
 	}
-	
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getId()
 	 */
 	public Integer getId() {
 		return id;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#setId(java.lang.Integer)
 	 */
 	public void setId(Integer id) {
@@ -176,7 +189,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the adds the column.
-	 *
+	 * 
 	 * @return the adds the column
 	 */
 	public Boolean getAddColumn() {
@@ -185,8 +198,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the adds the column.
-	 *
-	 * @param addColumn the new adds the column
+	 * 
+	 * @param addColumn
+	 *            the new adds the column
 	 */
 	public void setAddColumn(Boolean addColumn) {
 		this.addColumn = addColumn;
@@ -194,7 +208,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the ancho.
-	 *
+	 * 
 	 * @return the ancho
 	 */
 	public Integer getAncho() {
@@ -203,8 +217,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the ancho.
-	 *
-	 * @param ancho the new ancho
+	 * 
+	 * @param ancho
+	 *            the new ancho
 	 */
 	public void setAncho(Integer ancho) {
 		this.ancho = ancho;
@@ -212,7 +227,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the atributo.
-	 *
+	 * 
 	 * @return the atributo
 	 */
 	public String getAtributo() {
@@ -221,7 +236,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the alineacion.
-	 *
+	 * 
 	 * @return the alineacion
 	 */
 	public String getAlineacion() {
@@ -230,8 +245,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the alineacion.
-	 *
-	 * @param alineacion the new alineacion
+	 * 
+	 * @param alineacion
+	 *            the new alineacion
 	 */
 	public void setAlineacion(String alineacion) {
 		this.alineacion = alineacion;
@@ -239,7 +255,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the formato_tipo.
-	 *
+	 * 
 	 * @return the formato_tipo
 	 */
 	public String getFormato_tipo() {
@@ -248,8 +264,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the formato_tipo.
-	 *
-	 * @param formato_tipo the new formato_tipo
+	 * 
+	 * @param formato_tipo
+	 *            the new formato_tipo
 	 */
 	public void setFormato_tipo(String formato_tipo) {
 		this.formato_tipo = formato_tipo;
@@ -257,8 +274,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the atributo.
-	 *
-	 * @param atributo the new atributo
+	 * 
+	 * @param atributo
+	 *            the new atributo
 	 */
 	public void setAtributo(String atributo) {
 		this.atributo = atributo;
@@ -266,7 +284,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the cabecera.
-	 *
+	 * 
 	 * @return the cabecera
 	 */
 	public String getCabecera() {
@@ -275,8 +293,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the cabecera.
-	 *
-	 * @param cabecera the new cabecera
+	 * 
+	 * @param cabecera
+	 *            the new cabecera
 	 */
 	public void setCabecera(String cabecera) {
 		this.cabecera = cabecera;
@@ -284,7 +303,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the codigo.
-	 *
+	 * 
 	 * @return the codigo
 	 */
 	public String getCodigo() {
@@ -293,8 +312,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the codigo.
-	 *
-	 * @param codigo the new codigo
+	 * 
+	 * @param codigo
+	 *            the new codigo
 	 */
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
@@ -302,7 +322,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the mapping.
-	 *
+	 * 
 	 * @return the mapping
 	 */
 	public Boolean getMapping() {
@@ -311,8 +331,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the mapping.
-	 *
-	 * @param mapping the new mapping
+	 * 
+	 * @param mapping
+	 *            the new mapping
 	 */
 	public void setMapping(Boolean mapping) {
 		this.mapping = mapping;
@@ -320,7 +341,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the visible.
-	 *
+	 * 
 	 * @return the visible
 	 */
 	public Boolean getVisible() {
@@ -329,21 +350,26 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the visible.
-	 *
-	 * @param visible the new visible
+	 * 
+	 * @param visible
+	 *            the new visible
 	 */
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getLabel()
 	 */
 	public String getLabel() {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getNombreCompleto()
 	 */
 	public String getNombreCompleto() {
@@ -352,7 +378,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the estado.
-	 *
+	 * 
 	 * @return the estado
 	 */
 	public Character getEstado() {
@@ -361,8 +387,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the estado.
-	 *
-	 * @param estado the new estado
+	 * 
+	 * @param estado
+	 *            the new estado
 	 */
 	public void setEstado(Character estado) {
 		this.estado = estado;
@@ -370,7 +397,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the activo.
-	 *
+	 * 
 	 * @return the activo
 	 */
 	public Boolean getActivo() {
@@ -379,8 +406,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the activo.
-	 *
-	 * @param activo the new activo
+	 * 
+	 * @param activo
+	 *            the new activo
 	 */
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
@@ -388,7 +416,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha actualizacion.
-	 *
+	 * 
 	 * @return the fecha actualizacion
 	 */
 	public Date getFechaActualizacion() {
@@ -397,8 +425,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha actualizacion.
-	 *
-	 * @param fechaActualizacion the new fecha actualizacion
+	 * 
+	 * @param fechaActualizacion
+	 *            the new fecha actualizacion
 	 */
 	public void setFechaActualizacion(Date fechaActualizacion) {
 		this.fechaActualizacion = fechaActualizacion;
@@ -406,7 +435,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha registro.
-	 *
+	 * 
 	 * @return the fecha registro
 	 */
 	public Date getFechaRegistro() {
@@ -415,8 +444,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha registro.
-	 *
-	 * @param fechaRegistro the new fecha registro
+	 * 
+	 * @param fechaRegistro
+	 *            the new fecha registro
 	 */
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
@@ -424,7 +454,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the tabla.
-	 *
+	 * 
 	 * @return the tabla
 	 */
 	public String getTabla() {
@@ -433,8 +463,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the tabla.
-	 *
-	 * @param tabla the new tabla
+	 * 
+	 * @param tabla
+	 *            the new tabla
 	 */
 	public void setTabla(String tabla) {
 		this.tabla = tabla;
@@ -442,7 +473,7 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Gets the orden.
-	 *
+	 * 
 	 * @return the orden
 	 */
 	public Integer getOrden() {
@@ -451,8 +482,9 @@ public class Columna implements Entidad, Serializable {
 
 	/**
 	 * Sets the orden.
-	 *
-	 * @param orden the new orden
+	 * 
+	 * @param orden
+	 *            the new orden
 	 */
 	public void setOrden(Integer orden) {
 		this.orden = orden;

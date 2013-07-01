@@ -16,7 +16,7 @@ import com.vst.util.Entidad;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "persona")
 public class Persona implements Entidad, Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -63,10 +63,10 @@ public class Persona implements Entidad, Serializable {
 
 	@Column(name = "telefono_fijo", length = 9)
 	private String telefono_fijo;
-	
+
 	@Column(name = "celular", length = 11)
 	private String celular;
-	
+
 	/**
 	 * Instantiates a new persona.
 	 */
@@ -75,15 +75,19 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Instantiates a new persona.
-	 *
-	 * @param id the id
-	 * @param nombre the nombre
-	 * @param apellidos the apellidos
-	 * @param estado the estado
-	 * @param activo the activo
+	 * 
+	 * @param id
+	 *            the id
+	 * @param nombre
+	 *            the nombre
+	 * @param apellidos
+	 *            the apellidos
+	 * @param estado
+	 *            the estado
+	 * @param activo
+	 *            the activo
 	 */
-	public Persona(Integer id, String nombre, String apellidos,
-			Character estado, Boolean activo) {
+	public Persona(Integer id, String nombre, String apellidos, Character estado, Boolean activo) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -94,18 +98,23 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Instantiates a new persona.
-	 *
-	 * @param fechaActualizacion the fecha actualizacion
-	 * @param fechaCreacion the fecha creacion
-	 * @param fechaNacimiento the fecha nacimiento
-	 * @param nombre the nombre
-	 * @param apellidos the apellidos
-	 * @param estado the estado
-	 * @param activo the activo
+	 * 
+	 * @param fechaActualizacion
+	 *            the fecha actualizacion
+	 * @param fechaCreacion
+	 *            the fecha creacion
+	 * @param fechaNacimiento
+	 *            the fecha nacimiento
+	 * @param nombre
+	 *            the nombre
+	 * @param apellidos
+	 *            the apellidos
+	 * @param estado
+	 *            the estado
+	 * @param activo
+	 *            the activo
 	 */
-	public Persona(Date fechaActualizacion, Date fechaCreacion,
-			Date fechaNacimiento, String nombre, String apellidos,
-			Character estado, Boolean activo) {
+	public Persona(Date fechaActualizacion, Date fechaCreacion, Date fechaNacimiento, String nombre, String apellidos, Character estado, Boolean activo) {
 		this.fechaActualizacion = fechaActualizacion;
 		this.fechaCreacion = fechaCreacion;
 		this.fechaNacimiento = fechaNacimiento;
@@ -115,8 +124,6 @@ public class Persona implements Entidad, Serializable {
 		this.activo = activo;
 	}
 
-	
-	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -143,7 +150,7 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Gets the activo.
-	 *
+	 * 
 	 * @return the activo
 	 */
 	public Boolean getActivo() {
@@ -152,8 +159,9 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Sets the activo.
-	 *
-	 * @param activo the new activo
+	 * 
+	 * @param activo
+	 *            the new activo
 	 */
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
@@ -161,7 +169,7 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Gets the estado.
-	 *
+	 * 
 	 * @return the estado
 	 */
 	public Character getEstado() {
@@ -170,21 +178,26 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Sets the estado.
-	 *
-	 * @param estado the new estado
+	 * 
+	 * @param estado
+	 *            the new estado
 	 */
 	public void setEstado(Character estado) {
 		this.estado = estado;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getId()
 	 */
 	public Integer getId() {
 		return id;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#setId(java.lang.Integer)
 	 */
 	public void setId(Integer id) {
@@ -193,7 +206,7 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha actualizacion.
-	 *
+	 * 
 	 * @return the fecha actualizacion
 	 */
 	public Date getFechaActualizacion() {
@@ -202,8 +215,9 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha actualizacion.
-	 *
-	 * @param fechaActualizacion the new fecha actualizacion
+	 * 
+	 * @param fechaActualizacion
+	 *            the new fecha actualizacion
 	 */
 	public void setFechaActualizacion(Date fechaActualizacion) {
 		this.fechaActualizacion = fechaActualizacion;
@@ -211,7 +225,7 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha creacion.
-	 *
+	 * 
 	 * @return the fecha creacion
 	 */
 	public Date getFechaCreacion() {
@@ -220,8 +234,9 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha creacion.
-	 *
-	 * @param fechaCreacion the new fecha creacion
+	 * 
+	 * @param fechaCreacion
+	 *            the new fecha creacion
 	 */
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
@@ -229,7 +244,7 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha nacimiento.
-	 *
+	 * 
 	 * @return the fecha nacimiento
 	 */
 	public Date getFechaNacimiento() {
@@ -238,8 +253,9 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha nacimiento.
-	 *
-	 * @param fechaNacimiento the new fecha nacimiento
+	 * 
+	 * @param fechaNacimiento
+	 *            the new fecha nacimiento
 	 */
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
@@ -247,7 +263,7 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Gets the nombre.
-	 *
+	 * 
 	 * @return the nombre
 	 */
 	public String getNombre() {
@@ -256,8 +272,9 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Sets the nombre.
-	 *
-	 * @param nombre the new nombre
+	 * 
+	 * @param nombre
+	 *            the new nombre
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -265,7 +282,7 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Gets the apellidos.
-	 *
+	 * 
 	 * @return the apellidos
 	 */
 	public String getApellidos() {
@@ -274,21 +291,26 @@ public class Persona implements Entidad, Serializable {
 
 	/**
 	 * Sets the apellidos.
-	 *
-	 * @param apellidos the new apellidos
+	 * 
+	 * @param apellidos
+	 *            the new apellidos
 	 */
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getLabel()
 	 */
 	public String getLabel() {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getNombreCompleto()
 	 */
 	public String getNombreCompleto() {

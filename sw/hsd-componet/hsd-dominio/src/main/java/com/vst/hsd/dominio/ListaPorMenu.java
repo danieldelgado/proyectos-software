@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "lista_por_menu")
 public class ListaPorMenu implements Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class ListaPorMenu implements Serializable {
 
 	/**
 	 * Gets the id.
-	 *
+	 * 
 	 * @return the id
 	 */
 	public ListaPorMenuPK getId() {
@@ -39,8 +39,9 @@ public class ListaPorMenu implements Serializable {
 
 	/**
 	 * Sets the id.
-	 *
-	 * @param id the new id
+	 * 
+	 * @param id
+	 *            the new id
 	 */
 	public void setId(ListaPorMenuPK id) {
 		this.id = id;

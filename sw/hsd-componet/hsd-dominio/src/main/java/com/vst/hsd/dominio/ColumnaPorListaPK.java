@@ -32,7 +32,7 @@ public class ColumnaPorListaPK implements Serializable {
 
 	/**
 	 * Gets the columna.
-	 *
+	 * 
 	 * @return the columna
 	 */
 	public Columna getColumna() {
@@ -41,8 +41,9 @@ public class ColumnaPorListaPK implements Serializable {
 
 	/**
 	 * Sets the columna.
-	 *
-	 * @param columna the new columna
+	 * 
+	 * @param columna
+	 *            the new columna
 	 */
 	public void setColumna(Columna columna) {
 		this.columna = columna;
@@ -50,7 +51,7 @@ public class ColumnaPorListaPK implements Serializable {
 
 	/**
 	 * Gets the lista.
-	 *
+	 * 
 	 * @return the lista
 	 */
 	public Lista getLista() {
@@ -59,8 +60,9 @@ public class ColumnaPorListaPK implements Serializable {
 
 	/**
 	 * Sets the lista.
-	 *
-	 * @param lista the new lista
+	 * 
+	 * @param lista
+	 *            the new lista
 	 */
 	public void setLista(Lista lista) {
 		this.lista = lista;

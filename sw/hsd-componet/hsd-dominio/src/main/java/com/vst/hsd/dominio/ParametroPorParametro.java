@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "parametro_por_parametro")
 public class ParametroPorParametro implements Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -37,9 +37,11 @@ public class ParametroPorParametro implements Serializable {
 
 	/**
 	 * Instantiates a new parametro por parametro.
-	 *
-	 * @param idpadre the idpadre
-	 * @param idhijo the idhijo
+	 * 
+	 * @param idpadre
+	 *            the idpadre
+	 * @param idhijo
+	 *            the idhijo
 	 */
 	public ParametroPorParametro(Integer idpadre, Integer idhijo) {
 		id = new ParametroPorParametroPK(idpadre, idhijo);
@@ -53,7 +55,7 @@ public class ParametroPorParametro implements Serializable {
 
 	/**
 	 * Gets the id.
-	 *
+	 * 
 	 * @return the id
 	 */
 	public ParametroPorParametroPK getId() {
@@ -62,8 +64,9 @@ public class ParametroPorParametro implements Serializable {
 
 	/**
 	 * Sets the id.
-	 *
-	 * @param id the new id
+	 * 
+	 * @param id
+	 *            the new id
 	 */
 	public void setId(ParametroPorParametroPK id) {
 		this.id = id;
@@ -71,7 +74,7 @@ public class ParametroPorParametro implements Serializable {
 
 	/**
 	 * Gets the parametro padre.
-	 *
+	 * 
 	 * @return the parametro padre
 	 */
 	public Parametro getParametroPadre() {
@@ -80,8 +83,9 @@ public class ParametroPorParametro implements Serializable {
 
 	/**
 	 * Sets the parametro padre.
-	 *
-	 * @param parametroPadre the new parametro padre
+	 * 
+	 * @param parametroPadre
+	 *            the new parametro padre
 	 */
 	public void setParametroPadre(Parametro parametroPadre) {
 		this.parametroPadre = parametroPadre;
@@ -89,7 +93,7 @@ public class ParametroPorParametro implements Serializable {
 
 	/**
 	 * Gets the parametro hijo.
-	 *
+	 * 
 	 * @return the parametro hijo
 	 */
 	public Parametro getParametroHijo() {
@@ -98,8 +102,9 @@ public class ParametroPorParametro implements Serializable {
 
 	/**
 	 * Sets the parametro hijo.
-	 *
-	 * @param parametroHijo the new parametro hijo
+	 * 
+	 * @param parametroHijo
+	 *            the new parametro hijo
 	 */
 	public void setParametroHijo(Parametro parametroHijo) {
 		this.parametroHijo = parametroHijo;
@@ -107,7 +112,7 @@ public class ParametroPorParametro implements Serializable {
 
 	/**
 	 * Gets the orden.
-	 *
+	 * 
 	 * @return the orden
 	 */
 	public Integer getOrden() {
@@ -116,8 +121,9 @@ public class ParametroPorParametro implements Serializable {
 
 	/**
 	 * Sets the orden.
-	 *
-	 * @param orden the new orden
+	 * 
+	 * @param orden
+	 *            the new orden
 	 */
 	public void setOrden(Integer orden) {
 		this.orden = orden;

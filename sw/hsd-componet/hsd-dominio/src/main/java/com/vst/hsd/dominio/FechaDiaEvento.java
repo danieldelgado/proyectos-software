@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @Table(name = "fecha_dia_evento")
 public class FechaDiaEvento implements Entidad, Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -63,14 +63,18 @@ public class FechaDiaEvento implements Entidad, Serializable {
 	public FechaDiaEvento() {
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getId()
 	 */
 	public Integer getId() {
 		return id;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#setId(java.lang.Integer)
 	 */
 	public void setId(Integer id) {
@@ -79,7 +83,7 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Gets the activo.
-	 *
+	 * 
 	 * @return the activo
 	 */
 	public Boolean getActivo() {
@@ -88,8 +92,9 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Sets the activo.
-	 *
-	 * @param activo the new activo
+	 * 
+	 * @param activo
+	 *            the new activo
 	 */
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
@@ -97,7 +102,7 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Gets the agrega.
-	 *
+	 * 
 	 * @return the agrega
 	 */
 	public Boolean getAgrega() {
@@ -106,8 +111,9 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Sets the agrega.
-	 *
-	 * @param agrega the new agrega
+	 * 
+	 * @param agrega
+	 *            the new agrega
 	 */
 	public void setAgrega(Boolean agrega) {
 		this.agrega = agrega;
@@ -115,7 +121,7 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Gets the descripcion.
-	 *
+	 * 
 	 * @return the descripcion
 	 */
 	public String getDescripcion() {
@@ -124,8 +130,9 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Sets the descripcion.
-	 *
-	 * @param descripcion the new descripcion
+	 * 
+	 * @param descripcion
+	 *            the new descripcion
 	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
@@ -133,7 +140,7 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha actualizacion.
-	 *
+	 * 
 	 * @return the fecha actualizacion
 	 */
 	public Date getFechaActualizacion() {
@@ -142,8 +149,9 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha actualizacion.
-	 *
-	 * @param fechaActualizacion the new fecha actualizacion
+	 * 
+	 * @param fechaActualizacion
+	 *            the new fecha actualizacion
 	 */
 	public void setFechaActualizacion(Date fechaActualizacion) {
 		this.fechaActualizacion = fechaActualizacion;
@@ -151,7 +159,7 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha evento.
-	 *
+	 * 
 	 * @return the fecha evento
 	 */
 	public Date getFechaEvento() {
@@ -160,8 +168,9 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha evento.
-	 *
-	 * @param fechaEvento the new fecha evento
+	 * 
+	 * @param fechaEvento
+	 *            the new fecha evento
 	 */
 	public void setFechaEvento(Date fechaEvento) {
 		this.fechaEvento = fechaEvento;
@@ -169,7 +178,7 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha registro.
-	 *
+	 * 
 	 * @return the fecha registro
 	 */
 	public Date getFechaRegistro() {
@@ -178,8 +187,9 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha registro.
-	 *
-	 * @param fechaRegistro the new fecha registro
+	 * 
+	 * @param fechaRegistro
+	 *            the new fecha registro
 	 */
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
@@ -187,7 +197,7 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Gets the nombre.
-	 *
+	 * 
 	 * @return the nombre
 	 */
 	public String getNombre() {
@@ -196,21 +206,26 @@ public class FechaDiaEvento implements Entidad, Serializable {
 
 	/**
 	 * Sets the nombre.
-	 *
-	 * @param nombre the new nombre
+	 * 
+	 * @param nombre
+	 *            the new nombre
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getLabel()
 	 */
 	public String getLabel() {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getNombreCompleto()
 	 */
 	public String getNombreCompleto() {

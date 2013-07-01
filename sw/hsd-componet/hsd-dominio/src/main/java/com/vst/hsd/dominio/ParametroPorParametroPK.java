@@ -30,9 +30,11 @@ public class ParametroPorParametroPK implements Serializable {
 
 	/**
 	 * Instantiates a new parametro por parametro pk.
-	 *
-	 * @param idpadre the idpadre
-	 * @param idhijo the idhijo
+	 * 
+	 * @param idpadre
+	 *            the idpadre
+	 * @param idhijo
+	 *            the idhijo
 	 */
 	public ParametroPorParametroPK(Integer idpadre, Integer idhijo) {
 		parametroIdParametroPadre = idpadre;
@@ -41,7 +43,7 @@ public class ParametroPorParametroPK implements Serializable {
 
 	/**
 	 * Gets the parametro id parametro padre.
-	 *
+	 * 
 	 * @return the parametro id parametro padre
 	 */
 	public int getParametroIdParametroPadre() {
@@ -50,8 +52,9 @@ public class ParametroPorParametroPK implements Serializable {
 
 	/**
 	 * Sets the parametro id parametro padre.
-	 *
-	 * @param parametroIdParametroPadre the new parametro id parametro padre
+	 * 
+	 * @param parametroIdParametroPadre
+	 *            the new parametro id parametro padre
 	 */
 	public void setParametroIdParametroPadre(int parametroIdParametroPadre) {
 		this.parametroIdParametroPadre = parametroIdParametroPadre;
@@ -59,7 +62,7 @@ public class ParametroPorParametroPK implements Serializable {
 
 	/**
 	 * Gets the parametro id parametro hijo.
-	 *
+	 * 
 	 * @return the parametro id parametro hijo
 	 */
 	public int getParametroIdParametroHijo() {
@@ -68,8 +71,9 @@ public class ParametroPorParametroPK implements Serializable {
 
 	/**
 	 * Sets the parametro id parametro hijo.
-	 *
-	 * @param parametroIdParametroHijo the new parametro id parametro hijo
+	 * 
+	 * @param parametroIdParametroHijo
+	 *            the new parametro id parametro hijo
 	 */
 	public void setParametroIdParametroHijo(int parametroIdParametroHijo) {
 		this.parametroIdParametroHijo = parametroIdParametroHijo;

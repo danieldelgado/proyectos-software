@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "boton_por_menu")
 public class BotonPorMenu implements Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -27,7 +27,7 @@ public class BotonPorMenu implements Serializable {
 
 	/**
 	 * Gets the id.
-	 *
+	 * 
 	 * @return the id
 	 */
 	public BotonPorMenuPK getId() {
@@ -36,8 +36,9 @@ public class BotonPorMenu implements Serializable {
 
 	/**
 	 * Sets the id.
-	 *
-	 * @param id the new id
+	 * 
+	 * @param id
+	 *            the new id
 	 */
 	public void setId(BotonPorMenuPK id) {
 		this.id = id;

@@ -24,7 +24,7 @@ import com.vst.util.Entidad;
 @Entity
 @Table(name = "parametro")
 public class Parametro implements Entidad, Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
@@ -88,14 +88,18 @@ public class Parametro implements Entidad, Serializable {
 	public Parametro() {
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getId()
 	 */
 	public Integer getId() {
 		return id;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#setId(java.lang.Integer)
 	 */
 	public void setId(Integer id) {
@@ -104,7 +108,7 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Gets the codigo.
-	 *
+	 * 
 	 * @return the codigo
 	 */
 	public String getCodigo() {
@@ -113,8 +117,9 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Sets the codigo.
-	 *
-	 * @param codigo the new codigo
+	 * 
+	 * @param codigo
+	 *            the new codigo
 	 */
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
@@ -122,7 +127,7 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Gets the nombre.
-	 *
+	 * 
 	 * @return the nombre
 	 */
 	public String getNombre() {
@@ -131,8 +136,9 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Sets the nombre.
-	 *
-	 * @param nombre the new nombre
+	 * 
+	 * @param nombre
+	 *            the new nombre
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -140,7 +146,7 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Gets the estado.
-	 *
+	 * 
 	 * @return the estado
 	 */
 	public Character getEstado() {
@@ -149,8 +155,9 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Sets the estado.
-	 *
-	 * @param estado the new estado
+	 * 
+	 * @param estado
+	 *            the new estado
 	 */
 	public void setEstado(Character estado) {
 		this.estado = estado;
@@ -158,7 +165,7 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Gets the activo.
-	 *
+	 * 
 	 * @return the activo
 	 */
 	public Boolean getActivo() {
@@ -167,8 +174,9 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Sets the activo.
-	 *
-	 * @param activo the new activo
+	 * 
+	 * @param activo
+	 *            the new activo
 	 */
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
@@ -176,7 +184,7 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Gets the tipo.
-	 *
+	 * 
 	 * @return the tipo
 	 */
 	public String getTipo() {
@@ -185,8 +193,9 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Sets the tipo.
-	 *
-	 * @param tipo the new tipo
+	 * 
+	 * @param tipo
+	 *            the new tipo
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
@@ -194,7 +203,7 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Gets the valor.
-	 *
+	 * 
 	 * @return the valor
 	 */
 	public String getValor() {
@@ -203,8 +212,9 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Sets the valor.
-	 *
-	 * @param valor the new valor
+	 * 
+	 * @param valor
+	 *            the new valor
 	 */
 	public void setValor(String valor) {
 		this.valor = valor;
@@ -212,7 +222,7 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Gets the descripcion.
-	 *
+	 * 
 	 * @return the descripcion
 	 */
 	public String getDescripcion() {
@@ -221,8 +231,9 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Sets the descripcion.
-	 *
-	 * @param descripcion the new descripcion
+	 * 
+	 * @param descripcion
+	 *            the new descripcion
 	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
@@ -230,7 +241,7 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha actualizacion.
-	 *
+	 * 
 	 * @return the fecha actualizacion
 	 */
 	public Date getFechaActualizacion() {
@@ -239,8 +250,9 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha actualizacion.
-	 *
-	 * @param fechaActualizacion the new fecha actualizacion
+	 * 
+	 * @param fechaActualizacion
+	 *            the new fecha actualizacion
 	 */
 	public void setFechaActualizacion(Date fechaActualizacion) {
 		this.fechaActualizacion = fechaActualizacion;
@@ -248,7 +260,7 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Gets the fecha registro.
-	 *
+	 * 
 	 * @return the fecha registro
 	 */
 	public Date getFechaRegistro() {
@@ -257,8 +269,9 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Sets the fecha registro.
-	 *
-	 * @param fechaRegistro the new fecha registro
+	 * 
+	 * @param fechaRegistro
+	 *            the new fecha registro
 	 */
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
@@ -266,7 +279,7 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Gets the parametros.
-	 *
+	 * 
 	 * @return the parametros
 	 */
 	public List<Parametro> getParametros() {
@@ -275,8 +288,9 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Sets the parametros.
-	 *
-	 * @param parametros the new parametros
+	 * 
+	 * @param parametros
+	 *            the new parametros
 	 */
 	public void setParametros(List<Parametro> parametros) {
 		this.parametros = parametros;
@@ -284,7 +298,7 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Gets the parametro por parametros padre.
-	 *
+	 * 
 	 * @return the parametro por parametros padre
 	 */
 	public List<ParametroPorParametro> getParametroPorParametrosPadre() {
@@ -293,17 +307,17 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Sets the parametro por parametros padre.
-	 *
-	 * @param parametroPorParametrosPadre the new parametro por parametros padre
+	 * 
+	 * @param parametroPorParametrosPadre
+	 *            the new parametro por parametros padre
 	 */
-	public void setParametroPorParametrosPadre(
-			List<ParametroPorParametro> parametroPorParametrosPadre) {
+	public void setParametroPorParametrosPadre(List<ParametroPorParametro> parametroPorParametrosPadre) {
 		this.parametroPorParametrosPadre = parametroPorParametrosPadre;
 	}
 
 	/**
 	 * Gets the parametro por parametros hijo.
-	 *
+	 * 
 	 * @return the parametro por parametros hijo
 	 */
 	public List<ParametroPorParametro> getParametroPorParametrosHijo() {
@@ -312,15 +326,17 @@ public class Parametro implements Entidad, Serializable {
 
 	/**
 	 * Sets the parametro por parametros hijo.
-	 *
-	 * @param parametroPorParametrosHijo the new parametro por parametros hijo
+	 * 
+	 * @param parametroPorParametrosHijo
+	 *            the new parametro por parametros hijo
 	 */
-	public void setParametroPorParametrosHijo(
-			List<ParametroPorParametro> parametroPorParametrosHijo) {
+	public void setParametroPorParametrosHijo(List<ParametroPorParametro> parametroPorParametrosHijo) {
 		this.parametroPorParametrosHijo = parametroPorParametrosHijo;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getLabel()
 	 */
 	public String getLabel() {
@@ -328,7 +344,9 @@ public class Parametro implements Entidad, Serializable {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.util.Entidad#getNombreCompleto()
 	 */
 	public String getNombreCompleto() {
