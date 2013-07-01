@@ -93,6 +93,7 @@ public class SessionCounterListener implements HttpSessionListener {
 	 * @param sessionEvent
 	 *            the session event
 	 */
+	@SuppressWarnings("unused")
 	private void printCounter(HttpSessionEvent sessionEvent) {
 
 		HttpSession session = sessionEvent.getSession();

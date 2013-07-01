@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.vst.hsd.dominio.Perfil;
 import com.vst.hsd.dominio.Usuario;
 import com.vst.hsd.service.LoginService;
-import com.vst.hsd.service.RegistrarHistorialService;
 import com.vst.util.Constantes;
 import com.vst.util.Util;
 

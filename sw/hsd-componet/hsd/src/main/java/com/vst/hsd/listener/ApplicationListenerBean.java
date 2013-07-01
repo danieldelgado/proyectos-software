@@ -17,6 +17,7 @@ public class ApplicationListenerBean implements ApplicationListener<ContextRefre
 	 * org.springframework.context.ApplicationListener#onApplicationEvent(org
 	 * .springframework.context.ApplicationEvent)
 	 */
+	@SuppressWarnings("unused")
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		if (event instanceof ContextRefreshedEvent) {
 			ApplicationContext applicationContext = ((ContextRefreshedEvent) event).getApplicationContext();

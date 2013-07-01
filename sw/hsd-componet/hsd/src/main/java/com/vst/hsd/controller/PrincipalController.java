@@ -23,7 +23,6 @@ import com.vst.hsd.dominio.Menu;
 import com.vst.hsd.dominio.Usuario;
 import com.vst.hsd.service.LoginService;
 import com.vst.hsd.service.PrincipalService;
-import com.vst.hsd.service.RegistrarHistorialService;
 import com.vst.util.Constantes;
 
 // TODO: Auto-generated Javadoc
