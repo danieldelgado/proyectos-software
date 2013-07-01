@@ -11,6 +11,7 @@
 					<li>
 					<a  href="javascript:void(0);" class="lkmenu"> ${m.nombre}</a>
 					<input type="hidden" class="codigo" value="${m.codigo}" >
+					<input type="hidden" class="nombre" value="${m.nombre}" >
 					<input type="hidden" class="function" value="${m.function}" >
 					<input type="hidden" class="url" value="${m.url}" >
 					<input type="hidden" class="tipo" value="${m.tipo}" >					

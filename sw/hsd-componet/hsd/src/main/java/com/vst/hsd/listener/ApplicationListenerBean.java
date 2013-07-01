@@ -10,17 +10,19 @@ import org.springframework.context.event.ContextRefreshedEvent;
  */
 public class ApplicationListenerBean implements ApplicationListener<ContextRefreshedEvent> {
 
-	/* (non-Javadoc)
-	 * @see org.springframework.context.ApplicationListener#onApplicationEvent(org.springframework.context.ApplicationEvent)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.springframework.context.ApplicationListener#onApplicationEvent(org
+	 * .springframework.context.ApplicationEvent)
 	 */
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		if (event instanceof ContextRefreshedEvent) {
-            ApplicationContext applicationContext = ((ContextRefreshedEvent) event).getApplicationContext();
-            System.out.println("onApplicationEvent");
-        }
-		
+			ApplicationContext applicationContext = ((ContextRefreshedEvent) event).getApplicationContext();
+			System.out.println("onApplicationEvent");
+		}
+
 	}
 
-   
-	
 }

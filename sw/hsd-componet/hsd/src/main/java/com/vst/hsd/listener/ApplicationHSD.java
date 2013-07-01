@@ -1,4 +1,5 @@
 package com.vst.hsd.listener;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletContextEvent;
@@ -9,36 +10,43 @@ import com.vst.util.Config;
 /**
  * The Class ApplicationHSD.
  */
-public class ApplicationHSD implements ServletContextListener	{
+public class ApplicationHSD implements ServletContextListener {
 
 	/** The consolemessage. */
-	public Boolean consolemessage=false;
-	
-	/** The application initialized. */
-	public static long applicationInitialized =	0L;
+	public Boolean consolemessage = false;
 
-	/* (non-Javadoc)
-	 * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
+	/** The application initialized. */
+	public static long applicationInitialized = 0L;
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * javax.servlet.ServletContextListener#contextInitialized(javax.servlet
+	 * .ServletContextEvent)
 	 */
-	public void	contextInitialized(ServletContextEvent ce) {
+	public void contextInitialized(ServletContextEvent ce) {
 		applicationInitialized = System.currentTimeMillis();
-		consolemessage=Boolean.valueOf(Config.getPropiedad("applicacion.context,console.log.js"));
+		consolemessage = Boolean.valueOf(Config.getPropiedad("applicacion.context,console.log.js"));
 		System.out.println("contextInitialized");
 		ServletContext c = ce.getServletContext();
 		System.out.println(consolemessage);
-		c.setAttribute("consolemessage", consolemessage);		
+		c.setAttribute("consolemessage", consolemessage);
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.
+	 * ServletContextEvent)
 	 */
-	public void	contextDestroyed(ServletContextEvent ce) {
+	public void contextDestroyed(ServletContextEvent ce) {
 		System.out.println("contextDestroyed");
 		ServletContext c = ce.getServletContext();
 		System.out.println(consolemessage);
 		consolemessage = (Boolean) c.getAttribute("consolemessage");
-		System.out.println(consolemessage);	
-		
+		System.out.println(consolemessage);
+
 	}
-	
+
 }

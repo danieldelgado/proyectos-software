@@ -79,11 +79,11 @@ function cargarMenus() {
 	$(".lkmenu").click(function() {
 		var li = $(this).parent();
 		var codigo = li.find(".codigo").val();
-		var functions = li.find(".function").val();
-		var url = li.find(".url").val();
+//		var nombre = li.find(".nombre").val();
+//		var url = li.find(".url").val();
 		var tipo = li.find(".tipo").val();
 		if (tipo == "interno") {
-			cargarLista(url);
+			cargarLista(codigo);
 		}
 	});
 

@@ -37,11 +37,11 @@ public class PrincipalController {
 	/** The Constant log. */
 	private static final Logger log = LoggerFactory.getLogger(PrincipalController.class);
 
-//	@Autowired
-//	private RegistrarHistorialService historialService;
+	// @Autowired
+	// private RegistrarHistorialService historialService;
 
 	/** The login service. */
-@Autowired
+	@Autowired
 	private LoginService loginService;
 
 	/** The principal service. */
@@ -50,10 +50,13 @@ public class PrincipalController {
 
 	/**
 	 * Gets the.
-	 *
-	 * @param request the request
-	 * @param session the session
-	 * @param model the model
+	 * 
+	 * @param request
+	 *            the request
+	 * @param session
+	 *            the session
+	 * @param model
+	 *            the model
 	 * @return the string
 	 */
 	@RequestMapping(method = RequestMethod.GET)
@@ -64,62 +67,82 @@ public class PrincipalController {
 		System.out.println(u);
 		if (u == null) {
 			log.info("Redireccion a login ip:" + request.getRemoteAddr());
-//			historialService.registrarHistorial("Redireccion a login ip:" + request.getRemoteAddr());
 			return "redirect:/login";
 		} else {
 			List<Menu> lstMenus = principalService.obtenerMenusPorPerfil((Usuario) session.getAttribute(Constantes.SESION_USUARIO));
 			model.addAttribute("lstMenus", lstMenus);
-//			List<Boton> lstBotones = principalService.obtenerBotonesPorMenuDefault(lstMenus);
-//			model.addAttribute("lstBotones", lstBotones);
-//			System.out.println(lstBotones);
+			// List<Boton> lstBotones =
+			// principalService.obtenerBotonesPorMenuDefault(lstMenus);
+			// model.addAttribute("lstBotones", lstBotones);
+			// System.out.println(lstBotones);
 			log.info("Redireccion a principal ip:" + request.getRemoteAddr());
-//			historialService.registrarHistorial("PrincipalController", "Usuario se dirige a principal  ip: " + request.getRemoteAddr(), u);
-//			historialService.registrarHistorial("PrincipalController", "Usuario se dirige a principal  con la lista de menus", lstMenus);
+			// historialService.registrarHistorial("PrincipalController",
+			// "Usuario se dirige a principal  ip: " + request.getRemoteAddr(),
+			// u);
+			// historialService.registrarHistorial("PrincipalController",
+			// "Usuario se dirige a principal  con la lista de menus",
+			// lstMenus);
 			return "principal";
 		}
 	}
 
 	/**
 	 * Obtener botones por menu.
-	 *
-	 * @param idmenu the idmenu
-	 * @param sesion the sesion
+	 * 
+	 * @param idmenu
+	 *            the idmenu
+	 * @param sesion
+	 *            the sesion
 	 * @return the list
 	 */
 	@RequestMapping(value = "obtenerBotonesPorMenu/{idmenu}", method = RequestMethod.GET)
-	public @ResponseBody List<Boton>  obtenerBotonesPorMenu(@PathVariable Integer idmenu, HttpSession sesion) {
+	public @ResponseBody
+	List<Boton> obtenerBotonesPorMenu(@PathVariable Integer idmenu, HttpSession sesion) {
 		List<Boton> lstBotones = principalService.obtenerBotonesPorMenu(idmenu);
-		System.out.println(lstBotones);
 		return lstBotones;
 	}
-	
+
 	/**
 	 * Obtener data.
-	 *
-	 * @param entidad the entidad
-	 * @param sesion the sesion
+	 * 
+	 * @param entidad
+	 *            the entidad
+	 * @param sesion
+	 *            the sesion
 	 * @return the lista
 	 */
-	@RequestMapping(value = "obtenerLista/{entidad}", method = RequestMethod.GET)
-	public @ResponseBody 	Lista obtenerData(@PathVariable String entidad, HttpSession sesion) {
-		log.info("obtenerData obtener @PathVariable  entidad : "+entidad);
-		return principalService.obtenerListaEntidad(entidad, sesion);
+	@RequestMapping(value = "obtenerLista/{codigoentidad}", method = RequestMethod.GET)
+	public @ResponseBody
+	Lista obtenerData(@PathVariable String codigoentidad, HttpSession sesion) {
+		log.info("obtenerData obtener @PathVariable  codigoentidad : " + codigoentidad);
+		return principalService.obtenerListaEntidad(codigoentidad, sesion);
 	}
 
 	/**
 	 * Obtener data grid.
-	 *
-	 * @param entidad the entidad
-	 * @param model the model
-	 * @param sesion the sesion
-	 * @param sidx the sidx
-	 * @param sord the sord
-	 * @param page the page
-	 * @param rows the rows
-	 * @param _search the _search
-	 * @param searchField the search field
-	 * @param searchOper the search oper
-	 * @param searchString the search string
+	 * 
+	 * @param entidad
+	 *            the entidad
+	 * @param model
+	 *            the model
+	 * @param sesion
+	 *            the sesion
+	 * @param sidx
+	 *            the sidx
+	 * @param sord
+	 *            the sord
+	 * @param page
+	 *            the page
+	 * @param rows
+	 *            the rows
+	 * @param _search
+	 *            the _search
+	 * @param searchField
+	 *            the search field
+	 * @param searchOper
+	 *            the search oper
+	 * @param searchString
+	 *            the search string
 	 * @return the map
 	 */
 	@RequestMapping(value = "/obtenerDataLista/{entidad}")
@@ -132,8 +155,8 @@ public class PrincipalController {
 		if (usuario != null) {
 			Map<String, Object> tmp = principalService.obtenerData(usuario, entidad, sidx, sord, page, rows, _search, searchField, searchOper, searchString);
 			model.addAttribute("size", tmp.size());
-			log.info(" obtenerDataGrid -  tmp datos "+ tmp);
-			log.info(" obtenerDataGrid -  tmp.size() : "+ tmp.size());
+			log.info(" obtenerDataGrid -  tmp datos " + tmp);
+			log.info(" obtenerDataGrid -  tmp.size() : " + tmp.size());
 			return tmp;
 		}
 		return null;
