@@ -21,10 +21,6 @@ public class Cliente extends Persona implements Serializable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The codigo. */
-	@Column(name = "codigo", length = 50, nullable = false)
-	private String codigo;
-
 	/** The estado civil. */
 	@Column(name = "estado_civil", length = 1, nullable = false)
 	private Integer estadoCivil;
@@ -47,23 +43,7 @@ public class Cliente extends Persona implements Serializable {
 	public Cliente() {
 	}
 
-	/**
-	 * Gets the codigo.
-	 *
-	 * @return the codigo
-	 */
-	public String getCodigo() {
-		return codigo;
-	}
-
-	/**
-	 * Sets the codigo.
-	 *
-	 * @param codigo the new codigo
-	 */
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
+	
 
 	/**
 	 * Gets the estado civil.

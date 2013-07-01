@@ -26,9 +26,7 @@ public class Usuario extends Persona implements Serializable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The codigo. */
-	@Column(name = "codigo", length = 50, nullable = false)
-	private String codigo;
+
 
 	/** The login. */
 	@Column(name = "login", length = 50, nullable = false)
@@ -95,28 +93,13 @@ public class Usuario extends Persona implements Serializable {
 			Character estado, Boolean activo, String codigo, String login,
 			String clave) {
 		super(id, nombre, apellidos, estado, activo);
-		this.codigo = codigo;
+		setCodigo(codigo);
 		this.login = login;
 		this.clave = clave;
 	}
 
-	/**
-	 * Gets the codigo.
-	 *
-	 * @return the codigo
-	 */
-	public String getCodigo() {
-		return codigo;
-	}
 
-	/**
-	 * Sets the codigo.
-	 *
-	 * @param codigo the new codigo
-	 */
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
+	
 
 	/**
 	 * Gets the login.
