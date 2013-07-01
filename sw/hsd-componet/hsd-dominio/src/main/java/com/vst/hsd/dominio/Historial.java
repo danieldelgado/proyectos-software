@@ -30,23 +30,14 @@ public class Historial implements Entidad, Serializable {
 	@Column(name = "codigo", length = 50)
 	private String codigo;
 
-	/** The clase. */
-	@Column(name = "clase", length = 200)
-	private String clase;
-
-	/** The metodo. */
-	@Column(name = "metodo", length = 200)
-	private String metodo;
-
+	/** The codigo. */
+	@Column(name = "objeto_json", length = 500)
+	private String objeto_json;
+	
 	/** The descripcion. */
 	@Lob()
 	@Column(name = "descripcion")
 	private String descripcion;
-
-	/** The valor. */
-	@Lob()
-	@Column(name = "valor")
-	private String valor;
 
 	/** The request. */
 	@Lob()
@@ -57,10 +48,6 @@ public class Historial implements Entidad, Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "fecha_registro")
 	private Date fechaRegistro;
-
-	/** The persona_id. */
-	@Column(name = "persona_id")
-	private Integer persona_id;
 
 	/**
 	 * Instantiates a new historial.
@@ -154,76 +141,14 @@ public class Historial implements Entidad, Serializable {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-	/**
-	 * Gets the valor.
-	 *
-	 * @return the valor
-	 */
-	public String getValor() {
-		return valor;
+
+
+	public String getObjeto_json() {
+		return objeto_json;
 	}
 
-	/**
-	 * Gets the clase.
-	 *
-	 * @return the clase
-	 */
-	public String getClase() {
-		return clase;
-	}
-
-	/**
-	 * Sets the clase.
-	 *
-	 * @param clase the new clase
-	 */
-	public void setClase(String clase) {
-		this.clase = clase;
-	}
-
-	/**
-	 * Gets the metodo.
-	 *
-	 * @return the metodo
-	 */
-	public String getMetodo() {
-		return metodo;
-	}
-
-	/**
-	 * Sets the metodo.
-	 *
-	 * @param metodo the new metodo
-	 */
-	public void setMetodo(String metodo) {
-		this.metodo = metodo;
-	}
-
-	/**
-	 * Sets the valor.
-	 *
-	 * @param valor the new valor
-	 */
-	public void setValor(String valor) {
-		this.valor = valor;
-	}
-
-	/**
-	 * Gets the persona_id.
-	 *
-	 * @return the persona_id
-	 */
-	public Integer getPersona_id() {
-		return persona_id;
-	}
-
-	/**
-	 * Sets the persona_id.
-	 *
-	 * @param persona_id the new persona_id
-	 */
-	public void setPersona_id(Integer persona_id) {
-		this.persona_id = persona_id;
+	public void setObjeto_json(String objeto_json) {
+		this.objeto_json = objeto_json;
 	}
 
 	/* (non-Javadoc)
@@ -238,6 +163,11 @@ public class Historial implements Entidad, Serializable {
 	 * @see com.vst.util.Entidad#getNombreCompleto()
 	 */
 	public String getNombreCompleto() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Boolean getActivo() {
 		// TODO Auto-generated method stub
 		return null;
 	}

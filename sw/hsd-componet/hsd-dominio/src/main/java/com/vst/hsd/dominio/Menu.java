@@ -22,10 +22,6 @@ public class Menu extends Recurso implements Serializable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The codigo. */
-	@Column(name = "codigo", length = 50, nullable = false)
-	private String codigo;
-
 	/** The function. */
 	@Column(name = "function", length = 100)
 	private String function;
@@ -69,25 +65,6 @@ public class Menu extends Recurso implements Serializable {
 	public Menu() {
 		defaultMenu = false;
 	}
-
-	/**
-	 * Gets the codigo.
-	 *
-	 * @return the codigo
-	 */
-	public String getCodigo() {
-		return codigo;
-	}
-
-	/**
-	 * Sets the codigo.
-	 *
-	 * @param codigo the new codigo
-	 */
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
 	
 	/**
 	 * Gets the function.

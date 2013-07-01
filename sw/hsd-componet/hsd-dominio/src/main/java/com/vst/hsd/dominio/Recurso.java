@@ -59,6 +59,10 @@ public class Recurso implements Entidad, Serializable {
 	@Column(name = "fecha_creacion")
 	private Date fechaCreacion;
 
+	/** The codigo. */
+	@Column(name = "codigo", length = 50, nullable = false)
+	private String codigo;
+	
 	/*
 	 * @ManyToMany(mappedBy="recursos") private List<Perfil> perfils;
 	 */
@@ -224,6 +228,16 @@ public class Recurso implements Entidad, Serializable {
 	 */
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
+	}
+
+	
+	
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	/* (non-Javadoc)

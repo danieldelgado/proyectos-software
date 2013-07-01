@@ -217,4 +217,9 @@ public class FechaDiaEvento implements Entidad, Serializable {
 		return null;
 	}
 
+	public String getCodigo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

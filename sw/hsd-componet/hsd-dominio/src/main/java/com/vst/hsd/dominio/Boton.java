@@ -23,10 +23,6 @@ public class Boton extends Recurso implements Serializable {
 	@Column(name = "bloqueable", nullable = false)
 	private Boolean bloqueable;
 
-	/** The codigo. */
-	@Column(name = "codigo", length = 50, nullable = false)
-	private String codigo;
-
 	/** The icono. */
 	@Column(name = "icono", length = 50)
 	private String icono;
@@ -98,24 +94,6 @@ public class Boton extends Recurso implements Serializable {
 	 */
 	public void setBloqueable(Boolean bloqueable) {
 		this.bloqueable = bloqueable;
-	}
-
-	/**
-	 * Gets the codigo.
-	 *
-	 * @return the codigo
-	 */
-	public String getCodigo() {
-		return this.codigo;
-	}
-
-	/**
-	 * Sets the codigo.
-	 *
-	 * @param codigo the new codigo
-	 */
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
 	}
 
 	/**

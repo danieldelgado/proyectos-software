@@ -58,6 +58,15 @@ public class Persona implements Entidad, Serializable {
 	@Column(name = "activo", nullable = false)
 	private Boolean activo;
 
+	@Column(name = "codigo", length = 50, nullable = false)
+	private String codigo;
+
+	@Column(name = "telefono_fijo", length = 9, nullable = false)
+	private String telefono_fijo;
+	
+	@Column(name = "celular", length = 11, nullable = false)
+	private String celular;
+	
 	/**
 	 * Instantiates a new persona.
 	 */
@@ -104,6 +113,32 @@ public class Persona implements Entidad, Serializable {
 		this.apellidos = apellidos;
 		this.estado = estado;
 		this.activo = activo;
+	}
+
+	
+	
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getTelefono_fijo() {
+		return telefono_fijo;
+	}
+
+	public void setTelefono_fijo(String telefono_fijo) {
+		this.telefono_fijo = telefono_fijo;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
 	/**

@@ -18,9 +18,6 @@ public class Lista extends Recurso implements Serializable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The codigo. */
-	@Column(name = "codigo", length = 50, nullable = false)
-	private String codigo;
 
 	/** The nombre. */
 	@Column(name = "nombre", length = 250, nullable = false)
@@ -52,29 +49,12 @@ public class Lista extends Recurso implements Serializable {
 	public Lista(Integer id, String codigo, String nombre, String tabla,
 			Integer idMenu) {
 		super(id);
-		this.codigo = codigo;
+		setCodigo(codigo);
 		this.nombre = nombre;
 		this.tabla = tabla;
 		this.idMenu = idMenu;
 	}
-
-	/**
-	 * Gets the codigo.
-	 *
-	 * @return the codigo
-	 */
-	public String getCodigo() {
-		return codigo;
-	}
-
-	/**
-	 * Sets the codigo.
-	 *
-	 * @param codigo the new codigo
-	 */
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
+	
 
 	/**
 	 * Gets the nombre.
