@@ -12,17 +12,20 @@ public interface ListaDAO extends IDAO<Lista> {
 
 	/**
 	 * Obtener lista por usuario.
-	 *
-	 * @param entidad the entidad
-	 * @param u the u
+	 * 
+	 * @param entidad
+	 *            the entidad
+	 * @param u
+	 *            the u
 	 * @return the lista
 	 */
-	Lista obtenerListaPorUsuario(String entidad, Usuario u);
+	Lista obtenerListaPorUsuario(String codigoentidad, Usuario u);
 
 	/**
 	 * Obtener lista por entidad.
-	 *
-	 * @param entidad the entidad
+	 * 
+	 * @param entidad
+	 *            the entidad
 	 * @return the lista
 	 */
 	Lista obtenerListaPorEntidad(String entidad);

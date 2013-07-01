@@ -11,9 +11,11 @@ public interface UsuarioDAO extends IDAO<Usuario> {
 
 	/**
 	 * Buscar usuario.
-	 *
-	 * @param usuario the usuario
-	 * @param perfil the perfil
+	 * 
+	 * @param usuario
+	 *            the usuario
+	 * @param perfil
+	 *            the perfil
 	 * @return the usuario
 	 */
 	Usuario buscarUsuario(String usuario, Integer perfil);

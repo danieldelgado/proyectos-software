@@ -10,7 +10,6 @@ import com.vst.util.DAO;
  * The Class FechaDiaEventoDAOImpl.
  */
 @Repository("FechaDiaEventoDAO")
-public class FechaDiaEventoDAOImpl extends DAO<FechaDiaEvento> implements
-		FechaDiaEventoDAO {
+public class FechaDiaEventoDAOImpl extends DAO<FechaDiaEvento> implements FechaDiaEventoDAO {
 
 }

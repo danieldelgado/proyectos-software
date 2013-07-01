@@ -13,8 +13,9 @@ public interface ColumnaDAO extends IDAO<Columna> {
 
 	/**
 	 * Buscar por lista.
-	 *
-	 * @param id the id
+	 * 
+	 * @param id
+	 *            the id
 	 * @return the list
 	 */
 	List<Columna> buscarPorLista(Integer id);

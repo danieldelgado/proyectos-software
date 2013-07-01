@@ -18,22 +18,23 @@ import com.vst.util.DAO;
 public class ColumnaDAOImpl extends DAO<Columna> implements ColumnaDAO {
 
 	/** The Constant log. */
-	private static final Logger log = LoggerFactory
-			.getLogger(ColumnaDAOImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(ColumnaDAOImpl.class);
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.hsd.dao.ColumnaDAO#buscarPorLista(java.lang.Integer)
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Columna> buscarPorLista(Integer id) {
 		log.debug(" buscarPorLista id:" + id);
-		sqlQuery = "select  new Columna(c.id, c.addColumn, c.ancho, c.atributo, c.cabecera, c.codigo, c.tabla,  c.alineacion, c.formato_tipo, c.mapping,c.visible, c.orden, c.estado, c.activo)  "+
-				" from ColumnaPorLista cl , Columna c where cl.id.lista.id = :lista  and cl.id.columna = c ";
-		
-//		sqlQuery = "select  new Columna( cl.id.columna.id, cl.id.columna.addColumn, cl.id.columna.ancho, cl.id.columna.atributo, cl.id.columna.cabecera, cl.id.columna.codigo, cl.id.columna.tabla,  cl.id.columna.alineacion, cl.id.columna.formato_tipo, cl.id.columna..visible, cl.id.columna.orden, cl.id.columna.estado, cl.id.columna.activo) " +
-				
-		
-		
+		sqlQuery = "select  new Columna(c.id, c.addColumn, c.ancho, c.atributo, c.cabecera, c.codigo, c.tabla,  c.alineacion, c.formato_tipo, c.mapping,c.visible, c.orden, c.estado, c.activo)  "
+				+ " from ColumnaPorLista cl , Columna c where cl.id.lista.id = :lista  and cl.id.columna = c ";
+
+		// sqlQuery =
+		// "select  new Columna( cl.id.columna.id, cl.id.columna.addColumn, cl.id.columna.ancho, cl.id.columna.atributo, cl.id.columna.cabecera, cl.id.columna.codigo, cl.id.columna.tabla,  cl.id.columna.alineacion, cl.id.columna.formato_tipo, cl.id.columna..visible, cl.id.columna.orden, cl.id.columna.estado, cl.id.columna.activo) "
+		// +
+
 		log.debug(" buscarPorLista  sqlQuery :  " + sqlQuery);
 		q = em.createQuery(sqlQuery);
 		q.setParameter("lista", id);

@@ -19,8 +19,7 @@ import com.vst.hsd.dominio.ParametroPorParametro;
 public class ParametroPorParametroDAOImpl implements ParametroPorParametroDAO {
 
 	/** The log. */
-	private static Logger log = LoggerFactory
-			.getLogger(ParametroPorParametroDAOImpl.class);
+	private static Logger log = LoggerFactory.getLogger(ParametroPorParametroDAOImpl.class);
 
 	/** The em. */
 	@PersistenceContext
@@ -32,8 +31,12 @@ public class ParametroPorParametroDAOImpl implements ParametroPorParametroDAO {
 	/** The q. */
 	protected Query q = null;
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.dao.ParametroPorParametroDAO#guardar(com.vst.hsd.dominio.ParametroPorParametro)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.vst.hsd.dao.ParametroPorParametroDAO#guardar(com.vst.hsd.dominio.
+	 * ParametroPorParametro)
 	 */
 	public void guardar(ParametroPorParametro objeto) {
 		try {
@@ -42,12 +45,10 @@ public class ParametroPorParametroDAOImpl implements ParametroPorParametroDAO {
 				em.merge(objeto);
 			else
 				em.persist(objeto);
-			log.info(" Transaction terminada  ParametroPorParametro con id :"
-					+ objeto.getId());
+			log.info(" Transaction terminada  ParametroPorParametro con id :" + objeto.getId());
 		} catch (Exception e) {
 			System.err.println("Error:" + e.getMessage());
-			log.error(" Transaction rollback  ParametroPorParametro"
-					+ e.getMessage());
+			log.error(" Transaction rollback  ParametroPorParametro" + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			log.info(" Transaction cerrada finally ParametroPorParametro");

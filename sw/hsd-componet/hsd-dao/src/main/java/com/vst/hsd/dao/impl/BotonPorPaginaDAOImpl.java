@@ -18,8 +18,7 @@ import com.vst.hsd.dao.BotonPorPaginaDAO;
 public class BotonPorPaginaDAOImpl implements BotonPorPaginaDAO {
 
 	/** The Constant log. */
-	static final Logger log = LoggerFactory
-			.getLogger(BotonPorPaginaDAOImpl.class);
+	static final Logger log = LoggerFactory.getLogger(BotonPorPaginaDAOImpl.class);
 
 	/** The em. */
 	@PersistenceContext

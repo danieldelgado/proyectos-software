@@ -19,13 +19,16 @@ import com.vst.util.DAO;
 public class BotonDAOImpl extends DAO<Boton> implements BotonDAO {
 
 	/** The Constant log. */
-	private static final Logger log = LoggerFactory
-			.getLogger(BotonDAOImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(BotonDAOImpl.class);
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.dao.BotonDAO#obtenerBotonesPorMenu(com.vst.hsd.dominio.Menu)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.vst.hsd.dao.BotonDAO#obtenerBotonesPorMenu(com.vst.hsd.dominio.Menu)
 	 */
 	public List<Boton> obtenerBotonesPorMenu(Menu m) {
+		log.info("obtener por menu");
 		// TODO Auto-generated method stub
 		return null;
 	}

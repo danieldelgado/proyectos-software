@@ -18,18 +18,18 @@ import com.vst.util.DAO;
 public class UsuarioDAOImpl extends DAO<Usuario> implements UsuarioDAO {
 
 	/** The Constant log. */
-	private static final Logger log = LoggerFactory
-			.getLogger(UsuarioDAOImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(UsuarioDAOImpl.class);
 
-	/* (non-Javadoc)
-	 * @see com.vst.hsd.dao.UsuarioDAO#buscarUsuario(java.lang.String, java.lang.Integer)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.vst.hsd.dao.UsuarioDAO#buscarUsuario(java.lang.String,
+	 * java.lang.Integer)
 	 */
 	@SuppressWarnings("unchecked")
 	public Usuario buscarUsuario(String usuario, Integer perfil) {
-		log.debug(" buscarUsuario usuario:  " + usuario + "  perfil : "
-				+ perfil);
-		sqlQuery = " select new Usuario(u.id, u.nombre, u.apellidos, u.estado, u.activo, u.codigo, u.login, u.clave) "
-				+ " from Usuario u LEFT JOIN u.perfiles p  "
+		log.debug(" buscarUsuario usuario:  " + usuario + "  perfil : " + perfil);
+		sqlQuery = " select new Usuario(u.id, u.nombre, u.apellidos, u.estado, u.activo, u.codigo, u.login, u.clave) " + " from Usuario u LEFT JOIN u.perfiles p  "
 				+ " where  u.login = :login and p.id = :perfil ";
 		log.debug(" buscarPorLista  sqlQuery :  " + sqlQuery);
 		q = em.createQuery(sqlQuery);

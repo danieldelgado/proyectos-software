@@ -18,8 +18,7 @@ import com.vst.hsd.dao.ColumnaPorListaDAO;
 public class ColumnaPorListaDAOImpl implements ColumnaPorListaDAO {
 
 	/** The Constant log. */
-	static final Logger log = LoggerFactory
-			.getLogger(BotonPorPaginaDAOImpl.class);
+	static final Logger log = LoggerFactory.getLogger(BotonPorPaginaDAOImpl.class);
 
 	/** The em. */
 	@PersistenceContext

@@ -13,7 +13,7 @@ public interface PerfilDAO extends IDAO<Perfil> {
 
 	/**
 	 * Obtener todos activos.
-	 *
+	 * 
 	 * @return the list
 	 */
 	List<Perfil> obtenerTodosActivos();

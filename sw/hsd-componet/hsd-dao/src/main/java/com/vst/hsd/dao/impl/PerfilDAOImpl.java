@@ -16,12 +16,14 @@ import com.vst.util.DAO;
 @Repository("PerfilDAO")
 public class PerfilDAOImpl extends DAO<Perfil> implements PerfilDAO {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.vst.hsd.dao.PerfilDAO#obtenerTodosActivos()
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Perfil> obtenerTodosActivos() {
-		sqlQuery = "select new Perfil(p.id,p.codigo,p.nombre) from Perfil p "
-				+ "where p.activo = true and p.estado = :estado ";
+		sqlQuery = "select new Perfil(p.id,p.codigo,p.nombre) from Perfil p " + "where p.activo = true and p.estado = :estado ";
 		q = em.createQuery(sqlQuery);
 		q.setParameter("estado", Constantes.ACTIVO);
 		return q.getResultList();
