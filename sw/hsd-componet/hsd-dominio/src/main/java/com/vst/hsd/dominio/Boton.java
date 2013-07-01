@@ -50,7 +50,7 @@ public class Boton extends Recurso implements Serializable {
 
 	/** The tipo. */
 	@Column(name = "tipo", length = 50, nullable = false)
-	private String tipo;
+	private String tipo;//pagina principal o subpaginas (listado- nuevo - guardar - cancelar)
 
 	/** The url. */
 	@Column(name = "url", length = 250)
@@ -67,16 +67,23 @@ public class Boton extends Recurso implements Serializable {
 		orden = 0;
 	}
 
-	//
-	// public List<Menu> getMenus() {
-	// return menus;
-	// }
-	//
-	//
-	//
-	// public void setMenus(List<Menu> menus) {
-	// this.menus = menus;
-	// }
+	
+	
+
+
+	public Boton(Integer id,String codigo, String icono, Integer orden, String parametrosJson, String tipo, String url) {
+		super();
+		this.id = id;
+		this.codigo = codigo;
+		this.icono = icono;
+		this.orden = orden;
+		this.parametrosJson = parametrosJson;
+		this.tipo = tipo;
+		this.url = url;
+	}
+
+	
+	
 
 	/**
 	 * Gets the bloqueable.

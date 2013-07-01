@@ -35,7 +35,7 @@ public class Recurso implements Entidad, Serializable {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
 	@TableGenerator(name = "id_Generator", table = "sequence_table", pkColumnName = "sequence_name", valueColumnName = "sequence_value")
 	@Column(name = "id_recurso")
-	private Integer id;
+	public Integer id;
 
 	/** The activo. */
 	@Column(name = "activo", nullable = false)

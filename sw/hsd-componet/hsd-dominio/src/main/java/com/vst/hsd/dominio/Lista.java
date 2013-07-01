@@ -1,6 +1,7 @@
 package com.vst.hsd.dominio;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +31,8 @@ public class Lista extends Recurso implements Serializable {
 	@Column(name = "tabla", length = 40, nullable = false)
 	private String tabla;
 
+	private transient List<Columna> columnas;
+	
 	/**
 	 * Instantiates a new lista.
 	 */
@@ -114,5 +117,15 @@ public class Lista extends Recurso implements Serializable {
 	public void setTabla(String tabla) {
 		this.tabla = tabla;
 	}
+
+	public List<Columna> getColumnas() {
+		return columnas;
+	}
+
+	public void setColumnas(List<Columna> columnas) {
+		this.columnas = columnas;
+	}
+	
+	
 
 }
