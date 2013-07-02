@@ -3,6 +3,7 @@ package com.vst.hsd.service.mantenimiento;
 import java.util.List;
 import java.util.Map;
 
+import com.vst.hsd.dominio.Boton;
 import com.vst.hsd.dominio.Formulario;
 import com.vst.hsd.dominio.Parametro;
 
@@ -62,5 +63,7 @@ public interface MantenimientoParametroService {
 	List<Map<String, Object>> obtenerParametros();
 
 	Formulario obtenerFormulario(String codigoFormulario);
+
+	List<Boton> obtenerBotonesPorFormulario(String codigoFormulario);
 
 }

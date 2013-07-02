@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.vst.hsd.dao.FormularioDAO;
 import com.vst.hsd.dao.ParametroDAO;
 import com.vst.hsd.dao.ParametroPorParametroDAO;
+import com.vst.hsd.dominio.Boton;
 import com.vst.hsd.dominio.Formulario;
 import com.vst.hsd.dominio.Parametro;
 import com.vst.hsd.service.mantenimiento.MantenimientoParametroService;
@@ -113,6 +114,12 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 	public Formulario obtenerFormulario(String codigoFormulario) {
 		Formulario f = formularioDAO.getPorCodigo(codigoFormulario);		
 		return f;
+	}
+
+	public List<Boton> obtenerBotonesPorFormulario(String codigoFormulario) {
+		
+		
+		return null;
 	}
 
 }
