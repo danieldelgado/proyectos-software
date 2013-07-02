@@ -150,7 +150,7 @@ function existsTabSelect(identificador) {
 // ///////////////////////////////////////////////////////////////////////////
 
 detalleLista = function(id, cap) {
-	// consola("detalleLista:"+id+" "+cap);
+	 consola("detalleLista:"+id+" "+cap);
 };
 
 function irPagina(url) {
@@ -159,15 +159,12 @@ function irPagina(url) {
 }
 
 function cargarLista(pm) {
-	consola("cargarLista");
+	
 	if ( isStringNull(pm) )  {
 
 		$.get(context + "principal/obtenerLista/" + pm, function(lista) {
-
-			consola("lista");
-			consola(lista);
-			consola(lista.columnas);
-			consola("lista");
+			
+			if(!isNullSpace(lista)){				
 			
 			var nombres = new Array();
 			var modelo = new Array();
@@ -190,36 +187,36 @@ function cargarLista(pm) {
 			
 			tabprincipal.html("");
 			
-			ajaxAsyncGet(context + "principal/obtenerBotonesPorMenu/" + lista.idMenu, null, function(res) {
-				var toolbarButton = $('<div/>', {
-					'class' : 'ui-widget-header toolbar'
-				});
-				toolbarButton.appendTo(tabprincipal);
-				$(res).each(function(i, item) {
-					var btnNuevo = $('<button/>', {
-						text : item.descripcion,
-						id : item.id
-					}).click(function() {
-						if (item.tipo == "addtablink") {
-							if (!existsTabSelect(item.codigo)) {
-								var html = "";
-								ajaxAsyncGetHtml(context + item.url, null, function(h) {
-									html = h;
-								});
+//			ajaxAsyncGet(context + "principal/obtenerBotonesPorMenu/" + lista.idMenu, null, function(res) {
+//				var toolbarButton = $('<div/>', {
+//					'class' : 'ui-widget-header toolbar'
+//				});
+//				toolbarButton.appendTo(tabprincipal);
+//				$(res).each(function(i, item) {
+//					var btnNuevo = $('<button/>', {
+//						text : item.descripcion,
+//						id : item.id
+//					}).click(function() {
+//						if (item.tipo == "addtablink") {
+//							if (!existsTabSelect(item.codigo)) {
+//								var html = "";
+//								ajaxAsyncGetHtml(context + item.url, null, function(h) {
+//									html = h;
+//								});
 //								addtab(item.descripcion, item.codigo, html, true);
-							} else {
+//							} else {
 //								selectTab(item.codigo);
-							}
-
-						}
-					}).button({
-						icons : {
-							primary : "ui-icon-document"
-						}
-					});
-					btnNuevo.appendTo(toolbarButton);
-				});
-			});
+//							}
+//
+//						}
+//					}).button({
+//						icons : {
+//							primary : "ui-icon-document"
+//						}
+//					});
+//					btnNuevo.appendTo(toolbarButton);
+//				});
+//			});
 
 			tabprincipal.append("<table id='lista'></table><div id='pager'></div> <input type=\"hidden\" id=\"sizelista\" value=\"${size}\" />");
 			var urlData = context + "principal/obtenerDataLista/" + pm;
@@ -258,6 +255,7 @@ function cargarLista(pm) {
 
 			jQuery("#lista").jqGrid('setGridWidth', layoutConeinerCenter.width() - 20, 'true');
 			jQuery("#lista").jqGrid('setGridHeight', layoutConeinerCenter.height() - 125, 'true');
+			}
 
 		});
 
@@ -292,7 +290,14 @@ function isStringNull(objeto) {
 }
 
 function isNull(objeto) {
-	if  (objeto == null || objeto == undefined ) {
+	if  (objeto == null || objeto == undefined || objeto == "" ) {
+		return true;
+	}
+	return false;
+}
+
+function isNullSpace(objeto) {
+	if  (objeto == "" ) {
 		return true;
 	}
 	return false;
