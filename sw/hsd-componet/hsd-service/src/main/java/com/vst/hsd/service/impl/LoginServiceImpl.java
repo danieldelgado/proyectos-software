@@ -13,30 +13,17 @@ import com.vst.hsd.dominio.Perfil;
 import com.vst.hsd.dominio.Usuario;
 import com.vst.hsd.service.LoginService;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class LoginServiceImpl.
- */
 @Service("LoginSevice")
 public class LoginServiceImpl implements LoginService {
 
-	/** The Constant log. */
 	private static final Logger log = LoggerFactory.getLogger(LoginServiceImpl.class);
 
-	/** The usuario dao. */
 	@Autowired
 	private UsuarioDAO usuarioDAO;
 
-	/** The perfil dao. */
 	@Autowired
 	private PerfilDAO perfilDAO;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.vst.hsd.service.LoginService#iniciarSession(java.lang.String,
-	 * java.lang.String, java.lang.Integer)
-	 */
 	public Usuario iniciarSession(String usuario, String clave, Integer perfil) {
 		Usuario u = usuarioDAO.buscarUsuario(usuario, perfil);
 		Perfil p = null;
@@ -55,11 +42,6 @@ public class LoginServiceImpl implements LoginService {
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.vst.hsd.service.LoginService#obtenerPerfiles()
-	 */
 	public List<Perfil> obtenerPerfiles() {
 		List<Perfil> lst = perfilDAO.obtenerTodosActivos();
 		log.info(" perfiles activos count :" + lst.size());

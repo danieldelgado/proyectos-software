@@ -113,10 +113,8 @@ function crearTab() {
 		var tab = $(this).parent().find("a").attr("href");
 		if (tab != "#tabPrincipal") {
 			$(tab).remove();
-//			var panelId = 
 			$(this).closest("li").remove().attr("aria-controls");
 		}
-
 	});
 
 	addtab("Principal", "tabPrincipal", "", true);
@@ -124,6 +122,7 @@ function crearTab() {
 }
 
 function addtab(titulo, identificador, content, select) {
+	consola("add tab");
 	var tabIdentificadorExists = get("#"+identificador);	
 	if (isNull(tabIdentificadorExists)) {
 		var tabTemplate = "<li><a href=\"#{href}\"> #{label} </a> <span class=\"ui-icon ui-icon-close\">Cerrar</span></li>";
@@ -136,10 +135,12 @@ function addtab(titulo, identificador, content, select) {
 }
 
 function selectTab(identificador) {
+	consola("selectTab");
 	tabsGeneralHSD.tabs("select", identificador);
 }
 
 function existsTabSelect(identificador) {
+	consola("existsTabSelect");
 	var tabIngresado = get("#"+identificador);
 	if (isNull(tabIngresado)) {
 		return false;
@@ -157,9 +158,8 @@ function irPagina(url) {
 }
 
 function cargarLista(pm) {
-	
+	tabprincipal.html("");
 	if ( isStringNull(pm) )  {
-
 		$.get(context + "principal/obtenerLista/" + pm, function(lista) {
 			consola("lista:");
 			consola(lista);
@@ -182,20 +182,19 @@ function cargarLista(pm) {
 						sopt : [ 'cn', 'eq' ]
 					}
 				};
-			}
+			}			
 			
-			tabprincipal.html("");
-			
-//			ajaxAsyncGet(context + "principal/obtenerBotonesPorMenu/" + lista.idMenu, null, function(res) {
-//				var toolbarButton = $('<div/>', {
-//					'class' : 'ui-widget-header toolbar'
-//				});
-//				toolbarButton.appendTo(tabprincipal);
-//				$(res).each(function(i, item) {
-//					var btnNuevo = $('<button/>', {
-//						text : item.descripcion,
-//						id : item.id
-//					}).click(function() {
+			ajaxAsyncGet(context + "principal/obtenerBotonesPorMenu/" + lista.idMenu, null, function(res) {
+				consola("res");
+				consola(res);
+				var toolbarButton = $('<div/>', {
+					'class' : 'ui-widget-header toolbar'
+				});
+				$(res).each(function(i, item) {
+					var btnNuevo = $('<button/>', {
+						text : item.descripcion,
+						id : item.id
+					}).click(function() {
 //						if (item.tipo == "addtablink") {
 //							if (!existsTabSelect(item.codigo)) {
 //								var html = "";
@@ -208,14 +207,18 @@ function cargarLista(pm) {
 //							}
 //
 //						}
-//					}).button({
-//						icons : {
-//							primary : "ui-icon-document"
-//						}
-//					});
-//					btnNuevo.appendTo(toolbarButton);
-//				});
-//			});
+					}).button({
+						icons : {
+							primary : "ui-icon-document"
+						}
+					});
+					btnNuevo.appendTo(toolbarButton);
+				});
+				consola("toolbarButton");
+				consola(toolbarButton);
+				toolbarButton.appendTo(tabprincipal);
+				
+			});
 
 			tabprincipal.append("<table id='lista'></table><div id='pager'></div> <input type=\"hidden\" id=\"sizelista\" value=\"${size}\" />");
 			var urlData = context + "principal/obtenerDataLista/" + pm;

@@ -13,74 +13,36 @@ import com.vst.hsd.dao.ParametroPorParametroDAO;
 import com.vst.hsd.dominio.Parametro;
 import com.vst.hsd.service.mantenimiento.MantenimientoParametroService;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class MantenimientoParametroServiceImpl.
- */
 @Service("MantenimientoParametroService")
 public class MantenimientoParametroServiceImpl implements MantenimientoParametroService {
 
-	/** The Constant log. */
 	private static final Logger log = LoggerFactory.getLogger(MantenimientoParametroService.class);
 
-	/** The parametro dao. */
 	@Autowired
 	private ParametroDAO parametroDAO;
 
-	/** The parametro por parametro dao. */
 	@Autowired
 	private ParametroPorParametroDAO parametroPorParametroDAO;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#
-	 * obtenerEstados()
-	 */
 	public List<Parametro> obtenerEstados() {
 		log.info("obtenerEstados");
 		return null;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#
-	 * obtenerParametrosPadre()
-	 */
+	
 	public List<Parametro> obtenerParametrosPadre() {
 
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#
-	 * obtenerParametro(int)
-	 */
 	public Parametro obtenerParametro(int param) {
 
 		return null;
 	}
 
-	// @Transactional
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#
-	 * guardarParametro(com.vst.hsd.dominio.Parametro)
-	 */
 	public int guardarParametro(Parametro parametro) {
 		return 1;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#
-	 * obtenerParametrosRulesEntidad(java.lang.String)
-	 */
 	@SuppressWarnings("rawtypes")
 	public List obtenerParametrosRulesEntidad(String entidad) {
 		// Parametro
@@ -128,13 +90,7 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 		// l.add(camposReglas);
 		return null;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.vst.hsd.service.mantenimiento.MantenimientoParametroService#
-	 * obtenerParametros()
-	 */
+	
 	public List<Map<String, Object>> obtenerParametros() {
 		// List<Parametro> l = parametroDAO.obtenerParametros();
 		// List<Map<String,Object>> lstObj = new

@@ -25,39 +25,18 @@ import com.vst.hsd.service.LoginService;
 import com.vst.hsd.service.PrincipalService;
 import com.vst.util.Constantes;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class PrincipalController.
- */
 @Controller
 @RequestMapping("principal")
 public class PrincipalController {
 
-	/** The Constant log. */
 	private static final Logger log = LoggerFactory.getLogger(PrincipalController.class);
 
-	// @Autowired
-	// private RegistrarHistorialService historialService;
-
-	/** The login service. */
 	@Autowired
 	private LoginService loginService;
 
-	/** The principal service. */
 	@Autowired
 	private PrincipalService principalService;
 
-	/**
-	 * Gets the.
-	 * 
-	 * @param request
-	 *            the request
-	 * @param session
-	 *            the session
-	 * @param model
-	 *            the model
-	 * @return the string
-	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String get(HttpServletRequest request, HttpSession session, Model model) {
 		log.info("[ metodo : get - ingreso a principal - buscar usuario en session]");
@@ -84,32 +63,14 @@ public class PrincipalController {
 			return "principal";
 		}
 	}
-
-	/**
-	 * Obtener botones por menu.
-	 * 
-	 * @param idmenu
-	 *            the idmenu
-	 * @param sesion
-	 *            the sesion
-	 * @return the list
-	 */
+	
 	@RequestMapping(value = "obtenerBotonesPorMenu/{idmenu}", method = RequestMethod.GET)
 	public @ResponseBody
 	List<Boton> obtenerBotonesPorMenu(@PathVariable Integer idmenu, HttpSession sesion) {
 		List<Boton> lstBotones = principalService.obtenerBotonesPorMenu(idmenu);
 		return lstBotones;
 	}
-
-	/**
-	 * Obtener data.
-	 * 
-	 * @param entidad
-	 *            the entidad
-	 * @param sesion
-	 *            the sesion
-	 * @return the lista
-	 */
+	
 	@RequestMapping(value = "obtenerLista/{codigoentidad}", method = RequestMethod.GET)
 	public @ResponseBody
 	Lista obtenerData(@PathVariable String codigoentidad, HttpSession sesion) {
@@ -117,33 +78,7 @@ public class PrincipalController {
 		return principalService.obtenerListaEntidad(codigoentidad, sesion);
 	}
 
-	/**
-	 * Obtener data grid.
-	 * 
-	 * @param entidad
-	 *            the entidad
-	 * @param model
-	 *            the model
-	 * @param sesion
-	 *            the sesion
-	 * @param sidx
-	 *            the sidx
-	 * @param sord
-	 *            the sord
-	 * @param page
-	 *            the page
-	 * @param rows
-	 *            the rows
-	 * @param _search
-	 *            the _search
-	 * @param searchField
-	 *            the search field
-	 * @param searchOper
-	 *            the search oper
-	 * @param searchString
-	 *            the search string
-	 * @return the map
-	 */
+	
 	@RequestMapping(value = "/obtenerDataLista/{entidad}")
 	public @ResponseBody
 	Map<String, Object> obtenerDataGrid(@PathVariable String entidad, Model model, HttpSession sesion, @RequestParam(required = false) String sidx, @RequestParam(required = false) String sord,

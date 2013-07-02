@@ -26,72 +26,43 @@ import com.vst.hsd.dominio.Usuario;
 import com.vst.hsd.service.PrincipalService;
 import com.vst.util.Constantes;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class PrincipalServiceImpl.
- */
 @Service("PrincipalService")
 public class PrincipalServiceImpl implements PrincipalService {
 
-	/** The Constant log. */
 	private static final Logger log = LoggerFactory.getLogger(PrincipalServiceImpl.class);
 
-	/** The lista dao. */
 	@Autowired
 	private ListaDAO listaDAO;
 
-	/** The columna dao. */
 	@Autowired
 	private ColumnaDAO columnaDAO;
 
-	/** The data list componet. */
 	@Autowired
 	private DataListComponet dataListComponet;
 
-	/** The boton dao. */
 	@Autowired
 	private BotonDAO botonDAO;
 
-	/** The lista dao. */
 	@Autowired
 	private ParametroDAO parametroDAO;
 	
 	@Autowired
 	private MenuDAO menuDAO;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.vst.hsd.service.PrincipalService#obtenerListaEntidad(java.lang.String
-	 * , javax.servlet.http.HttpSession)
-	 */
 	public Lista obtenerListaEntidad(String codigoentidad, HttpSession session) {
 		log.info("metodo:buscarUsuarioLogueado - buscar el usuario en session");
 		Usuario u = (Usuario) session.getAttribute(Constantes.SESION_USUARIO);
 		if (u != null) {
-			System.out.println(" codigoentidad: " + codigoentidad);
 			Lista l = listaDAO.obtenerListaPorUsuario(codigoentidad, u);
 			if (l != null) {
-				log.info(" Lista obtenida :" + l.getCodigo());
 				List<Columna> lstColumnas = columnaDAO.buscarPorLista(l.getId());
-				log.info(" lista de columnas  :" + lstColumnas.size());
 				l.setColumnas(lstColumnas);
-				// l.setMenus(null);
 				return l;
 			}
 		}
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.vst.hsd.service.PrincipalService#obtenerData(com.vst.hsd.dominio.
-	 * Usuario, java.lang.String, java.lang.String, java.lang.String, int, int,
-	 * boolean, java.lang.String, java.lang.String, java.lang.String)
-	 */
 	public Map<String, Object> obtenerData(Usuario usuario, String entidad, String sidx, String sord, int page, int filas, boolean _search, String searchField, String searchOper, String searchString) {
 
 		Character estado = 'A';
@@ -132,14 +103,6 @@ public class PrincipalServiceImpl implements PrincipalService {
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.vst.hsd.service.PrincipalService#obtenerMenusPorPerfil(com.vst.hsd
-	 * .dominio.Usuario)
-	 */
-	@SuppressWarnings("unused")
 	public List<Menu> obtenerMenusPorPerfil(Usuario u) {
 		List<Menu> ms = null;
 		if(u!=null){

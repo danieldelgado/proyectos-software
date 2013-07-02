@@ -10,21 +10,11 @@ import com.vst.hsd.dao.ColumnaDAO;
 import com.vst.hsd.dominio.Columna;
 import com.vst.util.DAO;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class ColumnaDAOImpl.
- */
 @Repository("ColumnaDAO")
 public class ColumnaDAOImpl extends DAO<Columna> implements ColumnaDAO {
 
-	/** The Constant log. */
 	private static final Logger log = LoggerFactory.getLogger(ColumnaDAOImpl.class);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.vst.hsd.dao.ColumnaDAO#buscarPorLista(java.lang.Integer)
-	 */
 	@SuppressWarnings("unchecked")
 	public List<Columna> buscarPorLista(Integer id) {
 		log.debug(" buscarPorLista id:" + id);

@@ -9,10 +9,6 @@ import com.vst.hsd.dominio.Lista;
 import com.vst.hsd.dominio.Usuario;
 import com.vst.util.DAO;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class ListaDAOImpl.
- */
 @Repository("ListaDAO")
 public class ListaDAOImpl extends DAO<Lista> implements ListaDAO {
 

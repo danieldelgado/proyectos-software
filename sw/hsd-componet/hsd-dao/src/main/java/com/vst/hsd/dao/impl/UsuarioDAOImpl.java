@@ -10,22 +10,11 @@ import com.vst.hsd.dao.UsuarioDAO;
 import com.vst.hsd.dominio.Usuario;
 import com.vst.util.DAO;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class UsuarioDAOImpl.
- */
 @Repository("UsuarioDAO")
 public class UsuarioDAOImpl extends DAO<Usuario> implements UsuarioDAO {
 
-	/** The Constant log. */
 	private static final Logger log = LoggerFactory.getLogger(UsuarioDAOImpl.class);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.vst.hsd.dao.UsuarioDAO#buscarUsuario(java.lang.String,
-	 * java.lang.Integer)
-	 */
 	@SuppressWarnings("unchecked")
 	public Usuario buscarUsuario(String usuario, Integer perfil) {
 		log.debug(" buscarUsuario usuario:  " + usuario + "  perfil : " + perfil);

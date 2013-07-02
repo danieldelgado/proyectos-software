@@ -11,33 +11,18 @@ import org.springframework.stereotype.Repository;
 import com.vst.hsd.dao.ParametroPorParametroDAO;
 import com.vst.hsd.dominio.ParametroPorParametro;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class ParametroPorParametroDAOImpl.
- */
 @Repository("ParametroPorParametroDAO")
 public class ParametroPorParametroDAOImpl implements ParametroPorParametroDAO {
 
-	/** The log. */
 	private static Logger log = LoggerFactory.getLogger(ParametroPorParametroDAOImpl.class);
 
-	/** The em. */
 	@PersistenceContext
 	protected EntityManager em;
 
-	/** The sql query. */
 	protected String sqlQuery = null;
 
-	/** The q. */
 	protected Query q = null;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.vst.hsd.dao.ParametroPorParametroDAO#guardar(com.vst.hsd.dominio.
-	 * ParametroPorParametro)
-	 */
 	public void guardar(ParametroPorParametro objeto) {
 		try {
 			log.info(" Entro al metodo guardar de Entidad ParametroPorParametro");
