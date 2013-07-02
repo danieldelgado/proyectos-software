@@ -336,11 +336,12 @@ CREATE TABLE `menu` (
 
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
 INSERT INTO `menu` (`defaultMenu`,`function`,`nombre`,`orden`,`tipo`,`todos`,`url`,`id_recurso`,`menu_id_recurso`) VALUES 
- (1,NULL,'Parametro',0,'interno',0,'Parametro',2,NULL),
- (0,NULL,'Perfil',1,'interno',0,'Perfil',5,NULL),
- (0,NULL,'Lista',2,'interno',0,'Lista',7,NULL),
- (0,NULL,'Usuario',3,'interno',0,'Usuario',9,NULL),
- (0,NULL,'Fechas Evento',4,'interno',0,'Fechas Evento',11,NULL);
+ (1,NULL,'Parametro',0,'interno',0,'Parametro',2,15),
+ (0,NULL,'Perfil',1,'interno',0,'Perfil',5,15),
+ (0,NULL,'Lista',2,'interno',0,'Lista',7,15),
+ (0,NULL,'Usuario',3,'interno',0,'Usuario',9,15),
+ (0,NULL,'Fechas Evento',4,'interno',0,'Fechas Evento',11,15),
+ (0,NULL,'Mantenimiento',0,'interno',0,'Mantenimiento',15,NULL);
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 
 
@@ -461,7 +462,7 @@ INSERT INTO `persona` (`id_persona`,`activo`,`apellidos`,`celular`,`codigo`,`est
 DROP TABLE IF EXISTS `recurso`;
 CREATE TABLE `recurso` (
   `id_recurso` int(11) NOT NULL,
-  `activo` bit(1) NOT NULL,
+  `activo` tinyint(1) NOT NULL,
   `codigo` varchar(50) NOT NULL,
   `descripcion` varchar(250) NOT NULL,
   `estado` char(1) NOT NULL,
@@ -476,20 +477,21 @@ CREATE TABLE `recurso` (
 
 /*!40000 ALTER TABLE `recurso` DISABLE KEYS */;
 INSERT INTO `recurso` (`id_recurso`,`activo`,`codigo`,`descripcion`,`estado`,`fecha_actualizacion`,`fecha_creacion`) VALUES 
- (1,0x01,'Parametro','Lista Parametro','A','1990-10-10','1990-10-10 00:00:00'),
- (2,0x01,'Menu Menu','Menu Parametro','A','1990-10-10','1990-10-10 00:00:00'),
- (3,0x01,'Boton Nuevo','Boton Nuevo','A','1990-10-10','1990-10-10 00:00:00'),
- (4,0x01,'Boton Guardar','Boton Guardar','A','1990-10-10','1990-10-10 00:00:00'),
- (5,0x01,'Menu Perfil','Menu Perfil','A','1990-10-10','1990-10-10 00:00:00'),
- (6,0x01,'Perfil','Lista Perfil','A','1990-10-10','1990-10-10 00:00:00'),
- (7,0x01,'Menu Lista','Menu Lista','A','1990-10-10','1990-10-10 00:00:00'),
- (8,0x01,'Lista','Lista Lista','A','1990-10-10','1990-10-10 00:00:00'),
- (9,0x01,'Menu Usuario','Menu Usuario','A','1990-10-10','1990-10-10 00:00:00'),
- (10,0x01,'Usuario','Lista Usuario','A','1990-10-10','1990-10-10 00:00:00'),
- (11,0x01,'Menu Fechas Evento','Menu Fechas Evento','A','1990-10-10','1990-10-10 00:00:00'),
- (12,0x01,'FechaDiaEvento','Lista Fechas Evento','A','1990-10-10','1990-10-10 00:00:00'),
- (13,0x01,'Menu Menu','Menu Menu','A','1990-10-10','1990-10-10 00:00:00'),
- (14,0x01,'Menu','Lista Menu','A','1990-10-10','1990-10-10 00:00:00');
+ (1,1,'Parametro','Lista Parametro','A','1990-10-10','1990-10-10 00:00:00'),
+ (2,1,'Parametro','Menu Parametro','A','1990-10-10','1990-10-10 00:00:00'),
+ (3,1,'Boton Nuevo','Boton Nuevo','A','1990-10-10','1990-10-10 00:00:00'),
+ (4,1,'Boton Guardar','Boton Guardar','A','1990-10-10','1990-10-10 00:00:00'),
+ (5,1,'Perfil','Menu Perfil','A','1990-10-10','1990-10-10 00:00:00'),
+ (6,1,'Perfil','Lista Perfil','A','1990-10-10','1990-10-10 00:00:00'),
+ (7,1,'Lista','Menu Lista','A','1990-10-10','1990-10-10 00:00:00'),
+ (8,1,'Lista','Lista Lista','A','1990-10-10','1990-10-10 00:00:00'),
+ (9,1,'Usuario','Menu Usuario','A','1990-10-10','1990-10-10 00:00:00'),
+ (10,1,'Usuario','Lista Usuario','A','1990-10-10','1990-10-10 00:00:00'),
+ (11,1,'FechaDiaEvento','Menu Fechas Evento','A','1990-10-10','1990-10-10 00:00:00'),
+ (12,1,'FechaDiaEvento','Lista Fechas Evento','A','1990-10-10','1990-10-10 00:00:00'),
+ (13,1,'Menu','Menu Menu','A','1990-10-10','1990-10-10 00:00:00'),
+ (14,1,'Menu','Lista Menu','A','1990-10-10','1990-10-10 00:00:00'),
+ (15,1,'Mantenimiento','Mantenimiento','A','1990-10-10','1990-10-10 00:00:00');
 /*!40000 ALTER TABLE `recurso` ENABLE KEYS */;
 
 
@@ -528,7 +530,8 @@ INSERT INTO `recurso_por_perfil` (`responsable`,`id_recurso`,`id_perfil`) VALUES
  (NULL,11,1),
  (NULL,12,1),
  (NULL,13,1),
- (NULL,14,1);
+ (NULL,14,1),
+ (NULL,15,1);
 /*!40000 ALTER TABLE `recurso_por_perfil` ENABLE KEYS */;
 
 

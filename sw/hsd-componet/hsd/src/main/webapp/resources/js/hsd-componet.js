@@ -147,8 +147,6 @@ function existsTabSelect(identificador) {
 	return true;
 }
 
-// ///////////////////////////////////////////////////////////////////////////
-
 detalleLista = function(id, cap) {
 	 consola("detalleLista:"+id+" "+cap);
 };
@@ -163,7 +161,8 @@ function cargarLista(pm) {
 	if ( isStringNull(pm) )  {
 
 		$.get(context + "principal/obtenerLista/" + pm, function(lista) {
-			
+			consola("lista:");
+			consola(lista);
 			if(!isNullSpace(lista)){				
 			
 			var nombres = new Array();

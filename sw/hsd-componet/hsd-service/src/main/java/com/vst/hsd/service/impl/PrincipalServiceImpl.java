@@ -16,6 +16,7 @@ import com.vst.hsd.dao.BotonDAO;
 import com.vst.hsd.dao.ColumnaDAO;
 import com.vst.hsd.dao.DataListComponet;
 import com.vst.hsd.dao.ListaDAO;
+import com.vst.hsd.dao.MenuDAO;
 import com.vst.hsd.dao.ParametroDAO;
 import com.vst.hsd.dominio.Boton;
 import com.vst.hsd.dominio.Columna;
@@ -54,6 +55,9 @@ public class PrincipalServiceImpl implements PrincipalService {
 	/** The lista dao. */
 	@Autowired
 	private ParametroDAO parametroDAO;
+	
+	@Autowired
+	private MenuDAO menuDAO;
 
 	/*
 	 * (non-Javadoc)
@@ -135,60 +139,72 @@ public class PrincipalServiceImpl implements PrincipalService {
 	 * com.vst.hsd.service.PrincipalService#obtenerMenusPorPerfil(com.vst.hsd
 	 * .dominio.Usuario)
 	 */
+	@SuppressWarnings("unused")
 	public List<Menu> obtenerMenusPorPerfil(Usuario u) {
-		List<Menu> ms = new ArrayList<Menu>();
-		Menu m = new Menu();
-		m.setId(1);
-		m.setNombre("Mantenimiento");
-		m.setUrl(null);
-		m.setTipo("interno");
-		m.setOrden(0);
-		m.setFunction(null);
-		ms.add(m);
-
-		List<Menu> mss = new ArrayList<Menu>();
-		Menu mm = new Menu();
-		mm.setId(1);
-		mm.setCodigo("Parametro");
-		mm.setNombre("Parametro");
-		mm.setUrl("Parametro");
-		mm.setDefaultMenu(true);
-		mm.setTipo("interno");
-		mm.setOrden(0);
-		mm.setFunction(null);
-		mss.add(mm);
-
-		Menu mm2 = new Menu();
-		mm2.setId(1);
-		mm2.setNombre("Perfil");
-		mm2.setCodigo("Perfil");
-		mm2.setUrl("Perfil");
-		mm2.setTipo("interno");
-		mm2.setOrden(1);
-		mm2.setFunction(null);
-		mss.add(mm2);
-
-		Menu mm3 = new Menu();
-		mm3.setId(1);
-		mm3.setNombre("Lista");
-		mm3.setCodigo("Lista");
-		mm3.setUrl("Lista");
-		mm3.setTipo("interno");
-		mm3.setOrden(2);
-		mm3.setFunction(null);
-		mss.add(mm3);
-
-		Menu mm4 = new Menu();
-		mm4.setId(1);
-		mm4.setNombre("Columna");
-		mm4.setCodigo("Columna");
-		mm4.setUrl("Columna");
-		mm4.setTipo("interno");
-		mm4.setOrden(3);
-		mm4.setFunction(null);
-		mss.add(mm4);
-
-		m.setMenus(mss);
+		List<Menu> ms = null;
+		if(u!=null){
+			ms = menuDAO.obtenerMenusPorPerfil(u);
+			for (Menu menu : ms) {
+				List<Menu> subms = menuDAO.obtenerSubMenus(menu.getId());
+				menu.setMenus(subms);			
+			}
+			System.out.println(ms);			
+		}
+		
+		
+//		List<Menu> ms = new ArrayList<Menu>();
+//		Menu m = new Menu();
+//		m.setId(1);
+//		m.setNombre("Mantenimiento");
+//		m.setUrl(null);
+//		m.setTipo("interno");
+//		m.setOrden(0);
+//		m.setFunction(null);
+//		ms.add(m);
+//
+//		List<Menu> mss = new ArrayList<Menu>();
+//		Menu mm = new Menu();
+//		mm.setId(1);
+//		mm.setCodigo("Parametro");
+//		mm.setNombre("Parametro");
+//		mm.setUrl("Parametro");
+//		mm.setDefaultMenu(true);
+//		mm.setTipo("interno");
+//		mm.setOrden(0);
+//		mm.setFunction(null);
+//		mss.add(mm);
+//
+//		Menu mm2 = new Menu();
+//		mm2.setId(1);
+//		mm2.setNombre("Perfil");
+//		mm2.setCodigo("Perfil");
+//		mm2.setUrl("Perfil");
+//		mm2.setTipo("interno");
+//		mm2.setOrden(1);
+//		mm2.setFunction(null);
+//		mss.add(mm2);
+//
+//		Menu mm3 = new Menu();
+//		mm3.setId(1);
+//		mm3.setNombre("Lista");
+//		mm3.setCodigo("Lista");
+//		mm3.setUrl("Lista");
+//		mm3.setTipo("interno");
+//		mm3.setOrden(2);
+//		mm3.setFunction(null);
+//		mss.add(mm3);
+//
+//		Menu mm4 = new Menu();
+//		mm4.setId(1);
+//		mm4.setNombre("Columna");
+//		mm4.setCodigo("Columna");
+//		mm4.setUrl("Columna");
+//		mm4.setTipo("interno");
+//		mm4.setOrden(3);
+//		mm4.setFunction(null);
+//		mss.add(mm4);
+//
+//		m.setMenus(mss);
 
 		return ms;
 	}

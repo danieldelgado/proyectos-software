@@ -58,6 +58,31 @@ public class Menu extends Recurso implements Serializable {
 	@OneToMany(mappedBy = "menu")
 	private List<Menu> menus;
 
+	
+	
+	public Menu(Integer id,String codigo,String nombre, Integer orden, String tipo, Boolean defaultMenu, Boolean todos, String url) {
+		super();
+		this.id = id;
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.orden = orden;
+		this.tipo = tipo;
+		this.defaultMenu = defaultMenu;
+		this.todos = todos;
+		this.url = url;
+	}
+	
+	public Menu(String codigo,String nombre, Integer orden, String tipo, Boolean defaultMenu, Boolean todos, String url) {
+		super();
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.orden = orden;
+		this.tipo = tipo;
+		this.defaultMenu = defaultMenu;
+		this.todos = todos;
+		this.url = url;
+	}
+
 	/**
 	 * Instantiates a new menu.
 	 */
