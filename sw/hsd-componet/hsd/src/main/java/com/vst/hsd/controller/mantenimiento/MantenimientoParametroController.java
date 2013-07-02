@@ -4,9 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.vst.hsd.dominio.Formulario;
 import com.vst.hsd.service.mantenimiento.MantenimientoParametroService;
 
 
@@ -18,8 +20,11 @@ public class MantenimientoParametroController {
 	@Autowired
 	private MantenimientoParametroService mantenimientoParametroService;
 	
-	@RequestMapping(value = "mantenimiento/registrarParametro", method = RequestMethod.GET)
-	public String get() {
+	@RequestMapping(value = "mantenimiento/registrarParametro/{codigoFormulario}", method = RequestMethod.GET)
+	public String get(@PathVariable String codigoFormulario) {
+		log.info("codigoFormulario:"+codigoFormulario);
+		Formulario f = mantenimientoParametroService.obtenerFormulario(codigoFormulario);
+		log.info(" mantenimientoParametroService :"+f);
 		return "mantenimiento/parametros/parametro";
 	}
 

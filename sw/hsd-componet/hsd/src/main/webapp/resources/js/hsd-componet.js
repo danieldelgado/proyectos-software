@@ -195,12 +195,18 @@ function cargarLista(pm) {
 						text : item.nombre,
 						id : item.id
 					}).click(function() {
+
+						consola("click item.codigo");
+						consola(item.codigo);
+						consola(context + item.url);
+						
 //						if (item.tipo == "addtablink") {
 //							if (!existsTabSelect(item.codigo)) {
-//								var html = "";
-//								ajaxAsyncGetHtml(context + item.url, null, function(h) {
-//									html = h;
-//								});
+								var html = "";
+								ajaxAsyncGetHtml(context + item.url, null, function(h) {
+									html = h;
+								});
+								consola(html);
 //								addtab(item.descripcion, item.codigo, html, true);
 //							} else {
 //								selectTab(item.codigo);

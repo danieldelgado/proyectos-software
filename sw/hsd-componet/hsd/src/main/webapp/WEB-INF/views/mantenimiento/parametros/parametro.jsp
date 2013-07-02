@@ -4,10 +4,10 @@
 <%@ taglib uri="http://www.chimera.org/chimera.tld" prefix="p"%>
 
 <div id="NuevoParametro" >
-	<p:botones botones=""  />
+<%-- 	<p:botones botones=""  /> --%>
 	
 	
-	
+	NuevoParametro
 	
 	
 
