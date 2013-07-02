@@ -18,7 +18,7 @@ public class BotonDAOImpl extends DAO<Boton> implements BotonDAO {
 	@SuppressWarnings("unchecked")
 	public List<Boton> obtenerBotonesPorMenu(Integer idmenu) {
 		log.info("obtener por menu");
-		sqlQuery = " SELECT new Boton( b.id, b.codigo, b.icono, b.orden, b.parametrosJson, b.tipo,b.url) from Boton b "
+		sqlQuery = " SELECT new Boton( b.id, b.codigo, b.icono, b.orden, b.parametrosJson, b.tipo,b.url,b.nombre) from Boton b "
 				+ " where b.id in ( select bpm.id.boton.id from BotonPorMenu bpm where  bpm.id.menu.id = :menu )  ";
 		log.debug(" sqlQuery  : " + sqlQuery);
 		try {

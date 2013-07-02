@@ -192,7 +192,7 @@ function cargarLista(pm) {
 				});
 				$(res).each(function(i, item) {
 					var btnNuevo = $('<button/>', {
-						text : item.descripcion,
+						text : item.nombre,
 						id : item.id
 					}).click(function() {
 //						if (item.tipo == "addtablink") {

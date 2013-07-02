@@ -56,6 +56,9 @@ public class Boton extends Recurso implements Serializable {
 	@Column(name = "url", length = 250)
 	private String url;
 
+	@Column(name = "nombre", length = 250)
+	private String nombre;
+	
 	// bi-directional many-to-many association to Menu
 	// @ManyToMany(mappedBy="botons",fetch=FetchType.LAZY)
 	// private List<Menu> menus;
@@ -71,7 +74,7 @@ public class Boton extends Recurso implements Serializable {
 	
 
 
-	public Boton(Integer id,String codigo, String icono, Integer orden, String parametrosJson, String tipo, String url) {
+	public Boton(Integer id,String codigo, String icono, Integer orden, String parametrosJson, String tipo, String url, String nombre) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
@@ -80,10 +83,27 @@ public class Boton extends Recurso implements Serializable {
 		this.parametrosJson = parametrosJson;
 		this.tipo = tipo;
 		this.url = url;
+		this.nombre = nombre;
 	}
 
 	
 	
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+
 
 	/**
 	 * Gets the bloqueable.
