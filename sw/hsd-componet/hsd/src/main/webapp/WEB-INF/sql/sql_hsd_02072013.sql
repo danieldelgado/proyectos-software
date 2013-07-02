@@ -147,7 +147,7 @@ INSERT INTO `columna` (`id_columna`,`activo`,`addColumn`,`alineacion`,`ancho`,`a
  (11,1,1,NULL,0,'id',NULL,'fewwe',NULL,NULL,NULL,'wefew',1,1,'Lista',0),
  (12,1,1,NULL,100,'nombre','Nombre','gghrttr3ewf455634',NULL,NULL,NULL,'fwewefew',1,2,'Lista',1),
  (13,1,1,NULL,100,'tabla','Tabla','weffewfef',NULL,NULL,NULL,'qwdwqd',1,3,'Lista',1),
- (14,1,1,NULL,100,'id_menu','Menu','wfweewht2',NULL,NULL,NULL,'ewfewfefew',1,4,'Lista',1),
+ (14,1,1,NULL,100,'idMenu','Menu','wfweewht2',NULL,NULL,NULL,'ewfewfefew',1,4,'Lista',1),
  (15,1,1,NULL,100,'id',NULL,'regre',NULL,NULL,NULL,'wefwe',1,1,'Menu',0),
  (16,1,1,NULL,100,'nombre','Nombre','hytjyj',NULL,NULL,NULL,'jytjjtyjty',1,2,'Menu',1),
  (17,1,1,NULL,100,'url','Url','ergerg',NULL,NULL,NULL,'wefewf',1,3,'Menu',1),
@@ -477,19 +477,19 @@ CREATE TABLE `recurso` (
 /*!40000 ALTER TABLE `recurso` DISABLE KEYS */;
 INSERT INTO `recurso` (`id_recurso`,`activo`,`codigo`,`descripcion`,`estado`,`fecha_actualizacion`,`fecha_creacion`) VALUES 
  (1,0x01,'Parametro','Lista Parametro','A','1990-10-10','1990-10-10 00:00:00'),
- (2,0x01,'Menu','Menu Parametro','A','1990-10-10','1990-10-10 00:00:00'),
+ (2,0x01,'Menu Menu','Menu Parametro','A','1990-10-10','1990-10-10 00:00:00'),
  (3,0x01,'Boton Nuevo','Boton Nuevo','A','1990-10-10','1990-10-10 00:00:00'),
  (4,0x01,'Boton Guardar','Boton Guardar','A','1990-10-10','1990-10-10 00:00:00'),
  (5,0x01,'Menu Perfil','Menu Perfil','A','1990-10-10','1990-10-10 00:00:00'),
- (6,0x01,'Lista Perfil','Lista Perfil','A','1990-10-10','1990-10-10 00:00:00'),
+ (6,0x01,'Perfil','Lista Perfil','A','1990-10-10','1990-10-10 00:00:00'),
  (7,0x01,'Menu Lista','Menu Lista','A','1990-10-10','1990-10-10 00:00:00'),
- (8,0x01,'Lista Lista','Lista Lista','A','1990-10-10','1990-10-10 00:00:00'),
+ (8,0x01,'Lista','Lista Lista','A','1990-10-10','1990-10-10 00:00:00'),
  (9,0x01,'Menu Usuario','Menu Usuario','A','1990-10-10','1990-10-10 00:00:00'),
- (10,0x01,'Lista Usuario','Lista Usuario','A','1990-10-10','1990-10-10 00:00:00'),
+ (10,0x01,'Usuario','Lista Usuario','A','1990-10-10','1990-10-10 00:00:00'),
  (11,0x01,'Menu Fechas Evento','Menu Fechas Evento','A','1990-10-10','1990-10-10 00:00:00'),
- (12,0x01,'Lista Fechas Evento','Menu Fechas Evento','A','1990-10-10','1990-10-10 00:00:00'),
+ (12,0x01,'FechaDiaEvento','Lista Fechas Evento','A','1990-10-10','1990-10-10 00:00:00'),
  (13,0x01,'Menu Menu','Menu Menu','A','1990-10-10','1990-10-10 00:00:00'),
- (14,0x01,'Lista Menu','Lista Menu','A','1990-10-10','1990-10-10 00:00:00');
+ (14,0x01,'Menu','Lista Menu','A','1990-10-10','1990-10-10 00:00:00');
 /*!40000 ALTER TABLE `recurso` ENABLE KEYS */;
 
 
