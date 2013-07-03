@@ -38,7 +38,6 @@ public class BotonesTag extends SimpleTagSupport {
 	 */
 	@Override
 	public void doTag() throws JspException, IOException {
-		System.out.println("  entra BotonesTag ");
 		String jsp = "/WEB-INF/views/estructura/tag/botones.jsp";
 		PageContext pageContext = (PageContext) getJspContext();
 		pageContext.setAttribute("listaBotones", botones, PageContext.REQUEST_SCOPE);
@@ -49,7 +48,6 @@ public class BotonesTag extends SimpleTagSupport {
 		} else
 			tabBar = "tabBar";
 		try {
-			System.out.println(jsp);
 			pageContext.include(jsp);
 		} catch (ServletException e) {
 			System.out.println(" error ");

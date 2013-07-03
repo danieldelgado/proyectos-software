@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vst.hsd.dao.BotonDAO;
 import com.vst.hsd.dao.FormularioDAO;
 import com.vst.hsd.dao.ParametroDAO;
 import com.vst.hsd.dao.ParametroPorParametroDAO;
@@ -30,6 +31,9 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 	@Autowired
 	private ParametroPorParametroDAO parametroPorParametroDAO;
 
+	@Autowired
+	private BotonDAO botonDAO;
+	
 	public List<Parametro> obtenerEstados() {
 		log.info("obtenerEstados");
 		return null;
@@ -117,9 +121,8 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 	}
 
 	public List<Boton> obtenerBotonesPorFormulario(String codigoFormulario) {
-		
-		
-		return null;
+		List<Boton>  l = botonDAO.obtenerBotonesPorFormulario(codigoFormulario);
+		return l;
 	}
 
 }

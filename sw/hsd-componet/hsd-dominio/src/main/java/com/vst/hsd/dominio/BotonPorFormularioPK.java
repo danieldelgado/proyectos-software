@@ -10,7 +10,7 @@ public class BotonPorFormularioPK implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "id_formulario", nullable = false, insertable = false, updatable = false)
-	private Formulario menu;
+	private Formulario formulario;
 
 	@ManyToOne
 	@JoinColumn(name = "id_recurso", nullable = false, insertable = false, updatable = false)
@@ -19,15 +19,15 @@ public class BotonPorFormularioPK implements Serializable {
 	
 	public BotonPorFormularioPK() {
 	}
+	
+	public Formulario getFormulario() {
+		return formulario;
+	}
 
-	public Formulario getMenu() {
-		return menu;
+	public void setFormulario(Formulario formulario) {
+		this.formulario = formulario;
 	}
 	
-	public void setMenu(Formulario menu) {
-		this.menu = menu;
-	}
-
 	public Boton getBoton() {
 		return boton;
 	}

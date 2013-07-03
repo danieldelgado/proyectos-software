@@ -21,4 +21,6 @@ public interface BotonDAO extends IDAO<Boton> {
 	 */
 	List<Boton> obtenerBotonesPorMenu(Integer idmenu);
 
+	List<Boton> obtenerBotonesPorFormulario(String codigoFormulario);
+
 }

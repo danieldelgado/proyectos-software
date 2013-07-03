@@ -122,7 +122,6 @@ function crearTab() {
 }
 
 function addtab(titulo, identificador, content, select) {
-	consola("add tab");
 	var tabIdentificadorExists = get("#"+identificador);	
 	if (isNull(tabIdentificadorExists)) {
 		var tabTemplate = "<li><a href=\"#{href}\"> #{label} </a> <span class=\"ui-icon ui-icon-close\">Cerrar</span></li>";
@@ -135,12 +134,10 @@ function addtab(titulo, identificador, content, select) {
 }
 
 function selectTab(identificador) {
-	consola("selectTab");
 	tabsGeneralHSD.tabs("select", identificador);
 }
 
 function existsTabSelect(identificador) {
-	consola("existsTabSelect");
 	var tabIngresado = get("#"+identificador);
 	if (isNull(tabIngresado)) {
 		return false;
@@ -160,11 +157,8 @@ function irPagina(url) {
 function cargarLista(pm) {
 	tabprincipal.html("");
 	if ( isStringNull(pm) )  {
-		$.get(context + "principal/obtenerLista/" + pm, function(lista) {
-			consola("lista:");
-			consola(lista);
-			if(!isNullSpace(lista)){				
-			
+		$.get(context + "principal/obtenerLista/" + pm, function(lista) {			
+			if(!isNullSpace(lista)){
 			var nombres = new Array();
 			var modelo = new Array();
 			var columnas = lista.columnas;
@@ -182,11 +176,8 @@ function cargarLista(pm) {
 						sopt : [ 'cn', 'eq' ]
 					}
 				};
-			}			
-			
+			}		
 			ajaxAsyncGet(context + "principal/obtenerBotonesPorMenu/" + lista.idMenu, null, function(res) {
-				consola("res");
-				consola(res);
 				var toolbarButton = $('<div/>', {
 					'class' : 'ui-widget-header toolbar'
 				});
@@ -194,25 +185,17 @@ function cargarLista(pm) {
 					var btnNuevo = $('<button/>', {
 						text : item.nombre,
 						id : item.id
-					}).click(function() {
-
-						consola("click item.codigo");
-						consola(item.codigo);
-						consola(context + item.url);
-						
-//						if (item.tipo == "addtablink") {
-//							if (!existsTabSelect(item.codigo)) {
+					}).click(function() {					
+							if (!existsTabSelect(item.codigo)) {
 								var html = "";
-								ajaxAsyncGetHtml(context + item.url, null, function(h) {
+								ajaxAsyncGetHtml(context + item.url, {rand:count}, function(h) {
 									html = h;
 								});
-								consola(html);
-//								addtab(item.descripcion, item.codigo, html, true);
-//							} else {
-//								selectTab(item.codigo);
-//							}
-//
-//						}
+								addtab(lista.nombre, item.codigo+count, html, true);
+								count++;
+							} else {
+								selectTab(item.codigo);
+							}
 					}).button({
 						icons : {
 							primary : "ui-icon-document"
@@ -220,8 +203,6 @@ function cargarLista(pm) {
 					});
 					btnNuevo.appendTo(toolbarButton);
 				});
-				consola("toolbarButton");
-				consola(toolbarButton);
 				toolbarButton.appendTo(tabprincipal);
 				
 			});
