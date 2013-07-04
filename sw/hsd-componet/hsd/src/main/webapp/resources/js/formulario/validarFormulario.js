@@ -9,8 +9,8 @@ $(function() {
 
 
 function guardaFormularioSubmit(rand,url){	
-	consola("rand:"+rand + " url:"+url);
-	consola(formulario);
+	console.log("rand:"+rand + " url:"+url);
+	console.log(formulario);
 	this.rand = rand;
 	if(formulario==null){
 		formulario = $(".formulario-"+rand);	
@@ -35,8 +35,8 @@ function validarFormulario(codEnt) {
 		        dataType :"json",
 		        success:  function (resp) {		        	
 		        	data = resp;
-		        	consola("data");
-		        	consola(data);
+		        	console.log("data");
+		        	console.log(data);
 //		        	$.each(data, function(index, value) { 
 //						if(value!=null){										
 //							$.each(value, function(option, value) { 						
@@ -60,10 +60,10 @@ function validarFormulario(codEnt) {
 		        }
 		    });
 
-//		consola("formulario validate id");
-//		consola(formulario.attr("id"));
-//		consola("formulario validate class");
-//		consola(formulario.attr("class"));
+//		console.log("formulario validate id");
+//		console.log(formulario.attr("id"));
+//		console.log("formulario validate class");
+//		console.log(formulario.attr("class"));
 //		
 //		var vlt = formulario.validate({
 //					debug : true,
@@ -72,7 +72,7 @@ function validarFormulario(codEnt) {
 //					messages :
 //						validateParam.messages,
 //					submitHandler : function(form) {
-//						mensaje_consola('El formulario ha sido validado correctamente!');
+//						mensaje_console.log('El formulario ha sido validado correctamente!');
 //					}
 //				});		
 	}

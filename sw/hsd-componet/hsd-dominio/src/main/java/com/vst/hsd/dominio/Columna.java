@@ -62,6 +62,7 @@ public class Columna implements Entidad, Serializable {
 	@Column(name = "alineacion", length = 50, nullable = false)
 	private String alineacion;
 
+	
 	/** The formato_tipo. */
 	@Column(name = "formato_tipo", length = 50, nullable = false)
 	private String formato_tipo;
@@ -96,6 +97,9 @@ public class Columna implements Entidad, Serializable {
 	@Column(name = "activo", nullable = false)
 	private Boolean activo;
 
+	@Column(name = "onclick", length = 200, nullable = false)
+	private String onclick;
+	
 	/**
 	 * Instantiates a new columna.
 	 */
@@ -489,5 +493,15 @@ public class Columna implements Entidad, Serializable {
 	public void setOrden(Integer orden) {
 		this.orden = orden;
 	}
+
+	public String getOnclick() {
+		return onclick;
+	}
+
+	public void setOnclick(String onclick) {
+		this.onclick = onclick;
+	}
+	
+	
 
 }

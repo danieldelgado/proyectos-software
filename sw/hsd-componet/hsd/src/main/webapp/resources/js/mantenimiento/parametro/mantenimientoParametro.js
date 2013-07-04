@@ -4,7 +4,7 @@ var rand = "";
 
 $(function() {
 	rand = $("#rand").val();
-	consola(" rand: mp:"+rand + " rs:${rand}");
+//	console.log(" rand: mp:"+rand + " rs:${rand}");
 	
 });
 

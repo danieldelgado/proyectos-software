@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vst.hsd.dominio.Boton;
+import com.vst.hsd.dominio.Columna;
 import com.vst.hsd.dominio.Parametro;
 import com.vst.hsd.service.mantenimiento.MantenimientoParametroService;
 
@@ -45,7 +46,21 @@ public class MantenimientoParametroController {
 		return ms;
 	}
 	
-	
+	@RequestMapping(value = "	mantenimiento/editar/Parametro", method = RequestMethod.GET)
+	public String editar(Model model , Integer id) {		
+		System.out.println(" editar :"+id);	
+		Parametro formulario = mantenimientoParametroService.obtenerParametro(6);
+		
+		Parametro a = new Parametro();
+		a.setId(id);
+		model.addAttribute("parametro", a);
+		List<Boton> lstBotones = mantenimientoParametroService.obtenerBotonesPorFormulario(formulario.getCodigo());
+		model.addAttribute("codigoFormulario", "Formulario_Parametro");
+		model.addAttribute("rand", id);
+		model.addAttribute("lstBotones", lstBotones);
+		return "mantenimiento/parametros/parametro";
+	}
+
 	@RequestMapping(value = "mantenimiento/guardarParametro", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> guardar(Model model , Parametro parametro) {
 		Map<String, Object> ms = null;
@@ -54,5 +69,8 @@ public class MantenimientoParametroController {
 		
 		return ms;
 	}
+	
+	
+	
 	
 }

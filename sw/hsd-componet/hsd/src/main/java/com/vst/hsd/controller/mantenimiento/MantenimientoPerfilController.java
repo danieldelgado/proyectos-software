@@ -3,8 +3,12 @@ package com.vst.hsd.controller.mantenimiento;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.vst.hsd.dominio.Parametro;
 
 
 @Controller
@@ -16,5 +20,11 @@ public class MantenimientoPerfilController {
 	public String get() {
 		return "mantenimiento/perfil/mantenimientoPerfil";
 	}
-
+	
+	@RequestMapping(value = "	mantenimiento/editar/Perfil", method = RequestMethod.GET)
+	public @ResponseBody Parametro editar(Model model , Integer id) {		
+		System.out.println(" editar :"+id);		
+		return null;
+	}
+	
 }
