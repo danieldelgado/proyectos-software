@@ -3,17 +3,28 @@ package com.vst.util;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import com.google.gson.Gson;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class Util {
 
+	private static 	Random r =new Random();
+	
 	public static String getCodigo(Entidad entidad) {
 		Calendar c = Calendar.getInstance();
-		return entidad.getClass().getSimpleName() + "-" + c.getTimeInMillis() + "-" + entidad.hashCode();
+		return entidad.getClass().getSimpleName() + "-" + c.getTimeInMillis() + "-" + random();
 	}
 
+	public static int random(){	
+		return r.nextInt();
+	}
+	
+	public static int random(int limit){	
+		return r.nextInt(limit);
+	}
+	
 	public static String getJsonObject(Entidad entidad) {
 		Gson gson = new Gson();
 		String gsonString = gson.toJson(entidad);
