@@ -156,7 +156,7 @@ function irPagina(url) {
 
 function cargarLista(pm) {
 	tabprincipal.html("");
-	if ( isStringNull(pm) )  {
+	if ( !isStringNull(pm) )  {
 		$.get(context + "principal/obtenerLista/" + pm, function(lista) {			
 			if(!isNullSpace(lista)){
 			var nombres = new Array();
@@ -198,7 +198,7 @@ function cargarLista(pm) {
 							}
 					}).button({
 						icons : {
-							primary : "ui-icon-document"
+							primary : item.icono
 						}
 					});
 					btnNuevo.appendTo(toolbarButton);
@@ -272,7 +272,7 @@ function consola(objeto) {
 }
 function isStringNull(objeto) {
 	objeto = $.trim(objeto);	
-	if (objeto != null || objeto != "" ) {
+	if (objeto == null || objeto == "" ) {
 		return true;
 	}
 	return false;

@@ -1,15 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.chimera.org/chimera.tld" prefix="p"%>
-
-<div id="Parametro-${rand}" >
-	<input type="hidden" id="id" name="parametro.id" value="${parametro.id}" />
-	<p:botones botones="${lstBotones}"  />
+<script type="text/javascript"	src="<c:url value="/resources/js/mantenimiento/parametro/mantenimientoParametro.js" ></c:url>"></script>
 	
+<div id="Parametro-${rand}">
+	<p:botones botones="${lstBotones}" />
+	<input type="hidden" id="codigoFormulario" name="codigoFormulario" value="${codigoFormulario}" /> 
+	<input type="hidden" id="rand" name="rand" value="${rand}" /> 
 	<fieldset>
-	
-	
-	
+		<legend></legend>
+		<form id="" action="" method="post" class="formulario-${rand}">
+			<input type="hidden" id="id" name="parametro.id" value="${parametro.id}" />
+		</form>
 	</fieldset>
-
 </div>

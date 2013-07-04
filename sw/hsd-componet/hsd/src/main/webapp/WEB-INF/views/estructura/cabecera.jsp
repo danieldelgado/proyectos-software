@@ -24,6 +24,7 @@
 <script type="text/javascript" src="<c:url value="/resources/js/jquery.jqGrid.min.js" ></c:url>"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-validate.js" ></c:url>"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/hsd-componet.js" ></c:url>"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/formulario/validarFormulario.js" ></c:url>" ></script>
 <c:forEach var="js" items="${javascript}">
 	<script type="text/javascript" src="<c:url value="${js}" />"></script>
 </c:forEach>

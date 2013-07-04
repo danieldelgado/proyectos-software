@@ -33,7 +33,7 @@ public class Boton extends Recurso implements Serializable {
 
 	/** The on_click. */
 	@Column(name = "on_click", length = 80)
-	private String on_click;
+	private String onClick;
 
 	/** The on submit. */
 	@Column(name = "on_submit", length = 80)
@@ -87,7 +87,26 @@ public class Boton extends Recurso implements Serializable {
 	}
 
 	
-	
+
+	public Boton(Integer id,String codigo,Boolean bloqueable, String icono, String onComplete, String onClick, String onSubmit, Integer orden, String parametrosJson, String tipo, String url, String nombre) {
+		super();
+		this.id = id;
+		this.codigo = codigo;
+		this.bloqueable = bloqueable;
+		this.icono = icono;
+		this.onComplete = onComplete;
+		this.onClick = onClick;
+		this.onSubmit = onSubmit;
+		this.orden = orden;
+		this.parametrosJson = parametrosJson;
+		this.tipo = tipo;
+		this.url = url;
+		this.nombre = nombre;
+	}
+
+
+
+
 
 	public String getNombre() {
 		return nombre;
@@ -257,24 +276,18 @@ public class Boton extends Recurso implements Serializable {
 		this.url = url;
 	}
 
-	/**
-	 * Gets the on_click.
-	 * 
-	 * @return the on_click
-	 */
-	public String getOn_click() {
-		return on_click;
+	
+	public String getOnClick() {
+		return onClick;
 	}
 
-	/**
-	 * Sets the on_click.
-	 * 
-	 * @param on_click
-	 *            the new on_click
-	 */
-	public void setOn_click(String on_click) {
-		this.on_click = on_click;
+	public void setOnClick(String onClick) {
+		this.onClick = onClick;
 	}
+
+
+
+
 
 	/**
 	 * Sets the orden.

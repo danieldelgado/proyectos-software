@@ -1,76 +1,80 @@
-var formulario;
-var form = null;
-var idcontent = "";
-var entidad = "Parametro";
-$(function() {
-	
-	entidad = $("#entidad").val();	
 
-	mensaje_consola(entidad);
-	
-	mensaje_consola(idcontent);
-	
-	formulario = $(".formulario "+idcontent);	
-		
-	cargarValidateForm();
-	
-/*	$(".clGuardar").button().click(function() {
-		formulario.submit();
-	});
-*/
-	
+var formulario = null;
+var rand = "";
+var codigoEntidad = "";
+
+$(function() {	
+	codigoEntidad = $("#codigoFormulario").val();		
 });
 
-function cargarValidateForm() {
+
+function guardaFormularioSubmit(rand,url){	
+	consola("rand:"+rand + " url:"+url);
+	consola(formulario);
+	this.rand = rand;
+	if(formulario==null){
+		formulario = $(".formulario-"+rand);	
+		validarFormulario(codigoEntidad);
+		formulario.action = url;
+	}	
+//	formulario.submit();
+}
+
+
+
+
+
+function validarFormulario(codEnt) {
 	if (formulario != null) {		
-		var validateParam = {};		
-		var data = null;
-		
+//		var validateParam = {};		
+		var data = null;		
 		ajaxSyncMap({
 		        type : "get",
-		        url: context+"valacion/parametros/"+entidad,
+		        url: context+"valacion/parametros/"+codEnt,
 		        async:  false,
 		        dataType :"json",
 		        success:  function (resp) {		        	
 		        	data = resp;
-		        	$.each(data, function(index, value) { 
-						if(value!=null){										
-							$.each(value, function(option, value) { 						
-								if(value!=null){	
-									var campos = {};			
-									$.each(value, function(index, value) {
-										$.each(value, function(index, value) {											
-											var reglas = {};
-											$.each(value, function(index, value) {												
-												reglas[index] = value;
-											});	
-											campos[index]=reglas;
-										});	
-
-									});	
-									validateParam[option]=campos;									
-								}							
-							});				
-						}				
-					});	
+		        	consola("data");
+		        	consola(data);
+//		        	$.each(data, function(index, value) { 
+//						if(value!=null){										
+//							$.each(value, function(option, value) { 						
+//								if(value!=null){	
+//									var campos = {};			
+//									$.each(value, function(index, value) {
+//										$.each(value, function(index, value) {											
+//											var reglas = {};
+//											$.each(value, function(index, value) {												
+//												reglas[index] = value;
+//											});	
+//											campos[index]=reglas;
+//										});	
+//
+//									});	
+//									validateParam[option]=campos;									
+//								}							
+//							});				
+//						}				
+//					});	
 		        }
 		    });
 
-		mensaje_consola("formulario validate id");
-		mensaje_consola(formulario.attr("id"));
-		mensaje_consola("formulario validate class");
-		mensaje_consola(formulario.attr("class"));
-		
-		var vlt = formulario.validate({
-					debug : true,
-					rules :	
-						validateParam.rules,
-					messages :
-						validateParam.messages,
-					submitHandler : function(form) {
-						mensaje_consola('El formulario ha sido validado correctamente!');
-					}
-				});		
+//		consola("formulario validate id");
+//		consola(formulario.attr("id"));
+//		consola("formulario validate class");
+//		consola(formulario.attr("class"));
+//		
+//		var vlt = formulario.validate({
+//					debug : true,
+//					rules :	
+//						validateParam.rules,
+//					messages :
+//						validateParam.messages,
+//					submitHandler : function(form) {
+//						mensaje_consola('El formulario ha sido validado correctamente!');
+//					}
+//				});		
 	}
 
 }

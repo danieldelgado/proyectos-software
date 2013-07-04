@@ -30,17 +30,29 @@ public class MantenimientoParametroController {
 	public String get(@PathVariable String codigoFormulario, Integer rand, Model model) {
 		log.info("Codigo Fomulario :"+codigoFormulario + " rand:"+rand);
 		List<Boton> lstBotones = mantenimientoParametroService.obtenerBotonesPorFormulario(codigoFormulario);
+		model.addAttribute("codigoFormulario", codigoFormulario);
 		model.addAttribute("rand", rand);
 		model.addAttribute("lstBotones", lstBotones);				
 		return "mantenimiento/parametros/parametro";
 	}
+
+
+	@RequestMapping(value = "valacion/parametros/{codigoFormulario}", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> validarFormulario(@PathVariable String codigoFormulario,Model model , Parametro parametro) {
+		Map<String, Object> ms = null;
+		log.info("Codigo Fomulario :"+codigoFormulario);
+		
+		return ms;
+	}
+	
 	
 	@RequestMapping(value = "mantenimiento/guardarParametro", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> guardar(Model model , Parametro parametro) {
 		Map<String, Object> ms = null;
 		
+		
+		
 		return ms;
 	}
-
-
+	
 }

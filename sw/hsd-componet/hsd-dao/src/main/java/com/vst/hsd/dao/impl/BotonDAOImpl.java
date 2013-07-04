@@ -36,7 +36,7 @@ public class BotonDAOImpl extends DAO<Boton> implements BotonDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Boton> obtenerBotonesPorFormulario(String codigoFormulario) {
-		sqlQuery = " select new Boton( b.id, b.codigo, b.icono, b.orden, b.parametrosJson, b.tipo,b.url,b.nombre) from Boton b"
+		sqlQuery = " select new Boton(b.id,b.codigo,b.bloqueable, b.icono, b.onComplete, b.onClick, b.onSubmit, b.orden, b.parametrosJson, b.tipo, b.url, b.nombre) from Boton b"
 				+ " where "
 				+ "  b.id in ( select bpm.id.boton.id from BotonPorFormulario bpm where  bpm.id.formulario.codigo = :codigoFormulario )  ";
 		try {
