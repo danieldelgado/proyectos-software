@@ -3,7 +3,18 @@ package com.vst.hsd.dominio;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.vst.util.Entidad;
 
@@ -66,6 +77,9 @@ public class Persona implements Entidad, Serializable {
 
 	@Column(name = "celular", length = 11)
 	private String celular;
+	
+	@Lob()	
+	private  byte[] api_key;
 
 	/**
 	 * Instantiates a new persona.
@@ -317,4 +331,14 @@ public class Persona implements Entidad, Serializable {
 		return null;
 	}
 
+	public byte[] getApi_key() {
+		return api_key;
+	}
+
+	public void setApi_key(byte[] api_key) {
+		this.api_key = api_key;
+	}
+
+	
+	
 }
