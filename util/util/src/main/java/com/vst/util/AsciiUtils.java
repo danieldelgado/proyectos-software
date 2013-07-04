@@ -55,7 +55,7 @@ public class AsciiUtils {
            char c = s.charAt(i);
            int pos = UNICODE.indexOf(c);
            if (pos > -1){
-//         	  sb.append(UnicodeFormatter.toString(Character.toString(c)));
+           	  sb.append(UnicodeFormatter.toString(Character.toString(c)));//José = Jos\u00e9
            }
            else {
                sb.append(c);
@@ -65,10 +65,11 @@ public class AsciiUtils {
      }
     
     
-//    public static void main(String[] args) {
-//		
-//    	System.out.println(convertNonAscii("J'osÃ©"));
-//    	
-//	}
+    public static void main(String[] args) {
+
+    	System.out.println(convertNonAscii("José"));//Jose
+    	System.out.println(_convertNonAscii("José"));//José //Jos\u00e9
+    	
+	}
     
 }
