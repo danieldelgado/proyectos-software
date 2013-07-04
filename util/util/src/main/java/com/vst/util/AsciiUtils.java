@@ -1,8 +1,14 @@
 package com.vst.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 //import com.liferay.portal.kernel.util.UnicodeFormatter;
 
 public class AsciiUtils {
+	
+	private static final Logger log = LoggerFactory.getLogger(AsciiUtils.class);
+	
     private static final String PLAIN_ASCII =
       "AaEeIiOoUu"    // grave
     + "AaEeIiOoUuYy"  // acute
@@ -25,11 +31,11 @@ public class AsciiUtils {
     + "\u0150\u0151\u0170\u0171"
     ;
 
-    // private constructor, can't be instanciated!
     private AsciiUtils() { }
 
-    // remove accentued from a string and replace with ascii equivalent
+    // las letras con tildes las pone sin tildes
     public static String convertNonAscii(String s) {
+    	log.debug("convertNonAscii:"+s);
        if (s == null) return null;
        StringBuilder sb = new StringBuilder();
        int n = s.length();
@@ -45,9 +51,10 @@ public class AsciiUtils {
        }
        return sb.toString();
     }
-    
-    // Andy por favor no modificar este metodo denuevo.
+
+    // las letras con tildes las pone en unicode
     public static String _convertNonAscii(String s) {
+    	log.debug("_convertNonAscii:"+s);
         if (s == null) return null;
         StringBuilder sb = new StringBuilder();
         int n = s.length();
@@ -65,11 +72,11 @@ public class AsciiUtils {
      }
     
     
-    public static void main(String[] args) {
-
-    	System.out.println(convertNonAscii("José"));//Jose
-    	System.out.println(_convertNonAscii("José"));//José //Jos\u00e9
-    	
-	}
+//    public static void main(String[] args) {
+//
+//    	System.out.println(convertNonAscii("José"));//Jose
+//    	System.out.println(_convertNonAscii("José"));//José //Jos\u00e9
+//    	
+//	}
     
 }
