@@ -379,7 +379,6 @@ function ajaxSync(url, data, method, callback) {
 }
 
 function ajaxSyncMap(map) {
-	// console.log(map);
 	$.ajax(map);
 }
 
