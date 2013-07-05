@@ -116,6 +116,7 @@ function crearTab() {
 		if (tab != "#tabPrincipal") {
 			$(tab).remove();
 			$(this).closest("li").remove().attr("aria-controls");
+			selectTab("#tabPrincipal");
 		}
 	});
 
