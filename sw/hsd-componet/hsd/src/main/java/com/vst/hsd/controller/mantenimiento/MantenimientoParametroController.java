@@ -52,6 +52,7 @@ public class MantenimientoParametroController {
 		Parametro parametro = mantenimientoParametroService.obtenerParametro(id);
 		Formulario formulario = mantenimientoParametroService.obtenerFormulario(codigoFormulario);
 		List<Boton> lstBotones = mantenimientoParametroService.obtenerBotonesPorFormulario(formulario.getCodigo());
+		model.addAttribute("codigoFormulario", codigoFormulario);	
 		model.addAttribute("formulario", formulario);	
 		model.addAttribute("rand", id);		
 		model.addAttribute("parametro", parametro);	

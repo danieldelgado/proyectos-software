@@ -116,6 +116,7 @@ public class MantenimientoParametroServiceImpl implements MantenimientoParametro
 	}
 
 	public Formulario obtenerFormulario(String codigoFormulario) {
+		System.out.println("codigoFormulario:"+codigoFormulario);
 		Formulario f = formularioDAO.getPorCodigo(codigoFormulario);		
 		return f;
 	}

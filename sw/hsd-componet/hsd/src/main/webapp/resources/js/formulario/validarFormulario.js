@@ -5,8 +5,3 @@ var codigoEntidad = "";
 $(function() {	
 	
 });
-
-function initValidate(rd){
-	
-}
-

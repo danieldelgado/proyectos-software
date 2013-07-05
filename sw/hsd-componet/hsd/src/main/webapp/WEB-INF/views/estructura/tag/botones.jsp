@@ -21,6 +21,7 @@
 			if(!isStringNull(onClick)){
 			}
 			if(!isStringNull(onSubmit)){
+				console.log("window[onSubmit]  rad:"+${rand}+"  url:"+url);
 				window[onSubmit](${rand},url);				
 			}			
 			if(!isStringNull(onComplete)){

@@ -1,13 +1,11 @@
-var asignados = null;
-var disponibles = null;
+var formulario = null;
 var rand = "";
+var codigoEntidad = "";
+
 $(function() {
 
 });
 
-function init(rd){
-}
-
-function guardar_submit(rad,url){
-	
+function guardar(rd,url){
+	console.log("guardar:"+url+" rd:"+rd);
 }
