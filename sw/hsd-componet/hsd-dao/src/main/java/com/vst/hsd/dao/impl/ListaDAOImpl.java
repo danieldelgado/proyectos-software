@@ -16,7 +16,7 @@ public class ListaDAOImpl extends DAO<Lista> implements ListaDAO {
 
 	public Lista obtenerListaPorUsuario(String codigoentidad, Usuario u) {
 		log.debug(" obtenerListaPorUsuario codigoentidad : " + codigoentidad);
-		sqlQuery = " SELECT new Lista( ls.id, ls.codigo, ls.nombre, ls.tabla, ls.idMenu) FROM Lista ls where ls.codigo = :codigoentidad " + " and "
+		sqlQuery = " SELECT new Lista( ls.id, ls.codigo, ls.nombre, ls.tabla, ls.idMenu, ls.rowClick) FROM Lista ls where ls.codigo = :codigoentidad " + " and "
 				+ " ls.id in ( select rpp.id.recurso.id from RecursoPorPerfil rpp where rpp.id.perfil.id = :perfil )   ";
 		log.debug(" sqlQuery  : " + sqlQuery);
 		q = em.createQuery(sqlQuery);
@@ -37,7 +37,7 @@ public class ListaDAOImpl extends DAO<Lista> implements ListaDAO {
 		log.debug(" obtenerListaPorEntidad entidad : " + entidad);
 //		sqlQuery = " SELECT new Lista( ls.id, ls.codigo, ls.nombre, ls.tabla,ls.idMenu) FROM Lista ls where ls.tabla = :entidad";
 
-		sqlQuery = " SELECT new Lista( ls.id, ls.codigo, ls.nombre, ls.tabla,ls.idMenu) FROM Lista ls where ls.codigo = :entidad";
+		sqlQuery = " SELECT new Lista( ls.id, ls.codigo, ls.nombre, ls.tabla,ls.idMenu, ls.rowClick) FROM Lista ls where ls.codigo = :entidad";
 		q = em.createQuery(sqlQuery);
 		try {
 			q.setMaxResults(1);

@@ -5,7 +5,7 @@ var tabsGeneralHSD = null;
 var tabprincipal = null;
 var ent = null;
 var layoutConeinerCenter = null;
-var count = 1;
+var count = 0;
 var mostrarMsj = true;
 var myLayout;
 var uilayoutwest;
@@ -124,10 +124,7 @@ function crearTab() {
 }
 
 function addtab(titulo, identificador, content, select) {
-	console.log("titulo:"+titulo + " identificador:"+identificador  );
 	var tabIdentificadorExists = get("#"+identificador);	
-	console.log("isNull(tabIdentificadorExists):"+(get("#"+tabIdentificadorExists)) );
-	console.log("isNull(tabIdentificadorExists):"+(isNull(tabIdentificadorExists)) );
 	if (isNull(tabIdentificadorExists)) {
 		var tabTemplate = "<li><a href=\"#{href}\"> #{label} </a> <span class=\"ui-icon ui-icon-close\">Cerrar</span></li>";
 		var li = $(tabTemplate.replace(/#\{href\}/g, "#" + identificador).replace(/#\{label\}/g, titulo));
@@ -150,21 +147,6 @@ function existsTabSelect(identificador) {
 	return true;
 }
 
-//detalleLista = function(id, cap) {
-//	 console.log("detalleLista:"+id+" "+cap);
-//	 var row_id = id;
-//	 var tbLista = ent;
-//	 var html = "";
-//	ajaxAsyncGetHtml(context+"mantenimiento/editar/" + tbLista, {id:id}, function(h) {
-//		if(h!=null)
-//			html = h;			
-//	});
-//	if(h!=null){
-//		addtab(lista.nombre, item.codigo+count, html, true);
-//	}
-//	 
-//};
-
 function cargarLista(pm) {
 	tabprincipal.html("");
 	if ( !isStringNull(pm) )  {
@@ -172,9 +154,7 @@ function cargarLista(pm) {
 			if(!isNullSpace(lista)){
 			var nombres = new Array();
 			var modelo = new Array();
-			var columnas = lista.columnas;		
-//			ent = lista.tabla;
-			
+			var columnas = lista.columnas;				
 			for ( var i = 0; i < columnas.length; i++) {
 				nombres[i] = columnas[i].cabecera;
 				modelo[i] = {
@@ -198,17 +178,10 @@ function cargarLista(pm) {
 					var btnNuevo = $('<button/>', {
 						text : item.nombre,
 						id : item.id
-					}).click(function() {					
-							if (!existsTabSelect(item.codigo)) {
-								var html = "";
-								ajaxAsyncGetHtml(context + item.url, {rand:count}, function(h) {
-									html = h;
-								});
-								addtab(lista.nombre, item.codigo+count, html, true);
-								count++;
-							} else {
-								selectTab(item.codigo);
-							}
+					}).click(function() {	
+							ajaxAsyncGetHtml(context + item.url, {rand:count}, function(h) {
+								addtab(lista.nombre, lista.nombre+count , h, true);
+							});
 					}).button({
 						icons : {
 							primary : item.icono
@@ -216,8 +189,7 @@ function cargarLista(pm) {
 					});
 					btnNuevo.appendTo(toolbarButton);
 				});
-				toolbarButton.appendTo(tabprincipal);
-				
+				toolbarButton.appendTo(tabprincipal);				
 			});
 
 			tabprincipal.append("<table id='lista'></table><div id='pager'></div> <input type=\"hidden\" id=\"sizelista\" value=\"${size}\" />");
@@ -237,22 +209,17 @@ function cargarLista(pm) {
 				pager : "#pager",
 				viewrecords : true,
 				caption : lista.nombre,
-				onSelectRow : function(id, cap) {
-					console.log("2detalleLista2: "+id+" "+cap + " lista:"+lista.nombre);
-					ajaxAsyncGetHtml(context+"mantenimiento/editar/" + lista.tabla, {id:id}, function(h) {
+				onSelectRow : function(id, cap) {					
+					ajaxAsyncGetHtml(context+"mantenimiento/editar/"+ lista.nombre + "/" +lista.rowClick , {id:id}, function(h) {
 						if(h!=null)
-							console.log(h);
-//							addtab(lista.nombre, lista.nombre+id, h, true);
-								
-					});
-									 
+							addtab(lista.nombre, lista.nombre+id , h, true);							
+					});									 
 				},
 				page : 1,
 				rowNum : "20",
 				rowList : [ 5, 10, 20, 30 ],
 				hidegrid : false,
 				loadComplete : function(json) {
-					// console.log("json:");
 				}
 			});
 
@@ -279,18 +246,6 @@ function get(identificadorObjeto) {
 
 }
 
-//function consola(objeto) {
-//	// if (!window.console) {
-//	// alert($.browser.msie);
-//	if (mostrarMsj == true) {
-//		if ($.browser.msie && $.browser.version < 9) {
-//			alert(objeto);
-//		} else {
-//			console.log(objeto);
-//		}
-//	}
-//}
-
 function isStringNull(objeto) {
 	objeto = $.trim(objeto);	
 	if (objeto == null || objeto == "" ) {
@@ -300,7 +255,6 @@ function isStringNull(objeto) {
 }
 
 function isNull(objeto) {
-	console.log("objeto:"+objeto);
 	if  (objeto == null || objeto == undefined || objeto == "" ) {
 		return true;
 	}

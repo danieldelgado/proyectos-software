@@ -97,9 +97,6 @@ public class Columna implements Entidad, Serializable {
 	@Column(name = "activo", nullable = false)
 	private Boolean activo;
 
-	@Column(name = "onclick", length = 200, nullable = false)
-	private String onclick;
-	
 	/**
 	 * Instantiates a new columna.
 	 */
@@ -494,14 +491,5 @@ public class Columna implements Entidad, Serializable {
 		this.orden = orden;
 	}
 
-	public String getOnclick() {
-		return onclick;
-	}
-
-	public void setOnclick(String onclick) {
-		this.onclick = onclick;
-	}
-	
-	
 
 }

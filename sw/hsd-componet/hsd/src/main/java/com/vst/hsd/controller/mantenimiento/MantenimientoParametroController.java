@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vst.hsd.dominio.Boton;
-import com.vst.hsd.dominio.Columna;
+import com.vst.hsd.dominio.Formulario;
 import com.vst.hsd.dominio.Parametro;
 import com.vst.hsd.service.mantenimiento.MantenimientoParametroService;
 
@@ -31,6 +31,8 @@ public class MantenimientoParametroController {
 	public String get(@PathVariable String codigoFormulario, Integer rand, Model model) {
 		log.info("Codigo Fomulario :"+codigoFormulario + " rand:"+rand);
 		List<Boton> lstBotones = mantenimientoParametroService.obtenerBotonesPorFormulario(codigoFormulario);
+		Formulario formulario = mantenimientoParametroService.obtenerFormulario(codigoFormulario);
+		model.addAttribute("formulario", formulario);
 		model.addAttribute("codigoFormulario", codigoFormulario);
 		model.addAttribute("rand", rand);
 		model.addAttribute("lstBotones", lstBotones);				
@@ -41,22 +43,18 @@ public class MantenimientoParametroController {
 	@RequestMapping(value = "valacion/parametros/{codigoFormulario}", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> validarFormulario(@PathVariable String codigoFormulario,Model model , Parametro parametro) {
 		Map<String, Object> ms = null;
-		log.info("Codigo Fomulario :"+codigoFormulario);
-		
+		log.info("Codigo Fomulario :"+codigoFormulario);		
 		return ms;
 	}
 	
-	@RequestMapping(value = "	mantenimiento/editar/Parametro", method = RequestMethod.GET)
-	public String editar(Model model , Integer id) {		
-		System.out.println(" editar :"+id);	
-		Parametro formulario = mantenimientoParametroService.obtenerParametro(6);
-		
-		Parametro a = new Parametro();
-		a.setId(id);
-		model.addAttribute("parametro", a);
+	@RequestMapping(value = "mantenimiento/editar/Parametro/{codigoFormulario}", method = RequestMethod.GET)
+	public String editar(@PathVariable String codigoFormulario,Model model , Integer id) {		
+		Parametro parametro = mantenimientoParametroService.obtenerParametro(id);
+		Formulario formulario = mantenimientoParametroService.obtenerFormulario(codigoFormulario);
 		List<Boton> lstBotones = mantenimientoParametroService.obtenerBotonesPorFormulario(formulario.getCodigo());
-		model.addAttribute("codigoFormulario", "Formulario_Parametro");
-		model.addAttribute("rand", id);
+		model.addAttribute("formulario", formulario);	
+		model.addAttribute("rand", id);		
+		model.addAttribute("parametro", parametro);	
 		model.addAttribute("lstBotones", lstBotones);
 		return "mantenimiento/parametros/parametro";
 	}

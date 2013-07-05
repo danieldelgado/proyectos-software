@@ -31,6 +31,9 @@ public class Lista extends Recurso implements Serializable {
 	@Column(name = "tabla", length = 40, nullable = false)
 	private String tabla;
 
+	@Column(name = "rowClick", length = 200, nullable = false)
+	private String rowClick;
+	
 	private transient List<Columna> columnas;
 	
 	/**
@@ -59,6 +62,15 @@ public class Lista extends Recurso implements Serializable {
 		this.nombre = nombre;
 		this.tabla = tabla;
 		this.idMenu = idMenu;
+	}
+	
+	public Lista(Integer id, String codigo, String nombre, String tabla, Integer idMenu, String rowClick) {
+		super(id);
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.tabla = tabla;
+		this.idMenu = idMenu;
+		this.rowClick = rowClick;
 	}
 
 	/**
@@ -124,6 +136,14 @@ public class Lista extends Recurso implements Serializable {
 
 	public void setColumnas(List<Columna> columnas) {
 		this.columnas = columnas;
+	}
+
+	public String getRowClick() {
+		return rowClick;
+	}
+
+	public void setRowClick(String rowClick) {
+		this.rowClick = rowClick;
 	}
 	
 	
