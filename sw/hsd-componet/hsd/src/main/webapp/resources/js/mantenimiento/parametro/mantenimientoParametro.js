@@ -1,17 +1,18 @@
 var formulario = null;
 var rand = "";
 var codigoEntidad = "";
-
+var pnl = null;
 $(function() {
-	var pnl = $(".pnlParametro").last();
+//	pnl = $(".pnlParametro").last();
+//	pnl.validarFormulario();	
+	var tab=$(".ui-tabs-active",$(tabsGeneralHSD));
+	console.log("tab:");
+	console.log(tab);
+	
 });
 
-function init(pnl){
-	console.log("pnl");
-	console.log(pnl);
-}
-
-function guardar(rd,url){
-	console.log(pnl);
+function guardar_submit(rd,url){
 	console.log("guardar:"+url+" rd:"+rd);
+//	console.log("pnl:");
+//	console.log(pnl);	
 }

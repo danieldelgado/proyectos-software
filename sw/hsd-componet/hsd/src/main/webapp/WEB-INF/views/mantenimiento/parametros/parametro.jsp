@@ -8,8 +8,8 @@
 	<input type="hidden" id="rand" name="rand" value="${rand}" /> 
 <!-- 	<fieldset> -->
 <!-- 		<legend></legend> -->
-<%-- 		<form id="" action="" method="post" class="formulario-${rand}"> --%>
+		<form id="" action="" method="post" class="formulario-${rand}">
 <%-- 			<input type="hidden" id="id" name="parametro.id" value="${parametro.id}" /> --%>
-<!-- 		</form> -->
+		</form>
 <!-- 	</fieldset> -->
 </div>
