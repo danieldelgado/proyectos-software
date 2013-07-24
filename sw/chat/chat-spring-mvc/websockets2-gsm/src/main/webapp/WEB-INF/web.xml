@@ -3,11 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	
-	<servlet>
-		<servlet-name>simpleWS</servlet-name>
-		<servlet-class>com.autentia.tutorial.websockets.SimpleWebSocketServlet</servlet-class>
-	</servlet>
-	
+
 	<servlet>
 		<servlet-name>wsChat</servlet-name>
 		<servlet-class>com.autentia.tutorial.websockets.WebSocketCharServlet</servlet-class>
@@ -37,12 +33,6 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
-	
-	<servlet-mapping>
-		<servlet-name>simpleWS</servlet-name>
-		<url-pattern>/simple</url-pattern>
-	</servlet-mapping>
-	
 	<servlet-mapping>
 		<servlet-name>wsChat</servlet-name>
 		<url-pattern>/chat</url-pattern>
