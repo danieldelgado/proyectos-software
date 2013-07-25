@@ -2,46 +2,35 @@ var wsclient = (function() {
 
 	var ws = null;
 	var wsURI = 'ws://' + location.host + '/tutorial/chat';
-	console.log("wsURI:" + wsURI);
-
+	
 	function connect(userName) {
-		console.log("userName:" + userName);
-
 		if (!userName || userName == '') {
 			return;
 		}
 
 		if ('WebSocket' in window) {
 			ws = new WebSocket(wsURI + '?userName=' + userName);
-			console.log(" ws WebSocket:" + wsURI + '?userName=' + userName);
-			console.log(ws);
 		} else if ('MozWebSocket' in window) {
 			ws = new MozWebSocket(wsURI + '?userName=' + userName);
-			console.log(" ws MozWebSocket:" + wsURI + '?userName=' + userName);
-			console.log(ws);
 		} else {
 			alert('Tu navegador no soporta WebSockets');
 			return;
 		}
 		ws.onopen = function() {
-			console.log(" onopen setConnected true");
 			setConnected(true);
 		};
 		ws.onmessage = function(event) {
 			var message = JSON.parse(event.data);
-			console.log(" onmessage onmessage processMessage :" + message);
 			processMessage(message);
 		};
 
 		ws.onclose = function() {
-			console.log(" onclose setConnected false closeAllConversations");
 			setConnected(false);
 			document.getElementById('userName').value = '';
 			closeAllConversations();
 		};
 
 		function processMessage(message) {
-			console.log(" processMessage :" + message);
 			if (message.messageInfo) {
 				showConversation(message.messageInfo.from);
 				addMessage(message.messageInfo.from, message.messageInfo.message, cleanWhitespaces(message.messageInfo.from) + 'conversation');
@@ -62,7 +51,6 @@ var wsclient = (function() {
 	}
 
 	function disconnect() {
-		console.log(" disconnect ");
 		if (ws != null) {
 			ws.close();
 			ws = null;
@@ -71,7 +59,6 @@ var wsclient = (function() {
 	}
 
 	function setConnected(connected) {
-		console.log(" setConnected connected:" + connected);
 		document.getElementById('connect').disabled = connected;
 		document.getElementById('disconnect').disabled = !connected;
 		cleanConnectedUsers();
@@ -83,7 +70,6 @@ var wsclient = (function() {
 	}
 
 	function updateUserConnected() {
-		console.log(" updateUserConnected ");
 		var inputUsername = $('#userName');
 		var onLineUserName = $('.onLineUserName');
 		onLineUserName.html(inputUsername.val());
@@ -103,7 +89,6 @@ var wsclient = (function() {
 	}
 
 	function updateUserDisconnected() {
-		console.log(" updateUserDisconnected ");
 		$('.onLineUserName').css({
 			visibility : 'hidden'
 		});
@@ -120,22 +105,18 @@ var wsclient = (function() {
 	}
 
 	function cleanConnectedUsers() {
-		console.log(" cleanConnectedUsers ");
 		$('#onlineUsers').html('');
 	}
 
 	function removeTab(conversationId) {
-		console.log(" removeTab ");
 		$('#conversations').tabs('remove', conversationId);
 	}
 
 	function cleanWhitespaces(text) {
-		console.log(" cleanWhitespaces ");
 		return text.replace(/\s/g, "_");
 	}
 
 	function showConversation(from) {
-		console.log(" showConversation ");
 		var conversations = $('#conversations');
 		conversations.css({
 			visibility : 'visible'
@@ -150,7 +131,6 @@ var wsclient = (function() {
 	}
 
 	function createConversationPanel(name) {
-		console.log(" createConversationPanel ");
 		var conversationId = cleanWhitespaces(name) + 'conversation';
 		var conversationPanel = $(document.createElement('div'));
 		conversationPanel.attr({
@@ -188,7 +168,6 @@ var wsclient = (function() {
 	}
 
 	function createSendButton(name) {
-		console.log(" createSendButton ");
 		var conversationId = cleanWhitespaces(name) + 'conversation';
 		var button = $(document.createElement('button'));
 		button.html('Enviar');
@@ -199,7 +178,6 @@ var wsclient = (function() {
 	}
 
 	function closeAllConversations() {
-		console.log(" closeAllConversations ");
 		for ( var i = $('#conversations').tabs('length'); i >= 0; i--) {
 			$('#conversations').tabs('remove', i - 1);
 		}
@@ -209,7 +187,6 @@ var wsclient = (function() {
 	}
 
 	function createCloseButton(conversationId) {
-		console.log(" createCloseButton :" + conversationId);
 		var button = $(document.createElement('button'));
 		button.html('Cerrar');
 		button.click(function() {
@@ -219,15 +196,13 @@ var wsclient = (function() {
 	}
 
 	function addMessage(from, message, conversationPanelId) {
-		console.log(" addMessage :" + addMessage);
 		var messages = $('#' + conversationPanelId + ' .messages');
 		$('<div class="message"><span><b>' + from + '</b> dice:</span><p>' + $('<p/>').text(message).html() + '</p></div>').appendTo(messages);
 		messages.scrollTop(messages[0].scrollHeight);
 		$('#' + conversationPanelId + ' textarea').focus();
 	}
 
-	function toChat(sender, receiver, message) {
-		console.log(" toChat sender:" + sender + " receiver:" + receiver + " message:" + message);
+	function toChat(sender, receiver, message) {		
 		ws.send(JSON.stringify({
 			messageInfo : {
 				from : sender,
@@ -239,13 +214,11 @@ var wsclient = (function() {
 
 	/** ******* usuarios conectados ****** */
 	function addOnlineUser(userName) {
-		console.log(" addOnlineUser :" + userName);
 		var newOnlineUser = createOnlineUser(userName);
 		newOnlineUser.appendTo($('#onlineUsers'));
 	}
 
 	function removeOnlineUser(userName) {
-		console.log(" removeOnlineUser :" + userName);
 		$('#onlineUsers > li').each(function(index, elem) {
 			if (elem.id == userName + 'onlineuser') {
 				$(elem).remove();
@@ -254,7 +227,6 @@ var wsclient = (function() {
 	}
 
 	function createOnlineUser(userName) {
-		console.log(" createOnlineUser :" + userName);
 		var link = $(document.createElement('a'));
 		link.html(userName);
 		link.click(function() {
