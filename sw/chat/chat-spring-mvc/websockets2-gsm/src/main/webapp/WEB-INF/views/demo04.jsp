@@ -14,52 +14,180 @@ body {
 	font-size: 10px;
 }
 
-.toggler {
-	position: fixed;
-	top: 10px;
-	right: 0px;
-	z-index: 100;
-	width: : 100%;
+/* .toggler { */
+/* 	position: fixed; */
+/* 	top: 10px; */
+/* 	right: 0px; */
+/* 	z-index: 100; */
+/* 	width: : 100%; */
+/* 	float: right; */
+/* 	margin: 0px; */
+/* 	display: block; */
+/* 	bottom: 0px; */
+/* } */
+
+ #btnAparece { 
+ 	padding: .5em 1em; 
+ 	text-decoration: none; 
+ } 
+
+ #btnDesaparece { */
+ 	padding: .5em 1em; 
+ 	text-decoration: none; 
+} 
+
+/* #effect { */
+/* 	width: 240px; */
+/* 	position: relative; */
+/* 	height: 97%; */
+/* } */
+
+/* #effect h3 { */
+/* 	margin: 0; */
+/* 	padding: 0.4em; */
+/* 	text-align: center; */
+/* } */
+
+
+div.toggler {
+    padding: 10px;
+    padding-bottom: 60px;
+    border: 1px solid #ccc;
+    background: #fff;
+    position: fixed;
 	float: right;
-	margin: 0px;
-	display: block;
-	bottom: 0px;
+    top: 10px;
+	right: 0px;
+    bottom: 10px;
+    width: 280px;
+}
+div #effect {
+    background: #76a7dc;
+    padding-bottom: 10px;
+    color: #fff;
 }
 
-#btnAparece {
-	padding: .5em 1em;
-	text-decoration: none;
+div #lstusuario {
+    overflow-y: scroll;
+    height: 100%;
 }
 
-#btnDesaparece {
-	padding: .5em 1em;
-	text-decoration: none;
-}
-
-#effect {
-	width: 240px;
-	position: relative;
-	height: 97%;
-}
-
-#effect h3 {
-	margin: 0;
-	padding: 0.4em;
-	text-align: center;
-}
-#lstusuario {
-	overflow-y:auto;
-}
 
 </style>
 </head>
 <body>
+<!-- 	<div class="toggler"> -->
+<!-- 		<div id="effect" class="ui-widget-content ui-corner-all"> -->
+<!-- 			<h3 class="ui-widget-header ui-corner-all">Hide</h3> -->
+<!-- 			<div> -->
+<!-- 				<div class="lstusuario"> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario </span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 1</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 2</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 3</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 4</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 5</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 6</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 7</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 8</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 9</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 11</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 12</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 13</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 14</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 15</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 16</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 17</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 18</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 					<div class="user_chat"> -->
+<!-- 						<p> -->
+<!-- 							<span>usuario 19</span> -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+
 	<div class="toggler">
-		<div id="effect" class="ui-widget-content ui-corner-all">
-			<h3 class="ui-widget-header ui-corner-all">Hide</h3>
-			<div>
-				<div class="lstusuario">
-					<div class="user_chat">
+  
+    <div id="effect">
+        Hide       
+    </div>
+    <div id="lstusuario">
+                    <div class="user_chat">
 						<p>
 							<span>usuario </span>
 						</p>
@@ -154,10 +282,10 @@ body {
 							<span>usuario 19</span>
 						</p>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        
+    </div>
+</div>
+
 	<a href="#" id="btnAparece" class="ui-state-default ui-corner-all">Aparece
 		Run Effect</a>
 	<a href="#" id="btnDesaparece" class="ui-state-default ui-corner-all">Desaparece
@@ -170,7 +298,7 @@ body {
 		var dialog = $('#dialog');
 		var lista_user_chat = $(".user_chat");
 		
-		$("#effect").hide();
+		$("#toggler").hide();
 		
 		$(dialog).dialog({
 			autoOpen : false,
@@ -189,7 +317,7 @@ body {
 			var options = {
 				direction : "right"
 			};
-			$("#effect").show(selectedEffect, options, 500, function() {
+			$("#toggler").show(selectedEffect, options, 500, function() {
 			});
 		};
 		
@@ -201,7 +329,7 @@ body {
 			if ($(dialog).dialog("isOpen") == true) {
 				$(dialog).dialog("close");
 			}
-			$("#effect").hide(selectedEffect, options, 500, function() {});			
+			$("#toggler").hide(selectedEffect, options, 500, function() {});			
 		};
 		
 		$("#btnAparece").click(function() {
