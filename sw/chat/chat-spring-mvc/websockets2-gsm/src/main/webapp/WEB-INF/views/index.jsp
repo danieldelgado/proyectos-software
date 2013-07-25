@@ -14,6 +14,8 @@
             $('#conversations').tabs();
             console.log("conversations");
         });
+        console.log("wsclient");
+        console.log(wsclient);
     </script>
 </head>
 <body>

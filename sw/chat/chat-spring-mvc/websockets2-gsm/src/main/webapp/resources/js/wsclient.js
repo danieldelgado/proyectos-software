@@ -16,9 +16,11 @@ var wsclient = (function() {
 			alert('Tu navegador no soporta WebSockets');
 			return;
 		}
+		
 		ws.onopen = function() {
 			setConnected(true);
 		};
+		
 		ws.onmessage = function(event) {
 			var message = JSON.parse(event.data);
 			processMessage(message);
