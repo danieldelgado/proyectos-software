@@ -16,8 +16,8 @@ public class VentaSender {
     private JmsTemplate jmsTemplate;
    
     public void sendVenta(final Venta venta){
-        jmsTemplate.send(
-        new MessageCreator() {
+        System.out.println("Venta a enviar al activeMQ - id: "+ venta.getVentaId());
+        jmsTemplate.send( new MessageCreator() {
           public Message createMessage(Session session) throws JMSException {
                MapMessage mapMessage = session.createMapMessage();
                mapMessage.setInt("ventaId", venta.getVentaId());
@@ -26,8 +26,6 @@ public class VentaSender {
                mapMessage.setString("ventaCode", venta.getVentaCode());
                return mapMessage;
           }
-        }
-        );
-        System.out.println("Venta enviada - id: "+ venta.getVentaId());
+        });
     }
 }

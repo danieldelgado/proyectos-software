@@ -4,8 +4,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.test.ventaapp.domain.Venta;
-
 @Component
 public class VentaListener {
 
@@ -15,8 +13,7 @@ public class VentaListener {
 		int customerId = (Integer) message.get("customerId");
 		double price = (Double) message.get("price");
 		String ventaCode = (String) message.get("ventaCode");
-		Venta customer = new Venta(ventaId, customerId, price, ventaCode);
-		System.out.println("Venta rebibida: " + ventaId + ", customerId: "
-				+ customerId + ", price: " + price);
+//		Venta customer = new Venta(ventaId, customerId, price, ventaCode);
+		System.out.println("Venta rebibida del activeMQ: " + ventaId + ", customerId: " + customerId + ", price: " + price + " ventaCode:"+ventaCode);
 	}
 }

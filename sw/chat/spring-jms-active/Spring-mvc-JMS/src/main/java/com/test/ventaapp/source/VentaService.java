@@ -11,12 +11,12 @@ public class VentaService {
    
     @Autowired
     private VentaSender ventaSender;
-    public void setVentaSender(VentaSender ventaSender){
-        this.ventaSender = ventaSender;
-    }
+    
+//    public void setVentaSender(VentaSender ventaSender){
+//        this.ventaSender = ventaSender;
+//    }
    
-    public void sendVenta(int customerId, double price)
-    {
+    public void sendVenta(int customerId, double price)    {
         Venta venta = new Venta(ventaSequence, 2, price, "ventacd"+ ventaSequence++);
         ventaSender.sendVenta(venta);
     }
