@@ -9,7 +9,6 @@ public class TestJMSListner
  public static void main(String[] args) throws JMSException  
  {  
   System.out.println("LISTNER STARTED");  
-  ApplicationContext context = new ClassPathXmlApplicationContext(  
-    new String[] { "/META-INF/spring/JMSConfig.xml" });  
+  ApplicationContext context = new ClassPathXmlApplicationContext( new String[] { "/META-INF/spring/JMSConfig.xml" });  
  }  
 }  
