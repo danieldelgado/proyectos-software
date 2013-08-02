@@ -11,7 +11,9 @@ public class TestJms {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("/META-INF/spring/root-context.xml");
         VentaService ventaService = (VentaService) ctx.getBean("ventaService");
        
-        for(int i =1; i<=5; i++)
-            ventaService.sendVenta(1+i, 10.0D+i);
+        for(int i =1; i<=5; i++){
+        	ventaService.sendVenta(1+i, 10.0D+i);
+        }
+            
     }
 }

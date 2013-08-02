@@ -1,6 +1,6 @@
 var ActiveMQClient = (function() {
 
-    var ActiveMQURL = 'ws://192.168.1.36:61614'; // configurar!!!!
+    var ActiveMQURL = 'ws://192.168.1.146:61614'; // configurar!!!!
 
     var client;
     var connectedUsers = {};
