@@ -21,8 +21,6 @@
 </head>
 <body>
 
-
-
 <h1>WEBSOCKETS STOMP Y ACTIVEMQ</h1>
 
 <div id="container">
