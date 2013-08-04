@@ -26,6 +26,7 @@ public class NotificationActivity extends Activity {
 		System.out.println("DISPLAY");
 		Intent i = new Intent(this, NotificationView.class);
 		i.putExtra("notificationID", notificationID);
+		i.putExtra("texto", "Mira el mensaje " + notificationID);
 		System.out.println("DISPLAY 1 ");
 		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, 0);
 		NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
