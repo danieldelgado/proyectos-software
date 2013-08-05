@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:amq="http://activemq.apache.org/schema/core"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://activemq.apache.org/schema/core
+    http://activemq.apache.org/schema/core/activemq-core-5.2.0.xsd">
+
+<!-- 	<amq:broker id="broker" useJmx="false" persistent="false"> -->
+<!-- 		<amq:transportConnectors> -->
+<!-- 			<amq:transportConnector uri="tcp://localhost:0" /> -->
+<!-- 		</amq:transportConnectors> -->
+<!-- 	</amq:broker> -->
+
+	<amq:topic id="destination" physicalName="apachebite" />
+
+<!-- 	<amq:connectionFactory id="jmsFactory" -->
+<!-- 		brokerURL="tcp://192.168.1.146:61616" /> -->
+
+
+<!-- 	<bean id="jmsProducerConnectionFactory" depends-on="broker" -->
+<!-- 		p:targetConnectionFactory-ref="jmsFactory" /> -->
+
+<!-- 	<bean id="jmsProducerTemplate" p:connectionFactory-ref="jmsProducerConnectionFactory" -->
+<!-- 		p:defaultDestination-ref="destination" /> -->
+
+<!-- 	<bean id="publisher"> -->
+<!-- 		<property name="template" ref="jmsProducerTemplate" /> -->
+<!-- 	</bean> -->
+
+	<bean id="producerTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="defaultDestination" ref="destination" />
+	</bean>
+	
+	
+	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL">
+			<value>tcp://192.168.1.146:61616</value>
+		</property>
+	</bean>
+		
+	<bean class="com.apachebite.Publisher" id="simpleMessageProducer">
+		<property name="template" ref="producerTemplate"></property>
+	</bean>
+
+
+</beans>
