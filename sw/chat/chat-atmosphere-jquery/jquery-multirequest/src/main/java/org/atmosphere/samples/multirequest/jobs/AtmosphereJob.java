@@ -22,6 +22,7 @@ import org.atmosphere.jersey.JerseyBroadcaster;
 public abstract class AtmosphereJob {
 
 	protected void sendMessages(String topic, String message) {
+		System.out.println("AtmosphereJob sendMessages topic:"+topic+"  message:"+message);
 		Broadcaster broadcaster = getBroadcaster(topic);
 		if (broadcaster != null) {
 			broadcaster.broadcast(message);
@@ -29,6 +30,7 @@ public abstract class AtmosphereJob {
 	}
 
 	protected Broadcaster getBroadcaster(String topic) {
+		System.out.println("AtmosphereJob getBroadcaster topic:"+topic);
 		return BroadcasterFactory.getDefault().lookup(JerseyBroadcaster.class,
 				topic);
 	}

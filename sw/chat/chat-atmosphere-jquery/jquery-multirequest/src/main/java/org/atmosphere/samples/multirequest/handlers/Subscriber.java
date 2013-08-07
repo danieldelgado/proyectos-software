@@ -39,15 +39,17 @@ public class Subscriber {
 
 	@GET
 	public SuspendResponse<String> subscribe() {
+		System.out.println("Subscriber subscribe");
 		LOG.debug("OnSubscribe to topic");
-		SuspendResponse<String> sr = new SuspendResponse.SuspendResponseBuilder<String>().broadcaster(topic).outputComments(true)
-				.addListener(new EventsLogger()).build();
+		SuspendResponse<String> sr = new SuspendResponse.SuspendResponseBuilder<String>().broadcaster(topic).outputComments(true).addListener(new EventsLogger()).build();
+		System.out.println(sr);
 		return sr;
 	}
 
 	@POST
 	@Broadcast
 	public Broadcastable publish(@FormParam("message") String message) {
+		System.out.println("Subscriber publish message:"+message);
 		LOG.debug("Receive message <" + message + ">, dispatch to other connected");
 		return new Broadcastable(message, "", topic);
 	}

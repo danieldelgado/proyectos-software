@@ -15,62 +15,77 @@
  */
 package org.atmosphere.samples.multirequest.handlers;
 
-import org.apache.log4j.Logger;
 import org.atmosphere.cpr.AtmosphereResourceEvent;
 import org.atmosphere.websocket.WebSocketEventListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EventsLogger implements WebSocketEventListener {
 
-	private static final Logger logger = Logger.getLogger(EventsLogger.class);
+//	private static final Logger logger = Logger.getLogger(EventsLogger.class);
+	private static final Logger logger = LoggerFactory.getLogger(EventsLogger.class);
 
 	public EventsLogger() {
+		System.out.println("EventsLogger");
 	}
 
 	@Override
 	public void onPreSuspend(AtmosphereResourceEvent event) {
+		System.out.println("onPreSuspend");
 	}
 
 	public void onSuspend(final AtmosphereResourceEvent event) {
+		System.out.println("onSuspend");
 		logger.debug("onSuspend(): " + event.getResource().getRequest().getRemoteAddr() + ":" + event.getResource().getRequest().getRemotePort());
 	}
 
 	public void onResume(AtmosphereResourceEvent event) {
+		System.out.println("onResume");
 		logger.debug("onResume(): " + event.getResource().getRequest().getRemoteAddr() + ":" + event.getResource().getRequest().getRemotePort());
 	}
 
 	public void onDisconnect(AtmosphereResourceEvent event) {
+		System.out.println("onDisconnect");
 		logger.debug("onDisconnect(): " + event.getResource().getRequest().getRemoteAddr() + ":" + event.getResource().getRequest().getRemotePort());
 	}
 
 	public void onBroadcast(AtmosphereResourceEvent event) {
+		System.out.println("onBroadcast");
 		logger.debug("onBroadcast(): " + event.getMessage());
 	}
 
 	public void onThrowable(AtmosphereResourceEvent event) {
+		System.out.println("onThrowable");
 		logger.warn("onThrowable(): " + event);
 	}
 
 	public void onHandshake(WebSocketEvent event) {
+		System.out.println("onHandshake");
 		logger.debug("onHandshake(): " + event);
 	}
 
 	public void onMessage(WebSocketEvent event) {
+		System.out.println("onMessage");
 		logger.debug("onMessage(): " + event);
 	}
 
 	public void onClose(WebSocketEvent event) {
+		System.out.println("onClose");
 		logger.debug("onClose(): " + event);
 	}
 
 	public void onControl(WebSocketEvent event) {
+		System.out.println("onControl");
 		logger.debug("onControl(): " + event);
 	}
 
 	public void onDisconnect(WebSocketEvent event) {
+		System.out.println("onDisconnect");
 		logger.debug("onDisconnect(): " + event);
 	}
 
 	public void onConnect(WebSocketEvent event) {
+		System.out.println("onConnect");
 		logger.debug("onConnect(): " + event);
 	}
 }

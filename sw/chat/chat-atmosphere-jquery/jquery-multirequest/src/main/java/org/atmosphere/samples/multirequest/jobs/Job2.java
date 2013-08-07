@@ -21,9 +21,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class Job2 extends AtmosphereJob {
 
-	@Scheduled(cron = "0/5 * * * * ?")
+	public Job2() {
+		System.out.println("Job1:");
+	}
+	
+//	@Scheduled(cron = "0/5 * * * * ?")
+	@Scheduled(cron = "0/3 * * * * ?")
 	public void runAction() {
 		String message = "Message from Job2";
+		System.out.println("Job1 runAction send message:"+message);
 		sendMessages("job2", message);
 	}
 }
