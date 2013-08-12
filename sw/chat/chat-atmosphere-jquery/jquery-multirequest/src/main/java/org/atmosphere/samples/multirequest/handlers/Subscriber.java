@@ -58,6 +58,8 @@ public class Subscriber {
 	public Broadcastable publish(@FormParam("message") String message) {
 		System.out.println("Subscriber publish message:"+message);
 		LOG.debug("Receive message <" + message + ">, dispatch to other connected");
+//		topic.
+		
 		return new Broadcastable(message, "", topic);
 	}
 }
