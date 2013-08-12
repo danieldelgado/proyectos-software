@@ -25,67 +25,86 @@ public class EventsLogger implements WebSocketEventListener {
 //	private static final Logger logger = Logger.getLogger(EventsLogger.class);
 	private static final Logger logger = LoggerFactory.getLogger(EventsLogger.class);
 
+	
+	
+	int count = 0;
+	
+	
 	public EventsLogger() {
+		count++;
+		System.out.println("EventsLogger " +count);
+		System.out.println("EventsLogger");
 		System.out.println("EventsLogger");
 	}
 
 	@Override
 	public void onPreSuspend(AtmosphereResourceEvent event) {
-		System.out.println("onPreSuspend");
+		System.out.println("onPreSuspend " +count);
 	}
 
 	public void onSuspend(final AtmosphereResourceEvent event) {
-		System.out.println("onSuspend");
+		
+		System.out.println("onSuspend " +count);
 		logger.debug("onSuspend(): " + event.getResource().getRequest().getRemoteAddr() + ":" + event.getResource().getRequest().getRemotePort());
 	}
 
 	public void onResume(AtmosphereResourceEvent event) {
-		System.out.println("onResume");
+		
+		System.out.println("onResume " +count);
 		logger.debug("onResume(): " + event.getResource().getRequest().getRemoteAddr() + ":" + event.getResource().getRequest().getRemotePort());
 	}
 
 	public void onDisconnect(AtmosphereResourceEvent event) {
-		System.out.println("onDisconnect");
+		
+		System.out.println("onDisconnect  " +count);
 		logger.debug("onDisconnect(): " + event.getResource().getRequest().getRemoteAddr() + ":" + event.getResource().getRequest().getRemotePort());
 	}
 
 	public void onBroadcast(AtmosphereResourceEvent event) {
-		System.out.println("onBroadcast");
+		
+		System.out.println("onBroadcast " +count);
 		logger.debug("onBroadcast(): " + event.getMessage());
 	}
 
 	public void onThrowable(AtmosphereResourceEvent event) {
-		System.out.println("onThrowable");
+		
+		System.out.println("onThrowable " +count);
 		logger.warn("onThrowable(): " + event);
 	}
 
 	public void onHandshake(WebSocketEvent event) {
-		System.out.println("onHandshake");
+		
+		System.out.println("onHandshake " +count);
 		logger.debug("onHandshake(): " + event);
 	}
 
 	public void onMessage(WebSocketEvent event) {
-		System.out.println("onMessage");
+		
+		System.out.println("onMessage " +count);
 		logger.debug("onMessage(): " + event);
 	}
 
 	public void onClose(WebSocketEvent event) {
-		System.out.println("onClose");
+		
+		System.out.println("onClose " +count);		
 		logger.debug("onClose(): " + event);
 	}
 
 	public void onControl(WebSocketEvent event) {
-		System.out.println("onControl");
+		
+		System.out.println("onControl " +count);
 		logger.debug("onControl(): " + event);
 	}
 
 	public void onDisconnect(WebSocketEvent event) {
-		System.out.println("onDisconnect");
+		
+		System.out.println("onDisconnect " +count);
 		logger.debug("onDisconnect(): " + event);
 	}
 
 	public void onConnect(WebSocketEvent event) {
-		System.out.println("onConnect");
+		
+		System.out.println("onConnect " +count);
 		logger.debug("onConnect(): " + event);
 	}
 }

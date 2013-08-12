@@ -15,6 +15,8 @@
  */
 package org.atmosphere.samples.multirequest.handlers;
 
+import java.util.LinkedHashMap;
+
 import org.apache.log4j.Logger;
 import org.atmosphere.annotation.Broadcast;
 import org.atmosphere.cpr.Broadcaster;
@@ -33,16 +35,21 @@ import javax.ws.rs.Produces;
 public class Subscriber {
 
 	private static final Logger LOG = Logger.getLogger(Subscriber.class);
-
+	public static LinkedHashMap<String, EventsLogger> lst = new LinkedHashMap<String, EventsLogger>();
+	
 	@PathParam("topic")
 	private Broadcaster topic;
 
+	public static int count = 0;
+	
 	@GET
 	public SuspendResponse<String> subscribe() {
 		System.out.println("Subscriber subscribe");
 		LOG.debug("OnSubscribe to topic");
-		SuspendResponse<String> sr = new SuspendResponse.SuspendResponseBuilder<String>().broadcaster(topic).outputComments(true).addListener(new EventsLogger()).build();
-		System.out.println(sr);
+		EventsLogger ee = new EventsLogger();
+		lst.put("strin"+(count++),ee);
+		SuspendResponse<String> sr = new SuspendResponse.SuspendResponseBuilder<String>().broadcaster(topic).outputComments(true).addListener(ee).build();
+		System.out.println(lst);
 		return sr;
 	}
 
