@@ -22,7 +22,7 @@ public class AppSamplePostServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		super.doPost(req, resp);
-		System.out.println(" Connexion doPost ");	
+		System.out.println(" Coneccion doPost ");	
 		BeanConexion bc = new BeanConexion(req.getRemoteHost(), String.valueOf(req.getRemotePort()), getDateString(), "yo", "doPost",req.getParameterMap().toString(),"");
 		gestionarComandos(req.getParameterMap());	
 		if(!existeInstanciaIP(bc)){
