@@ -1,10 +1,20 @@
 package com.autentia.tutorial.websockets;
 
 
-import com.autentia.tutorial.websockets.messages.ConnectionInfoMessage;
-import com.autentia.tutorial.websockets.messages.MessageInfoMessage;
-import com.autentia.tutorial.websockets.messages.StatusInfoMessage;
-import com.google.gson.Gson;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.catalina.websocket.MessageInbound;
 import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WebSocketServlet;
@@ -12,12 +22,10 @@ import org.apache.catalina.websocket.WsOutbound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.util.*;
+import com.autentia.tutorial.websockets.messages.ConnectionInfoMessage;
+import com.autentia.tutorial.websockets.messages.MessageInfoMessage;
+import com.autentia.tutorial.websockets.messages.StatusInfoMessage;
+import com.google.gson.Gson;
 
 @SuppressWarnings("serial")
 @WebServlet(urlPatterns = "/chat")
@@ -39,7 +47,8 @@ public class WebSocketCharServlet extends WebSocketServlet {
         return new ChatConnection(connectionId, userName);
     }
 
-    private static class ChatConnection extends MessageInbound {
+    //implements MessageListener
+    private static class ChatConnection extends MessageInbound  implements MessageListener {
 
         private final String connectionId;
 
@@ -130,6 +139,11 @@ public class WebSocketCharServlet extends WebSocketServlet {
             }
             return null;
         }
+
+		@Override
+		public void onMessage(Message message) {
+			System.out.println(" message "+message);			
+		}
 
     }
 
