@@ -4,9 +4,8 @@ public class Conexion {
 
 	private String connectionId;
 	private String origin;
-	
 
-	public Conexion(String connectionId,String origin) {
+	public Conexion(String connectionId, String origin) {
 		this.connectionId = connectionId;
 		this.origin = origin;
 	}
@@ -26,6 +25,5 @@ public class Conexion {
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
-	
 
 }

@@ -10,11 +10,11 @@ public class Usuario {
 	private String nombre;
 	private String apellido;
 	private List<Conexion> listaConexionsid;
-		
+
 	public Usuario() {
-		
+
 	}
-	
+
 	public Usuario(int id, String userName, String clave, String nombre, String apellido) {
 		super();
 		this.id = id;
@@ -23,8 +23,6 @@ public class Usuario {
 		this.nombre = nombre;
 		this.apellido = apellido;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -73,7 +71,5 @@ public class Usuario {
 	public void setListaConexionsid(List<Conexion> listaConexionsid) {
 		this.listaConexionsid = listaConexionsid;
 	}
-
-	
 
 }

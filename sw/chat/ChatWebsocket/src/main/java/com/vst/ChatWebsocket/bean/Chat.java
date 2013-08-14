@@ -7,7 +7,7 @@ public class Chat {
 	private Usuario id_usuario_from;
 	private Usuario id_usuario_to;
 	private String mensaje;
-		
+
 	public Chat(int id, Conexion id_conexion, Usuario id_usuario_from, Usuario id_usuario_to, String mensaje) {
 		this.id = id;
 		this.id_conexion = id_conexion;
@@ -15,8 +15,7 @@ public class Chat {
 		this.id_usuario_to = id_usuario_to;
 		this.mensaje = mensaje;
 	}
-	
-	
+
 	public Chat() {
 	}
 
@@ -59,7 +58,5 @@ public class Chat {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-
-	
 
 }

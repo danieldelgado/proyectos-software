@@ -6,16 +6,16 @@ import com.vst.ChatWebsocket.bean.Usuario;
 
 public class ConnectionInfo {
 
-	private final Usuario user;
+	private Usuario user;
 
-	private final List<Usuario> activeUsers;
-	
-	private final List<Usuario> activeUsersDesconectados;
+	private List<Usuario> activeUsers;
 
-//	public ConnectionInfo(Usuario user, List<Usuario> activeUsers) {
-//		this.user = user;
-//		this.activeUsers = activeUsers;
-//	}
+	private List<Usuario> activeUsersDesconectados;
+
+	// public ConnectionInfo(Usuario user, List<Usuario> activeUsers) {
+	// this.user = user;
+	// this.activeUsers = activeUsers;
+	// }
 
 	public ConnectionInfo(Usuario usuario, List<Usuario> activeUsers, List<Usuario> activeUsersDesconectados) {
 		this.user = usuario;
@@ -34,7 +34,5 @@ public class ConnectionInfo {
 	public List<Usuario> getActiveUsersDesconectados() {
 		return activeUsersDesconectados;
 	}
-	
-	
-	
+
 }

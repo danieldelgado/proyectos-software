@@ -21,10 +21,10 @@ import com.vst.ChatWebsocket.service.ChatService;
 import com.vst.ChatWebsocket.util.InstanstBeans;
 
 public class ChatConnection extends MessageInbound {
-	public static final Logger log = LoggerFactory.getLogger(ChatConnection.class);
+	public static Logger log = LoggerFactory.getLogger(ChatConnection.class);
 	private ChatService chatService = null;
 	private static final Map<String, ChatConnection> connections = new HashMap<String, ChatConnection>();
-	public final Gson jsonProcessor;
+	public Gson jsonProcessor;
 	Usuario usuario = null;
 	Conexion c = null;
 
@@ -49,7 +49,7 @@ public class ChatConnection extends MessageInbound {
 	@Override
 	protected void onOpen(WsOutbound outbound) {
 		sendConnectionInfo(outbound);
-		StatusInfoMessage statusInfoMessage = new StatusInfoMessage(usuario, STATUS.CONNECTED,-1);
+		StatusInfoMessage statusInfoMessage = new StatusInfoMessage(usuario, STATUS.CONNECTED, -1);
 		sendStatusInfoToOtherUsers(statusInfoMessage);
 		chatService.guardarStatusInfo(statusInfoMessage.getStatusInfo());
 		connections.put(c.getConnectionId(), this);
@@ -57,7 +57,7 @@ public class ChatConnection extends MessageInbound {
 
 	@Override
 	protected void onClose(int status) {
-		StatusInfoMessage statusInfoMessage = new StatusInfoMessage(usuario, STATUS.DISCONNECTED,status);
+		StatusInfoMessage statusInfoMessage = new StatusInfoMessage(usuario, STATUS.DISCONNECTED, status);
 		sendStatusInfoToOtherUsers(statusInfoMessage);
 		chatService.guardarStatusInfo(statusInfoMessage.getStatusInfo());
 		connections.remove(c.getConnectionId());
@@ -65,30 +65,36 @@ public class ChatConnection extends MessageInbound {
 
 	@Override
 	protected void onBinaryMessage(ByteBuffer byteBuffer) throws IOException {
-		System.out.println("onBinaryMessage:"+byteBuffer);
+		System.out.println("onBinaryMessage:" + byteBuffer);
 		throw new UnsupportedOperationException("Binary messages not supported");
 	}
 
 	@Override
 	protected void onTextMessage(CharBuffer charBuffer) throws IOException {
-//		final MessageInfoMessage message = jsonProcessor.fromJson(charBuffer.toString(), MessageInfoMessage.class);
-		final MessageInfoMessage message = (MessageInfoMessage)obtenerObjetoJson(charBuffer,MessageInfoMessage.class);
-		final ChatConnection destinationConnection = getDestinationUserConnection(message.getMessageInfo().getTo());
+		// charBuffer.read(target)
+		MessageInfoMessage message = jsonProcessor.fromJson(charBuffer.toString(), MessageInfoMessage.class);
+		MessageInfo ms = message.getMessageInfo();
+		ms.setFrom(chatService.getUsuario(ms.getFromuserName()));
+		ms.setTo(chatService.getUsuario(ms.getTouserName()));
+		// MessageInfoMessage message =
+		// (MessageInfoMessage)obtenerObjetoJson(charBuffer,MessageInfoMessage.class);
+		ChatConnection destinationConnection = getDestinationUserConnection(message.getMessageInfo().getTo());
 		if (destinationConnection != null) {
-//			final CharBuffer jsonMessage = CharBuffer.wrap(jsonProcessor.toJson(message));
-//			final CharBuffer jsonMessage = CharBufferwrap(message);
-//			destinationConnection.getWsOutbound().writeTextMessage(jsonMessage);			
-			sendMensaje(destinationConnection.getWsOutbound(), message);	
+			// CharBuffer jsonMessage =
+			// CharBuffer.wrap(jsonProcessor.toJson(message));
+			// CharBuffer jsonMessage = CharBufferwrap(message);
+			// destinationConnection.getWsOutbound().writeTextMessage(jsonMessage);
+			sendMensaje(destinationConnection.getWsOutbound(), message);
 			chatService.guardarMessageInfo(message.getMessageInfo());
 		} else {
 			log.warn("Se esta  intentando enviar un mensaje a un usuario no conectado");
 		}
 	}
-	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private Object obtenerObjetoJson(CharBuffer string, Class classObj) {		
-		return jsonProcessor.fromJson(string.toString(), classObj);
-	}
+
+	// @SuppressWarnings({ "unchecked", "rawtypes" })
+	// private Object obtenerObjetoJson(CharBuffer string, Class classObj) {
+	// return jsonProcessor.fromJson(string.toString(), classObj);
+	// }
 
 	public String getUserName() {
 		return usuario.getUserName();
@@ -97,13 +103,13 @@ public class ChatConnection extends MessageInbound {
 	public Usuario getUser() {
 		return usuario;
 	}
-	
+
 	public void sendConnectionInfo(WsOutbound outbound) {
-		final List<Usuario> activeUsers = getActiveUsers();
-		final List<Usuario> activeUsersDesconectados = getActiveUsersDesconectados();
-		final ConnectionInfoMessage connectionInfoMessage = new ConnectionInfoMessage(usuario, activeUsers, activeUsersDesconectados);
+		List<Usuario> activeUsers = getActiveUsers();
+		List<Usuario> activeUsersDesconectados = getActiveUsersDesconectados();
+		ConnectionInfoMessage connectionInfoMessage = new ConnectionInfoMessage(usuario, activeUsers, activeUsersDesconectados);
 		try {
-//			outbound.writeTextMessage(CharBuffer.wrap(jsonProcessor.toJson(connectionInfoMessage)));
+			// outbound.writeTextMessage(CharBuffer.wrap(jsonProcessor.toJson(connectionInfoMessage)));
 			sendMensaje(outbound, connectionInfoMessage);
 			chatService.guardarConnectionInfo(connectionInfoMessage.getConnectionInfo());
 		} catch (IOException e) {
@@ -111,27 +117,26 @@ public class ChatConnection extends MessageInbound {
 		}
 	}
 
-	private List<Usuario> getActiveUsersDesconectados() {	
+	private List<Usuario> getActiveUsersDesconectados() {
 		Usuario usuarioChatConection = null;
 		List<Usuario> lusuarios = chatService.listaUsuarios();
 		List<Usuario> lusuariosDesc = new ArrayList<Usuario>();
-		for (Usuario u : lusuarios) {			
+		for (Usuario u : lusuarios) {
 			for (ChatConnection connection : connections.values()) {
 				usuarioChatConection = connection.getUser();
-				if(usuarioChatConection.getUserName().equals(u.getUserName())){
+				if (usuarioChatConection.getUserName().equals(u.getUserName())) {
 					break;
 				}
-			}	
-			if(!(usuario.getUserName().equals(u.getUserName()))){
+			}
+			if (!(usuario.getUserName().equals(u.getUserName()))) {
 				lusuariosDesc.add(u);
-			}			
-		}		
+			}
+		}
 		return lusuariosDesc;
 	}
 
-
 	public List<Usuario> getActiveUsers() {
-		final List<Usuario> activeUsers = new ArrayList<Usuario>();
+		List<Usuario> activeUsers = new ArrayList<Usuario>();
 		for (ChatConnection connection : connections.values()) {
 			activeUsers.add(connection.getUser());
 		}
@@ -140,11 +145,11 @@ public class ChatConnection extends MessageInbound {
 
 	public void sendStatusInfoToOtherUsers(StatusInfoMessage message) {
 		chatService.guardarStatusInfo(message.getStatusInfo());
-		final Collection<ChatConnection> otherUsersConnections = getAllChatConnectionsExceptThis();
+		Collection<ChatConnection> otherUsersConnections = getAllChatConnectionsExceptThis();
 		for (ChatConnection connection : otherUsersConnections) {
 			try {
-//				connection.getWsOutbound().writeTextMessage(CharBuffer.wrap(jsonProcessor.toJson(message)));
-				sendMensaje(connection.getWsOutbound(), message);
+				connection.getWsOutbound().writeTextMessage(CharBuffer.wrap(jsonProcessor.toJson(message)));
+				// sendMensaje(connection.getWsOutbound(), message);
 				chatService.guardarStatusInfo(message.getStatusInfo());
 			} catch (IOException e) {
 				log.error("No se pudo enviar el mensaje", e);
@@ -152,20 +157,20 @@ public class ChatConnection extends MessageInbound {
 		}
 	}
 
-	public void sendMensaje(WsOutbound  wsOutbound, Object object) throws IOException{
-		wsOutbound.writeTextMessage(CharBufferwrap(object));		
+	public void sendMensaje(WsOutbound wsOutbound, Object object) throws IOException {
+		wsOutbound.writeTextMessage(CharBufferwrap(object));
 	}
-	
-	public String toJson(Object obj){
-		return jsonProcessor.toJson(obj);		
+
+	public String toJson(Object obj) {
+		return jsonProcessor.toJson(obj);
 	}
-	
-	public CharBuffer CharBufferwrap(Object message){
+
+	public CharBuffer CharBufferwrap(Object message) {
 		return CharBuffer.wrap(toJson(message));
 	}
-	
+
 	public Collection<ChatConnection> getAllChatConnectionsExceptThis() {
-		final Collection<ChatConnection> allConnections = connections.values();
+		Collection<ChatConnection> allConnections = connections.values();
 		allConnections.remove(this);
 		return allConnections;
 	}

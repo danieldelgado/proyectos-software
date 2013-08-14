@@ -12,7 +12,6 @@
     <script type="text/javascript">
         $(function(){
             $('#conversations').tabs();
-            console.log("conversations");
         });
     </script>
 </head>

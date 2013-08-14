@@ -101,3 +101,8 @@ ul#onlineUsers li a:hover {
 div.leftPanel {
     float: left;
 }
+
+.onlineUsers span {
+    padding: 0 0 0 20px;
+    display: block;
+}
