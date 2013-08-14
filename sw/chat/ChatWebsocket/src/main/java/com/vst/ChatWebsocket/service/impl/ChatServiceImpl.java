@@ -78,4 +78,36 @@ public class ChatServiceImpl implements ChatService {
 		return listaUsuarios.size()+1;
 	}
 
+	@Override
+	public void addMensaje(Conexion conexion, Usuario usuariofrom, Usuario to,
+			String mensaje) {
+		Chat chat = new Chat(getLastID2(), conexion, usuariofrom, to, mensaje);
+		listaChats.add(chat);		
+	}
+
+	@Override
+	public int getLastID2() {
+		return listaChats.size()+1;
+	}
+
+	@Override
+	public boolean existeUsuario(String usuario) {
+		for (Usuario u : listaUsuarios) {
+			if(u.getUserName().equals(usuario)){
+				return true;
+			}
+		}	
+		return false;
+	}
+
+	@Override
+	public Usuario getUsuario(String usuario) {
+		for (Usuario u : listaUsuarios) {
+			if(u.getUserName().equals(usuario)){
+				return u;
+			}
+		}	
+		return null;
+	}
+
 }

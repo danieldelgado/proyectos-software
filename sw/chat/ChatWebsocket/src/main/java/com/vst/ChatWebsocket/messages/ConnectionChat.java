@@ -7,20 +7,25 @@ import java.nio.CharBuffer;
 import org.apache.catalina.websocket.MessageInbound;
 import org.apache.catalina.websocket.WsOutbound;
 
-import com.vst.ChatWebsocket.bean.Conexion;
 import com.vst.ChatWebsocket.bean.Usuario;
 import com.vst.ChatWebsocket.service.ChatService;
+import com.vst.ChatWebsocket.util.InstanceConnectChat;
 import com.vst.ChatWebsocket.util.InstanstBeans;
 
 public class ConnectionChat extends MessageInbound {
 	private ChatService chatService = null;
 	private Usuario usuario ;
-	private Conexion conexion = null;
 	
 	public ConnectionChat(String connectionId, String userName, String origin) {
-		System.out.println("ConnectionChat");
-		System.out.println(connectionId);
 		chatService = InstanstBeans.getChatService();
+		if(chatService.existeUsuario(userName)){
+			usuario = chatService.getUsuario(userName);
+		}else{
+			usuario = new Usuario(chatService.getLastID(), userName, userName, userName, userName);
+			chatService.guardar(usuario);
+		}
+		chatService.addUsuarioConectado(connectionId, origin, usuario);
+		InstanceConnectChat.addConexion(connectionId, this);
 	}
 
 	@Override

@@ -8,6 +8,8 @@ import com.vst.ChatWebsocket.bean.Usuario;
 
 public interface ChatService {
 
+	public boolean existeUsuario(String usuario);
+	public Usuario getUsuario(String usuario);
 	public List<Usuario> listaUsuariosConectados();//todos conectados al chat
 	public void addUsuarioConectado(String connectionId, String origin, Usuario usuario);
 	public void removeUsuarioConectado(Usuario usuario);
@@ -15,6 +17,8 @@ public interface ChatService {
 	public List<Usuario> listaUsuarios(); ////todos los registrados
 	public void guardar(Usuario usuario);
 	public int getLastID();
+	public int getLastID2();
+	public void addMensaje( Conexion conexion, Usuario usuariofrom, Usuario to, String mensaje);
 	
 	
 }
