@@ -79,7 +79,6 @@ public class EventsLogger implements WebSocketEventListener {
 	}
 
 	public void onMessage(WebSocketEvent event) {
-		
 		System.out.println("onMessage " +count);
 		logger.debug("onMessage(): " + event);
 	}
