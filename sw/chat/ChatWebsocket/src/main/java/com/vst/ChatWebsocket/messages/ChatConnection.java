@@ -27,7 +27,6 @@ public class ChatConnection extends MessageInbound {
 	private static final Map<String, ChatConnection> connections = new HashMap<String, ChatConnection>();
 	
 	public final Gson jsonProcessor;
-
 	Usuario usuario = null;
 	Conexion c = null;
 	Chat chat = null;
@@ -35,21 +34,18 @@ public class ChatConnection extends MessageInbound {
 	public ChatConnection(String connectionId, String userName, String origin) {
 		this.jsonProcessor = new Gson();
 		chatService = InstanstBeans.getChatService();
-//		usuario = new Usuario(chatService.getId(), userName, "234", userName, "a" + userName);
-//		c = new Conexion(chatService.getId(), connectionId, usuario);
-//		chatService.addConexion(c);
 	}
 
 	@Override
 	protected void onOpen(WsOutbound outbound) {
 		sendConnectionInfo(outbound);
-		sendStatusInfoToOtherUsers(new StatusInfoMessage(usuario.getUserName(), StatusInfoMessage.STATUS.CONNECTED));
+		sendStatusInfoToOtherUsers(new StatusInfoMessage(usuario.getUserName(), STATUS.CONNECTED));
 		connections.put(c.getConnectionId(), this);
 	}
 
 	@Override
 	protected void onClose(int status) {
-		sendStatusInfoToOtherUsers(new StatusInfoMessage(usuario.getUserName(), StatusInfoMessage.STATUS.DISCONNECTED));
+		sendStatusInfoToOtherUsers(new StatusInfoMessage(usuario.getUserName(), STATUS.DISCONNECTED));
 		connections.remove(c.getConnectionId());
 //		chatService.quitConexion(c);
 	}

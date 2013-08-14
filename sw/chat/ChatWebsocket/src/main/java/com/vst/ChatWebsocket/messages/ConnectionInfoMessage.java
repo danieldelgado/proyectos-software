@@ -14,24 +14,6 @@ public class ConnectionInfoMessage {
         return connectionInfo;
     }
 
-    class ConnectionInfo {
-
-        private final String user;
-
-        private final List<String> activeUsers;
-
-        private ConnectionInfo(String user, List<String> activeUsers) {
-            this.user = user;
-            this.activeUsers = activeUsers;
-        }
-
-        public String getUser() {
-            return user;
-        }
-
-        public List<String> getActiveUsers() {
-            return activeUsers;
-        }
-    }
+    
 
 }
