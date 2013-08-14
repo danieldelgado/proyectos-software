@@ -8,10 +8,21 @@ public class StatusInfo {
 
 	private final STATUS status;
 
-	public StatusInfo(Usuario user, STATUS status) {
+	private final int sta;
+
+	public StatusInfo(Usuario user, STATUS status, int sta) {
 		this.user = user;
 		this.status = status;
+		this.sta = sta;
 	}
+
+	
+	
+	public int getSta() {
+		return sta;
+	}
+
+
 
 	public Usuario getUser() {
 		return user;

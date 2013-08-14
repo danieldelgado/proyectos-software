@@ -7,7 +7,7 @@
     <link type="text/css" href="<c:url value="resources/css/smoothness/jquery-ui-1.8.22.custom.css" ></c:url>" rel="stylesheet" />
     <script type="text/javascript" src="<c:url value="resources/js/jquery-1.7.2.min.js" ></c:url>"></script>
     <script type="text/javascript" src="<c:url value="resources/js/jquery-ui-1.8.22.custom.min.js"></c:url>"></script>
-    <script type="text/javascript" src="<c:url value="resources/js/wsclient.js?2032"></c:url>"></script>
+    <script type="text/javascript" src="<c:url value="resources/js/wsclientOriginal.js"></c:url>"></script>
     <title>Autentia - Chat con Websockets y Tomcat 7</title>
     <script type="text/javascript">
         $(function(){

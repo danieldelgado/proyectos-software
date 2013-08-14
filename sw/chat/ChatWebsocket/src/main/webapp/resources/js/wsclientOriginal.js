@@ -29,7 +29,8 @@ var wsclient = (function() {
 		};
 		ws.onmessage = function(event) {
 			var message = JSON.parse(event.data);
-			console.log(" onmessage onmessage processMessage :" + message);
+			console.log("  onmessage :" );
+			console.log( message);
 			processMessage(message);
 		};
 
@@ -41,7 +42,8 @@ var wsclient = (function() {
 		};
 
 		function processMessage(message) {
-			console.log(" processMessage :" + message);
+			console.log(" processMessage :" );
+			console.log( message);
 			if (message.messageInfo) {
 				showConversation(message.messageInfo.from);
 				addMessage(message.messageInfo.from, message.messageInfo.message, cleanWhitespaces(message.messageInfo.from) + 'conversation');
@@ -71,7 +73,8 @@ var wsclient = (function() {
 	}
 
 	function setConnected(connected) {
-		console.log(" setConnected connected:" + connected);
+		console.log(" setConnected connected:" );
+		console.log( connected);
 		document.getElementById('connect').disabled = connected;
 		document.getElementById('disconnect').disabled = !connected;
 		cleanConnectedUsers();
@@ -209,7 +212,8 @@ var wsclient = (function() {
 	}
 
 	function createCloseButton(conversationId) {
-		console.log(" createCloseButton :" + conversationId);
+		console.log(" createCloseButton :" );
+		console.log(conversationId);
 		var button = $(document.createElement('button'));
 		button.html('Cerrar');
 		button.click(function() {
@@ -219,7 +223,8 @@ var wsclient = (function() {
 	}
 
 	function addMessage(from, message, conversationPanelId) {
-		console.log(" addMessage :" + addMessage);
+		console.log(" addMessage :" );
+		console.log(addMessage);
 		var messages = $('#' + conversationPanelId + ' .messages');
 		$('<div class="message"><span><b>' + from + '</b> dice:</span><p>' + $('<p/>').text(message).html() + '</p></div>').appendTo(messages);
 		messages.scrollTop(messages[0].scrollHeight);
@@ -227,7 +232,10 @@ var wsclient = (function() {
 	}
 
 	function toChat(sender, receiver, message) {
-		console.log(" toChat sender:" + sender + " receiver:" + receiver + " message:" + message);
+		console.log(" toChat sender:" );
+		console.log( sender    );
+		console.log(   receiver  );
+		console.log(     message);
 		ws.send(JSON.stringify({
 			messageInfo : {
 				from : sender,
@@ -239,13 +247,15 @@ var wsclient = (function() {
 
 	/** ******* usuarios conectados ****** */
 	function addOnlineUser(userName) {
-		console.log(" addOnlineUser :" + userName);
+		console.log(" addOnlineUser :" );
+		console.log(userName);
 		var newOnlineUser = createOnlineUser(userName);
 		newOnlineUser.appendTo($('#onlineUsers'));
 	}
 
 	function removeOnlineUser(userName) {
-		console.log(" removeOnlineUser :" + userName);
+		console.log(" removeOnlineUser :" );
+		console.log( userName);
 		$('#onlineUsers > li').each(function(index, elem) {
 			if (elem.id == userName + 'onlineuser') {
 				$(elem).remove();
@@ -254,7 +264,8 @@ var wsclient = (function() {
 	}
 
 	function createOnlineUser(userName) {
-		console.log(" createOnlineUser :" + userName);
+		console.log(" createOnlineUser :" );
+		console.log( userName);
 		var link = $(document.createElement('a'));
 		link.html(userName);
 		link.click(function() {

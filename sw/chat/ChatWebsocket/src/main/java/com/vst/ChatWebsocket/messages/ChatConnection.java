@@ -49,7 +49,7 @@ public class ChatConnection extends MessageInbound {
 	@Override
 	protected void onOpen(WsOutbound outbound) {
 		sendConnectionInfo(outbound);
-		StatusInfoMessage statusInfoMessage = new StatusInfoMessage(usuario, STATUS.CONNECTED);
+		StatusInfoMessage statusInfoMessage = new StatusInfoMessage(usuario, STATUS.CONNECTED,-1);
 		sendStatusInfoToOtherUsers(statusInfoMessage);
 		chatService.guardarStatusInfo(statusInfoMessage.getStatusInfo());
 		connections.put(c.getConnectionId(), this);
@@ -57,7 +57,7 @@ public class ChatConnection extends MessageInbound {
 
 	@Override
 	protected void onClose(int status) {
-		StatusInfoMessage statusInfoMessage = new StatusInfoMessage(usuario, STATUS.DISCONNECTED);
+		StatusInfoMessage statusInfoMessage = new StatusInfoMessage(usuario, STATUS.DISCONNECTED,status);
 		sendStatusInfoToOtherUsers(statusInfoMessage);
 		chatService.guardarStatusInfo(statusInfoMessage.getStatusInfo());
 		connections.remove(c.getConnectionId());
@@ -100,7 +100,8 @@ public class ChatConnection extends MessageInbound {
 	
 	public void sendConnectionInfo(WsOutbound outbound) {
 		final List<Usuario> activeUsers = getActiveUsers();
-		final ConnectionInfoMessage connectionInfoMessage = new ConnectionInfoMessage(usuario, activeUsers);
+		final List<Usuario> activeUsersDesconectados = getActiveUsersDesconectados();
+		final ConnectionInfoMessage connectionInfoMessage = new ConnectionInfoMessage(usuario, activeUsers, activeUsersDesconectados);
 		try {
 //			outbound.writeTextMessage(CharBuffer.wrap(jsonProcessor.toJson(connectionInfoMessage)));
 			sendMensaje(outbound, connectionInfoMessage);
@@ -109,6 +110,25 @@ public class ChatConnection extends MessageInbound {
 			log.error("No se pudo enviar el mensaje", e);
 		}
 	}
+
+	private List<Usuario> getActiveUsersDesconectados() {	
+		Usuario usuarioChatConection = null;
+		List<Usuario> lusuarios = chatService.listaUsuarios();
+		List<Usuario> lusuariosDesc = new ArrayList<Usuario>();
+		for (Usuario u : lusuarios) {			
+			for (ChatConnection connection : connections.values()) {
+				usuarioChatConection = connection.getUser();
+				if(usuarioChatConection.getUserName().equals(u.getUserName())){
+					break;
+				}
+			}	
+			if(!(usuario.getUserName().equals(u.getUserName()))){
+				lusuariosDesc.add(u);
+			}			
+		}		
+		return lusuariosDesc;
+	}
+
 
 	public List<Usuario> getActiveUsers() {
 		final List<Usuario> activeUsers = new ArrayList<Usuario>();

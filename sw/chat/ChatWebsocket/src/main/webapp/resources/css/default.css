@@ -28,11 +28,11 @@ div#onLineUsersPanel {
 }
 
 span.disconnected {
-    background: url('../resources/img/disconnected.png') no-repeat left;
+    background: url('../img/disconnected.png') no-repeat left;
 }
 
 span.connected {
-    background: url('../resources/img/connected.png') no-repeat left;
+    background: url('../img/connected.png') no-repeat left;
 }
 
 div#conversations {

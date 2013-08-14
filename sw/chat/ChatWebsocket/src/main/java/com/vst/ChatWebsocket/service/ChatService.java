@@ -25,6 +25,7 @@ public interface ChatService {
 	public void guardarMessageInfo(MessageInfo messageInfo);
 	public void guardarStatusInfo(StatusInfo statusInfo);
 	public void guardarConnectionInfo(ConnectionInfo connectionInfo);
+	public List<Usuario> listaUsuariosConectados();
 	
 	
 	

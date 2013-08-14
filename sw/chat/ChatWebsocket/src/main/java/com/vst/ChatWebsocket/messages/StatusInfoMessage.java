@@ -6,8 +6,8 @@ public class StatusInfoMessage {
 
 	private final StatusInfo statusInfo;
 
-	public StatusInfoMessage(Usuario user, STATUS status) {
-		this.statusInfo = new StatusInfo(user, status);
+	public StatusInfoMessage(Usuario user, STATUS status, int sta) {
+		this.statusInfo = new StatusInfo(user, status,sta);
 	}
 
 	public StatusInfo getStatusInfo() {
