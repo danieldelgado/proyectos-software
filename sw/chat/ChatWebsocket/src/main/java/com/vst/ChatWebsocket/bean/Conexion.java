@@ -4,20 +4,10 @@ public class Conexion {
 
 	private String connectionId;
 	private String origin;
-	private Usuario usuario;
 	
-	public Conexion() {
-		
-	}
-	
-	public Conexion(String connectionId, Usuario usuario) {
+
+	public Conexion(String connectionId,String origin) {
 		this.connectionId = connectionId;
-		this.usuario = usuario;
-	}	
-	
-	public Conexion(String connectionId,String origin, Usuario usuario) {
-		this.connectionId = connectionId;
-		this.usuario = usuario;
 		this.origin = origin;
 	}
 
@@ -29,9 +19,6 @@ public class Conexion {
 		this.connectionId = connectionId;
 	}
 
-
-
-
 	public String getOrigin() {
 		return origin;
 	}
@@ -39,20 +26,6 @@ public class Conexion {
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-
-
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	
-
 	
 
 }

@@ -1,27 +1,30 @@
 package com.vst.ChatWebsocket.messages;
- public class MessageInfo {
 
-        private final String from;
+import com.vst.ChatWebsocket.bean.Usuario;
 
-        private final String to;
+public class MessageInfo {
 
-        private final String message;
+	private final Usuario from;
 
-        public MessageInfo(String from, String to, String message) {
-            this.from = from;
-            this.to = to;
-            this.message = message;
-        }
+	private final Usuario to;
 
-        public String getFrom() {
-            return from;
-        }
+	private final String message;
 
-        public String getTo() {
-            return to;
-        }
+	public MessageInfo(Usuario from, Usuario to, String message) {
+		this.from = from;
+		this.to = to;
+		this.message = message;
+	}
 
-        public String getMessage() {
-            return message;
-        }
-    }
+	public Usuario getFrom() {
+		return from;
+	}
+
+	public Usuario getTo() {
+		return to;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+}

@@ -1,5 +1,7 @@
 package com.vst.ChatWebsocket.bean;
 
+import java.util.List;
+
 public class Usuario {
 
 	private int id;
@@ -7,12 +9,11 @@ public class Usuario {
 	private String clave;
 	private String nombre;
 	private String apellido;
-	
+	private List<Conexion> listaConexionsid;
+		
 	public Usuario() {
 		
 	}
-
-	
 	
 	public Usuario(int id, String userName, String clave, String nombre, String apellido) {
 		super();
@@ -63,6 +64,14 @@ public class Usuario {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+
+	public List<Conexion> getListaConexionsid() {
+		return listaConexionsid;
+	}
+
+	public void setListaConexionsid(List<Conexion> listaConexionsid) {
+		this.listaConexionsid = listaConexionsid;
 	}
 
 	

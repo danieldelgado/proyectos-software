@@ -1,20 +1,23 @@
 package com.vst.ChatWebsocket.messages;
-class StatusInfo {
 
-        private final String user;
+import com.vst.ChatWebsocket.bean.Usuario;
 
-        private final STATUS status;
+public class StatusInfo {
 
-        public StatusInfo(String user, STATUS status) {
-            this.user = user;
-            this.status = status;
-        }
+	private final Usuario user;
 
-        public String getUser() {
-            return user;
-        }
+	private final STATUS status;
 
-        public STATUS getStatus() {
-            return status;
-        }
-    }
+	public StatusInfo(Usuario user, STATUS status) {
+		this.user = user;
+		this.status = status;
+	}
+
+	public Usuario getUser() {
+		return user;
+	}
+
+	public STATUS getStatus() {
+		return status;
+	}
+}
