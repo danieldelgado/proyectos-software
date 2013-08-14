@@ -35,9 +35,9 @@ public class ChatConnection extends MessageInbound {
 	public ChatConnection(String connectionId, String userName, String origin) {
 		this.jsonProcessor = new Gson();
 		chatService = InstanstBeans.getChatService();
-		usuario = new Usuario(chatService.getId(), userName, "234", userName, "a" + userName);
-		c = new Conexion(chatService.getId(), connectionId, usuario);
-		chatService.addConexion(c);
+//		usuario = new Usuario(chatService.getId(), userName, "234", userName, "a" + userName);
+//		c = new Conexion(chatService.getId(), connectionId, usuario);
+//		chatService.addConexion(c);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class ChatConnection extends MessageInbound {
 	protected void onClose(int status) {
 		sendStatusInfoToOtherUsers(new StatusInfoMessage(usuario.getUserName(), StatusInfoMessage.STATUS.DISCONNECTED));
 		connections.remove(c.getConnectionId());
-		chatService.quitConexion(c);
+//		chatService.quitConexion(c);
 	}
 
 	@Override
@@ -65,10 +65,10 @@ public class ChatConnection extends MessageInbound {
 		final ChatConnection destinationConnection = getDestinationUserConnection(message.getMessageInfo().getTo());
 		if (destinationConnection != null) {
 			final CharBuffer jsonMessage = CharBuffer.wrap(jsonProcessor.toJson(message));			
-			chat = new  Chat(chatService.getCId(), c, usuario, chatService.obtenerConexionPorUsuario(usuario.getUserName()).getUsuario() , charBuffer.toString());
+//			chat = new  Chat(chatService.getCId(), c, usuario, chatService.obtenerConexionPorUsuario(usuario.getUserName()).getUsuario() , charBuffer.toString());
 			destinationConnection.getWsOutbound().writeTextMessage(jsonMessage);
 		} else {
-			chat = new  Chat(chatService.getCId(), c, usuario, chatService.obtenerConexionPorUsuario(usuario.getUserName()).getUsuario() , "Se esta  intentando enviar un mensaje a un usuario no conectado");			
+//			chat = new  Chat(chatService.getCId(), c, usuario, chatService.obtenerConexionPorUsuario(usuario.getUserName()).getUsuario() , "Se esta  intentando enviar un mensaje a un usuario no conectado");			
 			log.warn("Se esta  intentando enviar un mensaje a un usuario no conectado");
 		}
 	}

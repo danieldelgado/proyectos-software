@@ -2,27 +2,23 @@ package com.vst.ChatWebsocket.bean;
 
 public class Conexion {
 
-	private int id;
 	private String connectionId;
-	private Usuario usuario;
 	private String origin;
+	private Usuario usuario;
+	
 	public Conexion() {
 		
 	}
 	
-	public Conexion(int id, String connectionId, Usuario usuario) {
-		super();
-		this.id = id;
+	public Conexion(String connectionId, Usuario usuario) {
 		this.connectionId = connectionId;
 		this.usuario = usuario;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	}	
+	
+	public Conexion(String connectionId,String origin, Usuario usuario) {
+		this.connectionId = connectionId;
+		this.usuario = usuario;
+		this.origin = origin;
 	}
 
 	public String getConnectionId() {

@@ -13,66 +13,69 @@ import com.vst.ChatWebsocket.service.ChatService;
 public class ChatServiceImpl implements ChatService {
 
 	public static List<Chat> listaChats=new ArrayList<Chat>();
-	public static List<Conexion> listaUsuarios=new ArrayList<Conexion>();
+	public static List<Conexion> listaConexiones = new ArrayList<Conexion>();
+	public static List<Usuario> listaUsuarios=new ArrayList<Usuario>();
 	
 	static{
-		listaUsuarios.add(new Conexion(1, "1ewfewffweff", new Usuario(1, "usuario01", "dsads", "dadsa1", "asdsad")));	
-		listaUsuarios.add(new Conexion(2, "2ewfew", new Usuario(2, "usuario02", "dsads", "dadsa2", "asdsad")));	
-		listaUsuarios.add(new Conexion(3, "3wregreg", new Usuario(3, "usuario03", "dsads", "dadsa3", "asdsad")));	
-		listaUsuarios.add(new Conexion(4, "4ewfewfef", new Usuario(4, "usuario04", "dsads", "dadsa4", "asdsad")));	
-		listaUsuarios.add(new Conexion(5, "5ewfergfweff", new Usuario(5, "usuario05", "dsads", "dadsa5", "asdsad")));	
-		listaUsuarios.add(new Conexion(6, "6ewfegreweff", new Usuario(6, "usuario06", "dsads", "dadsa6", "asdsad")));	
+		Usuario	usuario = null;
+		usuario=new Usuario(1, "chat01", "chat01", "chat01", "chat01");
+		listaUsuarios.add(usuario);
+		usuario=new Usuario(2, "chat02", "chat02", "chat02", "chat02");
+		listaUsuarios.add(usuario);
+		usuario=new Usuario(3, "chat03", "chat03", "chat03", "chat03");
+		listaUsuarios.add(usuario);
+		usuario=new Usuario(4, "chat04", "chat04", "chat04", "chat04");
+		listaUsuarios.add(usuario);
+		usuario = null;		
 	}
 
 	@Override
-	public List<Conexion> listaUsuariosConectados(Conexion conexion) {
-		List<Conexion> l = new ArrayList<Conexion>();
-		for ( Conexion c : listaUsuarios) {
-			if(!(c.getUsuario().getUserName().equals(conexion.getUsuario().getUserName()))){
-				l.add(c);
+	public List<Usuario> listaUsuariosConectados() {
+		List<Usuario> l = new ArrayList<Usuario>();
+		for (Conexion conexion : listaConexiones) {
+			l.add(conexion.getUsuario());
+		}		
+		return l;
+	}
+
+	@Override
+	public void addUsuarioConectado(String connectionId, String origin, Usuario usuario) {
+		listaConexiones.add(new Conexion(connectionId, origin , usuario));		
+	}
+
+	@Override
+	public void removeUsuarioConectado(Usuario usuario) {
+		for (Conexion conexion : listaConexiones) {
+			if(conexion.getUsuario().getId() == usuario.getId()){
+				listaConexiones.remove(conexion);
+			}
+		}			
+	}
+
+	@Override
+	public List<Usuario> listaConectados(Usuario usuario) {
+		List<Usuario> l = new ArrayList<Usuario>();
+		for ( Conexion c : listaConexiones) {
+			if(!(c.getUsuario().getUserName().equals(usuario.getUserName()))){
+				l.add(c.getUsuario());
 			}
 		}
 		return l;
 	}
 
 	@Override
-	public void addConexion(Conexion conexion) {
-		listaUsuarios.add(conexion);		
+	public List<Usuario> listaUsuarios() {
+		return listaUsuarios;
 	}
 
 	@Override
-	public void quitConexion(Conexion conexion) {
-		List<Conexion> l = new ArrayList<Conexion>();
-		for ( Conexion c : listaUsuarios) {
-			if((c.getUsuario().getUserName().equals(conexion.getUsuario().getUserName()))){
-				l.remove(c);
-			}
-		}
+	public void guardar(Usuario usuario) {
+		listaUsuarios.add(usuario);				
 	}
 
 	@Override
-	public void guardarMensaje(Chat conexion) {
-		listaChats.add(conexion);		
-	}
-
-	@Override
-	public int getId() {		
+	public int getLastID() {
 		return listaUsuarios.size()+1;
 	}
-
-	@Override
-	public int getCId() {
-		return listaChats.size() + 1 ;
-	}
-
-	@Override
-	public Conexion obtenerConexionPorUsuario(String user) {
-		for ( Conexion c : listaUsuarios) {
-			if((c.getUsuario().getUserName().equals(user))){
-				return c;
-			}
-		}
-		return null;
-	}	
 
 }

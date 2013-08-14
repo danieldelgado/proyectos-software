@@ -6,11 +6,9 @@ public class Chat {
 	private Conexion id_conexion;
 	private Usuario id_usuario_from;
 	private Usuario id_usuario_to;
-//	private String origenConexion;
 	private String mensaje;
 		
 	public Chat(int id, Conexion id_conexion, Usuario id_usuario_from, Usuario id_usuario_to, String mensaje) {
-		super();
 		this.id = id;
 		this.id_conexion = id_conexion;
 		this.id_usuario_from = id_usuario_from;
@@ -22,10 +20,6 @@ public class Chat {
 	public Chat() {
 	}
 
-	public Chat(int cId, Conexion c, Usuario usuario, String userName, String string) {
-		// TODO Auto-generated constructor stub
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -33,14 +27,6 @@ public class Chat {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-//	public String getOrigenConexion() {
-//		return origenConexion;
-//	}
-//
-//	public void setOrigenConexion(String origenConexion) {
-//		this.origenConexion = origenConexion;
-//	}
 
 	public Conexion getId_conexion() {
 		return id_conexion;
