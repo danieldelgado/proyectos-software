@@ -15,15 +15,17 @@
  */
 package org.atmosphere.samples.chat;
 
+import java.io.IOException;
+
 import org.atmosphere.config.service.Disconnect;
 import org.atmosphere.config.service.ManagedService;
+import org.atmosphere.config.service.Message;
 import org.atmosphere.config.service.Ready;
 import org.atmosphere.cpr.AtmosphereResource;
 import org.atmosphere.cpr.AtmosphereResourceEvent;
+import org.atmosphere.cpr.MetaBroadcaster;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 /**
  * Simple annotated class that demonstrate the power of Atmosphere. This class supports all transports, support
@@ -41,6 +43,7 @@ public class Chat {
     @Ready
     public void onReady(final AtmosphereResource r) {
         logger.info("Browser {} connected.", r.uuid());
+//        r.getBroadcaster().
     }
 
     /**
@@ -65,9 +68,11 @@ public class Chat {
      * @return
      * @throws IOException
      */
-    @org.atmosphere.config.service.Message(encoders = {JacksonEncoder.class}, decoders = {JacksonDecoder.class})
-    public Message onMessage(Message message) throws IOException {
+    @Message(encoders = {JacksonEncoder.class}, decoders = {JacksonDecoder.class})
+    public MessageText onMessage(MessageText message) throws IOException {
         logger.info("{} just send {}", message.getAuthor(), message.getMessage());
+//        BroadcasterFactory.getDefault().get("/a");
+//        MetaBroadcaster.getDefault().broadcastTo("/", "hello world");
         return message;
     }
 

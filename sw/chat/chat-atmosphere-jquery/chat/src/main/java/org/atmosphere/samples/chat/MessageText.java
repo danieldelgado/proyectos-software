@@ -17,17 +17,17 @@ package org.atmosphere.samples.chat;
 
 import java.util.Date;
 
-public class Message {
+public class MessageText {
 
     private String message;
     private String author;
     private long time;
 
-    public Message() {
+    public MessageText() {
         this("", "");
     }
 
-    public Message(String author, String message) {
+    public MessageText(String author, String message) {
         this.author = author;
         this.message = message;
         this.time = new Date().getTime();

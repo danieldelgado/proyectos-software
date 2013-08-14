@@ -23,14 +23,15 @@ import java.io.IOException;
 /**
  * Decode a String into a {@link Message}.
  */
-public class JacksonDecoder implements Decoder<String, Message> {
+public class JacksonDecoder implements Decoder<String, MessageText> {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public Message decode(String s) {
+    public MessageText decode(String s) {
         try {
-            return mapper.readValue(s, Message.class);
+        	System.out.println("decode:"+s);
+            return mapper.readValue(s, MessageText.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

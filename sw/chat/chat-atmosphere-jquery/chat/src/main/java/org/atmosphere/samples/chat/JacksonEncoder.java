@@ -15,21 +15,23 @@
  */
 package org.atmosphere.samples.chat;
 
-import org.atmosphere.config.managed.Encoder;
-import org.codehaus.jackson.map.ObjectMapper;
-
 import java.io.IOException;
+
+import org.atmosphere.config.managed.Encoder;
+import org.atmosphere.config.service.Message;
+import org.codehaus.jackson.map.ObjectMapper;
 
 /**
  * Encode a {@link Message} into a String
  */
-public class JacksonEncoder implements Encoder<Message, String> {
+public class JacksonEncoder implements Encoder<MessageText, String> {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public String encode(Message m) {
+    public String encode(MessageText m) {
         try {
+        	System.out.println("encode:"+m);
             return mapper.writeValueAsString(m);
         } catch (IOException e) {
             throw new RuntimeException(e);
