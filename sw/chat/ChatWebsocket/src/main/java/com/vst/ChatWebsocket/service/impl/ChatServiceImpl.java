@@ -6,6 +6,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.vst.ChatWebsocket.bean.Usuario;
+import com.vst.ChatWebsocket.messages.ConnectionInfo;
+import com.vst.ChatWebsocket.messages.MessageInfo;
+import com.vst.ChatWebsocket.messages.StatusInfo;
 import com.vst.ChatWebsocket.service.ChatService;
 
 @Service("ChatService")
@@ -31,7 +34,7 @@ public class ChatServiceImpl implements ChatService {
 	}
 //
 	@Override
-	public void guardar(Usuario usuario) {
+	public void guardarUsuario(Usuario usuario) {
 		for (Usuario u : listaUsuarios) {
 			if(u.getUserName().equals(usuario.getUserName())){
 				return;
@@ -57,6 +60,18 @@ public class ChatServiceImpl implements ChatService {
 			}
 		}	
 		return null;
+	}
+	@Override
+	public void guardarMessageInfo(MessageInfo messageInfo) {
+		System.out.println(" guardarMessageInfo "+messageInfo);
+	}
+	@Override
+	public void guardarStatusInfo(StatusInfo statusInfo) {
+		System.out.println(" guardarStatusInfo "+statusInfo);
+	}
+	@Override
+	public void guardarConnectionInfo(ConnectionInfo connectionInfo) {
+		System.out.println(" guardarConnectionInfo "+connectionInfo);
 	}
 	
 //	public static void main(String[] args) {
