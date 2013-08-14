@@ -19,5 +19,8 @@ public interface ChatService {
 //	public int getLastID2();
 //	public boolean addMensaje( Conexion conexion, Usuario usuariofrom, Usuario to, String mensaje);
 	
+//	public void guardar(Usuario usuario);
+	
+	
 	
 }

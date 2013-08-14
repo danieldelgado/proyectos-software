@@ -85,7 +85,7 @@ public class ChatConnection extends MessageInbound {
 	
 	public void sendConnectionInfo(WsOutbound outbound) {
 		final List<Usuario> activeUsers = getActiveUsers();
-		final ConnectionInfoMessage connectionInfoMessage = new ConnectionInfoMessage(usuario.getUserName(), activeUsers);
+		final ConnectionInfoMessage connectionInfoMessage = new ConnectionInfoMessage(usuario, activeUsers);
 		try {
 			outbound.writeTextMessage(CharBuffer.wrap(jsonProcessor.toJson(connectionInfoMessage)));
 		} catch (IOException e) {

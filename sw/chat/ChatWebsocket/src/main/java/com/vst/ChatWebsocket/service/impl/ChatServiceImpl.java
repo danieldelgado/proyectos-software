@@ -12,11 +12,6 @@ import com.vst.ChatWebsocket.service.ChatService;
 public class ChatServiceImpl implements ChatService {
 	public static List<Usuario> listaUsuarios=new ArrayList<Usuario>();
 	
-//
-//	public static List<Chat> listaChats=new ArrayList<Chat>();
-//	public static List<Conexion> listaConexiones = new ArrayList<Conexion>();
-
-//	
 	static{
 		Usuario	usuario = null;
 		usuario=new Usuario(1, "chat01", "chat01", "chat01", "chat01");
@@ -29,54 +24,7 @@ public class ChatServiceImpl implements ChatService {
 		listaUsuarios.add(usuario);
 		usuario = null;		
 	}
-//
-//	@Override
-//	public List<Usuario> listaUsuariosConectados() {
-//		List<Usuario> l = new ArrayList<Usuario>();
-//		for (Conexion conexion : listaConexiones) {
-//			l.add(conexion.getUsuario());
-//		}		
-//		return l;
-//	}
-//
-//	@Override
-//	public Conexion addUsuarioConectado(String connectionId, String origin, Usuario usuario) {
-//		for (Conexion conexion : listaConexiones) {
-//			if(conexion.getConnectionId().equals(connectionId)){
-//				return null;
-//			}			
-//		}
-//		Conexion c = new Conexion(connectionId, origin , usuario);
-//		listaConexiones.add(c);	
-//		return c;		
-//	}
-//
-//	@Override
-//	public void removeUsuarioConectado(Usuario usuario) {
-//		Conexion conexion = null;
-//		for (int i = 0; i < listaConexiones.size(); i++) {
-//			conexion = listaConexiones.get(i);
-//			if(conexion.getUsuario().getId() == usuario.getId()){
-//				listaConexiones.remove(i);
-//				return;
-//			}		
-//		}			
-//	}
-//
-//	@Override
-//	public List<Usuario> listaConectados(Usuario usuario) {
-//		if(estaUsuarioConectado(usuario.getUserName())){			
-//			List<Usuario> l = new ArrayList<Usuario>();
-//			for ( Conexion c : listaConexiones) {
-//				if(!(c.getUsuario().getUserName().equals(usuario.getUserName()))){
-//					l.add(c.getUsuario());
-//				}
-//			}
-//			return l;
-//			}
-//		return null;		
-//	}
-//
+	
 	@Override
 	public List<Usuario> listaUsuarios() {
 		return listaUsuarios;
@@ -91,30 +39,6 @@ public class ChatServiceImpl implements ChatService {
 		}			
 		listaUsuarios.add(usuario);			
 	}
-//
-//	@Override
-//	public int getLastID() {
-//		return listaUsuarios.size()+1;
-//	}
-//
-//	@Override
-//	public boolean addMensaje(Conexion conexion, Usuario usuariofrom, Usuario to,
-//			String mensaje) {
-//		if(existeConexion(conexion.getConnectionId())){
-//			if(estaUsuarioConectado(usuariofrom.getUserName()) && estaUsuarioConectado(to.getUserName()) ){
-//				Chat chat = new Chat(getLastID2(), conexion, usuariofrom, to, mensaje);
-//				listaChats.add(chat);
-//				return true;
-//			}					
-//		}
-//		return false;				
-//	}
-//	
-//	@Override
-//	public int getLastID2() {
-//		return listaChats.size()+1;
-//	}
-//
 	@Override
 	public boolean existeUsuario(String usuario) {
 		for (Usuario u : listaUsuarios) {
@@ -124,7 +48,7 @@ public class ChatServiceImpl implements ChatService {
 		}	
 		return false;
 	}
-//
+
 	@Override
 	public Usuario getUsuario(String usuario) {
 		for (Usuario u : listaUsuarios) {
@@ -134,30 +58,7 @@ public class ChatServiceImpl implements ChatService {
 		}	
 		return null;
 	}
-//
-//	
-//	
-//	@Override
-//	public boolean estaUsuarioConectado(String usuario) {
-//		for (Conexion conexion : listaConexiones) {
-//			if(conexion.getUsuario().getUserName().equals(usuario) ){
-//				return true;
-//			}
-//		}			
-//		return false;
-//	}
-//	
-//
-//	@Override
-//	public boolean existeConexion(String connectionId) {
-//		for (Conexion conexion : listaConexiones) {
-//			if(conexion.getConnectionId().equals(connectionId) ){
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-//	
+	
 //	public static void main(String[] args) {
 //		ChatServiceImpl chatServiceImpl = new ChatServiceImpl();
 //		System.out.println(chatServiceImpl.listaUsuarios().size());

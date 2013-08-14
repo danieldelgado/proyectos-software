@@ -8,7 +8,7 @@ public class ConnectionInfoMessage {
 
 	private final ConnectionInfo connectionInfo;
 
-	public ConnectionInfoMessage(String user, List<Usuario> activeUsers) {
+	public ConnectionInfoMessage(Usuario user, List<Usuario> activeUsers) {
 		this.connectionInfo = new ConnectionInfo(user, activeUsers);
 	}
 
