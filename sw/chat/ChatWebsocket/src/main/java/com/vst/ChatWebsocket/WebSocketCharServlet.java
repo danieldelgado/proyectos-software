@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.vst.ChatWebsocket.messages.ConnectionChat;
+import com.vst.ChatWebsocket.messages.ChatConnection;
 
 @Component
 @SuppressWarnings("serial")
@@ -31,7 +31,7 @@ public class WebSocketCharServlet extends WebSocketServlet {
         final String connectionId = request.getSession().getId();
         final String userName = request.getParameter("userName");
         log.info("createWebSocketInbound userName:"+userName + " connectionId:"+connectionId);      
-        return new ConnectionChat(connectionId, userName, origin);
+        return new ChatConnection(connectionId, userName, origin);
     }
 
 
