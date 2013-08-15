@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.vst.ChatWebsocket.HomeController;
 import com.vst.ChatWebsocket.Entitys.Conexion;
 import com.vst.ChatWebsocket.Entitys.MessageInfo;
 import com.vst.ChatWebsocket.Entitys.StatusInfo;
@@ -17,13 +16,12 @@ import com.vst.ChatWebsocket.dao.ConexionDAO;
 import com.vst.ChatWebsocket.dao.MessageInfoDAO;
 import com.vst.ChatWebsocket.dao.StatusInfoDAO;
 import com.vst.ChatWebsocket.dao.UsuarioDAO;
-import com.vst.ChatWebsocket.messages.ConnectionInfo;
 import com.vst.ChatWebsocket.service.ChatService;
 
 @Service("ChatService")
 public class ChatServiceImpl implements ChatService {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ChatServiceImpl.class);
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;
@@ -48,12 +46,14 @@ public class ChatServiceImpl implements ChatService {
 	public void guardarUsuario(Usuario usuario) {
 		logger.info("Guardando nuevo usuario");
 		Usuario u = usuarioDAO.buscarUsuario(usuario);
-		if(u==null){
-			logger.info("No esta en base de datos, se guardara.");
+//		if(u==null){
+			logger.info("No esta en base de datos, se guardara. ");
+			System.out.println("usuario:"+usuario.getId());
 			usuarioDAO.guardar(usuario);
-		}else{
-			logger.info("Existe Usuario en base de datos")	;		
-		}		
+			System.out.println("usuario:"+usuario.getId());
+//		}else{
+//			logger.info("Existe Usuario en base de datos")	;		
+//		}		
 	}
 
 	@Override
@@ -77,18 +77,21 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
+	@Transactional
 	public void guardarMessageInfo(MessageInfo messageInfo) {
 		logger.info("guardarMessageInfo");
 		messageInfoDAO.guardar(messageInfo);
 	}
 
 	@Override
+	@Transactional
 	public void guardarStatusInfo(StatusInfo statusInfo) {
 		logger.info("guardarStatusInfo");
 		statusInfoDAO.guardar(statusInfo);
 	}
 
 	@Override
+	@Transactional
 	public void guardarConexion(Conexion c) {
 		logger.info("guardarConexion");
 		conexionDAO.guardar(c);

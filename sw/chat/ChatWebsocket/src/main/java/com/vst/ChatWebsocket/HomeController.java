@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.vst.ChatWebsocket.Entitys.Usuario;
+import com.vst.ChatWebsocket.dao.UsuarioDAO;
 import com.vst.ChatWebsocket.service.ChatService;
 import com.vst.ChatWebsocket.util.Constantes;
 
@@ -29,7 +30,8 @@ public class HomeController {
 
 	@Autowired
 	private ChatService chatService;
-	
+	@Autowired
+	private UsuarioDAO usuarioDAO;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -44,13 +46,17 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/iniciarSession", method = RequestMethod.POST)
-	public String iniciarSession(Locale locale, Model model,HttpSession session,String usuario,String calve) {		
+	public String iniciarSession(Locale locale, Model model,HttpSession session,String usuario,String calve) {	
+		
+		usuarioDAO.guardar(new Usuario( usuario, usuario, usuario, usuario));
+		
 		if(chatService.existeUsuario(usuario)){
 			Usuario u = chatService.getUsuario(usuario);
 			session.setAttribute(Constantes.USUARIO_SESSION, u);
 			model.addAttribute(Constantes.USUARIO_SESSION, u);
 			return "index";
 		}else{
+			chatService.guardarUsuario(new Usuario( usuario, usuario, usuario, usuario));
 			return "redirect:/";
 		}
 	}

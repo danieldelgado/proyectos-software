@@ -6,7 +6,6 @@ import com.vst.ChatWebsocket.Entitys.Conexion;
 import com.vst.ChatWebsocket.Entitys.MessageInfo;
 import com.vst.ChatWebsocket.Entitys.StatusInfo;
 import com.vst.ChatWebsocket.Entitys.Usuario;
-import com.vst.ChatWebsocket.messages.ConnectionInfo;
 
 public interface ChatService {
 
@@ -14,7 +13,7 @@ public interface ChatService {
 
 	public Usuario getUsuario(String usuario);
 
-	public List<Usuario> listaUsuarios(); // //todos los registrados
+	public List<Usuario> listaUsuarios(); 
 
 	public void guardarUsuario(Usuario usuario);
 	

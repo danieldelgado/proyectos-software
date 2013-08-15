@@ -39,6 +39,13 @@ public class Usuario  implements Entidad{
 		this.apellido = apellido;
 	}
 
+	public Usuario(String userName, String clave, String nombre, String apellido) {
+		this.userName = userName;
+		this.clave = clave;
+		this.nombre = nombre;
+		this.apellido = apellido;
+	}
+
 	public Integer getId() {
 		return id;
 	}

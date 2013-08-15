@@ -48,10 +48,22 @@ public class DAO<T extends Entidad> implements IDAO<T> {
 	}
 
 	public void guardar(T objeto) {
+		try {
+			
+		System.out.println(objeto.getId());
+		
 			if (objeto.getId() != null)
 				em.merge(objeto);
 			else
 				em.persist(objeto);
+			
+
+			System.out.println(objeto.getId());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
 	}
 
 	public void eliminar(T objeto) {
