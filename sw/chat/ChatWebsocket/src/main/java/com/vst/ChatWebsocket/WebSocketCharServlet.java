@@ -15,7 +15,7 @@ import com.vst.ChatWebsocket.messages.ChatConnection;
 @SuppressWarnings("serial")
 @WebServlet("/chat")
 public class WebSocketCharServlet extends WebSocketServlet {
-
+//	http://www.codeproject.com/Tips/251636/How-to-inject-Spring-beans-into-Servlets
 	private static final Logger log = LoggerFactory.getLogger(WebSocketCharServlet.class);
 	private String origin = null;
 
