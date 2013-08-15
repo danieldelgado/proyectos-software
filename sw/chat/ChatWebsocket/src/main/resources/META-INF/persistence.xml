@@ -6,7 +6,7 @@
 
  <persistence-unit name="hsd_dominio_chat" transaction-type="RESOURCE_LOCAL" >
 		<properties>    						
-		<property name="hibernate.hbm2ddl.auto" value="validate" />	
+		<property name="hibernate.hbm2ddl.auto" value="create" />	
 			<!--
 		<property name="hibernate.hbm2ddl.auto" value="validate" />	
 		<property name="hibernate.hbm2ddl.auto" value="create" />
