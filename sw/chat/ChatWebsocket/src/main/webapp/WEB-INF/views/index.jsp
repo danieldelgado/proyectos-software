@@ -9,9 +9,9 @@
     <script type="text/javascript" src="<c:url value="resources/js/jquery-ui-1.8.22.custom.min.js"></c:url>"></script>
     <script type="text/javascript" src="<c:url value="resources/js/wsclientOriginal.js"></c:url>"></script>
     <title>Autentia - Chat con Websockets y Tomcat 7</title>
-    <script type="text/javascript">
+      <script type="text/javascript">
         $(function(){
-            $('#conversations').tabs();
+            $('#conversations').tabs();           
         });
     </script>
 </head>
