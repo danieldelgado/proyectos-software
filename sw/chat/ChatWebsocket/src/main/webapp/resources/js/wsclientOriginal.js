@@ -123,7 +123,7 @@ var wsclient = (function() {
 		});
 		$('#status').html('Conectado');
 		$('#status').attr({
-			class : 'connected'
+			'class' : 'connected'
 		});
 		$('#onLineUsersPanel').css({
 			visibility : 'visible'
@@ -139,7 +139,7 @@ var wsclient = (function() {
 		});
 		$('#status').html('Desconectado');
 		$('#status').attr({
-			class : 'disconnected'
+			'class' : 'disconnected'
 		});
 		$('#onLineUsersPanel').css({
 			visibility : 'hidden'
@@ -177,7 +177,7 @@ var wsclient = (function() {
 		var conversationPanel = $(document.createElement('div'));
 		conversationPanel.attr({
 			id : conversationId,
-			class : 'conversation'
+			'class' : 'conversation'
 		});
 		$('<p class="messages"></p>').appendTo(conversationPanel);
 		var textAreaMensaje = createtextarea(name, conversationId);

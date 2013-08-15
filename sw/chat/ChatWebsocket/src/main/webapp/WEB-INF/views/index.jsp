@@ -11,7 +11,9 @@
     <title>Autentia - Chat con Websockets y Tomcat 7</title>
       <script type="text/javascript">
         $(function(){
-            $('#conversations').tabs();           
+            $('#conversations').tabs();   
+//             console.log("${usuarioSession.userName}");
+            wsclient.connect("${usuarioSession.userName}");
         });
     </script>
 </head>
@@ -22,7 +24,7 @@
     <div class="leftPanel">
         <div class="userInfo">
             <span class="disconnected" id="status">Desconectado</span>
-            Nombre: <input type="text" id="userName"/><span class="onLineUserName"></span>
+            Nombre: <input type="text" id="userName" value="${usuarioSession.userName}"/><span class="onLineUserName"></span>
         </div>
         <div>
             <button id="connect" onclick="wsclient.connect(document.getElementById('userName').value);">Conectar</button>

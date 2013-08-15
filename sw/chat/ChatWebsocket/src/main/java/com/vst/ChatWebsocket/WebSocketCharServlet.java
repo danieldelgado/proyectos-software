@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.vst.ChatWebsocket.messages.ChatConnection;
+import com.vst.ChatWebsocket.util.Constantes;
 
 @Component
 @SuppressWarnings("serial")
@@ -27,6 +28,8 @@ public class WebSocketCharServlet extends WebSocketServlet {
 
 	@Override
 	protected StreamInbound createWebSocketInbound(String subProtocol, HttpServletRequest request) {
+		System.out.println("createWebSocketInbound");
+		System.out.println(request.getSession().getAttribute(Constantes.USUARIO_SESSION));
 		final String connectionId = request.getSession().getId();
 		final String userName = request.getParameter("userName");
 		log.info("createWebSocketInbound userName:" + userName + " connectionId:" + connectionId);
