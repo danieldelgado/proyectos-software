@@ -53,6 +53,7 @@ public class ChatConnection extends MessageInbound {
 		sendStatusInfoToOtherUsers(statusInfoMessage);
 		chatService.guardarStatusInfo(statusInfoMessage.getStatusInfo());
 		connections.put(c.getConnectionId(), this);
+		System.out.println(connections);
 	}
 
 	@Override
@@ -61,6 +62,7 @@ public class ChatConnection extends MessageInbound {
 		sendStatusInfoToOtherUsers(statusInfoMessage);
 		chatService.guardarStatusInfo(statusInfoMessage.getStatusInfo());
 		connections.remove(c.getConnectionId());
+		System.out.println(connections);
 	}
 
 	@Override
@@ -116,23 +118,40 @@ public class ChatConnection extends MessageInbound {
 			log.error("No se pudo enviar el mensaje", e);
 		}
 	}
+	
+//	ch0
+//	
+//	ch0	ch0
+//	ch1	ch1
+//	ch2	ch3
+//	ch3
 
 	private List<Usuario> getActiveUsersDesconectados() {
-		Usuario usuarioChatConection = null;
-		List<Usuario> lusuarios = chatService.listaUsuarios();
 		List<Usuario> lusuariosDesc = new ArrayList<Usuario>();
+		List<Usuario> lusuarios = chatService.listaUsuarios();
+		System.out.println("usuario.getUserName():"+usuario.getUserName());
+		boolean addDesconectado = false;
 		for (Usuario u : lusuarios) {
-			for (ChatConnection connection : connections.values()) {
-				usuarioChatConection = connection.getUser();
-				if (usuarioChatConection.getUserName().equals(u.getUserName())) {
-					break;
-				}
+			if(u.getUserName().equals(usuario.getUserName())){
+				continue;
 			}
-			if (!(usuario.getUserName().equals(u.getUserName()))) {
+			addDesconectado = estaConectado(u);
+			if(!addDesconectado){
 				lusuariosDesc.add(u);
 			}
 		}
+		lusuarios=null;
 		return lusuariosDesc;
+	}
+
+	private boolean estaConectado(Usuario u) {
+		List<Usuario> lstUsuarioConectados = getActiveUsers() ;
+		for (Usuario usuconec : lstUsuarioConectados) {
+			if(u.getUserName().equals(usuconec.getUserName())){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public List<Usuario> getActiveUsers() {
