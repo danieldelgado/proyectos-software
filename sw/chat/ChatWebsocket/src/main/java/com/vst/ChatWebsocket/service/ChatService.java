@@ -2,10 +2,11 @@ package com.vst.ChatWebsocket.service;
 
 import java.util.List;
 
-import com.vst.ChatWebsocket.bean.Usuario;
+import com.vst.ChatWebsocket.messages.Conexion;
 import com.vst.ChatWebsocket.messages.ConnectionInfo;
 import com.vst.ChatWebsocket.messages.MessageInfo;
 import com.vst.ChatWebsocket.messages.StatusInfo;
+import com.vst.ChatWebsocket.messages.Usuario;
 
 public interface ChatService {
 
@@ -35,6 +36,8 @@ public interface ChatService {
 
 	public void guardarConnectionInfo(ConnectionInfo connectionInfo);
 
-	public List<Usuario> listaUsuariosConectados();
+//	public List<Usuario> listaUsuariosConectados();
+
+	public void guardarConexion(Conexion c);
 
 }

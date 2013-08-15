@@ -2,7 +2,6 @@ package com.vst.ChatWebsocket.messages;
 
 import java.util.List;
 
-import com.vst.ChatWebsocket.bean.Usuario;
 
 public class ConnectionInfoMessage {
 

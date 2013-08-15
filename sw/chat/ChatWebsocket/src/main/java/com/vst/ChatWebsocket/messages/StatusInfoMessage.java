@@ -1,6 +1,5 @@
 package com.vst.ChatWebsocket.messages;
 
-import com.vst.ChatWebsocket.bean.Usuario;
 
 public class StatusInfoMessage {
 

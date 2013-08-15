@@ -6,75 +6,63 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.TableGenerator;
 
+public class Conexion implements Entidad{
 
-public class StatusInfo  implements Entidad  {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
 	@TableGenerator(name = "id_Generator", table = "sequence_table", pkColumnName = "sequence_name", valueColumnName = "sequence_value")
-	@Column(name = "id_statusInfo")
+	@Column(name = "id_conexion")
 	private Integer id;
 	
+	@Column(name = "connectionId")	
+	private String connectionId;
+	
+	@Column(name = "origin")
+	private String origin;
+	
+
 	@Column(name = "user")
 	private Usuario user;
+	
 
-	@Column(name = "status")
-	private STATUS status;
-
-	@Column(name = "sta")
-	private int sta;
-
-	public StatusInfo(Usuario user, STATUS status, int sta) {
-		this.user = user;
-		this.status = status;
-		this.sta = sta;
+	public Conexion(String connectionId, String origin) {
+		this.connectionId = connectionId;
+		this.origin = origin;
 	}
 
+	public String getConnectionId() {
+		return connectionId;
+	}
+
+	public void setConnectionId(String connectionId) {
+		this.connectionId = connectionId;
+	}
+
+	public String getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
 	
 	
-	public Integer getId() {
-		return id;
-	}
-
-
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-
-
-	public void setUser(Usuario user) {
-		this.user = user;
-	}
-
-
-
-	public void setStatus(STATUS status) {
-		this.status = status;
-	}
-
-
-
-	public void setSta(int sta) {
-		this.sta = sta;
-	}
-
-
-
-	public int getSta() {
-		return sta;
-	}
 
 	public Usuario getUser() {
 		return user;
 	}
 
-	public STATUS getStatus() {
-		return status;
+	public void setUser(Usuario user) {
+		this.user = user;
 	}
 
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	@Override
 	public String getLabel() {
@@ -82,15 +70,11 @@ public class StatusInfo  implements Entidad  {
 		return null;
 	}
 
-
-
 	@Override
 	public String getNombreCompleto() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 	@Override
 	public Boolean getActivo() {
@@ -98,11 +82,11 @@ public class StatusInfo  implements Entidad  {
 		return null;
 	}
 
-
-
 	@Override
 	public String getCodigo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+
 }

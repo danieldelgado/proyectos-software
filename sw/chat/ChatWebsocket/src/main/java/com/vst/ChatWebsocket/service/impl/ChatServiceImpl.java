@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.vst.ChatWebsocket.bean.Conexion;
-import com.vst.ChatWebsocket.bean.Usuario;
+import com.vst.ChatWebsocket.messages.Conexion;
 import com.vst.ChatWebsocket.messages.ConnectionInfo;
 import com.vst.ChatWebsocket.messages.MessageInfo;
 import com.vst.ChatWebsocket.messages.StatusInfo;
+import com.vst.ChatWebsocket.messages.Usuario;
 import com.vst.ChatWebsocket.service.ChatService;
 
 @Service("ChatService")
@@ -80,24 +80,30 @@ public class ChatServiceImpl implements ChatService {
 		System.out.println(" guardarConnectionInfo " + connectionInfo);
 	}
 
+//	@Override
+//	public List<Usuario> listaUsuariosConectados() {
+//		Conexion c = null;
+//		List<Usuario> usuList = new ArrayList<Usuario>();
+//		for (Usuario usuario : listaUsuarios) {
+//			if (usuario.getListaConexionsid() != null && usuario.getListaConexionsid().size() > 0) {
+//				c = usuario.getListaConexionsid().get(usuario.getListaConexionsid().size() - 1);
+//				if (c != null) {
+//					usuList.add(usuario);
+//				}
+//			}
+//		}
+//		c = null;
+//		if (usuList.size() > 0) {
+//			return usuList;
+//		}
+//		usuList = null;
+//		return null;
+//	}
+
 	@Override
-	public List<Usuario> listaUsuariosConectados() {
-		Conexion c = null;
-		List<Usuario> usuList = new ArrayList<Usuario>();
-		for (Usuario usuario : listaUsuarios) {
-			if (usuario.getListaConexionsid() != null && usuario.getListaConexionsid().size() > 0) {
-				c = usuario.getListaConexionsid().get(usuario.getListaConexionsid().size() - 1);
-				if (c != null) {
-					usuList.add(usuario);
-				}
-			}
-		}
-		c = null;
-		if (usuList.size() > 0) {
-			return usuList;
-		}
-		usuList = null;
-		return null;
+	public void guardarConexion(Conexion c) {
+		
+		
 	}
 
 	// public static void main(String[] args) {

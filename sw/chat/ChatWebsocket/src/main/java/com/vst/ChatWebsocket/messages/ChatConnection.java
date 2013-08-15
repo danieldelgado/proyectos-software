@@ -15,8 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
-import com.vst.ChatWebsocket.bean.Conexion;
-import com.vst.ChatWebsocket.bean.Usuario;
 import com.vst.ChatWebsocket.service.ChatService;
 import com.vst.ChatWebsocket.util.InstanstBeans;
 
@@ -33,17 +31,14 @@ public class ChatConnection extends MessageInbound {
 		chatService = InstanstBeans.getChatService();
 		if (!chatService.existeUsuario(userName)) {
 			usuario = new Usuario(chatService.listaUsuarios().size() + 1, userName, userName, userName, userName);
+			chatService.guardarUsuario(usuario);
 		} else {
 			usuario = chatService.getUsuario(userName);
 		}
-		List<Conexion> l = usuario.getListaConexionsid();
-		if (l == null) {
-			l = new ArrayList<Conexion>();
-		}
+	
 		c = new Conexion(connectionId, origin);
-		l.add(c);
-		usuario.setListaConexionsid(l);
-		chatService.guardarUsuario(usuario);
+		c.setUser(usuario);
+		chatService.guardarConexion(c);
 	}
 
 	@Override

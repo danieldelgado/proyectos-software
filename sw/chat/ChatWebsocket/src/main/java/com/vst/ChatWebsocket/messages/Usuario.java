@@ -6,75 +6,73 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.TableGenerator;
 
+public class Usuario  implements Entidad{
 
-public class StatusInfo  implements Entidad  {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
 	@TableGenerator(name = "id_Generator", table = "sequence_table", pkColumnName = "sequence_name", valueColumnName = "sequence_value")
-	@Column(name = "id_statusInfo")
+	@Column(name = "id_usuario")
 	private Integer id;
-	
-	@Column(name = "user")
-	private Usuario user;
+	@Column(name = "userName")	
+	private String userName;
+	@Column(name = "clave")	
+	private String clave;
+	@Column(name = "nombre")	
+	private String nombre;
+	@Column(name = "apellido")
+	private String apellido;
 
-	@Column(name = "status")
-	private STATUS status;
-
-	@Column(name = "sta")
-	private int sta;
-
-	public StatusInfo(Usuario user, STATUS status, int sta) {
-		this.user = user;
-		this.status = status;
-		this.sta = sta;
+	public Usuario() {
 	}
 
-	
-	
+	public Usuario(int id, String userName, String clave, String nombre, String apellido) {
+		this.id = id;
+		this.userName = userName;
+		this.clave = clave;
+		this.nombre = nombre;
+		this.apellido = apellido;
+	}
+
 	public Integer getId() {
 		return id;
 	}
-
-
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
-
-	public void setUser(Usuario user) {
-		this.user = user;
+	public String getUserName() {
+		return userName;
 	}
 
-
-
-	public void setStatus(STATUS status) {
-		this.status = status;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-
-
-	public void setSta(int sta) {
-		this.sta = sta;
+	public String getClave() {
+		return clave;
 	}
 
-
-
-	public int getSta() {
-		return sta;
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 
-	public Usuario getUser() {
-		return user;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public STATUS getStatus() {
-		return status;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
+	public String getApellido() {
+		return apellido;
+	}
 
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
 
 	@Override
 	public String getLabel() {
@@ -82,15 +80,11 @@ public class StatusInfo  implements Entidad  {
 		return null;
 	}
 
-
-
 	@Override
 	public String getNombreCompleto() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 	@Override
 	public Boolean getActivo() {
@@ -98,11 +92,10 @@ public class StatusInfo  implements Entidad  {
 		return null;
 	}
 
-
-
 	@Override
 	public String getCodigo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }
