@@ -3,6 +3,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	
+<!-- 	<servlet> -->
+<!--     <display-name>Chat</display-name> -->
+<!--     <servlet-name>chat</servlet-name> -->
+<!--     <servlet-class> -->
+<!--         org.springframework.web.context.support.HttpRequestHandlerServlet -->
+<!--     </servlet-class> -->
+<!-- 	</servlet> -->
+ 
+<!-- 	<servlet-mapping> -->
+<!-- 	    <servlet-name>chat</servlet-name> -->
+<!-- 	    <url-pattern>/chat</url-pattern> -->
+<!-- 	</servlet-mapping> -->
+	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -12,7 +25,9 @@
 	<listener>
 		<listener-class>com.vst.ChatWebsocket.util.SpringLoaderListener</listener-class>
 	</listener>
-	
+<!-- 	 <listener> -->
+<!--     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> -->
+<!--   </listener> -->
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
