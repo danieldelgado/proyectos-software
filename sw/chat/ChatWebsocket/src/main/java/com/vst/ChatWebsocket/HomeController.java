@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.vst.ChatWebsocket.messages.Usuario;
+import com.vst.ChatWebsocket.Entitys.Usuario;
 import com.vst.ChatWebsocket.service.ChatService;
 import com.vst.ChatWebsocket.util.Constantes;
 
