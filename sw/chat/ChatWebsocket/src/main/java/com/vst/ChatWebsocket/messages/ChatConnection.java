@@ -15,6 +15,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
+import com.vst.ChatWebsocket.Entitys.Conexion;
+import com.vst.ChatWebsocket.Entitys.MessageInfo;
+import com.vst.ChatWebsocket.Entitys.Usuario;
 import com.vst.ChatWebsocket.service.ChatService;
 import com.vst.ChatWebsocket.util.InstanstBeans;
 
