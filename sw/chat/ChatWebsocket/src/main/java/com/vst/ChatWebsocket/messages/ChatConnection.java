@@ -101,7 +101,7 @@ public class ChatConnection extends MessageInbound {
 		ConnectionInfoMessage connectionInfoMessage = new ConnectionInfoMessage(usuario, activeUsers, activeUsersDesconectados);
 		try {
 			sendMensaje(outbound, connectionInfoMessage);
-			chatService.guardarConnectionInfo(connectionInfoMessage.getConnectionInfo());
+//			chatService.guardarConnectionInfo(connectionInfoMessage.getConnectionInfo());
 		} catch (IOException e) {
 			log.error("No se pudo enviar el mensaje", e);
 		}

@@ -1,88 +1,97 @@
 package com.vst.ChatWebsocket.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.vst.ChatWebsocket.HomeController;
 import com.vst.ChatWebsocket.Entitys.Conexion;
 import com.vst.ChatWebsocket.Entitys.MessageInfo;
 import com.vst.ChatWebsocket.Entitys.StatusInfo;
 import com.vst.ChatWebsocket.Entitys.Usuario;
+import com.vst.ChatWebsocket.dao.ConexionDAO;
+import com.vst.ChatWebsocket.dao.MessageInfoDAO;
+import com.vst.ChatWebsocket.dao.StatusInfoDAO;
+import com.vst.ChatWebsocket.dao.UsuarioDAO;
 import com.vst.ChatWebsocket.messages.ConnectionInfo;
 import com.vst.ChatWebsocket.service.ChatService;
 
 @Service("ChatService")
 public class ChatServiceImpl implements ChatService {
-	public static List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 
-	static {
-		Usuario usuario = null;
-		usuario = new Usuario(1, "chat01", "chat01", "chat01", "chat01");
-		listaUsuarios.add(usuario);
-		usuario = new Usuario(2, "chat02", "chat02", "chat02", "chat02");
-		listaUsuarios.add(usuario);
-		usuario = new Usuario(3, "chat03", "chat03", "chat03", "chat03");
-		listaUsuarios.add(usuario);
-		usuario = new Usuario(4, "chat04", "chat04", "chat04", "chat04");
-		listaUsuarios.add(usuario);
-		usuario = null;
-	}
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Autowired
+	private UsuarioDAO usuarioDAO;
 
+	@Autowired
+	private ConexionDAO conexionDAO;
+
+	@Autowired
+	private StatusInfoDAO statusInfoDAO; 
+
+	@Autowired
+	private MessageInfoDAO messageInfoDAO; 
+	
+	
 	@Override
 	public List<Usuario> listaUsuarios() {
-		return listaUsuarios;
+		return usuarioDAO.getTodos();
 	}
 
-	//
 	@Override
+	@Transactional
 	public void guardarUsuario(Usuario usuario) {
-		for (Usuario u : listaUsuarios) {
-			if (u.getUserName().equals(usuario.getUserName())) {
-				return;
-			}
-		}
-		listaUsuarios.add(usuario);
+		logger.info("Guardando nuevo usuario");
+		Usuario u = usuarioDAO.buscarUsuario(usuario);
+		if(u==null){
+			logger.info("No esta en base de datos, se guardara.");
+			usuarioDAO.guardar(usuario);
+		}else{
+			logger.info("Existe Usuario en base de datos")	;		
+		}		
 	}
 
 	@Override
 	public boolean existeUsuario(String usuario) {
-		for (Usuario u : listaUsuarios) {
-			if (u.getUserName().equals(usuario)) {
-				return true;
-			}
+		logger.info("existeUsuario");
+		Usuario u = usuarioDAO.buscarUsuario(usuario);
+		if(u!=null){
+			return true;
 		}
 		return false;
 	}
 
 	@Override
 	public Usuario getUsuario(String usuario) {
-		for (Usuario u : listaUsuarios) {
-			if (u.getUserName().equals(usuario)) {
-				return u;
-			}
+		logger.info("existeUsuario");
+		Usuario u = usuarioDAO.buscarUsuario(usuario);
+		if(u!=null){
+			return u;
 		}
 		return null;
 	}
 
 	@Override
 	public void guardarMessageInfo(MessageInfo messageInfo) {
-		System.out.println(" guardarMessageInfo " + messageInfo);
+		logger.info("guardarMessageInfo");
+		messageInfoDAO.guardar(messageInfo);
 	}
 
 	@Override
 	public void guardarStatusInfo(StatusInfo statusInfo) {
-		System.out.println(" guardarStatusInfo " + statusInfo);
-	}
-
-	@Override
-	public void guardarConnectionInfo(ConnectionInfo connectionInfo) {
-		System.out.println(" guardarConnectionInfo " + connectionInfo);
+		logger.info("guardarStatusInfo");
+		statusInfoDAO.guardar(statusInfo);
 	}
 
 	@Override
 	public void guardarConexion(Conexion c) {
-		
+		logger.info("guardarConexion");
+		conexionDAO.guardar(c);
 		
 	}
 

@@ -22,8 +22,6 @@ public interface ChatService {
 
 	public void guardarStatusInfo(StatusInfo statusInfo);
 
-	public void guardarConnectionInfo(ConnectionInfo connectionInfo);
-
 	public void guardarConexion(Conexion c);
 
 }

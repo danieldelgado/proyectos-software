@@ -14,7 +14,7 @@ import javax.persistence.TableGenerator;
 import com.vst.ChatWebsocket.util.Entidad;
 
 @Entity
-@Table(name = "ConexionUsuario")
+@Table(name = "Conexion")
 public class Conexion implements Entidad{
 
 	@Id
