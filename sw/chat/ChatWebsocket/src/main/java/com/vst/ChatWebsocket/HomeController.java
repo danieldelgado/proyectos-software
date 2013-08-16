@@ -47,10 +47,13 @@ public class HomeController {
 
 	@RequestMapping(value = "/iniciarSession", method = RequestMethod.POST)
 	public String iniciarSession(Locale locale, Model model,HttpSession session,String usuario,String calve) {	
-		
+		System.out.println("--------------------------");
+		System.out.println(usuarioDAO.getTodos().size());
 		usuarioDAO.guardar(new Usuario( usuario, usuario, usuario, usuario));
+		System.out.println(usuarioDAO.getTodos().size());
+		System.out.println("--------------------------");
 		
-		if(chatService.existeUsuario(usuario)){
+		if(chatService.existeUsuario(usuario)){			
 			Usuario u = chatService.getUsuario(usuario);
 			session.setAttribute(Constantes.USUARIO_SESSION, u);
 			model.addAttribute(Constantes.USUARIO_SESSION, u);

@@ -10,12 +10,14 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 public class DAO<T extends Entidad> implements IDAO<T> {
 
 	private static final Logger log = LoggerFactory.getLogger(DAO.class);
 
-	@PersistenceContext
+	@PersistenceContext(unitName = "hsd_chat") 
 	protected EntityManager em;
 
 	private Class<Entidad> clazz;
@@ -47,23 +49,17 @@ public class DAO<T extends Entidad> implements IDAO<T> {
 		return em.createQuery(sql).getResultList();
 	}
 
+    @Transactional(propagation = Propagation.REQUIRED)
 	public void guardar(T objeto) {
-		try {
-			
-		System.out.println(objeto.getId());
-		
+		try {		
+			System.out.println("guardando");
 			if (objeto.getId() != null)
 				em.merge(objeto);
 			else
 				em.persist(objeto);
-			
-
-			System.out.println(objeto.getId());
-
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-			
+		}			
 	}
 
 	public void eliminar(T objeto) {
