@@ -1,4 +1,4 @@
-package dasdtemp;
+package com.vst.hsd.controller;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +8,9 @@ import org.apache.catalina.websocket.WebSocketServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import com.vst.util.ChatConnection;
+import com.vst.util.Constantes;
 
 
 @Component
@@ -27,11 +30,12 @@ public class WebSocketCharServlet extends WebSocketServlet {
 	@Override
 	protected StreamInbound createWebSocketInbound(String subProtocol, HttpServletRequest request) {
 		System.out.println("createWebSocketInbound");
-		System.out.println(request.getSession().getAttribute(Constantes.USUARIO_SESSION));
+		System.out.println(request.getSession().getAttribute(Constantes.SESION_USUARIO));
 		final String connectionId = request.getSession().getId();
 		final String userName = request.getParameter("userName");
 		log.info("createWebSocketInbound userName:" + userName + " connectionId:" + connectionId);
 		return new ChatConnection(connectionId, userName, origin);
+//		return null;
 	}
 
 }

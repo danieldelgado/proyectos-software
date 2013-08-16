@@ -35,6 +35,10 @@ public class MessageInfo   implements Entidad {
 	@Column(name = "message")
 	private String message;
 
+	public MessageInfo(){
+		
+	}
+			
 	public MessageInfo(Usuario from, Usuario to, String message) {
 		this.from = from;
 		this.to = to;

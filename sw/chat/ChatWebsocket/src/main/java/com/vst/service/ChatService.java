@@ -1,6 +1,11 @@
-package dasdtemp;
+package com.vst.service;
 
 import java.util.List;
+
+import com.vst.dominio.Conexion;
+import com.vst.dominio.MessageInfo;
+import com.vst.dominio.StatusInfo;
+import com.vst.dominio.Usuario;
 
 
 public interface ChatService {

@@ -1,4 +1,4 @@
-package dasdtemp;
+package com.vst.util;
 
 import java.io.IOException;
 import java.security.MessageDigest;

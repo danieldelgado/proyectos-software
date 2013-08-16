@@ -1,4 +1,4 @@
-package dasdtemp;
+package com.vst.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

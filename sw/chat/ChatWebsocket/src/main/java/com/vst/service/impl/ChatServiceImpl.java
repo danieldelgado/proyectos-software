@@ -1,4 +1,4 @@
-package dasdtemp;
+package com.vst.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.vst.dao.ConexionDAO;
+import com.vst.dao.MessageInfoDAO;
+import com.vst.dao.StatusInfoDAO;
+import com.vst.dao.UsuarioDAO;
+import com.vst.dominio.Conexion;
+import com.vst.dominio.MessageInfo;
+import com.vst.dominio.StatusInfo;
+import com.vst.dominio.Usuario;
+import com.vst.service.ChatService;
 
 
 @Service("ChatService")

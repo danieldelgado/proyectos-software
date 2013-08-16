@@ -1,4 +1,4 @@
-package dasdtemp;
+package com.vst.util;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -15,6 +15,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
+import com.vst.dominio.Conexion;
+import com.vst.dominio.ConnectionInfoMessage;
+import com.vst.dominio.MessageInfo;
+import com.vst.dominio.MessageInfoMessage;
+import com.vst.dominio.STATUS;
+import com.vst.dominio.StatusInfoMessage;
+import com.vst.dominio.Usuario;
+import com.vst.service.ChatService;
+
 
 public class ChatConnection extends MessageInbound {
 	public static Logger log = LoggerFactory.getLogger(ChatConnection.class);

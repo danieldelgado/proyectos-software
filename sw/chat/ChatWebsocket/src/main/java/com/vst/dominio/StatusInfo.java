@@ -33,14 +33,15 @@ public class StatusInfo  implements Entidad  {
 	@Column(name = "sta")
 	private int sta;
 
+	public StatusInfo(){		
+	}
+	
 	public StatusInfo(Usuario user, STATUS status, int sta) {
 		this.user = user;
 		this.status = status;
 		this.sta = sta;
 	}
 
-	
-	
 	public Integer getId() {
 		return id;
 	}
