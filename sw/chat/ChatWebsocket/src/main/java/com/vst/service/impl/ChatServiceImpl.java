@@ -41,18 +41,23 @@ public class ChatServiceImpl implements ChatService {
 	public List<Usuario> listaUsuarios() {
 		return usuarioDAO.getTodos();
 	}
-
+	@Override
+	@Transactional
+	public void registrarUsuario(Usuario usuario) {
+		logger.info("Guardando nuevo usuario");
+		usuarioDAO.guardar(usuario);
+	}
 	@Override
 	@Transactional
 	public void guardarUsuario(Usuario usuario) {
 		logger.info("Guardando nuevo usuario");
-//		Usuario u = usuarioDAO.buscarUsuario(usuario);
-//		if(u==null){
+		Usuario u = usuarioDAO.buscarUsuario(usuario);
+		if(u==null){
 			logger.info("No esta en base de datos, se guardara. ");
 			usuarioDAO.guardar(usuario);
-//		}else{
-//			logger.info("Existe Usuario en base de datos")	;		
-//		}		
+		}else{
+			logger.info("Existe Usuario en base de datos")	;		
+		}		
 	}
 
 	@Override

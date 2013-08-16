@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.vst.dao.UsuarioDAO;
 import com.vst.dominio.Usuario;
 import com.vst.service.ChatService;
 import com.vst.util.Constantes;
@@ -30,8 +29,7 @@ public class HomeController {
 	
 	@Autowired
 	private ChatService chatService;
-	@Autowired
-	private UsuarioDAO usuarioDAO;
+
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -60,7 +58,7 @@ public class HomeController {
 			model.addAttribute(Constantes.SESION_USUARIO, u);
 			return "index";
 		}else{
-			chatService.guardarUsuario(new Usuario( usuario, usuario, usuario, usuario));
+			chatService.registrarUsuario(new Usuario( usuario, usuario, usuario, usuario));
 			return "redirect:/";
 		}
 	}

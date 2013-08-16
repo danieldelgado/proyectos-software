@@ -1,4 +1,4 @@
-package com.vst.util;
+package com.vst.chatsocket;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -23,6 +23,7 @@ import com.vst.dominio.STATUS;
 import com.vst.dominio.StatusInfoMessage;
 import com.vst.dominio.Usuario;
 import com.vst.service.ChatService;
+import com.vst.spring.util.InstanstBeans;
 
 
 public class ChatConnection extends MessageInbound {

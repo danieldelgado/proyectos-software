@@ -16,6 +16,8 @@ public interface ChatService {
 
 	public List<Usuario> listaUsuarios(); 
 
+	public void registrarUsuario(Usuario usuario);
+	
 	public void guardarUsuario(Usuario usuario);
 	
 	public void guardarMessageInfo(MessageInfo messageInfo);

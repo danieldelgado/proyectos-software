@@ -1,4 +1,4 @@
-package com.vst.util;
+package com.vst.spring.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

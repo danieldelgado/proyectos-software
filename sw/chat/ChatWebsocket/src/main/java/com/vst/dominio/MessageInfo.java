@@ -23,7 +23,7 @@ public class MessageInfo   implements Entidad {
 	@Column(name = "id_messageInfo")
 	private Integer id;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_from", insertable = false, updatable = false)
+	@JoinColumn(name = "usuario_from", insertable = false, updatable = false )
 	private Usuario from;
 	@Column(name = "fromuserName")
 	private String fromuserName;	
@@ -32,7 +32,7 @@ public class MessageInfo   implements Entidad {
 	private Usuario to;
 	@Column(name = "touserName")
 	private String touserName;
-	@Column(name = "message")
+	@Column(name = "message", nullable = false)
 	private String message;
 
 	public MessageInfo(){
