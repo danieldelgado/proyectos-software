@@ -17,7 +17,7 @@ import com.vst.util.Constantes;
 @SuppressWarnings("serial")
 @WebServlet("/chat")
 public class WebSocketCharServlet extends WebSocketServlet {
-//	http://www.codeproject.com/Tips/251636/How-to-inject-Spring-beans-into-Servlets
+	
 	private static final Logger log = LoggerFactory.getLogger(WebSocketCharServlet.class);
 	private String origin = null;
 
@@ -35,7 +35,6 @@ public class WebSocketCharServlet extends WebSocketServlet {
 		final String userName = request.getParameter("userName");
 		log.info("createWebSocketInbound userName:" + userName + " connectionId:" + connectionId);
 		return new ChatConnection(connectionId, userName, origin);
-//		return null;
 	}
 
 }

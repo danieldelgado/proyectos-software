@@ -20,7 +20,7 @@ public class Usuario  implements Entidad{
 //	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_usuario")
 	private Integer id;
-	@Column(name = "userName")	
+	@Column(name = "userName", nullable=false)	
 	private String userName;
 	@Column(name = "clave")	
 	private String clave;

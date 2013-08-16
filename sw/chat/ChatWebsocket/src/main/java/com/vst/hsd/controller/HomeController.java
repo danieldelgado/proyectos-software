@@ -28,15 +28,11 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-//	@Autowired
-//	ChatConexionSevice chatConexionSevice;
 	@Autowired
 	private ChatService chatService;
 	@Autowired
 	private UsuarioDAO usuarioDAO;
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -48,8 +44,6 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-//		chatConexionSevice.guardar(new Usuario());
-		
 		return "home";
 	}
 	
@@ -59,13 +53,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/iniciarSession", method = RequestMethod.POST)
-	public String iniciarSession(Locale locale, Model model,HttpSession session,String usuario,String calve) {	
-		System.out.println("--------------------------");
-		System.out.println(usuarioDAO.getTodos().size());
-		usuarioDAO.guardar(new Usuario( usuario, usuario, usuario, usuario));
-		System.out.println(usuarioDAO.getTodos().size());
-		System.out.println("--------------------------");
-		
+	public String iniciarSession(Locale locale, Model model,HttpSession session,String usuario,String calve) {				
 		if(chatService.existeUsuario(usuario)){			
 			Usuario u = chatService.getUsuario(usuario);
 			session.setAttribute(Constantes.SESION_USUARIO, u);

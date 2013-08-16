@@ -6,27 +6,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ValidatorUtils {
-	private static Pattern _cadena=Pattern.compile("[a-zA-ZÃ±Ã‘Ã¡Ã©Ã­Ã³ÃºÃÃ‰ÃÃ“ÃšÃ¼Ãœ\\s-]{1,100}");
+	private static Pattern _cadena=Pattern.compile("[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\\s-]{1,100}");
 	private static Pattern _idCompuesto=Pattern.compile("[a-zA-Z0-9._-]{1,14}");
-	private static Pattern _patron_nombre=Pattern.compile("[a-z'A-ZÃ±Ã‘Ã¡Ã©Ã­Ã³ÃºÃÃ‰ÃÃ“ÃšÃ¼Ãœ\\s-]+");
+	private static Pattern _patron_nombre=Pattern.compile("[a-z'A-ZñÑáéíóúÁÉÍÓÚüÜ\\s-]+");
 	private static Pattern _patron_email=Pattern.compile("[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}");
 	private static Pattern _patron_telefono=Pattern.compile("[0-9]{6,15}");
 	private static Pattern _patron_celular=Pattern.compile("[0-9]{9}");
 	private static Pattern _patron_dni=Pattern.compile("[0-9]{8}");
 	private static Pattern _patron_ruc=Pattern.compile("[0-9]{11}");
-	private static Pattern _patron_carnet_extranjeria=Pattern.compile("[a-zA-ZÃ±Ã‘0-9]{9,12}");
-	private static Pattern _pasaporte=Pattern.compile("[a-zA-ZÃ±Ã‘0-9]{9,12}");
-	private static Pattern _comentario=Pattern.compile("[a-zA-ZÃ±Ã‘0-9-]{1,1000}");
-	private static Pattern _texto=Pattern.compile("[a-zA-ZÃ±Ã‘Ã¡Ã©Ã­Ã³ÃºÃÃ‰ÃÃ“ÃšÃ¼Ãœ-]{1,100}");
+	private static Pattern _patron_carnet_extranjeria=Pattern.compile("[a-zA-ZñÑ0-9]{9,12}");
+	private static Pattern _pasaporte=Pattern.compile("[a-zA-ZñÑ0-9]{9,12}");
+	private static Pattern _comentario=Pattern.compile("[a-zA-ZñÑ0-9-]{1,1000}");
+	private static Pattern _texto=Pattern.compile("[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ-]{1,100}");
 	private static Pattern _IMAGE_PATTERN=Pattern.compile("([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)");
 	private static Pattern _FILE_PATTERN=Pattern.compile("([^\\s]+(\\.(?i)(xls|xlsx|doc|docx|pdf))$)");
 	
 	private static Pattern _solicitud_patron_dni = Pattern.compile("[0-9]{8}");
-	private static Pattern _solicitud_patron_carne_extranjeria = Pattern.compile("[a-zA-ZÃ±Ã‘0-9]{9,12}");
-	private static Pattern _solicitud_patron_nombre = Pattern.compile("[a-zA-ZÃ±Ã‘Ã¡Ã©Ã­Ã³ÃºÃÃ‰ÃÃ“ÃšÃ¼Ãœ0-9\\s-']{1,50}");
-	private static Pattern _solicitud_patron_direccion = Pattern.compile("[a-zA-ZÃ±Ã‘Ã¡Ã©Ã­Ã³ÃºÃÃ‰ÃÃ“ÃšÃ¼Ãœ0-9\\s-']{1,100}");
+	private static Pattern _solicitud_patron_carne_extranjeria = Pattern.compile("[a-zA-ZñÑ0-9]{9,12}");
+	private static Pattern _solicitud_patron_nombre = Pattern.compile("[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ0-9\\s-']{1,50}");
+	private static Pattern _solicitud_patron_direccion = Pattern.compile("[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ0-9\\s-']{1,100}");
 	private static Pattern _solicitud_patron_placa = Pattern.compile("[a-zA-Z0-9-]{6,8}");
-	private static Pattern _solicitud_patron_razonSocial = Pattern.compile("[a-zA-ZÃ±Ã‘Ã¡Ã©Ã­Ã³ÃºÃÃ‰ÃÃ“ÃšÃ¼Ãœ\\s-']{1,100}");
+	private static Pattern _solicitud_patron_razonSocial = Pattern.compile("[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\\s-']{1,100}");
 	private static Pattern _solicitud_patron_ruc = Pattern.compile("[0-9]{11}");
 	private static Pattern _solicitud_patron_celular = Pattern.compile("[0-9]{9,10}");
 	private static Pattern _solicitud_patron_telefono = Pattern.compile("[0-9]{6,10}");

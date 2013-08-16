@@ -9,10 +9,15 @@
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
-	
+	<appender name="fileWindows" class="org.apache.log4j.FileAppender">
+	<param name="File" value="C:\\logs\\hsdChattest.log"/>
+		<layout class="org.apache.log4j.PatternLayout">
+		   <param name="ConversionPattern" value="%d [%5p] [%c{1}] [clase:%F] [linea:%L] { %m }%n"/>
+		</layout>
+	</appender> 
 	<!-- Application Loggers -->
-	<logger name="com.vst.ChatWebsocket">
-		<level value="info" />
+	<logger name="com">
+		<level value="ALL" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
@@ -36,6 +41,7 @@
 	<root>
 		<priority value="info" />
 		<appender-ref ref="console" />
+		<appender-ref ref="fileWindows" />
 	</root>
 	
 </log4j:configuration>

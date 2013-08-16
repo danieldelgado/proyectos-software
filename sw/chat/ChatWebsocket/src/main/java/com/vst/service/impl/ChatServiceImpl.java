@@ -46,12 +46,10 @@ public class ChatServiceImpl implements ChatService {
 	@Transactional
 	public void guardarUsuario(Usuario usuario) {
 		logger.info("Guardando nuevo usuario");
-		Usuario u = usuarioDAO.buscarUsuario(usuario);
+//		Usuario u = usuarioDAO.buscarUsuario(usuario);
 //		if(u==null){
 			logger.info("No esta en base de datos, se guardara. ");
-			System.out.println("usuario:"+usuario.getId());
 			usuarioDAO.guardar(usuario);
-			System.out.println("usuario:"+usuario.getId());
 //		}else{
 //			logger.info("Existe Usuario en base de datos")	;		
 //		}		

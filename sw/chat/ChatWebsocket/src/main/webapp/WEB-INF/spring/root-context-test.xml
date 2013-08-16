@@ -11,15 +11,19 @@
 	   		http://www.springframework.org/schema/context/spring-context-3.0.xsd
 			http://www.springframework.org/schema/mvc 
 			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+
+	<context:property-placeholder location="file:src/main/webapp/WEB-INF/spring.properties" />
+
+	<context:component-scan base-package="com.vst" />
 	
-<!-- 	<context:property-placeholder location="classpath*:/WEB-INF/spring.properties" /> -->
-	
-	<context:component-scan base-package="com" />
 	
 	<context:annotation-config />
 	
 	<mvc:annotation-driven />
 	
+	<!-- -->
+
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -31,10 +35,10 @@
 <!-- 	</bean> -->
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close" p:driverClass="com.mysql.jdbc.Driver"
-		p:jdbcUrl="jdbc:mysql://192.168.1.180:3306/chathsd" p:user="root" p:password="root"
+		destroy-method="close" p:driverClass="${app.jdbc.driverClassName}"
+		p:jdbcUrl="${app.jdbc.url}" p:user="${app.jdbc.username}" p:password="${app.jdbc.password}"
 		p:acquireIncrement="5" p:idleConnectionTestPeriod="60" p:maxPoolSize="100"
-		p:maxStatements="50" p:autoCommitOnClose="true" p:minPoolSize="10"
+		p:maxStatements="50" p:autoCommitOnClose="false" p:minPoolSize="10"
 		p:unreturnedConnectionTimeout="2000" />
 
 	<bean id="entityManagerFactory"
@@ -49,7 +53,7 @@
 			<bean
 				class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
 		</property>
-		<property name="persistenceUnitName" value="hsd_dominio_chat"></property>
+		<property name="persistenceUnitName" value="hsd_chat"></property>
 	</bean>
 
 	<!-- Without the following adapter, we'll get a "Does your handler implement 
@@ -61,4 +65,6 @@
 		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
 	<!-- <import resource="dwr-context.xml" /> 
 	-->
+	
+
 </beans>
