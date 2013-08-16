@@ -8,8 +8,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.vst.temp.Usuario;
-import com.vst.temp.UsuarioDAO;
+import scom.vst.temp.Usuario;
+import scom.vst.temp.UsuarioDAO;
+
 
 
 //@RunWith(SpringJUnit4ClassRunner.class)
