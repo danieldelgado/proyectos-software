@@ -24,7 +24,7 @@ public class StatusInfo  implements Entidad  {
 	private Integer id;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user", insertable = false, updatable = false)
+	@JoinColumn(name = "user")//, insertable = false, updatable = false
 	private Usuario user;
 
 	@Column(name = "status")

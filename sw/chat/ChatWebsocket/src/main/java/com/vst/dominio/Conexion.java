@@ -31,7 +31,7 @@ public class Conexion implements Entidad{
 	
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user", insertable = false, updatable = false)
+	@JoinColumn(name = "user")
 	private Usuario user;
 
 	public Conexion(){

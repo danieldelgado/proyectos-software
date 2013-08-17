@@ -23,12 +23,12 @@ public class MessageInfo   implements Entidad {
 	@Column(name = "id_messageInfo")
 	private Integer id;
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_from", insertable = false, updatable = false )
+	@JoinColumn(name = "usuario_from" )
 	private Usuario from;
 	@Column(name = "fromuserName")
 	private String fromuserName;	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "usuario_to", insertable = false, updatable = false)
+	@JoinColumn(name = "usuario_to")
 	private Usuario to;
 	@Column(name = "touserName")
 	private String touserName;
