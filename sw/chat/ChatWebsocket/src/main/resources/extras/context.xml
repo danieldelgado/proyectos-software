@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- extra para la conexion jdni de base de datos -->
+<Context>
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+	<Resource name="jdbc/chathsd" auth="Container" type="javax.sql.DataSource"
+             maxActive="100" maxIdle="30" maxWait="10000"
+             username="root" password="root" driverClassName="com.mysql.jdbc.Driver"
+             url="jdbc:mysql://192.168.1.180:3306/chathsd"/>
+</Context>

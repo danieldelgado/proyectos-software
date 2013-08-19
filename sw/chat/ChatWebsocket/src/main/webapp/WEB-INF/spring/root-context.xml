@@ -34,12 +34,22 @@
 <!-- 		<property name="baseAddress" value="http://0.0.0.0:9998/" /> -->
 <!-- 	</bean> -->
 
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close" p:driverClass="${app.jdbc.driverClassName}"
-		p:jdbcUrl="${app.jdbc.url}" p:user="${app.jdbc.username}" p:password="${app.jdbc.password}"
-		p:acquireIncrement="5" p:idleConnectionTestPeriod="60" p:maxPoolSize="100"
-		p:maxStatements="50" p:autoCommitOnClose="false" p:minPoolSize="10"
-		p:unreturnedConnectionTimeout="2000" />
+<!-- 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" -->
+<!-- 		destroy-method="close" p:driverClass="${app.jdbc.driverClassName}" -->
+<!-- 		p:jdbcUrl="${app.jdbc.url}" p:user="${app.jdbc.username}" p:password="${app.jdbc.password}" -->
+<!-- 		p:acquireIncrement="5" p:idleConnectionTestPeriod="60" p:maxPoolSize="100" -->
+<!-- 		p:maxStatements="50" p:autoCommitOnClose="false" p:minPoolSize="10" -->
+<!-- 		p:unreturnedConnectionTimeout="2000" /> -->
+
+	<bean id="dataSource" 
+      class="org.springframework.jndi.JndiObjectFactoryBean">
+      <property name="jndiName" 
+                  value="java:comp/env/jdbc/chathsd"/>    
+      <property name="resourceRef" 
+                  value="true" /> 
+	</bean>
+
+
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
