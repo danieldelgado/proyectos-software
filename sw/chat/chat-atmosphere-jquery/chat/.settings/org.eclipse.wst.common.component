@@ -11,7 +11,7 @@
         <dependent-module deploy-path="/" handle="module:/overlay/var/M2_REPO/org/atmosphere/client/javascript/2.0.0.RC2/javascript-2.0.0.RC2.war?unpackFolder=target/m2e-wtp/overlays&amp;includes=**/**&amp;excludes=META-INF/MANIFEST.MF">
             <dependency-type>consumes</dependency-type>
         </dependent-module>
-        <dependent-module deploy-path="/" handle="module:/overlay/slf/?includes=**/**&amp;excludes=META-INF/MANIFEST.MF">
+        <dependent-module deploy-path="/" handle="module:/overlay/prj/jquery-multirequest?includes=**/**&amp;excludes=META-INF/MANIFEST.MF">
             <dependency-type>consumes</dependency-type>
         </dependent-module>
 		<property name="java-output-path" value="target/classes"/>
