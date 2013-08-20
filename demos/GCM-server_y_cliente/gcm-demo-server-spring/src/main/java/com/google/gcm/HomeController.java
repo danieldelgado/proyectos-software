@@ -83,7 +83,7 @@ public class HomeController {
 		// return "home";
 	}
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value = "/home", method = RequestMethod.POST)
 	public void home2(HttpServletRequest req, HttpServletResponse resp, Locale locale, Model model) throws IOException {
 		home(req, resp, locale, model);
 	}
@@ -103,7 +103,19 @@ public class HomeController {
 
 	@RequestMapping(value = "/sendAll", method = RequestMethod.POST)
 	public void sendAll(HttpServletRequest req, HttpServletResponse resp, Locale locale, Model model) throws ServletException, IOException {
-		sender = new Sender(getParameter(req, PARAMETER_REG_ID));
+//		sender = new Sender(getParameter(req, PARAMETER_REG_ID));
+		
+//		 String key = getKey();
+//		    event.getServletContext().setAttribute(ATTRIBUTE_ACCESS_KEY, key);
+		
+//		 String key = (String) config.getServletContext()
+//        .getAttribute(ApiKeyInitializer.ATTRIBUTE_ACCESS_KEY);
+//    return new Sender(key);
+		
+		String ky = (String) req.getSession().getServletContext().getAttribute(ApiKeyInitializerListener.ATTRIBUTE_ACCESS_KEY);
+		sender = new Sender(ky);
+		System.out.println("sender");
+		System.out.println(sender);
 		List<String> devices = Datastore.getDevices();
 		String status;
 		if (devices.isEmpty()) {
