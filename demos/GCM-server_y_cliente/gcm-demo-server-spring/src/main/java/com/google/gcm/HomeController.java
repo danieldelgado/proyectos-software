@@ -177,6 +177,11 @@ public class HomeController {
 		Datastore.unregister(regId);
 		setSuccess(resp);
 	}
+	
+	
+	
+	
+	//////////////////////////////////////////////// METODOS EXTRAS  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	private void asyncSend(List<String> partialDevices) {
 		// make a copy
@@ -194,7 +199,7 @@ public class HomeController {
 				// key when
 				// it goes back on-line.
 				// .collapseKey(collapseKey)
-						.timeToLive(30).delayWhileIdle(true).addData("message", "mesnaje desde servidor").build();
+						.timeToLive(30).delayWhileIdle(true).addData("message", "mensaje desde servidor").build();
 
 				MulticastResult multicastResult;
 				try {
