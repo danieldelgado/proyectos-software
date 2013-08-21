@@ -17,7 +17,7 @@ import com.vst.hsd.dominio.Perfil;
 import com.vst.hsd.dominio.Usuario;
 import com.vst.hsd.service.LoginService;
 import com.vst.util.Constantes;
-import com.vst.util.Util;
+import com.vst.util.validate.ValidatorUtils;
 
 @Controller
 @RequestMapping("login")
@@ -40,7 +40,7 @@ public class LoginController {
 	public String iniciarSession(String usuario, String clave, Integer perfil, HttpServletRequest request, HttpSession session, Model model) {
 		log.info(" metodo iniciarSession -   dato usuario : " + usuario + "  clave : " + clave + " perfil : " + perfil + "  ip :  " + request.getRemoteAddr());
 		Usuario u = loginService.iniciarSession(usuario, clave, perfil);
-		if (Util.isNotNull(u)) {
+		if (ValidatorUtils.isNotNull(u)) {
 			log.info(" metodo iniciarSession  - ingreso correcto se redirecciona   a principal ");
 			session.setAttribute(Constantes.SESION_USUARIO, u);
 			return "redirect:/principal";

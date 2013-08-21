@@ -18,6 +18,7 @@ import com.vst.hsd.dominio.Columna;
 import com.vst.hsd.dominio.Usuario;
 import com.vst.util.BeanFlags;
 import com.vst.util.Util;
+import com.vst.util.validate.ValidatorUtils;
 
 @Repository("DataListComponet")
 public class DataListComponetImpl implements DataListComponet {
@@ -68,7 +69,7 @@ public class DataListComponetImpl implements DataListComponet {
 			}
 		}
 
-		if (!Util.vacio(columnaOrden) && !Util.vacio(direccionOrden)) {
+		if (!ValidatorUtils.vacio(columnaOrden) && !ValidatorUtils.vacio(direccionOrden)) {
 			if (columnaOrden.equals("actividad")) {
 				sql += " ORDER BY tt." + columnaOrden + " " + direccionOrden;
 			} else
