@@ -30,6 +30,7 @@ import com.google.android.gcm.server.MulticastResult;
 import com.google.android.gcm.server.Result;
 import com.google.android.gcm.server.Sender;
 import com.google.bean.Shop;
+import com.google.gcm.util.Constantes;
 
 /**
  * Handles requests for the application home page.
@@ -106,16 +107,8 @@ public class HomeController {
 
 	@RequestMapping(value = "/sendAll", method = RequestMethod.POST)
 	public void sendAll(HttpServletRequest req, HttpServletResponse resp, Locale locale, Model model) throws ServletException, IOException {
-//		sender = new Sender(getParameter(req, PARAMETER_REG_ID));
-		
-//		 String key = getKey();
-//		    event.getServletContext().setAttribute(ATTRIBUTE_ACCESS_KEY, key);
-		
-//		 String key = (String) config.getServletContext()
-//        .getAttribute(ApiKeyInitializer.ATTRIBUTE_ACCESS_KEY);
-//    return new Sender(key);
-		
-		String ky = (String) req.getSession().getServletContext().getAttribute(ApiKeyInitializerListener.ATTRIBUTE_ACCESS_KEY);
+
+		String ky = Constantes.PK_GOOGLE;
 		sender = new Sender(ky);
 		System.out.println("sender");
 		System.out.println(sender);

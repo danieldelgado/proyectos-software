@@ -15,15 +15,13 @@
  */
 package com.google.gcm;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.gcm.util.Constantes;
 
 /**
  * Context initializer that loads the API key from a
@@ -32,41 +30,13 @@ import org.slf4j.LoggerFactory;
  */
 public class ApiKeyInitializerListener implements ServletContextListener {
 
-  static final String ATTRIBUTE_ACCESS_KEY = "apiKey";
-
-  private static final String PATH = "/api.key";
 
 	private static final Logger logger = LoggerFactory.getLogger(ApiKeyInitializerListener.class);
 
   public void contextInitialized(ServletContextEvent event) {
-    logger.info("Reading " + PATH + " from resources (probably from " +   "WEB-INF/classes");
-    String key = getKey();
-    event.getServletContext().setAttribute(ATTRIBUTE_ACCESS_KEY, key);
-  }
-
-  /**
-   * Gets the access key.
-   */
-  protected String getKey() {
-    InputStream stream = Thread.currentThread().getContextClassLoader()
-        .getResourceAsStream(PATH);
-    if (stream == null) {
-      throw new IllegalStateException("Could not find file " + PATH +
-          " on web resources)");
-    }
-    BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-    try {
-      String key = reader.readLine();
-      return key;
-    } catch (IOException e) {
-      throw new RuntimeException("Could not read file " + PATH, e);
-    } finally {
-      try {
-        reader.close();
-      } catch (IOException e) {
-        logger.trace("Exception closing " + PATH, e);
-      }
-    }
+    logger.info("Reading " + Constantes.PATH + " from resources (probably from " +   "WEB-INF/classes");
+//    String key = Constantes.PK_GOOGLE;
+//    event.getServletContext().setAttribute(Constantes.ATTRIBUTE_ACCESS_KEY, key);
   }
 
   public void contextDestroyed(ServletContextEvent event) {
