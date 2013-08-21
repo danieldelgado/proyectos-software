@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vst.util.TraductorDeExcepciones;
 import com.vst.util.text.TextoUtil;
 
 public class NumeroUtil {
@@ -72,19 +73,13 @@ public class NumeroUtil {
 		return true;
 	}
 	
-	/**
-	 * Este método retorna una lista de id's encontrados en lista<br>
-	 * Este método no retornar nulo
-	 * 
-	 * @param lista
-	 * @param metodoGetId
-	 * @return
-	 * @throws BusinessException 
-	 */
+
+	@SuppressWarnings("rawtypes")
 	public static List listarId(List lista, String metodoGetId) {
 		return listarEnteroPorMetodo(lista, metodoGetId);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	private static List listarEnteroPorMetodo(List lista, String metodoNombre)  {		
 		ArrayList<Integer> listaId = new ArrayList<Integer>();
 		Method metodo;
@@ -94,15 +89,15 @@ public class NumeroUtil {
 					metodo = objeto.getClass().getMethod(metodoNombre);
 					listaId.add((Integer) metodo.invoke(objeto));	
 				} catch (SecurityException e) {
-//					TraductorDeExcepciones.traducir(e);
+					TraductorDeExcepciones.traducir(e);
 				} catch (NoSuchMethodException e) {
-//					TraductorDeExcepciones.traducir(e);
+					TraductorDeExcepciones.traducir(e);
 				} catch (IllegalArgumentException e) {
-//					TraductorDeExcepciones.traducir(e);
+					TraductorDeExcepciones.traducir(e);
 				} catch (IllegalAccessException e) {
-//					TraductorDeExcepciones.traducir(e);
+					TraductorDeExcepciones.traducir(e);
 				} catch (InvocationTargetException e) {
-//					TraductorDeExcepciones.traducir(e);
+					TraductorDeExcepciones.traducir(e);
 				}
 			}			
 		}	

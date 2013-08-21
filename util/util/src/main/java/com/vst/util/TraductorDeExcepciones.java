@@ -15,4 +15,10 @@ public class TraductorDeExcepciones {
 		log.error(msg+" "+e.getMessage() + " " + e.getLocalizedMessage() + " " +e.getCause() , e);		
 		e.printStackTrace();		
 	}
+
+	public static void traducir(Exception e) {
+		log.error(e.getMessage() + " " + e.getLocalizedMessage() + " " +e.getCause() , e);		
+		e.printStackTrace();
+	}
+
 }

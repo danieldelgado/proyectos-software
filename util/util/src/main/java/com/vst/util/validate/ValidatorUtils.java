@@ -38,15 +38,10 @@ public class ValidatorUtils {
 	private static final int _DIGIT_BEGIN = 48;
 	private static final int _DIGIT_END = 57;
 
+	public static boolean vacio(String cadena) {
+		return cadena == null || cadena.equals("");
+	}
 	
-	/**
-	 * Retorna <code>true</code> Si la cadena es un nombre vÃ¡lido con caracteres letras y caracteres
-	 * con tildes.
-	 *
-	 * @param  nombres el nombre a verificar
-	 * @return <code>true</code> si la cadena es un nombre vÃ¡lido;
-	 *         <code>false</code> otro caso
-	 */
 	public static boolean isNombre(String nombres){
 		if(isNull(nombres)) return false;
 		Matcher matcher = _patron_nombre.matcher(nombres);
@@ -78,53 +73,28 @@ public class ValidatorUtils {
 
 		return false;
 	}
-	/**
-	 * Retorna <code>true</code> Si la cadena es un apellido vÃ¡lido con caracteres letras y caracteres
-	 * con tildes.
-	 *
-	 * @param  apellidos el apellido a verificar
-	 * @return <code>true</code> si la cadena es un apellido vÃ¡lido;
-	 *         <code>false</code> otro caso
-	 */
+	
 	public static boolean isApellido(String apellidos){
 		if(isNull(apellidos)) return false;
 		Matcher matcher = _patron_nombre.matcher(apellidos);
 		return matcher.matches();
 	}
 
-	/**
-	 * Retorna <code>true</code> Si la cadena es una direcciÃ³n de correo electrÃ³nico vÃ¡lido
-	 *
-	 * @param  email el correo electrÃ³nico a verificar
-	 * @return <code>true</code> si la cadena es un correo electrÃ³nico vÃ¡lido;
-	 *         <code>false</code> otro caso
-	 */
+	
 	public static boolean isEmail(String email){
 		if(isNull(email)) return false;
 		Matcher matcher = _patron_email.matcher(email);
 		return matcher.matches();
 	}
 
-	/**
-	 * Retorna <code>true</code> Si la cadena es un nÃºmero de telefono valido de <code>7 digitos</code>
-	 *
-	 * @param  telefono el nÃºmero de telefono a verificar
-	 * @return <code>true</code> si la cadena es un telefono vÃ¡lido;
-	 *         <code>false</code> otro caso
-	 */
+
 	public static boolean isTelefono(String telefono){
 		if(isNull(telefono)) return false;
 		Matcher matcher = _patron_telefono.matcher(telefono);
 		return matcher.matches();
 	}
 
-	/**
-	 * Retorna <code>true</code> Si la cadena es un nÃºmero de celular valido de <code>9 digitos</code>
-	 *
-	 * @param  celular el nÃºmero de celular a verificar
-	 * @return <code>true</code> si la cadena es un celular vÃ¡lido;
-	 *         <code>false</code> otro caso
-	 */
+
 	public static boolean isCelular(String celular){
 		if(isNull(celular)) return false;
 		if(celular.charAt(0) != '9') return false;
@@ -132,13 +102,7 @@ public class ValidatorUtils {
 		return matcher.matches();
 	}
 
-	/**
-	 * Retorna <code>true</code> Si la cadena es un nÃºmero de DNI valido de <code>8 digitos</code>
-	 *
-	 * @param  dni el nÃºmero de DNI a verificar
-	 * @return <code>true</code> si la cadena es un DNI vÃ¡lido;
-	 *         <code>false</code> otro caso
-	 */
+	
 	public static boolean isDNI(String dni){
 		if(isNull(dni)) return false;
 		if(dni.equals("00000000")) return false;
@@ -146,13 +110,7 @@ public class ValidatorUtils {
 		return matcher.matches();
 	}
 
-	/**
-	 * Retorna <code>true</code> Si la cadena es un nÃºmero de RUC valido de <code>11 digitos</code>
-	 *
-	 * @param  ruc el nÃºmero de RUC a verificar
-	 * @return <code>true</code> si la cadena es un RUC vÃ¡lido;
-	 *         <code>false</code> otro caso
-	 */
+	
 	public static boolean isRUC(String ruc){
 		if(isNull(ruc)) return false;
 		if(ruc.charAt(0) != '1' && ruc.charAt(0) != '2' ) return false;
@@ -167,28 +125,14 @@ public class ValidatorUtils {
 	}
 
 
-	/**
-	 * Retorna <code>true</code> Si la cadena es un nÃºmero de carnÃ© de extanjerÃ­a valido de <code>9 - 11 caracteres alfanumerico</code>
-	 *
-	 * @param  ce el nÃºmero de carnÃ© de extanjerÃ­a a verificar
-	 * @return <code>true</code> si la cadena es un carnÃ© de extanjerÃ­a vÃ¡lido;
-	 *         <code>false</code> otro caso
-	 */
+	
 	public static boolean isCarneExtranjeria(String ce){
 		if(isNull(ce)) return false;
 		Matcher matcher = _patron_carnet_extranjeria.matcher(ce);
 		return matcher.matches();
 	}
 	
-	/**
-	 * Retorna <code>true</code> Si la cadena es <code>null</code>, lo que indica
-	 * una referencia a  <code>null</code> ,nada mÃ¡s que espacios, o la cadena
-	 * "<code>null</code>".
-	 *
-	 * @param  s la cadena a verificar
-	 * @return <code>true</code> si la cadena es <code>null</code>;
-	 *         <code>false</code> otro caso
-	 */
+	
 	public static boolean isNull(String s) {
 		if (s == null) {
 			return true;
@@ -231,11 +175,7 @@ public class ValidatorUtils {
 
 		return false;
 	}
-/**
- *
- * @param l
- * @return
- */
+
 	public static boolean isNull(Long l) {
 		if ((l == null) || (l.longValue() == 0)) {
 			return true;
@@ -246,11 +186,6 @@ public class ValidatorUtils {
 	}
 
 
-/**
- *
- * @param obj
- * @return
- */
 		public static boolean isNull(Object obj) {
 			if (obj instanceof Long) {
 				return isNull((Long)obj);
@@ -266,66 +201,28 @@ public class ValidatorUtils {
 			}
 		}
 
-	/**
-	 * Retorna <code>true</code> si la cadena no es  <code>null</code>, esto indica
-	 * que no es una referencia  <code>null</code>,nada mas que espacios, o la
-	 * cadena "<code>null</code>".
-	 *
-	 * @param  s la cadena a verificar
-	 * @return <code>true</code> si la cadena no es  <code>null</code>;
-	 *         <code>false</code> en otro caso
-	 */
+
 	public static boolean isNotNull(Long l) {
 		return !isNull(l);
 	}
 
-	/**
-	 * Returns <code>true</code> if the object is not <code>null</code>, using
-	 * the rules from {@link #isNotNull(Long)} or {@link #isNotNull(String)} if
-	 * the object is one of these types.
-	 *
-	 * @param  obj the object to check
-	 * @return <code>true</code> if the object is not <code>null</code>;
-	 *         <code>false</code> otherwise
-	 */
+
 	public static boolean isNotNull(Object obj) {
 		return !isNull(obj);
 	}
 
-	/**
-	 * Returns <code>true</code> if the array is not <code>null</code>, meaning
-	 * it is neither a <code>null</code> reference or empty.
-	 *
-	 * @param  array the array to check
-	 * @return <code>true</code> if the array is not <code>null</code>;
-	 *         <code>false</code> otherwise
-	 */
+
 	public static boolean isNotNull(Object[] array) {
 		return !isNull(array);
 	}
 
 
-	/**
-	 * Retorna <code>true</code> si la fecha es vÃ¡lida en el Calendario Gregoriano (PerÃº).
-	 *
-	 * @param  mes el mes a verificar (basado en 0,  0 para enero)
-	 * @param  dia el dia a verificar
-	 * @return <code>true</code> si la fecha es vÃ¡lida en el Calendario Gregoriano;
-	 *         <code>false</code> en otro caso
-	 */
+
 	public static boolean isDate(int dia, int mes, int anio) {
 		return isGregorianDate(dia, mes, anio);
 	}
 
-	/**
-	 * Retorna <code>true</code> si la fecha es vÃ¡lida en el Calendario Gregoriano (PerÃº)..
-	 *
-	 * @param  mes el mes (basado en 0,  0 para enero)
-	 * @param  dia el dÃ­a del mes
-	 * @param  anio el aÃ±o
-	 * @return <code>true</code> si la fecha es vÃ¡lida; <code>false</code>
-	 *         en otro caso
-	 */
+
 	public static boolean isGregorianDate(int dia, int mes, int anio) {
 		if ((mes < 0) || (mes > 11)) {
 			return false;
@@ -353,12 +250,6 @@ public class ValidatorUtils {
 		return true;
 	}
 
-
-/**
- *
- * @param num
- * @return
- */
 	public static boolean isMayor_0(int num) {
 		if(num>0)
 			return true;
@@ -369,11 +260,7 @@ public class ValidatorUtils {
 		return (num == 0);
 	}
 	
-/**
- *
- * @param cadena
- * @return
- */
+
 	public static boolean isCadena(String cadena){
 		if(isNull(cadena)) return false;
 		Matcher matcher = _cadena.matcher(cadena);
@@ -455,11 +342,7 @@ public class ValidatorUtils {
 	        output = output.replace(original.charAt(i), ascii.charAt(i));
 	    }//for i
 	    return output;
-	}//remove1
-	
-	 /******************************************************************************/
-	/*************************** Solicitudes **************************************/
-   /******************************************************************************/
+	}
 
 	public static boolean solicitud_isDNI(String dni){
 		if(isNull(dni)) return false;

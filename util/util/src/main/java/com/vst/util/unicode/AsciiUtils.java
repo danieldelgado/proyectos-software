@@ -1,9 +1,8 @@
-package com.vst.util;
+package com.vst.util.unicode;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.vst.util.unicode.UnicodeFormatter;
 
 //import com.liferay.portal.kernel.util.UnicodeFormatter;
 
@@ -36,7 +35,7 @@ public class AsciiUtils {
     private AsciiUtils() { }
 
     // las letras con tildes las pone sin tildes
-    public static String convertNonAscii(String s) {
+    public static String textoSinTildes(String s) {
     	log.debug("convertNonAscii:"+s);
        if (s == null) return null;
        StringBuilder sb = new StringBuilder();
@@ -55,7 +54,7 @@ public class AsciiUtils {
     }
 
     // las letras con tildes las pone en unicode
-    public static String _convertNonAscii(String s) {
+    public static String textoTildesUnicode(String s) {
     	log.debug("_convertNonAscii:"+s);
         if (s == null) return null;
         StringBuilder sb = new StringBuilder();
