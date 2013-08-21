@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.vst.util.file;
+package com.vst.util.archivo;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
