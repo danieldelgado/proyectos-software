@@ -1,10 +1,13 @@
 package com.google.bean;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -17,7 +20,6 @@ public class Usuario  implements Entidad{
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
 	@TableGenerator(name = "id_Generator", table = "sequence_table", pkColumnName = "sequence_name", valueColumnName = "sequence_value")
-//	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_usuario")
 	private Integer id;
 	@Column(name = "userName", nullable=false)	
@@ -28,9 +30,10 @@ public class Usuario  implements Entidad{
 	private String nombre;
 	@Column(name = "apellido")
 	private String apellido;
-	@Column(name = "key_device")
-	private String key_device;
 
+	@OneToMany(mappedBy="usuario")
+	private List<DispositivoMovil> dispositivoMovils;
+	
 	public Usuario() {
 	}
 
@@ -49,14 +52,6 @@ public class Usuario  implements Entidad{
 		this.apellido = apellido;
 	}
 
-	public Usuario(int id, String userName, String clave, String nombre, String apellido, String key_device) {
-		this.id = id;
-		this.userName = userName;
-		this.clave = clave;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.key_device = key_device;
-	}
 	
 	public Integer getId() {
 		return id;
@@ -98,12 +93,14 @@ public class Usuario  implements Entidad{
 		this.apellido = apellido;
 	}
 
-	public String getKey_device() {
-		return key_device;
+	
+	
+	public List<DispositivoMovil> getDispositivoMovils() {
+		return dispositivoMovils;
 	}
 
-	public void setKey_device(String key_device) {
-		this.key_device = key_device;
+	public void setDispositivoMovils(List<DispositivoMovil> dispositivoMovils) {
+		this.dispositivoMovils = dispositivoMovils;
 	}
 
 	//	@Override

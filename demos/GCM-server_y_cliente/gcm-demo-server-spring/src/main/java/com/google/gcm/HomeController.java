@@ -28,6 +28,7 @@ import com.google.android.gcm.server.Message;
 import com.google.android.gcm.server.MulticastResult;
 import com.google.android.gcm.server.Result;
 import com.google.android.gcm.server.Sender;
+import com.google.bean.DispositivoMovil;
 import com.google.bean.Usuario;
 import com.google.dao.UsuarioDAO;
 import com.google.gcm.util.Constantes;
@@ -47,9 +48,6 @@ public class HomeController {
 	private Sender sender;
 	private static final Executor threadPool = Executors.newFixedThreadPool(5);
 
-	@Autowired
-	private UsuarioDAO usuarioDAO;
-	
 	@Autowired
 	private RegistrarService registrarService;
 	
@@ -81,7 +79,7 @@ public class HomeController {
 		if (status != null) {
 			out.print(status);
 		}
-		List<Usuario> usuariosDevices = usuarioDAO.getTodos();
+		List<Usuario> usuariosDevices = registrarService.obtenerTodos();
 		if (usuariosDevices.isEmpty()) {
 			out.print("<h2>No devices registered!</h2>");
 		} else {
@@ -106,19 +104,7 @@ public class HomeController {
 		String regId;
 		try {
 			regId = getParameter(req, PARAMETER_REG_ID);
-			Usuario usuario = null;
-			boolean existe =  usuarioDAO.buscarUsuarioRegIdDevie(regId);
-			if(existe){
-				System.out.println("registrado");
-				usuario = usuarioDAO.buscarUsuarioPorDevie(regId);	
-			}else{
-				System.out.println("no registrado");
-				usuario = new Usuario("device", "device", "device", "device");
-				usuario.setKey_device(regId);
-				
-				registrarService.guardarUsuairo(usuario);				
-			}
-			
+			registrarService.registrarUsuarioPorRegIDMovil(regId);
 //			Datastore.register(regId);
 			setSuccess(resp);
 		} catch (ServletException e) {
@@ -133,7 +119,7 @@ public class HomeController {
 		sender = new Sender(ky);
 		System.out.println("sender");
 		System.out.println(sender);
-		List<Usuario> usuariosDevices = usuarioDAO.getTodos();
+		List<Usuario> usuariosDevices = registrarService.obtenerTodos();
 		String status;
 		if (usuariosDevices.isEmpty()) {
 			status = "Message ignored as there is no device registered!";
@@ -144,6 +130,7 @@ public class HomeController {
 			if (usuariosDevices.size() == 1) {
 				// send a single message using plain post
 				Usuario registrationId = usuariosDevices.get(0);
+				DispositivoMovil d = registrationId.getDispositivoMovils().get(0);
 				// Message message = new Message.Builder().build();
 				Message message = new Message.Builder()
 
@@ -158,7 +145,7 @@ public class HomeController {
 				System.out.println(message);
 				System.out.println(message.getCollapseKey());
 				System.out.println(message.getData());
-				Result result = sender.send(message, registrationId.getKey_device(), 5);
+				Result result = sender.send(message, d.getKey_device(), 5);
 				status = "Sent message to one device: " + result;
 				System.out.println(status);
 			} else {
@@ -169,8 +156,9 @@ public class HomeController {
 				int counter = 0;
 				int tasks = 0;
 				for (Usuario device : usuariosDevices) {
+					DispositivoMovil d = device.getDispositivoMovils().get(0);
 					counter++;
-					partialDevices.add(device.getKey_device());
+					partialDevices.add(d.getKey_device());
 					int partialSize = partialDevices.size();
 					if (partialSize == MULTICAST_SIZE || counter == total) {
 						asyncSend(partialDevices);
@@ -241,7 +229,8 @@ public class HomeController {
 				Usuario usuario = null;
 				for (int i = 0; i < devices.size(); i++) {
 					String regId = devices.get(i);
-					usuario = usuarioDAO.buscarUsuarioPorDevie(regId);	
+//					usuario = usuarioDAO.buscarUsuarioPorDevie(regId);	
+					usuario = registrarService.buscarUsuarioPorRegId(regId);
 					Result result = results.get(i);
 					String messageId = result.getMessageId();
 					if (messageId != null) {
@@ -252,8 +241,10 @@ public class HomeController {
 							// update it
 							logger.info("canonicalRegId " + canonicalRegId);
 //							Datastore.updateRegistration(regId, canonicalRegId);
-							usuario.setKey_device(canonicalRegId);
-							usuarioDAO.guardar(usuario);
+//							usuario.setKey_device(canonicalRegId);
+							DispositivoMovil d = registrarService.obtenerDispositivoMovilPorRegId(regId);
+							d.setKey_device(canonicalRegId);
+							registrarService.guardarDispositivoMovil(d);							
 						}
 					} else {
 						String error = result.getErrorCodeName();

@@ -7,7 +7,7 @@ public interface UsuarioDAO extends IDAO<Usuario> {
 
 	Usuario buscarUsuario(Usuario usuario);
 	Usuario buscarUsuario(String usuario);
-	boolean buscarUsuarioRegIdDevie(String regId);
-	Usuario buscarUsuarioPorDevie(String regId);
+//	boolean buscarUsuarioRegIdDevie(String regId);
+//	Usuario buscarUsuarioPorDevie(String regId);
 
 }
