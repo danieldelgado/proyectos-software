@@ -3,7 +3,8 @@ package com.vst.hsd.dominio;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import com.vst.util.Entidad;
+
+import com.vst.util.persistence.Entidad;
 
 @Entity
 @Table(name = "Formulario")

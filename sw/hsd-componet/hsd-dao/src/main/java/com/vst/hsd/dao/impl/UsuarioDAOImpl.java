@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.vst.hsd.dao.UsuarioDAO;
 import com.vst.hsd.dominio.Usuario;
-import com.vst.util.DAO;
+import com.vst.util.persistence.impl.DAO;
 
 @Repository("UsuarioDAO")
 public class UsuarioDAOImpl extends DAO<Usuario> implements UsuarioDAO {

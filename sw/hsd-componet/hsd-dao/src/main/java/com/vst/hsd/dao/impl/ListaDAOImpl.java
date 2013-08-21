@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.vst.hsd.dao.ListaDAO;
 import com.vst.hsd.dominio.Lista;
 import com.vst.hsd.dominio.Usuario;
-import com.vst.util.DAO;
+import com.vst.util.persistence.impl.DAO;
 
 @Repository("ListaDAO")
 public class ListaDAOImpl extends DAO<Lista> implements ListaDAO {

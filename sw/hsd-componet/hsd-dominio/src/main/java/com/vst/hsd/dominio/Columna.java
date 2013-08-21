@@ -13,7 +13,7 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.vst.util.Entidad;
+import com.vst.util.persistence.Entidad;
 
 // TODO: Auto-generated Javadoc
 /**

@@ -5,7 +5,7 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import com.vst.util.Entidad;
+import com.vst.util.persistence.Entidad;
 
 // TODO: Auto-generated Javadoc
 /**

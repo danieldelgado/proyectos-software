@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.vst.hsd.dao.ColumnaDAO;
 import com.vst.hsd.dominio.Columna;
-import com.vst.util.DAO;
+import com.vst.util.persistence.impl.DAO;
 
 @Repository("ColumnaDAO")
 public class ColumnaDAOImpl extends DAO<Columna> implements ColumnaDAO {

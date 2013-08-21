@@ -4,7 +4,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletContextEvent;
 
-import com.vst.util.Config;
+import com.vst.util.properties.Config;
 
 public class ApplicationHSD implements ServletContextListener {
 

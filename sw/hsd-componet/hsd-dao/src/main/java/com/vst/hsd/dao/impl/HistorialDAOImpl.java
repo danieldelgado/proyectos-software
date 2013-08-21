@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import com.vst.hsd.dao.HistorialDAO;
 import com.vst.hsd.dominio.Historial;
-import com.vst.util.DAO;
+import com.vst.util.persistence.impl.DAO;
 
 @Repository("HistorialDAO")
 public class HistorialDAOImpl extends DAO<Historial> implements HistorialDAO {

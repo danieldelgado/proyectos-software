@@ -3,7 +3,7 @@ package com.vst.hsd.dao;
 import java.util.List;
 
 import com.vst.hsd.dominio.Perfil;
-import com.vst.util.IDAO;
+import com.vst.util.persistence.IDAO;
 
 // TODO: Auto-generated Javadoc
 /**

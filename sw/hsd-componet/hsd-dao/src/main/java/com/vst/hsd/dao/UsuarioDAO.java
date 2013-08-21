@@ -1,7 +1,7 @@
 package com.vst.hsd.dao;
 
 import com.vst.hsd.dominio.Usuario;
-import com.vst.util.IDAO;
+import com.vst.util.persistence.IDAO;
 
 // TODO: Auto-generated Javadoc
 /**

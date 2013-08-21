@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.vst.hsd.dominio.Menu;
 import com.vst.hsd.dominio.Usuario;
-import com.vst.util.IDAO;
+import com.vst.util.persistence.IDAO;
 
 /**
  * The Interface MenuDAO.

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.vst.hsd.dao.MenuDAO;
 import com.vst.hsd.dominio.Menu;
 import com.vst.hsd.dominio.Usuario;
-import com.vst.util.DAO;
+import com.vst.util.persistence.impl.DAO;
 
 /**
  * The Class MenuDAOImpl.

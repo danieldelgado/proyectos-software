@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.vst.hsd.dao.PerfilDAO;
 import com.vst.hsd.dominio.Perfil;
 import com.vst.util.Constantes;
-import com.vst.util.DAO;
+import com.vst.util.persistence.impl.DAO;
 
 @Repository("PerfilDAO")
 public class PerfilDAOImpl extends DAO<Perfil> implements PerfilDAO {

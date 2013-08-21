@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.vst.hsd.dominio.Boton;
 import com.vst.hsd.dominio.Menu;
-import com.vst.util.IDAO;
+import com.vst.util.persistence.IDAO;
 
 // TODO: Auto-generated Javadoc
 /**

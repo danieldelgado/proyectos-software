@@ -11,7 +11,7 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.vst.util.Entidad;
+import com.vst.util.persistence.Entidad;
 
 // TODO: Auto-generated Javadoc
 /**

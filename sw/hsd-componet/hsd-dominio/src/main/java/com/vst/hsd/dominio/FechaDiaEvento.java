@@ -3,7 +3,7 @@ package com.vst.hsd.dominio;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import com.vst.util.Entidad;
+import com.vst.util.persistence.Entidad;
 
 import java.util.Date;
 
