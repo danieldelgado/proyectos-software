@@ -118,7 +118,7 @@ public class TextoUtil {
 		return texto;
 	}
 
-	public static String eliminarAcentos(String texto) {
+	public static String eliminarTildes(String texto) {
 		if (contieneAlgo(texto)) {
 			texto = texto.replace('Á', 'A');
 			texto = texto.replace('É', 'E');
@@ -293,6 +293,7 @@ public class TextoUtil {
 		return false;
 	}*/
 	
+	@SuppressWarnings("rawtypes")
 	public static boolean contieneCaracteresPermitidos(List listasEvaluar, String texto) {
 		int tamanoTexto = texto.length();
 		int suma = 0;

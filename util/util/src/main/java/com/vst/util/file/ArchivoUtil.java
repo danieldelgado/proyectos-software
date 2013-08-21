@@ -32,7 +32,7 @@ public class ArchivoUtil {
 
 	private static final Logger log = LoggerFactory.getLogger(ArchivoUtil.class);
 
-	public static File enFile(String nombreArchivo, byte[] arreglo) throws FileNotFoundException, IOException {
+	public static File bytesToFile(String nombreArchivo, byte[] arreglo) throws FileNotFoundException, IOException {
 		log.debug("File nombreArchivo:" + nombreArchivo);
 		if (TextoUtil.contieneAlgo(nombreArchivo) && arreglo != null) {
 			File archivo = new File(nombreArchivo);
@@ -45,7 +45,7 @@ public class ArchivoUtil {
 		return null;
 	}
 
-	public static byte[] enArregloByte(File archivo) throws FileNotFoundException, IOException {
+	public static byte[] fileToBytes(File archivo) throws FileNotFoundException, IOException {
 		log.debug("byte[] archivo:" + archivo);
 		if (archivo != null) {
 			InputStream flujoEntrada = new FileInputStream(archivo);
@@ -58,13 +58,13 @@ public class ArchivoUtil {
 		return null;
 	}
 
-	public static byte[] cargarImage(String rutaImagen) throws ImageFormatException, IOException {
+	public static byte[] cargarBytesRuta(String rutaImagen) throws ImageFormatException, IOException {
 		log.debug("byte[] cargarImage:" + rutaImagen);
-		BufferedImage cargaImagen = loadImage(rutaImagen);
+		BufferedImage cargaImagen = cargarFileRuta(rutaImagen);
 		return bufferedImageToByteArray(cargaImagen);
 	}
 
-	public static BufferedImage loadImage(String rutaImagen) throws IOException {
+	public static BufferedImage cargarFileRuta(String rutaImagen) throws IOException {
 		log.debug("BufferedImage loadImage:" + rutaImagen);
 		BufferedImage bimg = null;
 		bimg = ImageIO.read(new File(rutaImagen));
