@@ -3,6 +3,8 @@ package com.vst.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.vst.util.unicode.UnicodeFormatter;
+
 //import com.liferay.portal.kernel.util.UnicodeFormatter;
 
 public class AsciiUtils {

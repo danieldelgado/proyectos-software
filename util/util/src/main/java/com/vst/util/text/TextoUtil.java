@@ -1,4 +1,4 @@
-package com.vst.util;
+package com.vst.util.text;
 
 import java.util.Iterator;
 import java.util.List;

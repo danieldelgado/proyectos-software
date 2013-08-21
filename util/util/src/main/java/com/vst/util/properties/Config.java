@@ -1,4 +1,4 @@
-package com.vst.util;
+package com.vst.util.properties;
 
 import java.io.FileInputStream;
 import java.io.IOException;

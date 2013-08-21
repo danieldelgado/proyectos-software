@@ -1,4 +1,4 @@
-package com.vst.util;
+package com.vst.util.persistence;
 
 import java.util.List;
 

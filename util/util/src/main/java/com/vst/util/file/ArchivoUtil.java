@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.vst.util;
+package com.vst.util.file;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import com.sun.image.codec.jpeg.ImageFormatException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import com.vst.util.text.TextoUtil;
 
 /**
  * @author FMANDROSP

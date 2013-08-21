@@ -1,4 +1,4 @@
-package com.vst.util;
+package com.vst.util.net;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;

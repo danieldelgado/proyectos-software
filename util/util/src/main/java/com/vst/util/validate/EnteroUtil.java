@@ -1,10 +1,12 @@
-package com.vst.util;
+package com.vst.util.validate;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.vst.util.text.TextoUtil;
 
 public class EnteroUtil {
 

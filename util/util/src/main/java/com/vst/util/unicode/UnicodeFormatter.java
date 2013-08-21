@@ -1,4 +1,4 @@
-package com.vst.util;
+package com.vst.util.unicode;
 public class UnicodeFormatter {
 
 	public static char HEX_DIGIT[] = {

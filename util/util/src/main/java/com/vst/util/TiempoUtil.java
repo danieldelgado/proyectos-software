@@ -8,6 +8,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import com.vst.util.validate.EnteroUtil;
+
 public class TiempoUtil {
 	
 	public static boolean isFechaValida(Date fecha) {

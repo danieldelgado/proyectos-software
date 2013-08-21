@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.google.gson.Gson;
+import com.vst.util.persistence.Entidad;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class Util {

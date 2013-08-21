@@ -1,4 +1,4 @@
-package com.vst.util;
+package com.vst.util.persistence.impl;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -10,6 +10,9 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.vst.util.persistence.Entidad;
+import com.vst.util.persistence.IDAO;
 
 public class DAO<T extends Entidad> implements IDAO<T> {
 

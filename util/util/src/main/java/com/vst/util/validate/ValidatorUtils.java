@@ -1,9 +1,11 @@
-package com.vst.util;
+package com.vst.util.validate;
 
 
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.vst.util.CharPool;
 
 public class ValidatorUtils {
 	private static Pattern _cadena=Pattern.compile("[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ\\s-]{1,100}");

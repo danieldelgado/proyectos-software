@@ -1,4 +1,4 @@
-package com.vst.util;
+package com.vst.util.auditoria;
 
 public @interface Auditable {
 
