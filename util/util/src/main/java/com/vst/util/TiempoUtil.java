@@ -8,7 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import com.vst.util.validate.EnteroUtil;
+import com.vst.util.validate.NumeroUtil;
 
 public class TiempoUtil {
 	
@@ -23,9 +23,9 @@ public class TiempoUtil {
 	public static Date agregarDiaMesAno(Date fecha, Integer dias, Integer meses, Integer anos){
 		Calendar calendario = new GregorianCalendar();
 		calendario.setTime(fecha);
-		if(EnteroUtil.isPositivo(dias)) calendario.add(Calendar.DAY_OF_MONTH, dias);
-		if(EnteroUtil.isPositivo(meses)) calendario.add(Calendar.MONTH, meses);
-		if(EnteroUtil.isPositivo(anos)) calendario.add(Calendar.YEAR, anos);
+		if(NumeroUtil.isPositivo(dias)) calendario.add(Calendar.DAY_OF_MONTH, dias);
+		if(NumeroUtil.isPositivo(meses)) calendario.add(Calendar.MONTH, meses);
+		if(NumeroUtil.isPositivo(anos)) calendario.add(Calendar.YEAR, anos);
 		return calendario.getTime();
 	}
 	
