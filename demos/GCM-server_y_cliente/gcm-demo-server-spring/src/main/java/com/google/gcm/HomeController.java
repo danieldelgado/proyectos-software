@@ -17,20 +17,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.android.gcm.server.Constants;
 import com.google.android.gcm.server.Message;
 import com.google.android.gcm.server.MulticastResult;
 import com.google.android.gcm.server.Result;
 import com.google.android.gcm.server.Sender;
-import com.google.bean.Shop;
+import com.google.bean.Usuario;
+import com.google.dao.UsuarioDAO;
 import com.google.gcm.util.Constantes;
+import com.google.service.RegistrarService;
 
 /**
  * Handles requests for the application home page.
@@ -46,6 +47,13 @@ public class HomeController {
 	private Sender sender;
 	private static final Executor threadPool = Executors.newFixedThreadPool(5);
 
+	@Autowired
+	private UsuarioDAO usuarioDAO;
+	
+	@Autowired
+	private RegistrarService registrarService;
+	
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 * 
@@ -54,7 +62,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public void home(HttpServletRequest req, HttpServletResponse resp, Locale locale, Model model) throws IOException {
 		logger.info("Welcome home! the client locale is " + locale.toString());
-
+	
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
@@ -73,11 +81,11 @@ public class HomeController {
 		if (status != null) {
 			out.print(status);
 		}
-		List<String> devices = Datastore.getDevices();
-		if (devices.isEmpty()) {
+		List<Usuario> usuariosDevices = usuarioDAO.getTodos();
+		if (usuariosDevices.isEmpty()) {
 			out.print("<h2>No devices registered!</h2>");
 		} else {
-			out.print("<h2>" + devices.size() + " device(s) registered!</h2>");
+			out.print("<h2>" + usuariosDevices.size() + " device(s) registered!</h2>");
 			out.print("<form name='form' method='POST' action='sendAll'>");
 			out.print("<input type='submit' value='Send Message' />");
 			out.print("</form>");
@@ -91,14 +99,27 @@ public class HomeController {
 	public void home2(HttpServletRequest req, HttpServletResponse resp, Locale locale, Model model) throws IOException {
 		home(req, resp, locale, model);
 	}
-
+	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public void register(HttpServletRequest req, HttpServletResponse resp, Locale locale, Model model) {
 
 		String regId;
 		try {
 			regId = getParameter(req, PARAMETER_REG_ID);
-			Datastore.register(regId);
+			Usuario usuario = null;
+			boolean existe =  usuarioDAO.buscarUsuarioRegIdDevie(regId);
+			if(existe){
+				System.out.println("registrado");
+				usuario = usuarioDAO.buscarUsuarioPorDevie(regId);	
+			}else{
+				System.out.println("no registrado");
+				usuario = new Usuario("device", "device", "device", "device");
+				usuario.setKey_device(regId);
+				
+				registrarService.guardarUsuairo(usuario);				
+			}
+			
+//			Datastore.register(regId);
 			setSuccess(resp);
 		} catch (ServletException e) {
 			e.printStackTrace();
@@ -112,17 +133,17 @@ public class HomeController {
 		sender = new Sender(ky);
 		System.out.println("sender");
 		System.out.println(sender);
-		List<String> devices = Datastore.getDevices();
+		List<Usuario> usuariosDevices = usuarioDAO.getTodos();
 		String status;
-		if (devices.isEmpty()) {
+		if (usuariosDevices.isEmpty()) {
 			status = "Message ignored as there is no device registered!";
 		} else {
 			// NOTE: check below is for demonstration purposes; a real
 			// application
 			// could always send a multicast, even for just one recipient
-			if (devices.size() == 1) {
+			if (usuariosDevices.size() == 1) {
 				// send a single message using plain post
-				String registrationId = devices.get(0);
+				Usuario registrationId = usuariosDevices.get(0);
 				// Message message = new Message.Builder().build();
 				Message message = new Message.Builder()
 
@@ -137,19 +158,19 @@ public class HomeController {
 				System.out.println(message);
 				System.out.println(message.getCollapseKey());
 				System.out.println(message.getData());
-				Result result = sender.send(message, registrationId, 5);
+				Result result = sender.send(message, registrationId.getKey_device(), 5);
 				status = "Sent message to one device: " + result;
 				System.out.println(status);
 			} else {
 				// send a multicast message using JSON
 				// must split in chunks of 1000 devices (GCM limit)
-				int total = devices.size();
+				int total = usuariosDevices.size();
 				List<String> partialDevices = new ArrayList<String>(total);
 				int counter = 0;
 				int tasks = 0;
-				for (String device : devices) {
+				for (Usuario device : usuariosDevices) {
 					counter++;
-					partialDevices.add(device);
+					partialDevices.add(device.getKey_device());
 					int partialSize = partialDevices.size();
 					if (partialSize == MULTICAST_SIZE || counter == total) {
 						asyncSend(partialDevices);
@@ -170,20 +191,21 @@ public class HomeController {
 	@RequestMapping(value = "/unregister", method = RequestMethod.POST)
 	public void unregister(HttpServletRequest req, HttpServletResponse resp, Locale locale, Model model) throws ServletException, IOException {
 		String regId = getParameter(req, PARAMETER_REG_ID);
-		Datastore.unregister(regId);
+//		Datastore.unregister(regId);
+		System.out.println("  unregister ");
 		setSuccess(resp);
 	}
 	
-	@RequestMapping(value="/json/{name}", method = RequestMethod.GET)
-	public @ResponseBody Shop getShopInJSON(@PathVariable String name) {
- 
-		Shop shop = new Shop();
-		shop.setName(name);
-		shop.setStaffName(new String[]{"mkyong1", "mkyong2"});
- 
-		return shop;
- 
-	}
+//	@RequestMapping(value="/json/{name}", method = RequestMethod.GET)
+//	public @ResponseBody Shop getShopInJSON(@PathVariable String name) {
+// 
+//		Shop shop = new Shop();
+//		shop.setName(name);
+//		shop.setStaffName(new String[]{"mkyong1", "mkyong2"});
+// 
+//		return shop;
+// 
+//	}
  
 	
 	
@@ -216,8 +238,10 @@ public class HomeController {
 				}
 				List<Result> results = multicastResult.getResults();
 				// analyze the results
+				Usuario usuario = null;
 				for (int i = 0; i < devices.size(); i++) {
 					String regId = devices.get(i);
+					usuario = usuarioDAO.buscarUsuarioPorDevie(regId);	
 					Result result = results.get(i);
 					String messageId = result.getMessageId();
 					if (messageId != null) {
@@ -227,7 +251,9 @@ public class HomeController {
 							// same device has more than on registration id:
 							// update it
 							logger.info("canonicalRegId " + canonicalRegId);
-							Datastore.updateRegistration(regId, canonicalRegId);
+//							Datastore.updateRegistration(regId, canonicalRegId);
+							usuario.setKey_device(canonicalRegId);
+							usuarioDAO.guardar(usuario);
 						}
 					} else {
 						String error = result.getErrorCodeName();
@@ -235,7 +261,8 @@ public class HomeController {
 							// application has been removed from device -
 							// unregister it
 							logger.info("Unregistered device: " + regId);
-							Datastore.unregister(regId);
+//							Datastore.unregister(regId);
+							System.out.println("Unregistered device");
 						} else {
 							logger.info("Error sending message to " + regId + ": " + error);
 						}

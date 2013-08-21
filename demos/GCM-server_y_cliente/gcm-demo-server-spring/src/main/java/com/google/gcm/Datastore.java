@@ -15,11 +15,6 @@
  */
 package com.google.gcm;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Simple implementation of a data store using standard Java collections.
@@ -29,52 +24,52 @@ import org.slf4j.LoggerFactory;
  */
 public final class Datastore {
 
-  private static final List<String> regIds = new ArrayList<String>();
-
-	private static final Logger logger = LoggerFactory.getLogger(Datastore.class);
-
-  private Datastore() {
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * Registers a device.
-   */
-  public static void register(String regId) {
-    logger.info("Registering " + regId);
-    synchronized (regIds) {
-      regIds.add(regId);
-    }
-  }
-
-  /**
-   * Unregisters a device.
-   */
-  public static void unregister(String regId) {
-    logger.info("Unregistering " + regId);
-    synchronized (regIds) {
-      regIds.remove(regId);
-    }
-  }
-
-  /**
-   * Updates the registration id of a device.
-   */
-  public static void updateRegistration(String oldId, String newId) {
-    logger.info("Updating " + oldId + " to " + newId);
-    synchronized (regIds) {
-      regIds.remove(oldId);
-      regIds.add(newId);
-    }
-  }
-
-  /**
-   * Gets all registered devices.
-   */
-  public static List<String> getDevices() {
-    synchronized (regIds) {
-      return new ArrayList<String>(regIds);
-    }
-  }
+//  private static final List<String> regIds = new ArrayList<String>();
+//
+//	private static final Logger logger = LoggerFactory.getLogger(Datastore.class);
+//
+//  private Datastore() {
+//    throw new UnsupportedOperationException();
+//  }
+//
+//  /**
+//   * Registers a device.
+//   */
+//  public static void register(String regId) {
+//    logger.info("Registering " + regId);
+//    synchronized (regIds) {
+//      regIds.add(regId);
+//    }
+//  }
+//
+//  /**
+//   * Unregisters a device.
+//   */
+//  public static void unregister(String regId) {
+//    logger.info("Unregistering " + regId);
+//    synchronized (regIds) {
+//      regIds.remove(regId);
+//    }
+//  }
+//
+//  /**
+//   * Updates the registration id of a device.
+//   */
+//  public static void updateRegistration(String oldId, String newId) {
+//    logger.info("Updating " + oldId + " to " + newId);
+//    synchronized (regIds) {
+//      regIds.remove(oldId);
+//      regIds.add(newId);
+//    }
+//  }
+//
+//  /**
+//   * Gets all registered devices.
+//   */
+//  public static List<String> getDevices() {
+//    synchronized (regIds) {
+//      return new ArrayList<String>(regIds);
+//    }
+//  }
 
 }
