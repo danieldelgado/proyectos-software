@@ -41,7 +41,7 @@ public class DemoActivity extends Activity {
 
     TextView mDisplay;
     AsyncTask<Void, Void, Void> mRegisterTask;
-
+    String regId;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +55,7 @@ public class DemoActivity extends Activity {
         setContentView(R.layout.main);
         mDisplay = (TextView) findViewById(R.id.display);
         registerReceiver(mHandleMessageReceiver,new IntentFilter(DISPLAY_MESSAGE_ACTION));
-        final String regId = GCMRegistrar.getRegistrationId(this);
+        regId = GCMRegistrar.getRegistrationId(this);
         if (regId.equals("")) {
             // Automatically registers application on startup.
             GCMRegistrar.register(this, SENDER_ID);
@@ -104,18 +104,20 @@ public class DemoActivity extends Activity {
              * register or unregister the device (you will also need to
              * uncomment the equivalent options on options_menu.xml).
              */
-            /*
+            /**/
             case R.id.options_register:
                 GCMRegistrar.register(this, SENDER_ID);
-                return true;
+                return true; 
             case R.id.options_unregister:
                 GCMRegistrar.unregister(this);
                 return true;
-             */
+            
             case R.id.options_clear:
                 mDisplay.setText(null);
                 return true;
             case R.id.options_exit:
+//            	GCMRegistrar.unregister(this);
+//            	ServerUtilities.unregister(this, regId);
                 finish();
                 return true;
             default:
