@@ -20,7 +20,7 @@ import static com.google.android.gcm.demo.app.CommonUtilities.EXTRA_MESSAGE;
 import static com.google.android.gcm.demo.app.CommonUtilities.SENDER_ID;
 import static com.google.android.gcm.demo.app.CommonUtilities.SERVER_URL;
 
-import com.google.android.gcm.GCMRegistrar;
+import com.google.android.util.gcm.GCMRegistrar;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
