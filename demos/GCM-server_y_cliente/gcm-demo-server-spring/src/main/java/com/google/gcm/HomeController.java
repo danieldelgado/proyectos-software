@@ -117,8 +117,6 @@ public class HomeController {
 
 		String ky = Constantes.PK_GOOGLE;
 		sender = new Sender(ky);
-		System.out.println("sender");
-		System.out.println(sender);
 		List<Usuario> usuariosDevices = registrarService.obtenerTodos();
 		String status;
 		if (usuariosDevices.isEmpty()) {
@@ -129,8 +127,8 @@ public class HomeController {
 			// could always send a multicast, even for just one recipient
 			if (usuariosDevices.size() == 1) {
 				// send a single message using plain post
-				Usuario registrationId = usuariosDevices.get(0);
-				DispositivoMovil d = registrationId.getDispositivoMovils().get(0);
+//				Usuario usuario = usuariosDevices.get(0);
+				DispositivoMovil d = registrarService.obtenerDispositivoMovil();
 				// Message message = new Message.Builder().build();
 				Message message = new Message.Builder()
 

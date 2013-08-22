@@ -19,6 +19,8 @@ public interface RegistrarService {
 
 	void guardarDispositivoMovil(DispositivoMovil d);
 
+	DispositivoMovil obtenerDispositivoMovil();
+
 	
 
 }

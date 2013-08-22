@@ -71,6 +71,10 @@ public class RegistrarServiceImpl implements RegistrarService {
 		dispositivoMovilDAO.guardar(d);		
 	}
 
+	public DispositivoMovil obtenerDispositivoMovil() {		
+		return dispositivoMovilDAO.getTodos().get(0);
+	}
+
 	
 
 }
