@@ -5,18 +5,23 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
+import javax.naming.directory.BasicAttribute;
+import javax.naming.directory.BasicAttributes;
+import javax.naming.directory.DirContext;
+import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 
 public class ADAuthenticatorFunciona {
-	
+
 	private String domain;
 	private String ldapHost;
 	private String searchBase;
@@ -27,34 +32,35 @@ public class ADAuthenticatorFunciona {
 		this.searchBase = "ou=usuario-server01,dc=vst,dc=server01,dc=com";
 	}
 
-	 public ADAuthenticatorFunciona(String domain, String host, String dn) {
-		 this.domain = domain;
-		 this.ldapHost = host;
-		 this.searchBase = dn;
-	 }
+	public ADAuthenticatorFunciona(String domain, String host, String dn) {
+		this.domain = domain;
+		this.ldapHost = host;
+		this.searchBase = dn;
+	}
 
 	public List<Map<String, Object>> authenticate(String user, String pass) {
 
 		LdapContext ctxGC = null;
-		
+
 		Hashtable<String, Object> env = new Hashtable<String, Object>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
 		env.put(Context.PROVIDER_URL, ldapHost);
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		env.put(Context.SECURITY_PRINCIPAL, user + "@" + domain);
 		env.put(Context.SECURITY_CREDENTIALS, pass);
-		
+
 		String returnedAtts[] = { "sAMAccountName", "givenName", "cn", "mail" };
 		// Create the search controls
 		SearchControls searchCtls = new SearchControls();
 		searchCtls.setReturningAttributes(returnedAtts);
 		// Specify the search scope
 		searchCtls.setSearchScope(SearchControls.SUBTREE_SCOPE);
-		
+
 		String searchFilter = "(|(objectClass=user)(sAMAccountName=" + user + "))";
-		
+
 		try {
 			ctxGC = new InitialLdapContext(env, null);
+
 			// Search objects in GC using filters
 			NamingEnumeration<SearchResult> answer = ctxGC.search(searchBase, searchFilter, searchCtls);
 			List<Map<String, Object>> lst = new ArrayList<Map<String, Object>>();
@@ -83,6 +89,45 @@ public class ADAuthenticatorFunciona {
 		return null;
 	}
 
+//	private void registrarNuevoUsuario(String user, String pass) {
+//
+//		Hashtable<String, Object> env = new Hashtable<String, Object>();
+//		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+//		env.put(Context.PROVIDER_URL, ldapHost);
+//		env.put(Context.SECURITY_AUTHENTICATION, "simple");
+//		env.put(Context.SECURITY_PRINCIPAL, user + "@" + domain);
+//		env.put(Context.SECURITY_CREDENTIALS, pass);
+//
+//		Attribute cn = new BasicAttribute("cn", "Test User2");
+//		Attribute mail = new BasicAttribute("mail", "newuser"+ "@" + domain);
+//		Attribute phone = new BasicAttribute("telephoneNumber", "+1 222 3334444");
+//		Attribute oc = new BasicAttribute("objectClass");
+//		oc.add("top");
+//		oc.add("person");
+//		oc.add("organizationalPerson");
+//		oc.add("user");
+//		DirContext ctx = null;
+//
+//		try {
+//
+//			ctx = new InitialDirContext(env);
+//
+//			BasicAttributes entry = new BasicAttributes();
+//			entry.put(cn);
+//			entry.put(mail);
+//			entry.put(phone);
+//
+//			entry.put(oc);
+//
+//
+//			ctx.createSubcontext(searchBase, entry);
+//
+//		} catch (NamingException e) {
+//			System.err.println("AddUser: error adding entry." + e);
+//		}
+//
+//	}
+
 	public static void main(String[] args) {
 		ADAuthenticatorFunciona a = new ADAuthenticatorFunciona();
 		System.out.println(a.authenticate("Administrator", ""));
@@ -90,6 +135,7 @@ public class ADAuthenticatorFunciona {
 		System.out.println(a.authenticate("Administrator", ""));
 		a = new ADAuthenticatorFunciona("vst.server01.com", "ldap://VST-SERVER01:389", "cn=cliente01,ou=usuario-server01,dc=vst,dc=server01,dc=com");
 		System.out.println(a.authenticate("Administrator", ""));
+//		a.registrarNuevoUsuario("Administrator", "");
 	}
 
 }
