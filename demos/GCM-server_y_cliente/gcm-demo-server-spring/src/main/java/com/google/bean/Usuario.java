@@ -34,6 +34,8 @@ public class Usuario  implements Entidad{
 	@OneToMany(mappedBy="usuario")
 	private List<DispositivoMovil> dispositivoMovils;
 	
+	private transient DispositivoMovil dispositivoMovilActual;
+	
 	public Usuario() {
 	}
 
@@ -101,6 +103,16 @@ public class Usuario  implements Entidad{
 
 	public void setDispositivoMovils(List<DispositivoMovil> dispositivoMovils) {
 		this.dispositivoMovils = dispositivoMovils;
+	}
+
+	
+	
+	public DispositivoMovil getDispositivoMovilActual() {
+		return dispositivoMovilActual;
+	}
+
+	public void setDispositivoMovilActual(DispositivoMovil dispositivoMovilActual) {
+		this.dispositivoMovilActual = dispositivoMovilActual;
 	}
 
 	//	@Override

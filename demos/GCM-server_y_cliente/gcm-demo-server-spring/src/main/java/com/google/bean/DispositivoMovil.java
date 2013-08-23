@@ -41,6 +41,16 @@ public class DispositivoMovil implements Entidad{
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 
+	
+	
+	public DispositivoMovil(Integer id, String key_device, Boolean activo,
+			String numeromovil) {
+		this.id = id;
+		this.key_device = key_device;
+		this.activo = activo;
+		this.numeromovil = numeromovil;
+	}
+
 	public DispositivoMovil() {
 	}
 

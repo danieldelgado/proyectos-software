@@ -51,4 +51,13 @@ public class DispositivoMovilDAOImpl extends DAO<DispositivoMovil> implements Di
 		return null;
 	}
 
+	public DispositivoMovil obtenerDispositivoActualPorUsuario(Usuario usuario) {
+		sqlQuery = "select dm from DispositivoMovil dm where dm.usuario.id=:idUsuario and dm.activo = true order by dm.fecha_registro asc";
+		q = em.createQuery(sqlQuery);
+		logger.info("obtenerDispositivoActualPorUsuario id " + usuario.getId());
+		q.setParameter("idUsuario", usuario.getId());
+		DispositivoMovil dm = (DispositivoMovil) q.getSingleResult();
+		return dm;
+	}
+
 }

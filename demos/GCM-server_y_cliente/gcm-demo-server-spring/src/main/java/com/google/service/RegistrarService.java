@@ -21,6 +21,11 @@ public interface RegistrarService {
 
 	DispositivoMovil obtenerDispositivoMovil();
 
+	Usuario obtenerUsuarioPorID(int id);
+
+	Usuario obtenerUsuarioPorIDDispositivoActual(int id);
+
+
 	
 
 }

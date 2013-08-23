@@ -12,6 +12,8 @@ public interface DispositivoMovilDAO extends IDAO<DispositivoMovil> {
 
 	Usuario obtenerUsuarioPorRegIDMovil(String regId);
 
+	DispositivoMovil obtenerDispositivoActualPorUsuario(Usuario usuario);
+
 
 
 }

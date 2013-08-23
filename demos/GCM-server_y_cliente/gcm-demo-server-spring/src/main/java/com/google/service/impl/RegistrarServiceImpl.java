@@ -75,6 +75,20 @@ public class RegistrarServiceImpl implements RegistrarService {
 		return dispositivoMovilDAO.getTodos().get(0);
 	}
 
+	public Usuario obtenerUsuarioPorID(int id) {
+		Usuario usuario = usuarioDAO.get(id);
+//		DispositivoMovil dispositivo=dispositivoMovilDAO.obtenerDispositivoActualPorUsuario(usuario);
+//		usuario.setDispositivoMovilActual(dispositivo);
+		return usuario;
+	}
+
+	public Usuario obtenerUsuarioPorIDDispositivoActual(int id) {
+		Usuario usuario = usuarioDAO.get(id);
+		DispositivoMovil dispositivo=dispositivoMovilDAO.obtenerDispositivoActualPorUsuario(usuario);
+		usuario.setDispositivoMovilActual(dispositivo);
+		return usuario;
+	}
+
 	
 
 }
