@@ -17,7 +17,6 @@ package com.google.android.gcm.demo.app;
 
 import static com.google.android.gcm.demo.app.CommonUtilities.SENDER_ID;
 import static com.google.android.gcm.demo.app.CommonUtilities.displayMessage;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;

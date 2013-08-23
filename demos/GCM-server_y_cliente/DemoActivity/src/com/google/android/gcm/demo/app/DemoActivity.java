@@ -19,9 +19,6 @@ import static com.google.android.gcm.demo.app.CommonUtilities.DISPLAY_MESSAGE_AC
 import static com.google.android.gcm.demo.app.CommonUtilities.EXTRA_MESSAGE;
 import static com.google.android.gcm.demo.app.CommonUtilities.SENDER_ID;
 import static com.google.android.gcm.demo.app.CommonUtilities.SERVER_URL;
-
-import com.google.android.util.gcm.GCMRegistrar;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -33,6 +30,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.google.android.gcm.GCMRegistrar;
 
 /**
  * Main UI for the demo app.
