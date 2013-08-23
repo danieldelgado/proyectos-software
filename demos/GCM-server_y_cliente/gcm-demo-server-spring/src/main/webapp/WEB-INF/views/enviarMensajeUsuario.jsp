@@ -11,5 +11,7 @@
 		<input type="text" name="mensaje" value="holaaa" />
 		<input type='submit' value='Send Message' />
 	</form>
+<a href="<c:url value="/listarUsuarios" ></c:url>" >Listar Usuarios</a>
+
 </body>
 </html>
