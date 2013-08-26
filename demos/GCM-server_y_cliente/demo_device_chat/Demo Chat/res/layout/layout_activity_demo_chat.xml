@@ -3,13 +3,15 @@
     android:id="@+id/principal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/fondo_negro"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".DemoChatActivity" >
 
-    <TextView        
+    <TextView     
+        android:textColor="@color/letras_blancas"   
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:text="@string/cargando" />
 
 
 </LinearLayout>
