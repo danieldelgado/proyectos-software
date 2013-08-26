@@ -3,6 +3,6 @@
 
     <string name="app_name">DemoChat</string>
     <string name="run">run</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="cargando">Cargando</string>
 
 </resources>
