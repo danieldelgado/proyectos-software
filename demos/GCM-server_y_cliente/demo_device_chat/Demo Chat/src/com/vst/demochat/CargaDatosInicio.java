@@ -1,19 +1,19 @@
 package com.vst.demochat;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class CargaDatosInicio implements Runnable {
 
-	DemoChatActivity demoChatActivity;
-	LinearLayout linearLayout;
-	TextView newText;
+	private DemoChatActivity demoChatActivity;
+	private LinearLayout linearLayout;
+	private TextView newText;
 	
 	public CargaDatosInicio(DemoChatActivity demoChatActivity) {
 		this.demoChatActivity = demoChatActivity;
 		linearLayout = (LinearLayout) demoChatActivity.findViewById(R.id.principal);
+		addTexviewMensaje("Cargando");
 	}
 
 	@Override
@@ -33,15 +33,12 @@ public class CargaDatosInicio implements Runnable {
 			}
 		} else {
 			addTexviewMensaje("Para registrarse en el servidor debe ingresar alguno datos");
-//			try {
-//				Thread.sleep(1500);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-			
-			demoChatActivity.irRegistroUsuaroActivity();
-//			return;
-			
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}			
+			demoChatActivity.irRegistroUsuaroActivity();			
 //			DataCache.putObject(demoChatActivity, Constantes.KEY_REGISTRADO_EN_SERVIDOR, true);
 //			addTexviewMensaje("Dispositivo movil registrado");
 		}
@@ -51,7 +48,7 @@ public class CargaDatosInicio implements Runnable {
 		return true;
 	}
 
-	private void addTexviewMensaje(final String msj) {
+	public void addTexviewMensaje(final String msj) {
 		demoChatActivity.runOnUiThread(new Runnable() {
 			public void run() {
 				newText = new TextView(demoChatActivity);
@@ -61,6 +58,10 @@ public class CargaDatosInicio implements Runnable {
 			}
 		});
 
+	}
+
+	public void removeAllViews() {		
+		linearLayout.removeAllViews();	
 	}
 
 }

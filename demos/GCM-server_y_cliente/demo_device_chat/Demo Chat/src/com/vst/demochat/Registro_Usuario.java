@@ -20,12 +20,10 @@ public class Registro_Usuario extends Activity {
 		btnregistrarUsuario.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				System.out.println("regresando a demochat ");	
 				Intent returnIntent = new Intent();
-		    	returnIntent.putExtra("grabado",1);
+		    	returnIntent.putExtra(Constantes.KEY_USUARIO_REGISTRADO,Constantes.REGISTRO_EXITOSO_USUARIO);
 		    	setResult(RESULT_OK,returnIntent); 
 		    	finish();
-				
 			}
 		});
 	}
