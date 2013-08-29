@@ -2,6 +2,10 @@ package com.vst.demochat;
 
 import java.util.Random;
 
+import android.annotation.SuppressLint;
+import android.os.StrictMode;
+
+@SuppressLint("NewApi")
 public class Constantes {
 
 	public static final String VACIO = "";
@@ -24,6 +28,11 @@ public class Constantes {
 	public static final int MAX_ATTEMPTS = 5;
 	public static final String TAG = "GCMDemo";
     
+	static{
+		//con este metodo static soluciona el problema de la conexion a internet method post
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy);
+	}
     
 	private Constantes() {
 		throw new UnsupportedOperationException();
