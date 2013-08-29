@@ -164,11 +164,11 @@ public class HomeController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public void register(HttpServletRequest req, HttpServletResponse resp,
 			Locale locale, Model model) {
-
 		String regId;
 		try {
 			regId = getParameter(req, PARAMETER_REG_ID);
-			registrarService.registrarUsuarioPorRegIDMovil(regId);
+			System.out.println("regId:"+regId);
+//			registrarService.registrarUsuarioPorRegIDMovil(regId);
 			// Datastore.register(regId);
 			setSuccess(resp);
 		} catch (ServletException e) {
