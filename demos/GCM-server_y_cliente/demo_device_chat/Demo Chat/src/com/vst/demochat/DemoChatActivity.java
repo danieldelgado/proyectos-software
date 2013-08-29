@@ -14,8 +14,9 @@ public class DemoChatActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_activity_demo_chat);
-		cargaDatosInicio = new CargaDatosInicio(this);
-		new Thread(cargaDatosInicio).start();
+		Registro_Usuario.register("asdsa");
+//		cargaDatosInicio = new CargaDatosInicio(this);
+//		new Thread(cargaDatosInicio).start();
 	}
 
 	@Override
