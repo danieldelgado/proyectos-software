@@ -2,5 +2,6 @@
 
    <color name="fondo_negro">#000</color>
    <color name="letras_blancas">#fff</color>
+   <color name="fondo_azul">#3399FF</color>
 
 </resources>

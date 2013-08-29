@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/principal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/fondo_negro"
+    android:orientation="vertical"
+    tools:context=".Registro_Usuario" >
+
+    <TextView
+        android:id="@+id/nombre_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_nombre_usuario"
+        android:textColor="@color/letras_blancas" />
+
+    <EditText
+        android:id="@+id/txt_nombre_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/letras_blancas" >
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/apellido_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_apellido_usuario"
+        android:textColor="@color/letras_blancas" />
+
+    <EditText
+        android:id="@+id/txt_apellido_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/letras_blancas" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_pass_usuario"
+        android:textColor="@color/letras_blancas" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="@color/letras_blancas" />
+    
+    <TextView
+        android:id="@+id/nick_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_nick_name"
+        android:textColor="@color/letras_blancas" />
+
+    <EditText
+        android:id="@+id/txt_nick_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/letras_blancas" >
+    </EditText>
+
+    <Button
+        android:id="@+id/btn_regsitrar_usuario"
+        android:layout_width="79dp"
+        android:layout_height="wrap_content"
+        android:background="@color/fondo_azul"
+        android:gravity="center_vertical"
+        android:minHeight="40dp"
+        android:minWidth="60dp"
+        android:text="@string/str_btn_regsitrar_usuario"
+        android:textColor="@color/letras_blancas"
+        android:textColorHint="@color/fondo_azul"
+         />
+    
+</LinearLayout>

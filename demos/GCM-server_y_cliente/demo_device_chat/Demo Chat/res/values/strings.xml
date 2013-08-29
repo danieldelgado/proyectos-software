@@ -4,5 +4,13 @@
     <string name="app_name">DemoChat</string>
     <string name="run">run</string>
     <string name="cargando">Cargando</string>
+    <string name="title_activity_registro__usuario">Registro de Usuario</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="str_nombre_usuario">Nombre de Usuario</string>
+    <string name="str_apellido_usuario">Apellido de Usuario</string>
+    <string name="str_nick_name">Nick Name</string>
+    <string name="str_pass_usuario">Clave de Usuario</string>
+    <string name="str_btn_regsitrar_usuario">Guardar</string>
 
 </resources>
