@@ -165,6 +165,7 @@ public class HomeController {
 	public void register(HttpServletRequest req, HttpServletResponse resp,
 			Locale locale, Model model) {
 		String regId;
+		System.out.println("regIdsdsadasdas");
 		try {
 			regId = getParameter(req, PARAMETER_REG_ID);
 			System.out.println("regId:"+regId);
