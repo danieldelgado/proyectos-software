@@ -7,23 +7,26 @@ public class Usuario {
 	private String clave;
 	private String nombre;
 	private String apellido;
+	private String numero;
 	
 	public Usuario() {
 	}
 
-	public Usuario(int id, String userName, String clave, String nombre, String apellido) {
+	public Usuario(int id, String userName, String clave, String nombre, String apellido, String numero) {
 		this.id = id;
 		this.userName = userName;
 		this.clave = clave;
 		this.nombre = nombre;
 		this.apellido = apellido;
+		this.numero = numero;
 	}
 
-	public Usuario(String userName, String clave, String nombre, String apellido) {
+	public Usuario(String userName, String clave, String nombre, String apellido, String numero) {
 		this.userName = userName;
 		this.clave = clave;
 		this.nombre = nombre;
 		this.apellido = apellido;
+		this.numero = numero;
 	}
 
 	
@@ -66,5 +69,14 @@ public class Usuario {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+	
 
 }
