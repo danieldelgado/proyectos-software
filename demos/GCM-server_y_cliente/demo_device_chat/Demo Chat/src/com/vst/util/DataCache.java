@@ -1,4 +1,5 @@
-package com.vst.demochat;
+package com.vst.util;
+
 
 import android.annotation.SuppressLint;
 import android.content.Context;

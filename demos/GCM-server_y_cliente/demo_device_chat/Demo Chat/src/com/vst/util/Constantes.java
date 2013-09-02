@@ -1,4 +1,4 @@
-package com.vst.demochat;
+package com.vst.util;
 
 import java.util.Random;
 

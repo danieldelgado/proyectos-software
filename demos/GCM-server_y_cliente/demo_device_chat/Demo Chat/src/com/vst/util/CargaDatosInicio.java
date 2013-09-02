@@ -1,4 +1,8 @@
-package com.vst.demochat;
+package com.vst.util;
+
+import com.vst.demochat.DemoChatActivity;
+import com.vst.demochat.R;
+import com.vst.demochat.R.id;
 
 import android.graphics.Color;
 import android.widget.LinearLayout;
