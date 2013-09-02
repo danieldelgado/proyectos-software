@@ -18,7 +18,9 @@
         android:id="@+id/txt_nombre_usuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="usuario01"
         android:textColor="@color/letras_blancas" >
+
         <requestFocus />
     </EditText>
 
@@ -33,22 +35,25 @@
         android:id="@+id/txt_apellido_usuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="apellido01"
         android:textColor="@color/letras_blancas" >
+
     </EditText>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/clave_usuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/str_pass_usuario"
         android:textColor="@color/letras_blancas" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/txt_clave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
+        android:text="1234"
         android:textColor="@color/letras_blancas" />
     
     <TextView
@@ -62,9 +67,29 @@
         android:id="@+id/txt_nick_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="usueroas"
         android:textColor="@color/letras_blancas" >
+
     </EditText>
 
+     <TextView
+         android:id="@+id/numero_dispositivo"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="@string/str_numero_dispositivo"
+         android:textColor="@color/letras_blancas" />
+
+    <EditText
+        android:id="@+id/txt_numero_movil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="phone"
+        android:text="987456123"
+        android:textColor="@color/letras_blancas" >
+
+    </EditText>
+    
     <Button
         android:id="@+id/btn_regsitrar_usuario"
         android:layout_width="79dp"
