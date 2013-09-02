@@ -41,9 +41,7 @@ public class CargaDatosInicio implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}			
-			demoChatActivity.irRegistroUsuaroActivity();			
-//			DataCache.putObject(demoChatActivity, Constantes.KEY_REGISTRADO_EN_SERVIDOR, true);
-//			addTexviewMensaje("Dispositivo movil registrado");
+			demoChatActivity.irRegistroUsuaroActivity();	
 		}
 	}
 

@@ -1,13 +1,14 @@
 package com.vst.demochat;
 
-import com.vst.util.CargaDatosInicio;
-import com.vst.util.Constantes;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Toast;
+
+import com.vst.util.CargaDatosInicio;
+import com.vst.util.Constantes;
+import com.vst.util.DataCache;
 
 public class DemoChatActivity extends Activity {
 
@@ -35,7 +36,9 @@ public class DemoChatActivity extends Activity {
                 int usuarioRegsitrado = data.getIntExtra(Constantes.KEY_USUARIO_REGISTRADO, 0);  
                 if(usuarioRegsitrado>0){
                     Toast.makeText(this, Constantes.MSJ_USUARIO_REGISTRO__EXITOSO, Toast.LENGTH_LONG).show();              
-                    cargaDatosInicio.removeAllViews(); 
+//                    cargaDatosInicio.removeAllViews();                    
+        			DataCache.putObject(this, Constantes.KEY_REGISTRADO_EN_SERVIDOR, true);
+        			cargaDatosInicio.addTexviewMensaje("Usuario y dispositivo movil registrado");                    
                 }
                 break;
             }
