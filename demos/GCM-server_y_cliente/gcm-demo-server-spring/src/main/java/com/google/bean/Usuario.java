@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
-
 import com.google.gcm.util.Entidad;
+
 @Entity
 @Table(name = "Usuario")
 public class Usuario  implements Entidad{

@@ -12,6 +12,7 @@ import com.google.bean.DispositivoMovil;
 import com.google.bean.Usuario;
 import com.google.dao.DispositivoMovilDAO;
 import com.google.dao.UsuarioDAO;
+import com.google.gcm.util.Constantes;
 import com.google.service.RegistrarService;
 
 @Service("RegistrarService")
@@ -87,6 +88,11 @@ public class RegistrarServiceImpl implements RegistrarService {
 		DispositivoMovil dispositivo=dispositivoMovilDAO.obtenerDispositivoActualPorUsuario(usuario);
 		usuario.setDispositivoMovilActual(dispositivo);
 		return usuario;
+	}
+
+	public int registrarUsuarioDesdeDispositivoMovil(Usuario usuario, String numero, String regId) {
+		System.out.println("registrarUsuarioDesdeDispositivoMovil");
+		return  Constantes.REGISTRO_EXITOSO;
 	}
 
 	

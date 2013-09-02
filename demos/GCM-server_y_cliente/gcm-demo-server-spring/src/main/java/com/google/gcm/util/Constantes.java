@@ -2,6 +2,10 @@ package com.google.gcm.util;
 
 public class Constantes {
 
+	public static final String VACIO = "";
+	public static final int MENOS_UNO = -1;
+	public static final boolean FALSO = false;
+	
 	public static final String SESION_TITULO = "titulo";
 	public static String SESION_USUARIO = "usuario_en_session";
 
@@ -17,6 +21,7 @@ public class Constantes {
 	public static final String EXT_PROHI_EXE = "exe";
 	public static final String EXT_PROHI_BAT = "bat";
 	public static final String EXT_PROHI_SH = "sh";
+	public static final int REGISTRO_EXITOSO = 1;
 	public static final int RESPUESTA_CORRECTA = 1;
 	public static final int USUARIO_LOGEADO = 1;
 	public static final int USUARIO_DESLOGUEADO = 0;

@@ -6,8 +6,10 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -23,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.android.gcm.server.Constants;
 import com.google.android.gcm.server.Message;
@@ -32,6 +35,7 @@ import com.google.android.gcm.server.Sender;
 import com.google.bean.DispositivoMovil;
 import com.google.bean.Usuario;
 import com.google.gcm.util.Constantes;
+import com.google.gcm.util.HttpUtilConexion;
 import com.google.service.RegistrarService;
 
 /**
@@ -171,12 +175,26 @@ public class HomeController {
 			System.out.println("regId:"+regId);
 //			registrarService.registrarUsuarioPorRegIDMovil(regId);
 			// Datastore.register(regId);
-			setSuccess(resp);
+			HttpUtilConexion.setSuccess(resp);
 		} catch (ServletException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
+	@RequestMapping(value = "/registerUsuario", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> registerUsuario(Usuario usuario, String numero, String regId ) {
+		Map<String, Object> resp = new LinkedHashMap<String, Object>();
+		try {			
+			int re = registrarService.registrarUsuarioDesdeDispositivoMovil(usuario,numero,regId);
+			resp.put("resp", re);
+			return resp;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		resp.put("resp", Constantes.MENOS_UNO);
+		return resp;
+	}
+	
 	@RequestMapping(value = "/sendAll", method = RequestMethod.POST)
 	public void sendAll(HttpServletRequest req, HttpServletResponse resp,
 			Locale locale, Model model) throws ServletException, IOException {
@@ -252,7 +270,7 @@ public class HomeController {
 		String regId = getParameter(req, PARAMETER_REG_ID);
 		// Datastore.unregister(regId);
 		System.out.println("  unregister ");
-		setSuccess(resp);
+		HttpUtilConexion.setSuccess(resp);
 	}
 
 	// @RequestMapping(value="/json/{name}", method = RequestMethod.GET)
@@ -372,15 +390,15 @@ public class HomeController {
 		return value.trim();
 	}
 
-	public void setSuccess(HttpServletResponse resp) {
-		setSuccess(resp, 0);
-	}
-
-	public void setSuccess(HttpServletResponse resp, int size) {
-		resp.setStatus(HttpServletResponse.SC_OK);
-		resp.setContentType("text/plain");
-		resp.setContentLength(size);
-	}
+//	public void setSuccess(HttpServletResponse resp) {
+//		setSuccess(resp, 0);
+//	}
+//
+//	public void setSuccess(HttpServletResponse resp, int size) {
+//		resp.setStatus(HttpServletResponse.SC_OK);
+//		resp.setContentType("text/plain");
+//		resp.setContentLength(size);
+//	}
 
 	public boolean isEmptyOrNull(String value) {
 		return value == null || value.trim().length() == 0;
