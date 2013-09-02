@@ -15,14 +15,12 @@
  */
 package com.vst.demochat;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
+import com.vst.util.Constantes;
 
 /**
  * IntentService responsible for handling GCM messages.
@@ -30,10 +28,9 @@ import com.google.android.gcm.GCMBaseIntentService;
 public class GCMIntentService extends GCMBaseIntentService {
 
     private static final String TAG = "GCMIntentService";
-    static final String SENDER_ID = "485888261287";
 
     public GCMIntentService() {
-        super(SENDER_ID);
+        super( Constantes.SENDER_ID);
     }
 
     @Override

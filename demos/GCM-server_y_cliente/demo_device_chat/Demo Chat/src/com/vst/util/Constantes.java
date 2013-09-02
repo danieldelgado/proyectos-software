@@ -23,10 +23,12 @@ public class Constantes {
 	public static final CharSequence MSJ_USUARIO_REGISTRO__EXITOSO = "Usuario registrado exitosamente.";
 	
 	public static final String SERVER_URL = "http://192.168.1.153:8082/gcm-demo-server-spring";
+	public static final String SENDER_ID = "485888261287";
 	public static final int BACKOFF_MILLI_SECONDS = 2000;
 	public static final Random RANDOM = new Random();
 	public static final int MAX_ATTEMPTS = 5;
 	public static final String TAG = "GCMDemo";
+	public static final int REGISTRO_EXITOSO = 1;
     
 	static{
 		//con este metodo static soluciona el problema de la conexion a internet method post
