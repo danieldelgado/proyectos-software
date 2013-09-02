@@ -1,16 +1,39 @@
 package com.vst.util;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class HttpUtilConexiones {
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import android.util.Log;
+
+public class HttpUtilConexiones {
+	
+	
+	 static InputStream is = null;
+	 static JSONObject jObj = null;
+	 static String json = "";
 
 //	public static void register(String regId) {
 //		// Log.i(TAG, "registering device (regId = " + regId + ")");
@@ -46,6 +69,110 @@ public class HttpUtilConexiones {
 //			}
 //		}
 //	}
+	
+	
+	public static JSONObject getJSONFromUrl(String url) {
+
+        // Making HTTP request
+        try {
+            // defaultHttpClient
+            DefaultHttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(url);
+
+            HttpResponse httpResponse = httpClient.execute(httpPost);
+            HttpEntity httpEntity = httpResponse.getEntity();
+            is = httpEntity.getContent();
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            is.close();
+            json = sb.toString();
+        } catch (Exception e) {
+            Log.e("Buffer Error", "Error converting result " + e.toString());
+        }
+
+        // try parse the string to a JSON object
+        try {
+        	System.out.println("json:");
+        	System.out.println(json);
+            jObj = new JSONObject(json);
+        } catch (JSONException e) {
+            Log.e("JSON Parser", "Error parsing data " + e.toString());
+        }
+
+    	System.out.println("jObj:");
+    	System.out.println(jObj);
+        // return JSON String
+        return jObj;
+
+    }
+	
+
+	
+	public static JSONObject getJSONFromUrl(String url, Map<String, Object> params) {
+        try {
+    		Iterator<Entry<String, Object>> iterator = params.entrySet().iterator();
+            List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+    		while (iterator.hasNext()) {
+    			Entry<String, Object> param = iterator.next();
+    			 pairs.add(new BasicNameValuePair(param.getKey(), (String) param.getValue()));
+
+    		}    		 
+            DefaultHttpClient httpClient = new DefaultHttpClient();            
+            HttpPost httpPost = new HttpPost(url);              
+            httpPost.setEntity(new UrlEncodedFormEntity(pairs));            
+            HttpResponse httpResponse = httpClient.execute(httpPost);
+            HttpEntity httpEntity = httpResponse.getEntity();
+            is = httpEntity.getContent();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            is.close();
+            json = sb.toString();
+        } catch (Exception e) {
+            Log.e("Buffer Error", "Error converting result " + e.toString());
+        }
+
+        // try parse the string to a JSON object
+        try {
+        	System.out.println("json:");
+        	System.out.println(json);
+            jObj = new JSONObject(json);
+        } catch (JSONException e) {
+            Log.e("JSON Parser", "Error parsing data " + e.toString());
+        }
+
+    	System.out.println("jObj:");
+    	System.out.println(jObj);
+        // return JSON String
+        return jObj;
+
+    }
 	
 	public static void post(String endpoint, Map<String, Object> params) throws IOException {
 		System.out.println("post!!!");
@@ -84,12 +211,21 @@ public class HttpUtilConexiones {
 			out.write(bytes);
 			out.close();
 			// handle the response
-			System.out.println("getResponseCode post!!!");
 			int status = conn.getResponseCode();
+			System.out.println("getResponseCode post status!!!:"+status);
 			if (status != 200) {
 				System.out.println("registro con exito");
 				throw new IOException("Post failed with error code " + status);
-			}		
+			}	
+			InputStream is2 = conn.getInputStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is2, "iso-8859-1"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            System.out.println("sb:"+sb.toString());
+            is2.close();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {

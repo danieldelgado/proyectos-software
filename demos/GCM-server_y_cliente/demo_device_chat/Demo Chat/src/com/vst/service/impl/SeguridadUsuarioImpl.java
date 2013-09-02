@@ -20,6 +20,7 @@ public class SeguridadUsuarioImpl implements SeguridadUsuario {
 		params.put("clave", usuario.getClave());
 		params.put("nombre", usuario.getNombre());
 		params.put("apellido", usuario.getApellido());
+		params.put("numero", usuario.getNumero());
 		long backoff = Constantes.BACKOFF_MILLI_SECONDS + Constantes.RANDOM.nextInt(1000);
 		// Once GCM returns a registration id, we need to register it in the
 		// demo server. As the server might be down, we will retry it a couple
@@ -27,7 +28,9 @@ public class SeguridadUsuarioImpl implements SeguridadUsuario {
 		for (int i = 1; i <= Constantes.MAX_ATTEMPTS; i++) {
 			try {
 				HttpUtilConexiones.post(serverUrl, params);
-
+				
+				System.out.println(HttpUtilConexiones.getJSONFromUrl(serverUrl));
+				
 				return 1;
 			} catch (IOException e) {
 				// Here we are simplifying and retrying on any error; in a real
