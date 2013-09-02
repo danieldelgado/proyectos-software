@@ -7,14 +7,22 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    <!-- GCM connects to Google Services. -->
+    
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <!-- GCM requires a Google account. -->
-<!--     <uses-permission android:name="android.permission.GET_ACCOUNTS" /> -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
-    <!-- Keeps the processor from sleeping when a message is received. -->
-<!--     <uses-permission android:name="android.permission.WAKE_LOCK" /> -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+     <permission
+        android:name="com.vst.demochat.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission
+        android:name="com.vst.demochat.permission.C2D_MESSAGE" />
+
+    <uses-permission
+        android:name="com.google.android.c2dm.permission.RECEIVE" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -25,7 +33,6 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -33,6 +40,17 @@
             android:name="com.vst.demochat.Registro_Usuario"
             android:label="@string/title_activity_registro__usuario" >
         </activity>
+        
+       <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />            
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="com.vst.demochat" />
+            </intent-filter>
+        </receiver>      
+        <service android:name=".GCMIntentService" />
     </application>
 
 </manifest>
