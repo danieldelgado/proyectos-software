@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.vst.beans.Usuario;
+import com.vst.google.gcm.GCMRegistrar;
 import com.vst.service.SeguridadUsuario;
 import com.vst.service.impl.SeguridadUsuarioImpl;
 import com.vst.util.Constantes;
@@ -40,12 +41,14 @@ public class Registro_Usuario extends Activity {
 		btnregistrarUsuario.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				gsmRegistrer();
+		        String regId = getRegistrationId();
 				String nombre = Util.getString(txt_nombre_usuario.getText());
 				String apellido = Util.getString(txt_apellido_usuario.getText());
 				String nickname =  Util.getString(txt_nick_name.getText());
 				String clave =  Util.getString(txt_clave.getText());		
 				String numero = Util.getString( txt_numero_movil.getText());				
-				Usuario u = new Usuario(nombre, apellido, nickname, clave, numero);
+				Usuario u = new Usuario(nombre, apellido, nickname, clave, numero,regId);
 				int resultadoRegistro = seguridadUsuario.registrarNuevoUsuario(u);				
 				System.out.println("resultadoRegistro:"+resultadoRegistro);
 				
@@ -54,9 +57,22 @@ public class Registro_Usuario extends Activity {
 				setResult(RESULT_OK, returnIntent);
 				finish();
 			}
+
+			
 		});
 	}
-
+	
+	private String getRegistrationId(){
+		 String regId = GCMRegistrar.getRegistrationId(this);
+		 return regId;
+	}
+	
+	private void gsmRegistrer() {
+		GCMRegistrar.checkDevice(this);
+        GCMRegistrar.checkManifest(this);
+	}
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.registro__usuario, menu);

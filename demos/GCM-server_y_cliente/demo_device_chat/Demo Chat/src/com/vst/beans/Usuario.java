@@ -8,7 +8,7 @@ public class Usuario {
 	private String nombre;
 	private String apellido;
 	private String numero;
-	
+	private String regId;
 	public Usuario() {
 	}
 
@@ -21,12 +21,13 @@ public class Usuario {
 		this.numero = numero;
 	}
 
-	public Usuario(String userName, String clave, String nombre, String apellido, String numero) {
+	public Usuario(String userName, String clave, String nombre, String apellido, String numero,String regId) {
 		this.userName = userName;
 		this.clave = clave;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.numero = numero;
+		this.regId = regId;
 	}
 
 	
@@ -76,6 +77,14 @@ public class Usuario {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+
+	public String getRegId() {
+		return regId;
+	}
+
+	public void setRegId(String regId) {
+		this.regId = regId;
 	}
 	
 
