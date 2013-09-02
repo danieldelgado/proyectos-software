@@ -24,14 +24,28 @@ public class SeguridadUsuarioImpl implements SeguridadUsuario {
 		params.put("apellido", usuario.getApellido());
 		params.put("numero", usuario.getNumero());
 		params.put("regId", usuario.getRegId());
-
-		JSONObject objresp = HttpUtilConexiones.resppost(serverUrl, params);
-		int r = (Integer) objresp.get("resp");		
-		if(r==Constantes.REGISTRO_EXITOSO){
-			return r;			
+		long backoff = Constantes.BACKOFF_MILLI_SECONDS + Constantes.RANDOM.nextInt(1000);
+		for (int i = 1; i <= Constantes.MAX_ATTEMPTS; i++) {
+			try {				
+				JSONObject objresp = HttpUtilConexiones.getJSONFromUrl(serverUrl, params);
+				System.out.println("objresp");
+				System.out.println(objresp);
+				return 1;
+			} catch (Exception e) {				
+				if (i == Constantes.MAX_ATTEMPTS) {
+					break;
+				}
+				try {
+					Thread.sleep(backoff);
+				} catch (InterruptedException e1) {
+					Thread.currentThread().interrupt();
+					return 0;
+				}
+				// increase backoff exponentially
+				backoff *= 2;
+			}
 		}
-		return -1;
-
+		return 0;
 	}
 
 }
