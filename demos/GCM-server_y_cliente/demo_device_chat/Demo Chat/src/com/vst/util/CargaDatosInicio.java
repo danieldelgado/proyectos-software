@@ -1,12 +1,11 @@
 package com.vst.util;
 
-import com.vst.demochat.DemoChatActivity;
-import com.vst.demochat.R;
-import com.vst.demochat.R.id;
-
 import android.graphics.Color;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.vst.demochat.DemoChatActivity;
+import com.vst.demochat.R;
 
 public class CargaDatosInicio implements Runnable {
 

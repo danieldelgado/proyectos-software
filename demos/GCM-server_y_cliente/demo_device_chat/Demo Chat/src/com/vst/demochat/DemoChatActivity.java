@@ -18,10 +18,8 @@ public class DemoChatActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_activity_demo_chat);
 		cargaDatosInicio = new CargaDatosInicio(this);
-		new Thread(cargaDatosInicio).start();
-		
+		new Thread(cargaDatosInicio).start();		
 	}
-
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
