@@ -9,8 +9,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gcm.GCMRegistrar;
 import com.vst.beans.Usuario;
-import com.vst.google.gcm.GCMRegistrar;
 import com.vst.service.SeguridadUsuario;
 import com.vst.service.impl.SeguridadUsuarioImpl;
 import com.vst.util.Constantes;
