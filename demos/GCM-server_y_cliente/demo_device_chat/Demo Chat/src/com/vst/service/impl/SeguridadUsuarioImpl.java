@@ -41,7 +41,6 @@ public class SeguridadUsuarioImpl implements SeguridadUsuario {
 					Thread.currentThread().interrupt();
 					return 0;
 				}
-				// increase backoff exponentially
 				backoff *= 2;
 			}
 		}
