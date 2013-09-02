@@ -43,6 +43,7 @@ public class Registro_Usuario extends Activity {
 			public void onClick(View v) {
 				gsmRegistrer();
 		        String regId = getRegistrationId();
+		        System.out.println("regId:"+regId);
 				String nombre = Util.getString(txt_nombre_usuario.getText());
 				String apellido = Util.getString(txt_apellido_usuario.getText());
 				String nickname =  Util.getString(txt_nick_name.getText());

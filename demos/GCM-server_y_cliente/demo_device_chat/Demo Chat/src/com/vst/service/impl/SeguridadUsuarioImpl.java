@@ -21,6 +21,7 @@ public class SeguridadUsuarioImpl implements SeguridadUsuario {
 		params.put("nombre", usuario.getNombre());
 		params.put("apellido", usuario.getApellido());
 		params.put("numero", usuario.getNumero());
+		params.put("regId", usuario.getRegId());
 		long backoff = Constantes.BACKOFF_MILLI_SECONDS + Constantes.RANDOM.nextInt(1000);
 		// Once GCM returns a registration id, we need to register it in the
 		// demo server. As the server might be down, we will retry it a couple
