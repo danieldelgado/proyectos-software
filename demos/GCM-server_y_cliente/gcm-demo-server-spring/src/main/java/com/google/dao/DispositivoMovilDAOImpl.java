@@ -60,4 +60,14 @@ public class DispositivoMovilDAOImpl extends DAO<DispositivoMovil> implements Di
 		return dm;
 	}
 
+	public boolean existeDispositivoMovilPorNumero(String numero) {
+		
+		return false;
+	}
+
+	public DispositivoMovil obtenerDispositivoMovilActualPorNumero(String numero) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

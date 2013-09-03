@@ -14,6 +14,10 @@ public interface DispositivoMovilDAO extends IDAO<DispositivoMovil> {
 
 	DispositivoMovil obtenerDispositivoActualPorUsuario(Usuario usuario);
 
+	boolean existeDispositivoMovilPorNumero(String numero);
+
+	DispositivoMovil obtenerDispositivoMovilActualPorNumero(String numero);
+
 
 
 }

@@ -31,6 +31,9 @@ public class Constantes {
 //	public static final String ATTRIBUTE_ACCESS_KEY = "apiKey";
 	public static final String PATH = "/api.key";
 	public static final String PK_GOOGLE = Config.getPropiedad("google.api.key");
+	public static final int DISPOSITIVO_REGISTRADO = 1;
+	public static final int NUEVO_DISPOSITIVO_POR_USUARIO_REGISTRADO = 2;
+	public static final int ERROR_SERVIDOR = -2;
 	
 	
 }
