@@ -50,9 +50,11 @@ public class DemoChatActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 int usuarioRegsitrado = data.getIntExtra(Constantes.KEY_USUARIO_REGISTRADO, 0);  
                 if(usuarioRegsitrado>0){
+                	String regID =  data.getStringExtra(Constantes.REG_ID_DEVICE);
                     Toast.makeText(this, Constantes.MSJ_USUARIO_REGISTRO__EXITOSO, Toast.LENGTH_LONG).show();              
 //                    cargaDatosInicio.removeAllViews();                    
         			DataCache.putObject(this, Constantes.KEY_REGISTRADO_EN_SERVIDOR, true);
+        			DataCache.putObject(this, Constantes.REG_ID_DEVICE, regID);
         			cargaDatosInicio.addTexviewMensaje("Usuario y dispositivo movil registrado");                    
                 }
                 break;

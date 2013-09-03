@@ -47,4 +47,33 @@ public class SeguridadUsuarioImpl implements SeguridadUsuario {
 		return 0;
 	}
 
+	@Override
+	public boolean obtenerRegisterIDInserver(String regID) {
+		System.out.println("obtenerRegisterIDInserver regID: "+regID);
+//		String serverUrl = Constantes.SERVER_URL + "/registerUsuario";
+//		Map<String, Object> params = new HashMap<String, Object>();
+//		params.put("regId", regID);
+//		long backoff = Constantes.BACKOFF_MILLI_SECONDS + Constantes.RANDOM.nextInt(1000);
+//		for (int i = 1; i <= Constantes.MAX_ATTEMPTS; i++) {
+//			try {				
+//				JSONObject objresp = HttpUtilConexiones.getJSONFromUrl(serverUrl, params);
+//				System.out.println("objresp");
+//				System.out.println(objresp);
+//				return true;
+//			} catch (Exception e) {				
+//				if (i == Constantes.MAX_ATTEMPTS) {
+//					break;
+//				}
+//				try {
+//					Thread.sleep(backoff);
+//				} catch (InterruptedException e1) {
+//					Thread.currentThread().interrupt();
+//					return false;
+//				}
+//				backoff *= 2;
+//			}
+//		}
+		return false;
+	}
+
 }

@@ -5,10 +5,7 @@ import java.io.IOException;
 import org.json.JSONException;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -21,6 +18,7 @@ import com.vst.beans.Usuario;
 import com.vst.service.SeguridadUsuario;
 import com.vst.service.impl.SeguridadUsuarioImpl;
 import com.vst.util.Constantes;
+import com.vst.util.DataCache;
 import com.vst.util.Util;
 
 public class Registro_Usuario extends Activity {
@@ -33,12 +31,12 @@ public class Registro_Usuario extends Activity {
 	private TextView txt_clave = null;
 	private TextView txt_numero_movil = null;
 //	private String regId = null;
-	
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_registro__usuario);
-		
+		gsmRegistrer();
 		seguridadUsuario = new SeguridadUsuarioImpl();
 		txt_nombre_usuario = (TextView) findViewById(R.id.txt_nombre_usuario);
 		txt_apellido_usuario = (TextView) findViewById(R.id.txt_apellido_usuario);
@@ -71,11 +69,12 @@ public class Registro_Usuario extends Activity {
 				
 				Intent returnIntent = new Intent();
 				returnIntent.putExtra(Constantes.KEY_USUARIO_REGISTRADO, Constantes.REGISTRO_EXITOSO_USUARIO);
+				returnIntent.putExtra(Constantes.REG_ID_DEVICE, regId);
 				setResult(RESULT_OK, returnIntent);
 				finish();
 			}
 		});
-		gsmRegistrer();
+		
 	}
 	
 	private void gsmRegistrer() {

@@ -10,4 +10,6 @@ public interface SeguridadUsuario {
 
 	int registrarNuevoUsuario(Usuario u) throws IOException, JSONException;
 
+	boolean obtenerRegisterIDInserver(String regID);
+
 }
