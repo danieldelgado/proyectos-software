@@ -72,7 +72,7 @@ public class RegistrarServiceImpl implements RegistrarService {
 		dispositivoMovilDAO.guardar(d);		
 	}
 
-	public DispositivoMovil obtenerDispositivoMovil() {		
+	public DispositivoMovil obtenerDispositivoMovil() {
 		return dispositivoMovilDAO.getTodos().get(0);
 	}
 
@@ -89,9 +89,17 @@ public class RegistrarServiceImpl implements RegistrarService {
 		usuario.setDispositivoMovilActual(dispositivo);
 		return usuario;
 	}
-
+	
+	@Transactional
 	public int registrarUsuarioDesdeDispositivoMovil(Usuario usuario, String numero, String regId) {
-		System.out.println("registrarUsuarioDesdeDispositivoMovil");
+		usuarioDAO.guardar(usuario);	
+		DispositivoMovil dispositivoMovil = new DispositivoMovil(regId, numero);
+		dispositivoMovil.setUsuario(usuario);
+		dispositivoMovil.setFecha_registro(new Date());
+		dispositivoMovil.setActivo(true);
+		dispositivoMovilDAO.guardar(dispositivoMovil);
+//		System.out.println("registrarUsuarioDesdeDispositivoMovil numero: "+numero);
+//		System.out.println("registrarUsuarioDesdeDispositivoMovil regId: "+regId);
 		return  Constantes.REGISTRO_EXITOSO;
 	}
 
