@@ -91,40 +91,54 @@ public class RegistrarServiceImpl implements RegistrarService {
 	}
 	
 	@Transactional
-	public int registrarUsuarioDesdeDispositivoMovil(Usuario usuario, String numero, String regId) {		
-		boolean existeNumero = dispositivoMovilDAO.existeDispositivoMovilPorNumero(numero);	
-		try {
-			if(existeNumero){
-				boolean redID = dispositivoMovilDAO.existeDispositivoMovilPorRegIDMovil(regId);
-				if(redID){
-					return  Constantes.DISPOSITIVO_REGISTRADO;
+	public int registrarUsuarioDesdeDispositivoMovil(Usuario usuario, String numero, String regId) {
+		if(notNull(numero)&&notNull(regId)){
+			boolean existeNumero = dispositivoMovilDAO.existeDispositivoMovilPorNumero(numero);	
+			System.out.println("existeNumero:"+existeNumero);
+			try {
+				if(existeNumero){
+					boolean redID = dispositivoMovilDAO.existeDispositivoMovilPorRegIDMovil(regId);
+					System.out.println("redID:"+redID);
+					if(redID){
+						return  Constantes.DISPOSITIVO_REGISTRADO;
+					}else{
+						DispositivoMovil dispositivoMovil = dispositivoMovilDAO.obtenerDispositivoMovilActualPorNumero(numero);
+						dispositivoMovil.setActivo(false);
+						Usuario u = dispositivoMovil.getUsuario();
+						DispositivoMovil nuevoDispositivo = new DispositivoMovil(regId, numero);
+						nuevoDispositivo.setUsuario(u);
+						nuevoDispositivo.setFecha_registro(new Date());
+						nuevoDispositivo.setActivo(true);			
+						System.out.println("cambiar a inactivo");
+						dispositivoMovilDAO.guardar(dispositivoMovil);	
+						System.out.println("nuevo dispositivo");
+						dispositivoMovilDAO.guardar(nuevoDispositivo);	
+						return  Constantes.NUEVO_DISPOSITIVO_POR_USUARIO_REGISTRADO;
+					}			
 				}else{
-					DispositivoMovil dispositivoMovil = dispositivoMovilDAO.obtenerDispositivoMovilActualPorNumero(numero);
-					dispositivoMovil.setActivo(false);
-					Usuario u = dispositivoMovil.getUsuario();
-					DispositivoMovil nuevoDispositivo = new DispositivoMovil(regId, numero);
-					nuevoDispositivo.setUsuario(u);
-					nuevoDispositivo.setFecha_registro(new Date());
-					nuevoDispositivo.setActivo(true);				
+					usuarioDAO.guardar(usuario);	
+					DispositivoMovil dispositivoMovil = new DispositivoMovil(regId, numero);
+					dispositivoMovil.setUsuario(usuario);
+					dispositivoMovil.setFecha_registro(new Date());
+					dispositivoMovil.setActivo(true);
 					dispositivoMovilDAO.guardar(dispositivoMovil);
-					dispositivoMovilDAO.guardar(nuevoDispositivo);	
-					return  Constantes.NUEVO_DISPOSITIVO_POR_USUARIO_REGISTRADO;
-				}			
-			}else{
-				usuarioDAO.guardar(usuario);	
-				DispositivoMovil dispositivoMovil = new DispositivoMovil(regId, numero);
-				dispositivoMovil.setUsuario(usuario);
-				dispositivoMovil.setFecha_registro(new Date());
-				dispositivoMovil.setActivo(true);
-				dispositivoMovilDAO.guardar(dispositivoMovil);
-				return  Constantes.REGISTRO_EXITOSO;
+					return  Constantes.REGISTRO_EXITOSO;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				return Constantes.ERROR_SERVIDOR;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Constantes.ERROR_SERVIDOR;
 		}
-		
-		
+		return Constantes.MENOS_UNO;
+	}
+
+	private boolean notNull(String str) {
+		if(str!=null){
+			if(!(str.equals(""))){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	

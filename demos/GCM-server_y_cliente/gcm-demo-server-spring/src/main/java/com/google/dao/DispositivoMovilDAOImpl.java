@@ -61,12 +61,35 @@ public class DispositivoMovilDAOImpl extends DAO<DispositivoMovil> implements Di
 	}
 
 	public boolean existeDispositivoMovilPorNumero(String numero) {
-		
+		if (numero != null) {
+			sqlQuery = "select count(dm.id) from DispositivoMovil dm where dm.numeromovil=:numero";
+			q = em.createQuery(sqlQuery);
+			logger.info("buscando usuario por numero " + numero);
+			q.setParameter("numero", numero);
+			Long n = (Long) q.getSingleResult();
+			if (n != null && n > 0) {
+				return true;
+			}
+		}
 		return false;
 	}
 
 	public DispositivoMovil obtenerDispositivoMovilActualPorNumero(String numero) {
-		// TODO Auto-generated method stub
+		if (numero != null) {
+			sqlQuery = "select dm from DispositivoMovil dm where dm.numeromovil=:numero order by dm.fecha_registro asc ";
+			q = em.createQuery(sqlQuery);
+			logger.info("buscando usuario por numero " + numero);
+			q.setParameter("numero", numero);
+			q.setMaxResults(1);
+			try {
+				DispositivoMovil n = (DispositivoMovil) q.getSingleResult();
+				if (n != null) {
+					return  n;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}			
+		}
 		return null;
 	}
 
