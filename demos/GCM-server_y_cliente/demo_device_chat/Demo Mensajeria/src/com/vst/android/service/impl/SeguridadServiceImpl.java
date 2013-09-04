@@ -39,4 +39,10 @@ public class SeguridadServiceImpl implements SeguridadService {
 		return false;
 	}
 
+	@Override
+	public int registrarEnServidor(String string, String numero, String email) {
+		
+		return 1;
+	}
+
 }

@@ -88,7 +88,10 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 					}else
 					if(regIdExisteDevice == Constantes.REGISTROS.REGISTRO_ID_MOBILE_NO_EXISTE){
 						boolean estoyRegistradoServidor = seguridadService.validarRegistroServidor("ASDSASADSADSAFSAFDSDSFWERT4233WDWDWQDWQDWQD",str_telefono);
-						irRegistroUsuaroActivity();
+						if(estoyRegistradoServidor)
+							registrarEnDispositivo();
+						else
+							irRegistroUsuaroActivity();						
 					}		
 					Log.v(MensajeriaActivity.class.getName(), "doInBackground termina");
 				} catch (Exception e) {
@@ -107,6 +110,11 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 		};
 		Log.v(MensajeriaActivity.class.getName(), "task execute");
 		task.execute((Void[]) null);
+	}
+
+	private void registrarEnDispositivo() {
+		
+		
 	}
 	
 	protected int existeRegisterIDinMobile() {
