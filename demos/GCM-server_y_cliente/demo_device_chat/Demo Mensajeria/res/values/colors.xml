@@ -1,7 +1,10 @@
 <resources>
 
    <color name="fondo_negro">#000</color>
+   <color name="fondo_blanco">#fff</color>
+   <color name="letras_azules">#3399FF</color>
    <color name="letras_blancas">#fff</color>
+   <color name="letras_negras">#000</color>
    <color name="fondo_azul">#3399FF</color>
 
 </resources>

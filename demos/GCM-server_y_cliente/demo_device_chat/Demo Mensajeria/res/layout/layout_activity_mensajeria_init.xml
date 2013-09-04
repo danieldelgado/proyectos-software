@@ -9,12 +9,9 @@
 
     <ListView
         android:id="@+id/lst_Usuario"
+        style="@style/ListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/letras_blancas"       
-        >
-        
-        
+        android:layout_height="wrap_content">        
     </ListView>
 
 </LinearLayout>
