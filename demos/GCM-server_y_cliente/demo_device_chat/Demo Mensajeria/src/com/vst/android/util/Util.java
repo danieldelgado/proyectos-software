@@ -15,7 +15,13 @@ public class Util {
 		}
 		return false;
 	}
-	
+	@SuppressWarnings("null")
+	public static boolean isNull(String str) {
+		if(str==null&&(str.equals(""))){
+			return true;
+		}
+		return false;
+	}
 	public static boolean lengthMayorCero(String str){
 		if(str.length()>0){
 			return true;
@@ -24,8 +30,7 @@ public class Util {
 	}
 	
 	public static String getMyPhoneNumber(Context context){
-	    TelephonyManager mTelephonyMgr;
-	    mTelephonyMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE); 
+	    TelephonyManager mTelephonyMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE); 
 	    return mTelephonyMgr.getLine1Number();
 	}
 	

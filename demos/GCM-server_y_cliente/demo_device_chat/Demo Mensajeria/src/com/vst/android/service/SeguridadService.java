@@ -2,7 +2,7 @@ package com.vst.android.service;
 
 public interface SeguridadService {
 
-	boolean validarRegsitroServidor();
+	boolean validarRegistroServidor(String string, String str_telefono);
 
 
 }

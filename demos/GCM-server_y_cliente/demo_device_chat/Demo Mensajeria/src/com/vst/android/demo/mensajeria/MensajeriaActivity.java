@@ -52,10 +52,13 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 
 	private void guardarNumeroTelefono() {
 		str_telefono = String.valueOf(DataCache.obtenerValorSharedPreferences(this, Constantes.TIPO_VARIABLE.TIPO_STRING, Constantes.KEYS.KEY_ESTE_NUMERO_TELEFONO));
-		if(!Util.isNotNull(str_telefono) && !Util.lengthMayorCero(str_telefono)){
+		Log.v(MensajeriaActivity.class.getName(), "str_telefono1:"+str_telefono);	
+		if(!Util.isNull(str_telefono)){
+			Log.v(MensajeriaActivity.class.getName(), "entra al if str_telefono:"+str_telefono);	
 			str_telefono = Util.getMyPhoneNumber(this);
 			DataCache.putObject(this, Constantes.KEYS.KEY_ESTE_NUMERO_TELEFONO, str_telefono);
-		}	
+		}
+		Log.v(MensajeriaActivity.class.getName(), "str_telefono2:"+str_telefono);
 	}
 
 	@Override
@@ -84,7 +87,7 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 						listarUsuarios();
 					}else
 					if(regIdExisteDevice == Constantes.REGISTROS.REGISTRO_ID_MOBILE_NO_EXISTE){
-						boolean estoyRegistradoServidor = seguridadService.validarRegsitroServidor();
+						boolean estoyRegistradoServidor = seguridadService.validarRegistroServidor("ASDSASADSADSAFSAFDSDSFWERT4233WDWDWQDWQDWQD",str_telefono);
 						irRegistroUsuaroActivity();
 					}		
 					Log.v(MensajeriaActivity.class.getName(), "doInBackground termina");
