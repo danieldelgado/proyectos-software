@@ -26,19 +26,27 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 
 	public static final String[] titles = new String[] { "Strawberry", "Banana", "Orange", "Mixed" };
 
-
 	public static final Integer[] images = { R.drawable.android_logo, R.drawable.android_logo, R.drawable.android_logo, R.drawable.android_logo };
 
 	ListView listView;
 	List<RowItem> rowItems;
 	CustomListViewAdapter adapter;
 	RowItem item;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_activity_mensajeria_init);
-
-		validarDatosUsuario();
+		rowItems = new ArrayList<RowItem>();
+		for (int i = 0; i < titles.length; i++) {
+			item = new RowItem(i, titles[i], null);
+			rowItems.add(item);
+		}
+		listView = (ListView) findViewById(R.id.listview);
+		adapter = new CustomListViewAdapter(context, R.layout.list_item, rowItems);
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener((OnItemClickListener) context);
+//		validarDatosUsuario();
 	}
 
 	@Override
@@ -53,30 +61,21 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 			@Override
 			protected void onPreExecute() {
 				pd = ProgressDialog.show(context, "", "Cargando...", true);
-				
-			}
 
+			}
 			@Override
 			protected Void doInBackground(Void... arg0) {
-				try {
-//					Thread.sleep(1000);
-					rowItems = new ArrayList<RowItem>();
-					for (int i = 0; i < titles.length; i++) {
-						// RowItem item = new RowItem(images[i], titles[i],
-						// descriptions[i]);
-						item = new RowItem(images[i], titles[i]);
-						rowItems.add(item);
-					}
-					listView = (ListView) findViewById(R.id.listview);
-					adapter = new CustomListViewAdapter(context, R.layout.list_item, rowItems);
-					listView.setAdapter(adapter);
-					listView.setOnItemClickListener((OnItemClickListener) context);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+//				rowItems = new ArrayList<RowItem>();
+//				for (int i = 0; i < titles.length; i++) {
+//					item = new RowItem(i, titles[i], null);
+//					rowItems.add(item);
+//				}
+//				listView = (ListView) findViewById(R.id.listview);
+//				adapter = new CustomListViewAdapter(context, R.layout.list_item, rowItems);
+//				listView.setAdapter(adapter);
+//				listView.setOnItemClickListener((OnItemClickListener) context);
 				return null;
 			}
-
 			@Override
 			protected void onPostExecute(Void result) {
 				if (pd != null) {

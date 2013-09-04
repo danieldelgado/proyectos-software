@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vst.android.beans.RowItem;
@@ -24,9 +23,8 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 	}
 
 	private class ViewHolder {
-		ImageView imageView;
+//		ImageView imageView;
 		TextView txtTitle;
-//		TextView txtDesc;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -37,7 +35,7 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.list_item, null);
 			holder = new ViewHolder();
-			holder.imageView = (ImageView) convertView.findViewById(R.id.icon);
+//			holder.imageView = (ImageView) convertView.findViewById(R.id.icon);
 			holder.txtTitle = (TextView) convertView.findViewById(R.id.title);
 //			holder.txtDesc = (TextView) convertView.findViewById(R.id.desc);
 			convertView.setTag(holder);
@@ -45,8 +43,8 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 			holder = (ViewHolder) convertView.getTag();
 
 //		holder.txtDesc.setText(rowItem.getDesc());
-		holder.txtTitle.setText(rowItem.getTitle());
-		holder.imageView.setImageResource(rowItem.getImageId());
+		holder.txtTitle.setText(rowItem.getNombre());
+//		holder.imageView.setImageResource(rowItem.getImageId());
 
 		return convertView;
 	}

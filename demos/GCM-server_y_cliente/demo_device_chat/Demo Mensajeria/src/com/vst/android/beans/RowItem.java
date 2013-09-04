@@ -1,44 +1,51 @@
 package com.vst.android.beans;
+
 public class RowItem {
-    private int imageId;
-    private String title;
-//    private String desc;
- 
-//    public RowItem(int imageId, String title, String desc) {
-//        this.imageId = imageId;
-//        this.title = title;
-//        this.desc = desc;
-//    }
+	
+    private int idItem;
+    private int idImagen;
+    private String nombre;
+    private String descripcion;
+        
+   	public RowItem(int idItem, String nombre, String descripcion) {
+   		super();
+   		this.idItem = idItem;
+   		this.nombre = nombre;
+   		this.descripcion = descripcion;
+   	}
     
-    public RowItem(int imageId, String title) {
-        this.imageId = imageId;
-        this.title = title;
-    }
+   	public RowItem(int idItem,int idImagen, String nombre, String descripcion) {
+   		super();
+   		this.idItem = idItem;
+   		this.idImagen = idImagen;
+   		this.nombre = nombre;
+   		this.descripcion = descripcion;
+   	}
+   	
+	
+	public int getIdItem() {
+		return idItem;
+	}
+	public void setIdItem(int idItem) {
+		this.idItem = idItem;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public int getIdImagen() {
+		return idImagen;
+	}
+	public void setIdImagen(int idImagen) {
+		this.idImagen = idImagen;
+	}
     
-    public int getImageId() {
-        return imageId;
-    }
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
-    }
-//    public String getDesc() {
-//        return desc;
-//    }
-//    public void setDesc(String desc) {
-//        this.desc = desc;
-//    }
-    public String getTitle() {
-        return title;
-    }
-    public void setTitle(String title) {
-        this.title = title;
-    }
-//    @Override
-//    public String toString() {
-//        return title + "\n" + desc;
-//    }
-    @Override
-    public String toString() {
-        return title + "\n";
-    }
 }
