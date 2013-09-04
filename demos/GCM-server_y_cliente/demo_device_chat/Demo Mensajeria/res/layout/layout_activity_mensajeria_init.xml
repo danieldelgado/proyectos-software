@@ -14,11 +14,9 @@
 
         <ListView
             android:id="@+id/listview"
-            style="@style/ListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/fondo_blanco"
-            android:cacheColorHint="@color/fondo_azul" >           
+            android:background="@color/fondo_negro" >           
         </ListView>
         
     </RelativeLayout>    

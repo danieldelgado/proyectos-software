@@ -3,11 +3,11 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:id="@+id/list_item" >
+    
     <ImageView
         android:id="@+id/icon"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:contentDescription="@string/cargando"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" />
  
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/icon"
         android:paddingBottom="10dp"
-        android:textColor="#CC0033"
+        android:textColor="@color/letras_azules"
         android:textSize="16dp" />
  
     <TextView
@@ -27,6 +27,6 @@
         android:layout_below="@+id/title"
         android:layout_toRightOf="@+id/icon"
         android:paddingLeft="10dp"
-        android:textColor="#3399FF"
+        android:textColor="@color/letras_blancas"
         android:textSize="14dp" />
 </RelativeLayout>
