@@ -58,6 +58,7 @@ public class MensajeriaActivity extends Activity {
 		return planet;
 	}
 
+	@SuppressWarnings("unused")
 	private void validarDatosUsuario() {
 		AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
 			@Override
