@@ -32,6 +32,7 @@ public class Constantes {
 	
 	public static final String DISPLAY_MESSAGE_ACTION = "com.vst.demochat.DISPLAY_MESSAGE";
 	public static final String REG_ID_DEVICE = "regId";
+	public static final String PAQUETE_ROOT = "com.vst.android";
 	static{
 		//con este metodo static soluciona el problema de la conexion a internet method post
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

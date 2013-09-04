@@ -1,4 +1,6 @@
-package com.vst.demo.mensajeria;
+package com.vst.android.demo.mensajeria;
+
+import com.vst.demo.mensajeria.R;
 
 import android.os.Bundle;
 import android.app.Activity;

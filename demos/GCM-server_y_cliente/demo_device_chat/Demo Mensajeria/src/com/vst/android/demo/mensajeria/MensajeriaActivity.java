@@ -1,4 +1,4 @@
-package com.vst.demo.mensajeria;
+package com.vst.android.demo.mensajeria;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +19,10 @@ import android.widget.Toast;
 
 import com.vst.android.adapter.CustomListViewAdapter;
 import com.vst.android.beans.RowItem;
+import com.vst.android.service.SeguridadService;
+import com.vst.android.service.impl.SeguridadServiceImpl;
+import com.vst.android.util.Constantes;
+import com.vst.demo.mensajeria.R;
 
 public class MensajeriaActivity extends Activity implements OnItemClickListener {
 
@@ -29,7 +33,7 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 	private CustomListViewAdapter adapter;
 	private RowItem item;
 	private AsyncTask<Void, Void, Void> task;
-	
+	private SeguridadService seguridadService;
 	public static final String[] titles = new String[] { "Strawberry", "Banana", "Orange", "Mixed" };
 	public static final Integer[] images = { R.drawable.android_logo, R.drawable.android_logo, R.drawable.android_logo, R.drawable.android_logo };
 
@@ -38,6 +42,7 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_activity_mensajeria_init);	
 		Log.v(MensajeriaActivity.class.getName(), "onCreate  iniciando Activity");	
+		seguridadService = new SeguridadServiceImpl();
 		validarDatosUsuario();		
 	}
 
@@ -61,6 +66,7 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 			protected Void doInBackground(Void... arg0) {
 				try {
 					Log.v(MensajeriaActivity.class.getName(), "doInBackground init");
+					int regIdDeviceexiste = seguridadService.existeRegIdDeviceInMobile(Constantes.REG_ID_DEVICE);
 					listarUsuarios();				
 					Log.v(MensajeriaActivity.class.getName(), "doInBackground termina");
 				} catch (Exception e) {
@@ -77,6 +83,7 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 				Log.v(MensajeriaActivity.class.getName(), "onPostExecute");
 			}
 		};
+		Log.v(MensajeriaActivity.class.getName(), "task execute");
 		task.execute((Void[]) null);
 	}
 	

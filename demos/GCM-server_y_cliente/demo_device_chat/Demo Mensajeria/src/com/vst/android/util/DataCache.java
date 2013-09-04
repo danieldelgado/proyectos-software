@@ -6,19 +6,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class DataCache {
+
+	private static SharedPreferences sharedPreferences;
+	private static SharedPreferences.Editor editor;
 	
 	private DataCache() {
 		throw new UnsupportedOperationException();
 	}
 
-	public static SharedPreferences getGCMPreferences(Context context) {
-		return context.getSharedPreferences("com.vst.demochat", 0);
+	public static SharedPreferences getDataCachePreferences(Context context) {
+		return context.getSharedPreferences(Constantes.PAQUETE_ROOT, 0);
 	}
 
 	@SuppressLint("CommitPrefEdits")
 	public static void putObject(Context context, String key, Object object) {
-		SharedPreferences sharedPreferences = getGCMPreferences(context);
-		SharedPreferences.Editor editor = sharedPreferences.edit();
+		sharedPreferences = getDataCachePreferences(context);
+		editor = sharedPreferences.edit();
 		if (object instanceof String) {
 			editor.putString(key, String.valueOf(object));		
 		} else if (object instanceof Integer) {
@@ -32,10 +35,12 @@ public class DataCache {
 			throw new UnsupportedOperationException("EL objeto no pertenece a ninguno de los tipos de clases para el SharedPreferences");
 		}
 		editor.commit();
+		variablesNull();
 	}
 	
+
 	public static boolean existeValor(Context context, int tipo, String key){
-		SharedPreferences sharedPreferences = getGCMPreferences(context);		
+		sharedPreferences = getDataCachePreferences(context);		
 		switch (tipo) {
 		case 1:
 			String vl = sharedPreferences.getString(key, Constantes.VACIO);
@@ -62,11 +67,12 @@ public class DataCache {
 			}
 			break;
 		}
+		variablesNull();
 		return false;
 	}
 	
 	public static Object obtenerValorSharedPreferences(Context context, int tipo, String key){
-		SharedPreferences sharedPreferences = getGCMPreferences(context);		
+		sharedPreferences = getDataCachePreferences(context);		
 		switch (tipo) {
 		case 1:
 			String vl = sharedPreferences.getString(key, Constantes.VACIO);
@@ -94,6 +100,12 @@ public class DataCache {
 			break;
 		}
 		return null;
+	}
+	
+
+	private static void variablesNull() {
+		sharedPreferences = null;
+		editor = null;
 	}
 
 }
