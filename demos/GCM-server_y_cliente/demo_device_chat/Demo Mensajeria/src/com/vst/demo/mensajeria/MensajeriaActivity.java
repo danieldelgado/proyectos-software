@@ -14,62 +14,50 @@ import android.view.Menu;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-public class MensajeriaActivity extends Activity  {
+public class MensajeriaActivity extends Activity {
 
 	private Context context;
 	private ProgressDialog pd;
-//	static final String[] FRUITS = new String[] { "Apple", "Avocado", "Banana",
-//		"Blueberry", "Coconut", "Durian", "Guava", "Kiwifruit",
-//		"Jackfruit", "Mango", "Olive", "Pear", "Sugar-apple" };
-	
-	List<Map<String, String>> planetsList = new ArrayList<Map<String,String>>();
+
+	List<Map<String, String>> planetsList = new ArrayList<Map<String, String>>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_activity_mensajeria_init);
 		context = this;
-		validarDatosUsuario();
-//		setListAdapter(new ArrayAdapter<String>(this, R.id.lst_Usuario,FRUITS));
-//		 
-//		ListView listView = getListView();
-//		listView.setTextFilterEnabled(true);
-// 
-//		listView.setOnItemClickListener(new OnItemClickListener() {
-//			public void onItemClick(AdapterView<?> parent, View view,
-//					int position, long id) {
-//			    // When clicked, show a toast with the TextView text
-//			    Toast.makeText(getApplicationContext(),
-//				((TextView) view).getText(), Toast.LENGTH_SHORT).show();
-//			}
-//		});
-		
+//		validarDatosUsuario();
 		initList();
-		 ListView lv = (ListView) findViewById(R.id.lst_Usuario);
-		
-		 SimpleAdapter simpleAdpt = new SimpleAdapter(this, planetsList, android.R.layout.simple_list_item_1, new String[] {"planet"}, new int[] {android.R.id.text1});
-		 lv.setAdapter(simpleAdpt);
+		ListView lv = (ListView) findViewById(R.id.lst_Usuario);
+		SimpleAdapter simpleAdpt = new SimpleAdapter(this, planetsList,
+				android.R.layout.simple_list_item_1, new String[] { "planet" },
+				new int[] { android.R.id.text1 });
+		lv.setAdapter(simpleAdpt);
 
 	}
-	
-	 private void initList() {
-		    // We populate the planets
 
-		    planetsList.add(createPlanet("planet", "Mercury"));
-		    planetsList.add(createPlanet("planet", "Venus"));
-		    planetsList.add(createPlanet("planet", "Mars"));
-		    planetsList.add(createPlanet("planet", "Jupiter"));
-		    planetsList.add(createPlanet("planet", "Saturn"));
-		    planetsList.add(createPlanet("planet", "Uranus"));
-		    planetsList.add(createPlanet("planet", "Neptune"));
+	private void initList() {
+		planetsList.add(createPlanet("planet", "Mercury"));
+		planetsList.add(createPlanet("planet", "Venus"));
+		planetsList.add(createPlanet("planet", "Mars"));
+		planetsList.add(createPlanet("planet", "Jupiter"));
+		planetsList.add(createPlanet("planet", "Saturn"));
+		planetsList.add(createPlanet("planet", "Uranus"));
+		planetsList.add(createPlanet("planet", "Neptune"));
+		planetsList.add(createPlanet("planet", "Neptune1"));
+		planetsList.add(createPlanet("planet", "Neptune2"));
+		planetsList.add(createPlanet("planet", "Neptune3"));
+		planetsList.add(createPlanet("planet", "Neptune4"));
+		planetsList.add(createPlanet("planet", "Neptune5"));
 
-		}
-	 private HashMap<String, String> createPlanet(String key, String name) {
-		    HashMap<String, String> planet = new HashMap<String, String>();
-		    planet.put(key, name);
+	}
 
-		    return planet;
-		}
+	private HashMap<String, String> createPlanet(String key, String name) {
+		HashMap<String, String> planet = new HashMap<String, String>();
+		planet.put(key, name);
+		return planet;
+	}
+
 	private void validarDatosUsuario() {
 		AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
 
