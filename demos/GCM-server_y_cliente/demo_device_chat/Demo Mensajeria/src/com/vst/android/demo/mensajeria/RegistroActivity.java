@@ -42,9 +42,10 @@ public class RegistroActivity extends Activity {
 		
 	private void registrarDispositivoEnServidor() {
 		String numero = Util.getString(txtNumero.getText());
-		String email = Util.getString(txtEmail.getText());
-		
+		String email = Util.getString(txtEmail.getText());	
+		Log.v(RegistroActivity.class.getName(), "registrarDispositivoEnServidor numero:"+numero+" email:"+email);
 		int r = seguridadService.registrarEnServidor("asdsde1erwfewfewffew",numero,email);
+		Log.v(RegistroActivity.class.getName(), "registrarDispositivoEnServidor r:"+r);
 		if(r>0){
 			Intent returnIntent = new Intent();
 //			returnIntent.putExtra(Constantes.KEY_USUARIO_REGISTRADO, Constantes.REGISTRO_EXITOSO_USUARIO);
@@ -57,25 +58,25 @@ public class RegistroActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		Log.v(MensajeriaActivity.class.getName(), "onBackPressed");
+		Log.v(RegistroActivity.class.getName(), "onBackPressed");
 		super.onBackPressed();
 	}
 	
 	@Override
 	protected void onPostResume() {
-		Log.v(MensajeriaActivity.class.getName(), "onPostResume");
+		Log.v(RegistroActivity.class.getName(), "onPostResume");
 		super.onPostResume();
 	}
 	
 	@Override
 	protected void onPause() {
-		Log.v(MensajeriaActivity.class.getName(), "onPause");
+		Log.v(RegistroActivity.class.getName(), "onPause");
 		super.onPause();		
 	}
 	
 	@Override
 	protected void onDestroy() {
-		Log.v(MensajeriaActivity.class.getName(), "onDestroy");
+		Log.v(RegistroActivity.class.getName(), "onDestroy");
 		super.onDestroy();	
 	}
 	

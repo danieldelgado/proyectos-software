@@ -48,6 +48,7 @@ public class Constantes {
 	public static final class URL_SERVER {
 		public static final String URL_SERVER = "http://192.168.1.153:8082/gcm-demo-server-spring";
 		public static final String URL_EXISTE_NUMERO = URL_SERVER + "/existeNumero";
+		public static final String URL_REGISTRAR_DISPOSITIVO_USUARIO =  URL_SERVER + "/registrarDispositivoUsuario";
 		
 	}
 

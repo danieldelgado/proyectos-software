@@ -40,9 +40,53 @@ public class SeguridadServiceImpl implements SeguridadService {
 	}
 
 	@Override
-	public int registrarEnServidor(String string, String numero, String email) {
+	public int registrarEnServidor(String regId, String numero, String email) {
+		Log.v(SeguridadServiceImpl.class.getName(), "validarRegistroServidor");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("regId", regId);
+		params.put("numero", numero);
+		params.put("email", email);
+		long backoff = Constantes.RANGOS.BACKOFF_MILLI_SECONDS + Constantes.RANGOS.RANDOM.nextInt(1000);
+		for (int i = 1; i <= Constantes.RANGOS.MAX_ATTEMPTS; i++) {
+			try {				
+				JSONObject json =  HttpUtilConexiones.getJSONFromUrl(Constantes.URL_SERVER.URL_REGISTRAR_DISPOSITIVO_USUARIO, params );
+				Log.v(SeguridadServiceImpl.class.getName(), "json:"+json);
+				int r = (Integer) json.get("resp");
+				if(r>0){
+					return 1;
+				}
+			} catch (Exception e) {				
+				if (i == Constantes.RANGOS.MAX_ATTEMPTS) {
+					break;
+				}
+				try {
+					Thread.sleep(backoff);
+				} catch (InterruptedException e1) {
+					Thread.currentThread().interrupt();
+					return 0;
+				}
+				backoff *= 2;
+				e.printStackTrace();
+			}
+		}
 		
-		return 1;
+		
+		
+//		try {
+//			JSONObject json =  HttpUtilConexiones.getJSONFromUrl(Constantes.URL_SERVER.URL_REGISTRAR_DISPOSITIVO_USUARIO, params );
+//			Log.v(SeguridadServiceImpl.class.getName(), "json:"+json);
+//			int r = (Integer) json.get("resp");
+//			if(r>0){
+//				return 1;
+//			}
+//		} catch (IOException e) {	
+//			e.printStackTrace();
+//			return 0;
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//			return 0;
+//		}			
+		return -1;
 	}
 
 }
