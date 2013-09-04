@@ -181,6 +181,15 @@ public class HomeController {
 		}
 	}
 	
+	
+	@RequestMapping(value = "/registrarDispositivoUsuario", method = RequestMethod.POST)
+	public  @ResponseBody Map<String, Object> registrarDispositivoUsuario(String regId , String numero , String email ) {
+		Map<String, Object> resp = new LinkedHashMap<String, Object>();
+		resp.put("resp", 1);
+		return resp;
+	}
+	
+	
 	@RequestMapping(value = "/existeNumero", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> existeNumero( String regId , String numero ) {
 		Map<String, Object> resp = new LinkedHashMap<String, Object>();
