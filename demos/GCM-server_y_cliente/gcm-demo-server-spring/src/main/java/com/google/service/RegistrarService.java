@@ -27,6 +27,8 @@ public interface RegistrarService {
 
 	int registrarUsuarioDesdeDispositivoMovil(Usuario usuario, String numero, String regId);
 
+	int existeDispositivo(String regId, String numero);
+
 
 	
 

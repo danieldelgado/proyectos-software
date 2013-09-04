@@ -141,6 +141,14 @@ public class RegistrarServiceImpl implements RegistrarService {
 		return false;
 	}
 
+	public int existeDispositivo(String regId, String numero) {
+		DispositivoMovil existeDispositivo = dispositivoMovilDAO.obtenerDispositivoPorRegIDNumero(regId,numero);
+		if(existeDispositivo!=null){
+			return 1;
+		}
+		return 0;
+	}
+
 	
 
 }

@@ -1,5 +1,7 @@
 package com.google.dao;
 
+import javax.persistence.NoResultException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -86,6 +88,29 @@ public class DispositivoMovilDAOImpl extends DAO<DispositivoMovil> implements Di
 				if (n != null) {
 					return  n;
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}			
+		}
+		return null;
+	}
+
+	public DispositivoMovil obtenerDispositivoPorRegIDNumero(String regId, String numero) {
+		if (numero != null) {
+			sqlQuery = "select dm from DispositivoMovil dm where dm.key_device=:key_device and dm.numeromovil=:numero order by dm.fecha_registro asc ";
+			q = em.createQuery(sqlQuery);
+			logger.info("buscando usuario por numero " + numero);
+			q.setParameter("numero", numero);
+			q.setParameter("key_device", regId);
+			q.setMaxResults(1);
+			try {
+				DispositivoMovil n = (DispositivoMovil) q.getSingleResult();
+				if (n != null) {
+					return  n;
+				}				
+			} catch  (NoResultException e){
+				System.out.println("sin resultados");
+				return null;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}			

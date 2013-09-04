@@ -18,6 +18,8 @@ public interface DispositivoMovilDAO extends IDAO<DispositivoMovil> {
 
 	DispositivoMovil obtenerDispositivoMovilActualPorNumero(String numero);
 
+	DispositivoMovil obtenerDispositivoPorRegIDNumero(String regId, String numero);
+
 
 
 }
