@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.vst.android.util.Util;
 import com.vst.demo.mensajeria.R;
 
 public class RegistroActivity extends Activity {
@@ -19,9 +20,9 @@ public class RegistroActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_activity_registro);
-		Log.v(RegistroActivity.class.getName(), "onCreate  iniciando Activity");	
-		
+		Log.v(RegistroActivity.class.getName(), "onCreate  iniciando Activity");
 		btnGuardar = (Button) findViewById(R.id.btnGuardar);
+		
 		btnGuardar.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {

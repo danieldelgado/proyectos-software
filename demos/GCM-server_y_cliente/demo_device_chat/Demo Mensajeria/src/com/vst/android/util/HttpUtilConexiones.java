@@ -24,19 +24,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class HttpUtilConexiones {
-	
+
 	private static InputStream is = null;
 	private static JSONObject jObj = null;
 	private static String json = null;
 	private static URL url = null;
-	private static DefaultHttpClient httpClient  = null;
+	private static DefaultHttpClient httpClient = null;
 	private static HttpPost httpPost = null;
 	private static HttpResponse httpResponse = null;
 	private static HttpEntity httpEntity = null;
 	private static BufferedReader reader = null;
 	private static HttpURLConnection conn = null;
 	private static OutputStream out = null;
-	
+
 	private HttpUtilConexiones() {
 		throw new UnsupportedOperationException();
 	}
@@ -56,19 +56,33 @@ public class HttpUtilConexiones {
 		is.close();
 		json = sb.toString();
 		jObj = new JSONObject(json);
+		clean();
 		return jObj;
 	}
 
-	private static List<NameValuePair> obtenerParams(Map<String, Object> params){
+	private static void clean() {
+		is = null;
+		url = null;
+		json = null;
+		httpClient = null;
+		httpPost = null;
+		httpResponse = null;
+		httpEntity = null;
+		reader = null;
+		conn = null;
+		out = null;
+	}
+
+	private static List<NameValuePair> obtenerParams(Map<String, Object> params) {
 		Iterator<Entry<String, Object>> iterator = params.entrySet().iterator();
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		while (iterator.hasNext()) {
 			Entry<String, Object> param = iterator.next();
 			pairs.add(new BasicNameValuePair(param.getKey(), (String) param.getValue()));
-		}		
+		}
 		return pairs;
 	}
-	
+
 	public static JSONObject getJSONFromUrl(String url, Map<String, Object> params) throws ClientProtocolException, IOException, JSONException {
 		List<NameValuePair> pairs = obtenerParams(params);
 		httpClient = new DefaultHttpClient();
@@ -86,10 +100,11 @@ public class HttpUtilConexiones {
 		is.close();
 		json = sb.toString();
 		jObj = new JSONObject(json);
+		clean();
 		return jObj;
 	}
 
-	private static String obtenerBoby( Map<String, Object> params ) {
+	private static String obtenerBoby(Map<String, Object> params) {
 		StringBuilder bodyBuilder = new StringBuilder();
 		Iterator<Entry<String, Object>> iterator = params.entrySet().iterator();
 		while (iterator.hasNext()) {
@@ -101,16 +116,16 @@ public class HttpUtilConexiones {
 		}
 		return bodyBuilder.toString();
 	}
-	
-	private static byte[] obtenerBytes(String str){
+
+	private static byte[] obtenerBytes(String str) {
 		return str.getBytes();
 	}
-	
+
 	public static void post(String endpoint, Map<String, Object> params) throws IOException {
-		url = new URL(endpoint);		
+		url = new URL(endpoint);
 		String body = obtenerBoby(params);
 		byte[] bytes = obtenerBytes(body);
-		conn = (HttpURLConnection) url.openConnection();		
+		conn = (HttpURLConnection) url.openConnection();
 		conn.setDoOutput(true);
 		conn.setUseCaches(false);
 		conn.setFixedLengthStreamingMode(bytes.length);
@@ -137,12 +152,13 @@ public class HttpUtilConexiones {
 		if (conn != null) {
 			conn.disconnect();
 		}
+		clean();
 	}
 
 	public static JSONObject resppost(String endpoint, Map<String, Object> params) throws IOException, JSONException {
 		url = new URL(endpoint);
 		String body = obtenerBoby(params);
-		byte[] bytes = body.getBytes();		
+		byte[] bytes = body.getBytes();
 		conn = (HttpURLConnection) url.openConnection();
 		conn.setDoOutput(true);
 		conn.setUseCaches(false);
@@ -171,6 +187,7 @@ public class HttpUtilConexiones {
 		if (conn != null) {
 			conn.disconnect();
 		}
+		clean();
 		return jObj;
 	}
 

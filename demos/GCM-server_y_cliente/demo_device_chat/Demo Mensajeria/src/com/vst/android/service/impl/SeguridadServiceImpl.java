@@ -5,13 +5,16 @@ import com.vst.android.service.SeguridadService;
 public class SeguridadServiceImpl implements SeguridadService {
 
 	
-	
-	
 
 	@Override
-	public int existeRegIdDeviceInMobile(String regIdDevice) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean validarRegsitroServidor() {
+		
+		
+		
+		
+		
+		
+		return false;
 	}
 
 }

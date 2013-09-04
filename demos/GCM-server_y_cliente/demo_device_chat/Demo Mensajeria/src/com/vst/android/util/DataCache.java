@@ -15,7 +15,7 @@ public class DataCache {
 	}
 
 	public static SharedPreferences getDataCachePreferences(Context context) {
-		return context.getSharedPreferences(Constantes.PAQUETE_ROOT, 0);
+		return context.getSharedPreferences(Constantes.TAG.PAQUETE_ROOT, 0);
 	}
 
 	@SuppressLint("CommitPrefEdits")
@@ -43,26 +43,26 @@ public class DataCache {
 		sharedPreferences = getDataCachePreferences(context);		
 		switch (tipo) {
 		case 1:
-			String vl = sharedPreferences.getString(key, Constantes.VACIO);
-			if(!vl.equals(Constantes.VACIO)){
+			String vl = sharedPreferences.getString(key, Constantes.PorDefecto.VACIO);
+			if(!vl.equals(Constantes.PorDefecto.VACIO)){
 				return true;
 			}
 			break;
 		case 2:
-			int vint = sharedPreferences.getInt(key, Constantes.MENOS_UNO);
-			if(!(vint==Constantes.MENOS_UNO)){
+			int vint = sharedPreferences.getInt(key, Constantes.PorDefecto.MENOS_UNO);
+			if(!(vint==Constantes.PorDefecto.MENOS_UNO)){
 				return true;
 			}
 			break;
 		case 3:
-			boolean vBool = sharedPreferences.getBoolean(key, Constantes.FALSO);
+			boolean vBool = sharedPreferences.getBoolean(key, Constantes.PorDefecto.FALSO);
 			if(vBool){
 				return true;
 			}
 			break;
 		case 4:
-			float vflot = sharedPreferences.getFloat(key, Constantes.MENOS_UNO);
-			if(!(vflot==Constantes.MENOS_UNO)){
+			float vflot = sharedPreferences.getFloat(key, Constantes.PorDefecto.MENOS_UNO);
+			if(!(vflot==Constantes.PorDefecto.MENOS_UNO)){
 				return true;
 			}
 			break;
@@ -75,26 +75,26 @@ public class DataCache {
 		sharedPreferences = getDataCachePreferences(context);		
 		switch (tipo) {
 		case 1:
-			String vl = sharedPreferences.getString(key, Constantes.VACIO);
-			if(vl.equals(Constantes.VACIO)){
+			String vl = sharedPreferences.getString(key, Constantes.PorDefecto.VACIO);
+			if(vl.equals(Constantes.PorDefecto.VACIO)){
 				return vl;
 			}
 			break;
 		case 2:
-			int vint = sharedPreferences.getInt(key, Constantes.MENOS_UNO);
-			if(!(vint==Constantes.MENOS_UNO)){
+			int vint = sharedPreferences.getInt(key, Constantes.PorDefecto.MENOS_UNO);
+			if(!(vint==Constantes.PorDefecto.MENOS_UNO)){
 				return vint;
 			}
 			break;
 		case 3:
-			boolean vBool = sharedPreferences.getBoolean(key, Constantes.FALSO);
+			boolean vBool = sharedPreferences.getBoolean(key, Constantes.PorDefecto.FALSO);
 			if(vBool){
 				return vBool;
 			}
 			break;
 		case 4:
-			float vflot = sharedPreferences.getFloat(key, Constantes.MENOS_UNO);
-			if(!(vflot==Constantes.MENOS_UNO)){
+			float vflot = sharedPreferences.getFloat(key, Constantes.PorDefecto.MENOS_UNO);
+			if(!(vflot==Constantes.PorDefecto.MENOS_UNO)){
 				return vflot;
 			}
 			break;
