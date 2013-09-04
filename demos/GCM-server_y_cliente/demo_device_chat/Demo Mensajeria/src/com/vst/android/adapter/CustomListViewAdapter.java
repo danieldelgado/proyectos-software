@@ -26,7 +26,7 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 	private class ViewHolder {
 		ImageView imageView;
 		TextView txtTitle;
-		TextView txtDesc;
+//		TextView txtDesc;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -37,14 +37,14 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.list_item, null);
 			holder = new ViewHolder();
-			holder.txtDesc = (TextView) convertView.findViewById(R.id.desc);
-			holder.txtTitle = (TextView) convertView.findViewById(R.id.title);
 			holder.imageView = (ImageView) convertView.findViewById(R.id.icon);
+			holder.txtTitle = (TextView) convertView.findViewById(R.id.title);
+//			holder.txtDesc = (TextView) convertView.findViewById(R.id.desc);
 			convertView.setTag(holder);
 		} else
 			holder = (ViewHolder) convertView.getTag();
 
-		holder.txtDesc.setText(rowItem.getDesc());
+//		holder.txtDesc.setText(rowItem.getDesc());
 		holder.txtTitle.setText(rowItem.getTitle());
 		holder.imageView.setImageResource(rowItem.getImageId());
 

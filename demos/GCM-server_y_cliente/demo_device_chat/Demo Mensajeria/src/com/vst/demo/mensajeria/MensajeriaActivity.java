@@ -26,7 +26,7 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 
 	public static final String[] titles = new String[] { "Strawberry", "Banana", "Orange", "Mixed" };
 
-	public static final String[] descriptions = new String[] { "It is an aggregate accessory fruit", "It is the largest herbaceous flowering plant","Citrus Fruit", "Mixed Fruits" };
+//	public static final String[] descriptions = new String[] { "It is an aggregate accessory fruit", "It is the largest herbaceous flowering plant","Citrus Fruit", "Mixed Fruits" };
 
 	public static final Integer[] images = { R.drawable.android_logo, R.drawable.blackberry_logo, R.drawable.ios_logo, R.drawable.windowsmobile_logo };
 
@@ -40,7 +40,8 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 
 		rowItems = new ArrayList<RowItem>();
 		for (int i = 0; i < titles.length; i++) {
-			RowItem item = new RowItem(images[i], titles[i], descriptions[i]);
+//			RowItem item = new RowItem(images[i], titles[i], descriptions[i]);
+			RowItem item = new RowItem(images[i], titles[i]);
 			rowItems.add(item);
 		}
 		listView = (ListView) findViewById(R.id.listview);
