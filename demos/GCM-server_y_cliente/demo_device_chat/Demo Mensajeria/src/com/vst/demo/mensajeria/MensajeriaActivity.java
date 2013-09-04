@@ -37,16 +37,9 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_activity_mensajeria_init);
-		rowItems = new ArrayList<RowItem>();
-		for (int i = 0; i < titles.length; i++) {
-			item = new RowItem(i, titles[i], null);
-			rowItems.add(item);
-		}
-		listView = (ListView) findViewById(R.id.listview);
-		adapter = new CustomListViewAdapter(context, R.layout.list_item, rowItems);
-		listView.setAdapter(adapter);
-		listView.setOnItemClickListener((OnItemClickListener) context);
-//		validarDatosUsuario();
+		
+		validarDatosUsuario();
+		
 	}
 
 	@Override
@@ -65,15 +58,15 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 			}
 			@Override
 			protected Void doInBackground(Void... arg0) {
-//				rowItems = new ArrayList<RowItem>();
-//				for (int i = 0; i < titles.length; i++) {
-//					item = new RowItem(i, titles[i], null);
-//					rowItems.add(item);
-//				}
-//				listView = (ListView) findViewById(R.id.listview);
-//				adapter = new CustomListViewAdapter(context, R.layout.list_item, rowItems);
-//				listView.setAdapter(adapter);
-//				listView.setOnItemClickListener((OnItemClickListener) context);
+				rowItems = new ArrayList<RowItem>();
+				for (int i = 0; i < titles.length; i++) {
+					item = new RowItem(i, titles[i], null);
+					rowItems.add(item);
+				}
+				listView = (ListView) findViewById(R.id.listview);
+				adapter = new CustomListViewAdapter(context, R.layout.list_item, rowItems);
+				listView.setAdapter(adapter);
+				listView.setOnItemClickListener((OnItemClickListener) context);
 				return null;
 			}
 			@Override
