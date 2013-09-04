@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,8 @@ import com.vst.android.beans.RowItem;
 import com.vst.android.service.SeguridadService;
 import com.vst.android.service.impl.SeguridadServiceImpl;
 import com.vst.android.util.Constantes;
+import com.vst.android.util.DataCache;
+import com.vst.android.util.Util;
 import com.vst.demo.mensajeria.R;
 
 public class MensajeriaActivity extends Activity implements OnItemClickListener {
@@ -66,8 +69,14 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 			protected Void doInBackground(Void... arg0) {
 				try {
 					Log.v(MensajeriaActivity.class.getName(), "doInBackground init");
-					int regIdDeviceexiste = seguridadService.existeRegIdDeviceInMobile(Constantes.REG_ID_DEVICE);
-					listarUsuarios();				
+					int regIdExisteDevice = existeRegisterIDinMobile();
+					Log.v(MensajeriaActivity.class.getName(), "regIdExisteDevice : "+regIdExisteDevice);
+					if(regIdExisteDevice==Constantes.REGISTRO_ID_MOBILE_EXISTE){
+						listarUsuarios();
+					}else
+					if(regIdExisteDevice == Constantes.REGISTRO_ID_MOBILE_NO_EXISTE){
+						irRegistroUsuaroActivity();
+					}		
 					Log.v(MensajeriaActivity.class.getName(), "doInBackground termina");
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -87,6 +96,18 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 		task.execute((Void[]) null);
 	}
 	
+	protected int existeRegisterIDinMobile() {
+		String regID = String.valueOf(DataCache.obtenerValorSharedPreferences(context, Constantes.TIPO_STRING, Constantes.REG_ID_DEVICE));
+		Log.v(MensajeriaActivity.class.getName(), "existeRegisterIDinMobile : "+regID);
+		if(Util.isNotNull(regID)){
+			if(Util.lengthMayorCero(regID)){
+				return Constantes.REGISTRO_ID_MOBILE_EXISTE;
+			}
+		}		
+		return Constantes.REGISTRO_ID_MOBILE_NO_EXISTE;
+	}
+
+
 	private void listarUsuarios() {		
 		varialesNull();		
 		rowItems = new ArrayList<RowItem>();
@@ -111,6 +132,19 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 		adapter = null;		
 	}
 
+	public void irRegistroUsuaroActivity() {
+		Log.v(MensajeriaActivity.class.getName(), "irRegistroUsuaroActivity");
+		Intent intent = new Intent();
+		intent.setClass(this, RegistroActivity.class);		
+		startActivityForResult(intent, Constantes.INTENT_REGISTAR_USUARIO);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {	
+		Log.v(MensajeriaActivity.class.getName(), "onActivityResult");
+		
+	}
+	
 	@Override
 	public void onBackPressed() {
 		Log.v(MensajeriaActivity.class.getName(), "onBackPressed");
