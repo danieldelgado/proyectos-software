@@ -1,15 +1,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registroDispositivo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/fondo_negro"
-    android:orientation="vertical"
+    android:orientation="vertical"  
     tools:context=".RegistroActivity" >
+    <TextView
+        android:id="@+id/lblNumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_numero_dispositivo"
+        android:textColor="@color/letras_blancas" />
+    <EditText
+        android:id="@+id/txtNumero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="9897456123"
+        android:textColor="@color/letras_blancas" > 
+        <requestFocus />
+    </EditText>
+    <TextView
+        android:id="@+id/lblEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_email"
+        android:textColor="@color/letras_blancas" />
 
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="danieldelgado20g@gmail.com"
+        android:textColor="@color/letras_blancas" >
+ 
+    </EditText>
 
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:background="@color/fondo_azul"
+        android:hint="@color/letras_blancas"
+        android:text="@string/str_btn_regsitrar_usuario"
+        android:textColorHint="@color/letras_blancas" />
 
 </LinearLayout>

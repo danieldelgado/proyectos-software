@@ -16,6 +16,7 @@
     <string name="str_pass_usuario">Clave de Usuario</string>
     <string name="str_btn_regsitrar_usuario">Guardar</string>
     <string name="str_numero_dispositivo">Numero telefonico</string>
+    <string name="str_email">Email</string>
     <string name="title_activity_registro">Registro Activity</string>
 
 </resources>
