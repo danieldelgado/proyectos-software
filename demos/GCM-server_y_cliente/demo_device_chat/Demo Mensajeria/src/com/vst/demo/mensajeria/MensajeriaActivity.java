@@ -44,7 +44,9 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Toast toast = Toast.makeText(getApplicationContext(), "Item " + (position + 1) + ": " + rowItems.get(position), Toast.LENGTH_SHORT);
+		RowItem row = rowItems.get(position);
+		System.out.println("row:"+row.getIdItem());
+		Toast toast = Toast.makeText(getApplicationContext(), "Item " + (position + 1) + ": " + row.getNombre() , Toast.LENGTH_SHORT);
 		toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
 		toast.show();
 	}
@@ -58,6 +60,7 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 			}
 			@Override
 			protected Void doInBackground(Void... arg0) {
+				System.out.println("  doInBackground init ");
 				rowItems = new ArrayList<RowItem>();
 				for (int i = 0; i < titles.length; i++) {
 					item = new RowItem(i, titles[i], null);
@@ -67,6 +70,12 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 				adapter = new CustomListViewAdapter(context, R.layout.list_item, rowItems);
 				listView.setAdapter(adapter);
 				listView.setOnItemClickListener((OnItemClickListener) context);
+//				try {
+//					Thread.sleep(1000);
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+				System.out.println("  doInBackground finish ");
 				return null;
 			}
 			@Override

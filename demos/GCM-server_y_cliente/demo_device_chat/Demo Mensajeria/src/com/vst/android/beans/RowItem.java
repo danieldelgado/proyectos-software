@@ -8,14 +8,14 @@ public class RowItem {
     private String descripcion;
         
    	public RowItem(int idItem, String nombre, String descripcion) {
-   		super();
+   		
    		this.idItem = idItem;
    		this.nombre = nombre;
    		this.descripcion = descripcion;
    	}
     
    	public RowItem(int idItem,int idImagen, String nombre, String descripcion) {
-   		super();
+   	
    		this.idItem = idItem;
    		this.idImagen = idImagen;
    		this.nombre = nombre;
