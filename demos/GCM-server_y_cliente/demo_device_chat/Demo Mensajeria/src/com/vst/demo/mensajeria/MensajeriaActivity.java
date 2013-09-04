@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
@@ -23,73 +24,107 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 
 	private Context context = this;
 	private ProgressDialog pd;
-
+	private ListView listView;
+	private List<RowItem> rowItems;
+	private CustomListViewAdapter adapter;
+	private RowItem item;
+	private AsyncTask<Void, Void, Void> task;
+	
 	public static final String[] titles = new String[] { "Strawberry", "Banana", "Orange", "Mixed" };
-
 	public static final Integer[] images = { R.drawable.android_logo, R.drawable.android_logo, R.drawable.android_logo, R.drawable.android_logo };
-
-	ListView listView;
-	List<RowItem> rowItems;
-	CustomListViewAdapter adapter;
-	RowItem item;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_activity_mensajeria_init);
-		
-		validarDatosUsuario();
-		
+		setContentView(R.layout.layout_activity_mensajeria_init);	
+		Log.v(MensajeriaActivity.class.getName(), "onCreate  iniciando Activity");	
+		validarDatosUsuario();		
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		RowItem row = rowItems.get(position);
-		System.out.println("row:"+row.getIdItem());
 		Toast toast = Toast.makeText(getApplicationContext(), "Item " + (position + 1) + ": " + row.getNombre() , Toast.LENGTH_SHORT);
 		toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
 		toast.show();
 	}
 
 	private void validarDatosUsuario() {
-		AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+		Log.v(MensajeriaActivity.class.getName(), "validarDatosUsuario");
+		task = new AsyncTask<Void, Void, Void>() {
 			@Override
 			protected void onPreExecute() {
 				pd = ProgressDialog.show(context, "", "Cargando...", true);
-
+				Log.v(MensajeriaActivity.class.getName(), "ProgressDialog");
 			}
 			@Override
 			protected Void doInBackground(Void... arg0) {
-				System.out.println("  doInBackground init ");
-				rowItems = new ArrayList<RowItem>();
-				for (int i = 0; i < titles.length; i++) {
-					item = new RowItem(i, titles[i], null);
-					rowItems.add(item);
-				}
-				listView = (ListView) findViewById(R.id.listview);
-				adapter = new CustomListViewAdapter(context, R.layout.list_item, rowItems);
-				listView.setAdapter(adapter);
-				listView.setOnItemClickListener((OnItemClickListener) context);
-//				try {
-//					Thread.sleep(1000);
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-				System.out.println("  doInBackground finish ");
+				try {
+					Log.v(MensajeriaActivity.class.getName(), "doInBackground init");
+					listarUsuarios();				
+					Log.v(MensajeriaActivity.class.getName(), "doInBackground termina");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}				
 				return null;
 			}
+			
 			@Override
 			protected void onPostExecute(Void result) {
 				if (pd != null) {
 					pd.dismiss();
 				}
+				Log.v(MensajeriaActivity.class.getName(), "onPostExecute");
 			}
 		};
 		task.execute((Void[]) null);
 	}
+	
+	private void listarUsuarios() {		
+		varialesNull();		
+		rowItems = new ArrayList<RowItem>();
+		for (int i = 0; i < titles.length; i++) {
+			item = new RowItem(i, titles[i], null);
+			rowItems.add(item);
+		}
+		listView = (ListView) findViewById(R.id.listview);
+		adapter = new CustomListViewAdapter(this, R.layout.list_item, rowItems);
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(this);
+	}
+
+	private void varialesNull() {
+		Log.v(MensajeriaActivity.class.getName(), "rowItems:"+rowItems);
+		Log.v(MensajeriaActivity.class.getName(), "item:"+item);
+		Log.v(MensajeriaActivity.class.getName(), "listView:"+listView);
+		Log.v(MensajeriaActivity.class.getName(), "adapter:"+adapter);
+		rowItems = null;
+		item = null;
+		listView = null;
+		adapter = null;		
+	}
 
 	@Override
+	public void onBackPressed() {
+		Log.v(MensajeriaActivity.class.getName(), "onBackPressed");
+		super.onBackPressed();
+	}
+	
+	@Override
+	protected void onPostResume() {
+		Log.v(MensajeriaActivity.class.getName(), "onPostResume");
+		super.onPostResume();
+	}
+	
+	@Override
+	protected void onPause() {
+		Log.v(MensajeriaActivity.class.getName(), "onPause");
+		super.onPause();		
+	}
+	
+	@Override
 	protected void onDestroy() {
+		Log.v(MensajeriaActivity.class.getName(), "onDestroy");
 		if (pd != null) {
 			pd.dismiss();
 		}
