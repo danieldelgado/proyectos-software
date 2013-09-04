@@ -21,33 +21,24 @@ import com.vst.android.beans.RowItem;
 
 public class MensajeriaActivity extends Activity implements OnItemClickListener {
 
-	 private Context context;
-	 private ProgressDialog pd;
+	private Context context = this;
+	private ProgressDialog pd;
 
 	public static final String[] titles = new String[] { "Strawberry", "Banana", "Orange", "Mixed" };
 
-//	public static final String[] descriptions = new String[] { "It is an aggregate accessory fruit", "It is the largest herbaceous flowering plant","Citrus Fruit", "Mixed Fruits" };
 
-	public static final Integer[] images = { R.drawable.android_logo, R.drawable.blackberry_logo, R.drawable.ios_logo, R.drawable.windowsmobile_logo };
+	public static final Integer[] images = { R.drawable.android_logo, R.drawable.android_logo, R.drawable.android_logo, R.drawable.android_logo };
 
 	ListView listView;
 	List<RowItem> rowItems;
-
+	CustomListViewAdapter adapter;
+	RowItem item;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_activity_mensajeria_init);
 
-		rowItems = new ArrayList<RowItem>();
-		for (int i = 0; i < titles.length; i++) {
-//			RowItem item = new RowItem(images[i], titles[i], descriptions[i]);
-			RowItem item = new RowItem(images[i], titles[i]);
-			rowItems.add(item);
-		}
-		listView = (ListView) findViewById(R.id.listview);
-		CustomListViewAdapter adapter = new CustomListViewAdapter(this, R.layout.list_item, rowItems);
-		listView.setAdapter(adapter);
-		listView.setOnItemClickListener(this);
+		validarDatosUsuario();
 	}
 
 	@Override
@@ -62,13 +53,25 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 			@Override
 			protected void onPreExecute() {
 				pd = ProgressDialog.show(context, "", "Cargando...", true);
+				
 			}
 
 			@Override
 			protected Void doInBackground(Void... arg0) {
 				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
+//					Thread.sleep(1000);
+					rowItems = new ArrayList<RowItem>();
+					for (int i = 0; i < titles.length; i++) {
+						// RowItem item = new RowItem(images[i], titles[i],
+						// descriptions[i]);
+						item = new RowItem(images[i], titles[i]);
+						rowItems.add(item);
+					}
+					listView = (ListView) findViewById(R.id.listview);
+					adapter = new CustomListViewAdapter(context, R.layout.list_item, rowItems);
+					listView.setAdapter(adapter);
+					listView.setOnItemClickListener((OnItemClickListener) context);
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				return null;
@@ -84,18 +87,18 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 		task.execute((Void[]) null);
 	}
 
-	 @Override
-	 protected void onDestroy() {
-	 if (pd != null) {
-	 pd.dismiss();
-	 }
-	 super.onDestroy();
-	 }
+	@Override
+	protected void onDestroy() {
+		if (pd != null) {
+			pd.dismiss();
+		}
+		super.onDestroy();
+	}
 
-	 @Override
-	 public boolean onCreateOptionsMenu(Menu menu) {
-	 getMenuInflater().inflate(R.menu.mensajeria, menu);
-	 return true;
-	 }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.mensajeria, menu);
+		return true;
+	}
 
 }
