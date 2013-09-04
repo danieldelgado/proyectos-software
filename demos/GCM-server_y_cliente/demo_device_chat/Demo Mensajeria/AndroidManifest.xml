@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.vst.demo.mensajeria.MensajeriaActivity"
+            android:name="com.vst.android.demo.mensajeria.MensajeriaActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.vst.demo.mensajeria.RegistroActivity"
+            android:name="com.vst.android.demo.mensajeria.RegistroActivity"
             android:label="@string/title_activity_registro" >
         </activity>
     </application>
