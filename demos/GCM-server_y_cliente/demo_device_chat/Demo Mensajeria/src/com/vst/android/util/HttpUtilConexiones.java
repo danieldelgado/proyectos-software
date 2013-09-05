@@ -82,6 +82,7 @@ public class HttpUtilConexiones {
 		}
 		return pairs;
 	}
+//	09-05 04:56:50.657: W/System.err(1061): android.os.NetworkOnMainThreadException
 
 	public static JSONObject getJSONFromUrl(String url, Map<String, Object> params) throws ClientProtocolException, IOException, JSONException {
 		List<NameValuePair> pairs = obtenerParams(params);

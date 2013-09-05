@@ -11,7 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.vst.android.beans.RowItem;
-import com.vst.demo.mensajeria.R;
+import com.vst.android.demo.mensajeria.R;
+//import com.vst.demo.mensajeria.R;
 
 public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 

@@ -7,7 +7,11 @@ import android.os.StrictMode;
 
 @SuppressLint("NewApi")
 public class Constantes {
-
+	
+	public static final class INSTANCE {
+		public static String str_telefono;
+	}
+	
 	public static final class PorDefecto {
 		public static final String VACIO = "";
 		public static final int MENOS_UNO = -1;
@@ -46,7 +50,7 @@ public class Constantes {
 	}
 
 	public static final class URL_SERVER {
-		public static final String URL_SERVER = "http://192.168.1.153:8082/gcm-demo-server-spring";
+		public static final String URL_SERVER = "http://192.168.1.36:8083/gcm-demo-server-spring";
 		public static final String URL_EXISTE_NUMERO = URL_SERVER + "/existeNumero";
 		public static final String URL_REGISTRAR_DISPOSITIVO_USUARIO =  URL_SERVER + "/registrarDispositivoUsuario";
 		
