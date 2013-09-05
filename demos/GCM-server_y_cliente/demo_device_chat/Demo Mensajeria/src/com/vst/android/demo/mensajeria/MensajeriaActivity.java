@@ -39,6 +39,7 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 	private AsyncTask<Void, Void, Void> task;
 	private SeguridadService seguridadService;
 	private BroadcastReceiver mHandleMessageReceiver;
+	
 //	public static final String[] titles = new String[] { "Strawberry", "Banana", "Orange", "Mixed" };
 //	public static final Integer[] images = { R.drawable.android_logo, R.drawable.android_logo, R.drawable.android_logo, R.drawable.android_logo };
 	
@@ -46,23 +47,22 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_activity_mensajeria_init);	
-		Log.i(MensajeriaActivity.class.getName(), "onCreate  iniciando Activity");	
-		seguridadService = new SeguridadServiceImpl();
-		gsmRegistrer();	
-		guardarNumeroTelefono();
+		Log.v(MensajeriaActivity.class.getName(), "onCreate  iniciando Activity");	
+		seguridadService = new SeguridadServiceImpl();		
+		instaceNumeroTelefono();
 		validarDatosUsuario();	
 		
 	}
 
-	private void guardarNumeroTelefono() {
-		Constantes.INSTANCE.str_telefono = String.valueOf(DataCache.obtenerValorSharedPreferences(this, Constantes.TIPO_VARIABLE.TIPO_STRING, Constantes.KEYS.KEY_ESTE_NUMERO_TELEFONO));
-		Log.i(MensajeriaActivity.class.getName(), "str_telefono1:"+Constantes.INSTANCE.str_telefono);	
-		if(!Util.isNull(Constantes.INSTANCE.str_telefono)){
-			Log.i(MensajeriaActivity.class.getName(), "entra al if str_telefono:"+Constantes.INSTANCE.str_telefono);	
-			Constantes.INSTANCE.str_telefono = Util.getMyPhoneNumber(this);
-			DataCache.putObject(this, Constantes.KEYS.KEY_ESTE_NUMERO_TELEFONO, Constantes.INSTANCE.str_telefono);
-		}
-		Log.i(MensajeriaActivity.class.getName(), "str_telefono2:"+Constantes.INSTANCE.str_telefono);
+	private void instaceNumeroTelefono() {
+//		Constantes.INSTANCE.str_telefono = String.valueOf(DataCache.obtenerValorSharedPreferences(this, Constantes.TIPO_VARIABLE.TIPO_STRING, Constantes.KEYS.KEY_ESTE_NUMERO_TELEFONO));
+//		Log.v(MensajeriaActivity.class.getName(), "str_telefono1:"+Constantes.INSTANCE.str_telefono);	
+//		if(!Util.isNull(Constantes.INSTANCE.str_telefono)){
+//			Log.v(MensajeriaActivity.class.getName(), "entra al if str_telefono:"+Constantes.INSTANCE.str_telefono);	
+		Constantes.INSTANCE.str_telefono = Util.getMyPhoneNumber(this);
+//			DataCache.putObject(this, Constantes.KEYS.KEY_ESTE_NUMERO_TELEFONO, Constantes.INSTANCE.str_telefono);
+//		}
+		Log.v(MensajeriaActivity.class.getName(), "numero telefono :"+Constantes.INSTANCE.str_telefono);
 	}
 
 	@Override
@@ -74,30 +74,31 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 	}
 
 	private void validarDatosUsuario() {
-		Log.i(MensajeriaActivity.class.getName(), "validarDatosUsuario");
+		Log.v(MensajeriaActivity.class.getName(), "validarDatosUsuario");
 		task = new AsyncTask<Void, Void, Void>() {
 			@Override
 			protected void onPreExecute() {
 				pd = ProgressDialog.show(context, "", "Cargando...", true);
-				Log.i(MensajeriaActivity.class.getName(), "ProgressDialog");
+				Log.v(MensajeriaActivity.class.getName(), "ProgressDialog");
+				gsmRegistrer();
 			}
 			@Override
 			protected Void doInBackground(Void... arg0) {
 				try {
-					Log.i(MensajeriaActivity.class.getName(), "doInBackground init");
+					Log.v(MensajeriaActivity.class.getName(), "doInBackground init");
 					int regIdExisteDevice = existeRegisterIDinMobile();
-					Log.i(MensajeriaActivity.class.getName(), "regIdExisteDevice : "+regIdExisteDevice);
+					Log.v(MensajeriaActivity.class.getName(), "regIdExisteDevice : "+regIdExisteDevice);
 					if(regIdExisteDevice==Constantes.REGISTROS.REGISTRO_ID_MOBILE_EXISTE){
 						listarUsuarios();
 					}else
 					if(regIdExisteDevice == Constantes.REGISTROS.REGISTRO_ID_MOBILE_NO_EXISTE){
-						boolean estoyRegistradoServidor = seguridadService.validarRegistroServidor("ASDSASADSADSAFSAFDSDSFWERT4233WDWDWQDWQDWQD",Constantes.INSTANCE.str_telefono);
+						boolean estoyRegistradoServidor = seguridadService.validarRegistroServidor(Constantes.INSTANCE.regId,Constantes.INSTANCE.str_telefono);
 						if(estoyRegistradoServidor)
 							registrarEnDispositivo();
 						else
 							irRegistroUsuaroActivity();						
 					}		
-					Log.i(MensajeriaActivity.class.getName(), "doInBackground termina");
+					Log.v(MensajeriaActivity.class.getName(), "doInBackground termina");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}				
@@ -109,10 +110,10 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 				if (pd != null) {
 					pd.dismiss();
 				}
-				Log.i(MensajeriaActivity.class.getName(), "onPostExecute");
+				Log.v(MensajeriaActivity.class.getName(), "onPostExecute");
 			}
 		};
-		Log.i(MensajeriaActivity.class.getName(), "task execute");
+		Log.v(MensajeriaActivity.class.getName(), "task execute");
 		task.execute((Void[]) null);
 	}
 
@@ -128,21 +129,21 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 	    registerReceiver(mHandleMessageReceiver,new IntentFilter(Constantes.INTENT.DISPLAY_MESSAGE_ACTION));
 		GCMRegistrar.checkDevice(this);
         GCMRegistrar.checkManifest(this);
-        String  regId = GCMRegistrar.getRegistrationId(this);
-        if (regId.equals("")) {
+        Constantes.INSTANCE.regId = GCMRegistrar.getRegistrationId(this);
+        if (Constantes.INSTANCE.regId.equals("")) {
             GCMRegistrar.register(this, Constantes.GCM_ID.SENDER_ID);
-            regId = GCMRegistrar.getRegistrationId(this);
+            Constantes.INSTANCE.regId = GCMRegistrar.getRegistrationId(this);
         }	
-        Log.i(MensajeriaActivity.class.getName(), "gsmRegistrer regId:"+regId);
+        Log.v(MensajeriaActivity.class.getName(), "gsmRegistrer regId:"+Constantes.INSTANCE.regId);
 	}
 	
 	private void registrarEnDispositivo() {
-		gsmRegistrer();		
+//		gsmRegistrer();		
 	}
 	
 	protected int existeRegisterIDinMobile() {
 		String regID = String.valueOf(DataCache.obtenerValorSharedPreferences(context, Constantes.TIPO_VARIABLE.TIPO_STRING, Constantes.KEYS.KEY_REG_ID_DEVICE));
-		Log.i(MensajeriaActivity.class.getName(), "existeRegisterIDinMobile : "+regID);
+		Log.v(MensajeriaActivity.class.getName(), "existeRegisterIDinMobile : "+regID);
 		if(Util.isNotNull(regID)){
 			if(Util.lengthMayorCero(regID)){
 				return Constantes.REGISTROS.REGISTRO_ID_MOBILE_EXISTE;
@@ -166,10 +167,10 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 	}
 
 	private void varialesNull() {
-		Log.i(MensajeriaActivity.class.getName(), "rowItems:"+rowItems);
-		Log.i(MensajeriaActivity.class.getName(), "item:"+item);
-		Log.i(MensajeriaActivity.class.getName(), "listView:"+listView);
-		Log.i(MensajeriaActivity.class.getName(), "adapter:"+adapter);
+		Log.v(MensajeriaActivity.class.getName(), "rowItems:"+rowItems);
+		Log.v(MensajeriaActivity.class.getName(), "item:"+item);
+		Log.v(MensajeriaActivity.class.getName(), "listView:"+listView);
+		Log.v(MensajeriaActivity.class.getName(), "adapter:"+adapter);
 		rowItems = null;
 		item = null;
 		listView = null;
@@ -177,7 +178,7 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 	}
 
 	public void irRegistroUsuaroActivity() {
-		Log.i(MensajeriaActivity.class.getName(), "irRegistroUsuaroActivity");
+		Log.v(MensajeriaActivity.class.getName(), "irRegistroUsuaroActivity");
 		Intent intent = new Intent();
 		intent.setClass(this, RegistroActivity.class);		
 		startActivityForResult(intent, Constantes.INTENT.INTENT_REGISTAR_USUARIO);
@@ -185,34 +186,38 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {	
-		Log.i(MensajeriaActivity.class.getName(), "onActivityResult");
+		Log.v(MensajeriaActivity.class.getName(), "onActivityResult");
 		
 	}
 	
 	@Override
 	public void onBackPressed() {
-		Log.i(MensajeriaActivity.class.getName(), "onBackPressed");
+		Log.v(MensajeriaActivity.class.getName(), "onBackPressed");
 		super.onBackPressed();
 	}
 	
 	@Override
 	protected void onPostResume() {
-		Log.i(MensajeriaActivity.class.getName(), "onPostResume");
+		Log.v(MensajeriaActivity.class.getName(), "onPostResume");
 		super.onPostResume();
 	}
 	
 	@Override
 	protected void onPause() {
-		Log.i(MensajeriaActivity.class.getName(), "onPause");
+		Log.v(MensajeriaActivity.class.getName(), "onPause");
 		super.onPause();		
 	}
 	
 	@Override
 	protected void onDestroy() {
-		Log.i(MensajeriaActivity.class.getName(), "onDestroy");
+		GCMRegistrar.unregister(this);
+		if(mHandleMessageReceiver!=null){
+			unregisterReceiver(mHandleMessageReceiver);
+		}		
 		if (pd != null) {
 			pd.dismiss();
 		}
+		Log.v(MensajeriaActivity.class.getName(), "onDestroy");
 		super.onDestroy();
 	}
 

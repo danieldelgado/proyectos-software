@@ -10,6 +10,7 @@ public class Constantes {
 	
 	public static final class INSTANCE {
 		public static String str_telefono;
+		public static  String  regId;
 	}
 	
 	public static final class PorDefecto {
@@ -42,7 +43,6 @@ public class Constantes {
 	public static final class INTENT {
 		public static final int INTENT_REGISTAR_USUARIO = 1;
 		public static final String DISPLAY_MESSAGE_ACTION = "com.vst.demochat.DISPLAY_MESSAGE";
-
 	}
 
 	public static final class MENSAJES {
@@ -50,7 +50,7 @@ public class Constantes {
 	}
 
 	public static final class URL_SERVER {
-		public static final String URL_SERVER = "http://192.168.1.36:8083/gcm-demo-server-spring";
+		public static final String URL_SERVER = "http://192.168.1.153:8082/gcm-demo-server-spring";
 		public static final String URL_EXISTE_NUMERO = URL_SERVER + "/existeNumero";
 		public static final String URL_REGISTRAR_DISPOSITIVO_USUARIO =  URL_SERVER + "/registrarDispositivoUsuario";
 		

@@ -20,6 +20,8 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
+import com.vst.android.service.SeguridadService;
+import com.vst.android.service.impl.SeguridadServiceImpl;
 import com.vst.android.util.Constantes;
 
 /**
@@ -28,28 +30,30 @@ import com.vst.android.util.Constantes;
 public class GCMIntentService extends GCMBaseIntentService {
 
 //    private static final String TAG = "GCMIntentService";
-
+	private SeguridadService seguridadService = new SeguridadServiceImpl();
+	
     public GCMIntentService() {
         super( Constantes.GCM_ID.SENDER_ID);
     }
 
     @Override
     protected void onRegistered(Context context, String registrationId) {
-    	Log.i(GCMIntentService.class.getName(), "onRegistered");
+    	Log.v(GCMIntentService.class.getName(), "onRegistered seguridadService.registrarEnServidor :"+registrationId);
+    	seguridadService.registrarEnServidor(registrationId, Constantes.INSTANCE.str_telefono, null);
 //        displayMessage(context, getString(R.string.gcm_registered));
 //        ServerUtilities.register(context, registrationId);
     }
 
     @Override
     protected void onUnregistered(Context context, String registrationId) {
-        Log.i(GCMIntentService.class.getName(), "onUnregistered unregistered");
+        Log.v(GCMIntentService.class.getName(), "onUnregistered unregistered");
 //        displayMessage(context, getString(R.string.gcm_unregistered));
 //        ServerUtilities.unregister(context, registrationId);
     }
 
     @Override
     protected void onMessage(Context context, Intent intent) {
-        Log.i(GCMIntentService.class.getName(), "onMessage message");
+        Log.v(GCMIntentService.class.getName(), "onMessage message");
 //        String message1 = intent.getStringExtra("message");
 //        System.out.println("  message1 :"+ message1);
 //        String message = getString(R.string.gcm_message);
@@ -61,8 +65,8 @@ public class GCMIntentService extends GCMBaseIntentService {
 
     @Override
     protected void onDeletedMessages(Context context, int total) {
-        Log.i(GCMIntentService.class.getName(), "onDeletedMessages message");
-//        Log.i(GCMIntentService.class.getName(), "Received deleted messages notification");
+        Log.v(GCMIntentService.class.getName(), "onDeletedMessages message");
+//        Log.v(GCMIntentService.class.getName(), "Received deleted messages notification");
 //        String message = getString(R.string.gcm_deleted, total);
 //        displayMessage(context, message);
 //        // notifies user
@@ -71,14 +75,14 @@ public class GCMIntentService extends GCMBaseIntentService {
 
     @Override
     public void onError(Context context, String errorId) {
-        Log.i(GCMIntentService.class.getName(), "Received error: " + errorId);
+        Log.v(GCMIntentService.class.getName(), "Received error: " + errorId);
 //        displayMessage(context, getString(R.string.gcm_error, errorId));
     }
 
     @Override
     protected boolean onRecoverableError(Context context, String errorId) {
         // log message
-        Log.i(GCMIntentService.class.getName(), "onRecoverableError recoverable error: " + errorId);
+        Log.v(GCMIntentService.class.getName(), "onRecoverableError recoverable error: " + errorId);
 //        displayMessage(context, getString(R.string.gcm_recoverable_error,
 //                errorId));
         return super.onRecoverableError(context, errorId);

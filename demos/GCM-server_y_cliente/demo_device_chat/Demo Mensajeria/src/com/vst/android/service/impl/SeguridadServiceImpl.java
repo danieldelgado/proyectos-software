@@ -15,15 +15,18 @@ import com.vst.android.util.HttpUtilConexiones;
 
 public class SeguridadServiceImpl implements SeguridadService {
 
+	private Map<String, Object> params;
+	
 	@Override
 	public boolean validarRegistroServidor(String regId, String numero) {
 		Log.v(SeguridadServiceImpl.class.getName(), "validarRegistroServidor");
-		Map<String, Object> params = new HashMap<String, Object>();
+		params = new HashMap<String, Object>();
 		params.put("regId", regId);
 		params.put("numero", numero);
 		Log.v(SeguridadServiceImpl.class.getName(), "params:"+params);
 		try {
 			JSONObject json =  HttpUtilConexiones.resppost(Constantes.URL_SERVER.URL_EXISTE_NUMERO, params );
+			params = null;
 			Log.v(SeguridadServiceImpl.class.getName(), "json:"+json);
 			int r = (Integer) json.get("resp");
 			if(r>0){
@@ -41,15 +44,16 @@ public class SeguridadServiceImpl implements SeguridadService {
 
 	@Override
 	public int registrarEnServidor(String regId, String numero, String email) {
-		Log.v(SeguridadServiceImpl.class.getName(), "validarRegistroServidor");
-		Map<String, Object> params = new HashMap<String, Object>();
+		params = new HashMap<String, Object>();
 		params.put("regId", regId);
 		params.put("numero", numero);
 		params.put("email", email);
+		Log.v(SeguridadServiceImpl.class.getName(), "validarRegistroServidor params:"+params);
 		long backoff = Constantes.RANGOS.BACKOFF_MILLI_SECONDS + Constantes.RANGOS.RANDOM.nextInt(1000);
 		for (int i = 1; i <= Constantes.RANGOS.MAX_ATTEMPTS; i++) {
 			try {				
 				JSONObject json =  HttpUtilConexiones.getJSONFromUrl(Constantes.URL_SERVER.URL_REGISTRAR_DISPOSITIVO_USUARIO, params );
+				params = null;
 				Log.v(SeguridadServiceImpl.class.getName(), "json:"+json);
 				int r = (Integer) json.get("resp");
 				if(r>0){

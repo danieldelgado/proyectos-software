@@ -55,7 +55,7 @@ public class RegistroActivity extends Activity {
 			@Override
 			protected Void doInBackground(Void... arg0) {				
 				Log.v(RegistroActivity.class.getName(), "registrarDispositivoEnServidor numero:"+numero+" email:"+email);
-				int r = seguridadService.registrarEnServidor("asdsde1erwfewfewffew",numero,email);
+				int r = seguridadService.registrarEnServidor(Constantes.INSTANCE.regId,numero,email);
 				Log.v(RegistroActivity.class.getName(), "registrarDispositivoEnServidor r:"+r);
 				if(r>0){
 					Intent returnIntent = new Intent();
