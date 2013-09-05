@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -23,11 +24,14 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 public class HttpUtilConexiones {
 
 	private static InputStream is = null;
 	private static JSONObject jObj = null;
 	private static String json = null;
+	private static String strToString = null;
 	private static URL url = null;
 	private static DefaultHttpClient httpClient = null;
 	private static HttpPost httpPost = null;
@@ -42,6 +46,7 @@ public class HttpUtilConexiones {
 	}
 
 	public static JSONObject getJSONFromUrl(String url) throws ClientProtocolException, IOException, JSONException {
+		Log.v(HttpUtilConexiones.class.getName(), "getJSONFromUrl url:"+url);
 		httpClient = new DefaultHttpClient();
 		httpPost = new HttpPost(url);
 		httpResponse = httpClient.execute(httpPost);
@@ -55,12 +60,15 @@ public class HttpUtilConexiones {
 		}
 		is.close();
 		json = sb.toString();
+		Log.v(HttpUtilConexiones.class.getName(), "getJSONFromUrl transformando a objeto ==> json:"+json);
 		jObj = new JSONObject(json);
+		Log.v(HttpUtilConexiones.class.getName(), "getJSONFromUrl jObj:"+jObj);
 		clean();
 		return jObj;
 	}
 
 	private static void clean() {
+		Log.v(HttpUtilConexiones.class.getName(), "clean");
 		is = null;
 		url = null;
 		json = null;
@@ -74,6 +82,7 @@ public class HttpUtilConexiones {
 	}
 
 	private static List<NameValuePair> obtenerParams(Map<String, Object> params) {
+		Log.v(HttpUtilConexiones.class.getName(), "obtenerParams : " + params);
 		Iterator<Entry<String, Object>> iterator = params.entrySet().iterator();
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		while (iterator.hasNext()) {
@@ -85,6 +94,7 @@ public class HttpUtilConexiones {
 //	09-05 04:56:50.657: W/System.err(1061): android.os.NetworkOnMainThreadException
 
 	public static JSONObject getJSONFromUrl(String url, Map<String, Object> params) throws ClientProtocolException, IOException, JSONException {
+		Log.v(HttpUtilConexiones.class.getName(), "getJSONFromUrl url:"+url+" params:"+params);
 		List<NameValuePair> pairs = obtenerParams(params);
 		httpClient = new DefaultHttpClient();
 		httpPost = new HttpPost(url);
@@ -100,12 +110,15 @@ public class HttpUtilConexiones {
 		}
 		is.close();
 		json = sb.toString();
+		Log.v(HttpUtilConexiones.class.getName(), "getJSONFromUrl transformando a objeto ==> json:"+json);
 		jObj = new JSONObject(json);
+		Log.v(HttpUtilConexiones.class.getName(), "getJSONFromUrl jObj:"+jObj);
 		clean();
 		return jObj;
 	}
 
 	private static String obtenerBoby(Map<String, Object> params) {
+		Log.v(HttpUtilConexiones.class.getName(), "obtenerBoby params:"+params);
 		StringBuilder bodyBuilder = new StringBuilder();
 		Iterator<Entry<String, Object>> iterator = params.entrySet().iterator();
 		while (iterator.hasNext()) {
@@ -115,7 +128,9 @@ public class HttpUtilConexiones {
 				bodyBuilder.append('&');
 			}
 		}
-		return bodyBuilder.toString();
+		strToString = bodyBuilder.toString();
+		Log.v(HttpUtilConexiones.class.getName(), "obtenerBoby strToString:"+strToString);
+		return strToString;
 	}
 
 	private static byte[] obtenerBytes(String str) {
@@ -123,6 +138,7 @@ public class HttpUtilConexiones {
 	}
 
 	public static void post(String endpoint, Map<String, Object> params) throws IOException {
+		Log.v(HttpUtilConexiones.class.getName(), "post endpoint:"+endpoint+ " params:"+params);
 		url = new URL(endpoint);
 		String body = obtenerBoby(params);
 		byte[] bytes = obtenerBytes(body);
@@ -142,6 +158,7 @@ public class HttpUtilConexiones {
 			System.out.println("registro con exito");
 			throw new IOException("Post failed with error code " + status);
 		}
+		Log.v(HttpUtilConexiones.class.getName(), "post exito:");
 		is = conn.getInputStream();
 		reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
 		StringBuilder sb = new StringBuilder();
@@ -157,6 +174,7 @@ public class HttpUtilConexiones {
 	}
 
 	public static JSONObject resppost(String endpoint, Map<String, Object> params) throws IOException, JSONException {
+		Log.v(HttpUtilConexiones.class.getName(), "resppost endpoint:"+endpoint+" params:"+params);
 		url = new URL(endpoint);
 		String body = obtenerBoby(params);
 		byte[] bytes = body.getBytes();
@@ -173,7 +191,7 @@ public class HttpUtilConexiones {
 		// handle the response
 		int status = conn.getResponseCode();
 		if (status != 200) {
-			System.out.println("registro con exito");
+//			System.out.println("registro con exito");
 			throw new IOException("Post failed with error code " + status);
 		}
 		is = conn.getInputStream();
@@ -184,7 +202,9 @@ public class HttpUtilConexiones {
 			sb.append(line + "\n");
 		}
 		is.close();
-		jObj = new JSONObject(sb.toString());
+		Log.v(HttpUtilConexiones.class.getName(), "resppost transformando a objeto ==> json:"+json);
+		jObj = new JSONObject(json);
+		Log.v(HttpUtilConexiones.class.getName(), "resppost jObj:"+jObj);
 		if (conn != null) {
 			conn.disconnect();
 		}

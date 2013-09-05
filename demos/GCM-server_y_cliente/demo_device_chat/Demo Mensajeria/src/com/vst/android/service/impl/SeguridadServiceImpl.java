@@ -72,24 +72,7 @@ public class SeguridadServiceImpl implements SeguridadService {
 				backoff *= 2;
 				e.printStackTrace();
 			}
-		}
-		
-		
-		
-//		try {
-//			JSONObject json =  HttpUtilConexiones.getJSONFromUrl(Constantes.URL_SERVER.URL_REGISTRAR_DISPOSITIVO_USUARIO, params );
-//			Log.v(SeguridadServiceImpl.class.getName(), "json:"+json);
-//			int r = (Integer) json.get("resp");
-//			if(r>0){
-//				return 1;
-//			}
-//		} catch (IOException e) {	
-//			e.printStackTrace();
-//			return 0;
-//		} catch (JSONException e) {
-//			e.printStackTrace();
-//			return 0;
-//		}			
+		}				
 		return -1;
 	}
 
