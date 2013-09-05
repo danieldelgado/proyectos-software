@@ -23,15 +23,13 @@ public abstract class GCMBaseIntentService extends IntentService {
 
 	/* 67 */private static final Random sRandom = new Random();
 
-	/* 69 */private static final int MAX_BACKOFF_MS = (int) TimeUnit.SECONDS
-			.toMillis(3600L);
+	/* 69 */private static final int MAX_BACKOFF_MS = (int) TimeUnit.SECONDS.toMillis(3600L);
 
-	/* 73 */private static final String TOKEN = Long.toBinaryString(sRandom
-			.nextLong());
+	/* 73 */private static final String TOKEN = Long.toBinaryString(sRandom.nextLong());
 	private static final String EXTRA_TOKEN = "token";
 
 	protected GCMBaseIntentService(String senderId) {
-		/* 83 */super(TAG+"-" + senderId + "-" + ++sCounter);
+		/* 83 */super(TAG + "-" + senderId + "-" + ++sCounter);
 		/* 84 */this.mSenderId = senderId;
 	}
 
@@ -46,89 +44,69 @@ public abstract class GCMBaseIntentService extends IntentService {
 
 	protected abstract void onError(Context paramContext, String paramString);
 
-	protected abstract void onRegistered(Context paramContext,
-			String paramString);
+	protected abstract void onRegistered(Context paramContext, String paramString);
 
-	protected abstract void onUnregistered(Context paramContext,
-			String paramString);
+	protected abstract void onUnregistered(Context paramContext, String paramString);
 
 	public final void onHandleIntent(Intent intent) {
 		try {
-			/* 150 */Context context = getApplicationContext();
-			/* 151 */String action = intent.getAction();
-			/* 152 */if (action
-					.equals("com.google.android.c2dm.intent.REGISTRATION")) {
-				/* 153 */handleRegistration(context, intent);
-				/* 154 */} else if (action
-					.equals("com.google.android.c2dm.intent.RECEIVE")) {
-				/* 156 */String messageType = intent
-						.getStringExtra("message_type");
+			Context context = getApplicationContext();
+			String action = intent.getAction();
+			if (action.equals("com.google.android.c2dm.intent.REGISTRATION")) {
+				handleRegistration(context, intent);
+			} else if (action.equals("com.google.android.c2dm.intent.RECEIVE")) {
+				String messageType = intent.getStringExtra("message_type");
 
-				/* 158 */if (messageType != null) {
-					/* 159 */if (messageType.equals("deleted_messages")) {
-						/* 160 */String sTotal = intent
-								.getStringExtra("total_deleted");
+				if (messageType != null) {
+					if (messageType.equals("deleted_messages")) {
+						String sTotal = intent.getStringExtra("total_deleted");
 
-						/* 162 */if (sTotal != null) {
+						if (sTotal != null) {
 							try {
-								/* 164 */int total = Integer.parseInt(sTotal);
-								/* 165 */Log.v("GCMBaseIntentService",
-										"Received deleted messages notification: "
-												+ total);
+								int total = Integer.parseInt(sTotal);
+								Log.v("GCMBaseIntentService", "Received deleted messages notification: " + total);
 
-								/* 167 */onDeletedMessages(context, total);
+								onDeletedMessages(context, total);
 							} catch (NumberFormatException e) {
-								/* 169 */Log.e("GCMBaseIntentService",
-										"GCM returned invalid number of deleted messages: "
-												+ sTotal);
+								Log.e("GCMBaseIntentService", "GCM returned invalid number of deleted messages: " + sTotal);
 							}
 						}
 					} else {
-						/* 175 */Log.e("GCMBaseIntentService",
-								"Received unknown special message: "
-										+ messageType);
+						Log.e("GCMBaseIntentService", "Received unknown special message: " + messageType);
 					}
 				} else
-					/* 179 */onMessage(context, intent);
-			}
-			/* 181 */else if (action
-					.equals("com.google.android.gcm.intent.RETRY")) {
-				/* 182 */String token = intent.getStringExtra("token");
-				/* 183 */if (!TOKEN.equals(token)) {
-					/* 186 */Log.e("GCMBaseIntentService",
-							"Received invalid token: " + token);
+					onMessage(context, intent);
+			} else if (action.equals("com.google.android.gcm.intent.RETRY")) {
+				String token = intent.getStringExtra("token");
+				if (!TOKEN.equals(token)) {
+					Log.e("GCMBaseIntentService", "Received invalid token: " + token);
 					return;
 				}
 
-				/* 190 */if (GCMRegistrar.isRegistered(context))
-					/* 191 */GCMRegistrar.internalUnregister(context);
+				if (GCMRegistrar.isRegistered(context))
+					GCMRegistrar.internalUnregister(context);
 				else {
-					/* 193 */GCMRegistrar.internalRegister(context,
-							new String[] { this.mSenderId });
+					GCMRegistrar.internalRegister(context, new String[] { this.mSenderId });
 				}
 
 			}
 
 		} finally {
-			/* 203 */synchronized (LOCK) {
-				/* 205 */if (sWakeLock != null) {
-					/* 206 */Log
-							.v("GCMBaseIntentService", "Releasing wakelock");
-					/* 207 */sWakeLock.release();
+			synchronized (LOCK) {
+				if (sWakeLock != null) {
+					Log.v("GCMBaseIntentService", "Releasing wakelock");
+					sWakeLock.release();
 				} else {
-					/* 210 */Log.e("GCMBaseIntentService",
-							"Wakelock reference is null");
+					Log.e("GCMBaseIntentService", "Wakelock reference is null");
 				}
 			}
 		}
 	}
 
-	static void runIntentInService(Context context, Intent intent,
-			String className) {
+	static void runIntentInService(Context context, Intent intent, String className) {
 		/* 225 */synchronized (LOCK) {
 			/* 226 */if (sWakeLock == null) {
-				/* 228 */PowerManager pm = (PowerManager) context
-						.getSystemService("power");
+				/* 228 */PowerManager pm = (PowerManager) context.getSystemService("power");
 
 				/* 230 */sWakeLock = pm.newWakeLock(1, "GCM_LIB");
 			}
@@ -141,14 +119,11 @@ public abstract class GCMBaseIntentService extends IntentService {
 	}
 
 	private void handleRegistration(Context context, Intent intent) {
-		/* 241 */String registrationId = intent
-				.getStringExtra("registration_id");
+		/* 241 */String registrationId = intent.getStringExtra("registration_id");
 		/* 242 */String error = intent.getStringExtra("error");
 		/* 243 */String unregistered = intent.getStringExtra("unregistered");
-		/* 244 */Log.d("GCMBaseIntentService",
-				"handleRegistration: registrationId = " + registrationId
-						+ ", error = " + error + ", unregistered = "
-						+ unregistered);
+		/* 244 */Log.d("GCMBaseIntentService", "handleRegistration: registrationId = " + registrationId + ", error = " + error + ", unregistered = "
+				+ unregistered);
 
 		/* 248 */if (registrationId != null) {
 			/* 249 */GCMRegistrar.resetBackoff(context);
@@ -159,8 +134,7 @@ public abstract class GCMBaseIntentService extends IntentService {
 
 		/* 256 */if (unregistered != null) {
 			/* 258 */GCMRegistrar.resetBackoff(context);
-			/* 259 */String oldRegistrationId = GCMRegistrar
-					.clearRegistrationId(context);
+			/* 259 */String oldRegistrationId = GCMRegistrar.clearRegistrationId(context);
 
 			/* 261 */onUnregistered(context, oldRegistrationId);
 			/* 262 */return;
@@ -172,32 +146,23 @@ public abstract class GCMBaseIntentService extends IntentService {
 			/* 269 */boolean retry = onRecoverableError(context, error);
 			/* 270 */if (retry) {
 				/* 271 */int backoffTimeMs = GCMRegistrar.getBackoff(context);
-				/* 272 */int nextAttempt = backoffTimeMs / 2
-						+ sRandom.nextInt(backoffTimeMs);
+				/* 272 */int nextAttempt = backoffTimeMs / 2 + sRandom.nextInt(backoffTimeMs);
 
-				/* 274 */Log.d("GCMBaseIntentService",
-						"Scheduling registration retry, backoff = "
-								+ nextAttempt + " (" + backoffTimeMs + ")");
+				/* 274 */Log.d("GCMBaseIntentService", "Scheduling registration retry, backoff = " + nextAttempt + " (" + backoffTimeMs + ")");
 
-				/* 276 */Intent retryIntent = new Intent(
-						"com.google.android.gcm.intent.RETRY");
+				/* 276 */Intent retryIntent = new Intent("com.google.android.gcm.intent.RETRY");
 
 				/* 278 */retryIntent.putExtra("token", TOKEN);
-				/* 279 */PendingIntent retryPendingIntent = PendingIntent
-						.getBroadcast(context, 0, retryIntent, 0);
+				/* 279 */PendingIntent retryPendingIntent = PendingIntent.getBroadcast(context, 0, retryIntent, 0);
 
-				/* 281 */AlarmManager am = (AlarmManager) context
-						.getSystemService("alarm");
+				/* 281 */AlarmManager am = (AlarmManager) context.getSystemService("alarm");
 
-				/* 283 */am.set(3, SystemClock.elapsedRealtime() + nextAttempt,
-						retryPendingIntent);
+				/* 283 */am.set(3, SystemClock.elapsedRealtime() + nextAttempt, retryPendingIntent);
 
 				/* 287 */if (backoffTimeMs < MAX_BACKOFF_MS)
-					/* 288 */GCMRegistrar
-							.setBackoff(context, backoffTimeMs * 2);
+					/* 288 */GCMRegistrar.setBackoff(context, backoffTimeMs * 2);
 			} else {
-				/* 291 */Log.d("GCMBaseIntentService",
-						"Not retrying failed operation");
+				/* 291 */Log.d("GCMBaseIntentService", "Not retrying failed operation");
 			}
 		} else {
 			onError(context, error);

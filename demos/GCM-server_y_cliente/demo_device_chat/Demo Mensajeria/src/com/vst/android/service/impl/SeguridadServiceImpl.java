@@ -18,7 +18,7 @@ public class SeguridadServiceImpl implements SeguridadService {
 	private Map<String, Object> params;
 	
 	@Override
-	public boolean validarRegistroServidor(String regId, String numero) {
+	public boolean validarRegistroServidor(String regId, String numero) {		
 		Log.v(SeguridadServiceImpl.class.getName(), "validarRegistroServidor");
 		params = new HashMap<String, Object>();
 		params.put("regId", regId);
