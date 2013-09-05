@@ -184,6 +184,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/registrarDispositivoUsuario", method = RequestMethod.POST)
 	public  @ResponseBody Map<String, Object> registrarDispositivoUsuario(String regId , String numero , String email ) {
+		System.out.println("existeNumero numero:"+numero+" email:"+email+" regId:"+regId);
 		Map<String, Object> resp = new LinkedHashMap<String, Object>();
 		resp.put("resp", 1);
 		return resp;
@@ -192,6 +193,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/existeNumero", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> existeNumero( String regId , String numero ) {
+		System.out.println("existeNumero numero:"+numero+" regId:"+regId);
 		Map<String, Object> resp = new LinkedHashMap<String, Object>();
 		try {			
 			int re = registrarService.existeDispositivo(regId,numero);
