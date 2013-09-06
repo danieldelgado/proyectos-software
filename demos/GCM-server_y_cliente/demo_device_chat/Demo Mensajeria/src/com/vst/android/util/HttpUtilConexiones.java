@@ -23,6 +23,11 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+/**
+ * HttpUtilConexiones clase que cuanta con las conexiones al servidor e envio de parametros
+ * @author ddelgado
+ *
+ */
 public class HttpUtilConexiones {
 
 	private static InputStream is ;
@@ -40,10 +45,19 @@ public class HttpUtilConexiones {
 //	private static HttpURLConnection conn = null;
 //	private static OutputStream out = null;
 
+	//no puede crear el objeto HttpUtilConexiones
 	private HttpUtilConexiones() {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Retorna un objeto JSONObject a la url servidor
+	 * @param url
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws JSONException
+	 */
 	public static JSONObject getJSONFromUrl(String url) throws ClientProtocolException, IOException, JSONException {
 		Log.v(HttpUtilConexiones.class.getName(), "getJSONFromUrl url:"+url);
 		httpClient = new DefaultHttpClient();
@@ -66,6 +80,7 @@ public class HttpUtilConexiones {
 		return jObj;
 	}
 
+	// asigna null a todos las variables para liberar memoria
 	private static void clean() {
 		Log.v(HttpUtilConexiones.class.getName(), "clean");
 		is = null;
@@ -81,7 +96,7 @@ public class HttpUtilConexiones {
 		sb = null;
 		line = null;
 	}
-
+	//Metodo que convierte un Map a un List<NameValuePair> los parametros enviados al servidor
 	private static List<NameValuePair> obtenerParams(Map<String, Object> params) {
 		Log.v(HttpUtilConexiones.class.getName(), "obtenerParams : " + params);
 		Iterator<Entry<String, Object>> iterator = params.entrySet().iterator();
@@ -92,8 +107,16 @@ public class HttpUtilConexiones {
 		}
 		return pairs;
 	}
-//	09-05 04:56:50.657: W/System.err(1061): android.os.NetworkOnMainThreadException
 
+	/**
+	 * Retorna un objeto JSONObject a la url servidor conb los parametros
+	 * @param url
+	 * @param params
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws JSONException
+	 */
 	public static JSONObject getJSONFromUrl(String url, Map<String, Object> params) throws ClientProtocolException, IOException, JSONException {
 		Log.v(HttpUtilConexiones.class.getName(), "getJSONFromUrl url:"+url+" params:"+params);
 		List<NameValuePair> pairs = obtenerParams(params);

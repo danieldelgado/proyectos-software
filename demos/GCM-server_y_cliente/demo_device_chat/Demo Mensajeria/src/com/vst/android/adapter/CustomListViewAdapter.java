@@ -13,7 +13,11 @@ import android.widget.TextView;
 import com.vst.android.beans.RowItem;
 import com.vst.android.demo.mensajeria.R;
 //import com.vst.demo.mensajeria.R;
-
+/**
+ * ArrayAdapter
+ * @author ddelgado
+ *
+ */
 public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 
 	Context context;

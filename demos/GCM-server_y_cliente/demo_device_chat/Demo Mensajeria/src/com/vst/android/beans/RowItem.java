@@ -1,5 +1,10 @@
 package com.vst.android.beans;
 
+/**
+ * Clase del tipo Bean donde se isntancia las filas.
+ * @author ddelgado
+ *
+ */
 public class RowItem {
 	
     private int idItem;

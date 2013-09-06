@@ -4,15 +4,29 @@ import java.util.Random;
 
 import android.annotation.SuppressLint;
 import android.os.StrictMode;
-
+/**
+ * Constantes clase que mantiene variables para la aplicacion
+ * @author ddelgado
+ *
+ */
 @SuppressLint("NewApi")
 public class Constantes {
 	
+	/**
+	 * Variables en las que se pued instanciar valores atravez de la aplicacion
+	 * @author ddelgado
+	 *
+	 */
 	public static final class INSTANCE {
 		public static String str_telefono;
 		public static  String  regId;
 	}
 	
+	/**
+	 * Valores por defecto
+	 * @author ddelgado
+	 *
+	 */
 	public static final class PorDefecto {
 		public static final String VACIO = "";
 		public static final int MENOS_UNO = -1;

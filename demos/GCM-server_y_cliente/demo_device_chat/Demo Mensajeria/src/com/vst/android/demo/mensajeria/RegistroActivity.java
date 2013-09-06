@@ -17,12 +17,17 @@ import com.vst.android.util.Constantes;
 import com.vst.android.util.Util;
 //import com.vst.demo.mensajeria.R;
 
+/**
+ * Activity que registra los datos importantes del usuario del dispositivo
+ * @author ddelgado
+ *
+ */
 public class RegistroActivity extends Activity {
 
 	private TextView txtNumero ;
 	private TextView txtEmail ;
 	private Button btnGuardar ;	
-	private SeguridadService seguridadService;
+	private SeguridadService seguridadService = SeguridadServiceImpl.newStaticInstance();//usar un apuntador del objeto ya creado e instanciado y se obtiene mediante esta linea.
 	private AsyncTask<Void, Void, Void> task;
 	
 	@Override
@@ -30,7 +35,7 @@ public class RegistroActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_activity_registro);
 		Log.v(RegistroActivity.class.getName(), "onCreate  iniciando Activity");
-		seguridadService = new SeguridadServiceImpl();
+		
 		txtNumero = (TextView) findViewById(R.id.txtNumero);
 		txtNumero.setText(Constantes.INSTANCE.str_telefono);
 		txtEmail = (TextView) findViewById(R.id.txtEmail);
@@ -42,7 +47,10 @@ public class RegistroActivity extends Activity {
 			}
 		});	
 	}
-		
+	
+	/**
+	 * Registra los datos ingresados en el Activity en un subProceso AsyncTask por la conexion Http y retorna al Activity que lo invoco.
+	 */
 	private void registrarDispositivoEnServidor() {		
 		task = new AsyncTask<Void, Void, Void>() {
 			String numero = null;
@@ -55,7 +63,7 @@ public class RegistroActivity extends Activity {
 			@Override
 			protected Void doInBackground(Void... arg0) {				
 				Log.v(RegistroActivity.class.getName(), "registrarDispositivoEnServidor numero:"+numero+" email:"+email);
-				int r = seguridadService.registrarEnServidor(Constantes.INSTANCE.regId,numero,email);
+				int r = seguridadService.registrarEnServidor(Constantes.INSTANCE.regId,numero,email);//se registra los datos ingresados
 				Log.v(RegistroActivity.class.getName(), "registrarDispositivoEnServidor r:"+r);
 				if(r>0){
 					Intent returnIntent = new Intent();

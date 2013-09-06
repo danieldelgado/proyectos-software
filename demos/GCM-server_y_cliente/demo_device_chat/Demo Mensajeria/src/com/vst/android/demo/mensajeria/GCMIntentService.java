@@ -30,12 +30,16 @@ import com.vst.android.util.Constantes;
 public class GCMIntentService extends GCMBaseIntentService {
 
 //    private static final String TAG = "GCMIntentService";
-	private SeguridadService seguridadService = new SeguridadServiceImpl();
+	
+	private SeguridadService seguridadService = SeguridadServiceImpl.newStaticInstance();//usar un apuntador del objeto ya creado e instanciado y se obtiene mediante esta linea.
 	
     public GCMIntentService() {
-        super( Constantes.GCM_ID.SENDER_ID);
+        super(Constantes.GCM_ID.SENDER_ID);
     }
 
+    /**
+     * Registra el regID(ID que google asigna al dispositivo movil)
+     */
     @Override
     protected void onRegistered(Context context, String registrationId) {
     	Log.v(GCMIntentService.class.getName(), "onRegistered seguridadService.registrarEnServidor :"+registrationId);

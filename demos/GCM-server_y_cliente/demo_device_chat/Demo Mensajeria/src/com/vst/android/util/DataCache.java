@@ -4,7 +4,12 @@ package com.vst.android.util;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-
+/**
+ * DataCache clase donde se puede instanciar datos en cache del dispositivo
+ * en SharedPreferences del contexto
+ * @author ddelgado
+ *
+ */
 public class DataCache {
 
 	private static SharedPreferences sharedPreferences;
@@ -17,7 +22,13 @@ public class DataCache {
 	public static SharedPreferences getDataCachePreferences(Context context) {
 		return context.getSharedPreferences(Constantes.TAG.PAQUETE_ROOT, 0);
 	}
-
+	
+	/**
+	 * Guarda la informacion necesaria.
+	 * @param context
+	 * @param key
+	 * @param object
+	 */
 	@SuppressLint("CommitPrefEdits")
 	public static void putObject(Context context, String key, Object object) {
 		sharedPreferences = getDataCachePreferences(context);
@@ -38,7 +49,13 @@ public class DataCache {
 		variablesNull();
 	}
 	
-
+	/**
+	 * Pregunta si existe algun valor.
+	 * @param context
+	 * @param tipo
+	 * @param key
+	 * @return
+	 */
 	public static boolean existeValor(Context context, int tipo, String key){
 		sharedPreferences = getDataCachePreferences(context);		
 		switch (tipo) {
@@ -71,6 +88,13 @@ public class DataCache {
 		return false;
 	}
 	
+	/**
+	 * Obtengo valor si se encuentra alguno en caso contrario devulve null
+	 * @param context
+	 * @param tipo
+	 * @param key
+	 * @return
+	 */
 	public static Object obtenerValorSharedPreferences(Context context, int tipo, String key){
 		sharedPreferences = getDataCachePreferences(context);		
 		switch (tipo) {
@@ -102,7 +126,7 @@ public class DataCache {
 		return null;
 	}
 	
-
+	//libera memoria
 	private static void variablesNull() {
 		sharedPreferences = null;
 		editor = null;
