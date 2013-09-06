@@ -25,7 +25,7 @@ public class SeguridadServiceImpl implements SeguridadService {
 		params.put("numero", numero);
 		Log.v(SeguridadServiceImpl.class.getName(), "params:"+params);
 		try {
-			JSONObject json =  HttpUtilConexiones.resppost(Constantes.URL_SERVER.URL_EXISTE_NUMERO, params );
+			JSONObject json =  HttpUtilConexiones.getJSONFromUrl(Constantes.URL_SERVER.URL_EXISTE_NUMERO, params );
 			params = null;
 			Log.v(SeguridadServiceImpl.class.getName(), "json:"+json);
 			int r = (Integer) json.get("resp");

@@ -12,4 +12,7 @@ public class LogCustom  {
 	public static String ocm(){
 		return tipLog;
 	}
+	public static String ocml(Object object){
+		return tipLog+object;
+	}
 }
