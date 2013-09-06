@@ -173,7 +173,7 @@ public class HomeController {
 		try {
 			regId = getParameter(req, PARAMETER_REG_ID);
 			System.out.println("regId:"+regId);
-//			registrarService.registrarUsuarioPorRegIDMovil(regId);
+			registrarService.registrarUsuarioPorRegIDMovil(regId);
 			// Datastore.register(regId);
 			HttpUtilConexion.setSuccess(resp);
 		} catch (ServletException e) {
