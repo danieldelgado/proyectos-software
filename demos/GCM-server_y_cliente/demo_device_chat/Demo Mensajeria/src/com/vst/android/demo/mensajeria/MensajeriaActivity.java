@@ -257,9 +257,9 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 			pd.dismiss();
 		}
 		GCMRegistrar.onDestroy(this);
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "is 1  " + GCMRegistrar.isRegistered(this));
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "is 2 " + GCMRegistrar.isRegisteredOnServer(this));
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "onDestroy");
+		Log.v(LogCustom.ocm(this), "is 1  " + GCMRegistrar.isRegistered(this));
+		Log.v(LogCustom.ocm(this), "is 2 " + GCMRegistrar.isRegisteredOnServer(this));
+		Log.v(LogCustom.ocm(this), "onDestroy");
 		super.onDestroy();
 	}
 
