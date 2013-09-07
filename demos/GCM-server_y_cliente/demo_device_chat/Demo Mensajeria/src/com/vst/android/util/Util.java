@@ -1,6 +1,7 @@
 package com.vst.android.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.telephony.TelephonyManager;
 
 public class Util {
@@ -68,4 +69,10 @@ public class Util {
 	    String s = getMyPhoneNumber(context);
 	    return s.substring(2);
 	}
+
+	public  static void displayMessage(Context context, String message) {
+        Intent intent = new Intent(Constantes.intent.DISPLAY_MESSAGE_ACTION);
+        intent.putExtra(Constantes.intent.EXTRA_MESSAGE, message);
+        context.sendBroadcast(intent);
+    }
 }

@@ -13,6 +13,8 @@ public class BroadCastRecepcionador extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		Log.v(BroadCastRecepcionador.class.getName(), "onReceive");
+		 String newMessage = intent.getExtras().getString(Constantes.intent.EXTRA_MESSAGE);
+         Toast.makeText(context, "BroadCastRecepcionador:"+newMessage,Toast.LENGTH_LONG).show();         
 		Bundle extras = intent.getExtras();
 		if (extras != null) {
 			String state = extras.getString(TelephonyManager.EXTRA_STATE);

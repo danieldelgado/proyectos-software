@@ -103,7 +103,7 @@ public class HttpUtilConexiones {
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		while (iterator.hasNext()) {
 			Entry<String, Object> param = iterator.next();
-			pairs.add(new BasicNameValuePair(param.getKey(), (String) param.getValue()));
+			pairs.add(new BasicNameValuePair(param.getKey(), String.valueOf( param.getValue() )) );
 		}
 		return pairs;
 	}

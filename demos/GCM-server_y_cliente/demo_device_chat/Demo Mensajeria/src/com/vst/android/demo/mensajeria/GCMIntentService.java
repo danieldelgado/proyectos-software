@@ -15,6 +15,11 @@
  */
 package com.vst.android.demo.mensajeria;
 
+import java.io.IOException;
+
+import org.apache.http.client.ClientProtocolException;
+import org.json.JSONException;
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -23,6 +28,7 @@ import com.google.android.gcm.GCMBaseIntentService;
 import com.vst.android.service.SeguridadService;
 import com.vst.android.service.impl.SeguridadServiceImpl;
 import com.vst.android.util.Constantes;
+import com.vst.android.util.Util;
 
 /**
  * IntentService responsible for handling GCM messages.
@@ -34,7 +40,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 	private SeguridadService seguridadService = SeguridadServiceImpl.newStaticInstance();//usar un apuntador del objeto ya creado e instanciado y se obtiene mediante esta linea.
 	
     public GCMIntentService() {
-        super(Constantes.GCM_ID.SENDER_ID);
+        super(Constantes.gcm_id.SENDER_ID);
     }
 
     /**
@@ -43,8 +49,28 @@ public class GCMIntentService extends GCMBaseIntentService {
     @Override
     protected void onRegistered(Context context, String registrationId) {
     	Log.v(GCMIntentService.class.getName(), "onRegistered seguridadService.registrarEnServidor :"+registrationId);
-    	seguridadService.registrarEnServidor(registrationId, Constantes.INSTANCE.str_telefono, null);
-//        displayMessage(context, getString(R.string.gcm_registered));
+    	Constantes.instance.regId = registrationId;
+    	try {
+			int r = seguridadService.registrarEnServidor(registrationId, null, null,Constantes.tipo_registro_mobile.DESDE_CLASE_GCMINTENT_SERVICE);
+			Log.v(GCMIntentService.class.getName(), "onRegistered r :"+r);
+			switch (r) {
+			case Constantes.respuestas_servidor.DISPOSITIVO_REGISTRADO:
+//		        Util.displayMessage(context, "Dispositivo Registrado");
+				break;
+			case Constantes.respuestas_servidor.NUEVO_DISPOSITIVO_POR_USUARIO_REGISTRADO:
+//		        Util.displayMessage(context, "Usuario y Dispositivo Registrado");				
+				break;
+			}
+			
+			
+    	} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
 //        ServerUtilities.register(context, registrationId);
     }
 
