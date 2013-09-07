@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
+import com.google.android.gcm.GCMRegistrar;
 import com.vst.android.service.SeguridadService;
 import com.vst.android.service.impl.SeguridadServiceImpl;
 import com.vst.android.util.Constantes;
@@ -52,6 +53,7 @@ public class GCMIntentService extends GCMBaseIntentService {
     	try {
 			int r = seguridadService.registrarEnServidor(registrationId, null, null,Constantes.tipo_registro_mobile.DESDE_CLASE_GCMINTENT_SERVICE);
 			Log.v(GCMIntentService.class.getName(), "onRegistered r :"+r);
+			GCMRegistrar.setRegisteredOnServer(context, true);
 			switch (r) {
 			case Constantes.respuestas_servidor.DISPOSITIVO_REGISTRADO:
 				System.out.println("DISPOSITIVO_REGISTRADO");

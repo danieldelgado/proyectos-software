@@ -1,6 +1,10 @@
 package com.vst.android.demo.mensajeria;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.apache.http.client.ClientProtocolException;
+import org.json.JSONException;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -37,7 +41,21 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 	private CustomListViewAdapter adapter;
 	private RowItem item;
 	private AsyncTask<Void, Void, Void> task;
-	private SeguridadService seguridadService = SeguridadServiceImpl.newStaticInstance();//usar un apuntador del objeto ya creado e instanciado y se obtiene mediante esta linea.
+	private SeguridadService seguridadService = SeguridadServiceImpl.newStaticInstance();// usar
+																							// un
+																							// apuntador
+																							// del
+																							// objeto
+																							// ya
+																							// creado
+																							// e
+																							// instanciado
+																							// y
+																							// se
+																							// obtiene
+																							// mediante
+																							// esta
+																							// linea.
 	private BroadCastRecepcionador mHandleMessageReceiver = new BroadCastRecepcionador();
 
 	// public static final String[] titles = new String[] { "Strawberry",
@@ -50,34 +68,20 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_activity_mensajeria_init);
-		Log.v( MensajeriaActivity.class.getName(),LogCustom.ocm()+ "onCreate  iniciando Activity");
+		Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "onCreate  iniciando Activity");
 		instaceNumeroTelefono();
 		gcmRegistrer();
 		validarGCmRegistrer();
-		// validarDatosUsuario();
-
 	}
 
 	/**
-	 * Metodo por el cual obtengo e instancio el numero de telefono en Constantes.INSTANCE.str_telefono
+	 * Metodo por el cual obtengo e instancio el numero de telefono en
+	 * Constantes.INSTANCE.str_telefono
 	 */
 	private void instaceNumeroTelefono() {
-		// Constantes.INSTANCE.str_telefono =
-		// String.valueOf(DataCache.obtenerValorSharedPreferences(this,
-		// Constantes.TIPO_VARIABLE.TIPO_STRING,
-		// Constantes.KEYS.KEY_ESTE_NUMERO_TELEFONO));
-		// Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+
-		// "str_telefono1:"+Constantes.INSTANCE.str_telefono);
-		// if(!Util.isNull(Constantes.INSTANCE.str_telefono)){
-		// Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+
-		// "entra al if str_telefono:"+Constantes.INSTANCE.str_telefono);
 		Constantes.instance.str_telefono = Util.getMyPhoneNumber(this);
-		// DataCache.putObject(this, Constantes.KEYS.KEY_ESTE_NUMERO_TELEFONO,
-		// Constantes.INSTANCE.str_telefono);
-		// }
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "numero telefono :" + Constantes.instance.str_telefono);
+		Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "numero telefono :" + Constantes.instance.str_telefono);
 	}
-	
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -88,56 +92,90 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 	}
 
 	/**
-	 * Metodo donde regsitro el dispositvo y ejecuto el metodo el registerReceiver BroadcastReceiver.
-	 * Valido el GCMRegistrar.getRegistrationId(this) dentro de Constantes.INSTANCE.regId en el caso de que este vacio ejecuto GCMRegistrar.register(this, Constantes.GCM_ID.SENDER_ID)
-	 * para regsitrarme el google y poder obtener el nuevo valor pero es gestionado por 
-	 * la clase GCMIntentService. Caso contrario de que si tenga valor el Constantes.INSTANCE.regId
-	 * valido si esta en base de datos en el servidor.
+	 * Metodo donde regsitro el dispositvo y ejecuto el metodo el
+	 * registerReceiver BroadcastReceiver. Valido el
+	 * GCMRegistrar.getRegistrationId(this) dentro de Constantes.INSTANCE.regId
+	 * en el caso de que este vacio ejecuto GCMRegistrar.register(this,
+	 * Constantes.GCM_ID.SENDER_ID) para regsitrarme el google y poder obtener
+	 * el nuevo valor pero es gestionado por la clase GCMIntentService. Caso
+	 * contrario de que si tenga valor el Constantes.INSTANCE.regId valido si
+	 * esta en base de datos en el servidor.
 	 */
-	
+
 	private void gcmRegistrer() {
 		GCMRegistrar.checkDevice(this);
-		GCMRegistrar.checkManifest(this);	
+		GCMRegistrar.checkManifest(this);
 		registerReceiver(mHandleMessageReceiver, new IntentFilter(Constantes.intent.DISPLAY_MESSAGE_ACTION));
 		Constantes.instance.regId = GCMRegistrar.getRegistrationId(this);
 	}
-	
-	private void validarGCmRegistrer() {		
+
+	private void validarGCmRegistrer() {
 		if (Constantes.instance.regId.equals("")) {
+			GCMRegistrar.setRegisteredOnServer(context, false);
 			GCMRegistrar.register(this, Constantes.gcm_id.SENDER_ID);
 			irRegistroUsuaroActivity();
 		} else {
-			if (GCMRegistrar.isRegisteredOnServer(this)) {
-				Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "REGISTRADO EN SERVIDOR");
-			} else {
-				task = new AsyncTask<Void, Void, Void>() {
-					@Override
-					protected Void doInBackground(Void... params) {
-						Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "validarGCmRegistrer doInBackground validar si estoy en servidor");
-//						boolean estoyRegistradoServidor = seguridadService.validarRegistroServidor(Constantes.INSTANCE.regId,Constantes.INSTANCE.str_telefono);
-//						if (estoyRegistradoServidor) {
-//							GCMRegistrar.setRegisteredOnServer(context, true);
-//						}
-//						Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "estoyRegistradoServidor:" + estoyRegistradoServidor);
-						return null;
+			task = new AsyncTask<Void, Void, Void>() {
+				protected Void doInBackground(Void... params) {
+					try {
+						boolean estoyRegistradoServidor = seguridadService.validarRegistroServidor(Constantes.instance.regId);
+						boolean isRegister = GCMRegistrar.isRegisteredOnServer(context);
+						if (isRegister && estoyRegistradoServidor) {
+							Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "REGISTRADO EN SERVIDOR");
+						} else {
+							Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm()+ "validarGCmRegistrer doInBackground validar si estoy en servidor");
+							if (estoyRegistradoServidor) {
+								GCMRegistrar.setRegisteredOnServer(context, true);
+								// listado de usuarios
+							} else {
+								GCMRegistrar.setRegisteredOnServer(context, false);
+								GCMRegistrar.unregister(context);
+								gcmRegistrer();
+								validarGCmRegistrer();
+							}
+						}
+					} catch (ClientProtocolException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} catch (JSONException e1) {
+						e1.printStackTrace();
 					}
-
-					@Override
-					protected void onPostExecute(Void result) {
-						task = null;
-					}
-
-				};
-				task.execute(null, null, null);
-			}
+					return null;
+				}
+				protected void onPostExecute(Void result) {
+					task = null;
+				}
+			};
+			task.execute(null, null, null);
 		}
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "gsmRegistrer regId:" + Constantes.instance.regId);
+		Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "gsmRegistrer regId:" + Constantes.instance.regId);
+	}
+
+	// Metodo ejecutado para ir al Activity Registrar Usuario
+	public void irRegistroUsuaroActivity() {
+		Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "irRegistroUsuaroActivity");
+		Intent intent = new Intent();
+		intent.setClass(this, RegistroActivity.class);
+		startActivityForResult(intent, Constantes.intent.INTENT_REGISTAR_USUARIO);
+	}
+
+	// Metodo que se ejecuta del Activity termiando y espero una respuesta.
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "onActivityResult");
+		switch (requestCode) {
+		case Constantes.intent.INTENT_REGISTAR_USUARIO:
+			if (resultCode == RESULT_OK) {
+				validarGCmRegistrer();
+			}
+			break;
+		}
 	}
 
 	/*
-	 ****************************************************************************************** 
+	 * *****************************************************************************************
 	 */
-
 
 	private void listarUsuarios() {
 		varialesNull();
@@ -152,102 +190,96 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 		// listView.setAdapter(adapter);
 		// listView.setOnItemClickListener(this);
 	}
-	//varialbes a null para liberar memoria
+
+	// varialbes a null para liberar memoria
 	private void varialesNull() {
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "rowItems:" + rowItems);
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "item:" + item);
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "listView:" + listView);
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "adapter:" + adapter);
+		Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "rowItems:" + rowItems);
+		Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "item:" + item);
+		Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "listView:" + listView);
+		Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "adapter:" + adapter);
 		rowItems = null;
 		item = null;
 		listView = null;
 		adapter = null;
 	}
-	
-	//Metodo ejecutado para ir al Activity Registrar Usuario
-	public void irRegistroUsuaroActivity() {
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "irRegistroUsuaroActivity");
-		Intent intent = new Intent();
-		intent.setClass(this, RegistroActivity.class);
-		startActivityForResult(intent, Constantes.intent.INTENT_REGISTAR_USUARIO);
-	}
-
-	//Metodo que se ejecuta del Activity termiando y espero una respuesta.
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "onActivityResult");
-
-	}
-
 
 	private void validarDatosUsuario() {
-//		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "validarDatosUsuario");
-//		task = new AsyncTask<Void, Void, Void>() {
-//			@Override
-//			protected void onPreExecute() {
-//				pd = ProgressDialog.show(context, "", "Cargando...", true);
-//				Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "ProgressDialog");
-//
-//			}
-//			@Override
-//			protected Void doInBackground(Void... arg0) {
-//				try {
-//					Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "doInBackground init");
-//					int regIdExisteDevice = existeRegisterIDinMobile();
-//					Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "regIdExisteDevice : " + regIdExisteDevice);
-//					if (regIdExisteDevice == Constantes.REGISTROS.REGISTRO_ID_MOBILE_EXISTE) {
-//						listarUsuarios();
-//					} else if (regIdExisteDevice == Constantes.REGISTROS.REGISTRO_ID_MOBILE_NO_EXISTE) {
-//						boolean estoyRegistradoServidor = seguridadService.validarRegistroServidor(Constantes.INSTANCE.regId,
-//								Constantes.INSTANCE.str_telefono);
-//						if (estoyRegistradoServidor)
-//							registrarEnDispositivo();
-//						else
-//							irRegistroUsuaroActivity();
-//					}
-//					Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "doInBackground termina");
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//				return null;
-//			}
-//
-//			@Override
-//			protected void onPostExecute(Void result) {
-//				if (pd != null) {
-//					pd.dismiss();
-//				}
-//				task = null;
-//				Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "onPostExecute");
-//			}
-//		};
-//		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "task execute");
-//		task.execute((Void[]) null);
+		// Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+
+		// "validarDatosUsuario");
+		// task = new AsyncTask<Void, Void, Void>() {
+		// @Override
+		// protected void onPreExecute() {
+		// pd = ProgressDialog.show(context, "", "Cargando...", true);
+		// Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+
+		// "ProgressDialog");
+		//
+		// }
+		// @Override
+		// protected Void doInBackground(Void... arg0) {
+		// try {
+		// Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+
+		// "doInBackground init");
+		// int regIdExisteDevice = existeRegisterIDinMobile();
+		// Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+
+		// "regIdExisteDevice : " + regIdExisteDevice);
+		// if (regIdExisteDevice ==
+		// Constantes.REGISTROS.REGISTRO_ID_MOBILE_EXISTE) {
+		// listarUsuarios();
+		// } else if (regIdExisteDevice ==
+		// Constantes.REGISTROS.REGISTRO_ID_MOBILE_NO_EXISTE) {
+		// boolean estoyRegistradoServidor =
+		// seguridadService.validarRegistroServidor(Constantes.INSTANCE.regId,
+		// Constantes.INSTANCE.str_telefono);
+		// if (estoyRegistradoServidor)
+		// registrarEnDispositivo();
+		// else
+		// irRegistroUsuaroActivity();
+		// }
+		// Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+
+		// "doInBackground termina");
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		// return null;
+		// }
+		//
+		// @Override
+		// protected void onPostExecute(Void result) {
+		// if (pd != null) {
+		// pd.dismiss();
+		// }
+		// task = null;
+		// Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+
+		// "onPostExecute");
+		// }
+		// };
+		// Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+
+		// "task execute");
+		// task.execute((Void[]) null);
 	}
 
-	
 	@Override
 	public void onBackPressed() {
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "onBackPressed");
+		Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "onBackPressed");
 		super.onBackPressed();
 	}
 
 	@Override
 	protected void onPostResume() {
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "onPostResume");
+		Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "onPostResume");
 		super.onPostResume();
 	}
 
 	@Override
 	protected void onPause() {
-		Log.v(MensajeriaActivity.class.getName(),LogCustom.ocm()+ "onPause");
+		Log.v(MensajeriaActivity.class.getName(), LogCustom.ocm() + "onPause");
 		super.onPause();
 	}
 
 	@Override
 	protected void onDestroy() {
-		GCMRegistrar.unregister(this);
-		GCMRegistrar.setRegisteredOnServer(context, false);
+		// GCMRegistrar.unregister(this);
+		// GCMRegistrar.setRegisteredOnServer(context, false);
 		if (mHandleMessageReceiver != null) {
 			unregisterReceiver(mHandleMessageReceiver);
 		}
@@ -255,9 +287,11 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 			pd.dismiss();
 		}
 		GCMRegistrar.onDestroy(this);
-		Log.v(MensajeriaActivity.class.getName(), ("is 1  " + GCMRegistrar.isRegistered(this)));
-		Log.v(MensajeriaActivity.class.getName(), ("is 2 " + GCMRegistrar.isRegisteredOnServer(this)));
-		Log.v(MensajeriaActivity.class.getName(), ("onDestroy"));
+		// Log.v(MensajeriaActivity.class.getName(), ("is 1  " +
+		// GCMRegistrar.isRegistered(this)));
+		// Log.v(MensajeriaActivity.class.getName(), ("is 2 " +
+		// GCMRegistrar.isRegisteredOnServer(this)));
+		// Log.v(MensajeriaActivity.class.getName(), ("onDestroy"));
 		super.onDestroy();
 	}
 
