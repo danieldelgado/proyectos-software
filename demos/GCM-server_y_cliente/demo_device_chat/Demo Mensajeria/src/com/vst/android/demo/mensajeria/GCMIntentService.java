@@ -28,7 +28,6 @@ import com.google.android.gcm.GCMBaseIntentService;
 import com.vst.android.service.SeguridadService;
 import com.vst.android.service.impl.SeguridadServiceImpl;
 import com.vst.android.util.Constantes;
-import com.vst.android.util.Util;
 
 /**
  * IntentService responsible for handling GCM messages.
@@ -55,14 +54,21 @@ public class GCMIntentService extends GCMBaseIntentService {
 			Log.v(GCMIntentService.class.getName(), "onRegistered r :"+r);
 			switch (r) {
 			case Constantes.respuestas_servidor.DISPOSITIVO_REGISTRADO:
-//		        Util.displayMessage(context, "Dispositivo Registrado");
+				System.out.println("DISPOSITIVO_REGISTRADO");
 				break;
 			case Constantes.respuestas_servidor.NUEVO_DISPOSITIVO_POR_USUARIO_REGISTRADO:
-//		        Util.displayMessage(context, "Usuario y Dispositivo Registrado");				
+				System.out.println("NUEVO_DISPOSITIVO_POR_USUARIO_REGISTRADO");
+				
+				break;
+			case Constantes.respuestas_servidor.NUEVO_DISPOSITIVO_POR_NUEVO_USUARIO_REGISTRADO:
+				System.out.println("NUEVO_DISPOSITIVO_POR_NUEVO_USUARIO_REGISTRADO");
+				
+				break;
+			case Constantes.respuestas_servidor.NUEVO_USUARIO_POR_DISPOSITIVO_REGISTRADO:
+				System.out.println("NUEVO_USUARIO_POR_DISPOSITIVO_REGISTRADO");
+				
 				break;
 			}
-			
-			
     	} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -70,8 +76,6 @@ public class GCMIntentService extends GCMBaseIntentService {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-
-//        ServerUtilities.register(context, registrationId);
     }
 
     @Override
@@ -121,7 +125,7 @@ public class GCMIntentService extends GCMBaseIntentService {
     /**
      * Issues a notification to inform the user that server has sent a message.
      */
-    private static void generateNotification(Context context, String message) {
+//    private static void generateNotification(Context context, String message) {
 //        int icon = R.drawable.ic_stat_gcm;
 //        long when = System.currentTimeMillis();
 //        NotificationManager notificationManager = (NotificationManager)
@@ -137,6 +141,6 @@ public class GCMIntentService extends GCMBaseIntentService {
 //        notification.setLatestEventInfo(context, title, message, intent);
 //        notification.flags |= Notification.FLAG_AUTO_CANCEL;
 //        notificationManager.notify(0, notification);
-    }
+//    }
 
 }

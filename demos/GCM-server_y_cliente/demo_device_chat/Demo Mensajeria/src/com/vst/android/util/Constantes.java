@@ -79,7 +79,10 @@ public class Constantes {
 		public static final String KEY_DISPOSITIVO_REGISTRADO = "DISPOSITIVO_REGISTRADO";
 		public static final int DISPOSITIVO_REGISTRADO = 3;
 		public static final String KEY_NUEVO_DISPOSITIVO_POR_USUARIO_REGISTRADO = "NUEVO_DISPOSITIVO_POR_USUARIO_REGISTRADO";
-		public static final int NUEVO_DISPOSITIVO_POR_USUARIO_REGISTRADO = 4;			
+		public static final int NUEVO_DISPOSITIVO_POR_USUARIO_REGISTRADO = 4;
+		public static final int ACTUAL_DISPOSITIVO_POR_USUARIO_REGISTRADO = 5;
+		public static final int NUEVO_DISPOSITIVO_POR_NUEVO_USUARIO_REGISTRADO = 6;
+		public static final int NUEVO_USUARIO_POR_DISPOSITIVO_REGISTRADO = 7;				
 	}
 	
 	public static final class intent {

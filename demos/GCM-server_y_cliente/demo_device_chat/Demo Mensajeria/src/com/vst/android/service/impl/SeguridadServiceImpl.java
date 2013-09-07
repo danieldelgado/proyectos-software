@@ -69,7 +69,7 @@ public class SeguridadServiceImpl implements SeguridadService {
 	}
 
 	/**
-	 * Registra en el servidor el dipositivo	 * 
+	 * Registra en el servidor el dipositivO
 	 * @throws JSONException 
 	 * @throws IOException 
 	 * @throws ClientProtocolException 
@@ -91,37 +91,11 @@ public class SeguridadServiceImpl implements SeguridadService {
 				params.put("tipo_registro_mobile", Constantes.tipo_registro_mobile.DESDE_CLASE_REGISTRO_ACTIVITY);
 			break;
 		}
-		Log.v(SeguridadServiceImpl.class.getName(), "validarRegistroServidor params:"+params);
-		
-		long backoff = Constantes.rangos.BACKOFF_MILLI_SECONDS + Constantes.rangos.RANDOM.nextInt(1000);
-		for (int i = 1; i <= Constantes.rangos.MAX_ATTEMPTS; i++) { // Se dan interancciones en los intentos de conexion al servidor
-			try {				
-				JSONObject json =  HttpUtilConexiones.getJSONFromUrl(Constantes.url_server.URL_REGISTRAR_DISPOSITIVO_USUARIO, params );
-				params = null;
-				Log.v(SeguridadServiceImpl.class.getName(), "json:"+json);
-				int r = (Integer) json.get(Constantes.respuestas_servidor.KEY_RESPUESTA_registrarDispositivoMovil);			
-				return r;			
-			} catch (Exception e) {				
-				if (i == Constantes.rangos.MAX_ATTEMPTS) {
-					break;
-				}
-				try {
-					Thread.sleep(backoff);
-				} catch (InterruptedException e1) {
-					Thread.currentThread().interrupt();
-					return 0;
-				}
-				backoff *= 2;
-				e.printStackTrace();
-			}
-		}				
-		return -1;
+		Log.v(SeguridadServiceImpl.class.getName(), "validarRegistroServidor params:"+params);		
+		JSONObject json =  HttpUtilConexiones.getJSONFromUrl(Constantes.url_server.URL_REGISTRAR_DISPOSITIVO_USUARIO, params );
+		params = null;
+		Log.v(SeguridadServiceImpl.class.getName(), "json:"+json);
+		int r = (Integer) json.get(Constantes.respuestas_servidor.KEY_RESPUESTA_registrarDispositivoMovil);			
+		return r;	
 	}
-
-//	@Override
-//	public int registrarEnServidor(String regId, String numero, String email, int tipoRegistro) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-
 }
