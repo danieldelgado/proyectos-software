@@ -8,12 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
-<!-- 	<uses-permission android:name="com.vst.android.demo.mensajeria.adapter.permission.C2D_MESSAGE" /> -->
-<!-- 	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /> -->
-<!--     <permission android:name="com.vst.android.demo.mensajeria.adapter.permission.C2D_MESSAGE" android:protectionLevel="signature" /> -->
-<!--     09-05 06:06:33.567: E/AndroidRuntime(1521): java.lang.RuntimeException: Unable to start activity ComponentInfo{com.vst.demo.mensajeria/com.vst.android.demo.mensajeria.MensajeriaActivity}: java.lang.IllegalStateException: Application does not define permission com.vst.demo.mensajeria.permission.C2D_MESSAGE -->
-<!--     09-05 06:15:52.967: E/AndroidRuntime(1751): java.lang.RuntimeException: Unable to start activity ComponentInfo{com.vst.android.demo.mensajeria/com.vst.android.demo.mensajeria.MensajeriaActivity}: java.lang.IllegalStateException: Application does not define permission com.vst.android.demo.mensajeria.permission.C2D_MESSAGE -->
-     <permission
+	 <permission
         android:name="com.vst.android.demo.mensajeria.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
     <uses-permission
@@ -39,13 +34,7 @@
             android:name="com.vst.android.demo.mensajeria.RegistroActivity"
             android:label="@string/title_activity_registro" >
         </activity>
-<!--          <receiver android:name="MyReceiver" > -->
-<!--             <intent-filter> -->
-<!--                 <action android:name="com.example.SendBroadcast" > -->
-<!--                 </action> -->
-<!--             </intent-filter> -->
-<!--         </receiver> -->
-        
+
         <receiver
             android:name="com.google.android.gcm.GCMBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
