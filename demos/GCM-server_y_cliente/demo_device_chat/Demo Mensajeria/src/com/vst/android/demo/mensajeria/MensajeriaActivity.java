@@ -127,6 +127,7 @@ public class MensajeriaActivity extends Activity implements OnItemClickListener 
 							if (estoyRegistradoServidor) {
 								GCMRegistrar.setRegisteredOnServer(context, true);
 								// listado de usuarios
+//								obtenerUsuarios();								
 							} else {
 								GCMRegistrar.setRegisteredOnServer(context, false);
 								GCMRegistrar.unregister(context);

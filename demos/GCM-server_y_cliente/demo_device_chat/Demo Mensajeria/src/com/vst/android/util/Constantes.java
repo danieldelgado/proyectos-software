@@ -2,6 +2,9 @@ package com.vst.android.util;
 
 import java.util.Random;
 
+import com.vst.android.beans.DispositivoMovil;
+import com.vst.android.beans.Usuario;
+
 import android.annotation.SuppressLint;
 import android.os.StrictMode;
 /**
@@ -21,7 +24,9 @@ public class Constantes {
 	 */
 	public static final class instance {
 		public static String str_telefono;
-		public static  String  regId;
+		public static String  regId;
+		public static Usuario USUARIO_SERVER;
+		public static DispositivoMovil DISPOSITIVOMOVIL_SERVER;
 	}
 	
 	/**
@@ -72,6 +77,9 @@ public class Constantes {
 	
 	public static final class respuestas_servidor {
 		public static final String KEY_RESPUESTA_registrarDispositivoMovil = "resp";
+		public static final String KEY_RESPUESTA_existeDispositivo = "resp";
+		public static final String KEY_OBJETO_DIPOSITIVO = "OBJETO_DIPOSITIVO";	
+		
 		public static final String KEY_RESPUESTA_CORRECTA = "RESPUESTA_CORRECTA";
 		public static final int RESPUESTA_CORRECTA = 1;
 		public static final String KEY_REGISTRO_EXITOSO = "REGISTRO_EXITOSO";

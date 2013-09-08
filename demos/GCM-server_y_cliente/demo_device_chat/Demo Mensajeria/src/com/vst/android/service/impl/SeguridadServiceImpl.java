@@ -1,6 +1,7 @@
 package com.vst.android.service.impl;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,8 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+import com.vst.android.beans.DispositivoMovil;
+import com.vst.android.beans.Usuario;
 import com.vst.android.service.SeguridadService;
 import com.vst.android.util.Constantes;
 import com.vst.android.util.HttpUtilConexiones;
@@ -68,7 +71,37 @@ public class SeguridadServiceImpl implements SeguridadService {
 		params = null;
 		Log.v(SeguridadServiceImpl.class.getName(), "json:" + json);
 		boolean r = (Boolean) json.get(Constantes.respuestas_servidor.KEY_RESPUESTA_registrarDispositivoMovil);
+		inicializarInstanciasUsuarioDispositivoMovil(json);		
 		return r;
+	}
+
+	private void inicializarInstanciasUsuarioDispositivoMovil(JSONObject json) throws JSONException {
+		String jsonDis =  json.getString(Constantes.respuestas_servidor.KEY_OBJETO_DIPOSITIVO);
+		json = new JSONObject(jsonDis);		
+		Integer id = json.getInt("id");		
+		String key_device = json.getString("key_device");	
+		String numeromovil = json.getString("numeromovil");	
+		String usuario = json.getString("usuario");		
+		json = new JSONObject(usuario);	
+		DispositivoMovil dispositivoMovil = new DispositivoMovil();
+		dispositivoMovil.setId(id);
+		dispositivoMovil.setKey_device(key_device);
+		dispositivoMovil.setNumeromovil(numeromovil);
+		Integer idU  = json.getInt("id");			
+		String userName  = json.getString("userName");		
+		String clave  = json.getString("clave");			
+		String nombre  = json.getString("nombre");		
+		String apellido  = json.getString("apellido");		
+		String email = json.getString("email");		;
+		Usuario us = new Usuario();
+		us.setId(idU);
+		us.setUserName(userName);
+		us.setClave(clave);
+		us.setNombre(nombre);
+		us.setApellido(apellido);
+		us.setEmail(email);
+		Constantes.instance.DISPOSITIVOMOVIL_SERVER = dispositivoMovil;
+		Constantes.instance.USUARIO_SERVER = us;		
 	}
 
 	/**
