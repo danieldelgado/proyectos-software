@@ -1,6 +1,7 @@
 package com.google.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.google.bean.DispositivoMovil;
 import com.google.bean.Usuario;
@@ -27,7 +28,11 @@ public interface RegistrarService {
 
 	int registrarUsuarioDesdeDispositivoMovil(Usuario usuario, String numero, String regId);
 
-	int existeDispositivo(String regId, String numero);
+
+	Map<String, Object> registrarDispositivoMovil(String regId, String numero,
+			String email, int tipo_registro_mobile);
+
+	Map<String, Object> existeDispositivo(String regId);
 
 
 	

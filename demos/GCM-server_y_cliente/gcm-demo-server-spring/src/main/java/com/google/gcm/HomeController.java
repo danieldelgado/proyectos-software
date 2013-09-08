@@ -62,6 +62,50 @@ public class HomeController {
 		return "home";
 	}
 
+
+	/////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////
+	@RequestMapping(value = "/existeDispositivo", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> existeNumero( String regId ) {
+		System.out.println("existeDispositivo  regId:"+regId);
+		Map<String, Object> resp = registrarService.existeDispositivo(regId);
+		return resp;
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////
+	@RequestMapping(value = "/registerUsuario", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> registerUsuario(Usuario usuario, String numero, String regId ) {
+		Map<String, Object> resp = new LinkedHashMap<String, Object>();
+		try {			
+			int re = registrarService.registrarUsuarioDesdeDispositivoMovil(usuario,numero,regId);
+			resp.put("resp", re);
+			return resp;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		resp.put("resp", Constantes.valores_por_defecto.MENOS_UNO);
+		return resp;
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/listarUsuarios", method = RequestMethod.GET)
 	public String listarUsuarios(Model model) {
 		List<Usuario> usuariosDevices = registrarService.obtenerTodos();
@@ -91,7 +135,7 @@ public class HomeController {
 	public String enviarMensaje(@PathVariable int id, Model model, String mensaje) {
 		Usuario usuario = registrarService.obtenerUsuarioPorIDDispositivoActual(id);
 		try {
-			String ky = Constantes.PK_GOOGLE;
+			String ky = Constantes.google_api.PK_GOOGLE;
 			Sender sender = new Sender(ky);			
 			String status;
 			if (usuario == null) {
@@ -183,48 +227,23 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/registrarDispositivoUsuario", method = RequestMethod.POST)
-	public  @ResponseBody Map<String, Object> registrarDispositivoUsuario(String regId , String numero , String email ) {
-		System.out.println("existeNumero numero:"+numero+" email:"+email+" regId:"+regId);
-		Map<String, Object> resp = new LinkedHashMap<String, Object>();
-		resp.put("resp", 1);
+	public  @ResponseBody Map<String, Object> registrarDispositivoUsuario(String regId , String numero , String email , int tipo_registro_mobile ) {
+//		System.out.println("existeNumero numero:"+numero+" email:"+email+" regId:"+regId);
+//		Map<String, Object> resp = new LinkedHashMap<String, Object>();
+//		resp.put("resp", 1);
+//		System.out.println("registrarDispositivoUsuario regId:" + regId +" numero:" + numero+" email:" + email);
+		Map<String, Object> resp = registrarService.registrarDispositivoMovil(regId,numero,email,tipo_registro_mobile);
+		
+		
 		return resp;
 	}
 	
-	
-	@RequestMapping(value = "/existeNumero", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> existeNumero( String regId , String numero ) {
-		System.out.println("existeNumero numero:"+numero+" regId:"+regId);
-		Map<String, Object> resp = new LinkedHashMap<String, Object>();
-		try {			
-			int re = registrarService.existeDispositivo(regId,numero);
-			resp.put("resp", re);
-			return resp;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		resp.put("resp", Constantes.MENOS_UNO);
-		return resp;
-	}
-	
-	@RequestMapping(value = "/registerUsuario", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> registerUsuario(Usuario usuario, String numero, String regId ) {
-		Map<String, Object> resp = new LinkedHashMap<String, Object>();
-		try {			
-			int re = registrarService.registrarUsuarioDesdeDispositivoMovil(usuario,numero,regId);
-			resp.put("resp", re);
-			return resp;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		resp.put("resp", Constantes.MENOS_UNO);
-		return resp;
-	}
 	
 	@RequestMapping(value = "/sendAll", method = RequestMethod.POST)
 	public void sendAll(HttpServletRequest req, HttpServletResponse resp,
 			Locale locale, Model model) throws ServletException, IOException {
 
-		String ky = Constantes.PK_GOOGLE;
+		String ky = Constantes.google_api.PK_GOOGLE;
 		sender = new Sender(ky);
 		List<Usuario> usuariosDevices = registrarService.obtenerTodos();
 		String status;

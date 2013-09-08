@@ -1,6 +1,9 @@
 package com.google.dao;
 
+import java.util.List;
+
 import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,8 +50,21 @@ public class DispositivoMovilDAOImpl extends DAO<DispositivoMovil> implements Di
 			q = em.createQuery(sqlQuery);
 			logger.info("buscando usuario por regId " + regId);
 			q.setParameter("key_device", regId);
-			DispositivoMovil dm = (DispositivoMovil) q.getSingleResult();
-			return  dm;
+//			DispositivoMovil dm = (DispositivoMovil) q.getSingleResult();
+			try {
+				DispositivoMovil n = (DispositivoMovil) q.getSingleResult();
+				if (n != null) {
+					return  n;
+				}
+
+			} catch  (NonUniqueResultException e){
+				System.out.println("muchos resultados");
+			} catch  (NoResultException e){
+				System.out.println("sin resultados");
+				return null;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
 		}
 		return null;
 	}
@@ -110,6 +126,29 @@ public class DispositivoMovilDAOImpl extends DAO<DispositivoMovil> implements Di
 				}				
 			} catch  (NoResultException e){
 				System.out.println("sin resultados");
+				return null;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}			
+		}
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<DispositivoMovil> obtenerDispositivosAnterioresPorUsuario(Usuario u) {
+		if (u != null) {
+			sqlQuery = "select dm from DispositivoMovil dm where dm.usuario.id=:id ";
+			q = em.createQuery(sqlQuery);
+			logger.info("buscando usuario obtenerDispositivosAnterioresPorUsuario " + u);
+			q.setParameter("id", u.getId());
+			q.setMaxResults(1);
+			try {
+				List<DispositivoMovil> n =  q.getResultList();
+				if (n != null) {
+					return  n;
+				}				
+			} catch  (NoResultException e){
+				System.out.println("obtenerDispositivosAnterioresPorUsuario sin resultados");
 				return null;
 			} catch (Exception e) {
 				e.printStackTrace();

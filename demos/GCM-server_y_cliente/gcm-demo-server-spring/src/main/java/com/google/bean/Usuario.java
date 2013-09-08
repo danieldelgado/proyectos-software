@@ -22,7 +22,7 @@ public class Usuario  implements Entidad{
 	@TableGenerator(name = "id_Generator", table = "sequence_table", pkColumnName = "sequence_name", valueColumnName = "sequence_value")
 	@Column(name = "id_usuario")
 	private Integer id;
-	@Column(name = "userName", nullable=false)	
+	@Column(name = "userName")	
 	private String userName;
 	@Column(name = "clave")	
 	private String clave;
@@ -30,6 +30,8 @@ public class Usuario  implements Entidad{
 	private String nombre;
 	@Column(name = "apellido")
 	private String apellido;
+	@Column(name = "email")	
+	private String email;
 
 	@OneToMany(mappedBy="usuario")
 	private List<DispositivoMovil> dispositivoMovils;
@@ -55,6 +57,15 @@ public class Usuario  implements Entidad{
 	}
 
 	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public Integer getId() {
 		return id;
 	}

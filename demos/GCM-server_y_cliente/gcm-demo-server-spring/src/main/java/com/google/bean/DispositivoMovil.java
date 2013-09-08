@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.google.gcm.util.Entidad;
 
@@ -28,17 +30,18 @@ public class DispositivoMovil implements Entidad{
 	@Column(name = "key_device")
 	private String key_device;
 
-	@Column(name = "activo")
+	@Column(name = "activo", nullable=true)
 	private Boolean activo;
 	
-	@Column(name = "numero_movil")
+	@Column(name = "numero_movil", nullable=true)
 	private String numeromovil;
 	
-	@Column(name = "fecha_registro")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_registro", nullable=true)
 	private Date fecha_registro;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_usuario")
+	@JoinColumn(name = "id_usuario", nullable=true)
 	private Usuario usuario;
 
 
