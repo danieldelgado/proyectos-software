@@ -1,5 +1,7 @@
 package com.vst.ecu.controller;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -46,11 +48,28 @@ public class HomeController {
 	@RequestMapping(value = "/guardarContenido", method = RequestMethod.POST)
 	public String guardarContenido( String editor,Model model ) {
 //		editor = "<html><boby>"+ editor +  "</boby></html>";
-		logger.info("guardarContenido:");	
+		logger.info("guardarContenido: "+ editor);	
 		String rft = HTML2RTFUtil.toRtf2( editor );
 		System.out.println("rft");
 		System.out.println(rft);
 		System.out.println("-----------------------------------------------");
+		String rft1 = HTML2RTFUtil.toRtf( editor );
+		System.out.println("rft1");
+		System.out.println(rft1);
+		String prueba = test.convertHTMLtoRFT(editor);
+		System.out.println("prueba");
+		System.out.println(prueba);
+		System.out.println("-----------------------------------------------");
+		try {
+			String rfttohtml = HTML2RTFUtil.rtfToHtml2(new StringReader(prueba));
+			System.out.println("rfttohtml");
+			System.out.println(rfttohtml);
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //		String html = HTML2RTFUtil.toHtml(rft);
 //		System.out.println(html);
 		

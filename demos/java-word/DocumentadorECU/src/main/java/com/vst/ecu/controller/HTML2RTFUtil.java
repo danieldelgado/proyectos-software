@@ -90,7 +90,9 @@ public class HTML2RTFUtil {
         		RTFEditorKit rtf_edit = new RTFEditorKit();
         		DefaultStyledDocument rtf_doc = new DefaultStyledDocument();
         		JTextPane jtp_rtf = new JTextPane();
+//        		jtp_rtf.setContentType( "text/html" );
         		JEditorPane editor = new JEditorPane();
+        		editor.setContentType( "text/html" );
         		StyledDocument editdoc = (StyledDocument) editor.getDocument();
         		EditorKit editkit = editor.getEditorKit();
     			StringReader strReader = new StringReader(html);
