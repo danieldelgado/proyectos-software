@@ -31,7 +31,7 @@ public class ADAuthenticatorFunciona {
 
 	public ADAuthenticatorFunciona() {
 		this.domain = "vst.server01.com";
-		this.ldapHost = "ldap://192.168.1.180:389";
+		this.ldapHost = "ldap://192.168.1.37:389";
 		this.searchBase = "ou=usuario-server01,dc=vst,dc=server01,dc=com";
 	}
 
