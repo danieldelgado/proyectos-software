@@ -1,0 +1,7 @@
+revisar
+http://demo.itextsupport.com/xmlworker/?snippetChooser=various
+
+http://www.tinymce.com/tryit/3_x/jquery_version.php
+
+
+http://itextpdf.com/download.php
