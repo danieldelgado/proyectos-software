@@ -2,15 +2,13 @@ package com.vst.deocecu.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.io.StringBufferInputStream;
 import java.io.UnsupportedEncodingException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.w3c.dom.Document;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
@@ -43,7 +41,16 @@ public class Util {
 
 	public static byte[] getpdftohtmlbytes2(String html) {
 		try {
-			html = html.replace("&nbsp;"," ");
+			
+//			String afterDecoding = StringEscapeUtils.unescapeHtml4(html);
+//			System.out.println("afterDecoding");
+//			System.out.println(afterDecoding);
+//			String afterDecoding2 = StringEscapeUtils.unescapeHtml3(html);
+//			System.out.println("afterDecoding2");
+//			System.out.println(afterDecoding2);
+//			
+//			html = html.replace("&nbsp;"," ");
+			html = StringEscapeUtils.unescapeHtml4(html);
 			// Document document = new Document(PageSize.A4);
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
 			ITextRenderer renderer = new ITextRenderer();
@@ -64,6 +71,13 @@ public class Util {
 
 		try {
 			try {
+				String afterDecoding = StringEscapeUtils.unescapeHtml4(html);
+				System.out.println("afterDecoding");
+				System.out.println(afterDecoding);
+				String afterDecoding2 = StringEscapeUtils.unescapeHtml3(html);
+				System.out.println("afterDecoding2");
+				System.out.println(afterDecoding2);
+				
 				html = html.replace("&nbsp;"," ");
 				 DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 				    Document doc = builder.parse(new StringBufferInputStream(html));

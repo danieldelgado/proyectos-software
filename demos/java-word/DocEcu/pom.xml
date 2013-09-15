@@ -14,7 +14,11 @@
 		<org.slf4j-version>1.5.10</org.slf4j-version>
 	</properties>
 	<dependencies>
-	
+	<dependency>
+	<groupId>org.apache.commons</groupId>
+  <artifactId>commons-lang3</artifactId>
+  <version>3.1</version>	
+	</dependency>
 <!-- 	<dependency> -->
 <!--         <groupId>jtidy</groupId> -->
 <!--         <artifactId>jtidy</artifactId> -->
