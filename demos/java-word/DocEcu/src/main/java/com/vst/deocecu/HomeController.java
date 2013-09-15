@@ -28,28 +28,15 @@ public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
 		String formattedDate = dateFormat.format(date);
-
 		model.addAttribute("serverTime", formattedDate);
-
 		return "home";
 	}
-
-//	@RequestMapping(value = "/{otropagina}", method = RequestMethod.GET)
-//	public String otropagina(@PathVariable String otropagina, Locale locale, Model model) {
-//		logger.info("otropagina:" + otropagina);
-//		return otropagina;
-//	}
 
 	@RequestMapping(value = "/guardarContenido", method = RequestMethod.POST)
 	public String guardarContenido(String editor, Model model) {
@@ -60,24 +47,9 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/export")
-	public void export(HttpServletRequest request, HttpServletResponse response)  {
-	
-			
-		
+	public void export(HttpServletRequest request, HttpServletResponse response)  {	
 		long c = Calendar.getInstance().getTime().getTime();
-		System.out.println("export");
-		System.out.println(htmlEditor);
-//		byte[] bytes = htmlEditor.getBytes();		
-//		response.setContentType("application/octet-stream");
-//		response.setHeader("Content-Disposition", "attachment;filename=newFile"+c+".rtf");
-//		response.getOutputStream().write(bytes);
-//		response.getOutputStream().flush();
-//		response.getOutputStream().close();
-		
-		
-
-//		byte[] b = Util.getpdftohtmlbytes(htmlEditor);
-		byte[] b = Util.getpdftohtmlbytes2(htmlEditor);
+		byte[] b = Util.convertirHTMLaPDFbytes(htmlEditor);
 		if(b!=null){
 			response.setContentType("application/pdf");
 			response.setHeader("Content-Disposition", "attachment;filename=newFile"+c+".pdf");
@@ -89,9 +61,6 @@ public class HomeController {
 				e.printStackTrace();
 			}
 		}
-		
-	
-
 	}
 
 }
