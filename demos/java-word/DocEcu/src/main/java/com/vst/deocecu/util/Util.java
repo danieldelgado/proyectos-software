@@ -43,6 +43,7 @@ public class Util {
 
 	public static byte[] getpdftohtmlbytes2(String html) {
 		try {
+			html = html.replace("&nbsp;"," ");
 			// Document document = new Document(PageSize.A4);
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
 			ITextRenderer renderer = new ITextRenderer();
@@ -63,6 +64,7 @@ public class Util {
 
 		try {
 			try {
+				html = html.replace("&nbsp;"," ");
 				 DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 				    Document doc = builder.parse(new StringBufferInputStream(html));
 
