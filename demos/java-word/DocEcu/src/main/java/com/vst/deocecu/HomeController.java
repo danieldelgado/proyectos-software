@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.vst.deocecu.util.Util;
 
-
 /**
  * Handles requests for the application home page.
  */
@@ -32,7 +31,8 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+				DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate);
 		return "home";
@@ -47,19 +47,19 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/export")
-	public void export(HttpServletRequest request, HttpServletResponse response)  {	
+	public void export(HttpServletRequest request, HttpServletResponse response) {
 		long c = Calendar.getInstance().getTime().getTime();
-		byte[] b = Util.convertirHTMLaPDFbytes(htmlEditor);
-		if(b!=null){
-			response.setContentType("application/pdf");
-			response.setHeader("Content-Disposition", "attachment;filename=newFile"+c+".pdf");
-			try {
+		try {
+			byte[] b = Util.convertirHTMLaPDFbytes(htmlEditor);
+			if (b != null) {
+				response.setContentType("application/pdf");
+				response.setHeader("Content-Disposition","attachment;filename=newFile" + c + ".pdf");
 				response.getOutputStream().write(b);
 				response.getOutputStream().flush();
 				response.getOutputStream().close();
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
