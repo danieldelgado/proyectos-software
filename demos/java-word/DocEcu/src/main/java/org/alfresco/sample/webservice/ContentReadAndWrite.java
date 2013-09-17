@@ -98,7 +98,7 @@ public class ContentReadAndWrite extends SamplesBase
             ParentReference parentReference = new ParentReference(reference.getStore(), reference.getUuid(), null, ASSOC_CONTAINS, "{" + Constants.NAMESPACE_CONTENT_MODEL + "}test.jpg");
             
             // Create the content
-            NamedValue[] properties = new NamedValue[]{Utils.createNamedValue(Constants.PROP_NAME, "test3.jpg")};
+            NamedValue[] properties = new NamedValue[]{Utils.createNamedValue(Constants.PROP_NAME, "test4.jpg")};
             CMLCreate create = new CMLCreate("1", parentReference, null, null, null, Constants.TYPE_CONTENT, properties);
             CML cml = new CML();
             cml.setCreate(new CMLCreate[]{create});
