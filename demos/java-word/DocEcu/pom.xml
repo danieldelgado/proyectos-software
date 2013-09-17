@@ -23,48 +23,75 @@
 	</repositories>
 
 	<dependencies>
+		<!-- 	Conexion al web service de Alfresco -->
+		<dependency>
+			<groupId>org.apache.axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+		</dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>javax.xml</groupId> -->
-		<!-- <artifactId>jaxrpc-api</artifactId> -->
-		<!-- <version>1.1</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>0.2</version>
+		</dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>xfire</groupId> -->
-		<!-- <artifactId>wss4j</artifactId> -->
-		<!-- <version>1.0.0</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>xml-security</groupId> -->
-		<!-- <artifactId>xml-security</artifactId> -->
-		<!-- <version>1.0.4</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>wsdl4j</groupId> -->
-		<!-- <artifactId>wsdl4j</artifactId> -->
-		<!-- <version>1.6.2</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>commons-discovery</groupId> -->
-		<!-- <artifactId>commons-discovery</artifactId> -->
-		<!-- <version>0.2</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>javax.xml</groupId>
+			<artifactId>jaxrpc-api</artifactId>
+			<version>1.1</version>
+		</dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.axis</groupId> -->
-		<!-- <artifactId>axis</artifactId> -->
-		<!-- <version>1.4</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
 
+		<dependency>
+			<groupId>xfire</groupId>
+			<artifactId>opensaml</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.8.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.santuario</groupId>
+			<artifactId>xmlsec</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+
+		<!-- Ayuda a tipificar html a java -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.1</version>
 		</dependency>
-
+		
+		<!-- Itext html to pdf -->
 		<dependency>
 			<groupId>org.xhtmlrenderer</groupId>
 			<artifactId>core-renderer</artifactId>
@@ -83,6 +110,7 @@
 			<version>1.1.1</version>
 			<type>jar</type>
 		</dependency>
+				
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
