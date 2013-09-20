@@ -1,11 +1,6 @@
 
 package com.vst.deocecu.util;
 
-import java.net.URL;
-
-import org.alfresco.webservice.authentication.AuthenticationService;
-import org.alfresco.webservice.authentication.AuthenticationServiceLocator;
-import org.alfresco.webservice.authentication.AuthenticationServiceSoapPort;
 import org.alfresco.webservice.content.ContentServiceSoapBindingStub;
 import org.alfresco.webservice.repository.UpdateResult;
 import org.alfresco.webservice.types.CML;
@@ -23,7 +18,8 @@ import org.alfresco.webservice.util.WebServiceFactory;
 
 public class AlfrescoComunication  
 {  
-	
+
+	public static final String MI_FOLDER = "MI_FOLDER";
 	public static void main(String[] args) {
 		try {
 			addContent();
@@ -41,16 +37,16 @@ public class AlfrescoComunication
         	 
         	   //Iniciamos la sesion 
          	
-             WebServiceFactory.setEndpointAddress("http://192.168.1.215:8080/alfresco/api");
+            WebServiceFactory.setEndpointAddress("http://192.168.1.215:8080/alfresco/api");
             AuthenticationUtils.startSession("admin", "admin");   
         	 
             // Creamos la referencia del nodo padre, donde se añadirá  el contenido  
             // En este caso el nodo padre es company_home  
             Store storeRef = new Store(Constants.WORKSPACE_STORE, "SpacesStore");  
-            ParentReference companyHomeParent = new ParentReference(storeRef, null, "/app:company_home", Constants.ASSOC_CONTAINS, null);  
-  
-            // Asignamos un nombre para el nodo que vamos a crea en company_home  
-            String name = "Web Services sample (" + System.currentTimeMillis() + ")";  
+            ParentReference companyHomeParent = new ParentReference(storeRef, null, "/app:company_home"+ "/cm:" + MI_FOLDER, Constants.ASSOC_CONTAINS, null);  
+//            Reference contentReference = new ParentReference(STORE, null, MI_CARPETA_HOME + "/cm:" + MI_FOLDER, ASSOC_CONTAINS, "{"	+ Constants.NAMESPACE_CONTENT_MODEL + "}" + str);
+            // Asignamos un nombre para el nodo que vamos a crea en company_home   MI_FOLDER
+            String name = "Web Services sample 1";  
             companyHomeParent.setChildName("cm:" + name);  
               
             // Comienza la construcción de nodo   
@@ -84,10 +80,10 @@ public class AlfrescoComunication
             //  
               
             ContentServiceSoapBindingStub contentService = WebServiceFactory.getContentService();  
-            String text = "The quick brown fox jumps over the lazy dog";  
+            String text = "The quick brown fox jumps over the lazy dog ";  
             ContentFormat contentFormat = new ContentFormat("text/plain", "UTF-8");  
             contentService.write(content, Constants.PROP_CONTENT, text.getBytes(), contentFormat);  
-              System.out.println(" termino ");
+            System.out.println(" termino ");
         }  catch (Exception e) {
 			e.printStackTrace();
 		}
