@@ -6,6 +6,7 @@ import org.alfresco.webservice.authentication.AuthenticationFault;
 import org.alfresco.webservice.authentication.AuthenticationResult;
 import org.alfresco.webservice.authentication.AuthenticationServiceSoapBindingStub;
 import org.alfresco.webservice.authoring.AuthoringServiceSoapBindingStub;
+import org.alfresco.webservice.authoring.CheckoutResult;
 import org.alfresco.webservice.content.Content;
 import org.alfresco.webservice.content.ContentServiceSoapBindingStub;
 import org.alfresco.webservice.repository.RepositoryFault;
@@ -64,13 +65,44 @@ public class TestMetodos {
 		// } catch (RemoteException e) {
 		// e.printStackTrace();
 		// }
-		// test.crearNuevoContenido("contentWEB2123.html",
-		// "<html> <body> nuevo s contenido web </body> </html>", "html");
+		// test.crearNuevoContenido("contentWEB2123.html","<html> <body> nuevo s contenido web </body> </html>",
+		// "html");
 		// test.crearNuevoContenido("contentTEXT1.txt","holaasads este contenido",
 		// "texto");
+		System.out.println("version antes:");
+		test.obtenetContenido("contentWEB2123.html");
+		System.out.println("modificando...:");
+		test.modificarContenido("contentWEB2123.html", "<html> <body> nuevo " + System.currentTimeMillis()
+				+ " sfew wewfewf contenido web </body> </html>");
+		System.out.println("version modificada...:");
 		test.obtenetContenido("contentWEB2123.html");
 		// test.obtenetContenido("contentTEXT1.txt");
 		test.termino();
+	}
+
+	private void modificarContenido(String str, String nuevoContenido) {
+
+		try {
+			AuthoringServiceSoapBindingStub authoringService = WebServiceFactory.getAuthoringService();
+			ContentServiceSoapBindingStub contentService = WebServiceFactory.getContentService();
+			Store STORE = new Store(Constants.WORKSPACE_STORE, MI_STORE);
+			Reference reference = new Reference(STORE, null, MI_CARPETA_HOME + "/cm:" + MI_FOLDER + "/*[@cm:name=\"" + str + "\"]");
+			ContentFormat format = new ContentFormat(Constants.MIMETYPE_TEXT_PLAIN, "UTF-8");
+			Predicate itemsToCheckOut = new Predicate(new Reference[] { reference }, null, null);
+			CheckoutResult checkOutResult = authoringService.checkout(itemsToCheckOut, null);
+			Reference workingCopyReference = checkOutResult.getWorkingCopies()[0];
+			contentService.write(workingCopyReference, Constants.PROP_CONTENT, nuevoContenido.getBytes(), format);
+			Predicate predicate = new Predicate(new Reference[] { workingCopyReference }, null, null);
+
+			NamedValue[] comments = new NamedValue[] { Utils.createNamedValue("description",
+					"The content has been updated " + System.currentTimeMillis()) };
+			authoringService.checkin(predicate, comments, false);
+
+		} catch (Exception e) {
+			System.out.println("e:" + e.getMessage());
+			e.printStackTrace();
+		}
+
 	}
 
 	private static void outputVersion(Version version) {
