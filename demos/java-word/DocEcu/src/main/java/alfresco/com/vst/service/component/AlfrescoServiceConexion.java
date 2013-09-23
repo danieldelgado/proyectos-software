@@ -17,7 +17,11 @@ import org.alfresco.webservice.util.Utils;
 import org.alfresco.webservice.util.WebServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.vst.deocecu.dao.DocumentoDAO;
+import com.vst.deocecu.dao.ProyectoDAO;
+import com.vst.deocecu.dominio.Proyecto;
 import com.vst.deocecu.util.Config;
 
 
@@ -39,7 +43,13 @@ public class AlfrescoServiceConexion {
 	private static RepositoryServiceSoapBindingStub repositoryService;
 	
 	private static ParentReference companyHomeParent;
-
+	
+	@Autowired
+	private ProyectoDAO proyectoDAO;
+	
+	@Autowired
+	private DocumentoDAO documentoDAO;
+	
 	public static class AlfresoConstantes {
 		public final static Integer ERROR_CONEXION = -1;
 		public final static Integer TERMINO_SESSION = 1;
@@ -106,6 +116,14 @@ public class AlfrescoServiceConexion {
 			if (spacereference == null) {
 				logger.info("No existe. Se creara uno nuevo");
 				spacereference = crearNuevoEspacioCarpeta(normilizeNodeName(ESPACIO_REPOSITORIO),normilizeNodeName(CARPETA_ECUS), normilizeNodeName(CARPETA_PROYECTOS));
+//				Proyecto proyecto = new Proyecto(
+//						normilizeNodeName(CARPETA_PROYECTOS),
+//						ruta_completa,
+//						spacereference.getPath(),
+//						spacereference.getUuid(),
+//						spacereference.getStore().getAddress(),
+//						spacereference.getStore().getScheme());				
+//				proyectoDAO.guardar(proyecto);				
 			}			
 			return spacereference;
 		}
@@ -159,12 +177,12 @@ public class AlfrescoServiceConexion {
 					ruta_completa += "/cm:" + normilizeNodeName(folder);
 					logger.info("Ruta valida : " + ruta_completa);
 					try {
-						spacereference = createEspacioTrabajo(ruta_padre, folder);
+						spacereference = createEspacioTrabajo(ruta_padre, folder);						
 					} catch (Exception e) {
 						e.printStackTrace();
 						logger.info("Can not create the space " + e.getMessage() );
 						return null;
-					}				
+					}	
 					ruta_padre = ruta_completa;
 				}
 				return spacereference;

@@ -2,6 +2,7 @@ package com.vst.deocecu.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import alfresco.com.vst.service.component.AlfrescoServiceConexion;
 
@@ -13,18 +14,20 @@ public class DocumentadorServiceImpl implements DocumentadorService {
 	@Autowired 
 	private AlfrescoServiceConexion alfrescoServiceConexion;
 
+	
+	@Transactional
 	public int guardarContenidoHTMLALFRESCO(String html) {
 		
-		System.out.println("alfrescoServiceConexion");
-		System.out.println("iniciarConexion:"+alfrescoServiceConexion.iniciarConexion());
-		alfrescoServiceConexion.obtenerCarpetaProyectos();
+//		System.out.println("alfrescoServiceConexion");
+//		System.out.println("iniciarConexion:"+alfrescoServiceConexion.iniciarConexion());
+//		Reference carpetaProyecto = alfrescoServiceConexion.obtenerCarpetaProyectos();
 //		System.out.println("hsd:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("hsd"));
 //		System.out.println("hsd:"+alfrescoServiceConexion.crearSubCarpetaProyecto("hsd"));
 //		System.out.println("docecu:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("docecu"));
 //		System.out.println("docecu:"+alfrescoServiceConexion.crearSubCarpetaProyecto("docecu"));
 //		System.out.println("chatwebsocket:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("chatwebsocket"));
 //		System.out.println("chatwebsocket:"+alfrescoServiceConexion.crearSubCarpetaProyecto("chatwebsocket"));
-		System.out.println("terminarConexion:"+alfrescoServiceConexion.terminarConexion());
+//		System.out.println("terminarConexion:"+alfrescoServiceConexion.terminarConexion());
 		
 		
 		return 0;

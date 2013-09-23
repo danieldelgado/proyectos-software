@@ -25,6 +25,18 @@ public class Proyecto implements Entidad{
 	@Column(name = "id_proyecto")
 	private Integer id;
 	
+	private String folder;
+	
+	private String ruta_completa;
+	
+	private String path; 
+	
+	private String uuid; 
+	
+	private String address; 
+	
+	private String scheme;
+	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "carpeta")
 	private List<Documento>  documentos;
@@ -33,6 +45,104 @@ public class Proyecto implements Entidad{
 	public Proyecto(){
 		
 	}
+
+
+
+	public Proyecto(String folder, String ruta_completa, String path, String uuid, String address, String scheme) {
+		this.folder = folder;
+		this.ruta_completa = ruta_completa;
+		this.path = path;
+		this.uuid = uuid;
+		this.address = address;
+		this.scheme = scheme;
+	}
+
+
+
+
+
+	public String getFolder() {
+		return folder;
+	}
+
+
+
+	public void setFolder(String folder) {
+		this.folder = folder;
+	}
+
+
+
+	public String getRuta_completa() {
+		return ruta_completa;
+	}
+
+
+
+	public void setRuta_completa(String ruta_completa) {
+		this.ruta_completa = ruta_completa;
+	}
+
+
+
+	public String getPath() {
+		return path;
+	}
+
+
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+
+
+	public String getUuid() {
+		return uuid;
+	}
+
+
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+
+	public String getScheme() {
+		return scheme;
+	}
+
+
+
+	public void setScheme(String scheme) {
+		this.scheme = scheme;
+	}
+
+
+
+	public List<Documento> getDocumentos() {
+		return documentos;
+	}
+
+
+
+	public void setDocumentos(List<Documento> documentos) {
+		this.documentos = documentos;
+	}
+
 
 
 	public Integer getId() {
