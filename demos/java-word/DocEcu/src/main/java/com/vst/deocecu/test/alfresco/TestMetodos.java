@@ -35,49 +35,222 @@ public class TestMetodos {
 	public static String ticket;
 	public static final String USERNAME = "admin";
 	public static final String PASSWORD = "admin";
-	public static final String END_POINT = "http://192.168.1.215:8080/alfresco/api";
+	public static final String END_POINT = "http://192.168.1.38:8095/alfresco/api";
 	public static final String MI_FOLDER = "MI_FOLDER";
 	public static final String MI_STORE = "SpacesStore";
 	public static final String MI_CARPETA_HOME = "/app:company_home";
 	private static final String ASSOC_CONTAINS = "{http://www.alfresco.org/model/content/1.0}contains";
+	protected final Store STORE = new Store(Constants.WORKSPACE_STORE, "SpacesStore");
+
+	public static boolean spaceUsercreate = false;
 
 	static {
 		WebServiceFactory.setEndpointAddress(END_POINT);
 	}
 
+	public static void main(String[] args) {
+		TestMetodos test = new TestMetodos();
+		System.out.println(test.obtenerTiket());
+		try {
+			Reference r = test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "Documentador", "index");
+			System.out.println("Reference");
+			System.out.println(r);
+//			test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "Documentador", "ecu01");
+//			test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "Documentador", "ecu02");
+//			test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "Documentador", "ecu03");
+//			test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "Documentador", "ecu04");
+//			test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "hsd", "index");
+//			test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "hsd", "ecu01");
+			test.crearNuevoContenido(r,"contentWEB"+System.currentTimeMillis()+".html", "<html> <body> nuevo s contenido web </body> </html>", "html");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// test.crearNuevoContenido("contentTEXT1.txt","holaasads este contenido",
+		// "texto");
+		// System.out.println("version antes:");
+		// test.obtenetContenido("contentWEB2123.html");
+		// System.out.println("modificando...:");
+		// test.modificarContenido("contentWEB2123.html", "<html> <body> nuevo "
+		// + System.currentTimeMillis()+
+		// " sfew wewfewf contenido web </body> </html>");
+		// System.out.println("version modificada...:");
+		// test.obtenetContenido("contentWEB2123.html");
+		// test.obtenetContenido("contentTEXT1.txt");
+		test.termino();
+	}
+
+	private Reference createSpaceInSpace(String space, String... foldersHijpos) throws Exception {
+		String ruta_completa = getCompanyHome().getPath() + "/cm:" + normilizeNodeName(space);
+		String ruta_padre = getCompanyHome().getPath();
+		Reference spacereference = null;
+		try {
+			spacereference = new Reference(STORE, null, ruta_completa);
+			getRepositoryService().get(new Predicate(new Reference[] { spacereference }, STORE, null));
+			System.out.println();
+		} catch (Exception e) {
+			e.printStackTrace();
+			spacereference = createEspacioTrabajo(ruta_padre, space);
+		}
+		ruta_padre = ruta_completa;
+
+		for (int i = 0; i < foldersHijpos.length; i++) {
+			String folder = foldersHijpos[i];
+			ruta_completa += "/cm:" + folder;
+			System.out.println(folder + " --- " + ruta_completa);
+
+			try {
+				spacereference = new Reference(STORE, null, ruta_completa);
+				getRepositoryService().get(new Predicate(new Reference[] { spacereference }, STORE, null));
+				System.out.println();
+			} catch (Exception e) {
+				e.printStackTrace();
+				spacereference =createEspacioTrabajo(ruta_padre, folder);
+			}
+			ruta_padre = ruta_completa;
+
+		}
+		
+		return spacereference;
+	}
+
+	private Reference createEspacioTrabajo(String ruta_padre, String carpeta) {
+
+		Reference space = null;
+		System.out.println("The space named " + carpeta + " does not exist. Creating it.");
+
+		ParentReference companyHome = new ParentReference(STORE, null, ruta_padre, Constants.ASSOC_CONTAINS, null);
+		// Set Company Home as the parent space
+		companyHome.setChildName(Constants.createQNameString(Constants.NAMESPACE_CONTENT_MODEL, normilizeNodeName(carpeta)));
+
+		// Set the space's property name
+		NamedValue[] properties = new NamedValue[] { Utils.createNamedValue(Constants.PROP_NAME, carpeta) };
+
+		// Create the space using CML (Content Manipulation Language)
+		CMLCreate create = new CMLCreate("1", companyHome, null, null, null, Constants.TYPE_FOLDER, properties);
+		CML cml = new CML();
+		cml.setCreate(new CMLCreate[] { create });
+
+		// Execute the CML create statement
+		try {
+			getRepositoryService().update(cml);
+
+			space = new Reference(STORE, null, ruta_padre + "/cm:" + carpeta);
+			getRepositoryService().get(new Predicate(new Reference[] { space }, STORE, null));
+
+		} catch (Exception e2) {
+
+			System.err.println("Can not create the space.");
+		}
+
+		return space;
+	}
+
+	protected ParentReference getCompanyHome() {
+		ParentReference companyHomeParent = new ParentReference(STORE, null, "/app:company_home", Constants.ASSOC_CONTAINS, null);
+		return companyHomeParent;
+	}
+
+	protected String normilizeNodeName(String name) {
+		return name.replace(" ", "_");
+	}
+
+	protected Reference createSpace(String spacename) throws Exception {
+		Reference space = null;
+
+		// Create the space if it is not already existent
+		try {
+
+			// Therefore a reference to the maybe not existent space is required
+
+			System.out.println("Entering space " + spacename);
+
+			space = new Reference(STORE, null, getCompanyHome().getPath() + "/cm:" + normilizeNodeName(spacename));
+			getRepositoryService().get(new Predicate(new Reference[] { space }, STORE, null));
+		} catch (Exception e1) {
+			System.out.println("The space named " + spacename + " does not exist. Creating it.");
+
+			ParentReference companyHome = getCompanyHome();
+
+			// Set Company Home as the parent space
+			companyHome.setChildName(Constants.createQNameString(Constants.NAMESPACE_CONTENT_MODEL, normilizeNodeName(spacename)));
+
+			// Set the space's property name
+			NamedValue[] properties = new NamedValue[] { Utils.createNamedValue(Constants.PROP_NAME, spacename) };
+
+			// Create the space using CML (Content Manipulation Language)
+			CMLCreate create = new CMLCreate("1", companyHome, null, null, null, Constants.TYPE_FOLDER, properties);
+			CML cml = new CML();
+			cml.setCreate(new CMLCreate[] { create });
+
+			// Execute the CML create statement
+			try {
+				getRepositoryService().update(cml);
+			} catch (Exception e2) {
+
+				System.err.println("Can not create the space.");
+				throw e2;
+			}
+
+		}
+
+		return space;
+	}
+
+	private void buscarFolder(String string) throws RepositoryFault, RemoteException {
+		String mifolder = "Documentos_html";
+		String mistore = "SpacesStore";
+		String micarpeta = "/app:user_homes";
+		// private static final String ASSOC_CONTAINS =
+		// "{http://www.alfresco.org/model/content/1.0}contains";
+		Store store = new Store(Constants.WORKSPACE_STORE, mistore);
+		Reference samplefolder = new Reference(store, null, micarpeta + "/cm:" + mifolder);
+		Node[] node = null;
+		try {
+			System.out.println("Buscando si existe este espacio " + mifolder);
+			node = WebServiceFactory.getRepositoryService().get(new Predicate(new Reference[] { samplefolder }, store, null));
+			System.out.println("Si existe el espacio " + mifolder);
+			System.out.println(node.length);
+			System.out.println(node[0]);
+		} catch (Exception e) {
+			System.out.println("No encontro y lanzo una excepcion asi que ahora a crear este espacio");
+			e.printStackTrace();
+		}
+
+		if (node != null) {
+			return;
+		}
+		System.out.println("crear");
+		ParentReference parentReference = new ParentReference(store, null, micarpeta, Constants.ASSOC_CONTAINS, Constants.createQNameString(
+				Constants.NAMESPACE_CONTENT_MODEL, mifolder));
+
+		// Create folder
+		NamedValue[] properties = new NamedValue[] { Utils.createNamedValue(Constants.PROP_NAME, mifolder) };
+		CMLCreate create = new CMLCreate("1", parentReference, null, null, null, Constants.TYPE_FOLDER, properties);
+		CML cml = new CML();
+		cml.setCreate(new CMLCreate[] { create });
+		WebServiceFactory.getRepositoryService().update(cml);
+		System.out.println("creando MI_FOLDER:" + mifolder);
+
+	}
+
+	public RepositoryServiceSoapBindingStub getRepositoryService() {
+		return WebServiceFactory.getRepositoryService();
+	}
+
+	public ContentServiceSoapBindingStub getContentService() {
+		return WebServiceFactory.getContentService();
+	}
+
 	public TestMetodos() {
 		try {
 			AuthenticationUtils.startSession(USERNAME, PASSWORD);
+			System.out.println("conectado");
 		} catch (AuthenticationFault e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) {
-		TestMetodos test = new TestMetodos();
-		// System.out.println(test.obtenerTiket());
-		// try {
-		// test.crearFolder();
-		// } catch (RepositoryFault e) {
-		// e.printStackTrace();
-		// } catch (RemoteException e) {
-		// e.printStackTrace();
-		// }
-		// test.crearNuevoContenido("contentWEB2123.html","<html> <body> nuevo s contenido web </body> </html>",
-		// "html");
-		// test.crearNuevoContenido("contentTEXT1.txt","holaasads este contenido",
-		// "texto");
-		System.out.println("version antes:");
-		test.obtenetContenido("contentWEB2123.html");
-		System.out.println("modificando...:");
-		test.modificarContenido("contentWEB2123.html", "<html> <body> nuevo " + System.currentTimeMillis()
-				+ " sfew wewfewf contenido web </body> </html>");
-		System.out.println("version modificada...:");
-		test.obtenetContenido("contentWEB2123.html");
-		// test.obtenetContenido("contentTEXT1.txt");
-		test.termino();
 	}
 
 	private void modificarContenido(String str, String nuevoContenido) {
@@ -139,15 +312,19 @@ public class TestMetodos {
 		}
 
 	}
-	
 
 	private void termino() {
 		AuthenticationUtils.endSession();
+		System.out.println("terminado");
 	}
 
 	private void crearFolder() throws RepositoryFault, RemoteException {
+		// public static final String MI_FOLDER = "MI_FOLDER";
+		// public static final String MI_STORE = "SpacesStore";
+		// public static final String MI_CARPETA_HOME = "/app:company_home";
+		// private static final String ASSOC_CONTAINS =
+		// "{http://www.alfresco.org/model/content/1.0}contains";
 		Store STORE = new Store(Constants.WORKSPACE_STORE, MI_STORE);
-
 		Reference SAMPLE_FOLDER = new Reference(STORE, null, MI_CARPETA_HOME + "/cm:" + MI_FOLDER);
 		Node[] node = null;
 		try {
@@ -173,14 +350,15 @@ public class TestMetodos {
 		CML cml = new CML();
 		cml.setCreate(new CMLCreate[] { create });
 		WebServiceFactory.getRepositoryService().update(cml);
+		System.out.println("creando MI_FOLDER:" + MI_FOLDER);
 
 	}
 
-	private void crearNuevoContenido(String nombreContenido, String content, String tipo) {
+	private void crearNuevoContenido(Reference r, String nombreContenido, String content, String tipo) {
 		ContentServiceSoapBindingStub contentService = WebServiceFactory.getContentService();
 		RepositoryServiceSoapBindingStub repositoryService = WebServiceFactory.getRepositoryService();
 		try {
-			Reference contentReference = createNewContent(contentService, nombreContenido, content, tipo);
+			Reference contentReference = createNewContent(r,contentService, nombreContenido, content, tipo);
 			System.out.println("contentReference : " + contentReference);
 			makeVersionable(repositoryService, contentReference);
 		} catch (Exception e) {
@@ -197,10 +375,11 @@ public class TestMetodos {
 		respositoryService.update(cml);
 	}
 
-	public static Reference createNewContent(ContentServiceSoapBindingStub contentService, String name, String contentString, String tipo)
+	public static Reference createNewContent(Reference r, ContentServiceSoapBindingStub contentService, String name, String contentString, String tipo)
 			throws Exception {
+		System.out.println("r.getPath()"+r.getPath());
 		Store STORE = new Store(Constants.WORKSPACE_STORE, MI_STORE);
-		ParentReference parentReference = new ParentReference(STORE, null, MI_CARPETA_HOME + "/cm:" + MI_FOLDER, ASSOC_CONTAINS, "{"
+		ParentReference parentReference = new ParentReference(STORE, null, r.getPath(), ASSOC_CONTAINS, "{"
 				+ Constants.NAMESPACE_CONTENT_MODEL + "}" + name);
 		ContentFormat contentFormat = null;
 		if (tipo.equalsIgnoreCase("html")) {
