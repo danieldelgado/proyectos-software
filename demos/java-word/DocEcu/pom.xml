@@ -24,6 +24,18 @@
 
 	<dependencies>
 	
+<!-- 	 <dependency> -->
+<!-- 	<groupId>org.alfresco.cmis.client</groupId> -->
+<!-- 	<artifactId>alfresco-opencmis-extension</artifactId> -->
+<!-- 	<version>0.3</version> -->
+<!-- </dependency> -->
+ 
+<!--   <dependency> -->
+<!-- 	<groupId>org.apache.chemistry.opencmis</groupId> -->
+<!-- 	<artifactId>chemistry-opencmis-client-impl</artifactId> -->
+<!-- 	<version>0.8.0</version> -->
+<!-- </dependency> -->
+	
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>

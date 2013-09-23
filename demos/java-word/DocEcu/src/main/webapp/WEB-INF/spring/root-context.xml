@@ -26,6 +26,9 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
+	<bean id="alfrescoBean" class="alfresco.com.vst.service.component.AlfrescoServiceConexion" >
+	</bean>
+
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>

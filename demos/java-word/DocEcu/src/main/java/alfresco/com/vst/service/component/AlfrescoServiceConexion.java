@@ -3,17 +3,13 @@ package alfresco.com.vst.service.component;
 import org.alfresco.webservice.authentication.AuthenticationFault;
 import org.alfresco.webservice.authoring.AuthoringServiceSoapBindingStub;
 import org.alfresco.webservice.content.ContentServiceSoapBindingStub;
-import org.alfresco.webservice.repository.QueryResult;
 import org.alfresco.webservice.repository.RepositoryServiceSoapBindingStub;
 import org.alfresco.webservice.types.CML;
 import org.alfresco.webservice.types.CMLCreate;
 import org.alfresco.webservice.types.NamedValue;
 import org.alfresco.webservice.types.ParentReference;
 import org.alfresco.webservice.types.Predicate;
-import org.alfresco.webservice.types.Query;
 import org.alfresco.webservice.types.Reference;
-import org.alfresco.webservice.types.ResultSet;
-import org.alfresco.webservice.types.ResultSetRow;
 import org.alfresco.webservice.types.Store;
 import org.alfresco.webservice.util.AuthenticationUtils;
 import org.alfresco.webservice.util.Constants;
@@ -41,6 +37,7 @@ public class AlfrescoServiceConexion {
 	private static AuthoringServiceSoapBindingStub authoringService;
 	private static ContentServiceSoapBindingStub contentService;
 	private static RepositoryServiceSoapBindingStub repositoryService;
+	
 	private static ParentReference companyHomeParent;
 
 	public static class AlfresoConstantes {
