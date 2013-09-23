@@ -3,6 +3,7 @@ package com.vst.deocecu.controller;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.vst.deocecu.dominio.Proyecto;
 import com.vst.deocecu.service.DocumentadorService;
 import com.vst.deocecu.util.Util;
 
@@ -33,7 +36,36 @@ public class HomeController {
 	private DocumentadorService documentadorService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Model model) {		
+		List<Proyecto> listarProyectos = documentadorService.obtenerListaProyectos();
+		model.addAttribute("listarProyectos", listarProyectos);
+		return "home";
+	}
+	@RequestMapping(value = "/nuevoProyecto", method = RequestMethod.GET)
+	public String nuevoProyecto( Model model) {	
+		return "nuevoProyecto";
+	}
+	
+	@RequestMapping(value = "/guardarProyecto", method = RequestMethod.POST)
+	public String guardarProyecto(Model model, Proyecto proyecto) {
+		int r = documentadorService.guardarNuevoProyecto(proyecto);		
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/Proyecto/{folder}/{id}", method = RequestMethod.GET)
+	public String Proyecto(@PathVariable String folder,@PathVariable Integer id , Model model) {	
+		Proyecto p = documentadorService.obtenerProyectoPorID(id);
+		model.addAttribute("proyecto", p);		
+		return "listaDocumentos";
+	}
+	
+	
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/222", method = RequestMethod.GET)
+	public String home2(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,

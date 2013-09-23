@@ -5,4 +5,6 @@ import com.vst.deocecu.util.IDAO;
 
 public interface ProyectoDAO extends IDAO<Proyecto> {
 
+	Proyecto existeProyectoPorFolder(String folder, String titulo);
+
 }

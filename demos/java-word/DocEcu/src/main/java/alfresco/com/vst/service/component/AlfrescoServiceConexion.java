@@ -17,10 +17,7 @@ import org.alfresco.webservice.util.Utils;
 import org.alfresco.webservice.util.WebServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.vst.deocecu.dao.DocumentoDAO;
-import com.vst.deocecu.dao.ProyectoDAO;
 import com.vst.deocecu.dominio.Proyecto;
 import com.vst.deocecu.util.Config;
 
@@ -44,11 +41,11 @@ public class AlfrescoServiceConexion {
 	
 	private static ParentReference companyHomeParent;
 	
-	@Autowired
-	private ProyectoDAO proyectoDAO;
-	
-	@Autowired
-	private DocumentoDAO documentoDAO;
+//	@Autowired
+//	private ProyectoDAO proyectoDAO;
+//	
+//	@Autowired
+//	private DocumentoDAO documentoDAO;
 	
 	public static class AlfresoConstantes {
 		public final static Integer ERROR_CONEXION = -1;
@@ -116,31 +113,34 @@ public class AlfrescoServiceConexion {
 			if (spacereference == null) {
 				logger.info("No existe. Se creara uno nuevo");
 				spacereference = crearNuevoEspacioCarpeta(normilizeNodeName(ESPACIO_REPOSITORIO),normilizeNodeName(CARPETA_ECUS), normilizeNodeName(CARPETA_PROYECTOS));
-//				Proyecto proyecto = new Proyecto(
-//						normilizeNodeName(CARPETA_PROYECTOS),
-//						ruta_completa,
-//						spacereference.getPath(),
-//						spacereference.getUuid(),
-//						spacereference.getStore().getAddress(),
-//						spacereference.getStore().getScheme());				
-//				proyectoDAO.guardar(proyecto);				
 			}			
 			return spacereference;
 		}
 		return null;
 	}
 
-	public Reference crearSubCarpetaProyecto(String str_proyecto){
+	public Proyecto crearSubCarpetaProyecto(Proyecto proyecto){
 		if(ISCONEXION){
 			String proyectos = companyHomeParent.getPath() + "/cm:" + normilizeNodeName(ESPACIO_REPOSITORIO) + "/cm:" + normilizeNodeName(CARPETA_ECUS) + "/cm:" + normilizeNodeName(CARPETA_PROYECTOS);
 			logger.info("crearSubCarpetaProyecto obtener Carpeta Proyectos en :" + proyectos);
 			try {
-				Reference spacereference = obtenerSubCarpetaProyecto(str_proyecto);
+				Reference spacereference = obtenerSubCarpetaProyecto(proyecto);
 				if(spacereference==null){
-					spacereference = createEspacioTrabajo(proyectos, str_proyecto);					
+					spacereference = createEspacioTrabajo(proyectos, proyecto.getFolder());	
+//					spacereference = obtenerSubCarpetaProyecto(proyecto);
 				}		
-				logger.info("Proyecto creado : " +str_proyecto +" en :" + proyectos );
-				return spacereference;
+				Proyecto nuevoproyecto = new Proyecto(
+				proyecto.getId(),
+				normilizeNodeName(CARPETA_PROYECTOS),
+				proyectos,
+				spacereference.getPath(),
+				spacereference.getUuid(),
+				spacereference.getStore().getAddress(),
+				spacereference.getStore().getScheme());		
+				logger.info("Proyecto creado : " +proyecto.getFolder() +" en :" + proyectos );
+				nuevoproyecto.setDescripcion(proyecto.getDescripcion());
+				nuevoproyecto.setTitulo(proyecto.getTitulo());
+				return nuevoproyecto;
 			} catch (Exception e) {
 				logger.info("No se puede crear");
 				logger.info("Can not create the space " + e.getMessage() );
@@ -150,9 +150,9 @@ public class AlfrescoServiceConexion {
 		return null;
 	}
 	
-	public Reference obtenerSubCarpetaProyecto(String str_proyecto){
+	public Reference obtenerSubCarpetaProyecto(Proyecto proyecto){
 		if(ISCONEXION){
-			String ruta_completa = companyHomeParent.getPath() + "/cm:" + normilizeNodeName(ESPACIO_REPOSITORIO) + "/cm:" + normilizeNodeName(CARPETA_ECUS) + "/cm:" + normilizeNodeName(CARPETA_PROYECTOS)+ "/cm:"+normilizeNodeName(str_proyecto);
+			String ruta_completa = companyHomeParent.getPath() + "/cm:" + normilizeNodeName(ESPACIO_REPOSITORIO) + "/cm:" + normilizeNodeName(CARPETA_ECUS) + "/cm:" + normilizeNodeName(CARPETA_PROYECTOS)+ "/cm:"+normilizeNodeName(proyecto.getFolder());
 			logger.info("obtenerSubCarpetaProyecto en :" + ruta_completa);
 			try {
 				Reference spacereference = existeEspacioCarpeta(ruta_completa);					
@@ -209,7 +209,7 @@ public class AlfrescoServiceConexion {
 				repositoryService.update(cml);
 				space = new Reference(AlfresoConstantes.STORE, null, ruta_padre + "/cm:" + carpeta);
 				repositoryService.get(new Predicate(new Reference[] { space }, AlfresoConstantes.STORE, null));
-				logger.info("Espacio creado : "+carpeta + " en :"+ruta_padre);
+				logger.info("Espacio creado : "+carpeta + " en :"+ruta_padre+ " uuid :"+space.getUuid());
 				return space;
 			} catch (Exception e) {
 				e.printStackTrace();

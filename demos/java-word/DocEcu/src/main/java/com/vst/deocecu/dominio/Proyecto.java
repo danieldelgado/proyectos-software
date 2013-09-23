@@ -1,17 +1,20 @@
 package com.vst.deocecu.dominio;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.vst.deocecu.util.Entidad;
 
@@ -24,34 +27,62 @@ public class Proyecto implements Entidad{
 	@TableGenerator(name = "id_Generator", table = "sequence_table", pkColumnName = "sequence_name", valueColumnName = "sequence_value")
 	@Column(name = "id_proyecto")
 	private Integer id;
-	
+	@Column(name = "folder")
 	private String folder;
-	
-	private String ruta_completa;
-	
-	private String path; 
-	
-	private String uuid; 
-	
+
+	@Column(name = "ruta_padre")
+	private String ruta_padre;
+
+	@Column(name = "ruta_Absoluta")
+	private String ruta_Absoluta; 
+
+	@Column(name = "uuid")
+	private String uuid;
+
+	@Column(name = "titulo")
+	private String titulo;
+
+	@Column(name = "descripcion")
+	private String descripcion; 
+
+	@Column(name = "address")
 	private String address; 
-	
+
+	@Column(name = "scheme")
 	private String scheme;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fechaRegistro")
+	private Date fechaRegistro;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "carpeta")
-	private List<Documento>  documentos;
+	@Column(name = "fechaActua")
+	private Date fechaActua;
+	
+//	@OneToMany(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "proyecto")
+	
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)	
+	private List<Seccion_Documento>  seccion_Documentos;
 	
 	
 	public Proyecto(){
 		
 	}
 
-
-
-	public Proyecto(String folder, String ruta_completa, String path, String uuid, String address, String scheme) {
+	public Proyecto( Integer id , String folder, String ruta_padre, String ruta_Absoluta, String uuid, String address, String scheme) {
+		this.id = id;
 		this.folder = folder;
-		this.ruta_completa = ruta_completa;
-		this.path = path;
+		this.ruta_padre = ruta_padre;
+		this.ruta_Absoluta = ruta_Absoluta;
+		this.uuid = uuid;
+		this.address = address;
+		this.scheme = scheme;
+	}
+
+	public Proyecto(String folder, String ruta_padre, String ruta_Absoluta, String uuid, String address, String scheme) {
+		this.folder = folder;
+		this.ruta_padre = ruta_padre;
+		this.ruta_Absoluta = ruta_Absoluta;
 		this.uuid = uuid;
 		this.address = address;
 		this.scheme = scheme;
@@ -73,29 +104,25 @@ public class Proyecto implements Entidad{
 
 
 
-	public String getRuta_completa() {
-		return ruta_completa;
+
+
+
+
+	public String getRuta_padre() {
+		return ruta_padre;
 	}
 
-
-
-	public void setRuta_completa(String ruta_completa) {
-		this.ruta_completa = ruta_completa;
+	public void setRuta_padre(String ruta_padre) {
+		this.ruta_padre = ruta_padre;
 	}
 
-
-
-	public String getPath() {
-		return path;
+	public String getRuta_Absoluta() {
+		return ruta_Absoluta;
 	}
 
-
-
-	public void setPath(String path) {
-		this.path = path;
+	public void setRuta_Absoluta(String ruta_Absoluta) {
+		this.ruta_Absoluta = ruta_Absoluta;
 	}
-
-
 
 	public String getUuid() {
 		return uuid;
@@ -132,18 +159,15 @@ public class Proyecto implements Entidad{
 	}
 
 
+	
 
-	public List<Documento> getDocumentos() {
-		return documentos;
+	public List<Seccion_Documento> getSeccion_Documentos() {
+		return seccion_Documentos;
 	}
 
-
-
-	public void setDocumentos(List<Documento> documentos) {
-		this.documentos = documentos;
+	public void setSeccion_Documentos(List<Seccion_Documento> seccion_Documentos) {
+		this.seccion_Documentos = seccion_Documentos;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -176,6 +200,46 @@ public class Proyecto implements Entidad{
 	public String getCodigo() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+	public Date getFechaActua() {
+		return fechaActua;
+	}
+
+	public void setFechaActua(Date fechaActua) {
+		this.fechaActua = fechaActua;
 	}
 
 }
