@@ -1,4 +1,4 @@
-package com.vst.deocecu.test.alfresco;
+package org.alfresco.sample.webservice;
 
 import java.rmi.RemoteException;
 

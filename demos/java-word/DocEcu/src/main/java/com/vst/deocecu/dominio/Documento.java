@@ -1,7 +1,6 @@
 package com.vst.deocecu.dominio;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -48,12 +46,102 @@ public class Documento implements Entidad{
 	private Documento carpeta;
 
 	/** The menus. */
-	@OneToMany(mappedBy = "menu")
-	private List<Documento> menus;
+//	@OneToMany(mappedBy = "carpeta")
+//	private List<Documento> documentos;
 	
 	
 	public Documento(){
 		
+	}
+
+
+	public String getRuta_alfresco() {
+		return ruta_alfresco;
+	}
+
+
+	public void setRuta_alfresco(String ruta_alfresco) {
+		this.ruta_alfresco = ruta_alfresco;
+	}
+
+
+	public String getContent_html() {
+		return content_html;
+	}
+
+
+	public void setContent_html(String content_html) {
+		this.content_html = content_html;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+
+	public Date getFechaActua() {
+		return fechaActua;
+	}
+
+
+	public void setFechaActua(Date fechaActua) {
+		this.fechaActua = fechaActua;
+	}
+
+
+	public Boolean getIsDocumento() {
+		return isDocumento;
+	}
+
+
+	public void setIsDocumento(Boolean isDocumento) {
+		this.isDocumento = isDocumento;
+	}
+
+
+	public Documento getCarpeta() {
+		return carpeta;
+	}
+
+
+	public void setCarpeta(Documento carpeta) {
+		this.carpeta = carpeta;
 	}
 
 

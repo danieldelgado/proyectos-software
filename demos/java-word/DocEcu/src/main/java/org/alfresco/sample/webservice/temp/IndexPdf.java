@@ -1,4 +1,4 @@
-package com.vst.deocecu.util;
+package org.alfresco.sample.webservice.temp;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;

@@ -1,6 +1,6 @@
 package com.vst.deocecu.dominio;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -25,6 +25,9 @@ public class Proyecto implements Entidad{
 	@Column(name = "id_proyecto")
 	private Integer id;
 	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "carpeta")
+	private List<Documento>  documentos;
 	
 	
 	public Proyecto(){

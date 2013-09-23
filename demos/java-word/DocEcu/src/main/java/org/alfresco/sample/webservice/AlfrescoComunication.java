@@ -1,5 +1,5 @@
 
-package com.vst.deocecu.util;
+package org.alfresco.sample.webservice;
 
 import org.alfresco.webservice.content.ContentServiceSoapBindingStub;
 import org.alfresco.webservice.repository.UpdateResult;
