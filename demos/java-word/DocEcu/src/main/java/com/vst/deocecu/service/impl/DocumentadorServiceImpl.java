@@ -18,12 +18,12 @@ public class DocumentadorServiceImpl implements DocumentadorService {
 		System.out.println("alfrescoServiceConexion");
 		System.out.println("iniciarConexion:"+alfrescoServiceConexion.iniciarConexion());
 		alfrescoServiceConexion.obtenerCarpetaProyectos();
-		System.out.println("hsd:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("hsd"));
-		System.out.println("hsd:"+alfrescoServiceConexion.crearSubCarpetaProyecto("hsd"));
-		System.out.println("docecu:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("docecu"));
-		System.out.println("docecu:"+alfrescoServiceConexion.crearSubCarpetaProyecto("docecu"));
-		System.out.println("chatwebsocket:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("chatwebsocket"));
-		System.out.println("chatwebsocket:"+alfrescoServiceConexion.crearSubCarpetaProyecto("chatwebsocket"));
+//		System.out.println("hsd:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("hsd"));
+//		System.out.println("hsd:"+alfrescoServiceConexion.crearSubCarpetaProyecto("hsd"));
+//		System.out.println("docecu:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("docecu"));
+//		System.out.println("docecu:"+alfrescoServiceConexion.crearSubCarpetaProyecto("docecu"));
+//		System.out.println("chatwebsocket:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("chatwebsocket"));
+//		System.out.println("chatwebsocket:"+alfrescoServiceConexion.crearSubCarpetaProyecto("chatwebsocket"));
 		System.out.println("terminarConexion:"+alfrescoServiceConexion.terminarConexion());
 		
 		

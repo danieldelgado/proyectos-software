@@ -3,13 +3,17 @@ package alfresco.com.vst.service.component;
 import org.alfresco.webservice.authentication.AuthenticationFault;
 import org.alfresco.webservice.authoring.AuthoringServiceSoapBindingStub;
 import org.alfresco.webservice.content.ContentServiceSoapBindingStub;
+import org.alfresco.webservice.repository.QueryResult;
 import org.alfresco.webservice.repository.RepositoryServiceSoapBindingStub;
 import org.alfresco.webservice.types.CML;
 import org.alfresco.webservice.types.CMLCreate;
 import org.alfresco.webservice.types.NamedValue;
 import org.alfresco.webservice.types.ParentReference;
 import org.alfresco.webservice.types.Predicate;
+import org.alfresco.webservice.types.Query;
 import org.alfresco.webservice.types.Reference;
+import org.alfresco.webservice.types.ResultSet;
+import org.alfresco.webservice.types.ResultSetRow;
 import org.alfresco.webservice.types.Store;
 import org.alfresco.webservice.util.AuthenticationUtils;
 import org.alfresco.webservice.util.Constants;
@@ -20,7 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import com.vst.deocecu.util.Config;
 
-//@Component
+
 public class AlfrescoServiceConexion {
 
 	private static final Logger logger = LoggerFactory.getLogger(AlfrescoServiceConexion.class);
@@ -105,7 +109,7 @@ public class AlfrescoServiceConexion {
 			if (spacereference == null) {
 				logger.info("No existe. Se creara uno nuevo");
 				spacereference = crearNuevoEspacioCarpeta(normilizeNodeName(ESPACIO_REPOSITORIO),normilizeNodeName(CARPETA_ECUS), normilizeNodeName(CARPETA_PROYECTOS));
-			}
+			}			
 			return spacereference;
 		}
 		return null;
@@ -119,7 +123,7 @@ public class AlfrescoServiceConexion {
 				Reference spacereference = obtenerSubCarpetaProyecto(str_proyecto);
 				if(spacereference==null){
 					spacereference = createEspacioTrabajo(proyectos, str_proyecto);					
-				}						
+				}		
 				logger.info("Proyecto creado : " +str_proyecto +" en :" + proyectos );
 				return spacereference;
 			} catch (Exception e) {
@@ -136,7 +140,7 @@ public class AlfrescoServiceConexion {
 			String ruta_completa = companyHomeParent.getPath() + "/cm:" + normilizeNodeName(ESPACIO_REPOSITORIO) + "/cm:" + normilizeNodeName(CARPETA_ECUS) + "/cm:" + normilizeNodeName(CARPETA_PROYECTOS)+ "/cm:"+normilizeNodeName(str_proyecto);
 			logger.info("obtenerSubCarpetaProyecto en :" + ruta_completa);
 			try {
-				Reference spacereference = existeEspacioCarpeta(ruta_completa);
+				Reference spacereference = existeEspacioCarpeta(ruta_completa);					
 				return spacereference;
 			} catch (Exception e) {
 				logger.info("No encontrado");
@@ -180,7 +184,7 @@ public class AlfrescoServiceConexion {
 			// Set Company Home as the parent space
 			companyHome.setChildName(Constants.createQNameString(Constants.NAMESPACE_CONTENT_MODEL, normilizeNodeName(carpeta)));
 			// Set the space's property name
-			NamedValue[] properties = new NamedValue[] { Utils.createNamedValue(Constants.PROP_NAME, carpeta) };
+			NamedValue[] properties = new NamedValue[] { Utils.createNamedValue(Constants.PROP_NAME, carpeta)  };
 			// Create the space using CML (Content Manipulation Language)
 			CMLCreate create = new CMLCreate("1", companyHome, null, null, null, Constants.TYPE_FOLDER, properties);
 			CML cml = new CML();

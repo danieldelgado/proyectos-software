@@ -46,7 +46,7 @@ public class SamplesBase
     protected static final Reference SAMPLE_FOLDER = new Reference(STORE, null, "/app:company_home/cm:sample_folder"); 
     
     static{
-        WebServiceFactory.setEndpointAddress("http://192.168.1.38:8095/alfresco/api");
+        WebServiceFactory.setEndpointAddress("http://192.168.1.215:8080/alfresco/api");
     }
     
     protected static void createSampleData() throws Exception
