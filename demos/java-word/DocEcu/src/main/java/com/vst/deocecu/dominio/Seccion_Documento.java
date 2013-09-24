@@ -31,10 +31,19 @@ public class Seccion_Documento implements Entidad{
 
 	@Column(name = "nombre")
 	private String nombre;
+	
+	@Column(name = "numero")
+	private String numero;
 
 	@Column(name = "descripcion")
 	private String descripcion;
 
+	@Column(name = "uuid")
+	private String uuid;
+	
+	@Column(name = "ruta_Seccion")
+	private String ruta_Seccion;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "fechaRegistro")
 	private Date fechaRegistro;
@@ -55,6 +64,66 @@ public class Seccion_Documento implements Entidad{
 	}
 
 	
+
+
+
+
+
+	public String getUuid() {
+		return uuid;
+	}
+
+
+
+
+
+
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
+
+
+
+
+
+
+	public String getRuta_Seccion() {
+		return ruta_Seccion;
+	}
+
+
+
+
+
+
+
+	public void setRuta_Seccion(String ruta_Seccion) {
+		this.ruta_Seccion = ruta_Seccion;
+	}
+
+
+
+
+
+
+
+	public String getNumero() {
+		return numero;
+	}
+
+
+
+
+
+
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+
 
 
 
@@ -188,5 +257,6 @@ public class Seccion_Documento implements Entidad{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

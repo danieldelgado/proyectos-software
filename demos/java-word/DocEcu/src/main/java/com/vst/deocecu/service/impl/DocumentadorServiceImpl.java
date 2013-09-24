@@ -11,7 +11,9 @@ import alfresco.com.vst.service.component.AlfrescoServiceConexion;
 
 import com.vst.deocecu.dao.DocumentoDAO;
 import com.vst.deocecu.dao.ProyectoDAO;
+import com.vst.deocecu.dao.SeccionDocumentoDAO;
 import com.vst.deocecu.dominio.Proyecto;
+import com.vst.deocecu.dominio.Seccion_Documento;
 import com.vst.deocecu.service.DocumentadorService;
 
 @Service
@@ -25,6 +27,9 @@ public class DocumentadorServiceImpl implements DocumentadorService {
 	
 	@Autowired
 	private DocumentoDAO documentoDAO;
+	
+	@Autowired
+	private SeccionDocumentoDAO seccionDocumentoDAO;
 	
 	public int guardarContenidoHTMLALFRESCO(String html) {		
 //		System.out.println("alfrescoServiceConexion");
@@ -67,6 +72,24 @@ public class DocumentadorServiceImpl implements DocumentadorService {
 
 	public Proyecto obtenerProyectoPorID(Integer id) {
 		return proyectoDAO.get(id);
+	}
+
+	public List<Seccion_Documento> obtenerSesscionesProyecto(Proyecto p) {		
+		
+		return null;
+	}
+
+	@Transactional
+	public int guardarSeccionProyecto(Integer id_proyecto, Seccion_Documento seccion_Documento) {
+		Proyecto p = proyectoDAO.get(id_proyecto);
+		if(alfrescoServiceConexion.iniciarConexion() == AlfrescoServiceConexion.AlfresoConstantes.USUARIO_AUNTENTICADO){
+			seccion_Documento = alfrescoServiceConexion.crearSeccionesDelProyecto(p, seccion_Documento);
+			alfrescoServiceConexion.terminarConexion();
+		}		
+		p.setSeccion_Documentos(seccionDocumentoDAO.obtenerSeccionesDocumentos(p));
+		proyectoDAO.guardar(p);
+		
+		return 0;
 	}
 	
 	

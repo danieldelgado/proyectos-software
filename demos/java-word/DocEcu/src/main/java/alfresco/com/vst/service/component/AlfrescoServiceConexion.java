@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.vst.deocecu.dominio.Proyecto;
+import com.vst.deocecu.dominio.Seccion_Documento;
 import com.vst.deocecu.util.Config;
 
 
@@ -118,26 +119,40 @@ public class AlfrescoServiceConexion {
 		}
 		return null;
 	}
-
+	public Seccion_Documento crearSeccionesDelProyecto(Proyecto proyecto,Seccion_Documento seccion_Documento){
+		if(ISCONEXION){
+			try {
+				logger.info("crearSeccionesDelProyecto seccion_Documento.getNombre():"+seccion_Documento.getNombre()+"  abo:"+proyecto.getRuta_Absoluta());
+				Reference spacereference = createEspacioTrabajo(proyecto.getRuta_Absoluta(), "/cm:" + normilizeNodeName(seccion_Documento.getNombre()));
+				seccion_Documento.setRuta_Seccion(spacereference.getPath());
+				seccion_Documento.setUuid(spacereference.getUuid());
+				return seccion_Documento;
+			} catch (Exception e) {
+				logger.info("No se puede crear");
+				logger.info("Can not create the space " + e.getMessage() );
+				e.printStackTrace();
+			}	
+		}
+		return null;
+	}
 	public Proyecto crearSubCarpetaProyecto(Proyecto proyecto){
 		if(ISCONEXION){
-			String proyectos = companyHomeParent.getPath() + "/cm:" + normilizeNodeName(ESPACIO_REPOSITORIO) + "/cm:" + normilizeNodeName(CARPETA_ECUS) + "/cm:" + normilizeNodeName(CARPETA_PROYECTOS);
-			logger.info("crearSubCarpetaProyecto obtener Carpeta Proyectos en :" + proyectos);
 			try {
 				Reference spacereference = obtenerSubCarpetaProyecto(proyecto);
 				if(spacereference==null){
-					spacereference = createEspacioTrabajo(proyectos, proyecto.getFolder());	
-//					spacereference = obtenerSubCarpetaProyecto(proyecto);
+					String proyectos = companyHomeParent.getPath() + "/cm:" + normilizeNodeName(ESPACIO_REPOSITORIO) + "/cm:" + normilizeNodeName(CARPETA_ECUS) + "/cm:" + normilizeNodeName(CARPETA_PROYECTOS);
+					logger.info("crearSubCarpetaProyecto obtener Carpeta Proyectos en :" + proyectos);					
+					spacereference = createEspacioTrabajo(proyectos, proyecto.getFolder());
 				}		
 				Proyecto nuevoproyecto = new Proyecto(
 				proyecto.getId(),
-				normilizeNodeName(CARPETA_PROYECTOS),
-				proyectos,
+				normilizeNodeName(proyecto.getFolder()),
+				spacereference.getPath(),
 				spacereference.getPath(),
 				spacereference.getUuid(),
 				spacereference.getStore().getAddress(),
 				spacereference.getStore().getScheme());		
-				logger.info("Proyecto creado : " +proyecto.getFolder() +" en :" + proyectos );
+				logger.info("Proyecto creado : " +proyecto.getFolder() +" en :" + spacereference.getPath() );
 				nuevoproyecto.setDescripcion(proyecto.getDescripcion());
 				nuevoproyecto.setTitulo(proyecto.getTitulo());
 				return nuevoproyecto;
@@ -213,7 +228,6 @@ public class AlfrescoServiceConexion {
 				return space;
 			} catch (Exception e) {
 				e.printStackTrace();
-				logger.info("Can not create the space.");
 				throw new Exception("No se puede crear "+ruta_padre+" : " +carpeta + " || "+ e.getMessage());
 			}
 		}

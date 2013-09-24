@@ -37,7 +37,7 @@
 					    <td>${py.uuid}</td>
 					    <td>${py.address}</td>
 					    <td>${py.scheme}</td>
-					    <td><a href=" <c:url value="/Proyecto/${py.folder}/${py.id}" ></c:url>" >${py.titulo}</a></td>
+					    <td><a href=" <c:url value="/Proyecto/${py.titulo}/${py.id}" ></c:url>" >${py.titulo}</a></td>
 					   
 					  </tr>
 					</c:forEach>

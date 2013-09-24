@@ -23,14 +23,14 @@
 				<table>
 				  <tr>
 				    <th>Nombre</th>
-				    <th>uuid</th>				   
+				    <th>Numero</th>				   
 				  </tr>
-					<c:forEach items="${proyecto.documentos}" var="d" >					 
-					    <td>${d.titulo}</td>
-					    <td>${d.uuid}</td>
+					<c:forEach items="${proyecto.seccion_Documentos}" var="d" >					 
+					    <td>${d.nombre}</td>
+					    <td>${d.numero}</td>
 					</c:forEach>
 				</table>				
-<%-- 				<a href="<c:url value="/nuevoProyecto" ></c:url>" >Crear Nuevo Proyecto</a> --%>
+				<a href="<c:url value="/Proyecto/${proyecto.folder}/${proyecto.id}/nuevaSeccion" ></c:url>" >Crear Nueva Seccion</a>
 			</div>
 		</div>	
 	</fieldset>

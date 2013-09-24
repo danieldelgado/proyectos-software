@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.vst.deocecu.dominio.Proyecto;
+import com.vst.deocecu.dominio.Seccion_Documento;
 import com.vst.deocecu.service.DocumentadorService;
 import com.vst.deocecu.util.Util;
 
@@ -55,9 +56,29 @@ public class HomeController {
 	@RequestMapping(value = "/Proyecto/{folder}/{id}", method = RequestMethod.GET)
 	public String Proyecto(@PathVariable String folder,@PathVariable Integer id , Model model) {	
 		Proyecto p = documentadorService.obtenerProyectoPorID(id);
+		p.setSeccion_Documentos(null);
 		model.addAttribute("proyecto", p);		
 		return "listaDocumentos";
 	}
+		
+	@RequestMapping(value = "/Proyecto/{folder}/{id}/nuevaSeccion", method = RequestMethod.GET)
+	public String nuevaSeccion(@PathVariable String folder,@PathVariable Integer id , Model model) {
+		Proyecto p = documentadorService.obtenerProyectoPorID(id);
+		p.setSeccion_Documentos(documentadorService.obtenerSesscionesProyecto(p));
+		model.addAttribute("proyecto", p);			
+		return "nuevaSeccion";
+	}
+	
+	@RequestMapping(value = "/Proyecto/{folder}/{id_proyecto}/guardarSeccion", method = RequestMethod.POST)
+	public String guardarSeccion(@PathVariable String folder,@PathVariable Integer id_proyecto , Model model, Seccion_Documento seccion_Documento) {
+		int r = documentadorService.guardarSeccionProyecto( id_proyecto, seccion_Documento);
+		return "redirect:/Proyecto/"+folder+"/"+id_proyecto;
+	}
+	
+	
+	
+	
+	
 	
 	
 	
