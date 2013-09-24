@@ -40,6 +40,7 @@ public class HomeController {
 	public String home(Model model) {		
 		List<Proyecto> listarProyectos = documentadorService.obtenerListaProyectos();
 		model.addAttribute("listarProyectos", listarProyectos);
+		documentadorService.guardarContenidoHTMLALFRESCO("");
 		return "home";
 	}
 	@RequestMapping(value = "/nuevoProyecto", method = RequestMethod.GET)
@@ -56,7 +57,7 @@ public class HomeController {
 	@RequestMapping(value = "/Proyecto/{folder}/{id}", method = RequestMethod.GET)
 	public String Proyecto(@PathVariable String folder,@PathVariable Integer id , Model model) {	
 		Proyecto p = documentadorService.obtenerProyectoPorID(id);
-		p.setSeccion_Documentos(null);
+		p.setSeccion_Documentos(documentadorService.obtenerSeccionesDocumentos(p));
 		model.addAttribute("proyecto", p);		
 		return "listaDocumentos";
 	}
@@ -64,7 +65,6 @@ public class HomeController {
 	@RequestMapping(value = "/Proyecto/{folder}/{id}/nuevaSeccion", method = RequestMethod.GET)
 	public String nuevaSeccion(@PathVariable String folder,@PathVariable Integer id , Model model) {
 		Proyecto p = documentadorService.obtenerProyectoPorID(id);
-		p.setSeccion_Documentos(documentadorService.obtenerSesscionesProyecto(p));
 		model.addAttribute("proyecto", p);			
 		return "nuevaSeccion";
 	}

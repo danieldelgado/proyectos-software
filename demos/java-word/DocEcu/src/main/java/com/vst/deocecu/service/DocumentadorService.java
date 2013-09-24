@@ -19,5 +19,7 @@ public interface DocumentadorService {
 	public List<Seccion_Documento> obtenerSesscionesProyecto(com.vst.deocecu.dominio.Proyecto p);
 
 	public int guardarSeccionProyecto(Integer id_proyecto, Seccion_Documento seccion_Documento);
+
+	public List<Seccion_Documento> obtenerSeccionesDocumentos(com.vst.deocecu.dominio.Proyecto p);
 	
 }

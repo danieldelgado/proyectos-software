@@ -61,9 +61,9 @@ public class Proyecto implements Entidad{
 //	@OneToMany(fetch = FetchType.EAGER)
 //	@JoinColumn(name = "proyecto")
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)	
-	private List<Seccion_Documento>  seccion_Documentos;
-	
+//	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)	
+//	private List<Seccion_Documento>  seccion_Documentos;
+	private transient List<Seccion_Documento>  seccion_Documentos;
 	
 	public Proyecto(){
 		

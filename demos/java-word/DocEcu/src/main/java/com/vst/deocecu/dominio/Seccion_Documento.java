@@ -55,15 +55,48 @@ public class Seccion_Documento implements Entidad{
 	@ManyToOne(fetch=FetchType.LAZY)
 	private  Proyecto proyecto;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY )
+	@JoinColumn(name="seccion_padre", nullable=true)
+	private Seccion_Documento seccion_padre; 
+	
+//	@OneToMany(fetch = FetchType.EAGER)
 //	@JoinColumn(name = "documentos")
-	private List<Documento>  lstdocumentos;
+	private transient List<Documento>  lstdocumentos;
 	
 	public Seccion_Documento(){
 		
 	}
 
 	
+
+
+
+
+
+
+
+
+	public Seccion_Documento getSeccion_padre() {
+		return seccion_padre;
+	}
+
+
+
+
+
+
+
+
+
+
+	public void setSeccion_padre(Seccion_Documento seccion_padre) {
+		this.seccion_padre = seccion_padre;
+	}
+
+
+
+
+
 
 
 

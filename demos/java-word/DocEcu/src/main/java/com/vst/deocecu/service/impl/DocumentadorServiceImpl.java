@@ -1,5 +1,6 @@
 package com.vst.deocecu.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.alfresco.webservice.types.Reference;
@@ -18,50 +19,53 @@ import com.vst.deocecu.service.DocumentadorService;
 
 @Service
 public class DocumentadorServiceImpl implements DocumentadorService {
-	
-	@Autowired 
+
+	@Autowired
 	private AlfrescoServiceConexion alfrescoServiceConexion;
-	
+
 	@Autowired
 	private ProyectoDAO proyectoDAO;
-	
+
 	@Autowired
 	private DocumentoDAO documentoDAO;
-	
+
 	@Autowired
 	private SeccionDocumentoDAO seccionDocumentoDAO;
-	
-	public int guardarContenidoHTMLALFRESCO(String html) {		
-//		System.out.println("alfrescoServiceConexion");
-//		System.out.println("iniciarConexion:"+alfrescoServiceConexion.iniciarConexion());
-//		Reference carpetaProyecto = alfrescoServiceConexion.obtenerCarpetaProyectos();
-//		System.out.println("hsd:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("hsd"));
-//		System.out.println("hsd:"+alfrescoServiceConexion.crearSubCarpetaProyecto("hsd"));
-//		System.out.println("docecu:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("docecu"));
-//		System.out.println("docecu:"+alfrescoServiceConexion.crearSubCarpetaProyecto("docecu"));
-//		System.out.println("chatwebsocket:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("chatwebsocket"));
-//		System.out.println("chatwebsocket:"+alfrescoServiceConexion.crearSubCarpetaProyecto("chatwebsocket"));
-//		System.out.println("terminarConexion:"+alfrescoServiceConexion.terminarConexion());	
+
+	public int guardarContenidoHTMLALFRESCO(String html) {
+		// System.out.println("alfrescoServiceConexion");
+		 System.out.println("iniciarConexion:"+alfrescoServiceConexion.iniciarConexion());
+		 Reference carpetaProyecto = alfrescoServiceConexion.obtenerCarpetaProyectos();
+		// System.out.println("hsd:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("hsd"));
+		// System.out.println("hsd:"+alfrescoServiceConexion.crearSubCarpetaProyecto("hsd"));
+		// System.out.println("docecu:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("docecu"));
+		// System.out.println("docecu:"+alfrescoServiceConexion.crearSubCarpetaProyecto("docecu"));
+		// System.out.println("chatwebsocket:"+alfrescoServiceConexion.obtenerSubCarpetaProyecto("chatwebsocket"));
+		// System.out.println("chatwebsocket:"+alfrescoServiceConexion.crearSubCarpetaProyecto("chatwebsocket"));
+		 System.out.println("terminarConexion:"+alfrescoServiceConexion.terminarConexion());
 		return 0;
 	}
 
-	public List<Proyecto> obtenerListaProyectos() {		
+	public List<Proyecto> obtenerListaProyectos() {
 		return proyectoDAO.getTodos();
 	}
-	
+
 	@Transactional
 	public int guardarNuevoProyecto(Proyecto proyecto) {
-//		Reference carpetaProyecto = alfrescoServiceConexion.obtenerCarpetaProyectos();	
-		Proyecto exiproyecto = proyectoDAO.existeProyectoPorFolder(proyecto.getFolder(),proyecto.getTitulo());
-		try {		
-			if(exiproyecto==null){
-//				alfrescoServiceConexion.iniciarConexion()
+		// Reference carpetaProyecto =
+		// alfrescoServiceConexion.obtenerCarpetaProyectos();
+		Proyecto exiproyecto = proyectoDAO.existeProyectoPorFolder(proyecto.getFolder(), proyecto.getTitulo());
+		try {
+			if (exiproyecto == null) {
+				// alfrescoServiceConexion.iniciarConexion()
 				Proyecto nuevo = null;
-				if(alfrescoServiceConexion.iniciarConexion() == AlfrescoServiceConexion.AlfresoConstantes.USUARIO_AUNTENTICADO){
-					nuevo =  alfrescoServiceConexion.crearSubCarpetaProyecto(proyecto);	
+				if (alfrescoServiceConexion.iniciarConexion() == AlfrescoServiceConexion.AlfresoConstantes.USUARIO_AUNTENTICADO) {
+					nuevo = alfrescoServiceConexion.crearSubCarpetaProyecto(proyecto);
 					alfrescoServiceConexion.terminarConexion();
-				}				
-				proyectoDAO.guardar(nuevo);	
+				}
+				nuevo.setFechaRegistro(new Date());
+				nuevo.setFechaActua(new Date());
+				proyectoDAO.guardar(nuevo);
 				return 1;
 			}
 		} catch (Exception e) {
@@ -74,26 +78,31 @@ public class DocumentadorServiceImpl implements DocumentadorService {
 		return proyectoDAO.get(id);
 	}
 
-	public List<Seccion_Documento> obtenerSesscionesProyecto(Proyecto p) {		
-		
+	public List<Seccion_Documento> obtenerSesscionesProyecto(Proyecto p) {
+
 		return null;
 	}
 
 	@Transactional
 	public int guardarSeccionProyecto(Integer id_proyecto, Seccion_Documento seccion_Documento) {
 		Proyecto p = proyectoDAO.get(id_proyecto);
-		if(alfrescoServiceConexion.iniciarConexion() == AlfrescoServiceConexion.AlfresoConstantes.USUARIO_AUNTENTICADO){
+		if (alfrescoServiceConexion.iniciarConexion() == AlfrescoServiceConexion.AlfresoConstantes.USUARIO_AUNTENTICADO) {
 			seccion_Documento = alfrescoServiceConexion.crearSeccionesDelProyecto(p, seccion_Documento);
 			alfrescoServiceConexion.terminarConexion();
-			seccion_Documento.setProyecto(p);
-			seccionDocumentoDAO.guardar(seccion_Documento);
-		}		
+		}
+		seccion_Documento.setFechaRegistro(new Date());
+		seccion_Documento.setFechaActua(new Date());
+		seccion_Documento.setSeccion_padre(null);
+		seccion_Documento.setProyecto(p);
+		seccionDocumentoDAO.guardar(seccion_Documento);
 //		p.setSeccion_Documentos(seccionDocumentoDAO.obtenerSeccionesDocumentos(p));
 //		proyectoDAO.guardar(p);
-		
-		return 0;
+		return 1;
 	}
-	
-	
-	
+
+	public List<Seccion_Documento> obtenerSeccionesDocumentos(Proyecto p) {
+		List<Seccion_Documento> lst = seccionDocumentoDAO.obtenerSeccionesDocumentos(p);
+		return lst;
+	}
+
 }

@@ -13,9 +13,9 @@ import com.vst.deocecu.util.DAO;
 public class SeccionDocumentoDAOImpl extends DAO<Seccion_Documento> implements SeccionDocumentoDAO {
 
 	public List<Seccion_Documento> obtenerSeccionesDocumentos(Proyecto p) {
-		sqlQuery = "Select sd from Seccion_Documento sd where sd.proyecto.id=:proyecto ";
+		sqlQuery = "Select sd from Seccion_Documento sd where sd.proyecto.id=:proyecto order by sd.numero ";
 		q = em.createQuery(sqlQuery);
-		q.setFirstResult(1);
+//		q.setFirstResult(1);
 		q.setParameter("proyecto", p.getId());
 		try {
 			return q.getResultList();
