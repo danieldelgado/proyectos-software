@@ -22,11 +22,10 @@ import com.vst.deocecu.dominio.Proyecto;
 import com.vst.deocecu.dominio.Seccion_Documento;
 import com.vst.deocecu.util.Config;
 
-
 public class AlfrescoServiceConexion {
 
 	private static final Logger logger = LoggerFactory.getLogger(AlfrescoServiceConexion.class);
-	
+
 	private static Boolean ISCONEXION = Config.getPropiedadBoolean("alfresco.repository.conexion");
 	private static final String STR_ALFRESCO_END_POINT = Config.getPropiedad("alfresco.repository.location.absolute");
 	private static final String USUARIO_ADMIN = Config.getPropiedad("alfresco.repository.location.admin.usario");
@@ -39,15 +38,15 @@ public class AlfrescoServiceConexion {
 	private static AuthoringServiceSoapBindingStub authoringService;
 	private static ContentServiceSoapBindingStub contentService;
 	private static RepositoryServiceSoapBindingStub repositoryService;
-	
+
 	private static ParentReference companyHomeParent;
-	
-//	@Autowired
-//	private ProyectoDAO proyectoDAO;
-//	
-//	@Autowired
-//	private DocumentoDAO documentoDAO;
-	
+
+	// @Autowired
+	// private ProyectoDAO proyectoDAO;
+	//
+	// @Autowired
+	// private DocumentoDAO documentoDAO;
+
 	public static class AlfresoConstantes {
 		public final static Integer ERROR_CONEXION = -1;
 		public final static Integer TERMINO_SESSION = 1;
@@ -107,70 +106,97 @@ public class AlfrescoServiceConexion {
 	}
 
 	public Reference obtenerCarpetaProyectos() {
-		if(ISCONEXION){
-			String ruta_completa = companyHomeParent.getPath() + "/cm:" + normilizeNodeName(ESPACIO_REPOSITORIO) + "/cm:" + normilizeNodeName(CARPETA_ECUS) + "/cm:" + normilizeNodeName(CARPETA_PROYECTOS);
+		if (ISCONEXION) {
+			String ruta_completa = companyHomeParent.getPath() + "/cm:" + normilizeNodeName(ESPACIO_REPOSITORIO) + "/cm:"
+					+ normilizeNodeName(CARPETA_ECUS) + "/cm:" + normilizeNodeName(CARPETA_PROYECTOS);
 			logger.info("obtener Carpeta Proyectos en :" + ruta_completa);
 			Reference spacereference = existeEspacioCarpeta(ruta_completa);
 			if (spacereference == null) {
 				logger.info("No existe. Se creara uno nuevo");
-				spacereference = crearNuevoEspacioCarpeta(normilizeNodeName(ESPACIO_REPOSITORIO),normilizeNodeName(CARPETA_ECUS), normilizeNodeName(CARPETA_PROYECTOS));
-			}			
+				spacereference = crearNuevoEspacioCarpeta(normilizeNodeName(ESPACIO_REPOSITORIO), normilizeNodeName(CARPETA_ECUS),
+						normilizeNodeName(CARPETA_PROYECTOS));
+			}
 			return spacereference;
 		}
 		return null;
 	}
-	public Seccion_Documento crearSeccionesDelProyecto(Proyecto proyecto,Seccion_Documento seccion_Documento){
-		if(ISCONEXION){
-			try {
-				logger.info("crearSeccionesDelProyecto seccion_Documento.getNombre():"+seccion_Documento.getNombre()+"  abo:"+proyecto.getRuta_Absoluta());
-				Reference spacereference = createEspacioTrabajo(proyecto.getRuta_Absoluta(), "/cm:" + normilizeNodeName(seccion_Documento.getNombre()));
-				seccion_Documento.setRuta_Seccion(spacereference.getPath());
-				seccion_Documento.setUuid(spacereference.getUuid());
-				return seccion_Documento;
-			} catch (Exception e) {
-				logger.info("No se puede crear");
-				logger.info("Can not create the space " + e.getMessage() );
-				e.printStackTrace();
-			}	
+
+//	public static void main(String[] args) {
+//		obtenerJerarquiaCarpetas("/app:company_home/cm:Documentos_html/cm:Ecus/cm:Proyectos/cm:Reportador/cm:Capitulo_1");
+//	}
+	
+	@SuppressWarnings("null")
+	public static String[] obtenerJerarquiaCarpetas(String strRuta) {
+		logger.info("obtenerJerarquiaCarpetas strRuta:"+strRuta);
+		if (strRuta == null && strRuta.trim().equals("")) {
+			return null;
+		}
+		String[] splits = strRuta.split("/cm:");
+		if (splits.length > 1) {
+			String[] jerarquia = new String[splits.length - 1];
+			for (int i = 1; i < splits.length; i++) {
+				jerarquia[i - 1] = splits[i];
+				logger.info("Jerarquia "+(i - 1)+":"+jerarquia[i - 1]);
+			}
+			logger.info("obtenerJerarquiaCarpetas jerarquia:"+jerarquia.length);
+			return jerarquia;
 		}
 		return null;
 	}
-	public Proyecto crearSubCarpetaProyecto(Proyecto proyecto){
-		if(ISCONEXION){
+
+	public Seccion_Documento crearSeccionesDelProyecto(Proyecto proyecto, Seccion_Documento seccion_Documento) {
+		if (ISCONEXION) {
 			try {
-				Reference spacereference = obtenerSubCarpetaProyecto(proyecto);
-				if(spacereference==null){
-					String proyectos = companyHomeParent.getPath() + "/cm:" + normilizeNodeName(ESPACIO_REPOSITORIO) + "/cm:" + normilizeNodeName(CARPETA_ECUS) + "/cm:" + normilizeNodeName(CARPETA_PROYECTOS);
-					logger.info("crearSubCarpetaProyecto obtener Carpeta Proyectos en :" + proyectos);					
-					spacereference = createEspacioTrabajo(proyectos, proyecto.getFolder());
-				}		
-				Proyecto nuevoproyecto = new Proyecto(
-				proyecto.getId(),
-				normilizeNodeName(proyecto.getFolder()),
-				spacereference.getPath(),
-				spacereference.getPath(),
-				spacereference.getUuid(),
-				spacereference.getStore().getAddress(),
-				spacereference.getStore().getScheme());		
-				logger.info("Proyecto creado : " +proyecto.getFolder() +" en :" + spacereference.getPath() );
-				nuevoproyecto.setDescripcion(proyecto.getDescripcion());
-				nuevoproyecto.setTitulo(proyecto.getTitulo());
-				return nuevoproyecto;
+				logger.info("crearSeccionesDelProyecto seccion_Documento.getNombre():" + seccion_Documento.getNombre() + "  abo:"+ proyecto.getRuta_Absoluta());
+				Reference spacereference = crearNuevoEspacioCarpeta(obtenerJerarquiaCarpetas(proyecto.getRuta_Absoluta()+"/cm:" + normilizeNodeName(seccion_Documento.getNombre())));
+				if(spacereference!=null){
+					logger.info("Espacio creado.");
+					seccion_Documento.setRuta_Seccion(spacereference.getPath());
+					seccion_Documento.setUuid(spacereference.getUuid());					
+				}				
+				return seccion_Documento;
 			} catch (Exception e) {
-				logger.info("No se puede crear");
-				logger.info("Can not create the space " + e.getMessage() );
+				logger.info("No se puede crear " + e.getMessage());
 				e.printStackTrace();
 			}
 		}
 		return null;
 	}
-	
-	public Reference obtenerSubCarpetaProyecto(Proyecto proyecto){
-		if(ISCONEXION){
-			String ruta_completa = companyHomeParent.getPath() + "/cm:" + normilizeNodeName(ESPACIO_REPOSITORIO) + "/cm:" + normilizeNodeName(CARPETA_ECUS) + "/cm:" + normilizeNodeName(CARPETA_PROYECTOS)+ "/cm:"+normilizeNodeName(proyecto.getFolder());
+
+	public Proyecto crearSubCarpetaProyecto(Proyecto proyecto) {
+		if (ISCONEXION) {
+			try {
+				Reference spacereference = obtenerSubCarpetaProyecto(proyecto);
+				if (spacereference == null) {
+					String proyectos = companyHomeParent.getPath() + "/cm:" + normilizeNodeName(ESPACIO_REPOSITORIO) + "/cm:"
+							+ normilizeNodeName(CARPETA_ECUS) + "/cm:" + normilizeNodeName(CARPETA_PROYECTOS);
+					logger.info("crearSubCarpetaProyecto obtener Carpeta Proyectos en :" + proyectos);
+					spacereference = createEspacioTrabajo(proyectos, proyecto.getFolder());
+				}
+				Proyecto nuevoproyecto = new Proyecto(proyecto.getId(), normilizeNodeName(proyecto.getFolder()), spacereference.getPath(),
+						spacereference.getPath(), spacereference.getUuid(), spacereference.getStore().getAddress(), spacereference.getStore()
+								.getScheme());
+				logger.info("Proyecto creado : " + proyecto.getFolder() + " en :" + spacereference.getPath());
+				nuevoproyecto.setDescripcion(proyecto.getDescripcion());
+				nuevoproyecto.setTitulo(proyecto.getTitulo());
+				return nuevoproyecto;
+			} catch (Exception e) {
+				logger.info("No se puede crear");
+				logger.info("Can not create the space " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+	public Reference obtenerSubCarpetaProyecto(Proyecto proyecto) {
+		if (ISCONEXION) {
+			String ruta_completa = companyHomeParent.getPath() + "/cm:" + normilizeNodeName(ESPACIO_REPOSITORIO) + "/cm:"
+					+ normilizeNodeName(CARPETA_ECUS) + "/cm:" + normilizeNodeName(CARPETA_PROYECTOS) + "/cm:"
+					+ normilizeNodeName(proyecto.getFolder());
 			logger.info("obtenerSubCarpetaProyecto en :" + ruta_completa);
 			try {
-				Reference spacereference = existeEspacioCarpeta(ruta_completa);					
+				Reference spacereference = existeEspacioCarpeta(ruta_completa);
 				return spacereference;
 			} catch (Exception e) {
 				logger.info("No encontrado");
@@ -179,12 +205,12 @@ public class AlfrescoServiceConexion {
 		}
 		return null;
 	}
-	
+
 	private Reference crearNuevoEspacioCarpeta(String... carpetas) {
-		if(ISCONEXION){
-			if(carpetas!=null && carpetas.length >0 ){
+		if (ISCONEXION) {
+			if (carpetas != null && carpetas.length > 0) {
 				Reference spacereference = null;
-				logger.info("Creando las "+carpetas.length+" siguientes carpetas ");
+				logger.info("Creando las " + carpetas.length + " siguientes carpetas ");
 				String ruta_completa = companyHomeParent.getPath();
 				String ruta_padre = companyHomeParent.getPath();
 				for (int i = 0; i < carpetas.length; i++) {
@@ -192,12 +218,15 @@ public class AlfrescoServiceConexion {
 					ruta_completa += "/cm:" + normilizeNodeName(folder);
 					logger.info("Ruta valida : " + ruta_completa);
 					try {
-						spacereference = createEspacioTrabajo(ruta_padre, folder);						
+						spacereference = existeEspacioCarpeta(ruta_completa);
+						if(spacereference==null){
+							spacereference = createEspacioTrabajo(ruta_padre, folder);							
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
-						logger.info("Can not create the space " + e.getMessage() );
+						logger.info("Can not create the space " + e.getMessage());
 						return null;
-					}	
+					}
 					ruta_padre = ruta_completa;
 				}
 				return spacereference;
@@ -207,14 +236,14 @@ public class AlfrescoServiceConexion {
 	}
 
 	private Reference createEspacioTrabajo(String ruta_padre, String carpeta) throws Exception {
-		if(ISCONEXION){
+		if (ISCONEXION) {
 			Reference space = null;
 			logger.info("The space named " + carpeta + " does not exist. Creating it.");
 			ParentReference companyHome = new ParentReference(AlfresoConstantes.STORE, null, ruta_padre, Constants.ASSOC_CONTAINS, null);
 			// Set Company Home as the parent space
 			companyHome.setChildName(Constants.createQNameString(Constants.NAMESPACE_CONTENT_MODEL, normilizeNodeName(carpeta)));
 			// Set the space's property name
-			NamedValue[] properties = new NamedValue[] { Utils.createNamedValue(Constants.PROP_NAME, carpeta)  };
+			NamedValue[] properties = new NamedValue[] { Utils.createNamedValue(Constants.PROP_NAME, carpeta) };
 			// Create the space using CML (Content Manipulation Language)
 			CMLCreate create = new CMLCreate("1", companyHome, null, null, null, Constants.TYPE_FOLDER, properties);
 			CML cml = new CML();
@@ -224,11 +253,11 @@ public class AlfrescoServiceConexion {
 				repositoryService.update(cml);
 				space = new Reference(AlfresoConstantes.STORE, null, ruta_padre + "/cm:" + carpeta);
 				repositoryService.get(new Predicate(new Reference[] { space }, AlfresoConstantes.STORE, null));
-				logger.info("Espacio creado : "+carpeta + " en :"+ruta_padre+ " uuid :"+space.getUuid());
+				logger.info("Espacio creado : " + carpeta + " en :" + ruta_padre + " uuid :" + space.getUuid());
 				return space;
 			} catch (Exception e) {
 				e.printStackTrace();
-				throw new Exception("No se puede crear "+ruta_padre+" : " +carpeta + " || "+ e.getMessage());
+				throw new Exception("No se puede crear " + ruta_padre + " : " + carpeta + " || " + e.getMessage());
 			}
 		}
 		return null;

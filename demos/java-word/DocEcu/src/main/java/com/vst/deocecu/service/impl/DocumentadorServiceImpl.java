@@ -85,9 +85,11 @@ public class DocumentadorServiceImpl implements DocumentadorService {
 		if(alfrescoServiceConexion.iniciarConexion() == AlfrescoServiceConexion.AlfresoConstantes.USUARIO_AUNTENTICADO){
 			seccion_Documento = alfrescoServiceConexion.crearSeccionesDelProyecto(p, seccion_Documento);
 			alfrescoServiceConexion.terminarConexion();
+			seccion_Documento.setProyecto(p);
+			seccionDocumentoDAO.guardar(seccion_Documento);
 		}		
-		p.setSeccion_Documentos(seccionDocumentoDAO.obtenerSeccionesDocumentos(p));
-		proyectoDAO.guardar(p);
+//		p.setSeccion_Documentos(seccionDocumentoDAO.obtenerSeccionesDocumentos(p));
+//		proyectoDAO.guardar(p);
 		
 		return 0;
 	}
