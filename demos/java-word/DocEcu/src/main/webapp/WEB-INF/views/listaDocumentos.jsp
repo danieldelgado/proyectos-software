@@ -23,12 +23,19 @@
 				<table>
 				  <tr>
 				    <th>Nombre</th>
-				    <th>Numero</th>				   
+				    <th>Numero</th>	
+				    <th>Opciones</th>				   
 				  </tr>
-					<c:forEach items="${proyecto.seccion_Documentos}" var="d" >	
+					<c:forEach items="${proyecto.seccion_Documentos}" var="sd" >	
 					<tr>				 
-					    <td>${d.nombre}</td>
-					    <td>${d.numero}</td>
+					    <td>${sd.nombre}</td>
+					    <td>${sd.numero}</td>
+					    
+					    <td>
+					    <p> 
+					    <a href="<c:url value="/Proyecto/${proyecto.folder}/${proyecto.id}/nuevaSubSeccionDocumento/${sd.id}" ></c:url>" > Crear Sub Seccion </a>
+					   
+					    <a href="<c:url value="/Proyecto/${proyecto.folder}/${proyecto.id}/CrearContenido/${sd.id}" ></c:url>" > Crear Contenido </a>  </p></td>
 					     </tr>
 					</c:forEach>
 				</table>				

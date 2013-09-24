@@ -92,7 +92,6 @@ public class DocumentadorServiceImpl implements DocumentadorService {
 		}
 		seccion_Documento.setFechaRegistro(new Date());
 		seccion_Documento.setFechaActua(new Date());
-		seccion_Documento.setSeccion_padre(null);
 		seccion_Documento.setProyecto(p);
 		seccionDocumentoDAO.guardar(seccion_Documento);
 //		p.setSeccion_Documentos(seccionDocumentoDAO.obtenerSeccionesDocumentos(p));
@@ -103,6 +102,10 @@ public class DocumentadorServiceImpl implements DocumentadorService {
 	public List<Seccion_Documento> obtenerSeccionesDocumentos(Proyecto p) {
 		List<Seccion_Documento> lst = seccionDocumentoDAO.obtenerSeccionesDocumentos(p);
 		return lst;
+	}
+
+	public Seccion_Documento obtenerSeccionProyectoPorId(Integer sdid) {	
+		return seccionDocumentoDAO.get(sdid);
 	}
 
 }

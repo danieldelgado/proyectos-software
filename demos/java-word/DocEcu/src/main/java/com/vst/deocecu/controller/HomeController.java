@@ -77,9 +77,22 @@ public class HomeController {
 	
 	
 	
+	@RequestMapping(value = "/Proyecto/{folder}/{proyecto_id}/nuevaSubSeccionDocumento/{sdid}", method = RequestMethod.GET)
+	public String nuevaSubSeccionDocumento(@PathVariable String folder,@PathVariable Integer proyecto_id,@PathVariable Integer sdid, Model model) {
+		Proyecto p = documentadorService.obtenerProyectoPorID(proyecto_id);
+		Seccion_Documento sd = documentadorService.obtenerSeccionProyectoPorId(sdid);
+		model.addAttribute("seccionDocumento", sd);
+		model.addAttribute("proyecto", p);
+		return "nuevaSubSeccionDocumento";
+	}
 	
-	
-	
+	@RequestMapping(value = "/Proyecto/{folder}/{proyecto_id}/guardarSubSeccionDocumento/{sdid}", method = RequestMethod.POST)
+	public String guardarSubSeccionDocumento(@PathVariable String folder,@PathVariable Integer proyecto_id,@PathVariable Integer sdid, Model model, Seccion_Documento seccion_Documento) {
+		Seccion_Documento sd = documentadorService.obtenerSeccionProyectoPorId(sdid);
+		seccion_Documento.setSeccion_padre(sd);
+		int r = documentadorService.guardarSeccionProyecto( proyecto_id, seccion_Documento);		
+		return "redirect:/Proyecto/"+folder+"/"+proyecto_id;
+	}
 	
 	
 	
