@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.vst.deocecu.dominio.Documento;
 import com.vst.deocecu.dominio.Proyecto;
 import com.vst.deocecu.dominio.Seccion_Documento;
 import com.vst.deocecu.service.DocumentadorService;
@@ -91,6 +92,27 @@ public class HomeController {
 		Seccion_Documento sd = documentadorService.obtenerSeccionProyectoPorId(sdid);
 		seccion_Documento.setSeccion_padre(sd);
 		int r = documentadorService.guardarSeccionProyecto( proyecto_id, seccion_Documento);		
+		return "redirect:/Proyecto/"+folder+"/"+proyecto_id;
+	}
+	
+	
+	
+	@RequestMapping(value = "/Proyecto/{folder}/{proyecto_id}/crearContenido/{sdid}", method = RequestMethod.GET)
+	public String crearContenido(@PathVariable String folder,@PathVariable Integer proyecto_id,@PathVariable Integer sdid, Model model) {
+		Proyecto p = documentadorService.obtenerProyectoPorID(proyecto_id);
+		Seccion_Documento sd = documentadorService.obtenerSeccionProyectoPorId(sdid);
+		model.addAttribute("seccionDocumento", sd);
+		model.addAttribute("proyecto", p);
+		return "agregarContenidoSeccionDocumento";
+	}
+	
+	@RequestMapping(value = "/Proyecto/{folder}/{proyecto_id}/guardarContenido/{sdid}", method = RequestMethod.POST)
+	public String guardarContenido(@PathVariable String folder,@PathVariable Integer proyecto_id,@PathVariable Integer sdid, Model model, Documento documento) {
+		Proyecto p = documentadorService.obtenerProyectoPorID(proyecto_id);
+		Seccion_Documento sd = documentadorService.obtenerSeccionProyectoPorId(sdid);
+		documento.setSeccion_documento(sd);
+		int r = documentadorService.guardarContenidoEnDocumentoAlfresco(p,sd,documento);
+		
 		return "redirect:/Proyecto/"+folder+"/"+proyecto_id;
 	}
 	

@@ -28,14 +28,16 @@
 				  </tr>
 					<c:forEach items="${proyecto.seccion_Documentos}" var="sd" >	
 					<tr>				 
-					    <td>${sd.nombre}</td>
-					    <td>${sd.numero}</td>
-					    
+					    <td> <label>${sd.nombre} </label> </td>
+					    <td> <label>${sd.numero} </label> </td>					    
 					    <td>
 					    <p> 
+					     &nbsp;
 					    <a href="<c:url value="/Proyecto/${proyecto.folder}/${proyecto.id}/nuevaSubSeccionDocumento/${sd.id}" ></c:url>" > Crear Sub Seccion </a>
-					   
-					    <a href="<c:url value="/Proyecto/${proyecto.folder}/${proyecto.id}/CrearContenido/${sd.id}" ></c:url>" > Crear Contenido </a>  </p></td>
+					    &nbsp;					   
+					    <a href="<c:url value="/Proyecto/${proyecto.folder}/${proyecto.id}/crearContenido/${sd.id}" ></c:url>" > Crear Contenido </a>  </p>
+					     &nbsp;
+					    </td>				    
 					     </tr>
 					</c:forEach>
 				</table>				

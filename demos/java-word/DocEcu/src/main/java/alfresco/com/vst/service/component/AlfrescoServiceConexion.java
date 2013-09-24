@@ -1,11 +1,17 @@
 package alfresco.com.vst.service.component;
 
+import java.util.Date;
+
 import org.alfresco.webservice.authentication.AuthenticationFault;
 import org.alfresco.webservice.authoring.AuthoringServiceSoapBindingStub;
+import org.alfresco.webservice.content.Content;
 import org.alfresco.webservice.content.ContentServiceSoapBindingStub;
 import org.alfresco.webservice.repository.RepositoryServiceSoapBindingStub;
+import org.alfresco.webservice.repository.UpdateResult;
 import org.alfresco.webservice.types.CML;
+import org.alfresco.webservice.types.CMLAddAspect;
 import org.alfresco.webservice.types.CMLCreate;
+import org.alfresco.webservice.types.ContentFormat;
 import org.alfresco.webservice.types.NamedValue;
 import org.alfresco.webservice.types.ParentReference;
 import org.alfresco.webservice.types.Predicate;
@@ -18,6 +24,7 @@ import org.alfresco.webservice.util.WebServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.vst.deocecu.dominio.Documento;
 import com.vst.deocecu.dominio.Proyecto;
 import com.vst.deocecu.dominio.Seccion_Documento;
 import com.vst.deocecu.util.Config;
@@ -121,6 +128,72 @@ public class AlfrescoServiceConexion {
 		return null;
 	}
 
+	public Documento crearContenidoWeb(Proyecto p, Seccion_Documento sd, Documento documento) {
+		logger.info("crearContenidoWeb ruta : "+sd.getRuta_Seccion());
+		if (ISCONEXION) {
+			Reference r = existeEspacioCarpeta(sd.getRuta_Seccion());
+			Reference documentoAlfresco = crearNuevoContenido(r, documento.getNombre()+".html", documento.getContent_html(),"html");
+			if(documentoAlfresco!=null){				
+				documento.setUuid(documentoAlfresco.getUuid());
+				documento.setRuta_Absoluta(documentoAlfresco.getPath());
+				documento.setMimetype("html");
+				documento.setFechaActua(new Date());
+				documento.setFechaRegistro(new Date());
+				logger.info("documento guardado : "+sd.getNombre());
+				return documento;
+			}
+		}		
+		return null;
+	}
+	
+	private Reference crearNuevoContenido(Reference r, String nombreContenido, String content, String tipo) {
+//		ContentServiceSoapBindingStub contentService = WebServiceFactory.getContentService();
+//		RepositoryServiceSoapBindingStub repositoryService = WebServiceFactory.getRepositoryService();
+		try {
+			Reference contentReference = createNewContent(r,contentService, nombreContenido, content, tipo);
+			System.out.println("contentReference : " + contentReference);
+			makeVersionable(repositoryService, contentReference);
+			return contentReference;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public  void makeVersionable(RepositoryServiceSoapBindingStub respositoryService, Reference reference) throws Exception {
+		Predicate predicate = new Predicate(new Reference[] { reference }, null, null);
+		CMLAddAspect addAspect = new CMLAddAspect(Constants.ASPECT_VERSIONABLE, null, predicate, null);
+		CML cml = new CML();
+		cml.setAddAspect(new CMLAddAspect[] { addAspect });
+		respositoryService.update(cml);
+	}
+
+	public  Reference createNewContent(Reference r, ContentServiceSoapBindingStub contentService, String name, String contentString, String tipo)
+			throws Exception {
+		System.out.println("r.getPath()"+r.getPath());
+		ParentReference parentReference = new ParentReference(AlfresoConstantes.STORE, null, r.getPath(), AlfresoConstantes.ASSOC_CONTAINS, "{"
+				+ Constants.NAMESPACE_CONTENT_MODEL + "}" + name);
+		ContentFormat contentFormat = null;
+		if (tipo.equalsIgnoreCase("html")) {
+			// contentFormat = new ContentFormat("application/msword", "UTF-8");
+			contentFormat = new ContentFormat("plain/text", "UTF-8");
+		}
+		if (tipo.equalsIgnoreCase("txt")) {
+			contentFormat = new ContentFormat("plain/text", "UTF-8");
+		}
+		if (tipo.equalsIgnoreCase("pdf")) {
+			contentFormat = new ContentFormat("application/pdf", "UTF-8");
+		}
+		NamedValue[] properties = new NamedValue[] { Utils.createNamedValue(Constants.PROP_NAME, name) };
+		CMLCreate create = new CMLCreate("1", parentReference, null, null, null, Constants.TYPE_CONTENT, properties);
+		CML cml = new CML();
+		cml.setCreate(new CMLCreate[] { create });
+		UpdateResult[] result = WebServiceFactory.getRepositoryService().update(cml);
+		Reference newContentNode = result[0].getDestination();
+		Content content = contentService.write(newContentNode, Constants.PROP_CONTENT, contentString.getBytes(), contentFormat);
+		return content.getNode();
+	}
+	
 //	public static void main(String[] args) {
 //		obtenerJerarquiaCarpetas("/app:company_home/cm:Documentos_html/cm:Ecus/cm:Proyectos/cm:Reportador/cm:Capitulo_1");
 //	}
@@ -308,5 +381,7 @@ public class AlfrescoServiceConexion {
 	private static void setRepositoryService(RepositoryServiceSoapBindingStub repositoryService) {
 		AlfrescoServiceConexion.repositoryService = repositoryService;
 	}
+
+	
 
 }

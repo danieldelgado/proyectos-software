@@ -13,6 +13,7 @@ import alfresco.com.vst.service.component.AlfrescoServiceConexion;
 import com.vst.deocecu.dao.DocumentoDAO;
 import com.vst.deocecu.dao.ProyectoDAO;
 import com.vst.deocecu.dao.SeccionDocumentoDAO;
+import com.vst.deocecu.dominio.Documento;
 import com.vst.deocecu.dominio.Proyecto;
 import com.vst.deocecu.dominio.Seccion_Documento;
 import com.vst.deocecu.service.DocumentadorService;
@@ -94,8 +95,6 @@ public class DocumentadorServiceImpl implements DocumentadorService {
 		seccion_Documento.setFechaActua(new Date());
 		seccion_Documento.setProyecto(p);
 		seccionDocumentoDAO.guardar(seccion_Documento);
-//		p.setSeccion_Documentos(seccionDocumentoDAO.obtenerSeccionesDocumentos(p));
-//		proyectoDAO.guardar(p);
 		return 1;
 	}
 
@@ -106,6 +105,17 @@ public class DocumentadorServiceImpl implements DocumentadorService {
 
 	public Seccion_Documento obtenerSeccionProyectoPorId(Integer sdid) {	
 		return seccionDocumentoDAO.get(sdid);
+	}
+
+	@Transactional
+	public int guardarContenidoEnDocumentoAlfresco(Proyecto p, Seccion_Documento sd, Documento documento) {
+		if (alfrescoServiceConexion.iniciarConexion() == AlfrescoServiceConexion.AlfresoConstantes.USUARIO_AUNTENTICADO) {			
+			documento = alfrescoServiceConexion.crearContenidoWeb(p,sd,documento);			
+			alfrescoServiceConexion.terminarConexion();
+		}
+		documento.setSeccion_documento(sd);
+		documentoDAO.guardar(documento);		
+		return 1;
 	}
 
 }

@@ -2,6 +2,7 @@ package com.vst.deocecu.service;
 
 import java.util.List;
 
+import com.vst.deocecu.dominio.Documento;
 import com.vst.deocecu.dominio.Proyecto;
 import com.vst.deocecu.dominio.Seccion_Documento;
 
@@ -23,5 +24,7 @@ public interface DocumentadorService {
 	public List<Seccion_Documento> obtenerSeccionesDocumentos(com.vst.deocecu.dominio.Proyecto p);
 
 	public Seccion_Documento obtenerSeccionProyectoPorId(Integer sdid);
+
+	public int guardarContenidoEnDocumentoAlfresco(Proyecto p, Seccion_Documento sd, Documento documento);
 	
 }

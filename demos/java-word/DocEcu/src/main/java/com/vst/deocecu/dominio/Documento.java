@@ -32,8 +32,8 @@ public class Documento implements Entidad{
 	@Column(name = "ruta_alfresco")
 	private String ruta_alfresco;
 
-	@Column(name = "content_html")
-	private String content_html;
+	@Column(name = "mimetype")
+	private String mimetype; 
 	
 	@Column(name = "ruta_Absoluta")
 	private String ruta_Absoluta; 
@@ -58,8 +58,10 @@ public class Documento implements Entidad{
 	@Column(name = "fechaActua")
 	private Date fechaActua;
 
-	@Column(name = "isDocumento")
-	private Boolean isDocumento;
+//	@Column(name = "isDocumento")
+//	private Boolean isDocumento;
+	
+	private transient String content_html;
 	
 	@ManyToOne(fetch=FetchType.EAGER)  
 //	@JoinColumn(name = "seccion_documento")
@@ -71,6 +73,20 @@ public class Documento implements Entidad{
 
 	
 	
+
+	public String getMimetype() {
+		return mimetype;
+	}
+
+
+
+
+	public void setMimetype(String mimetype) {
+		this.mimetype = mimetype;
+	}
+
+
+
 
 	public String getRuta_Absoluta() {
 		return ruta_Absoluta;
@@ -170,14 +186,14 @@ public class Documento implements Entidad{
 	}
 
 
-	public Boolean getIsDocumento() {
-		return isDocumento;
-	}
-
-
-	public void setIsDocumento(Boolean isDocumento) {
-		this.isDocumento = isDocumento;
-	}
+//	public Boolean getIsDocumento() {
+//		return isDocumento;
+//	}
+//
+//
+//	public void setIsDocumento(Boolean isDocumento) {
+//		this.isDocumento = isDocumento;
+//	}
 
 	
 
