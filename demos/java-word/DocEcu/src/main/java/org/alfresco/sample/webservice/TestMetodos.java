@@ -50,9 +50,9 @@ public class TestMetodos {
 
 	public static void main(String[] args) {
 		TestMetodos test = new TestMetodos();
-		System.out.println(test.obtenerTiket());
+//		System.out.println(test.obtenerTiket());
 		try {
-			Reference r = test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "Documentador", "index");
+			Reference r = test.createSpaceInSpace("Documentos html", "Ecus", "Proyectos", "Documentador", "index");
 			System.out.println("Reference");
 			System.out.println(r);
 //			test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "Documentador", "ecu01");
@@ -61,7 +61,8 @@ public class TestMetodos {
 //			test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "Documentador", "ecu04");
 //			test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "hsd", "index");
 //			test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "hsd", "ecu01");
-			test.crearNuevoContenido(r,"contentWEB"+System.currentTimeMillis()+".html", "<html> <body> nuevo s contenido web </body> </html>", "html");
+//			test.crearNuevoContenido(r,"contentWEB1.html", "<html> <body> nuevo s contenido web </body> </html>", "html");
+			 test.obtenetContenido(r,"contentWEB1.html");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,6 +79,32 @@ public class TestMetodos {
 		// test.obtenetContenido("contentWEB2123.html");
 		// test.obtenetContenido("contentTEXT1.txt");
 		test.termino();
+	}
+
+	private void obtenetContenido(Reference r, String str) {
+		try {
+			AuthoringServiceSoapBindingStub authoringService = WebServiceFactory.getAuthoringService();
+			ContentServiceSoapBindingStub contentService = WebServiceFactory.getContentService();
+			Store STORE = new Store(Constants.WORKSPACE_STORE, MI_STORE);
+			Reference reference = new Reference(STORE, null, r.getPath() + "/*[@cm:name=\"" + str + "\"]");
+			Content[] readResult = contentService.read(new Predicate(new Reference[] { reference }, STORE, null), Constants.PROP_CONTENT);
+			Content content = readResult[0];
+			System.out.println(ContentUtils.getContentAsString(content));
+			VersionHistory versionHistory = authoringService.getVersionHistory(reference);
+			
+			for (Version version : versionHistory.getVersions()) {
+				System.out.println("version.getId().getPath():"+version.getId().getPath());
+//				version.get
+				outputVersion(version);
+			}
+		} catch (RepositoryFault e) {
+			System.out.println("e1:" + e.getMessage());
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			System.out.println("e2:" + e.getMessage());
+			e.printStackTrace();
+		}
+
 	}
 
 	private Reference createSpaceInSpace(String space, String... foldersHijpos) throws Exception {
@@ -281,8 +308,8 @@ public class TestMetodos {
 	private static void outputVersion(Version version) {
 		String description = "none";
 		for (NamedValue namedValue : version.getCommentaries()) {
-			// System.out.println("namedValue.getName():"+namedValue.getName());
-			// System.out.println("namedValue.getValue():"+namedValue.getValue());
+			 System.out.println("namedValue.getName():"+namedValue.getName());
+			 System.out.println("namedValue.getValue():"+namedValue.getValue());
 			if (namedValue.getName().equals("description") == true) {
 				description = namedValue.getValue();
 			}
