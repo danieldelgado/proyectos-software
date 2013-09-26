@@ -18,7 +18,7 @@ import com.vst.deocecu.util.Entidad;
 
 @Entity
 @Table(name = "Documento")
-public class Documento implements Entidad{
+public class Documento implements Entidad {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_Generator")
@@ -29,11 +29,14 @@ public class Documento implements Entidad{
 	@Column(name = "ruta_alfresco")
 	private String ruta_alfresco;
 
+	@Column(name = "versionActual")
+	private String versionActual;
+
 	@Column(name = "mimetype")
-	private String mimetype; 
-	
+	private String mimetype;
+
 	@Column(name = "ruta_Absoluta")
-	private String ruta_Absoluta; 
+	private String ruta_Absoluta;
 
 	@Column(name = "uuid")
 	private String uuid;
@@ -55,186 +58,149 @@ public class Documento implements Entidad{
 	@Column(name = "fechaActua")
 	private Date fechaActua;
 
-//	@Column(name = "isDocumento")
-//	private Boolean isDocumento;
-	
+	// @Column(name = "isDocumento")
+	// private Boolean isDocumento;
+
 	private transient String content_html;
-	
-	@ManyToOne(fetch=FetchType.EAGER)  
-//	@JoinColumn(name = "seccion_documento")
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	// @JoinColumn(name = "seccion_documento")
 	private Seccion_Documento seccion_documento;
-	
-	public Documento(){
-		
+
+	public Documento() {
+
 	}
 
 	
-	
+	public String getVersionActual() {
+		return versionActual;
+	}
+
+
+	public void setVersionActual(String versionActual) {
+		this.versionActual = versionActual;
+	}
+
 
 	public String getMimetype() {
 		return mimetype;
 	}
 
-
-
-
 	public void setMimetype(String mimetype) {
 		this.mimetype = mimetype;
 	}
-
-
-
 
 	public String getRuta_Absoluta() {
 		return ruta_Absoluta;
 	}
 
-
-
-
 	public void setRuta_Absoluta(String ruta_Absoluta) {
 		this.ruta_Absoluta = ruta_Absoluta;
 	}
-
-
-
 
 	public String getUuid() {
 		return uuid;
 	}
 
-
-
-
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-
-
-
 
 	public String getRuta_alfresco() {
 		return ruta_alfresco;
 	}
 
-
 	public void setRuta_alfresco(String ruta_alfresco) {
 		this.ruta_alfresco = ruta_alfresco;
 	}
-
 
 	public String getContent_html() {
 		return content_html;
 	}
 
-
 	public void setContent_html(String content_html) {
 		this.content_html = content_html;
 	}
-
 
 	public String getNombre() {
 		return nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 
 	public String getTitulo() {
 		return titulo;
 	}
 
-
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-
 
 	public String getDescripcion() {
 		return descripcion;
 	}
 
-
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
 
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
 
-
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
-
 
 	public Date getFechaActua() {
 		return fechaActua;
 	}
 
-
 	public void setFechaActua(Date fechaActua) {
 		this.fechaActua = fechaActua;
 	}
 
-
-//	public Boolean getIsDocumento() {
-//		return isDocumento;
-//	}
-//
-//
-//	public void setIsDocumento(Boolean isDocumento) {
-//		this.isDocumento = isDocumento;
-//	}
-
-	
+	// public Boolean getIsDocumento() {
+	// return isDocumento;
+	// }
+	//
+	//
+	// public void setIsDocumento(Boolean isDocumento) {
+	// this.isDocumento = isDocumento;
+	// }
 
 	public Seccion_Documento getSeccion_documento() {
 		return seccion_documento;
 	}
 
-
-
-
 	public void setSeccion_documento(Seccion_Documento seccion_documento) {
 		this.seccion_documento = seccion_documento;
 	}
-
-
-
 
 	public Integer getId() {
 		return id;
 	}
 
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public String getLabel() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
 	public String getNombreCompleto() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-
 	public Boolean getActivo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 	public String getCodigo() {
 		// TODO Auto-generated method stub

@@ -117,5 +117,13 @@ public class DocumentadorServiceImpl implements DocumentadorService {
 		documentoDAO.guardar(documento);		
 		return 1;
 	}
+	
+	public List<Documento> obtenerDocumentosPorSeccion(Seccion_Documento sd) {
+		if(sd!=null){
+			List<Documento>  lds = documentoDAO.obtenetDocumentosPorSeccionDocumento(sd);
+			return lds;
+		}
+		return null;
+	}
 
 }

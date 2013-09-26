@@ -26,5 +26,7 @@ public interface DocumentadorService {
 	public Seccion_Documento obtenerSeccionProyectoPorId(Integer sdid);
 
 	public int guardarContenidoEnDocumentoAlfresco(Proyecto p, Seccion_Documento sd, Documento documento);
+
+	public List<Documento> obtenerDocumentosPorSeccion(Seccion_Documento sd);
 	
 }

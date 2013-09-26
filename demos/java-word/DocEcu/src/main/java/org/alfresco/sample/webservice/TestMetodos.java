@@ -8,6 +8,7 @@ import org.alfresco.webservice.authentication.AuthenticationServiceSoapBindingSt
 import org.alfresco.webservice.authoring.AuthoringServiceSoapBindingStub;
 import org.alfresco.webservice.authoring.CheckoutResult;
 import org.alfresco.webservice.content.Content;
+import org.alfresco.webservice.content.ContentFault;
 import org.alfresco.webservice.content.ContentServiceSoapBindingStub;
 import org.alfresco.webservice.repository.RepositoryFault;
 import org.alfresco.webservice.repository.RepositoryServiceSoapBindingStub;
@@ -35,12 +36,12 @@ public class TestMetodos {
 	public static String ticket;
 	public static final String USERNAME = "admin";
 	public static final String PASSWORD = "admin";
-	public static final String END_POINT = "http://192.168.1.38:8095/alfresco/api";
+	public static final String END_POINT = "http://192.168.1.215:8080/alfresco/api";
 	public static final String MI_FOLDER = "MI_FOLDER";
 	public static final String MI_STORE = "SpacesStore";
 	public static final String MI_CARPETA_HOME = "/app:company_home";
 	private static final String ASSOC_CONTAINS = "{http://www.alfresco.org/model/content/1.0}contains";
-	protected final Store STORE = new Store(Constants.WORKSPACE_STORE, "SpacesStore");
+	protected final static Store STORE = new Store(Constants.WORKSPACE_STORE, "SpacesStore");
 
 	public static boolean spaceUsercreate = false;
 
@@ -62,7 +63,10 @@ public class TestMetodos {
 //			test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "hsd", "index");
 //			test.createSpaceInSpace("Documentos html", "ecus", "proyectos", "hsd", "ecu01");
 //			test.crearNuevoContenido(r,"contentWEB1.html", "<html> <body> nuevo s contenido web </body> </html>", "html");
-			 test.obtenetContenido(r,"contentWEB1.html");
+//			test.modificarContenido(r,"contentWEB1.html", "<html> <body> nuevo "
+//			 + System.currentTimeMillis()+
+//			 " sfew wewfewf contenido web </body> </html>");
+			test.obtenetContenido(r,"contentWEB1.html");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -81,6 +85,30 @@ public class TestMetodos {
 		test.termino();
 	}
 
+	private void modificarContenido(Reference r, String str, String nuevoContenido) {
+		try {
+			AuthoringServiceSoapBindingStub authoringService = WebServiceFactory.getAuthoringService();
+			ContentServiceSoapBindingStub contentService = WebServiceFactory.getContentService();
+//			Store STORE = new Store(Constants.WORKSPACE_STORE, MI_STORE);
+			Reference reference = new Reference(STORE, null,r.getPath() + "/*[@cm:name=\"" + str + "\"]");
+			ContentFormat format = new ContentFormat(Constants.MIMETYPE_TEXT_PLAIN, "UTF-8");
+			Predicate itemsToCheckOut = new Predicate(new Reference[] { reference }, null, null);
+			CheckoutResult checkOutResult = authoringService.checkout(itemsToCheckOut, null);
+			Reference workingCopyReference = checkOutResult.getWorkingCopies()[0];
+			contentService.write(workingCopyReference, Constants.PROP_CONTENT, nuevoContenido.getBytes(), format);
+			Predicate predicate = new Predicate(new Reference[] { workingCopyReference }, null, null);
+
+			NamedValue[] comments = new NamedValue[] { Utils.createNamedValue("description",
+					"The content has been updated " + System.currentTimeMillis()) };
+			authoringService.checkin(predicate, comments, false);
+
+		} catch (Exception e) {
+			System.out.println("e:" + e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+
 	private void obtenetContenido(Reference r, String str) {
 		try {
 			AuthoringServiceSoapBindingStub authoringService = WebServiceFactory.getAuthoringService();
@@ -93,7 +121,7 @@ public class TestMetodos {
 			VersionHistory versionHistory = authoringService.getVersionHistory(reference);
 			
 			for (Version version : versionHistory.getVersions()) {
-				System.out.println("version.getId().getPath():"+version.getId().getPath());
+//				System.out.println("version.getId().getPath():"+version.getId().getPath());
 //				version.get
 				outputVersion(version);
 			}
@@ -306,10 +334,33 @@ public class TestMetodos {
 	}
 
 	private static void outputVersion(Version version) {
+		System.out.println("------------------------------------------");
+		ContentServiceSoapBindingStub contentService = WebServiceFactory.getContentService();
 		String description = "none";
+		Reference refer = version.getId();
+		System.out.println(refer.getPath());
+		System.out.println(refer.getUuid());
+		System.out.println(refer.getStore());
+		System.out.println(refer.getStore().getAddress());
+		System.out.println(refer.getStore().getScheme());
+		System.out.println(version.getLabel());
+		
+		try {
+			Content[] readResult = contentService.read(new Predicate(new Reference[] { refer }, STORE, null), Constants.PROP_CONTENT);
+
+			Content content = readResult[0];
+			System.out.println(ContentUtils.getContentAsString(content));
+			
+		} catch (ContentFault e) {
+			System.out.println(e);
+//			e.printStackTrace();
+		} catch (RemoteException e) {
+			System.out.println(e);
+//			e.printStackTrace();
+		}
 		for (NamedValue namedValue : version.getCommentaries()) {
-			 System.out.println("namedValue.getName():"+namedValue.getName());
-			 System.out.println("namedValue.getValue():"+namedValue.getValue());
+//			 System.out.println("namedValue.getName():"+namedValue.getName());
+//			 System.out.println("namedValue.getValue():"+namedValue.getValue());
 			if (namedValue.getName().equals("description") == true) {
 				description = namedValue.getValue();
 			}

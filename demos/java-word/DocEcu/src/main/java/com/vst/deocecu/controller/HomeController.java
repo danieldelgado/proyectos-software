@@ -95,6 +95,22 @@ public class HomeController {
 		return "redirect:/Proyecto/"+folder+"/"+proyecto_id;
 	}
 	
+	@RequestMapping(value = "/Proyecto/{folder}/{proyecto_id}/VerListaContenidos/{sdid}", method = RequestMethod.GET)
+	public String VerListaContenidos(@PathVariable String folder,@PathVariable Integer proyecto_id,@PathVariable Integer sdid, Model model) {
+		Proyecto p = documentadorService.obtenerProyectoPorID(proyecto_id);
+		Seccion_Documento sd = documentadorService.obtenerSeccionProyectoPorId(sdid);
+		sd.setLstdocumentos(documentadorService.obtenerDocumentosPorSeccion(sd));
+		model.addAttribute("seccionDocumento", sd);
+		model.addAttribute("proyecto", p);		
+		return "VerListaContenidos";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	@RequestMapping(value = "/Proyecto/{folder}/{proyecto_id}/crearContenido/{sdid}", method = RequestMethod.GET)
@@ -105,6 +121,8 @@ public class HomeController {
 		model.addAttribute("proyecto", p);
 		return "agregarContenidoSeccionDocumento";
 	}
+	
+	
 	
 	@RequestMapping(value = "/Proyecto/{folder}/{proyecto_id}/guardarContenido/{sdid}", method = RequestMethod.POST)
 	public String guardarContenido(@PathVariable String folder,@PathVariable Integer proyecto_id,@PathVariable Integer sdid, Model model, Documento documento) {
